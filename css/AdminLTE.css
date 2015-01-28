@@ -29,6 +29,21 @@ a:focus {
   text-decoration: none;
   color: #A2C756;
 }
+
+/* Higlighting*/
+#example tr.even:hover {
+    background-color: #CBCACA;
+}
+#example tr.even:hover td.sorting_1 {
+    background-color: #CBCACA;
+}
+#example tr.odd:hover {
+    background-color: #CBCACA;
+}
+#example tr.odd:hover td.sorting_1 {
+    background-color: #CBCACA;
+}
+
 /* Layouts */
 .wrapper {
   min-height: 100%;

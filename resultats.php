@@ -67,8 +67,7 @@ echo'</div>';
 ?>
 <script type="text/javascript" class="init">
 $(document).ready(function() {
-	$('#example').DataTable({
-		"scrollY": 200,
+	$('#example').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
