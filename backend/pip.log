@@ -1,0 +1,7 @@
+Collecting pip
+  Downloading pip-6.0.7-py2.py3-none-any.whl (1.3MB)
+    100% |################################| 1.3MB 186kB/s 
+Installing collected packages: pip
+
+Successfully installed pip-6.0.7
+

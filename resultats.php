@@ -29,6 +29,7 @@ echo'<div class="container">
 
 
 $db=mongoConnector();
+//$db=mongoPersistantConnector();
 $collection = new MongoCollection($db, "testData");
 $query=array('name' => 'Toto');
 $cursor = $collection->find();
@@ -53,12 +54,19 @@ foreach (array_slice($keys,1) as $key => $value) {
 	echo "<th>" . $value . "</th>";
 }
 echo'</tr></thead>';
+
+
 $cursor_count = $cursor->count();
 echo'<tbody>';
 foreach($cursor as $line) {
 	echo "<tr>";
 	foreach(array_slice($keys,1) as $key => $value) {
-		echo "<td>".$line[$value]."</td>";
+		if(is_array($line[$value])){;
+			echo"<td>".show_array($line[$value])."</td>";
+		}
+		else {
+			echo "<td>".$line[$value]."</td>";
+		}
 	}
 	echo "</tr>";
 }

@@ -13,6 +13,12 @@ function control_post ($value) {
 	return $return;
 }
 
+function show_array($array){
+	echo"<pre>";
+		print_r($array);
+	echo"</pre>";
+}
+
 
 
 
