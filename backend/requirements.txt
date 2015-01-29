@@ -1,0 +1,4 @@
+xlrd==0.9.3
+pymongo==2.7.2
+prettytable==0.7.2
+configobj==5.0.6
