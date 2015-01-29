@@ -48,7 +48,7 @@ $keys = array_values(array_unique($keys));
 
 echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
-
+//recupere le titre
 foreach (array_slice($keys,1) as $key => $value) {
 	echo "<th>" . $value . "</th>";
 }
