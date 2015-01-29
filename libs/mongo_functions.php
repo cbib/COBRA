@@ -29,7 +29,8 @@ function mongoPersistantConnector() {
 	catch ( MongoConnectionException $e )
 	{
     		echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
-    		exit();
+    		echo $e->getMessage();
+		exit();
 	}
 }
 

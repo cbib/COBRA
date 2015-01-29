@@ -10,77 +10,40 @@ new_cobra_header();
 <?php
 new_cobra_body();
 
+	//Recuperation des variables de la page main
+	$multipleGeneID = control_post($_POST['multipleID']);
+	$geneID=control_post($_POST['geneID']);
+	$textID=control_post($_POST['textInput']);
 
+	echo'<div class="container">
+	<h2>Resultats</h2>';
+	//echo $geneID;
+	//echo '<br>';
+	//echo $textID;
+	//echo '<br>';
+	//echo $multipleGeneID; 
+	//echo '<br>';
+	//echo '</div>';
 
-$multipleGeneID = control_post($_POST['multipleID']);
-$geneID=control_post($_POST['geneID']);
-$textID=control_post($_POST['textInput']);
+	//Instanciation de la connexion
+	$db=mongoConnector();
+	//$db=mongoPersistantConnector();
+	
+	//Selection de la collection
+	$sampleCollection = new MongoCollection($db, "samples");
+	var_dump($cursor);
 
+	$cursor = $sampleCollection->find(array(), array('name'=>1));
 
-echo'<div class="container">
-  <h2>Resultats</h2>';
-//echo $geneID;
-//echo '<br>';
-//echo $textID;
-//echo '<br>';
-//echo $multipleGeneID; 
-//echo '<br>';
-//echo '</div>';
-
-
-$db=mongoConnector();
-//$db=mongoPersistantConnector();
-$collection = new MongoCollection($db, "samples");
-//$query=array({"experimental_results":{"$elemMatch":{"values":{"$exists":False}}}});
-//$cursor = $collection->find(array('experimental_results'=>array('$elemMatch'=>array('values'=>array('$exists'=>False)))));
-$cursor = $collection->find(array(), array('name'=>1));
-$array = iterator_to_array($cursor);
-$keys =array();
-
-foreach($cursor as $doc) {
-	show_array($doc);
-}
-
-
-foreach ($array as $k => $v) {
-	foreach ($v as $a => $b) {
-		$keys[] = $a;
+	foreach($cursor as $doc) {
+		show_array($doc);
 	}
-}
-$keys = array_values(array_unique($keys));
+	
+	makeDatatable($cursor);
 
-/*foreach($cursor as $doc) {
-	var_dump($doc);
-}*/
-
-echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
-echo'<thead><tr>';
-
-
-//recupere le titre
-foreach (array_slice($keys,1) as $key => $value) {
-	echo "<th>" . $value . "</th>";
-}
-echo'</tr></thead>';
-$cursor_count = $cursor->count();
-echo'<tbody>';
-
-
-foreach($cursor as $line) {
-	echo "<tr>";
-	foreach(array_slice($keys,1) as $key => $value) {
-		if(is_array($line[$value])){;
-			echo"<td>".show_array($line[$value])."</td>";
-		}
-		else {
-			echo "<td>".$line[$value]."</td>";
-		}
-	}
-	echo "</tr>";
-}
-echo'</tbody></table>';
-echo'</div>';
+	echo'</div>';
 ?>
+
 <script type="text/javascript" class="init">
 $(document).ready(function() {
 	$('#example').dataTable( {
@@ -111,8 +74,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+
 <?php
 new_cobra_footer();
-
-
 ?>
