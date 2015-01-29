@@ -48,7 +48,7 @@ $keys = array_values(array_unique($keys));
 
 echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
-
+//recupere le titre
 foreach (array_slice($keys,1) as $key => $value) {
 	echo "<th>" . $value . "</th>";
 }
@@ -67,8 +67,7 @@ echo'</div>';
 ?>
 <script type="text/javascript" class="init">
 $(document).ready(function() {
-	$('#example').DataTable({
-		"scrollY": 200,
+	$('#example').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",

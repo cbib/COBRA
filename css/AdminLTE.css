@@ -29,6 +29,7 @@ a:focus {
   text-decoration: none;
   color: #A2C756;
 }
+
 /* Layouts */
 .wrapper {
   min-height: 100%;
@@ -331,6 +332,21 @@ table.text-center th {
   padding: 5px!important;
   width: auto!important;
   height: auto!important;
+}
+
+
+/* Higlighting*/
+#example tr.even:hover {
+    background-color: #D4D4D4;
+} 
+#example tr.even:hover td.sorting_1 {
+    background-color: #D4D4D4;
+}
+#example tr.odd:hover {
+    background-color: #D4D4D4;
+} 
+#example tr.odd:hover td.sorting_1 {
+    background-color: #D4D4D4;
 }
 /*
     Components: navbar, logo and content header
