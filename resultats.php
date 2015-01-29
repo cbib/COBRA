@@ -30,11 +30,17 @@ echo'<div class="container">
 
 $db=mongoConnector();
 //$db=mongoPersistantConnector();
-$collection = new MongoCollection($db, "testData");
-$query=array('name' => 'Toto');
-$cursor = $collection->find();
+$collection = new MongoCollection($db, "samples");
+//$query=array({"experimental_results":{"$elemMatch":{"values":{"$exists":False}}}});
+//$cursor = $collection->find(array('experimental_results'=>array('$elemMatch'=>array('values'=>array('$exists'=>False)))));
+$cursor = $collection->find(array(), array('name'=>1));
 $array = iterator_to_array($cursor);
 $keys =array();
+
+foreach($cursor as $doc) {
+	show_array($doc);
+}
+
 
 foreach ($array as $k => $v) {
 	foreach ($v as $a => $b) {
@@ -43,21 +49,23 @@ foreach ($array as $k => $v) {
 }
 $keys = array_values(array_unique($keys));
 
-//foreach($cursor as $doc) {
-//	var_dump($doc);
-//}
+/*foreach($cursor as $doc) {
+	var_dump($doc);
+}*/
 
 echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
+
+
 //recupere le titre
 foreach (array_slice($keys,1) as $key => $value) {
 	echo "<th>" . $value . "</th>";
 }
 echo'</tr></thead>';
-
-
 $cursor_count = $cursor->count();
 echo'<tbody>';
+
+
 foreach($cursor as $line) {
 	echo "<tr>";
 	foreach(array_slice($keys,1) as $key => $value) {

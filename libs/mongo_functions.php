@@ -7,7 +7,7 @@ function mongoConnector() {
 	try
 	{
 		$m = new Mongo(); // connect
-    		$db = $m->selectDB("mydb");
+    		$db = $m->selectDB("cobra_db");
 	}
 	catch ( MongoConnectionException $e )
 	{
@@ -24,7 +24,7 @@ function mongoPersistantConnector() {
 	{
 		//$m = new Mongo(); // connect
 		$m = new MongoClient("localhost:27017", array("persist" => "x"));
-    		$db = $m->selectDB("mydb");
+    		$db = $m->selectDB("cobra_db");
 	}
 	catch ( MongoConnectionException $e )
 	{
