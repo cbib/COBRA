@@ -34,7 +34,7 @@ new_cobra_body();
 	$speciesCollection = new Mongocollection($db, "species");
 	
 
-	var_dump($cursor);
+	//var_dump($cursor);
 	
 	//REQUEST 
 
