@@ -1,7 +1,7 @@
 <?php
-include 'libs/html_functions.php';
-include 'libs/php_functions.php';
-include 'libs/mongo_functions.php';
+include '/cobra/src/functions/html_functions.php';
+include '/src/functions/php_functions.php';
+include '/src/functions/mongo_functions.php';
 
 new_cobra_header();
 
@@ -30,14 +30,20 @@ new_cobra_body();
 	//$db=mongoPersistantConnector();
 	
 	//Selection de la collection
-	$sampleCollection = new MongoCollection($db, "samples");
+	//$sampleCollection = new MongoCollection($db, "samples");
+	$speciesCollection = new Mongocollection($db, "species");
+	
+
 	var_dump($cursor);
+	
+	//REQUEST 
 
-	$cursor = $sampleCollection->find(array(), array('name'=>1));
-
-	foreach($cursor as $doc) {
-		show_array($doc);
-	}
+	//$cursor = $sampleCollection->find(array(), array('name'=>1));
+	$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
+	
+	//foreach($cursor as $doc){
+	//	show_array($doc);
+	//}
 	
 	makeDatatable($cursor);
 

@@ -1,5 +1,5 @@
 <?php
-require 'libs/html_functions.php';
+require 'src/functions/html_functions.php';
 
 new_cobra_header();
 new_cobra_body();
@@ -7,7 +7,7 @@ echo'
 <div class="container">
   <h2>Select examples</h2>
   <p>Select a gene ID in the list :</p>
-  <form role="form" action="resultats.php" method="post" >
+  <form role="form" action="src/resultats.php" method="post" >
     <div class="form-group">
       <label for="geneID">Liste Deroulante:</label>
       <select class="form-control" id="geneID" name="geneID">
