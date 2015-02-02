@@ -20,8 +20,102 @@ function show_array($array){
 }
 
 
+function makeSpecies_List ($cursor){
 
-function makeDatatable ($cursor) {
+    
+    $array = iterator_to_array($cursor);
+    $keys =array();
+    
+    foreach ($array as $k => $v) {
+            foreach ($v as $a => $b) {
+                $keys[] = $a;
+            }
+    }
+    $keys = array_values(array_unique($keys));
+
+    //Debut du corps de la liste
+    echo '<select class="form-control" id="species" name="species">';
+    echo '<option value ="">----Choose species----</option>';   
+    //Parcours de chaque ligne du curseur
+    foreach($cursor as $line) {
+        //Slice de lid Mongo
+            foreach(array_slice($keys,1) as $key => $value) {
+                    if(is_array($line[$value])){;
+                                echo '<option value="species">'.show_array($line[$value]).'</option>';        
+                    }
+                    else {
+                                echo '<option value="species">'.$line[$value].'</option>';
+        
+                    }
+            }
+    }
+    echo '</select>';
+}
+
+
+function makeDatatableFromAggregate($cursor){
+
+    
+    echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
+    echo'<thead><tr>';
+    foreach ( $cursor as $id => $value )
+    {
+        
+
+        foreach ( $value as $ids => $values )
+        {
+            
+
+            $keys =array();
+            
+            
+            foreach ($values as $idss => $valuess )
+
+            {
+
+                $keys[] = $idss;
+                
+                
+            }
+            
+            
+        }
+        
+    }
+
+
+    
+    $keys = array_values(array_unique($keys));
+    
+    
+    //recupere le titre
+    foreach ($keys as $key => $value) {
+
+            echo "<th>" . $value . "</th>";
+            
+    
+    }
+    echo'</tr></thead>';
+    
+    //fill the table
+    echo'<tbody>';
+    foreach ( $cursor as $id => $value )
+    {
+        foreach ( $value as $ids => $values )
+        {
+            echo "<tr>";
+            foreach ($values as $idss => $valuess )
+            {
+                echo "<td>" . $valuess . "</td>";
+            }
+            echo "</tr>";
+        }   
+    }
+    echo'</tbody></table>'; 
+}
+
+
+function makeDatatableFromFind($cursor) {
 
 	$array = iterator_to_array($cursor);
 	$keys =array();

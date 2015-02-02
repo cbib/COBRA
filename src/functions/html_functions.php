@@ -10,28 +10,28 @@ echo'
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <!-- bootstrap 3.0.2 -->
-<link href="/database/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../../database/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
-<link href="/database/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="../../database/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Ionicons -->
-<link href="/database/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="../../database/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="/database/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/database/css/dataTables.bootstrap.css">	
+<link href="../../database/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../database/css/dataTables.bootstrap.css">	
 
 <!-- jQuery 2.0.2 -->
-<script src="/database/js/jquery.min.js"></script>
+<script src="../../database/js/jquery.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="/database/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" language="javascript" src="/database/js/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="/database/js/dataTables.bootstrap.js"></script>
+<script src="../../database/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="../../database/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="../../database/js/dataTables.bootstrap.js"></script>
 
 <!-- AdminLTE App -->
-<script src="/database/js/app.js" type="text/javascript"></script>
+<script src="../../database/js/app.js" type="text/javascript"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
@@ -57,7 +57,7 @@ echo'
                     <section class="sidebar">
                         <!-- Sidebar user panel -->
                         <div class="cobra-logo">
-                            <img src="/database/images/cobra-icon.png" />
+                            <img src="../../database/images/cobra-icon.png" />
                             <p>COBRA</p>
                         </div>
 

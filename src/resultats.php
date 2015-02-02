@@ -1,7 +1,7 @@
 <?php
-include 'functions/html_functions.php';
-include 'functions/php_functions.php';
-include 'functions/mongo_functions.php';
+include './functions/html_functions.php';
+include './functions/php_functions.php';
+include './functions/mongo_functions.php';
 
 new_cobra_header();
 
@@ -30,7 +30,7 @@ new_cobra_body();
 	//$db=mongoPersistantConnector();
 	
 	//Selection de la collection
-	//$sampleCollection = new MongoCollection($db, "samples");
+	$sampleCollection = new MongoCollection($db, "samples");
 	$speciesCollection = new Mongocollection($db, "species");
 	
 
@@ -38,14 +38,20 @@ new_cobra_body();
 	
 	//REQUEST 
 
-	//$cursor = $sampleCollection->find(array(), array('name'=>1));
-	$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
+	$cursor = $sampleCollection->find(array(), array('name'=>1));
+	//$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
 	
 	//foreach($cursor as $doc){
 	//	show_array($doc);
 	//}
-	
-	makeDatatable($cursor);
+    $cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
+    $txt='Cucumber mosaic virus';
+    //$cursor = find_species_doc($speciesCollection,'monosporascus_cannonballus');
+    //$cursor = $speciesCollection->find(array('$or'=>array(array('full_name'=>$txt),array('aliases'=>$txt),array('abbrev_name'=>$txt))));
+
+    makeDatatableFromAggregate($cursor);
+    //makeDatatableFromFind($cursor);	
+	//makeDatatable($cursor);
 
 	echo'</div>';
 ?>
