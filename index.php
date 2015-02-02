@@ -9,14 +9,17 @@ echo'
   <p>Select a gene ID in the list :</p>
   <form role="form" action="src/resultats.php" method="post" >
     <div class="form-group">
-      <label for="geneID">Liste Deroulante:</label>
+      <!--<label for="geneID">Liste Deroulante:</label>
       <select class="form-control" id="geneID" name="geneID">
         <option value ="">----Choisir----</option>
 	<option value="gene1">Gene 1</option>
         <option value="gene2">Gene 2</option>
         <option value="gene3">Gene 3</option>
         <option value="gene4">Gene 4</option>
-      </select>
+      </select>-->
+    ';
+      makeSpecies_List($cursor);
+    echo' 
     </div>
     <br>
     <div class="form-group"> 
