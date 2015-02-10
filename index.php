@@ -13,7 +13,7 @@ $cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
 echo'
 <div class="container">
   <h2>Select examples</h2>
-  <p>Select a gene ID in the list :</p>
+  <p>Select a species in the list :</p>
   <form role="form" action="src/resultats.php" method="post" >
     <div class="form-group">
       <!--<label for="geneID">Liste Deroulante:</label>
@@ -23,25 +23,25 @@ echo'
        <option value="gene2">Gene 2</option>
        <option value="gene3">Gene 3</option>
        <option value="gene4">Gene 4</option>
-      </select>-->
+      </select>
+      <div class="form-group">
+        <label for="multipleID">Muliple Select List</label>
+            <select multiple class="form-control" id="multipleID" name="multipleID">
+                <option value="multiple1">Gene 1</option>
+                <option value="multiple2">Gene 2</option>
+                <option value="multiple3">Gene 3</option>
+                <option value="multiple4">Gene 4</option>
+                <option value="multiple5">Gene 5</option>
+            </select>
+      </div>
+      <br>-->
     ';
       makeSpecies_List($cursor);
     echo' 
     </div>
     <br>
-    <div class="form-group"> 
-      <label for="multipleID">Muliple Select List</label>
-      <select multiple class="form-control" id="multipleID" name="multipleID">
-        <option value="multiple1">Gene 1</option>
-        <option value="multiple2">Gene 2</option>
-        <option value="multiple3">Gene 3</option>
-        <option value="multiple4">Gene 4</option>
-        <option value="multiple5">Gene 5</option>
-      </select>
-    </div>
-    <br>
     <div class="form-group">
-      <label for="textInput">Tapez votre texte</label>
+      <label for="textInput">choose a gene id</label>
       <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
     </div>
     <div class="form-group">
