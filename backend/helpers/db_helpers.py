@@ -70,29 +70,56 @@ def get_possible_aliases(species_txt):
 # def get_mapping_table(src,tgt):
 # 	mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
 
+
 def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=None):
 
-	wb = open_workbook(src_file)
-	current_sheet=wb.sheets()[sheet_index]
-	current_sheet.name
-	rows_to_data=[]
+        wb = open_workbook(src_file)
+        current_sheet=wb.sheets()[sheet_index]
+        current_sheet.name
+        rows_to_data=[]
+        logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+        for row in range(n_rows_to_skip,current_sheet.nrows):
+                values=[row]
+                for col in range(current_sheet.ncols):
+                        values.append(current_sheet.cell(row,col).value)
+                if len(column_keys)!=len(values):
+                        logger.critical("Mismatching number of columns and number of keys at location\n%s/sheet:%d/nrow:%d"%(src_file,sheet_index,row))
+                this_dict=dict(zip(column_keys,values))
+                if id_col: #enforce id col type 
+                        if isinstance(this_dict[id_col],Number):
+                                this_dict[id_col]=str(int(this_dict[id_col]))
 
-	for row in range(n_rows_to_skip,current_sheet.nrows):
-		values=[row]
-		for col in range(current_sheet.ncols):
-			values.append(current_sheet.cell(row,col).value)
-		if len(column_keys)!=len(values):
-			logger.critical("Mismatching number of columns and number of keys at location\n%s/sheet:%d/nrow:%d"%(src_file,sheet_index,nrow))
-		this_dict=dict(zip(column_keys,values))
-		if id_col: #enforce id col type 
-			if isinstance(this_dict[id_col],Number):
-				this_dict[id_col]=str(int(this_dict[id_col]))
-				
-		rows_to_data.append(this_dict)
+                rows_to_data.append(this_dict)
 
 
-	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
-	return rows_to_data
+        logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
+        return rows_to_data
+
+
+
+#def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=None):
+
+#	wb = open_workbook(src_file)
+#	current_sheet=wb.sheets()[sheet_index]
+#	current_sheet.name
+#        rows_to_data=[]
+#        logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+#	for row in range(n_rows_to_skip,current_sheet.nrows):
+#		values=[row]
+#		for col in range(current_sheet.ncols):
+#			values.append(current_sheet.cell(row,col).value)
+#		if len(column_keys)!=len(values):
+#			logger.critical("Mismatching number of columns and number of keys at location\n%s/sheet:%d/nrow:%d",(src_file,sheet_index,nrows))
+#		this_dict=dict(zip(column_keys,values))
+#		if id_col: #enforce id col type 
+#			if isinstance(this_dict[id_col],Number):
+#				this_dict[id_col]=str(int(this_dict[id_col]))
+#				
+#		rows_to_data.append(this_dict)
+#
+#
+#	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
+#	return rows_to_data
 
 
 # normalize xp data into the measurement table 

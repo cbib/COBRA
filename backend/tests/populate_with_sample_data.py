@@ -47,8 +47,9 @@ melon={
 		"species":	"C. melo",
 	}
 }
-
 species_col.insert(melon)
+
+
 
 m_canon={
 	"full_name":"Monosporascus Cannonballus",
@@ -73,8 +74,43 @@ species_col.insert(m_canon)
 
 cmv={
 	"full_name":"Cucumber mosaic virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Watermelon_mosaic_virus",
 	"aliases":['cmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Watermelon mosaic virus",
+	}
+	
+}
+
+species_col.insert(cmv)
+
+
+tev={
+	"full_name":"Tobacco etch virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Tobacco_etch_virus",
+	"aliases":['tev'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Tobacco etch virus",
+	}
+	
+}
+
+species_col.insert(tev)
+
+wmv={
+	"full_name":"Watermelon mosaic virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
+	"aliases":['wmv'],
 	"classification":{
 		"top_level":"viruses",
 		"group":"Group IV ((+)ssRNA)",
@@ -83,10 +119,8 @@ cmv={
 		"genus":"Cucumovirus",
 		"species":"Cucumber mosaic virus",
 	}
-	
-}
-
-species_col.insert(cmv)
+}	
+species_col.insert(wmv)
 
 
 
@@ -101,6 +135,24 @@ melon_pub={
 }
 
 publications_col.insert(melon_pub)
+
+melon_pub={
+    "doi":"10.1094/MPMI-07-11-0193",
+    "url":"http://dx.doi.org/10.1094/MPMI-07-11-0193",
+    "first_author":"Daniel Gonzalez-Ibeas",
+    "pmid":21970693, # http://www.ncbi.nlm.nih.gov/pubmed/19821986
+    # rest can be populated automatically 
+}
+
+
+
+
+publications_col.insert(melon_pub)
+
+
+
+
+
 ## mapping 
 
 
@@ -123,6 +175,172 @@ mappings_col.insert(mapping_table)
 
 
 ## samples 
+
+samples={
+    "src_pub":21970693, # Any field from the pub, doi, pmid, first author etc. 
+    "species":"C. melo", # any abbrev name, key or full name, 
+    "name":"    Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
+    "comments":[
+        {"content":"""Two melon genotypes have been used to analyse transcriptomic 
+        responses to infection by Watermelon mosaic 
+        virus: Tendral (susceptibel to WMV) and TGR-1551 (resistant to WMV). 
+        For each genotype, 60 melon seedlings were inoculated with WMV-M116 
+        and another 60 were mock-inoculated. Cotyledons of 10 plants were 
+        harvested at 1, 3, 5, 7, 9 and 15 dpi. At 15 dpi, 
+        the systemically infected second true leaf was also harvested. 
+        To reduce variability, each biological replicate used in this study 
+        was prepared by mixing the RNA extracts from 2 or 4 mock or WMV-inoculated 
+        cotyledons, respectively, or from 3 melon leaves. Samples (WMV infected and 
+        mock inoculated) corresponding to cotyledons at 1, 3 and 7 dpi, and leaves at 
+        15 dpi were used for microarray hybridisations, three biological replicates 
+        for each one, leading to a total of 48 samples."""}
+    ],
+    "assay":{
+        "type":"micro-array",
+        "design":"https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-13748/A-GEOD-13748.adf.txt"
+    },
+    "deposited":{
+        "repository":"https://www.ebi.ac.uk/arrayexpress/experiments/E-GEOD-30111/",
+        "sample_description_url":"https://www.ebi.ac.uk/arrayexpress/experiments/E-GEOD-30111/samples/",
+        "experimental_meta_data":"http://www.ebi.ac.uk/arrayexpress/xml/v2/experiments?query=melogen_melo_v1"
+
+    },
+    # xls parser configuration, are propagated to all entries in  "experimental_results",
+    "xls_parsing":{
+        "n_rows_to_skip":1,
+        "column_keys":['idx','est_unigen','adjP_Val','P_Value','t','B','logFC','SPOT_ID'],
+        "sheet_index":0,
+        "id_type":"est_unigen"
+    },
+    "experimental_results":[
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_Tendral-Mock_1dpi_VS_cotyledon_Tendral-WMVinfected_1dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"Tendral",
+            "day_after_inoculation":1,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_Tendral-Mock_3dpi_VS_cotyledon_Tendral-WMVinfected_3dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"Tendral",
+            "day_after_inoculation":3,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_Tendral-Mock_7dpi_VS_cotyledon_Tendral-WMVinfected_7dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"Tendral",
+            "day_after_inoculation":7,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_TGR-1551-Mock_1dpi_VS_cotyledon_TGR1551-WMVinfected_1dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"TGR1551",
+            "day_after_inoculation":1,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_TGR-1551-Mock_3dpi_VS_cotyledon_TGR1551-WMVinfected_3dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"TGR1551",
+            "day_after_inoculation":3,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/cotyledon_TGR-1551-Mock_7dpi_VS_cotyledon_TGR1551-WMVinfected_7dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"TGR1551",
+            "day_after_inoculation":7,
+            "material":"cotyledon"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/leaf_Tendral-Mock_15dpi_VS_leaf_Tendral-WMVinfected_15dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"Tendral",
+            "day_after_inoculation":15,
+            "material":"leaf"
+        },
+        {
+            "data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/watermelon_mosaic_virus/leaf_TGR-1551-Mock_15dpi_VS_leaf_TGR1551-WMVinfected_15dpi.xls",
+            "conditions":["non infected",{
+                "infected":True,
+                "infection_agent":"watermelon_mosaic_virus",
+                "label":"Infected with WMV"
+                
+                }
+            ],
+            "contrast":"inoculated VS non infected",
+            "type":"contrast",
+            "variety":"TGR1551",
+            "day_after_inoculation":15,
+            "material":"leaf"
+        }
+    ]
+
+}
+
+samples_col.insert(samples)
+
 
 
 samples={
@@ -337,4 +555,36 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 
 samples_col.insert(prunus_samples)
 
+###tomato
 
+
+tomato={
+	"full_name":"Solanum lycopersicum",
+	"abbrev_name":"S. Lycopersicum",
+	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
+	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
+	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
+	"preferred_id":"sgn_unigene",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Eudicots","Asterids"],
+		"order":	"Solanales",
+		"family":	"Solanaceae",
+		"genus":	"Solanum",
+		"species":	"S. Lycopersicum",
+	}
+}
+species_col.insert(tomato)
+
+
+
+## publication 
+
+#tomato_pub={
+#	"doi":"10.1186/1471-2164-10-467",
+#	"url":"http://www.biomedcentral.com/1471-2164/10/467",
+#	"first_author":"Albert Mascarell-Creus",
+#	"pmid":19821986, # http://www.ncbi.nlm.nih.gov/pubmed/19821986
+#	# rest can be populated automatically 
+#}

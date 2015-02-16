@@ -16,7 +16,7 @@ new_cobra_body();
 	$textID=control_post($_POST['textInput']);
 
 	echo'<div class="container">
-	<h2>Resultats</h2>';
+	<h2>Results</h2>';
 	//echo $geneID;
 	//echo '<br>';
 	//echo $textID;
@@ -38,14 +38,15 @@ new_cobra_body();
 	
 	//REQUEST 
 
-	$cursor = $sampleCollection->find(array(), array('name'=>1));
+	//$cursor = $sampleCollection->find(array(), array('name'=>1));
 	//$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
 	
 	//foreach($cursor as $doc){
 	//	show_array($doc);
 	//}
     $cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
-    $txt='Cucumber mosaic virus';
+    //$txt='Cucumber mosaic virus';
+    //$txt='monosporascus_cannonballus';
     //$cursor = find_species_doc($speciesCollection,'monosporascus_cannonballus');
     //$cursor = $speciesCollection->find(array('$or'=>array(array('full_name'=>$txt),array('aliases'=>$txt),array('abbrev_name'=>$txt))));
 
@@ -63,20 +64,20 @@ $(document).ready(function() {
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
 		"oLanguage": { 
-			"sProcessing":   "Traitement en cours...",
-			"sLengthMenu":   "Afficher _MENU_ éléments",
-			"sZeroRecords":  "Aucun élément à afficher",
-			"sInfo": "Affichage de l'élement _START_ à _END_ sur _TOTAL_ éléments",
-			"sInfoEmpty": "Affichage de l'élement 0 à 0 sur 0 éléments",
-			"sInfoFiltered": "(filtré de _MAX_ éléments au total)",
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
 			"sInfoPostFix":  "",
-			"sSearch":       "Rechercher: ",
+			"sSearch":       "Search: ",
 			"sUrl":          "",
 			"oPaginate": {
-				"sFirst":    "Premier",
-				"sPrevious": "Précédent",
-				"sNext":     "Suivant",
-				"sLast":     "Dernier"
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
 			}
 		},
 		"language": {
