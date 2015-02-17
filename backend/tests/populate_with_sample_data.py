@@ -159,6 +159,7 @@ publications_col.insert(melon_pub)
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
 	"src":"est_unigen",
+	"src_version":"4.0",
 	"tgt":"icugi_unigene",
 	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
 	"doi":"10.1186/1471-2164-13-601-s7",
@@ -577,7 +578,72 @@ tomato={
 }
 species_col.insert(tomato)
 
+## mapping 
 
+
+mapping_table={
+	"data_file":"mappings/",
+	"src":"SGN_S",
+	"src_version":"tom1",
+	"tgt":"SGN_U",
+	"tgt_version":"tomato200607#2"
+	"url":"",
+	"doi":"",
+	"key":"SGN_S_2_SGN_U",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','SGN_S','chipname','SGN_E','SGN_U','build_nr','est_seq'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
+	"name":"Transcriptomics of infection of S.lycopersicum",
+	"comments":[
+		{"content":""" ""","author":"","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":""
+	},
+	"deposited":{
+		"repository":"",
+		"sample_description_url":"",
+		"experimental_meta_data":""
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['','','','',''],
+		"sheet_index":0,
+		"id_type":"SGN_S"
+	},
+	"experimental_results":[
+		
+		{
+			"data_file":"",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco Etch Virus",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"inoculated VS non infected",
+			"type":"contrast",
+			"variety":""
+			
+		}
+	]
+
+}
+
+samples_col.insert(samples)
 
 ## publication 
 
