@@ -180,7 +180,7 @@ mappings_col.insert(mapping_table)
 samples={
     "src_pub":21970693, # Any field from the pub, doi, pmid, first author etc. 
     "species":"C. melo", # any abbrev name, key or full name, 
-    "name":"    Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
+    "name":"Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
     "comments":[
         {"content":"""Two melon genotypes have been used to analyse transcriptomic 
         responses to infection by Watermelon mosaic 
@@ -565,7 +565,7 @@ tomato={
 	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
 	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
 	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
-	"preferred_id":"sgn_unigene",
+	"preferred_id":"SGN_S",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -582,19 +582,19 @@ species_col.insert(tomato)
 
 
 mapping_table={
-	"data_file":"mappings/",
+	"data_file":"mappings/TOM1_id_to_Current_unigene.xls",
 	"src":"SGN_S",
 	"src_version":"tom1",
 	"tgt":"SGN_U",
-	"tgt_version":"tomato200607#2"
-	"url":"",
-	"doi":"",
+	"tgt_version":"tomato200607#2",
+	"url":"none",
+	"doi":"none",
 	"key":"SGN_S_2_SGN_U",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','chipname','SGN_E','SGN_U','build_nr','est_seq'],
+		"column_keys":['idx','SGN_S','SGN_U'],
 		"sheet_index":0,
 	}
 }
@@ -605,29 +605,29 @@ samples={
 	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
 	"name":"Transcriptomics of infection of S.lycopersicum",
 	"comments":[
-		{"content":""" ""","author":"","date":datetime.datetime.now()}
+		{"content":""" not published yet""","author":"ben","date":datetime.datetime.now()}
 	],
 	"assay":{
 		"type":"micro-array",
-		"design":""
+		"design":"tom1"
 	},
 	"deposited":{
-		"repository":"",
-		"sample_description_url":"",
-		"experimental_meta_data":""
+		"repository":"not deposited yet",
+		"sample_description_url":"not deposited yet",
+		"experimental_meta_data":"not deposited yet"
 
 	},
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['','','','',''],
+		"column_keys":['idx','SGN_S','Block','Column','Row','ID','logFC','A','t','P_Value','B','5_unigen_build_1_2','5_GO_annotation','3_unigen_build_1_2','3_GO_annotation'],
 		"sheet_index":0,
 		"id_type":"SGN_S"
 	},
 	"experimental_results":[
 		
 		{
-			"data_file":"",
+			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/micro_array/tobacco_etch_virus/toptable_ino7dpi.xls",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Tobacco Etch Virus",
@@ -636,7 +636,7 @@ samples={
 			],
 			"contrast":"inoculated VS non infected",
 			"type":"contrast",
-			"variety":""
+			"variety":"unclear"
 			
 		}
 	]
