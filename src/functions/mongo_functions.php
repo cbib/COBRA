@@ -107,7 +107,7 @@ function get_all_pathogens_infecting_angiosperm(Mongocollection $sp,Mongocollect
         array('$project' => array('species'=>1,'name'=>1,'experimental_results.conditions'=>1,'_id'=>0)),
         array('$unwind'=>'$experimental_results.conditions'),
         array('$match'=>array('experimental_results.conditions.infected'=>true)),
-        array('$project'=>array('species'=>1,'name'=>1,'agent'=>'$experimental_results.conditions.infection_agent'))
+        array('$project'=>array('species'=>1,'name'=>1,'material'=> '$experimental_results.material','variety'=> '$experimental_results.variety','agent'=>'$experimental_results.conditions.infection_agent'))
         ));
     
     }
