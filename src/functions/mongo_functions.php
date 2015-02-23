@@ -236,7 +236,7 @@ function get_all_genes_up_regulated(MongoCollection $me,Mongocollection $sp,Mong
     
     for ($i = 0; $i < count($cursor['result']); $i++) {
     	$text=$cursor['result'][$i][0];
-    	echo 'text :'.$text;
+    	#echo 'text :'.$text;
     	$test=$cursor['result'][$i]['id'];
     	$FC=$cursor['result'][$i]['FC'];
     
