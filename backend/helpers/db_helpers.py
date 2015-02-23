@@ -125,9 +125,12 @@ def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=Non
 # normalize xp data into the measurement table 
 
 def get_mapping(src,tgt):
+	logger.info( "try to find src : %s for tgt : %s",src,tgt)
 	if src==tgt:
+		logger.info("src=tgt")
 		return {}
 	else:
+		logger.info( "try to find src : %s for tgt : %s",src,tgt)
 		mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
 		if len(mapping_doc)<1:
 			logger.critical("cannot map dataset %s using mapping %s -> %s : Mapping not found",this_path,parser_config['id_type'],this_genome['preferred_id'])
@@ -141,6 +144,7 @@ def get_mapping(src,tgt):
 
 def robust_id_mapping(id_to_map,a_map):
 	if len(a_map)==0:
+		#logger.info("map null")
 		return id_to_map
 	else:
 		return a_map.get(id_to_map,[])

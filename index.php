@@ -8,7 +8,9 @@ new_cobra_body();
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
-$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
+$sampleCollection = new Mongocollection($db, "samples");
+#find_species_list($speciesCollection);
+#$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
 
 echo'
 <div class="container">
@@ -36,7 +38,9 @@ echo'
       </div>
       <br>-->
     ';
-      makeSpecies_List($cursor);
+    make_species_list(find_species_list($speciesCollection));
+    make_viruses_list(find_viruses_list($speciesCollection));
+    make_experiment_type_list(find_experiment_type_list($sampleCollection));
     echo' 
     </div>
     <br>
@@ -45,7 +49,7 @@ echo'
       <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-default">Envoyez</button>
+      <button type="submit" class="btn btn-default">Submit</button>
     </div>
   </form>
 </div>

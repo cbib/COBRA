@@ -70,7 +70,7 @@ echo'
                             </li>
                             <li class="active">
                                 <a href="/database">
-                                    <i class="fa fa-search"></i> <span>Query database</span>
+                                    <i class="fa fa-search"></i> <span>Quick search</span>
                                 </a>
                             </li>
                         </ul>
@@ -83,8 +83,8 @@ echo'
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
                         <h1>
-                            Query database
-                            <small>Random small text</small>
+                            Quick search
+                            <small>COBRA a plant virus interaction database</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

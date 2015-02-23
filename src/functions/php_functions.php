@@ -19,8 +19,79 @@ function show_array($array){
 	echo"</pre>";
 }
 
+function make_experiment_type_list($cursor){
 
-function makeSpecies_List ($cursor){
+
+	/*
+	$array = iterator_to_array($cursor);
+    $keys =array();
+    
+    foreach ($array as $k => $v) {
+            foreach ($v as $a => $b) {
+                $keys[] = $a;
+            }
+    }
+    $keys = array_values(array_unique($keys));
+
+    //Debut du corps de la liste
+    */
+    echo '<label for="species">experiment type</label>';
+
+    echo '<select class="form-control" id="exp_typeID" name="exp_typeID">';
+    echo '<option value ="">----Choose type----</option>';   
+    //Parcours de chaque ligne du curseur
+    foreach($cursor as $line) {
+        //Slice de lid Mongo
+            //foreach(array_slice($keys,1) as $key => $value) {
+              //      if(is_array($line[$value])){;
+                             //   echo '<option value="type">'.show_array($line[$value]).'</option>';        
+                   // }
+                    //else {
+                                echo '<option value="'.$line.'">'.$line.'</option>';
+        
+                    //}
+            //  }
+    }
+    echo '</select>';
+    
+}
+function make_viruses_list($cursor){
+
+
+	/*
+	$array = iterator_to_array($cursor);
+    $keys =array();
+    
+    foreach ($array as $k => $v) {
+            foreach ($v as $a => $b) {
+                $keys[] = $a;
+            }
+    }
+    $keys = array_values(array_unique($keys));
+
+    //Debut du corps de la liste
+    */
+    echo '<label for="viruses">viruses</label>';
+
+    echo '<select class="form-control" id="virusID" name="virusID">';
+    echo '<option value ="">----Choose type----</option>';   
+    //Parcours de chaque ligne du curseur
+    foreach($cursor as $line) {
+        //Slice de lid Mongo
+            //foreach(array_slice($keys,1) as $key => $value) {
+              //      if(is_array($line[$value])){;
+                             //   echo '<option value="type">'.show_array($line[$value]).'</option>';        
+                   // }
+                    //else {
+                                echo '<option value="'.$line.'">'.$line.'</option>';
+        
+                    //}
+            //  }
+    }
+    echo '</select>';
+    
+}
+function make_species_list($cursor){
 
     
     $array = iterator_to_array($cursor);
@@ -34,20 +105,22 @@ function makeSpecies_List ($cursor){
     $keys = array_values(array_unique($keys));
 
     //Debut du corps de la liste
-    echo '<select class="form-control" id="species" name="species">';
+    echo '<label for="species">Species</label>';
+
+    echo '<select class="form-control" id="speciesID" name="speciesID">';
     echo '<option value ="">----Choose species----</option>';   
     //Parcours de chaque ligne du curseur
     foreach($cursor as $line) {
         //Slice de lid Mongo
             foreach(array_slice($keys,1) as $key => $value) {
-                    if(is_array($line[$value])){;
-                                echo '<option value="species">'.show_array($line[$value]).'</option>';        
-                    }
-                    else {
-                                echo '<option value="species">'.$line[$value].'</option>';
+                  if(is_array($line[$value])){;
+                                echo '<option value="speciess">'.show_array($line[$value]).'</option>';        
+    	            }
+        	           else {
+                                echo '<option value="'.$line[$value].'">'.$line[$value].'</option>';
         
-                    }
-            }
+          	         }
+           }
     }
     echo '</select>';
 }
@@ -56,62 +129,78 @@ function makeSpecies_List ($cursor){
 function makeDatatableFromAggregate($cursor){
 
     
-    echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
-    echo'<thead><tr>';
-    foreach ( $cursor as $id => $value )
-    {
-        
-
-        foreach ( $value as $ids => $values )
-        {
-            
-
-            $keys =array();
-            
-            
-            foreach ($values as $idss => $valuess )
-
-            {
-
-                $keys[] = $idss;
-                
-                
-            }
-            
-            
-        }
-        
-    }
-
-
-    
-    $keys = array_values(array_unique($keys));
-    
-    
-    //recupere le titre
-    foreach ($keys as $key => $value) {
-
-            echo "<th>" . $value . "</th>";
-            
+    //foreach($cursor as $doc){
+    //print_r(count($cursor['result']));
+    //print_r($cursor['result']['0']);
+    //for ($i = 0; $i < count($cursor['result']); $i++) {
+    //	 print_r($cursor['result'][$i]['id']);
+    	 
+	//}
+    //}
+    if (count($cursor['result'])==0){
+    	echo'No results found';
     
     }
-    echo'</tr></thead>';
-    
-    //fill the table
-    echo'<tbody>';
-    foreach ( $cursor as $id => $value )
-    {
-        foreach ( $value as $ids => $values )
-        {
-            echo "<tr>";
-            foreach ($values as $idss => $valuess )
-            {
-                echo "<td>" . $valuess . "</td>";
-            }
-            echo "</tr>";
-        }   
-    }
-    echo'</tbody></table>'; 
+    else{
+		echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
+		echo'<thead><tr>';
+		foreach ( $cursor as $id => $value )
+		{
+		
+			//echo "level 1 key : ".$id."=> value:".$value."<br/";
+		
+			foreach ( $value as $ids => $values )
+			{
+			
+				//echo "level 2 key : ".$ids."=>value:".$values."<br/>";
+				$keys =array();
+			
+			
+				foreach ($values as $idss => $valuess )
+
+				{
+
+					//echo "level 3 key : ".$idss."=>".$valuess."<br/>";
+					$keys[] = $idss;
+				
+				
+				}
+			
+			
+			}
+		
+		}
+
+	
+	
+		$keys = array_values(array_unique($keys));
+	
+	
+		//recupere le titre
+		foreach ($keys as $key => $value) {
+
+				echo "<th>" . $value . "</th>";
+			
+	
+		}
+		echo'</tr></thead>';
+	
+		//fill the table
+		echo'<tbody>';
+		foreach ( $cursor as $id => $value )
+		{
+			foreach ( $value as $ids => $values )
+			{
+				echo "<tr>";
+				foreach ($values as $idss => $valuess )
+				{
+					echo "<td>" . $valuess . "</td>";
+				}
+				echo "</tr>";
+			}   
+		}
+		echo'</tbody></table>'; 
+	}
 }
 
 
