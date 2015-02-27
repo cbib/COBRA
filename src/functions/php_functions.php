@@ -1,5 +1,24 @@
 <?php 
 
+class ftp{
+    public $conn;
+
+    public function __construct($url){
+        $this->conn = ftp_connect($url);
+    }
+   
+    public function __call($func,$a){
+        if(strstr($func,'ftp_') !== false && function_exists($func)){
+            array_unshift($a,$this->conn);
+            return call_user_func_array($func,$a);
+        }else{
+            // replace with your own error handler.
+            die("$func is not a valid FTP function");
+        }
+    }
+}
+
+// Example
 
 function control_post ($value) {
 
@@ -17,6 +36,12 @@ function show_array($array){
 	echo"<pre>";
 		print_r($array);
 	echo"</pre>";
+}
+function make_request_list($cursor){
+
+
+
+
 }
 
 function make_experiment_type_list($cursor){
@@ -222,6 +247,7 @@ function makeDatatableFromFind($cursor) {
 	
 	//recupere le titre
 	foreach (array_slice($keys,1) as $key => $value) {
+			
        		echo "<th>" . $value . "</th>";
 	}
 	//fin du header de la table
@@ -234,13 +260,47 @@ function makeDatatableFromFind($cursor) {
         	echo "<tr>";
 		
 		//Slice de l'id Mongo
+			#echo $line->count();
 	        foreach(array_slice($keys,1) as $key => $value) {
-        	        if(is_array($line[$value])){;
+	        	
+	        	
+	        	#http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+	        	
+	        	if ($value=='gene'){
+	        		if (stristr($line[$value],"MU")) {
+						if(is_array($line[$value])){;
+					
+								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
+							
+						}
+						else {
+								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+
+								#echo "<td>".$line[$value]."</td>";
+						}
+					}
+					else{
+						if(is_array($line[$value])){;
+					
+								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
+							
+						}
+						else {
+								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+
+								#echo "<td>".$line[$value]."</td>";
+						}
+					}
+               	}
+               	else{
+               		if(is_array($line[$value])){;
                 	        echo"<td>".show_array($line[$value])."</td>";
 	                }
         	        else {
                 	        echo "<td>".$line[$value]."</td>";
                		}
+               	
+               	}
 	        }
         	echo "</tr>";
 	}

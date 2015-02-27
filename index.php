@@ -37,13 +37,23 @@ echo'
             </select>
       </div>
       <br>-->
-    ';
-    make_species_list(find_species_list($speciesCollection));
-    make_viruses_list(find_viruses_list($speciesCollection));
-    make_experiment_type_list(find_experiment_type_list($sampleCollection));
+    </div>';
+    #make_species_list(find_species_list($speciesCollection));
+    #make_viruses_list(find_viruses_list($speciesCollection));
+    #make_experiment_type_list(find_experiment_type_list($sampleCollection));
+    #make_request_list();
     echo' 
-    </div>
     <br>
+    <div class="form-group">
+        <label for="requestID">Multiple Select List</label>
+        <select multiple class="form-control" id="requestID" name="requestID">
+            <option value="Request1">get all genes up regulated</option>
+            <option value="Request2">get all angiosperms infected by a given pathogen</option>
+            <option value="Request3">find a gene using a regular expression</option>
+            <option value="Request4">Request 4</option>
+        	<option value="Request5">Request 5</option>
+        </select>
+    </div>
     <div class="form-group">
       <label for="textInput">choose a gene id</label>
       <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">

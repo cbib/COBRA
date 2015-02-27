@@ -122,6 +122,7 @@ function find_species_list(Mongocollection $sp){
 
 //* Find all synonyms
 function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
+    echo "entering get all synonyms";
     $cursor=array();
     try
     {
@@ -143,6 +144,18 @@ function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
 
 // Find all aliases
 // Find all genes up-regulated in the melon when infected with CMV
+
+function find_gene_by_regex(MongoCollection $me,MongoRegex $re){
+
+
+	$searchQuery = array('gene'=>array('$regex'=> $re));
+
+	$cursor = $me->find($searchQuery);
+	$cursor->limit(100);
+	return $cursor;
+	#$cursor = $measurementsCollection->find($searchQuery,array('direction'=>1));
+
+}
 function get_all_genes_up_regulated(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, $species='null', $virus='null',$est_id='null'){
 	
 	#echo 'entering get all gens up regulated for : species:'.$species;
@@ -301,10 +314,12 @@ function get_all_variety(Mongocollection $sa){
 //* Find all pathogens experimentally infecting any angiosperm
 function get_all_pathogens_infecting_angiosperm(Mongocollection $sp,Mongocollection $sa){
 
+	echo 'Entering get all pathogens function';
     $cursor=array();
     try
     {
         $cursors=get_all_synonyms($sp,'classification.unranked','Angiosperms');
+        
         $keys =array();
         $val =array();
         foreach ( $cursors as $id => $value )
@@ -314,6 +329,7 @@ function get_all_pathogens_infecting_angiosperm(Mongocollection $sp,Mongocollect
                 foreach ($values as $idss => $valuess )
                 {
                     $keys[] = $idss;
+                    echo 'value:'.$valuess;
                     $val[] = $valuess;
                 }
             

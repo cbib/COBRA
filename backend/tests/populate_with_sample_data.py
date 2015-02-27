@@ -53,20 +53,21 @@ barley={
 	"full_name":"Hordeum vulgare",
 	"abbrev_name":"H. vulgare",
 	"aliases":["hordeum_vulgare","barley"],
-	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
+	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
 	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"icugi_unigene",
+	"preferred_id":"not defined",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
 		"unranked": ["Angiosperms","Monocots","Commelinids"],
-		"order":	"Cucurbitales",
-		"family":	"Cucurbitaceae",
-		"genus":	"Cucumis",
-		"species":	"C. melo",
+		"order":	"Poales",
+		"family":	"Poaceae",
+		"genus":	"Pooideae",
+		"species":	"H. vulgare",
 	}
 }
 
+species_col.insert(barley)
 m_canon={
 	"full_name":"Monosporascus Cannonballus",
 	"abbrev_name":"M. canonballus",
@@ -177,6 +178,7 @@ mapping_table={
 	"src":"est_unigen",
 	"src_version":"4.0",
 	"tgt":"icugi_unigene",
+	"tgt_version":"tomato200607#2",
 	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
 	"doi":"10.1186/1471-2164-13-601-s7",
 	"key":"est_2_unigene",

@@ -11,14 +11,16 @@ new_cobra_header();
 new_cobra_body();
 
 	//Recuperation des variables de la page main
-	#$multipleGeneID = control_post($_POST['multipleID']);
+	$requestID=control_post($_POST['requestID']);
 	$speciesID=control_post(htmlspecialchars($_POST['speciesID']));
 	$exp_typeID=control_post(htmlspecialchars($_POST['exp_typeID']));
 	$virusID=control_post(htmlspecialchars($_POST['virusID']));
 	$textID=control_post(htmlspecialchars($_POST['textInput']));
 
+
 	echo'<div class="container">
 	<h2>Results</h2>';
+	echo $requestID;
 	/*
 	echo $speciesID;
 	echo '<br>';
@@ -57,15 +59,82 @@ new_cobra_body();
 	//foreach($cursor as $doc){
 	//	show_array($doc);
 	//}
+	if($requestID =='Request1'){
+	
+		
+	
+		#$ftp = new ftp('ftp.solgenomics.net/genomes/Solanum_lycopersicum/annotation/ITAG2.4_release/ITAG2.4_proteins_full_desc.fasta');
+		#$ftp->ftp_login('username','password');
+		#var_dump($ftp->ftp_nlist()); 
+	
+		echo 'launch request 1';
+		#Find all genes up regiulated in a given species with a given virus in given experiment type
+    	$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'melon','Watermelon mosaic virus','cFR15O8_c');
+		makeDatatableFromAggregate($cursor);
+	}
+	
+	else if ($requestID =='Request2'){
+		echo 'launch request 2';
+		$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
+		echo 'launch request 2';
+		makeDatatableFromFind($cursor);
+   		#makeDatatableFromAggregate($cursor);
+	
+	}
+	
+	else if($requestID =='Request3'){
+		echo 'launch request 3';
+		#Find using Regex to quickly found a gene, useful to interpret which ids we encounter in xls files
+		$search_string=$textID;
+		$regex=new MongoRegex("/^$search_string/m");
+		$cursor = find_gene_by_regex($measurementsCollection,$regex);
+		makeDatatableFromFind($cursor);
+
+	}
+	else if($requestID =='Request4'){
+		echo 'launch request 4';
+
+	}
+	else{
+		echo 'launch request 5';
+
+	}
 	
 	//find all pathogens infecting angiosperms
-    //$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
+    #$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
    
     
     //$cursor=get_all_variety($samplesCollection);
-    $cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,$speciesID,$virusID,$textID);
-
-    makeDatatableFromAggregate($cursor);
+    
+    
+    ###distinct request
+    #$cursor=$db->command(array("distinct"=>"measurements","key"=>"xp"));
+    
+    
+    
+    
+    
+    
+	
+	
+	#Find using Regex to quickly found a gene, useful to interpret which ids we encounter in xls files
+	#$search_string='1';
+	#$regex=new MongoRegex("/^$textID/m");
+	#$cursor = find_gene_by_regex($measurementsCollection,$regex);
+	
+	
+	
+	#Count entries in sample collection
+	#$cursor2 = $samplesCollection->count('experimental_results'=>1);
+	
+	#print_r($cursor);
+	#foreach ( $cursor as $doc ){
+	#	print_r($doc);
+	#	echo'<br/>';
+	#}
+	
+	#makeDatatableFromFind($cursor);
+    #makeDatatableFromAggregate($cursor);
     
     
     //$txt='Cucumber mosaic virus';
