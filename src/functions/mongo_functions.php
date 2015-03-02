@@ -1,5 +1,5 @@
 <?php
-
+include './functions/simple_html_dom.php';
 
 
 function mongoConnector() {
@@ -151,102 +151,134 @@ function find_gene_by_regex(MongoCollection $me,MongoRegex $re){
 	$searchQuery = array('gene'=>array('$regex'=> $re));
 
 	$cursor = $me->find($searchQuery);
-	$cursor->limit(100);
+	$cursor->sort(array('logFC'=> -1));
+	$cursor->limit(1000);
+	
 	return $cursor;
 	#$cursor = $measurementsCollection->find($searchQuery,array('direction'=>1));
 
 }
 function get_all_genes_up_regulated(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, $species='null', $virus='null',$est_id='null'){
 	
+	
+	#'experimental_results.values.$type'=>array('$exist'=>1)
+	#array('experimental_results.values.$xls_parsing.id_type' => array('$exists' => true))
+	#'experimental_results.values.$xls_parsing.id_type' => array('$exists' => true)
+	#'experimental_results.values.est_unigen'=>1,
+	#,'type'=>'$xls_parsing.id_type'
+	
 	#echo 'entering get all gens up regulated for : species:'.$species;
-	$species_cursor=array();
-	$cursor_id=find_species_doc($sp,$species);
-	$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
-	#for ($i = 0; $i < count($speciescursor['result']); $i++) {
-    	#$test=get_tgt_id_from_src_id($me,$cursor['result'][$i]['id']);
-    #	print_r($cursor['result'][$i]);
-    	 
-	#}
-	$virus_cursor=array();
-	$cursor_id=find_species_doc($sp,$virus);
-	$virus_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
-	
-	#echo 'est id:'.$est_id;
-	
-    $species_val =array();
-	foreach ( $species_cursor as $id => $value )
-	{
-		foreach ( $value as $ids => $values )
-        {
-           foreach ($values as $idss => $valuess )
-            {
-        		
-            	
-                $species_val[] = $valuess;
-                
-            }
-            
-            
-        }
-        
-    }
-    
-    $virus_val =array();
-	foreach ( $virus_cursor as $id => $value )
-	{
-		foreach ( $value as $ids => $values )
-        {
-           foreach ($values as $idss => $valuess )
-            {
-        		
-            	
-                $virus_val[] = $valuess;
-                
-            }
-            
-            
-        }
-        
-    }
-    
-    
-    if ($est_id==''){
+	if ($species =='null' && $virus == 'null'){
+	 echo "species null and virus null";
 		$cursor=$sa->aggregate(array( 
-		array('$match' => array('species' => array('$in'=>$species_val))), 
-		array('$unwind'=>'$experimental_results'),  
-		array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
-		array('$unwind'=>'$experimental_results.conditions'),  
-		#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
-		array('$match'=>array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val))),  
+			array('$match'=> array('experimental_results.conditions.infected'=>true)),
+			array('$unwind'=>'$experimental_results'),  
+			array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'xls_parsing.id_type'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
+			array('$unwind'=>'$experimental_results.conditions'),  
+			array('$match'=>array('experimental_results.conditions.infected'=>true)), 
+			#array('$match'=>array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val))),  
  
 
-	   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
-		array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.est_unigen'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
-		array('$unwind'=>'$experimental_results.values'), 
-		array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 4))), 
-		array('$project'=>array('id'=>'$experimental_results.values.est_unigen','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
-		));
-    }
-    else{
-		$cursor=$sa->aggregate(array( 
-		array('$match' => array('species' => array('$in'=>$species_val))), 
-		array('$unwind'=>'$experimental_results'),  
-		array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
-		array('$unwind'=>'$experimental_results.conditions'),  
-		#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
-		array('$match'=>array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val))),  
+		    #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
+			array('$project'=>array('experimental_results.values.logFC'=>1,'xls_parsing.id_type'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
+			array('$unwind'=>'$experimental_results.values'),
+			#array('$match'=>array('experimental_results.values'=>array("$elemMatch"=>array("$xls_parsing.id_type"=>array("$exists":True))))), 
+			array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 7))), 
+			array('$project'=>array('id'=>'$experimental_results.values.'."$xls_parsing.id_type",'FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+			));
+	}
+	else{
+	
+	
+		$species_cursor=array();
+		$cursor_id=find_species_doc($sp,$species);
+		$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+		#for ($i = 0; $i < count($speciescursor['result']); $i++) {
+			#$test=get_tgt_id_from_src_id($me,$cursor['result'][$i]['id']);
+		#	print_r($cursor['result'][$i]);
+		 
+		#}
+		$virus_cursor=array();
+		$cursor_id=find_species_doc($sp,$virus);
+		$virus_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+	
+		#echo 'est id:'.$est_id;
+	
+		$species_val =array();
+		foreach ( $species_cursor as $id => $value )
+		{
+			foreach ( $value as $ids => $values )
+			{
+			   foreach ($values as $idss => $valuess )
+				{
+				
+				
+					$species_val[] = $valuess;
+				
+				}
+			
+			
+			}
+		
+		}
+	
+		$virus_val =array();
+		foreach ( $virus_cursor as $id => $value )
+		{
+			foreach ( $value as $ids => $values )
+			{
+			   foreach ($values as $idss => $valuess )
+				{
+				
+				
+					$virus_val[] = $valuess;
+				
+				}
+			
+			
+			}
+		
+		}
+	
+   
+		if ($est_id==''){
+			$cursor=$sa->aggregate(array( 
+			array('$match' => array('species' => array('$in'=>$species_val))), 
+			array('$unwind'=>'$experimental_results'),  
+			array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
+			array('$unwind'=>'$experimental_results.conditions'),  
+			#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
+			array('$match'=>array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val))),  
  
 
-	   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
-		array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.est_unigen'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
-		array('$unwind'=>'$experimental_results.values'), 
-		array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 4),'experimental_results.values.est_unigen'=>$est_id)), 
-		array('$project'=>array('id'=>'$experimental_results.values.est_unigen','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
-		));
+		   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
+			array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.est_unigen'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
+			array('$unwind'=>'$experimental_results.values'), 
+			array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 4))), 
+			array('$project'=>array('id'=>'$experimental_results.values.est_unigen','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+			));
+		}
+		else{
+			$cursor=$sa->aggregate(array( 
+			array('$match' => array('species' => array('$in'=>$species_val))), 
+			array('$unwind'=>'$experimental_results'),  
+			array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
+			array('$unwind'=>'$experimental_results.conditions'),  
+			#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
+			array('$match'=>array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val))),  
+ 
+
+		   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
+			array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.est_unigen'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
+			array('$unwind'=>'$experimental_results.values'), 
+			array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 4),'experimental_results.values.est_unigen'=>$est_id)), 
+			array('$project'=>array('id'=>'$experimental_results.values.est_unigen','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+			));
+	
+		}
+	}
     
-    }
-    
-    
+   # $cursor->limit(1000);
     for ($i = 0; $i < count($cursor['result']); $i++) {
     	$text=$cursor['result'][$i][0];
     	#echo 'text :'.$text;

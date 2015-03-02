@@ -69,8 +69,18 @@ new_cobra_body();
 	
 		echo 'launch request 1';
 		#Find all genes up regiulated in a given species with a given virus in given experiment type
-    	$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'melon','Watermelon mosaic virus','cFR15O8_c');
-		makeDatatableFromAggregate($cursor);
+    	#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'melon','Watermelon mosaic virus','cFR15O8_c');
+		#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'null','null','cFR15O8_c');
+
+		$cursor=$samplesCollection->find(array('experimental_results.conditions.infected'=>true),array('experimental_results'=>1));
+		#echo $cursor['results'].'</br>';
+		echo $cursor['variety'].'</br>';
+		//foreach($cursor as $doc){
+		//	echo $doc['variety'].'</br>';
+		//}
+		
+		#makeDatatableFromAggregate($cursor);
+		makeDatatableFromFind($cursor);
 	}
 	
 	else if ($requestID =='Request2'){

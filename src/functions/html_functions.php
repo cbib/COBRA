@@ -70,7 +70,7 @@ echo'
                             </li>
                             <li class="active">
                                 <a href="/database">
-                                    <i class="fa fa-search"></i> <span>Quick search</span>
+                                    <i class="fa fa-search"></i> <span>Quick Search</span>
                                 </a>
                             </li>
                         </ul>

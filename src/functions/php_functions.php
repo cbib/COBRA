@@ -227,7 +227,28 @@ function makeDatatableFromAggregate($cursor){
 		echo'</tbody></table>'; 
 	}
 }
+//function getURLParameter(url, name) {
+//    return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
+//}
+function get_protein_info($url){
+	echo 'entering get_protein_info<br>';
+	
+	// Create DOM from URL or file
+	$html = file_get_html($url);
 
+	// Find all images
+	//foreach($html->find('img') as $element)
+       //echo $element->src . '<br>';
+
+	// Find all links
+	foreach($html->find('a') as $element){
+       #echo $element->name . '<br>';
+       	if ($element->name=='protein_prediction_analysis_2'){
+       			echo $element->name . '<br>'; 
+       			echo $element->children(1);
+       	}
+    }
+}
 
 function makeDatatableFromFind($cursor) {
 
@@ -275,6 +296,8 @@ function makeDatatableFromFind($cursor) {
 						}
 						else {
 								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+			
+
 
 								#echo "<td>".$line[$value]."</td>";
 						}
@@ -285,9 +308,14 @@ function makeDatatableFromFind($cursor) {
 								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
 							
 						}
+						
 						else {
-								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+								//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
+								#echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+								echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
 
+								
+								#get_protein_info($url);
 								#echo "<td>".$line[$value]."</td>";
 						}
 					}
@@ -309,28 +337,6 @@ function makeDatatableFromFind($cursor) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+
+
