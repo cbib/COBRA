@@ -216,12 +216,43 @@ function makeDatatableFromAggregate($cursor){
 		{
 			foreach ( $value as $ids => $values )
 			{
+				
+				
+				//echo $values."<br/>";
+					
 				echo "<tr>";
 				foreach ($values as $idss => $valuess )
 				{
-					echo "<td>" . $valuess . "</td>";
+					if($idss=='gene'){
+						//echo $idss."<br/>";
+						if (stristr($valuess,"MU")) {
+							echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$valuess."&searchtype=unigene&organism=melon\">".$valuess."</a></td>";
+								//echo "<td>" . $valuess . "</td>";
+						}
+						else if(stristr($valuess,"AT")){
+							echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$valuess."&type=locus\">".$valuess."</a></td>";
+						}
+						else if (stristr($valuess,"SGN")){
+							echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$valuess."\">".$valuess."</a></td>";
+						}
+						else{
+							echo "<td>" . $valuess . "</td>";
+						}
+					}
+					else{
+						
+					
+						echo "<td>" . $valuess . "</td>";
+					}
+				
+						
 				}
+						
+			
 				echo "</tr>";
+					
+				
+				
 			}   
 		}
 		echo'</tbody></table>'; 
@@ -290,12 +321,26 @@ function makeDatatableFromFind($cursor) {
 	        	if ($value=='gene'){
 	        		if (stristr($line[$value],"MU")) {
 						if(is_array($line[$value])){;
-					
+					http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
 								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
 							
 						}
 						else {
 								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+			
+
+
+								#echo "<td>".$line[$value]."</td>";
+						}
+					}
+					else if (stristr($line[$value],"AT")) {
+						if(is_array($line[$value])){;
+					
+								echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".show_array($line[$value])."&type=locus\">".show_array($line[$value])."</a></td>";
+							
+						}
+						else {
+								echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$line[$value]."&type=locus\">".$line[$value]."</a></td>";
 			
 
 
@@ -311,8 +356,8 @@ function makeDatatableFromFind($cursor) {
 						
 						else {
 								//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
-								#echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
-								echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+								#echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
 
 								
 								#get_protein_info($url);

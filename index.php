@@ -38,16 +38,16 @@ echo'
       </div>
       <br>-->
     </div>';
-    #make_species_list(find_species_list($speciesCollection));
-    #make_viruses_list(find_viruses_list($speciesCollection));
-    #make_experiment_type_list(find_experiment_type_list($sampleCollection));
+    make_species_list(find_species_list($speciesCollection));
+    make_viruses_list(find_viruses_list($speciesCollection));
+    make_experiment_type_list(find_experiment_type_list($sampleCollection));
     #make_request_list();
     echo' 
     <br>
     <div class="form-group">
         <label for="requestID">Multiple Select List</label>
         <select multiple class="form-control" id="requestID" name="requestID">
-            <option value="Request1">get all genes up regulated</option>
+            <option value="Request1">get all uniprot id from genes up regulated from a given species in microarray analysis of infection by a given virus</option>
             <option value="Request2">get all angiosperms infected by a given pathogen</option>
             <option value="Request3">find a gene using a regular expression</option>
             <option value="Request4">Request 4</option>
@@ -57,6 +57,10 @@ echo'
     <div class="form-group">
       <label for="textInput">choose a gene id</label>
       <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
+    </div>
+    <div class="form-group">
+      <label for="logFCInput">choose min logFC value</label>
+      <input type="number" step="0.0001" name="logFCInput" class ="form-control" placeholder="Tapez ici..." id="logFCInput">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-default">Submit</button>

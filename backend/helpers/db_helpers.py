@@ -82,6 +82,7 @@ def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=Non
                 values=[row]
                 for col in range(current_sheet.ncols):
                         values.append(current_sheet.cell(row,col).value)
+                        #logger.info("currentsheet nrows:%s",(current_sheet.cell(row,col).value))
                 if len(column_keys)!=len(values):
                         logger.critical("Mismatching number of columns and number of keys at location\n%s/sheet:%d/nrow:%d"%(src_file,sheet_index,row))
                 this_dict=dict(zip(column_keys,values))

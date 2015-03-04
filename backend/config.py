@@ -11,3 +11,4 @@ mappings_col = db.mappings
 publications_col= db.publications
 samples_col=db.samples
 measurements_col=db.measurements
+interactions_col=db.interactions

@@ -22,6 +22,7 @@ publications_col.remove()
 samples_col.remove()
 mappings_col.remove()
 measurements_col.remove()
+interactions_col.remove()
 
 
 
@@ -163,6 +164,7 @@ publications_col.insert(melon_pub)
 
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
+	"type":"est_to_gene",
 	"src":"est_unigen",
 	"src_version":"4.0",
 	"tgt":"icugi_unigene",
@@ -210,7 +212,7 @@ samples={
     },
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
-		"n_rows_to_skip":3,
+		"n_rows_to_skip":4,
 		"column_keys":['idx','est_unigen','description','fold_change','function'],
 		"sheet_index":0,
 		"id_type":"est_unigen"
@@ -465,7 +467,7 @@ The material used for the transcriptomic profile analyses came from three differ
 	},
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":4,
+		"n_rows_to_skip":3,
 		"column_keys":['idx','est_unigen','length','description','fold_change'],
 		"sheet_index":0,
 		"id_type":"est_unigen"
@@ -656,6 +658,8 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 samples_col.insert(prunus_samples)
 
 
+
+
 ####Arabidopsis
 
 arabidopsis_thaliana={
@@ -681,6 +685,7 @@ species_col.insert(arabidopsis_thaliana)
 
 mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
+	"type":"est_to_gene",
 	"src":"CATMA_ID",
 	"src_version":"CATMA V2.1",
 	"tgt":"AGI_TAIR",
@@ -698,12 +703,46 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+mapping_table={
+	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
+	"type":"gene_to_prot",
+	"src":"AGI_TAIR",
+	"src_version":"NA",
+	"tgt":"UNIPROT_ID",
+	"tgt_version":"NA",
+	"url":"none",
+	"doi":"none",
+	"key":"AGI_2_UNIPROT",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','AGI_TAIR','UNIPROT_ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+interactions_table={
+	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
+	"src":"Virus_prot",
+	"tgt":"Host_prot",
+	"virus_class":"potyvirus",
+	"xls_parsing":{
+		"n_rows_to_skip":3,
+		"column_keys":['idx','Virus_prot','Host_prot','method','virus','host','Putative_function','Reference','Accession_number'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)
 
 
 samples={
 	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
-	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. (thale cress)",
+	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 1-2(thale cress)",
 	"comments":[
 		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
 	],
@@ -720,7 +759,7 @@ samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA ID','AGI CODE','FUNCTION','TYPE_QUAL','PCR_RESULT','I S1','I S2','R','P-VAL'],
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
 		"sheet_index":0,
 		"id_type":"CATMA_ID"
 	},
@@ -755,22 +794,39 @@ samples={
 			"day_after_inoculation":7,
             "material":"leaf"
 			
-		},
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_1_iAsys_mAsys.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		},
+		}
+	]
+
+}
+samples_col.insert(samples)
+
+samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 3-4(thale cress)",
+	"comments":[
+		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA V2.1"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"sheet_index":0,
+		"id_type":"CATMA_ID"
+	},
+	"experimental_results":[
+		
+		
 		{
 			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_1_iAino_mAino.xls",
 			"conditions":["non infected",{
@@ -788,6 +844,54 @@ samples={
 		},
 		{
 			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_2_iAino_mAino.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"inoculated VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+            "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(samples)
+
+samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 5-6(thale cress)",
+	"comments":[
+		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA V2.1"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"sheet_index":0,
+		"id_type":"CATMA_ID"
+	},
+	"experimental_results":[
+		
+		
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_1_iAsys_mAsys.xls",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Tobacco etch virus",
@@ -820,6 +924,8 @@ samples={
 
 }
 samples_col.insert(samples)
+
+
 ####Tomato
 
 ##species
@@ -862,6 +968,7 @@ species_col.insert(tev)
 
 mapping_table={
 	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
+	"type":"gene_to_gene",
 	"src":"SGN_U",
 	"src_version":"tomato200607#2",
 	"tgt":"ITAG",
@@ -882,6 +989,7 @@ mappings_col.insert(mapping_table)
 
 mapping_table={
 	"data_file":"mappings/TOM1_id_to_Current_unigene.xls",
+	"type":"est_to_gene",
 	"src":"SGN_S",
 	"src_version":"tom1",
 	"tgt":"SGN_U",

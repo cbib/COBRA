@@ -16,11 +16,14 @@ new_cobra_body();
 	$exp_typeID=control_post(htmlspecialchars($_POST['exp_typeID']));
 	$virusID=control_post(htmlspecialchars($_POST['virusID']));
 	$textID=control_post(htmlspecialchars($_POST['textInput']));
+	$logFCInput=control_post(htmlspecialchars($_POST['logFCInput']));
 
 
 	echo'<div class="container">
 	<h2>Results</h2>';
-	echo $requestID;
+	#echo $requestID;
+	echo $logFCInput;
+	echo '<br>';
 	/*
 	echo $speciesID;
 	echo '<br>';
@@ -34,6 +37,7 @@ new_cobra_body();
 	*/
 	//Instanciation de la connexion
 	$db=mongoConnector();
+	#$db=mongoPersistantConnector()
 	//$db=mongoPersistantConnector();
 	
 	//Selection de la collection
@@ -67,33 +71,38 @@ new_cobra_body();
 		#$ftp->ftp_login('username','password');
 		#var_dump($ftp->ftp_nlist()); 
 	
-		echo 'launch request 1';
+		#echo 'launch request 1';
 		#Find all genes up regiulated in a given species with a given virus in given experiment type
-    	#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'melon','Watermelon mosaic virus','cFR15O8_c');
+		$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,$mappingsCollection,$logFCInput,$speciesID,$virusID,'');
+
+    	#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,$mappingsCollection,'arabidopsis','Tobacco etch virus','');
+		#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'melon','Watermelon mosaic virus','');
+		
 		#$cursor=get_all_genes_up_regulated($measurementsCollection,$speciesCollection,$samplesCollection,'null','null','cFR15O8_c');
 
-		$cursor=$samplesCollection->find(array('experimental_results.conditions.infected'=>true),array('experimental_results'=>1));
+		#$cursor=$samplesCollection->find(array('experimental_results.conditions.infected'=>true),array('experimental_results'=>1));
 		#echo $cursor['results'].'</br>';
-		echo $cursor['variety'].'</br>';
+		#echo $cursor['variety'].'</br>';
 		//foreach($cursor as $doc){
 		//	echo $doc['variety'].'</br>';
 		//}
 		
-		#makeDatatableFromAggregate($cursor);
-		makeDatatableFromFind($cursor);
+		#makeDatatableFromFind($cursorprot);
+		makeDatatableFromAggregate($cursor);
+		#makeDatatableFromFind($cursor);
 	}
 	
 	else if ($requestID =='Request2'){
-		echo 'launch request 2';
-		$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
-		echo 'launch request 2';
-		makeDatatableFromFind($cursor);
-   		#makeDatatableFromAggregate($cursor);
+		#echo 'launch request 2';
+		$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$samplesCollection);
+		#echo 'launch request 2';
+		#makeDatatableFromFind($cursor);
+   		makeDatatableFromAggregate($cursor);
 	
 	}
 	
 	else if($requestID =='Request3'){
-		echo 'launch request 3';
+		#echo 'launch request 3';
 		#Find using Regex to quickly found a gene, useful to interpret which ids we encounter in xls files
 		$search_string=$textID;
 		$regex=new MongoRegex("/^$search_string/m");
@@ -157,6 +166,59 @@ new_cobra_body();
 	//makeDatatable($cursor);
 
 	echo'</div>';
+	echo'
+<div class="container">
+  <h2>Select examples</h2>
+	<p>Select interactions if exists:</p>
+  <form role="form" action="interactions.php" method="post" >
+     <!--<div class="form-group">
+     <label for="geneID">Liste Deroulante:</label>
+      <select class="form-control" id="geneID" name="geneID">
+       <option value ="">----Choisir----</option>
+	   <option value="gene1">Gene 1</option>
+       <option value="gene2">Gene 2</option>
+       <option value="gene3">Gene 3</option>
+       <option value="gene4">Gene 4</option>
+      </select>
+      <div class="form-group">
+        <label for="multipleID">Muliple Select List</label>
+            <select multiple class="form-control" id="multipleID" name="multipleID">
+                <option value="multiple1">Gene 1</option>
+                <option value="multiple2">Gene 2</option>
+                <option value="multiple3">Gene 3</option>
+                <option value="multiple4">Gene 4</option>
+                <option value="multiple5">Gene 5</option>
+            </select>
+      </div>
+      <br>
+    </div>-->';
+    #make_species_list(find_species_list($speciesCollection));
+    #make_viruses_list(find_viruses_list($speciesCollection));
+    #make_experiment_type_list(find_experiment_type_list($sampleCollection));
+    #make_request_list();
+    echo' 
+    <br>
+    <!--<div class="form-group">
+        <label for="requestID">Multiple Select List</label>
+        <select multiple class="form-control" id="requestID" name="requestID">
+            <option value="Request1">get all uniprot id from genes up regulated from a given species in microarray analysis of infection by a given virus</option>
+            <option value="Request2">get all angiosperms infected by a given pathogen</option>
+            <option value="Request3">find a gene using a regular expression and retrieve prot interaction data if exist</option>
+            <option value="Request4">Request 4</option>
+        	<option value="Request5">Request 5</option>
+        </select>
+    </div>-->
+    <div class="form-group">
+      <label for="textInput">choose a prot id</label>
+      <input type="text" name="textID" class ="form-control" placeholder="Tapez ici..." id="textID">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+    </form>
+</div>
+';
+
 ?>
 
 <script type="text/javascript" class="init">
