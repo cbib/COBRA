@@ -116,9 +116,81 @@ function make_viruses_list($cursor){
     echo '</select>';
     
 }
+function make_whats_new(){
+	echo '
+	<div class="plain-box">
+    <div id="SpeciesSearch" class="js_panel">
+    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	<form action="src/resultats.php" method="get" class="clear search-form homepage-search-form">
+    		<fieldset>
+    			<div class="form-field ff-multi">
+    				<div class="ff-inline ff-right">
+    					<label for="species" class="ff-label">Search:</label>
+
+    					<span class="inp-group">
+    						<select name="speciesID" class="fselect input" id="speciesID">
+    							<option value="">All species</option>
+    	 						<option disabled="disabled" value="">---</option>';   
+						//Parcours de chaque ligne du curseur
+					foreach($cursor as $line) {
+					  	  echo '<option value="'.$line.'">'.$line.'</option>';
+					}
+					  echo '</select>
+    						<label for="q">for</label>
+    					</span>
+    					<wbr></wbr>
+    					<span class="inp-group">
+    						<input value="" name="q" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+    						<input value="Go" class="fbutton" type="submit" />
+    					</span>
+    					<wbr></wbr>
+    				</div>
+    				<div class="ff-notes">
+    					<p class="search-example">e.g. 
+    						<a class="nowrap" href="src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT5G03160">AT5G03160</a> 
+    						or 
+    						<a class="nowrap" href="/Multi/psychic?q=chx28;site=ensemblunit">chx28</a>
+    					</p>
+    				</div>
+    			</div>
+    		</fieldset>
+    	</form>
+    </div>
+    </div>';
+
+
+}
+function make_gene_id_text_list(){
+
+echo '
+    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <div id="SpeciesSearch" class="js_panel">
+    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	<form action="src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    		<fieldset>
+    			<div class="form-group">
+						<label for="listids">input list of gene ids</label>
+						<textarea name="listID" class="form-control" rows="3">AT5G03160
+AT1G06520
+AT1G03110</textarea>
+		
+				</div>
+				<wbr></wbr>
+    				<span class="inp-group">
+    					<input value="Go" class="fbutton" type="submit" />
+    				</span>
+    			<wbr></wbr>
+    		</fieldset>
+    	</form>
+    </div>
+    </div>';
+
+
+}
 function make_species_list($cursor){
 
     
+    /*
     $array = iterator_to_array($cursor);
     $keys =array();
     
@@ -148,9 +220,191 @@ function make_species_list($cursor){
            }
     }
     echo '</select>';
+    */
+     //echo '<label for="species">species</label>';
+
+    //echo '<select class="form-control" id="speciesID" name="speciesID">';
+    echo '
+    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <div id="SpeciesSearch" class="js_panel">
+    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	<form action="src/resultats.php" method="get" class="clear search-form homepage-search-form">
+    		<fieldset>
+    			<div class="form-field ff-multi">
+    				<div align="center" class="ff-inline ff-right" >
+    					<label for="species" class="ff-label">Search:</label>
+
+    					<span class="inp-group">
+    						<select name="speciesID" class="fselect input" id="speciesID">
+    							<option value="">All species</option>
+    	 						<option disabled="disabled" value="">---</option>';   
+						//Parcours de chaque ligne du curseur
+					foreach($cursor as $line) {
+					  	echo '<option value="'.$line.'">'.$line.'</option>';
+					}
+					echo '</select>
+    						<label for="q">for</label>
+    					</span>
+    					<wbr></wbr>
+    					<span class="inp-group">
+    						<input value="" name="q" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+    						<input value="Go" class="fbutton" type="submit" />
+    					</span>
+    					<wbr></wbr>
+    				</div>
+    				<div class="ff-notes">
+    					<p class="search-example " style="padding : 6px">e.g. 
+    						<a class="nowrap" href="src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT1G06520">AT1G06520</a> 
+    						or 
+    						<a class="nowrap" href="src/resultats.php?speciesID=Solanum+lycopersicum&q=SGN-U603893">SGN-U603893</a>
+    						
+    					</p>
+    				</div>
+    			</div>
+    		</fieldset>
+    	</form>
+    </div>
+    </div>';
 }
+function make_CrossCompare_list($cursor){
 
+    
+    echo '
+    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <div id="SpeciesSearch" class="js_panel">
+    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	<form action="src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
+    		<fieldset>
+    			<div class="form-field ff-multi">
+    				<div align="center" class="ff-inline ff-right" >
+    					<label for="species" class="ff-label">Search:</label>
 
+    					<span class="inp-group">
+    						<select name="species1ID" class="fselect input" id="species1ID">
+    							<option value="">All species</option>
+    	 						<option disabled="disabled" value="">---</option>';   
+						//Parcours de chaque ligne du curseur
+					foreach($cursor as $line) {
+					  	  echo '<option value="'.$line.'">'.$line.'</option>';
+					}
+					  echo '</select>
+    						<label for="q">versus</label>
+    					</span>
+    					<wbr></wbr>
+    					<span class="inp-group">
+    						<select name="species2ID" class="fselect input" id="species2ID">
+    							<option value="">All species</option>
+    	 						<option disabled="disabled" value="">---</option>';   
+								//Parcours de chaque ligne du curseur
+								foreach($cursor as $line) {
+					  	  			echo '<option value="'.$line.'">'.$line.'</option>';
+								}
+					echo '</select>
+
+    						<input value="Go" class="fbutton" type="submit" />
+    					</span>
+    					<wbr></wbr>
+    				</div>
+    				<div class="ff-notes">
+    					<p class="search-example " style="padding : 6px">e.g. 
+    						<a class="nowrap" href="src/cross_compare_resultats.php?species1ID=Arabidopsis+thaliana&species2ID=Solanum+lycopersicum">Arabidospis thaliana versus Solanum lycopersicum</a> 
+    					</p>
+    				</div>
+    			</div>
+    			
+    		</fieldset>
+    	</form>
+    </div>
+    </div>';
+}
+function make_species_list_2(){
+
+	echo' 
+    <div id="SpeciesSearch" class="js_panel">
+    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	<form action="/Multi/psychic" method="get" class="clear search-form homepage-search-form">
+    			<fieldset>
+    					<input value="ensemblunit" name="site" type="hidden" />
+    					<div class="form-field ff-multi">
+    						<label for="species" class="ff-label">Search:</label>
+    						<div class="ff-inline ff-right">
+    							<span class="inp-group">
+    								<select name="species" class="fselect input" id="species">
+    									<option value="">All species</option>
+    									<option disabled="disabled" value="">---</option>
+    									<optgroup label="Favourite species">
+    										<option value="Arabidopsis_thaliana">Arabidopsis thaliana</option>
+    										<option value="Oryza_sativa">Oryza sativa Japonica</option>
+    										<option value="Triticum_aestivum">Triticum aestivum</option>
+    										<option value="Hordeum_vulgare">Hordeum vulgare</option>
+    										<option value="Zea_mays">Zea mays</option>
+    										<option value="Physcomitrella_patens">Physcomitrella patens</option>
+    									</optgroup>
+    										<option disabled="disabled" value="">---</option>
+    										<option value="Aegilops_tauschii">Aegilops tauschii</option>
+    										<option value="Amborella_trichopoda">Amborella trichopoda</option>
+    										<option value="Arabidopsis_lyrata">Arabidopsis lyrata</option>
+    										<option value="Arabidopsis_thaliana">Arabidopsis thaliana</option>
+    										<option value="Brachypodium_distachyon">Brachypodium distachyon</option>
+    										<option value="Brassica_oleracea">Brassica oleracea</option>
+    										<option value="Brassica_rapa">Brassica rapa</option>
+    										<option value="Chlamydomonas_reinhardtii">Chlamydomonas reinhardtii</option>
+    										<option value="Cyanidioschyzon_merolae">Cyanidioschyzon merolae</option>
+    										<option value="Glycine_max">Glycine max</option>
+    										<option value="Hordeum_vulgare">Hordeum vulgare</option>
+    										<option value="Leersia_perrieri">Leersia perrieri</option>
+    										<option value="Medicago_truncatula">Medicago truncatula</option>
+    										<option value="Musa_acuminata">Musa acuminata</option>
+    										<option value="Oryza_barthii">Oryza barthii</option>
+    										<option value="Oryza_brachyantha">Oryza brachyantha</option>
+    										<option value="Oryza_glaberrima">Oryza glaberrima</option>
+    										<option value="Oryza_glumaepatula">Oryza glumaepatula</option>
+    										<option value="Oryza_meridionalis">Oryza meridionalis</option>
+    										<option value="Oryza_nivara">Oryza nivara</option>
+    										<option value="Oryza_punctata">Oryza punctata</option>
+    										<option value="Oryza_rufipogon">Oryza rufipogon</option>
+    										<option value="Oryza_indica">Oryza sativa Indica</option>
+    										<option value="Oryza_sativa">Oryza sativa Japonica</option>
+    										<option value="Ostreococcus_lucimarinus">Ostreococcus lucimarinus</option>
+    										<option value="Physcomitrella_patens">Physcomitrella patens</option>
+    										<option value="Populus_trichocarpa">Populus trichocarpa</option>
+    										<option value="Prunus_persica">Prunus persica</option>
+    										<option value="Selaginella_moellendorffii">Selaginella moellendorffii</option>
+    										<option value="Setaria_italica">Setaria italica</option>
+    										<option value="Solanum_lycopersicum">Solanum lycopersicum</option>
+    										<option value="Solanum_tuberosum">Solanum tuberosum</option>
+    										<option value="Sorghum_bicolor">Sorghum bicolor</option>
+    										<option value="Theobroma_cacao">Theobroma cacao</option>
+    										<option value="Triticum_aestivum">Triticum aestivum</option>
+    										<option value="Triticum_urartu">Triticum urartu</option>
+    										<option value="Vitis_vinifera">Vitis vinifera</option>
+    										<option value="Zea_mays">Zea mays</option>
+    								</select>
+    								<label for="q">for</label>
+    							</span>
+    							<wbr>
+    							</wbr>
+    							<span class="inp-group">
+    								<input value="" name="q" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+    								<input value="Go" class="fbutton" type="submit" />
+    							</span>
+    							<wbr>
+    							</wbr>
+    						</div>
+    						<div class="ff-notes">
+    							<p class="search-example">e.g. 
+    								<a class="nowrap" href="/Multi/psychic?q=Carboxy*;site=ensemblunit">Carboxy*
+    								</a> 
+    								or 
+    								<a class="nowrap" href="/Multi/psychic?q=chx28;site=ensemblunit">chx28
+    								</a>
+    							</p>
+    						</div>
+    					</div>
+    			</fieldset>
+    	</form>
+    </div>';
+}
 function makeDatatableFromAggregate($cursor){
 
     
@@ -167,29 +421,31 @@ function makeDatatableFromAggregate($cursor){
     
     }
     else{
-		echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
+    	//table-striped table-bordered
+		echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
 		echo'<thead><tr>';
-		foreach ( $cursor as $id => $value )
+		foreach ( $cursor['result'] as $value )
 		{
 		
-			//echo "level 1 key : ".$id."=> value:".$value."<br/";
-		
-			foreach ( $value as $ids => $values )
+			//echo "level 1 value:".$value."<br/";
+			$keys =array();
+			foreach ( $value as $key=>$values )
 			{
 			
-				//echo "level 2 key : ".$ids."=>value:".$values."<br/>";
-				$keys =array();
+				//echo "level 2 value:".$values."<br/>";
+				
 			
-			
-				foreach ($values as $idss => $valuess )
+				$keys[] = $key;
+				
+				/*foreach ($values as $valuess )
 
 				{
 
-					//echo "level 3 key : ".$idss."=>".$valuess."<br/>";
-					$keys[] = $idss;
+					echo "level 3 key : ".$idss."=>".$valuess."<br/>";
+					$keys[] = $valuess;
 				
 				
-				}
+				}*/
 			
 			
 			}
@@ -202,7 +458,7 @@ function makeDatatableFromAggregate($cursor){
 	
 	
 		//recupere le titre
-		foreach ($keys as $key => $value) {
+		foreach ($keys as $value) {
 
 				echo "<th>" . $value . "</th>";
 			
@@ -212,48 +468,48 @@ function makeDatatableFromAggregate($cursor){
 	
 		//fill the table
 		echo'<tbody>';
-		foreach ( $cursor as $id => $value )
+		foreach ( $cursor['result'] as $value )
 		{
-			foreach ( $value as $ids => $values )
+			echo "<tr>";
+			foreach ( $value as $idss => $valuess )
 			{
 				
 				
 				//echo $values."<br/>";
 					
-				echo "<tr>";
-				foreach ($values as $idss => $valuess )
-				{
-					if($idss=='gene'){
-						//echo $idss."<br/>";
-						if (stristr($valuess,"MU")) {
-							echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$valuess."&searchtype=unigene&organism=melon\">".$valuess."</a></td>";
-								//echo "<td>" . $valuess . "</td>";
-						}
-						else if(stristr($valuess,"AT")){
-							echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$valuess."&type=locus\">".$valuess."</a></td>";
-						}
-						else if (stristr($valuess,"SGN")){
-							echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$valuess."\">".$valuess."</a></td>";
-						}
-						else{
-							echo "<td>" . $valuess . "</td>";
-						}
+				
+				//foreach ($values as $idss => $valuess )
+				//{
+				if($idss=='gene'){
+					//echo $idss."<br/>";
+					if (stristr($valuess,"MU")) {
+						echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$valuess."&searchtype=unigene&organism=melon\">".$valuess."</a></td>";
+						//echo "<td>" . $valuess . "</td>";
+					}
+					else if(stristr($valuess,"AT")){
+						echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$valuess."&type=locus\">".$valuess."</a></td>";
+					}
+					else if (stristr($valuess,"SGN")){
+						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$valuess."\">".$valuess."</a></td>";
 					}
 					else{
 						
-					
 						echo "<td>" . $valuess . "</td>";
 					}
-				
-						
 				}
+				else{
+					if(is_array($valuess)){
+						//echo "<td>" . show_array($valuess) . "</td>";
+
+					}
 						
-			
-				echo "</tr>";
-					
-				
+					else{
+						echo "<td>" . $valuess . "</td>";
+					}
+				}	
 				
 			}   
+			echo "</tr>";
 		}
 		echo'</tbody></table>'; 
 	}
@@ -281,6 +537,255 @@ function get_protein_info($url){
     }
 }
 
+function recursive_read($array){
+
+
+//return 
+}
+function datatableFromAggregate($cursor){
+
+
+	echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+	echo'<thead><tr>';
+	for ($i = 0; $i < count($cursor['result']); $i++) {
+		$test=$cursor['result'][$i];
+		
+		if(is_array($test)){
+			foreach ( $test as $id => $doc ){
+			
+				if(is_array($doc)){
+					
+					foreach ( $doc as $ids => $docs ){
+						echo "<tr>";
+						if ($i==0){
+							
+							echo "<th>" . $ids . "</th>";
+						}
+						else{
+							
+							
+							echo "<td>" . $doc . "</td>";
+
+
+						}	
+						echo "</tr>";
+
+						
+					}
+					
+					
+					
+				}
+				else{
+					echo "<tr>";
+					if ($i==0){
+					
+						echo "<th>" . $id . "</th>";
+					}
+					else{
+					
+						
+						//echo $id."=".$doc."<br/>";
+						echo "<td>" . $doc . "</td>";
+						
+
+					}
+					echo "</tr>";
+
+				}
+				
+
+			}
+		}
+		else{
+			foreach ( $test as $doc ){
+			
+				echo $doc."<br/>";
+
+			}
+
+		}
+		if ($i==0){
+			echo'</tr></thead>';
+	
+			//fill the table
+			echo'<tbody>';
+		}
+		
+		
+	}
+	echo'</tbody></table>'; 
+
+}
+
+
+function makeDatatableFromFindByRegex($cursor) {
+
+	$array = iterator_to_array($cursor);
+	$keys =array();
+	
+	foreach ($array as $k => $v) {
+        	foreach ($v as $a => $b) {
+        		$keys[] = $a;
+	        }
+	}
+	$keys = array_values(array_unique($keys));
+	
+
+	echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+	echo'<thead><tr>';
+	
+	//recupere le titre
+	foreach (array_slice($keys,1) as $key => $value) {
+			if ($value=='gene'){
+       		echo "<th>" . $value . "</th>";
+       		
+       	}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+			
+       	if ($value=='direction'){
+       		echo "<th>" . $value . "</th>";
+       		echo $value;
+       	}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+			
+       	if ($value=='logFC'){
+       		echo "<th>" . $value . "</th>";
+       		echo $value;
+       	}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+			
+       	if ($value=='type'){
+       		echo "<th>" . $value . "</th>";
+       		echo $value;
+       	}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+			
+       	if ($value=='xp'){
+       		echo "<th>" . $value . "</th>";
+       		echo $value;
+       	}
+	}
+	//fin du header de la table
+	echo'</tr></thead>';
+	
+	//Debut du corps de la table
+	echo'<tbody>';
+	//Parcour de chaque ligne du curseur
+	foreach($cursor as $line) {
+      echo "<tr>";
+		
+		//Slice de l'id Mongo
+		#echo $line->count();
+	     
+	   foreach(array_slice($keys,1) as $key => $value) {
+	        	
+	        	
+	     	#http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+	        	
+	     	if ($value=='gene'){
+	     		if (stristr($line[$value],"MU")) {
+					if(is_array($line[$value])){;
+						#http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
+						echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
+							
+					}
+					else {
+						echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+			
+					}
+				}
+				else if (stristr($line[$value],"AT")) {
+					if(is_array($line[$value])){;
+					
+						echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".show_array($line[$value])."&type=locus\">".show_array($line[$value])."</a></td>";
+							
+					}
+					else {
+						echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$line[$value]."&type=locus\">".$line[$value]."</a></td>";
+					}
+				}
+				else{
+					if(is_array($line[$value])){;
+					
+						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
+							
+					}
+						
+					else {
+						//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
+						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+						#echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+
+								
+						#get_protein_info($url);
+						#echo "<td>".$line[$value]."</td>";
+					}
+				}
+					
+				# http://pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=
+				#use table from 
+					
+					
+         }
+         
+	   }
+	   
+	   foreach(array_slice($keys,1) as $key => $value) {
+
+	   	if($value=='direction'){
+            if(is_array($line[$value])){;
+            	echo"<td>".show_array($line[$value])."</td>";
+	         }
+        	   else {
+            	echo "<td>".$line[$value]."</td>";
+            }
+         }
+      }
+      foreach(array_slice($keys,1) as $key => $value) {
+
+	   	if($value=='logFC'){
+            if(is_array($line[$value])){;
+            	echo"<td>".show_array($line[$value])."</td>";
+	         }
+        	   else {
+            	echo "<td>".$line[$value]."</td>";
+            }
+         }
+      }
+      foreach(array_slice($keys,1) as $key => $value) {
+
+	   	if($value=='type'){
+            if(is_array($line[$value])){;
+            	echo"<td>".show_array($line[$value])."</td>";
+	         }
+        	   else {
+            	echo "<td>".$line[$value]."</td>";
+            }
+         }
+      }
+      foreach(array_slice($keys,1) as $key => $value) {
+
+	   	if($value=='xp'){
+            if(is_array($line[$value])){;
+            	echo"<td>".show_array($line[$value])."</td>";
+	         }
+        	   else {
+        	   	
+            	echo "<td>".$line[$value]."</td>";
+            }
+         }
+      }
+	   
+	   
+      echo "</tr>";
+	}
+	echo'</tbody></table>';
+}
 function makeDatatableFromFind($cursor) {
 
 	$array = iterator_to_array($cursor);
@@ -294,7 +799,7 @@ function makeDatatableFromFind($cursor) {
 	$keys = array_values(array_unique($keys));
 
 
-	echo'<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">';
+	echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
 	echo'<thead><tr>';
 	
 	//recupere le titre
@@ -321,7 +826,7 @@ function makeDatatableFromFind($cursor) {
 	        	if ($value=='gene'){
 	        		if (stristr($line[$value],"MU")) {
 						if(is_array($line[$value])){;
-					http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
+					#http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
 								echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
 							
 						}
@@ -364,6 +869,11 @@ function makeDatatableFromFind($cursor) {
 								#echo "<td>".$line[$value]."</td>";
 						}
 					}
+					
+					# http://pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=
+					#use table from 
+					
+					
                	}
                	else{
                		if(is_array($line[$value])){;

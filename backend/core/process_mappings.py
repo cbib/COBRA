@@ -46,6 +46,30 @@ for map_doc in mappings_to_process:
 	b_to_a = collections.defaultdict(list)
 	src_col = map_doc['src']
 	tgt_col = map_doc['tgt']
+	#if mappings_col.find({"description":{"$exists":True}}):
+	# if map_doc['description']!="none":
+# 		a_to_d = collections.defaultdict(list)
+# 		desc_col=map_doc['description']
+# 		
+# 		for r in sheet_values:
+# 			a_to_d[r[src_col]].append(r[desc_col])
+# 			
+# 		# check 1-to-1 mapping
+# 		a_to_d_tally=collections.Counter(map(len,a_to_d.values()))
+# 		
+# 		if len(a_to_d_tally)>1:
+# 			logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",desc_col,src_col)
+# 		else:
+# 			logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",desc_col,src_col)
+# 
+# 		
+# 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"src_to_desc":a_to_d.items()}})
+		
+		
+		
+		
+		
+		
 	for r in sheet_values:
 		a_to_b[r[src_col]].append(r[tgt_col])
 		b_to_a[r[tgt_col]].append(r[src_col])
@@ -63,6 +87,10 @@ for map_doc in mappings_to_process:
 		logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",src_col,tgt_col)
 
 	# save raw data 
+	#for key, value in a_to_b.items():
+	#	mappings_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":{"src":str(key),"tgt":str(value)}}})
+	#for key, value in b_to_a:	
+	#	mappings_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":{"tgt":str(key),"src":str(value)}}})
 	mappings_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":a_to_b.items()}})
 	mappings_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":b_to_a.items()}})
 

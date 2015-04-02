@@ -33,7 +33,8 @@ def main():
 		'C/ Number of normalized measures':measurements_col.count(),
 		'C_a/ Tally of normalized measures':measurements_col.aggregate([{"$group":{"_id":"$type", "count": { "$sum": 1 }}}])['result'],
 		'D/ Number of species':species_col.count(),
-		'D_a/ Number of species per top_level':species_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result']
+		'D_a/ Number of species per top_level':species_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result'],
+		'D_b/ Number of viruses per top_level':viruses_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result']
 
 	    }
 

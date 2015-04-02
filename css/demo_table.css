@@ -179,23 +179,24 @@ table.display td.center {
 
 
 /* Higlighting*/
+/*
 #data tr.even:hover {
-    background-color: #ECFFB3;
+    background-color: #FFFF00;
 }
  
 #data tr.even:hover td.sorting_1 {
-    background-color: #DDFF75;
+    background-color: #FFFF00;
 }
  
 #data tr.odd:hover {
-    background-color: #E6FF99;
+    background-color: #FFFF00;
 }
  
 #data tr.odd:hover td.sorting_1 {
-    background-color: #D6FF5C;
+    background-color: #FFFF00;
 }
 
-
+*/
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables sorting
@@ -327,7 +328,9 @@ td.details {
 	background-color: #d1cfd0;
 	border: 2px solid #A19B9E;
 }
-
+td.highlight {
+    background-color: whitesmoke !important;
+}
 
 .example_alt_pagination div.dataTables_info {
 	width: 40%;

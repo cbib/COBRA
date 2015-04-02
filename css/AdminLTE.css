@@ -119,7 +119,11 @@ body.fixed .wrapper {
 /* Content */
 .content {
   padding: 20px 30px;
+  margin-left:2px;
+  /*text-align: center;*/
+  position: absolute;
   background: #f9f9f9;
+  
 }
 /* Utility */
 /* H1 - H6 font */
@@ -205,7 +209,7 @@ img {
   background-color: #0073b7 !important;
 }
 .bg-light-blue {
-  background-color: #3D7130 !important;
+  background-color: #38f2e2 !important;
 }
 .bg-green {
   background-color: #A2C756 !important;
@@ -337,16 +341,16 @@ table.text-center th {
 
 /* Higlighting*/
 #example tr.even:hover {
-    background-color: #D4D4D4;
+    background-color: #E0E9E8;
 } 
 #example tr.even:hover td.sorting_1 {
-    background-color: #D4D4D4;
+    background-color: #E0E9E8;
 }
 #example tr.odd:hover {
-    background-color: #D4D4D4;
+    background-color: #E0E9E8;
 } 
 #example tr.odd:hover td.sorting_1 {
-    background-color: #D4D4D4;
+    background-color: #E0E9E8;
 }
 /*
     Components: navbar, logo and content header
@@ -443,7 +447,7 @@ body > .header .logo .icon {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 15px;
   display: inline-block;
-  padding-left: 4px;
+  padding-left: 15px;
   font-weight: 400;
 }
 .right-side > .content-header > .breadcrumb {
@@ -534,6 +538,8 @@ body > .header .logo .icon {
   box-shadow: none;
   border-color: transparent!important;
 }
+
+
 .sidebar .sidebar-menu {
   list-style: none;
   margin: 0;
@@ -3468,4 +3474,8 @@ fieldset[disabled] .btn-vk.active {
 	width: 120px;
 	margin: auto;
 	margin-top: 20px;
+}
+.container{
+
+	#background-color: #3D7130;
 }

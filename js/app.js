@@ -57,6 +57,33 @@ $(function() {
             bf.slideDown();
         }
     });
+    
+    var url = window.location;
+	// Will only work if string in href matches with location
+	//$('.sidebar-menu li a[href="'+ url +'"]').parent().addClass('active');
+	$('ul.sidebar-menu li a[href="'+ url +'"]').addClass('active');
+
+
+	// Will also work for relative and absolute hrefs
+	$('ul.sidebar-menu li a').filter(function() {
+    	return this.href == url;
+	}).parent().addClass('active');
+    /*
+     * SWITCH ACTIVE CLASS IN SIDEBAR-MENU
+     * ---------------------------------------
+     */
+     /*
+     
+    $('.sidebar-menu li a').click(function(e) {
+  		var $this = $(this);
+  		if (!$this.hasClass('active')) {
+    		$this.addClass('active');
+  		}
+  		//e.preventDefault();
+	});
+*/
+	
+    
 
     /*
      * ADD SLIMSCROLL TO THE TOP NAV DROPDOWNS

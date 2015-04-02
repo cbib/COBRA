@@ -18,76 +18,25 @@ if "log" not in globals():
 # clear db 
 
 species_col.remove()
+viruses_col.remove()
 publications_col.remove()
 samples_col.remove()
 mappings_col.remove()
 measurements_col.remove()
 interactions_col.remove()
+orthologs_col.remove()
 
 
 
 
 
+####Viruses
 
+### Virus to add 
+#PepMV, ToCV, TSWV, PVY for tomato
+#LMV, TuMV and arabidopsis
+#BaYMV BaMMV, BYDV, CYDV in barley
 
-
-#### Barley
-
-##species
-
-barley={
-	"full_name":"Hordeum vulgare",
-	"abbrev_name":"H. vulgare",
-	"aliases":["hordeum_vulgare","barley"],
-	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
-	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"not defined",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Monocots","Commelinids"],
-		"order":	"Poales",
-		"family":	"Poaceae",
-		"genus":	"Pooideae",
-		"species":	"H. vulgare",
-	}
-}
-species_col.insert(barley)
-
-## publication 
-## mapping 
-## samples 
-
-
-
-
-
-
-
-
-#### Melon 
-
-# species 
-
-melon={
-	"full_name":"Cucumis Melo",
-	"abbrev_name":"C. melo",
-	"aliases":["cucumis_melo","melon"],
-	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
-	"wikipedia":"http://en.wikipedia.org/wiki/Muskmelon",
-	"preferred_id":"icugi_unigene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
-
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Rosids"],
-		"order":	"Cucurbitales",
-		"family":	"Cucurbitaceae",
-		"genus":	"Cucumis",
-		"species":	"C. melo",
-	}
-}
-species_col.insert(melon)
 
 m_canon={
 	"full_name":"Monosporascus Cannonballus",
@@ -107,12 +56,28 @@ m_canon={
 	},
 	"wikipedia":"http://en.wikipedia.org/wiki/Monosporascus_cannonballus"
 }
-species_col.insert(m_canon)
+viruses_col.insert(m_canon)
 
 cmv={
 	"full_name":"Cucumber mosaic virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Watermelon_mosaic_virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
 	"aliases":['cmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Bromoviridae",
+		"genus":"Cucumovirus",
+		"species":"Cucumber mosaic virus",
+	}
+	
+}
+viruses_col.insert(cmv)
+
+wmv={
+	"full_name":"Watermelon mosaic virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Watermelon_mosaic_virus",
+	"aliases":['wmv'],
 	"classification":{
 		"top_level":"viruses",
 		"group":"Group IV ((+)ssRNA)",
@@ -121,24 +86,171 @@ cmv={
 		"genus":"Potyvirus",
 		"species":"Watermelon mosaic virus",
 	}
+}	
+viruses_col.insert(wmv)
+
+ppox={
+	"full_name":"Plum pox",
+	"wikipedia":"http://en.wikipedia.org/wiki/Plum_pox",
+	"aliases":['sharka','ppv'],
+	"classification":{
+		"top_level":"viruses",
+		"group": "Group IV ((+)ssRNA)",
+		"family": "Potyviridae",
+		"genus": "Potyvirus",
+		"species": "Plum pox virus"
+	}
 	
 }
-species_col.insert(cmv)
+viruses_col.insert(ppox)
 
-wmv={
-	"full_name":"Watermelon mosaic virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
-	"aliases":['wmv'],
+tev={
+	"full_name":"Tobacco etch virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Tobacco_etch_virus",
+	"aliases":['tev'],
 	"classification":{
 		"top_level":"viruses",
 		"group":"Group IV ((+)ssRNA)",
 		"order":"Unassigned",
-		"family":"Bromoviridae",
-		"genus":"Cucumovirus",
-		"species":"Watermelon mosaic virus",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Tobacco etch virus",
 	}
-}	
-species_col.insert(wmv)
+	
+}
+viruses_col.insert(tev)
+
+
+#### Barley
+
+
+## publication 
+## mapping 
+## samples 
+
+##### Orthologs
+
+orthologs={
+	"data_file":"orthologs/33090_clusters_1_57_0.xls",
+	"from":"OrthoDB",
+	"version":"Version 1.57.0",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','number','NCBI_Reference','cluster_info','protein_name','species' ],
+		"sheet_index":0,
+	}
+	
+
+
+}
+orthologs_col.insert(orthologs)
+
+##### Species 
+
+# Melon 
+melon={
+	"full_name":"Cucumis melo",
+	"abbrev_name":"C. melo",
+	"aliases":["cucumis_melo","melon"],
+	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
+	"wikipedia":"http://en.wikipedia.org/wiki/Muskmelon",
+	"preferred_id":"icugi_unigene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Eudicots","Rosids"],
+		"order":	"Cucurbitales",
+		"family":	"Cucurbitaceae",
+		"genus":	"Cucumis",
+		"species":	"C. melo",
+	}
+}
+species_col.insert(melon)
+
+# Prunus 
+prunus={
+	"full_name":"Prunus domestica",
+	"abbrev_name":"P. domestica",
+	"aliases":["prunus_domestica","prunus"],
+	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
+	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
+	"preferred_id":"unigene",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked":	["Angiosperms","Eudicots","Rosids"],
+		"order":	"Rosales",
+		"family":	"Rosaceae",
+		"genus":	"Prunus",
+		"subgenus":	"Prunus",
+		"section":	"Prunus",
+		"species":	"P. domestica",
+	}
+}
+species_col.insert(prunus)
+
+# Arabidopsis
+arabidopsis_thaliana={
+	"full_name":"Arabidopsis thaliana",
+	"abbrev_name":"A. Thaliana",
+	"aliases":["thale cress", "mouse-ear cress","arabidopsis"],
+	"taxid":3702, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
+	"wikipedia":"http://en.wikipedia.org/wiki/Arabidopsis_thaliana",
+	"preferred_id":"AGI_TAIR",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Eudicots","Rosids"],
+		"order":	"Brassicales",
+		"family":	"Brassicaceae",
+		"genus":	"Arabidopsis",
+		"species":	"A. Thaliana",
+	}
+}
+species_col.insert(arabidopsis_thaliana)
+
+# Tomato
+tomato={
+	"full_name":"Solanum lycopersicum",
+	"abbrev_name":"S. Lycopersicum",
+	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
+	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
+	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
+	"preferred_id":"SGN_U",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Eudicots","Asterids"],
+		"order":	"Solanales",
+		"family":	"Solanaceae",
+		"genus":	"Solanum",
+		"species":	"S. Lycopersicum",
+	}
+}
+species_col.insert(tomato)
+
+# Barley
+barley={
+	"full_name":"Hordeum vulgare",
+	"abbrev_name":"H. vulgare",
+	"aliases":["hordeum_vulgare","barley"],
+	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
+	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
+	"preferred_id":"not defined",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Monocots","Commelinids"],
+		"order":	"Poales",
+		"family":	"Poaceae",
+		"genus":	"Pooideae",
+		"species":	"H. vulgare",
+	}
+}
+species_col.insert(barley)
+
+
 
 ## publications 
 
@@ -160,15 +272,27 @@ melon_pub={
 }
 publications_col.insert(melon_pub)
 
+prunus_pub={
+	"doi":"10.1371/journal.pone.0100477",
+	"url":"http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0100477",
+	"first_author":"Bernardo Rodamilans",
+	"title":"Transcriptomic Analysis of Prunus domestica Undergoing Hypersensitive Response to Plum Pox Virus Infection",
+	"pmid":24959894, # http://www.ncbi.nlm.nih.gov/pubmed/24959894
+	# rest can be populated automatically 
+}
+publications_col.insert(prunus_pub)
+
 ## mapping 
 
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
+	"species":"Cucumis Melo",
 	"type":"est_to_gene",
 	"src":"est_unigen",
-	"src_version":"4.0",
+	"src_version":"Melogen_melo_v1",
 	"tgt":"icugi_unigene",
-	"tgt_version":"tomato200607#2",
+	"tgt_version":"v4",
+	"description":"sequence",
 	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
 	"doi":"10.1186/1471-2164-13-601-s7",
 	"key":"est_2_unigene",
@@ -182,9 +306,147 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+mapping_table={
+	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
+	"species":"Solanum lycopersicum",
+	"type":"gene_to_prot",
+	"src":"SGN_U",
+	"src_version":"tomato200607#2",
+	"tgt":"UniProt",
+	"tgt_version":"",
+	"description":"description",
+	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.tab",
+	"doi":"none",
+	"key":"SGN_U_2_Uniprot",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','SGN_U', 'Swissprot_name', 'Species_code','UniProt','SwissProt_ID', 'full_ID', 'identity', 'aligment_length', 'mismatches', 'gap_openings', 'query_start_position', 'query_end_position', 'subject_start_position', 'subject_end_position', 'e-value', 'hit_score','description'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+mapping_table={
+	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
+	"species":"Solanum lycopersicum",
+	"type":"gene_to_gene",
+	"src":"SGN_U",
+	"src_version":"tomato200607#2",
+	"tgt":"ITAG",
+	"tgt_version":"2_3",
+	"description":"InterproDescription",
+	"GO":"GOAccession",
+	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
+	"doi":"none",
+	"key":"SGN_U_2_ITAG",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','SGN_U','ITAG','InterproDescription','GOAccession'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+mapping_table={
+	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
+	"species":"Solanum lycopersicum",
+	"type":"est_to_gene",
+	"src":"SGN_S",
+	"src_version":"tom1",
+	"tgt":"SGN_U",
+	"tgt_version":"tomato200607#2",
+	"description":"NA",
+	"url":"",
+	"doi":"none",
+	"key":"SGN_S_2_SGN_U",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','SGN_S','SGN_U'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/CATMA_2.3_07122011.xls",
+	"species":"Arabidopsis thaliana",
+	"type":"est_to_gene",
+	"src":"CATMA_ID",
+	"src_version":"CATMA V2.1",
+	"tgt":"AGI_TAIR",
+	"tgt_version":"2_3",
+	"description":"Description",
+	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
+	"doi":"none",
+	"key":"CATMA_2_AGI",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":4,
+		"column_keys":['idx','CATMA_ID','Probe_type','AGI_TAIR','Gene_type','Description'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
+	"species":"Arabidopsis thaliana",
+	"type":"gene_to_prot",
+	"src":"AGI_TAIR",
+	"src_version":"TAIR10",
+	"tgt":"Uniprot",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.arabidopsis.org/home/tair/Proteins/Id_conversions/Uniprot_TAIR10_May2012.txt",
+	"doi":"none",
+	"key":"AGI_2_Uniprot",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','AGI_TAIR','Uniprot'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/gene_aliases_20131231.xls",
+	"species":"Arabidopsis thaliana",
+	"type":"gene_to_symbol",
+	"src":"AGI_TAIR",
+	"src_version":"TAIR10",
+	"tgt":"symbol",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.arabidopsis.org/home/tair/TAIR_Data_20131231/gene_aliases_20131231.gz",
+	"doi":"none",
+	"key":"AGI_2_Name",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','AGI_TAIR','symbol','full_name'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
 ## samples 
 
-samples={
+# Melon 
+
+melo_samples={
     "src_pub":23134692, # Any field from the pub, doi, pmid, first author etc. 
     "species":"C. melo", # any abbrev name, key or full name, 
     "name":"Root transcriptional responses of two melon genotypes with contrasting resistance to Monosporascus cannonballus (Pollack et Uecker) infection",
@@ -223,24 +485,26 @@ samples={
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"monosporascus_cannonballus",
+				"type":"inoculated",
 				"label":"Infected with M. canonballus"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
 			"variety":"PS",
 			"day_after_inoculation":1,
-            "material":"undefined"
+         "material":"undefined"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/monosporascus_cannonballus/condition1/1471-2164-13-601-s2.xls",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"monosporascus_cannonballus",
+				"type":"inoculated",
 				"label":"Infected with M. canonballus"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
 			"variety":"pat81",
 			"day_after_inoculation":1,
@@ -251,10 +515,11 @@ samples={
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"monosporascus_cannonballus",
+				"type":"inoculated",
 				"label":"Infected with M. canonballus"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
 			"variety":"PS",
 			"day_after_inoculation":3,
@@ -265,10 +530,11 @@ samples={
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"monosporascus_cannonballus",
+				"type":"inoculated",
 				"label":"Infected with M. canonballus"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
 			"variety":"pat81",
 			"day_after_inoculation":3,
@@ -277,10 +543,10 @@ samples={
     ]
 
 }
-samples_col.insert(samples)
+samples_col.insert(melo_samples)
 
 
-samples={
+melo_samples={
     "src_pub":21970693, # Any field from the pub, doi, pmid, first author etc. 
     "species":"C. melo", # any abbrev name, key or full name, 
     "name":"Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
@@ -322,12 +588,13 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"Tendral",
             "day_after_inoculation":1,
@@ -338,12 +605,13 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"Tendral",
             "day_after_inoculation":3,
@@ -354,11 +622,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"Tendral",
             "day_after_inoculation":7,
@@ -369,11 +638,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"TGR1551",
             "day_after_inoculation":1,
@@ -384,11 +654,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"TGR1551",
             "day_after_inoculation":3,
@@ -399,11 +670,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"TGR1551",
             "day_after_inoculation":7,
@@ -414,11 +686,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"Tendral",
             "day_after_inoculation":15,
@@ -429,11 +702,12 @@ samples={
             "conditions":["non infected",{
                 "infected":True,
                 "infection_agent":"Watermelon mosaic virus",
+                "type":"inoculated",
                 "label":"Infected with WMV"
                 
                 }
             ],
-            "contrast":"inoculated VS non infected",
+            "contrast":"infected VS healthy",
             "type":"contrast",
             "variety":"TGR1551",
             "day_after_inoculation":15,
@@ -442,9 +716,9 @@ samples={
     ]
 
 }
-samples_col.insert(samples)
+samples_col.insert(melo_samples)
 
-samples={
+melo_samples={
 	"src_pub":19821986, # Any field from the pub, doi, pmid, first author etc. 
 	"species":"C. melo", # any abbrev name, key or full name, 
 	"name":"Transcriptomics of infection of C. melo",
@@ -478,98 +752,306 @@ The material used for the transcriptomic profile analyses came from three differ
 			"conditions":["15d","46d"],
 			"contrast":"46d VS 15d",
 			"type":"contrast",
-			"variety":"T-111"
+			"variety":"T-111",
+         "material":"Fruit mesocarp"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/monosporascus_cannonballus/1471-2164-10-467-S2.XLS",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"monosporascus_cannonballus",
+				"type":"inoculated",
 				"label":"Infected with M. canonballus"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
-			"variety":"pat81"
+			"variety":"pat81",
+			"day_after_inoculation":"NA",
+         "material":"root"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/cucumber_mosaic_virus/1471-2164-10-467-S3.XLS",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Cucumber mosaic virus",
+				"type":"inoculated",
 				"label":"Infected with CMV"
 				}
 			],
-			"contrast":"inoculated VS non infected",
+			"contrast":"infected VS healthy",
 			"type":"contrast",
-			"variety":"Tendral"
+			"variety":"Tendral",
+			"day_after_inoculation":"NA",
+         "material":"cotyledon"
 			
 		}
 	]
 
 }
-samples_col.insert(samples)
+samples_col.insert(melo_samples)
 
+# Tomato
 
+tomato_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
+	"name":"Transcriptomics of infection of S.lycopersicum",
+	"comments":[
+		{"content":""" not published yet""","author":"ben","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"tom1"
+	},
+	"deposited":{
+		"repository":"not deposited yet",
+		"sample_description_url":"not deposited yet",
+		"experimental_meta_data":"not deposited yet"
 
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','SGN_S','Block','Column','Row','ID','logFC','A','t','P_Value','B','5_unigen_build_1_2','5_GO_annotation','3_unigen_build_1_2','3_GO_annotation'],
+		"sheet_index":0,
+		"id_type":"SGN_S"
+	},
+	"experimental_results":[
+		
+		{
+			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/micro_array/tobacco_etch_virus/toptable_ino7dpi.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"NA",
+			"day_after_inoculation":"NA",
+         "material":"NA"
+			
+		}
+	]
 
-
-
-
-
-#### Prunus 
-
-##species
-prunus={
-	"full_name":"Prunus Domestica",
-	"abbrev_name":"P. domestica",
-	"aliases":["prunus_domestica","prunus"],
-	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
-	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
-	"preferred_id":"unigene",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked":	["Angiosperms","Eudicots","Rosids"],
-		"order":	"Rosales",
-		"family":	"Rosaceae",
-		"genus":	"Prunus",
-		"subgenus":	"Prunus",
-		"section":	"Prunus",
-		"species":	"P. domestica",
-	}
 }
-species_col.insert(prunus)
+samples_col.insert(tomato_samples)
 
-ppox={
-	"full_name":"Plum pox",
-	"wikipedia":"http://en.wikipedia.org/wiki/Plum_pox",
-	"aliases":['sharka','ppv'],
-	"classification":{
-		"top_level":"viruses",
-		"group": "Group IV ((+)ssRNA)",
-		"family": "Potyviridae",
-		"genus": "Potyvirus",
-		"species": "Plum pox virus"
-	}
-	
+
+# Arabidopsis
+
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 1-2(thale cress)",
+	"comments":[
+		{"content":"""In this experiment, Arabidopsis plants infected by a virus, Tobacco etch virus (TEV), a potyvirus, were compared with healthy plants to identify genes for which the expression is modified by the viral infection. Analysis of both inoculated leaves and upper young leaves were performed 7 days after the inoculation with the virus (or with only buffer for the healthy plants).""","author":"Frederic Revers","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA V2.1"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"sheet_index":0,
+		"id_type":"CATMA_ID"
+	},
+	"experimental_results":[
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap1_1_iAino_iAsys.xls",
+			"conditions":[
+				{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				},
+				{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"systemic",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+         "material":"leaf"
+			
+		},
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap1_2_iAino_iAsys.xls",
+			"conditions":[
+				{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				},
+				{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"systemic",
+				"label":"Infected with TEV"
+				}
+		],
+			"contrast":"infected VS infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+         "material":"leaf"
+			
+		}
+	]
+
 }
-species_col.insert(ppox)
+samples_col.insert(AT_samples)
 
-##publications
-prunus_pub={
-	"doi":"10.1371/journal.pone.0100477",
-	"url":"http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0100477",
-	"first_author":"Bernardo Rodamilans",
-	"title":"Transcriptomic Analysis of Prunus domestica Undergoing Hypersensitive Response to Plum Pox Virus Infection",
-	"pmid":24959894, # http://www.ncbi.nlm.nih.gov/pubmed/24959894
-	# rest can be populated automatically 
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 3-4(thale cress)",
+	"comments":[
+		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA V2.1"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"sheet_index":0,
+		"id_type":"CATMA_ID"
+	},
+	"experimental_results":[
+		
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_1_iAino_mAino.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+         "material":"leaf"
+			
+		},
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_2_iAino_mAino.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+         "material":"leaf"
+			
+		}
+	]
+
 }
-publications_col.insert(prunus_pub)
+samples_col.insert(AT_samples)
 
-##mappings
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 5-6(thale cress)",
+	"comments":[
+		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA V2.1"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
+		"experimental_meta_data":"not deposited yet"
 
-##samples
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"sheet_index":0,
+		"id_type":"CATMA_ID"
+	},
+	"experimental_results":[
+		
+		
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_1_iAsys_mAsys.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"systemic",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+         "material":"leaf"
+			
+		},
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_2_iAsys_mAsys.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"systemic",
+				"label":"Infected with TEV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+            "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(AT_samples)
+
+
+# Prunus 
+
 prunus_samples={
 	"src_pub":19821986, # Any field from the pub, doi, pmid, first author etc. 
 	"species":"P. domestica", # any abbrev name, key or full name, 
@@ -658,70 +1140,8 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 samples_col.insert(prunus_samples)
 
 
+####interactions
 
-
-####Arabidopsis
-
-arabidopsis_thaliana={
-	"full_name":"Arabidopsis thaliana",
-	"abbrev_name":"A. Thaliana",
-	"aliases":["thale cress", "mouse-ear cress","arabidopsis"],
-	"taxid":3702, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
-	"wikipedia":"http://en.wikipedia.org/wiki/Arabidopsis_thaliana",
-	"preferred_id":"AGI_TAIR",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Rosids"],
-		"order":	"Brassicales",
-		"family":	"Brassicaceae",
-		"genus":	"Arabidopsis",
-		"species":	"A. Thaliana",
-	}
-}
-species_col.insert(arabidopsis_thaliana)
-
-## mapping 
-
-mapping_table={
-	"data_file":"mappings/CATMA_2.3_07122011.xls",
-	"type":"est_to_gene",
-	"src":"CATMA_ID",
-	"src_version":"CATMA V2.1",
-	"tgt":"AGI_TAIR",
-	"tgt_version":"2_3",
-	"url":"none",
-	"doi":"none",
-	"key":"CATMA_2_AGI",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":4,
-		"column_keys":['idx','CATMA_ID','Probe_type','AGI_TAIR','Gene_type','Description'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-mapping_table={
-	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
-	"type":"gene_to_prot",
-	"src":"AGI_TAIR",
-	"src_version":"NA",
-	"tgt":"UNIPROT_ID",
-	"tgt_version":"NA",
-	"url":"none",
-	"doi":"none",
-	"key":"AGI_2_UNIPROT",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','AGI_TAIR','UNIPROT_ID'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
 
 interactions_table={
 	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
@@ -739,320 +1159,6 @@ interactions_table={
 interactions_col.insert(interactions_table)
 
 
-samples={
-	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
-	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 1-2(thale cress)",
-	"comments":[
-		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
-	],
-	"assay":{
-		"type":"micro-array",
-		"design":"CATMA V2.1"
-	},
-	"deposited":{
-		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
-		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
-		"experimental_meta_data":"not deposited yet"
-
-	},
-	# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
-		"sheet_index":0,
-		"id_type":"CATMA_ID"
-	},
-	"experimental_results":[
-		
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap1_1_iAino_iAsys.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		},
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap1_2_iAino_iAsys.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		}
-	]
-
-}
-samples_col.insert(samples)
-
-samples={
-	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
-	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 3-4(thale cress)",
-	"comments":[
-		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
-	],
-	"assay":{
-		"type":"micro-array",
-		"design":"CATMA V2.1"
-	},
-	"deposited":{
-		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
-		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
-		"experimental_meta_data":"not deposited yet"
-
-	},
-	# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
-		"sheet_index":0,
-		"id_type":"CATMA_ID"
-	},
-	"experimental_results":[
-		
-		
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_1_iAino_mAino.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		},
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap2_2_iAino_mAino.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		}
-	]
-
-}
-samples_col.insert(samples)
-
-samples={
-	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
-	"name":"potyvirus-Transcriptional analysis of Arabidopsis thaliana infected by a potyvirus. dye-swap 5-6(thale cress)",
-	"comments":[
-		{"content":""" not published yet""","author":"Frederic Revers","date":datetime.datetime.now()}
-	],
-	"assay":{
-		"type":"micro-array",
-		"design":"CATMA V2.1"
-	},
-	"deposited":{
-		"repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8875",
-		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=37",
-		"experimental_meta_data":"not deposited yet"
-
-	},
-	# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
-		"sheet_index":0,
-		"id_type":"CATMA_ID"
-	},
-	"experimental_results":[
-		
-		
-		
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_1_iAsys_mAsys.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		},
-		{
-			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/2/RA03-02_Potyvirus_exp37_dyeswap3_2_iAsys_mAsys.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-            "material":"leaf"
-			
-		}
-	]
-
-}
-samples_col.insert(samples)
-
-
-####Tomato
-
-##species
-tomato={
-	"full_name":"Solanum lycopersicum",
-	"abbrev_name":"S. Lycopersicum",
-	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
-	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
-	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
-	"preferred_id":"SGN_U",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Asterids"],
-		"order":	"Solanales",
-		"family":	"Solanaceae",
-		"genus":	"Solanum",
-		"species":	"S. Lycopersicum",
-	}
-}
-species_col.insert(tomato)
-
-tev={
-	"full_name":"Tobacco etch virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Tobacco_etch_virus",
-	"aliases":['tev'],
-	"classification":{
-		"top_level":"viruses",
-		"group":"Group IV ((+)ssRNA)",
-		"order":"Unassigned",
-		"family":"Potyviridae",
-		"genus":"Potyvirus",
-		"species":"Tobacco etch virus",
-	}
-	
-}
-species_col.insert(tev)
-
-## mapping 
-
-mapping_table={
-	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
-	"type":"gene_to_gene",
-	"src":"SGN_U",
-	"src_version":"tomato200607#2",
-	"tgt":"ITAG",
-	"tgt_version":"2_3",
-	"url":"none",
-	"doi":"none",
-	"key":"SGN_U_2_ITAG",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','SGN_U','ITAG','InterproDescription','GOAccession'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-
-mapping_table={
-	"data_file":"mappings/TOM1_id_to_Current_unigene.xls",
-	"type":"est_to_gene",
-	"src":"SGN_S",
-	"src_version":"tom1",
-	"tgt":"SGN_U",
-	"tgt_version":"tomato200607#2",
-	"url":"none",
-	"doi":"none",
-	"key":"SGN_S_2_SGN_U",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','SGN_U'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-##samples
-samples={
-	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
-	"name":"Transcriptomics of infection of S.lycopersicum",
-	"comments":[
-		{"content":""" not published yet""","author":"ben","date":datetime.datetime.now()}
-	],
-	"assay":{
-		"type":"micro-array",
-		"design":"tom1"
-	},
-	"deposited":{
-		"repository":"not deposited yet",
-		"sample_description_url":"not deposited yet",
-		"experimental_meta_data":"not deposited yet"
-
-	},
-	# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','Block','Column','Row','ID','logFC','A','t','P_Value','B','5_unigen_build_1_2','5_GO_annotation','3_unigen_build_1_2','3_GO_annotation'],
-		"sheet_index":0,
-		"id_type":"SGN_S"
-	},
-	"experimental_results":[
-		
-		{
-			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/micro_array/tobacco_etch_virus/toptable_ino7dpi.xls",
-			"conditions":["non infected",{
-				"infected":True,
-				"infection_agent":"Tobacco etch virus",
-				"label":"Infected with TEV"
-				}
-			],
-			"contrast":"inoculated VS non infected",
-			"type":"contrast",
-			"variety":"unclear"
-			
-		}
-	]
-
-}
-samples_col.insert(samples)
-
-## publication 
 
 #tomato_pub={
 #	"doi":"10.1186/1471-2164-10-467",

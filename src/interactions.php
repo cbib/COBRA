@@ -72,9 +72,29 @@ new_cobra_body();
 	array('$match'=> array('mapping_file.Host_prot'=>'P58IPK')), 
 	array('$project' => array('mapping_file.Host_virus'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
 	));
-	var_dump($cursor);
+	
+	//var_dump($cursor);
+	
+	//while ($cursor->hasNext() )
+	//{
+	//	var_dump( $cursor->getNext() );
+	//}
 	//print_r($cursor);
-	makeDatatableFromAggregate($cursor);
+	
+	
+	/*
+	for ($i = 0; $i < count($cursor['result']); $i++) {
+		$test=$cursor['result'][$i]['mapping_file'];
+		
+		foreach ( $test as $id => $doc ){
+			
+			echo $id."=".$doc."<br/>";
+		}
+	}
+	*/
+	datatableFromAggregate($cursor);
+
+	#makeDatatableFromAggregate($cursor);
 	//makeDatatableFromFind(var_dump($cursor));
 	
 	//find all pathogens infecting angiosperms

@@ -5,10 +5,29 @@ Author:
 Date: 2015/01/29
 */
 
+<div class="container" >
+<div class="span"  style="border: 2px solid grey">
+	<div class="col-xs-12" >
+		<div class="column-padding no-right-margin">
+			<div class="plain-box"><h2 id="features">A COmbination of systems Biology and experimental high-throughput approaches to engIneer durable Resistance against plAnt viruses in crops</h2>
+			</div>
+						<p>(PLANT-KBBE) 2013 										Projet COBRA</p>
+						<p>COBRA plant virus interaction database is developed in coordination with other plant genomics and 										bioinformatics groups via the  consortium. The Plant KBBE project is funded by the 										European Commission within its 7th Framework Programme, under the thematic area 						</p>
+						<p>ANR Programme: <a href="http://www.agence-nationale-recherche.fr/en/funded-projects/?tx_lwmsuivibilan_pi1[Programme]=843">Food & Feed: crop yields and nutrition security in the context of climate change (PLANT-KBBE) 2013</a></p>
 
+<p>Project ID: <a href="http://www.agence-nationale-recherche.fr/?Project=ANR-13-KBBE-0006" >ANR-13-KBBE-0006</a></p>
+
+<p>Project coordinator:Veronique DECROOCQ (UMR 1332 Biologie et Pathologie du Fruit)</p>
+			
+		</div>
+	</div>
+</div>
+
+</div>
 #Overview
 
-Plant viruses cause an estimated 50 billion € loss worldwide per year. Viral diseases represent one of the most
+<div class="span" >
+<p>Plant viruses cause an estimated 50 billion € loss worldwide per year. Viral diseases represent one of the most
 limiting factors in European crop production having negative effects on the quantity and quality of foodstuffs. 
 The recent identification of plant factors required for the virus infection cycle, together with the development 
 of functional genomic tools in several economically important crops, offer novel opportunities to protect crop plants 
@@ -17,42 +36,49 @@ eIF4G) their proteins interact mainly with the same viral factor. This is a majo
 the durability of resistances, because resistance depends on the introduction of a single trait implicating one 
 single viral counterpart. The scope of COBRA is to intensify applied and fundamental research on plant/virus 
 interactions in order to diversify targets for resistance gene pyramiding strategies and to match the research 
-outputs with industry and breeding applications.
+outputs with industry and breeding applications.</p>
 
-COBRA benefits from multidisciplinary research teams involving genomics, bio-informatics, population genetics, 
+<!--<p>COBRA benefits from multidisciplinary research teams involving genomics, bio-informatics, population genetics, 
 molecular biology, virology and plant breeding. It focuses on three major crops, barley for cereals, tomato for 
 vegetables and Prunus species for fruit trees. The originality of COBRA is to test the generic mode of interference 
 of plant viruses, from annual plants to perennials and from dicotyledons to monocotyledons and use this information 
-to implement complex and durable resistance in any crop species.
-
-COBRA is built on five transdisciplinary workpackages (WPs). The objective of WP1 is to build an exhaustive and 
-comprehensive database of plant-virus interaction networks for the three crops of interest. It relies on a close 
-interactive collaboration between experts in virology, genetics, breeding and bioinformatics. Such a database 
-facilitates identification of new host susceptibility genes (S-genes) that could serve as resistance genes 
-when mutated. In WP2, the biological relevance of some of the interactors unraveled in WP1 or by COBRA partners 
-will be validated, demonstrating that they are not only plant/virus interacting factors but they are susceptibility 
-factors encoded by bona fide S-genes. The goal of WP3 is to screen for alleles of resistance for the S-genes 
-identified above. Alleles of resistance to viral infection will be searched among mutagenised tomato, barley and 
-peach collections. Germplasm collections of those three species will also be surveyed as well as core collections 
-representative of their diversity in order to implement marker assisted selection and association studies for 
-resistance to crop viruses. Any valuable plant material will be immediately transferred to crop breeding programs. 
+to implement complex and durable resistance in any crop species.</p>
 
 
-In year 1, COBRA focuses on the search for variants of strong candidate S-genes already validated or patented by 
-the project’s partners. The high throughput platforms set-up for the few above candidates will then serve to screen 
-for variants of candidates validated in WP2 (year 2) before targeting hundreds of candidates highlighted in WP1 (year 3). 
-In the fourth WP, we plan to decipher two independent host pathways that poty and potexviruses are hijacking in order 
-to complete their viral infectious cycles. Extra biological information will be generated in order to optimize in WP3 
-the search for virus resistant variants. Finally, WP5 is aimed at selecting among the above interactors, host proteins 
-as candidates-of- choice for gene pyramiding. The purpose here is to provide knowledge on the viral factor(s) that 
-determine(s) the breaking of the resistance provided by candidate genes identified in the above WPs and to evaluate 
-the durability of the resistance conferred by the new candidate genes prior to transfer to crop species.
+<p>The purpose here is to provide knowledge on the viral factor(s) that determine(s) the breaking of the resistance provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred by the new candidate genes prior to transfer to crop species.
 In conclusion, COBRA is expected to provide new targets for resistance to plant viruses, distinct from the well- 
 described mechanism related to translation initiation factors eIF4E and eIF4G. This will allow the selection of 
 new cultivars in tomato, barley and stone fruit trees combining different mechanisms of resistance for sustainable 
 virus protection. COBRA will also establish high throughput platforms of transfer to crop species based on the 
 construction of a non-exhaustive database of plant-virus interactors and the use of next generation sequencing 
-approaches.
+approaches.</p>-->
+
+</div>
+<div class="span">
+	<div class="container">
+		<div class="form-field ff-multi">
+			<div class=ff-inline ff-right">
+				<img src="/database/images/INRA2.jpg"/>
+				
+				<img src="/database/images/noordsat.jpg"  height="136" width="250"/>
+				<img src="/database/images/jki.gif"  height="136" width="250"/>
+
+				
+				
+			</div>
+			<div class=ff-inline ff-right">
+				<img src="/database/images/cgfb.jpg" height="136"/>
+				<img src="/database/images/abiopep2.jpg" height="136" width="200"/>
+				<img src="/database/images/LOGO_CSIC.jpg" height="136" width="300"/>
+				<img src="/database/images/ipk.png" height="136" width="300"/>
+		
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 ##Configuration
 
 Pico documentation: [http://picocms.org/docs.html](http://picocms.org/docs.html)

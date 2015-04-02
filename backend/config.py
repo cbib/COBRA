@@ -12,3 +12,5 @@ publications_col= db.publications
 samples_col=db.samples
 measurements_col=db.measurements
 interactions_col=db.interactions
+viruses_col=db.viruses
+orthologs_col=db.orthologs

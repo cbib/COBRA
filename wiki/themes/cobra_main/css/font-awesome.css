@@ -1268,6 +1268,9 @@
 .fa-skype:before {
   content: "\f17e";
 }
+.fa-database:before {
+  content: "\f1c0";
+}
 .fa-foursquare:before {
   content: "\f180";
 }
