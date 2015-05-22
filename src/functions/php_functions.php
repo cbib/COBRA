@@ -480,6 +480,13 @@ function makeDatatableFromAggregate($cursor){
 				
 				//foreach ($values as $idss => $valuess )
 				//{
+				
+				
+				//search gene id URL for barley 
+				//pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=MLOC_59128.1
+				
+				
+				
 				if($idss=='gene'){
 					//echo $idss."<br/>";
 					if (stristr($valuess,"MU")) {

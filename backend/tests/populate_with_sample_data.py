@@ -30,6 +30,7 @@ orthologs_col.remove()
 
 
 
+
 ####Viruses
 
 ### Virus to add 
@@ -130,20 +131,20 @@ viruses_col.insert(tev)
 
 ##### Orthologs
 
-orthologs={
-	"data_file":"orthologs/33090_clusters_1_57_0.xls",
-	"from":"OrthoDB",
-	"version":"Version 1.57.0",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','number','NCBI_Reference','cluster_info','protein_name','species' ],
-		"sheet_index":0,
-	}
+#orthologs={
+#	"data_file":"orthologs/33090_clusters_1_57_0.xls",
+#	"from":"OrthoDB",
+#	"version":"Version 1.57.0",
+#	"xls_parsing":{
+#		"n_rows_to_skip":0,
+#		"column_keys":['idx','number','NCBI_Reference','cluster_info','protein_name','species' ],
+#		"sheet_index":0,
+#	}
 	
 
 
-}
-orthologs_col.insert(orthologs)
+#}
+#orthologs_col.insert(orthologs)
 
 ##### Species 
 
@@ -306,6 +307,33 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+
+mapping_table={
+	"data_file":"mappings/plaza_id_conversion.cme.xls",
+	"species":"Cucumis Melo",
+	"type":"est_to_gene",
+	"src":"est_unigen",
+	"src_version":"Melogen_melo_v1",
+	"tgt":"icugi_unigene",
+	"tgt_version":"v4",
+	"description":"sequence",
+	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
+	"doi":"10.1186/1471-2164-13-601-s7",
+	"key":"est_2_unigene",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":3,
+		"column_keys":['idx','est_unigen','sequence','icugi_unigene'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+
+
+
 mapping_table={
 	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
 	"species":"Solanum lycopersicum",
@@ -418,6 +446,34 @@ mapping_table={
 	}
 }
 mappings_col.insert(mapping_table)
+
+
+mapping_table={
+	"data_file":"mappings/plazza_id_uniprot_ath.xls",
+	"species":"Arabidopsis thaliana",
+	"type":"gene_to_prot",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"Uniprot",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ath.csv",
+	"doi":"none",
+	"key":"PLAZA_2_Uniprot",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','alias','Uniprot'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+
+
+
 
 mapping_table={
 	"data_file":"mappings/gene_aliases_20131231.xls",
@@ -1157,6 +1213,22 @@ interactions_table={
 
 }
 interactions_col.insert(interactions_table)
+
+orthologs_table={
+	"data_file":"orthologs/33090_clusters_1_57_0.xls",
+	"src":"NCBI_locus_identifier",
+	"tgt":"cluster_number",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','NCBI_gene_identifier','NCBI_locus_identifier','clusters_ref','function','organism','cluster_number'],
+		"sheet_index":0
+		
+	}
+	
+
+}
+orthologs_col.insert(orthologs_table)
+
 
 
 
