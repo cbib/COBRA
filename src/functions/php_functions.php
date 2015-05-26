@@ -37,18 +37,6 @@ function show_array($array){
 		print_r($array);
 	echo"</pre>";
 }
-function make_request_list($cursor){
-
-
-
-
-}
-function make_request_list($cursor){
-
-
-
-
-}
 function make_plaza_orthologs($cursor){
 
 

@@ -1,2 +1,3 @@
 data/*
-*.pyc
+backend/*.pyc
+backend/helpers/*.pyc
