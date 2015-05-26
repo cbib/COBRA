@@ -25,6 +25,14 @@ mappings_col.remove()
 measurements_col.remove()
 interactions_col.remove()
 orthologs_col.remove()
+for grid_out in fs.find({}, timeout=False):
+	
+	fs.delete(grid_out._id)
+#orthologs_col.gridfs.drop()
+#db.drop_collection("orthologs_col.files")
+#db.drop_collection("orthologs_col.chunks")
+#orthologs_col.files.drop()
+#orthologs_col.chunks.drop()
 
 
 
@@ -283,11 +291,11 @@ prunus_pub={
 }
 publications_col.insert(prunus_pub)
 
-## mapping 
+## mapping Table melon
 
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
-	"species":"Cucumis Melo",
+	"species":"Cucumis melo",
 	"type":"est_to_gene",
 	"src":"est_unigen",
 	"src_version":"Melogen_melo_v1",
@@ -302,6 +310,28 @@ mapping_table={
 	"xls_parsing":{
 		"n_rows_to_skip":3,
 		"column_keys":['idx','est_unigen','sequence','icugi_unigene'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/Melon_Icugi_to_Melonomics.xls",
+	"species":"Cucumis melo",
+	"type":"gene_to_gene",
+	"src":"icugi_unigene",
+	"src_version":"v4",
+	"tgt":"Melonomics_gene_id",
+	"tgt_version":"v3.5",
+	"description":"none",
+	"url":"not published",
+	"doi":"not published",
+	"key":"est_2_unigene",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','icugi_unigene','Melonomics_gene_id'],
 		"sheet_index":0,
 	}
 }
@@ -310,28 +340,51 @@ mappings_col.insert(mapping_table)
 
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
-	"species":"Cucumis Melo",
-	"type":"est_to_gene",
-	"src":"est_unigen",
-	"src_version":"Melogen_melo_v1",
-	"tgt":"icugi_unigene",
-	"tgt_version":"v4",
-	"description":"sequence",
-	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
-	"doi":"10.1186/1471-2164-13-601-s7",
-	"key":"est_2_unigene",
+	"species":"Cucumis melo",
+	"type":"gene_to_prot",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"Melonomics_gene_id",
+	"tgt_version":"v3.5",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
+	"doi":"not published",
+	"key":"plaza_gene_id_to_melonomics_id",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":3,
-		"column_keys":['idx','est_unigen','sequence','icugi_unigene'],
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','Melonomics_gene_id','Tid','uniprot'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+#Mapping Table Barley
+mapping_table={
+	"data_file":"mappings/plaza_id_conversion.hvu.xls",
+	"species":"Hordeum vulgare",
+	"type":"gene_to_prot",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Monocots",
+	"tgt":"barley_protein_id",
+	"tgt_version":"test",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.hvu.csv.gz",
+	"doi":"10.1186/1471-2164-13-601-s7",
+	"key":"plaza_gene_id_to_barley_id",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','barley_gene_id','barley_protein_id', 'id', 'Tid','uniprot'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
 
 
-
+#Mapping Table Tomato
 
 
 mapping_table={
@@ -382,6 +435,29 @@ mappings_col.insert(mapping_table)
 
 
 mapping_table={
+	"data_file":"mappings/plaza_id_conversion.sly.xls",
+	"species":"Solanum lycopersicum",
+	"type":"gene_to_prot",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"ITAG_pid",
+	"tgt_version":"2_3",
+	"description":"none",
+	"GO":"GOAccession",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.sly.csv.gz",
+	"doi":"none",
+	"key":"Plaza_gene_id_to_ITAG",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','ITAG_pid','uniprot'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
 	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
 	"species":"Solanum lycopersicum",
 	"type":"est_to_gene",
@@ -402,6 +478,11 @@ mapping_table={
 	}
 }
 mappings_col.insert(mapping_table)
+
+
+
+#Mapping Table Arabidopsis
+
 
 mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
@@ -449,12 +530,12 @@ mappings_col.insert(mapping_table)
 
 
 mapping_table={
-	"data_file":"mappings/plazza_id_uniprot_ath.xls",
+	"data_file":"mappings/plaza_id_conversion.ath.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"gene_to_prot",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"Uniprot",
+	"tgt":"uniprot",
 	"tgt_version":"",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ath.csv",
@@ -464,7 +545,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','alias','Uniprot'],
+		"column_keys":['idx','plaza_gene_id','alias','uniprot'],
 		"sheet_index":0,
 	}
 }
@@ -1196,7 +1277,7 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 samples_col.insert(prunus_samples)
 
 
-####interactions
+#### Interactions Table
 
 
 interactions_table={
@@ -1214,21 +1295,61 @@ interactions_table={
 }
 interactions_col.insert(interactions_table)
 
+
+#### Ortholog Tables
+
+
+###PGJDB
+# orthologs_table={
+# 	"data_file":"orthologs/33090_clusters_1_57_0.xls",
+# 	"src":"NCBI_locus_identifier",
+# 	"tgt":"cluster_number",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','NCBI_gene_identifier','NCBI_locus_identifier','clusters_ref','function','organism','cluster_number'],
+# 		"sheet_index":0		
+# 	}
+# }
+# orthologs_col.insert(orthologs_table)
+
+###PLAZA
+
+
 orthologs_table={
-	"data_file":"orthologs/33090_clusters_1_57_0.xls",
-	"src":"NCBI_locus_identifier",
-	"tgt":"cluster_number",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','NCBI_gene_identifier','NCBI_locus_identifier','clusters_ref','function','organism','cluster_number'],
-		"sheet_index":0
+
+	'data_file':'orthologs/integrative_orthology.ORTHO.tsv',
+	'src':'plaza_gene_identifier',
+	'tgt':'orthologs_list_identifier',
+	'version':"dicots_3.0",
+	'xls_parsing':{
+		'n_rows_to_skip':0,
+		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
+		'sheet_index':0
 		
 	}
-	
-
 }
+
 orthologs_col.insert(orthologs_table)
 
+# orthologs_table={
+# 
+# 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',
+# 	'src':'plaza_gene_identifier',
+# 	'tgt':'orthologs_list_identifier',
+# 	'version':"monocots_3.0",
+# 	'xls_parsing':{
+# 		'n_rows_to_skip':0,
+# 		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
+# 		'sheet_index':0
+# 		
+# 	}
+# }
+# 
+# orthologs_col.insert(orthologs_table)
+
+#for key, value in orthologs_table.items():
+	
+#orthologs_col.put(orthologs_table.items())
 
 
 

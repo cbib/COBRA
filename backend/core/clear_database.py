@@ -21,3 +21,12 @@ publications_col.remove()
 samples_col.remove()
 mappings_col.remove()
 measurements_col.remove()
+interactions_col.remove()
+viruses_col.remove()
+orthologs_col.remove()
+#orthologs_col.files.drop()
+#orthologs_col.chunks.drop()
+
+#orthologs_col.gridfs.drop()
+#db.drop_collection('orthologs_col')
+ 

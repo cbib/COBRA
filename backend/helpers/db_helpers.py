@@ -9,6 +9,8 @@
 ## Setup
 
 from xlrd import open_workbook
+import csv
+from csv import reader
 import sys
 from numbers import Number
 import pymongo 
@@ -69,7 +71,50 @@ def get_possible_aliases(species_txt):
 
 # def get_mapping_table(src,tgt):
 # 	mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
+def parse_csv_table(src_file,column_keys,n_rows_to_skip,species_initials,id_col=None):
+	rows_to_data=[]
+	for initial in species_initials:
+		logger.info("species initial:%s",initial)
+	
+	with open(src_file, 'rb') as f:
+		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+		try:
+			#logger.info("number of rows:%s",len(list(csvreader)))
+			for row in csvreader:
+				#logger.info("rows:%s",row[0][0]+row[0][1])
+				for initial in species_initials:
+					if (initial==row[0][0]+row[0][1]) and (row[0][2]!="R"):
+						values=[]
+						for i in range(0,2):
+							values.append(row[i])
+						#for col in row:
+						#	values.append(col)
+						
+						if len(column_keys)!=len(values):
+							logger.info("columns keys length:%d",len(column_keys))
+							logger.info("value length :%d",len(values))
+							logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%d"%(src_file,len(row)))
+						this_dict=dict(zip(column_keys,values))
+						if id_col: #enforce id col type
+							if isinstance(this_dict[id_col],Number):
+								this_dict[id_col]=str(int(this_dict[id_col]))
+						rows_to_data.append(this_dict)
+						
+         #logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
+				
+			#if id_col: #enforce id col type 
+			#	if isinstance(this_dict[id_col],Number):
+			#		this_dict[id_col]=str(int(this_dict[id_col]))
+         #rows_to_data.append(this_dict)		
+		except csv.Error as e:
+			sys.exit('file %s, line %d: %s' % (filename, reader.line_num, e))
 
+	return rows_to_data	
+	#logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+	
+	#logger.info("rows:%s",row)
+	
+	 
 
 def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=None):
 

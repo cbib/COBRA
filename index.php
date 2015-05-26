@@ -7,6 +7,7 @@ new_cobra_header();
 new_cobra_body();
 
 $db=mongoConnector();
+$grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
 $sampleCollection = new Mongocollection($db, "samples");
 $virusCollection = new Mongocollection($db, "viruses");
@@ -36,6 +37,10 @@ echo'
 					echo '</hr>';
 					make_CrossCompare_list(find_species_list($speciesCollection));
 					make_viruses_list(find_viruses_list($virusCollection));
+					
+					#make_plaza_orthologs(get_plaza_orthologs($grid,"plaza_gene_identifier",));
+					
+					
 
 					//make_species_list_2();
 					//make_viruses_list(find_viruses_list($speciesCollection));
@@ -88,6 +93,8 @@ echo'
 // 		'D/ Number of species':species_col.count(),
 // 		'D_a/ Number of species per top_level':species_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result'],
 // 		'D_b/ Number of viruses per top_level':viruses_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result']
+
+//<!--<p><h4>Last update : '.date().'</h4></p>-->
 					  echo '<!--<div class="plain-box">
 									<h2 id="features">
 									Some statistics...
@@ -96,7 +103,7 @@ echo'
 								<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">
 								<h1 style="text-align:center">	Some statistics...</h1>
 								</div>
-								<p><h4>Last update : '.date().'</h4></p>
+								<p><h4>Last update : '.getlastmod().'</h4></p> 
 								<p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
 								<p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
 								

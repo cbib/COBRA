@@ -16,6 +16,8 @@ function mongoConnector() {
 	}
 	return $db;	
 }
+
+
 function mongoPersistantConnector() {
 
 	try
@@ -32,6 +34,52 @@ function mongoPersistantConnector() {
 	}
 }
 
+
+##Get all orthologs src to tgt : 
+
+
+
+function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='null', $gene_id='null',$key='null'){
+	
+	#ask for the right species files
+	
+	$cursor=$or->find(array('mapping_file.species' => $species ),array('_id'=>0, 'mapping_file'=>array('$elemMatch'=> array('species' => $species))));
+
+	foreach ( $cursor as $array ){
+		foreach ($array['mapping_file'] as $key=>$value ){
+			
+			
+			foreach ($value as $type=>$filename ){
+				if ($type=="file"){
+					#echo $filename;
+				}
+			#foreach ($value as $filename ){
+			#		echo $filename;
+			
+			
+			
+			// foreach ($value as $keys=>$values ){
+// 				echo $keys;
+// 				echo $values;
+// 				$filename=$keys;
+// 				#if ($keys=="file"){
+// 				#	$filename=$values;
+// 				#	echo $values;
+// 				#}
+			}
+		}
+	}
+	#echo "this is the corresponding orthology file : ".$filename;
+	
+	
+	$MongoGridFSCursor=array();
+	$MongoGridFSCursor= $grid->find(array('data_file'=>$filename));
+	
+##function to retrieve 
+
+ return $MongoGridFSCursor;
+
+}
 
 ### Find all synonyms
 function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){

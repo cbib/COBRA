@@ -43,7 +43,16 @@ function make_request_list($cursor){
 
 
 }
+function make_request_list($cursor){
 
+
+
+
+}
+function make_plaza_orthologs($cursor){
+
+
+}
 function make_experiment_type_list($cursor){
 
 
@@ -80,6 +89,9 @@ function make_experiment_type_list($cursor){
     echo '</select>';
     
 }
+
+
+
 function make_viruses_list($cursor){
 
 
