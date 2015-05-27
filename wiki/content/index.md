@@ -5,7 +5,7 @@ Author:
 Date: 2015/01/29
 */
 
-<div class="container" >
+
 <div class="span"  style="border: 2px solid grey">
 	<div class="col-xs-12" >
 		<div class="column-padding no-right-margin">
@@ -23,7 +23,7 @@ Date: 2015/01/29
 	</div>
 </div>
 
-</div>
+
 #Overview
 
 <div class="span" >
@@ -55,26 +55,22 @@ approaches.</p>-->
 
 </div>
 <div class="span">
-	<div class="container">
+	<!--<div class="container">-->
 		<div class="form-field ff-multi">
 			<div class=ff-inline ff-right">
-				<img src="/database/images/INRA2.jpg"/>
-				
-				<img src="/database/images/noordsat.jpg"  height="136" width="250"/>
-				<img src="/database/images/jki.gif"  height="136" width="250"/>
-
-				
-				
+				<img src="/database/images/new_INRA.png"/>
+				<img src="/database/images/noordsat.jpg"  height="136"/>
+				<img src="/database/images/jki.gif"  height="136"/>
 			</div>
 			<div class=ff-inline ff-right">
 				<img src="/database/images/cgfb.jpg" height="136"/>
-				<img src="/database/images/abiopep2.jpg" height="136" width="200"/>
-				<img src="/database/images/LOGO_CSIC.jpg" height="136" width="300"/>
-				<img src="/database/images/ipk.png" height="136" width="300"/>
+				<img src="/database/images/abiopep3.jpg" height="136"/>
+				<img src="/database/images/LOGO_CSIC.jpg" height="136" width="340"/>
+				<img src="/database/images/ipk.png" height="136" width="340"/>
 		
 			</div>
 		</div>
-	</div>
+	<!--</div>-->
 </div>
 
 

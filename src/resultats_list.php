@@ -26,7 +26,8 @@ $mappingsCollection = new Mongocollection($db, "mappings");
 $measurementsCollection = new Mongocollection($db, "measurements");
 $virusesCollection = new Mongocollection($db, "viruses");
 $interactionsCollection = new Mongocollection($db, "interactions");
-
+$orthologsCollection = new Mongocollection($db, "orthologs");
+$grid = $db->getGridFS();
 
 
 //$speciesID=control_post(htmlspecialchars($_GET['speciesID']));
@@ -36,10 +37,13 @@ $listID=control_post(htmlspecialchars($_GET['listID']));
 $listID = str_replace('\r\n','<br>',$listID);
 //echo $listID;
 $id_details= explode("\r\n", $listID);
+
 echo '<ul class="nav nav-tabs" id ="operation">';
 for ($c=0;$c<count($id_details);$c++){
 //	$textID=$listID
 //?speciesID=&q=SGN-U603893
+
+
 	
 		if ($c==0){
 	
@@ -57,7 +61,7 @@ for ($c=0;$c<count($id_details);$c++){
 echo '</ul>';
 
 
-echo '<div class="tab-content">';
+#echo '<div class="tab-content">';
    // echo ' <ul class="nav nav-tabs">
 // 
 //         <li class="active"><a href="resultats.php">Home</a></li>
@@ -67,8 +71,10 @@ echo '<div class="tab-content">';
 //         <li><a href="#">Messages</a></li>
 // 
 //     </ul>';
-
+#echo '<div class="tab-content">';
+echo '<div class="tab-content">';
 	for ($c=0;$c<count($id_details);$c++){
+		$speciesID="Arabidopsis thaliana";
 		$textID=$id_details[$c];
 		$class="tab-pane active";
 		if ($c==0){
@@ -82,18 +88,6 @@ echo '<div class="tab-content">';
 		  
 	
 		echo '<h2>Search Results for \''.$textID.'\'</h2>';
-
-
-
-
-		//$cursor = $sampleCollection->find(array(), array('name'=>1));
-
-		//Find all species 
-		//$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
-
-
-
-
 
 
 		if($requestID =='Request1'){
@@ -864,7 +858,7 @@ echo '<div class="tab-content">';
 	
 		}
 
-
+		$current_plaza_id="";
 		echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Others related gene informations </h1>';
 		echo '</div>';
@@ -919,6 +913,10 @@ echo '<div class="tab-content">';
 
 					echo '<td>'.$line['src_to_tgt'][0].'</td>';
 					echo '<td>'.$line['src'].'</td>';
+					if ($line['src']=='plaza_gene_id'){
+				
+					$current_plaza_id=$line['src_to_tgt'][0];
+					}
 					echo '<td>'.$line['src_version'].'</td>';
 
 					//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
@@ -985,6 +983,10 @@ echo '<div class="tab-content">';
 
 					echo '<td>'.$line['tgt_to_src'][0].'</td>';
 					echo '<td>'.$line['tgt'].'</td>';
+					if ($line['src']=='plaza_gene_id'){
+				
+					$current_plaza_id=$line['tgt_to_src'][0];
+					}
 					echo '<td>'.$line['tgt_version'].'</td>';
 
 					//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
@@ -1036,7 +1038,7 @@ echo '<div class="tab-content">';
 		
 				foreach ($map_file as $doc){
 			
-					if ($doc[$tgt_col]==$docs){
+					if ($doc[$tgt_col]==$docs && $doc[$tgt_col]!=""){
 		
 						//echo 'new entry for :'.$docs;
 						if (strcasecmp($doc[$src_col], $textID) != 0){
@@ -1067,191 +1069,307 @@ echo '<div class="tab-content">';
 			}
 		}
 
-
-
-
-		foreach( $tgts as $doc)	{
-	
-			//echo $doc;
-			$cursor=$mappingsCollection->aggregate(array( 
-			//array('$match' => array('type'=>'gene_to_prot')),   
-			array('$project' => array('tgt_to_src'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),     
-			array('$unwind'=>'$tgt_to_src'),     
-			array('$match' => array('tgt_to_src.0'=>$doc)),   
-			array('$project' => array('tgt_to_src'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))));
-			echo '<h2> use target from previous query as target</h2> <div class="container">';
-			echo 'try to find a tgt with the same id</br>';
-	
-	
-			if (count($cursor['result'])!=0){
 		
-				echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
-				echo'<thead><tr>';
+
+		
+		foreach( $tgts as $doc)	{
+			
+			//echo $doc;
+			if ($doc!=""){
+				echo '<h2> use target from previous query as target</h2> <div class="container">';
+				echo 'try to find a tgt with the same id</br>';
+				$cursor=$mappingsCollection->aggregate(array( 
+				//array('$match' => array('type'=>'gene_to_prot')),   
+				array('$project' => array('tgt_to_src'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),     
+				array('$unwind'=>'$tgt_to_src'),     
+				array('$match' => array('tgt_to_src.0'=>$doc)),   
+				array('$project' => array('tgt_to_src'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))));
+
+				if (count($cursor['result'])!=0){
+		
+					echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+					echo'<thead><tr>';
 	
-				//recupere le titre
-				#echo "<th>type</th>";
-				echo "<th>Mapping type (reverse mode)</th>";
-				echo "<th>tgt ID</th>";
-				echo "<th>tgt type</th>";
-				echo "<th>tgt_version</th>";
-				echo "<th>src ID</th>";
-				echo "<th>src type</th>";
-				echo "<th>src_version</th>";
-				echo "<th>species</th>";
+					//recupere le titre
+					#echo "<th>type</th>";
+					echo "<th>Mapping type (reverse mode)</th>";
+					echo "<th>tgt ID</th>";
+					echo "<th>tgt type</th>";
+					echo "<th>tgt_version</th>";
+					echo "<th>src ID</th>";
+					echo "<th>src type</th>";
+					echo "<th>src_version</th>";
+					echo "<th>species</th>";
 
 	
-				//fin du header de la table
-				echo'</tr></thead>';
+					//fin du header de la table
+					echo'</tr></thead>';
 	
-				//Debut du corps de la table
-				echo'<tbody>';
-				$related_gene_ids=array();
-				foreach($cursor['result'] as $line) {
+					//Debut du corps de la table
+					echo'<tbody>';
+					$related_gene_ids=array();
+					foreach($cursor['result'] as $line) {
 
-					//echo $line['src_to_tgt'];
-					for ($i = 0; $i < count($line['tgt_to_src'][1]); $i++) {
-						echo "<tr>";
-						echo '<td>'.$line['type'].'</td>';
-						array_push($tgts,$line['tgt_to_src'][0]);
+						//echo $line['src_to_tgt'];
+						for ($i = 0; $i < count($line['tgt_to_src'][1]); $i++) {
+							echo "<tr>";
+							echo '<td>'.$line['type'].'</td>';
+							array_push($tgts,$line['tgt_to_src'][0]);
 
-						echo '<td>'.$line['tgt_to_src'][0].'</td>';
-						echo '<td>'.$line['tgt'].'</td>';
-						echo '<td>'.$line['tgt_version'].'</td>';
+							echo '<td>'.$line['tgt_to_src'][0].'</td>';
+							echo '<td>'.$line['tgt'].'</td>';
+							echo '<td>'.$line['tgt_version'].'</td>';
 	
-						//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+							//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
 	
-						echo '<td>'.$line['tgt_to_src'][1][$i].'</td>';
-						array_push($related_gene_ids,$line['tgt_to_src'][1][$i]);
+							echo '<td>'.$line['tgt_to_src'][1][$i].'</td>';
+							array_push($related_gene_ids,$line['tgt_to_src'][1][$i]);
+							if ($line['src']=='plaza_gene_id'){
+								$current_plaza_id=$line['tgt_to_src'][1][$i];
+							}
+							echo '<td>'.$line['src'].'</td>';
+							echo '<td>'.$line['src_version'].'</td>';
+							echo '<td>'.$line['species'].'</td>';
+							echo "</tr>";
+						}
 
-						//array_push($tgts,$line['tgt_to_tgt'][1][$i]);
+					}
+					echo'</tbody></table>';
+					echo '<h3>samples hits</h3></br>';
+
+					foreach( $related_gene_ids as $ids)	{
+						$search_string=$ids;
+						if ($search_string!=$textID){
+							$regex=new MongoRegex("/^$search_string/im");
+							$cursor = find_gene_by_regex($measurementsCollection,$regex);
+							//echo $ids.'</br>';
+
+							makeDatatableFromFind($cursor);
+						}
+					}
+					echo'</div>';
+				}
+				else{
+					echo '<p> No Results as target found for : '.$doc .'</p>';
+					echo'</div>';
+				}
+			
+	
+	
+	
+	
+	
+				echo '<h2>  use target from previous query as  source</h2> <div class="container">';
+				echo 'try to find a src with the same id</br>';
+				$cursor=$mappingsCollection->aggregate(array( 
+					//array('$match' => array('type'=>'gene_to_prot')),  
+					array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+					array('$unwind'=>'$src_to_tgt'),    
+					array('$match' => array('src_to_tgt.0'=>$doc)),  
+					array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+					)); 
+
+			
+				if (count($cursor['result'])!=0){
+
+					echo'<table id="example2" class="table table-bordered" cellspacing="0" width="100%">';
+					echo'<thead><tr>';
+	
+					//recupere le titre
+					#echo "<th>type</th>";
+					echo "<th>Mapping type</th>";
+					echo "<th>src ID</th>";
+					echo "<th>src type</th>";
+					echo "<th>src_version</th>";
+					echo "<th>tgt ID</th>";
+					echo "<th>tgt type</th>";
+					echo "<th>tgt_version</th>";
+					echo "<th>species</th>";
+
+	
+					//fin du header de la table
+					echo'</tr></thead>';
+	
+					//Debut du corps de la table
+					echo'<tbody>';
+					$related_gene_ids=array();
+					foreach($cursor['result'] as $line) {
+
+						//echo $line['src_to_tgt'];
+						for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+							echo "<tr>";
+							echo '<td>'.$line['type'].'</td>';
+
+							echo '<td>'.$line['src_to_tgt'][0].'</td>';
+							array_push($related_gene_ids,$line['src_to_tgt'][0]);
+
+							if ($line['src']=='plaza_gene_id'){
+				
+								$current_plaza_id=$line['src_to_tgt'][0];
+							}
+							echo '<td>'.$line['src'].'</td>';
+							echo '<td>'.$line['src_version'].'</td>';
+	
+							//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+	
+							echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+							array_push($tgts,$line['src_to_tgt'][1][$i]);
 			
 		
-						//}
-						echo '<td>'.$line['src'].'</td>';
-						echo '<td>'.$line['src_version'].'</td>';
-						echo '<td>'.$line['species'].'</td>';
-						echo "</tr>";
+							//}
+							echo '<td>'.$line['tgt'].'</td>';
+							echo '<td>'.$line['tgt_version'].'</td>';
+							echo '<td>'.$line['species'].'</td>';
+							echo "</tr>";
+						}
+
 					}
+					echo'</tbody></table>';
+					echo '<h3>samples hits</h3></br>';
 
-				}
-				echo'</tbody></table>';
-				echo '<h3>samples hits</h3></br>';
-
-				foreach( $related_gene_ids as $ids)	{
-					$search_string=$ids;
-					if ($search_string!=$textID){
+					foreach( $related_gene_ids as $ids)	{
+						$search_string=$ids;
 						$regex=new MongoRegex("/^$search_string/im");
 						$cursor = find_gene_by_regex($measurementsCollection,$regex);
 						//echo $ids.'</br>';
 
 						makeDatatableFromFind($cursor);
 					}
+					echo '</div>';
 				}
-				echo'</div>';
+	
+				else{
+					echo '<p> No Results as source found for : '.$doc .'</p>';
+					echo'</div>';
+				}
+				#echo count($tgts);
 			}
-			else{
-				echo '<p> No Results as target found for : '.$doc .'</p>';
-				echo'</div>';
-			}
-	
-	
-
-			$cursor=$mappingsCollection->aggregate(array( 
-				//array('$match' => array('type'=>'gene_to_prot')),  
-				array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
-				array('$unwind'=>'$src_to_tgt'),    
-				array('$match' => array('src_to_tgt.0'=>$doc)),  
-				array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
-				)); 
-		
-			//makeDatatableFromAggregate($cursor);
-	
-			##Display the results table
-	
-			//$tgts=array();
-			echo '<h2>  use target from previous query as  source</h2> <div class="container">';
-			echo 'try to find a src with the same id</br>';
-			if (count($cursor['result'])!=0){
-
-				echo'<table id="example2" class="table table-bordered" cellspacing="0" width="100%">';
-				echo'<thead><tr>';
-	
-				//recupere le titre
-				#echo "<th>type</th>";
-				echo "<th>Mapping type</th>";
-				echo "<th>src ID</th>";
-				echo "<th>src type</th>";
-				echo "<th>src_version</th>";
-				echo "<th>tgt ID</th>";
-				echo "<th>tgt type</th>";
-				echo "<th>tgt_version</th>";
-				echo "<th>species</th>";
-
-	
-				//fin du header de la table
-				echo'</tr></thead>';
-	
-				//Debut du corps de la table
-				echo'<tbody>';
-				$related_gene_ids=array();
-				foreach($cursor['result'] as $line) {
-
-					//echo $line['src_to_tgt'];
-					for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-						echo "<tr>";
-						echo '<td>'.$line['type'].'</td>';
-
-						echo '<td>'.$line['src_to_tgt'][0].'</td>';
-						array_push($related_gene_ids,$line['src_to_tgt'][0]);
-
-						echo '<td>'.$line['src'].'</td>';
-						echo '<td>'.$line['src_version'].'</td>';
-	
-						//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-	
-						echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-						array_push($tgts,$line['src_to_tgt'][1][$i]);
 			
-		
-						//}
-						echo '<td>'.$line['tgt'].'</td>';
-						echo '<td>'.$line['tgt_version'].'</td>';
-						echo '<td>'.$line['species'].'</td>';
-						echo "</tr>";
-					}
-
-				}
-				echo'</tbody></table>';
-				echo '<h3>samples hits</h3></br>';
-
-				foreach( $related_gene_ids as $ids)	{
-					$search_string=$ids;
-					$regex=new MongoRegex("/^$search_string/im");
-					$cursor = find_gene_by_regex($measurementsCollection,$regex);
-					//echo $ids.'</br>';
-
-					makeDatatableFromFind($cursor);
-				}
-				echo '</div>';
-			}
-	
-			else{
-				echo '<p> No Results as source found for : '.$doc .'</p>';
-				echo'</div>';
-			}
-			echo count($tgts);
+			
 
 		}
+		####################################################################	
+		############## Orthology informations ##############################
+		####################################################################	
+
+		#####search for related info on other species.
+
+		// Here do the request in orthologs table with gene_id ID
+
+		echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+		echo'<h1 style="text-align:center"> Orthology informations </h1>';
+		echo '</div>';
+		#$current_plaza_id="AT1G01060";
+		echo "test plaza id ".$current_plaza_id;
+
+		if ($current_plaza_id!=""){
+	
+		
+		
+			echo $current_plaza_id;
+			#echo $species_ID;
+			$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
+			#$MongoGridFSCursor->skip(3)->limit(8);
+			foreach($MongoGridFSCursor as $MongoGridFSFile) {
+				#error_log($MongoGridFSFile->getBytes(), 0);
+
+			
+			
+				$stream = $MongoGridFSFile->getResource();
+				if ($stream) {
+					#while (($buffer = fgets($stream, 4096)) !== false) {
+					$cpt=0;
+					while (($buffer = stream_get_line($stream, 1024, "\n")) !== false) {
+	//         			#echo $buffer;
+						#$row=split('[\t]', $buffer);
+					
+					
+						#if ($cpt<10){
+					
+						#echo "start line : ".$buffer."\n";
+						#$row=split('[\t]', $buffer);
+						$row=preg_split('/\s+/', $buffer);
+						if ($current_plaza_id==$row[0]){
+							echo "start line : ".$buffer."\n";
+							$ortholog_list_id=split('[,]', $row[1]);
+							foreach ($ortholog_list_id as $ortholog){
+								#echo "start line : ".$buffer."\n";
+								$cursor=$mappingsCollection->aggregate(array( 
+									array('$match' => array('type'=>'gene_to_prot')),  
+									array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+									array('$match' => array('src'=>"plaza_gene_id")),  
+									array('$unwind'=>'$src_to_tgt'),    
+									array('$match' => array('src_to_tgt.0'=>$ortholog)),  
+									array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+								));
+							
+								if (count($cursor['result'])!=0){
+									echo '<h2> orthologs table </h2> <div class="container">';
+									echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+									echo'<thead><tr>';
+
+									//recupere le titre
+									#echo "<th>type</th>";
+									echo "<th>Mapping type</th>";
+									echo "<th>src ID</th>";
+									echo "<th>src type</th>";
+									echo "<th>src_version</th>";
+									echo "<th>tgt ID</th>";
+									echo "<th>tgt type</th>";
+									echo "<th>tgt_version</th>";
+									echo "<th>species</th>";
+								
+									echo'</tr></thead>';
+
+									//Debut du corps de la table
+									echo'<tbody>';
+
+									foreach($cursor['result'] as $line) {
+
+										//echo $line['src_to_tgt'];
+										for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+											echo "<tr>";
+										
+											echo '<td>'.$line['type'].'</td>';
+
+											echo '<td>'.$line['src_to_tgt'][0].'</td>';
+											echo '<td>'.$line['src'].'</td>';
+											echo '<td>'.$line['src_version'].'</td>';
+											echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+		
+	
+											//}
+											echo '<td>'.$line['tgt'].'</td>';
+											echo '<td>'.$line['tgt_version'].'</td>';
+											echo '<td>'.$line['species'].'</td>';
+											echo "</tr>";
+										}
+
+									}
+									echo'</tbody></table></div>';
+							
+								}
+							
+							
+							}
+						}
+					
+					}
+				}
+		
+			}
+		}
 		echo'</div>';
+		
 		##search for related info on other species.
 
 	}
-	
-	
-	
-	
-	
 echo '</div>';	
+	
+	
+	
+	
+	
 	
 	
 	

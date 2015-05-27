@@ -107,6 +107,11 @@ new_cobra_body();
 
 	}
 	else{
+	
+####################################################################	
+############## Samples informations ################################
+####################################################################	
+
 		$search_string=$textID;
 		$regex=new MongoRegex("/^$search_string/m");
 		$cursor = find_gene_by_regex($measurementsCollection,$regex);
@@ -346,6 +351,14 @@ new_cobra_body();
 	*/
 	
 	
+	
+	
+	
+		
+####################################################################	
+############## Related informations ################################
+####################################################################	
+	
 	$mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true)),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'_id'=>0));
 	
 	
@@ -354,10 +367,13 @@ new_cobra_body();
 	$gene_ids=array();
 	$uniprot_ids=array();
 	$descriptions=array();
+	
+	
 	echo '<hr>';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Related informations </h1>';
 	echo '</div>';
+	
 	echo'<h1> Protein related informations </h1>';
 	foreach ($mappings_to_process as $map_doc){
 		
@@ -460,6 +476,7 @@ new_cobra_body();
 		
 		
 	}
+	
 	echo'<h1> Gene related informations </h1>';
 	foreach ($mappings_to_process as $map_doc){
 		
@@ -567,8 +584,8 @@ new_cobra_body();
 		
 		
 	}
+	
 	echo'<h1> Gene symbol related informations </h1>';
-
 	foreach ($mappings_to_process as $map_doc){
 		
 		$src_col = $map_doc['src'];
@@ -673,6 +690,7 @@ new_cobra_body();
 		
 		
 	}
+	
 	foreach ($mappings_to_process as $map_doc){
 		
 		$src_col = $map_doc['src'];
@@ -783,9 +801,9 @@ new_cobra_body();
 	echo' </dl>';
 	
 	
-	// Here do the request in interactions table with Symbols ID
-	///////
-	########
+####################################################################	
+############## Interaction informations ############################
+####################################################################	
 	
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Interaction informations </h1>';
@@ -828,24 +846,16 @@ new_cobra_body();
 	
 	
 	
-	
-	
-	
+####################################################################	
+##############Others related gene informations #####################
+####################################################################	
+
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Others related gene informations </h1>';
 	echo '</div>';
 
 	
-	
-	
-	#### search in mapping table for a given id
-	
-	
-	
-	//$search_string=$textID;
-	//$regex=new MongoRegex("/^$search_string/m");
-	
-	
+	$tgts=array();
 	#get all tgt for a given source in the src_to_tgt sub-document
 	
 	$cursor=$mappingsCollection->aggregate(array( 
@@ -854,11 +864,8 @@ new_cobra_body();
 		array('$unwind'=>'$src_to_tgt'),    
 		array('$match' => array('src_to_tgt.0'=>$textID)),  
 		array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
-		)); 
-			
+		)); 	
 	##Display the results table
-	
-	$tgts=array();
 	echo '<h2> query as source in mapping</h2> <div class="container">';
 	if (count($cursor['result'])!=0){
 
@@ -922,9 +929,8 @@ new_cobra_body();
 		array('$unwind'=>'$tgt_to_src'),     
 		array('$match' => array('tgt_to_src.0'=>$textID)),   
 		array('$project' => array('tgt_to_src'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))));
-		
+	##Display the results table
 	echo '<h2> query as target in mapping</h2> <div class="container">';
-
 	if (count($cursor['result'])!=0){
 		//echo '<h2> mapping target to source</h2> <div class="container">';
 		echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
@@ -983,7 +989,7 @@ new_cobra_body();
 		echo'</div>';
 	}
 	
-	
+
 	
 	
 	
@@ -1002,25 +1008,37 @@ new_cobra_body();
 
 ##### Get available extra info mappings and process them 
 
+	
+####################################################################	
+############## New search with novels target #######################
+####################################################################	
+//relaunch a new request with the protein found in the previous request.
+//this way we can get gene coding for same protein in different species.
+
+
 
 echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 echo'<h1 style="text-align:center">New search with novels target</h1>';
 echo '</div>';
 
 foreach( $tgts as $docs)	{
-	//echo $docs;
+	#echo $docs;
 	$mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true)),array('src'=>1,'tgt'=>1,'mapping_file'=>1,'_id'=>0));
 	foreach ($mappings_to_process as $map_doc){
 		
 		$src_col = $map_doc['src'];
 		$tgt_col = $map_doc['tgt'];
 		$map_file = $map_doc['mapping_file'];
-		
+		#echo "mapping :\n";
 		foreach ($map_file as $doc){
+			#echo $tgt_col."\n";
 			
-			if ($doc[$tgt_col]==$docs){
+			
+			
+			if ($doc[$tgt_col]==$docs && $doc[$tgt_col]!=""){
+				
 		
-				//echo 'new entry for :'.$docs;
+				#echo 'new entry for docs:'.$docs." equal to doc[tgt_col]".$doc[$tgt_col]."\n";
 				if (strcasecmp($doc[$src_col], $textID) != 0){
 				
 					echo 'new gene : <strong>'.$doc[$src_col].'</strong> has been found to produce the same protein';
@@ -1050,6 +1068,7 @@ foreach( $tgts as $docs)	{
 }
 
 
+//fetch plaza id if exists
 $current_plaza_id="";
 
 foreach( $tgts as $doc)	{
@@ -1244,19 +1263,30 @@ foreach( $tgts as $doc)	{
 
 }
 
+
+
+
+
+
+####################################################################	
+############## Orthology informations ##############################
+####################################################################	
+
 #####search for related info on other species.
-echo "test plaza id ".$current_plaza_id;
 
 // Here do the request in orthologs table with gene_id ID
-	///////
-	########
+
+
+
+
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 	echo '</div>';
 	#$current_plaza_id="AT1G01060";
+	echo "test plaza id ".$current_plaza_id;
+
 	if ($current_plaza_id!=""){
 	
-		#echo '<h1 style="text-align:center">coucou </h1>';
 		
 		
 		echo $current_plaza_id;
@@ -1264,10 +1294,8 @@ echo "test plaza id ".$current_plaza_id;
 		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
 		#$MongoGridFSCursor->skip(3)->limit(8);
 		foreach($MongoGridFSCursor as $MongoGridFSFile) {
-			#echo 
 			#error_log($MongoGridFSFile->getBytes(), 0);
-			
-			################
+
 			
 			
 			$stream = $MongoGridFSFile->getResource();
@@ -1406,74 +1434,55 @@ echo "test plaza id ".$current_plaza_id;
 // 			array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
 // 			)); 
 	}
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	//find all pathogens infecting angiosperms
-    #$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
-   
-    
-    //$cursor=get_all_variety($samplesCollection);
-    
-    
-    ###distinct request
-    #$cursor=$db->command(array("distinct"=>"measurements","key"=>"xp"));
-    
-    
-    
-    
-    
-    
-	
-	
-	#Find using Regex to quickly found a gene, useful to interpret which ids we encounter in xls files
-	#$search_string='1';
-	#$regex=new MongoRegex("/^$textID/m");
-	#$cursor = find_gene_by_regex($measurementsCollection,$regex);
-	
-	
-	
-	#Count entries in sample collection
-	#$cursor2 = $samplesCollection->count('experimental_results'=>1);
-	
-	#print_r($cursor);
-	#foreach ( $cursor as $doc ){
-	#	print_r($doc);
-	#	echo'<br/>';
-	#}
-	
-	#makeDatatableFromFind($cursor);
-    #makeDatatableFromAggregate($cursor);
-    
-    
-    //$txt='Cucumber mosaic virus';
-    //$txt='monosporascus_cannonballus';
-    //$cursor = find_species_doc($speciesCollection,'monosporascus_cannonballus');
-    //$cursor = $speciesCollection->find(array('$or'=>array(array('full_name'=>$txt),array('aliases'=>$txt),array('abbrev_name'=>$txt))));
 
-   
-    	
-	//makeDatatable($cursor);
-*/
+
+	
+	// //find all pathogens infecting angiosperms
+//     #$cursor=get_all_pathogens_infecting_angiosperm($speciesCollection,$sampleCollection);
+//    
+//     
+//     //$cursor=get_all_variety($samplesCollection);
+//     
+//     
+//     ###distinct request
+//     #$cursor=$db->command(array("distinct"=>"measurements","key"=>"xp"));
+//     
+//     
+//     
+//     
+//     
+//     
+// 	
+// 	
+// 	#Find using Regex to quickly found a gene, useful to interpret which ids we encounter in xls files
+// 	#$search_string='1';
+// 	#$regex=new MongoRegex("/^$textID/m");
+// 	#$cursor = find_gene_by_regex($measurementsCollection,$regex);
+// 	
+// 	
+// 	
+// 	#Count entries in sample collection
+// 	#$cursor2 = $samplesCollection->count('experimental_results'=>1);
+// 	
+// 	#print_r($cursor);
+// 	#foreach ( $cursor as $doc ){
+// 	#	print_r($doc);
+// 	#	echo'<br/>';
+// 	#}
+// 	
+// 	#makeDatatableFromFind($cursor);
+//     #makeDatatableFromAggregate($cursor);
+//     
+//     
+//     //$txt='Cucumber mosaic virus';
+//     //$txt='monosporascus_cannonballus';
+//     //$cursor = find_species_doc($speciesCollection,'monosporascus_cannonballus');
+//     //$cursor = $speciesCollection->find(array('$or'=>array(array('full_name'=>$txt),array('aliases'=>$txt),array('abbrev_name'=>$txt))));
+// 
+//    
+//     	
+// 	//makeDatatable($cursor);
+
 	echo'</div>';
 	echo'
 <div class="container">

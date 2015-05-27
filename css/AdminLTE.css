@@ -67,6 +67,11 @@ body > .header {
   width: 220px;
   top: 0;
 }
+/* 
+.right-side.strech > .content-header {
+    margin-top: 0px;
+  }
+ */
 @media screen and (min-width: 992px) {
   .left-side {
     top: 0px;
@@ -89,11 +94,13 @@ body > .header {
 }
 /*Give content full width on xs screens*/
 @media screen and (max-width: 992px) {
-/*
-  .right-side {
+
+ /* 
+ .right-side {
     margin-left: 0;
   }
-*/
+ */
+
 }
 /*
     By default the layout is not fixed but if you add the class .fixed to the body element
@@ -120,7 +127,7 @@ body.fixed .wrapper {
 .content {
   padding: 20px 30px;
   margin-left:2px;
-  /*text-align: center;*/
+  /* text-align: center; */
   position: absolute;
   background: #f9f9f9;
   
