@@ -26,3 +26,24 @@ $config['base_url'] = '';
 $config['theme'] = 'cobra_main';
 $config['pages_order_by'] = 'alpha';
 $config['pages_order'] = 'asc';
+$settings['users'] = array
+(
+    'admin' => array(
+        'mackan' => '21e1873893e7f04378890ca1b9f8666bdec062f1'
+    )
+);
+
+// $config['users'] = array
+// (
+//     'family' => array(
+//         'mum' => '2cc13a9e718d3d3051ac1f0ba024a2ff77485f4b',
+//         'dad' => '12dea96fec20593566ab75692c9949596833adc9'
+//     )
+//     'editors' => array(
+//         'john' => '9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684',
+//         'marc' => '12dea96fec20593566ab75692c9949596833adc9'
+//         'admins' => array(
+//             'bill' => '3cbcd90adc4b192a87a625850b7f231caddf0eb3'
+//         )
+//     )
+// );

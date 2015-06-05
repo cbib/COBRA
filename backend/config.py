@@ -15,4 +15,5 @@ measurements_col=db.measurements
 interactions_col=db.interactions
 viruses_col=db.viruses
 orthologs_col=db.orthologs
+users_col=db.users
 fs = gridfs.GridFS(db)

@@ -6,6 +6,7 @@ Date: 2015/01/29
 */
 
 
+
 <div class="span"  style="border: 2px solid grey">
 	<div class="col-xs-12" >
 		<div class="column-padding no-right-margin">

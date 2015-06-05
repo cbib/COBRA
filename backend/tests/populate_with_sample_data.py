@@ -25,6 +25,7 @@ mappings_col.remove()
 measurements_col.remove()
 interactions_col.remove()
 orthologs_col.remove()
+users_col.remove()
 for grid_out in fs.find({}, timeout=False):
 	
 	fs.delete(grid_out._id)
@@ -291,7 +292,33 @@ prunus_pub={
 }
 publications_col.insert(prunus_pub)
 
+##Mapping PRunus Domestica
+
+
+mapping_table={
+	"data_file":"mappings/Table_S1.xls",
+	"species":"Prunus Domestica",
+	"type":"gene_to_prot",
+	"src":"unigene",
+	"src_version":"",
+	"tgt":"NCBI_Protein_code",
+	"tgt_version":"",
+	"description":"Sequence",
+	"url":"",
+	"doi":"",
+	"key":"unigene_2_ncbi_protein",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":2,
+		"column_keys":['idx','unigene', 'Sequence', 'Jojo-W1', 'Jojo-W2', 'Jojo-W+PPV', 'Jojo-M+PPV', 'fold_change', 'logFC', 'logCPM', 'PValue', 'FDR', 'Description', 'AccPrunus', 'DescPrunus', 'AccNCBI', 'DescNCBI', 'AccPlants', 'DescPlants', 'AccPRG', 'DescPRG','NCBI_Protein_code'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
 ## mapping Table melon
+#est_to_gene
 
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
@@ -314,7 +341,7 @@ mapping_table={
 	}
 }
 mappings_col.insert(mapping_table)
-
+#gene_to_gene
 mapping_table={
 	"data_file":"mappings/Melon_Icugi_to_Melonomics.xls",
 	"species":"Cucumis melo",
@@ -337,7 +364,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
@@ -361,6 +388,7 @@ mapping_table={
 mappings_col.insert(mapping_table)
 
 #Mapping Table Barley
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.hvu.xls",
 	"species":"Hordeum vulgare",
@@ -386,7 +414,7 @@ mappings_col.insert(mapping_table)
 
 #Mapping Table Tomato
 
-
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
 	"species":"Solanum lycopersicum",
@@ -409,7 +437,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
+#gene_to_gene
 mapping_table={
 	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
 	"species":"Solanum lycopersicum",
@@ -433,7 +461,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.sly.xls",
 	"species":"Solanum lycopersicum",
@@ -457,6 +485,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+#est_to_gene
 mapping_table={
 	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
 	"species":"Solanum lycopersicum",
@@ -483,7 +512,7 @@ mappings_col.insert(mapping_table)
 
 #Mapping Table Arabidopsis
 
-
+#est_to_gene
 mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
 	"species":"Arabidopsis thaliana",
@@ -506,6 +535,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
 	"species":"Arabidopsis thaliana",
@@ -528,7 +558,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
+#gene_to_prot
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.ath.xls",
 	"species":"Arabidopsis thaliana",
@@ -551,11 +581,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
-
-
-
-
+#gene_to_gene_symbol
 mapping_table={
 	"data_file":"mappings/gene_aliases_20131231.xls",
 	"species":"Arabidopsis thaliana",
@@ -1296,6 +1322,24 @@ interactions_table={
 interactions_col.insert(interactions_table)
 
 
+interactions_table={
+	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
+	"src":"protein_xref_1",
+	"tgt":"protein_xref_2",
+	"species_one":"protein_taxid_1_name",
+	"species_two":"protein_taxid_2_name",
+	"virus_class":"various",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','protein_xref_1','alternative_identifiers_1','protein_alias_1','protein_xref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)
+
+
 #### Ortholog Tables
 
 
@@ -1331,6 +1375,39 @@ orthologs_table={
 
 orthologs_col.insert(orthologs_table)
 
+
+
+users_table={
+	'login':'bdartigues',
+	'pwd':'password',
+	'firstname':'dartigues',
+	'lastname' : 'benjamin',
+	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
+	'grade':'administrator'
+	
+}
+users_col.insert(users_table)
+# users_table={
+# 	'username':'Fordon',
+# 	'login_md5':'',
+# 	'email_adress':'',
+# 	'role':'contributor'
+# 	
+# }
+# users_table={
+# 	'username':'vdecroocq',
+# 	'login_md5':'',
+# 	'email_adress':'',
+# 	'role':'contributor'
+# 	
+# }
+# users_table={
+# 	'username':'mnikolski',
+# 	'login_md5':'',
+# 	'email_adress':'',
+# 	'role':'contributor'
+# 	
+# }
 # orthologs_table={
 # 
 # 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',

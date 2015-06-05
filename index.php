@@ -1,152 +1,91 @@
 <?php
+
 require 'src/functions/html_functions.php';
 require 'src/functions/php_functions.php';
 require 'src/functions/mongo_functions.php';
 
 new_cobra_header();
 new_cobra_body();
-
 $db=mongoConnector();
-$grid = $db->getGridFS();
-$speciesCollection = new Mongocollection($db, "species");
-$sampleCollection = new Mongocollection($db, "samples");
-$virusCollection = new Mongocollection($db, "viruses");
-$measurementsCollection = new Mongocollection($db, "measurements");
-$publicationsCollection = new Mongocollection($db, "publications");
-$interactionsCollection = new Mongocollection($db, "interactions");
+$usersCollection = new Mongocollection($db, "users");
+session_start();
+//include('connection.php');
+// Déconnexion
+if ((isset($_GET['act'])) && ($_GET['act'] == 'logout'))
+{
+	$_SESSION = array();
+	session_destroy();
+	echo '<p>Vous avez été correctement deconnecté(e)</p>'."\n";
+	echo '<p>Nouvelle connexion ?  <a href="./index.php">cliquez ici</a></p>'."\n";
 
-#find_species_list($speciesCollection);
-#$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
-#<div class="container">
-#	<div class="col-xs-6">
-echo'
-
-
-			<!--<div class="column-padding no-left-margin"><div class="container"><div class="col-xs-6"><h2>Select examples</h2><p>Select a species in the list :</p>-->
-			<!--<form role="form" action="src/resultats.php" method="post" >-->
-
-			<div class="container">
-				<div class="col-xs-6">';
-					make_species_list(find_species_list($speciesCollection));
-					echo '<h2> Using list of genes ids</h2>';
-					
-					echo '</hr>';
-					make_gene_id_text_list();
-					echo '<h2> Cross compare datasets</h2>';
-					
-					echo '</hr>';
-					make_CrossCompare_list(find_species_list($speciesCollection));
-					make_viruses_list(find_viruses_list($virusCollection));
-					
-					#make_plaza_orthologs(get_plaza_orthologs($grid,"plaza_gene_identifier",));
-					
-					
-
-					//make_species_list_2();
-					//make_viruses_list(find_viruses_list($speciesCollection));
-					//make_experiment_type_list(find_experiment_type_list($sampleCollection));
-					#make_request_list();
-					//style="padding : 5px" 
-				echo' 
-				</div>
-					
-					
-												<!--
-												<div class="plain-box">
-													<div class="form-group">
-														<label for="requestID">Multiple Select List</label>
-														<select multiple class="form-control" id="requestID" name="requestID">
-															<option value="Request1">get all uniprot id from genes up regulated from a given species in microarray analysis of infection by a given virus</option>
-															<option value="Request2">get all angiosperms infected by a given pathogen</option>
-															<option value="Request3">find a gene using a regular expression</option>
-															<option value="Request4">Request 4</option>
-															<option value="Request5">Request 5</option>
-														</select>
-													</div>
-												</div>
-				
-												<div class="form-group">
-													<label for="textInput">choose a gene id</label>
-													<input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
-												</div>
-												<div class="form-group">
-													<label for="logFCInput">choose min logFC value</label>
-													<input type="number" step="0.0001" name="logFCInput" class ="form-control" placeholder="Tapez ici..." id="logFCInput">
-												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-default">Submit</button>
-												</div>
-												</form>
-												</div>
-												-->
-				
-				
-				<div class="col-xs-6"  style="border: 2px solid grey">
-					<div class="col-xs-12" >
-						<div class="column-padding no-right-margin">
-				';
-				//make_whats_new();
-				// 'A/ report_date':datetime.datetime.now(),
-// 		'B/ Number of samples':samples_col.count(),
-// 		'C/ Number of normalized measures':measurements_col.count(),
-// 		'C_a/ Tally of normalized measures':measurements_col.aggregate([{"$group":{"_id":"$type", "count": { "$sum": 1 }}}])['result'],
-// 		'D/ Number of species':species_col.count(),
-// 		'D_a/ Number of species per top_level':species_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result'],
-// 		'D_b/ Number of viruses per top_level':viruses_col.aggregate([{"$group":{"_id":"$classification.top_level","count":{"$sum":1}}}])['result']
-
-//<!--<p><h4>Last update : '.date().'</h4></p>-->
-					  echo '<!--<div class="plain-box">
-									<h2 id="features">
-									Some statistics...
-									</h2>
-					  			</div>-->
-								<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">
-								<h1 style="text-align:center">	Some statistics...</h1>
-								</div>
-								<p><h4>Last update : '.getlastmod().'</h4></p> 
-								<p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
-								<p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
-								
-								<p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
-								
-								$cursor=$speciesCollection->aggregate(array(
-								array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-								));
-								echo '<p> <h4>Species per top_level</h4>';
-								foreach ($cursor['result'] as $doc){
-									echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-								}
-								$cursor=$virusCollection->aggregate(array(
-								array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-								));
-								echo '<p><h4> Pathogens per top_level</h4>';
-								foreach ($cursor['result'] as $doc){
-									echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-								}
-								echo '
-								
-						</div>
-					</div>
-				</div>
-				
-				<!--<div class="container">
-					<div class="form-field ff-multi">
-						<div class=ff-inline ff-right">
-							<img src="images/NINSAR_LOGO.jpg" />
-							<img src="images/LOGO_CSIC.jpg" />
-							<img src="images/abiopep.jpg" />
-							<img src="images/INRA.jpg" />
-							<img src="images/GAFL.jpg" />
-						</div>
-					</div>
-				</div>-->
-			</div>
+ 
+	// on relance une session pour une éventuelle reconnexion
+	//session_start();
+}
+else{
+	if ((!isset($_SESSION['login'])) || ($_SESSION['login'] == '')){
+		if (!isset($_POST['submit']))
+		{
+			// c'est la première fois qu'on vient sur cette page, aucun formulaire soumis
+			echo '
+			<form id="connect" method="post" action="">
+			<fieldset><legend>Authentication required</legend>
+			
+				<p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
+				<p><label for="login">Login \t: </label><input type="text" id="login" name="login" tabindex="1" value="" /></p>
+				<p><label for="pwd">Password :</label><input type="password" id="pwd" name="pwd" tabindex="2" /></p>
+			</fieldset>
+			<div><input type="submit" name="submit" value="Connexion" tabindex="3" /></div>
+			</form>';
+		}
+		else
+		{
+			// le formuaire vient d'être soumis
+			$login  = (isset($_POST['login'])) ? htmlentities(trim($_POST['login'])) : '';
+			$pwd   = (isset($_POST['pwd']))    ? htmlentities(trim($_POST['pwd']))   : '';
+ 
+			if (($login != '') && ($pwd != ''))
+			{
+				// Login et pwd non vides, on  vérifie s'il y a quelqu'un qui correspond
+				$user=$usersCollection->find(array("login"=>$login,"pwd"=>$pwd),array("lastname"=>1,"firstname"=>1));
 		
+				foreach ( $user as $person ) { 
+					echo $person['lastname'];
+				//var_dump($user);
+				}
+				if (count($user)==1)
+		
+				{
+	
+ 
+					// On  enregistre ses données dans la session
+					$_SESSION['login'] = $login; // permet de vérifier que l'utilisateur est bien connecté
+					$_SESSION['firstname'] = $person['firstname'];
+					$_SESSION['lastname'] = $person['lastname'];
+					// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
+					echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/search.php">cliquez ici</a></p>'."\n";
+					header('Location: ./src/search/search.php');  
+				}
+				else
+				{
+					// Erreur dans le login et / ou dans le mot de passe ...
+					echo '<p>Désolé, vous avez peut-être fait une erreur dans la saisie des identifiants, mais votre parcours se finit là ... </p>'."\n";
+				}
+			}
+			else
+			{
+				// il n'y a personne qui répond à ces 2 identifiants
+				echo '<p>Désolé, vous avez peut-être fait une erreur dans la saisie des identifiants, mais votre parcours se finit là ... </p>'."\n";
+			};
+		} // end of (isset($_POST['submit']))
+	}
+	else{
 
+		header('Location: ./src/search/search.php');  
 
+	}
+}
 
-';
-//new_cobra_species_container();
 
 
 new_cobra_footer();

@@ -3,6 +3,7 @@
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
+require('../session/control-session.php');
 
 /*
 define('ROOT_PATH', realpath(dirname(__FILE__)) .'/../../');
@@ -11,6 +12,7 @@ require ROOT_PATH.'src/functions/html_functions.php';
 include ROOT_PATH.'src/functions/php_functions.php';
 include ROOT_PATH.'src/functions/mongo_functions.php';
 */
+session_start();
 new_cobra_header();
 
 

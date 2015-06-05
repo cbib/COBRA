@@ -141,7 +141,11 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 	$cursor=array();
 	$gene_prot=array();
 	$list_gene_prot=array();
-	if ($species=='Arabidopsis thaliana'){
+	
+	$id_type_results=$ma->find(array("species"=>$species,"type"=>"est_to_gene"),array("src"=>1));
+	
+	foreach ( $id_type_results as $id_type ){
+		echo $id_type['src'];
 		$species_cursor=array();
 		$cursor_id=find_species_doc($sp,$species);
 		$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
@@ -170,7 +174,7 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 // 			}
 // 		}
 		//echo count($species_val);
-		
+		$log_threshold=5;
 		$cursor=$sa->aggregate(array( 
 				array('$match' => array('species' => array('$in'=>$species_val))), 
 				array('$unwind'=>'$experimental_results'),  
@@ -181,11 +185,11 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 			   #array('$match'=>array('$and'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
 				array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.CATMA_ID'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
 				array('$unwind'=>'$experimental_results.values'), 
-				array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 0.4))), 
-				array('$project'=>array('id'=>'$experimental_results.values.CATMA_ID','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+				array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> $log_threshold))), 
+				array('$project'=>array('id'=>'$experimental_results.values.'.$id_type['src'],'FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
 		));
 		echo '<br>';
-		echo count($cursor['result']).' genes has been found with logFC upper than 0.4';
+		echo count($cursor['result']).' genes has been found with logFC upper than '.$log_threshold;
 
 		//var_dump($cursor);
 		for ($i = 0; $i < count($cursor['result']); $i++) {
@@ -205,14 +209,14 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 		 
 		}
 	
-		$cursorprot=$ma->find(array('type'=>'gene_to_prot','species'=>'Arabidopsis thaliana'),array('src_to_tgt'=>1,'_id'=>0));
+		$cursorprot=$ma->find(array('type'=>'gene_to_prot','species'=>$species),array('src_to_tgt'=>1,'_id'=>0));
 		$result = $cursorprot->getNext();
 		//var_dump($result);
 		$src_to_tgt=$result['src_to_tgt'];
 		//echo count($src_to_tgt);
 		for ($i = 0; $i < count($cursor['result']); $i++) {
 			$gene=$cursor['result'][$i]['gene'];
-			//echo $gene;
+			echo $gene;
 			foreach ( $src_to_tgt as $array){
 				
 				//echo $src.' and '.$tgt[0];
@@ -247,128 +251,249 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 		
 		}
 		
-	
-	}
-	else if($species=='Cucumis Melo'){
-	}
-	else if($species=='Solanum lycopersicum'){
-		$species_cursor=array();
-		
-		$cursor_id=find_species_doc($sp,$species);
-		$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
-		$species_val =array();
-		$result=$species_cursor['result'];
-		//var_dump($result);
-		foreach ( $result as $value ){
-			//echo $value;
-			foreach ( $value as $values ){
-				//echo $values;
-				array_push($species_val,$values);				
-			}
-		}
-		// $virus_cursor=array();
-// 		$cursor_id=find_species_doc($sp,$virus);
-// 		$virus_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
-// 		$virus_val =array();
-// 		$result=$virus_cursor['result'];
-// 		//var_dump($result);
-// 		foreach ( $result as $value ){
-// 			//echo $value;
-// 			foreach ( $value as $values ){
-// 				//echo $values;
-// 				array_push($virus_val,$values);				
-// 			}
-// 		}
-		//echo count($species_val);
-		
-		$cursor=$sa->aggregate(array( 
-				array('$match' => array('species' => array('$in'=>$species_val))), 
-				array('$unwind'=>'$experimental_results'),  
-				array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
-				array('$unwind'=>'$experimental_results.conditions'),  
-				#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
-				array('$match'=>array('experimental_results.conditions.infected'=>true)),  
-			   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
-				array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.SGN_S'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
-				array('$unwind'=>'$experimental_results.values'), 
-				array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 5))),
-				#array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 0,'$lt'=> 0.2))), 
- 
-				array('$project'=>array('id'=>'$experimental_results.values.SGN_S','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
-		));
-		//var_dump($cursor);
-		echo '<br>';
-		echo '<strong>'.count($cursor['result']).'</strong> genes has been found with logFC upper than requested';
-		for ($i = 0; $i < count($cursor['result']); $i++) {
-		
-			$test=$cursor['result'][$i]['id'];
-			$FC=$cursor['result'][$i]['FC'];
-			$cursor2=$me->find(array('gene_original_id'=>$test,'logFC'=>$FC),array('gene'=>1));
-			
-			foreach ( $cursor2 as $doc ){
-			
-					$cursor['result'][$i]['gene']=$doc['gene'];
-
-			
-			}
-		
-
-		 
-		}
-	
-		$cursorprot=$ma->find(array('type'=>'gene_to_prot','species'=>'Solanum lycopersicum'),array('src_to_tgt'=>1,'_id'=>0));
-		$result = $cursorprot->getNext();
-		//var_dump($result);
-		$src_to_tgt=$result['src_to_tgt'];
-		//echo count($src_to_tgt);
-		for ($i = 0; $i < count($cursor['result']); $i++) {
-			$gene=$cursor['result'][$i]['gene'];
-			//echo $gene;
-			foreach ( $src_to_tgt as $array){
-				
-				//echo $src.' and '.$tgt[0];
-				//foreach ($array as $key=>$value){
-				
-				if ($array[0]==$gene){
-							
-					//echo 'test='.$array[1][0];	
-					$cursor['result'][$i]['prot preferred id']=$array[1][0];
-					array_push($gene_prot,$cursor['result'][$i]['gene']);
-					array_push($gene_prot,$cursor['result'][$i]['prot preferred id']);	
-					array_push($list_gene_prot,$gene_prot);	
-
-
-					
-					//need to map gene and prot id
-				}
-					
-				//}			
-				
-				/*
-				foreach ( $docs as $array => $src_to_tgt ){
-					
-					foreach ( $src_to_tgt as $src => $tgt){
-						
-						if ($src==$gene){
-							echo $tgt;
-							$cursor['result'][$i]['prot preferred id']=$tgt[0];
-
-						}
-					}
-				}
-				*/
-
-			}
-		
-		}
-	}
-	else{
 	}
 	makeDatatableFromAggregate($cursor);
 	//datatableFromAggregate($cursor1);
 	//makeDatatableFromAggregate($cursor2);
 	return $list_gene_prot;
 	//return $cursor;
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// if ($species=='Arabidopsis thaliana'){
+// 		$species_cursor=array();
+// 		$cursor_id=find_species_doc($sp,$species);
+// 		$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+// 		$species_val =array();
+// 		$result=$species_cursor['result'];
+// 		//var_dump($result);
+// 		foreach ( $result as $value ){
+// 			//echo $value;
+// 			foreach ( $value as $values ){
+// 				//echo $values;
+// 				array_push($species_val,$values);				
+// 			}
+// 		}
+// 		
+// 		// $virus_cursor=array();
+// // 		$cursor_id=find_species_doc($sp,$virus);
+// // 		$virus_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+// // 		$virus_val =array();
+// // 		$result=$virus_cursor['result'];
+// // 		//var_dump($result);
+// // 		foreach ( $result as $value ){
+// // 			//echo $value;
+// // 			foreach ( $value as $values ){
+// // 				//echo $values;
+// // 				array_push($virus_val,$values);				
+// // 			}
+// // 		}
+// 		//echo count($species_val);
+// 		$test_id="CATMA_ID";
+// 		$cursor=$sa->aggregate(array( 
+// 				array('$match' => array('species' => array('$in'=>$species_val))), 
+// 				array('$unwind'=>'$experimental_results'),  
+// 				array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
+// 				array('$unwind'=>'$experimental_results.conditions'),  
+// 				#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
+// 				array('$match'=>array('experimental_results.conditions.infected'=>true)),  
+// 			   #array('$match'=>array('$and'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
+// 				array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.CATMA_ID'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
+// 				array('$unwind'=>'$experimental_results.values'), 
+// 				array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 0.4))), 
+// 				array('$project'=>array('id'=>'$experimental_results.values.'.$test_id,'FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+// 		));
+// 		echo '<br>';
+// 		echo count($cursor['result']).' genes has been found with logFC upper than 0.4';
+// 
+// 		//var_dump($cursor);
+// 		for ($i = 0; $i < count($cursor['result']); $i++) {
+// 		
+// 			$test=$cursor['result'][$i]['id'];
+// 			$FC=$cursor['result'][$i]['FC'];
+// 			$cursor2=$me->find(array('gene_original_id'=>$test,'logFC'=>$FC),array('gene'=>1));
+// 			
+// 			foreach ( $cursor2 as $doc ){
+// 			
+// 					$cursor['result'][$i]['gene']=$doc['gene'];
+// 
+// 			
+// 			}
+// 		
+// 
+// 		 
+// 		}
+// 	
+// 		$cursorprot=$ma->find(array('type'=>'gene_to_prot','species'=>$species),array('src_to_tgt'=>1,'_id'=>0));
+// 		$result = $cursorprot->getNext();
+// 		//var_dump($result);
+// 		$src_to_tgt=$result['src_to_tgt'];
+// 		//echo count($src_to_tgt);
+// 		for ($i = 0; $i < count($cursor['result']); $i++) {
+// 			$gene=$cursor['result'][$i]['gene'];
+// 			//echo $gene;
+// 			foreach ( $src_to_tgt as $array){
+// 				
+// 				//echo $src.' and '.$tgt[0];
+// 				//foreach ($array as $key=>$value){
+// 				
+// 				if ($array[0]==$gene){
+// 							
+// 					//echo 'test='.$array[1][0];	
+// 					$cursor['result'][$i]['prot preferred id']=$array[1][0];
+// 					array_push($gene_prot,$cursor['result'][$i]['gene']);
+// 					array_push($gene_prot,$cursor['result'][$i]['prot preferred id']);	
+// 					array_push($list_gene_prot,$gene_prot);	
+// 				}
+// 					
+// 				//}			
+// 				
+// 				/*
+// 				foreach ( $docs as $array => $src_to_tgt ){
+// 					
+// 					foreach ( $src_to_tgt as $src => $tgt){
+// 						
+// 						if ($src==$gene){
+// 							echo $tgt;
+// 							$cursor['result'][$i]['prot preferred id']=$tgt[0];
+// 
+// 						}
+// 					}
+// 				}
+// 				*/
+// 
+// 			}
+// 		
+// 		}
+// 		
+// 	
+// 	}
+// 	else if($species=='Cucumis Melo'){
+// 	}
+// 	else if($species=='Solanum lycopersicum'){
+// 		$species_cursor=array();
+// 		
+// 		$cursor_id=find_species_doc($sp,$species);
+// 		$species_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+// 		$species_val =array();
+// 		$result=$species_cursor['result'];
+// 		//var_dump($result);
+// 		foreach ( $result as $value ){
+// 			//echo $value;
+// 			foreach ( $value as $values ){
+// 				//echo $values;
+// 				array_push($species_val,$values);				
+// 			}
+// 		}
+// 		// $virus_cursor=array();
+// // 		$cursor_id=find_species_doc($sp,$virus);
+// // 		$virus_cursor=get_all_synonyms($sp,'_id',$cursor_id['_id']);
+// // 		$virus_val =array();
+// // 		$result=$virus_cursor['result'];
+// // 		//var_dump($result);
+// // 		foreach ( $result as $value ){
+// // 			//echo $value;
+// // 			foreach ( $value as $values ){
+// // 				//echo $values;
+// // 				array_push($virus_val,$values);				
+// // 			}
+// // 		}
+// 		//echo count($species_val);
+// 		
+// 		$cursor=$sa->aggregate(array( 
+// 				array('$match' => array('species' => array('$in'=>$species_val))), 
+// 				array('$unwind'=>'$experimental_results'),  
+// 				array('$project' => array('species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.values'=>1,'experimental_results.conditions'=>1,'_id'=>0)), 
+// 				array('$unwind'=>'$experimental_results.conditions'),  
+// 				#array('$match'=>array('experimental_results.conditions.infected'=>true)), 
+// 				array('$match'=>array('experimental_results.conditions.infected'=>true)),  
+// 			   #array('$match'=>array('or'=>array('experimental_results.conditions.infected'=>true),array('experimental_results.conditions.infection_agent'=>array('$in'=>$virus_val)))),  
+// 				array('$project'=>array('experimental_results.values.logFC'=>1,'experimental_results.values.SGN_S'=>1,'species'=>1,'name'=>1,'src_pub'=>1,'experimental_results.data_file'=>1,'experimental_results.conditions.infection_agent'=>1)), 
+// 				array('$unwind'=>'$experimental_results.values'), 
+// 				array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 5))),
+// 				#array('$match'=>array('experimental_results.values.logFC'=> array('$gt'=> 0,'$lt'=> 0.2))), 
+//  
+// 				array('$project'=>array('id'=>'$experimental_results.values.SGN_S','FC'=>'$experimental_results.values.logFC','species'=>1,'name'=>1,'src_pub'=>1,'infection_agent'=>'$experimental_results.conditions.infection_agent'))
+// 		));
+// 		//var_dump($cursor);
+// 		echo '<br>';
+// 		echo '<strong>'.count($cursor['result']).'</strong> genes has been found with logFC upper than requested';
+// 		for ($i = 0; $i < count($cursor['result']); $i++) {
+// 		
+// 			$test=$cursor['result'][$i]['id'];
+// 			$FC=$cursor['result'][$i]['FC'];
+// 			$cursor2=$me->find(array('gene_original_id'=>$test,'logFC'=>$FC),array('gene'=>1));
+// 			
+// 			foreach ( $cursor2 as $doc ){
+// 			
+// 					$cursor['result'][$i]['gene']=$doc['gene'];
+// 
+// 			
+// 			}
+// 		
+// 
+// 		 
+// 		}
+// 	
+// 		$cursorprot=$ma->find(array('type'=>'gene_to_prot','species'=>'Solanum lycopersicum'),array('src_to_tgt'=>1,'_id'=>0));
+// 		$result = $cursorprot->getNext();
+// 		//var_dump($result);
+// 		$src_to_tgt=$result['src_to_tgt'];
+// 		//echo count($src_to_tgt);
+// 		for ($i = 0; $i < count($cursor['result']); $i++) {
+// 			$gene=$cursor['result'][$i]['gene'];
+// 			//echo $gene;
+// 			foreach ( $src_to_tgt as $array){
+// 				
+// 				//echo $src.' and '.$tgt[0];
+// 				//foreach ($array as $key=>$value){
+// 				
+// 				if ($array[0]==$gene){
+// 							
+// 					//echo 'test='.$array[1][0];	
+// 					$cursor['result'][$i]['prot preferred id']=$array[1][0];
+// 					array_push($gene_prot,$cursor['result'][$i]['gene']);
+// 					array_push($gene_prot,$cursor['result'][$i]['prot preferred id']);	
+// 					array_push($list_gene_prot,$gene_prot);	
+// 
+// 
+// 					
+// 					//need to map gene and prot id
+// 				}
+// 					
+// 				//}			
+// 				
+// 				/*
+// 				foreach ( $docs as $array => $src_to_tgt ){
+// 					
+// 					foreach ( $src_to_tgt as $src => $tgt){
+// 						
+// 						if ($src==$gene){
+// 							echo $tgt;
+// 							$cursor['result'][$i]['prot preferred id']=$tgt[0];
+// 
+// 						}
+// 					}
+// 				}
+// 				*/
+// 
+// 			}
+// 		
+// 		}
+// 	}
+// 	else{
+// 	}
 
 }
 
