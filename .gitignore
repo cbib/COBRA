@@ -1,5 +1,6 @@
 data/*
+backend/tests/*.pyc
 backend/*.pyc
 backend/helpers/*.pyc
-tests/*.pyc
+
 lib/*
