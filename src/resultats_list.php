@@ -3,18 +3,19 @@ include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
 include '../wiki/vendor/autoload.php';
+require('../session/control-session.php');
 
 
 define("RDFAPI_INCLUDE_DIR", "/Users/benjamindartigues/COBRA/GIT/COBRA/lib/rdfapi-php/api/");
 include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
-
+session_start();
 
 new_cobra_header();
 
 ?>
 
 <?php
-new_cobra_body();
+new_cobra_body($_SESSION['login']);
 //Instanciation de la connexion
 $db=mongoConnector();
 

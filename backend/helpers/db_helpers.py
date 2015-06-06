@@ -15,6 +15,7 @@ import sys
 from numbers import Number
 import pymongo 
 import logging 
+import hashlib
 import collections
 from math import log
 import pymongo

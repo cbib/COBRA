@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
 define('CONTENT_DIR', ROOT_DIR .'content/');
 define('CONTENT_EXT', '.md');
@@ -10,7 +10,8 @@ define('CACHE_DIR', LIB_DIR .'cache/');
 
 require_once(ROOT_DIR .'vendor/autoload.php');
 require_once(LIB_DIR .'pico.php');
-session_start();
+require (realpath(dirname(__FILE__)) .'/'.'../src/session/control-session.php');
+
 $pico = new Pico();
 
 ?>

@@ -19,7 +19,21 @@ class ftp{
 }
 
 // Example
+function is_logged($login){
+if ((!isset($login)) || ($login == ''))
+ {
+	// La variable $_SESSION['login'] n'existe pas, ou bien elle est vide
+	// <=> la personne ne s'est PAS connectée
+	//echo '<p>You have to be <a href="/database/login.php"> logged</a>.</p>'."\n";
+	//exit();
+	return False;
+ }
+ else{
+ 	return True;
+ 
+ }
 
+}
 function control_post ($value) {
 
 	$return;
@@ -78,7 +92,50 @@ function make_experiment_type_list($cursor){
     
 }
 
+function make_user_preferences($user,Mongocollection $us){
 
+	echo '<h2> User preferences</h2>
+    		<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    			<h3> login details</h3>';
+   foreach ( $user as $person ) { 
+		if (($person['login'] != '') && ($person['pwd'] != '')){
+			echo 'You are currently logged in as '.$person['login'].'.';
+			
+			
+			
+			
+		}
+	echo '</div></br>';	
+		
+	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+			<div id="SpeciesSearch" class="js_panel">
+    			<input type="hidden" class="panel_type" value="SearchBox" />
+				<h3> Change password</h3>';
+		
+		echo'<form action="/database/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
+				<fieldset>
+					<div class="form-field ff-multi">
+						<div align="center" class="ff-inline ff-right" >';
+					echo '<label for="q">enter password</label>		
+							<wbr></wbr>
+							<span class="inp-group">
+								<input value="" name="password" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+							
+							</span>';
+					echo '<label for="q">confirm password</label>		
+							<wbr></wbr>
+							<span class="inp-group">
+								<input value="" name="password" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+								<input value="Go" class="fbutton" type="submit" />
+							</span>';
+		echo'			</div>
+					</div>
+				</fieldset>
+			  </form>';
+   
+   }
+   echo '</div></div>';
+}
 
 function make_viruses_list($cursor){
 
@@ -166,7 +223,7 @@ echo '
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="../src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
@@ -228,7 +285,7 @@ function make_species_list($cursor){
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="src/resultats.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/database/src/resultats.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-field ff-multi">
     				<div align="center" class="ff-inline ff-right" >
@@ -254,9 +311,9 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="/database/src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT1G06520">AT1G06520</a> 
     						or 
-    						<a class="nowrap" href="src/resultats.php?speciesID=Solanum+lycopersicum&q=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="/database/src/resultats.php?speciesID=Solanum+lycopersicum&q=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>
@@ -273,7 +330,7 @@ function make_CrossCompare_list($cursor){
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="../src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-field ff-multi">
     				<div align="center" class="ff-inline ff-right" >

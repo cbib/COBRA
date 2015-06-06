@@ -20,7 +20,15 @@ echo'
 
 <!-- Theme style -->
 <link href="/database/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/database/css/dataTables.bootstrap.css">	
+
+<!-- Datatable style -->
+<link rel="stylesheet" type="text/css" href="/database/css/dataTables.bootstrap.css">
+
+<!-- Cobra style -->
+<link rel="stylesheet" type="text/css" href="/database/css/cobra_styles.css">	
+
+<!-- tab icon style -->
+<!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
 
 <!-- jQuery 2.0.2 -->
 <script src="/database/js/jquery.min.js"></script>
@@ -43,7 +51,7 @@ echo'
 }
 
 
-function new_cobra_body(){
+function new_cobra_body($IsLogged='null'){
 echo'
 
     </head>
@@ -70,7 +78,7 @@ echo'
 							</a>
                	</li>
                   <li>
-                     <a href="/database/">
+                     <a href="/database/src/search/">
                         <i class="fa fa-search"></i> 
                         <span>Quick Search</span>
                      </a>
@@ -101,7 +109,14 @@ echo'
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
                   <li><a href="/database/src/description/">description</a></li>
                   <li><a href="/database/">Quick search</a></li>
-                  <li><a href="/database/index.php?act=logout">Logout</a></li>
+                  ';if ($IsLogged){echo '
+                  <li><a href="/database/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
+                  echo '<li><a href="/database/login.php?act=logout">Logout</a></li>';}
+                  else{
+                  	echo '<li><a href="/database/login.php">Login</a></li>';
+                  }
+                  echo '
+                  
                	
                </ol>
             </section>
@@ -111,6 +126,8 @@ echo'
 ';
 
 }
+
+
 
 function new_content_header(){
 

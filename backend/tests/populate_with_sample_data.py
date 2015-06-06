@@ -8,7 +8,8 @@ from config import *
 from helpers.basics import load_config
 from helpers.logger import Logger
 from helpers.db_helpers import * 
-
+import string
+from random import *
 
 # Script 
 import datetime
@@ -25,7 +26,7 @@ mappings_col.remove()
 measurements_col.remove()
 interactions_col.remove()
 orthologs_col.remove()
-users_col.remove()
+#users_col.remove()
 for grid_out in fs.find({}, timeout=False):
 	
 	fs.delete(grid_out._id)
@@ -1376,17 +1377,66 @@ orthologs_table={
 orthologs_col.insert(orthologs_table)
 
 
+# orthologs_table={
+# 
+# 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',
+# 	'src':'plaza_gene_identifier',
+# 	'tgt':'orthologs_list_identifier',
+# 	'version':"monocots_3.0",
+# 	'xls_parsing':{
+# 		'n_rows_to_skip':0,
+# 		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
+# 		'sheet_index':0
+# 		
+# 	}
+# }
+# 
+# orthologs_col.insert(orthologs_table)
 
-users_table={
-	'login':'bdartigues',
-	'pwd':'password',
-	'firstname':'dartigues',
-	'lastname' : 'benjamin',
-	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
-	'grade':'administrator'
+#for key, value in orthologs_table.items():
 	
-}
-users_col.insert(users_table)
+#orthologs_col.put(orthologs_table.items())
+
+
+#### Users Tables
+
+# characters = string.ascii_letters + string.punctuation  + string.digits
+# password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
+# print "bdartigues password :" + password_gen
+# password=hashlib.md5(password_gen).hexdigest()
+# 
+# users_table={
+# 	'login':'bdartigues',
+# 	'pwd': password,
+# 	'firstname':'dartigues',
+# 	'lastname' : 'benjamin',
+# 	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
+# 	'grade':'administrator'
+# 	
+# }
+# users_col.insert(users_table)
+
+# password=hashlib.md5("").hexdigest()
+# users_table={
+# 	'login':'bdartigues',
+# 	'pwd': password,
+# 	'firstname':'dartigues',
+# 	'lastname' : 'benjamin',
+# 	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
+# 	'grade':'administrator'
+# 	
+# }
+# users_col.insert(users_table)
+# 
+# 
+# 
+# 
+# 
+# 
+# characters = string.ascii_letters + string.punctuation  + string.digits
+# password =  "".join(choice(characters) for x in range(randint(8, 16)))
+# print password
+
 # users_table={
 # 	'username':'Fordon',
 # 	'login_md5':'',
@@ -1408,25 +1458,8 @@ users_col.insert(users_table)
 # 	'role':'contributor'
 # 	
 # }
-# orthologs_table={
-# 
-# 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',
-# 	'src':'plaza_gene_identifier',
-# 	'tgt':'orthologs_list_identifier',
-# 	'version':"monocots_3.0",
-# 	'xls_parsing':{
-# 		'n_rows_to_skip':0,
-# 		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
-# 		'sheet_index':0
-# 		
-# 	}
-# }
-# 
-# orthologs_col.insert(orthologs_table)
 
-#for key, value in orthologs_table.items():
-	
-#orthologs_col.put(orthologs_table.items())
+
 
 
 

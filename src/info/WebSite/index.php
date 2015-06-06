@@ -1,8 +1,12 @@
 <?php
-
+session_start();
 include '../../functions/html_functions.php';
 include '../../functions/php_functions.php';
 include '../../functions/mongo_functions.php';
+require '../../session/control-session.php';
+
+
+
 
 /*
 define('ROOT_PATH', realpath(dirname(__FILE__)) .'/../../');
@@ -14,7 +18,7 @@ include ROOT_PATH.'src/functions/mongo_functions.php';
 new_cobra_header();
 
 
-new_cobra_body();
+new_cobra_body($_SESSION['login']);
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");

@@ -26,12 +26,12 @@ $config['base_url'] = '';
 $config['theme'] = 'cobra_main';
 $config['pages_order_by'] = 'alpha';
 $config['pages_order'] = 'asc';
-$settings['users'] = array
-(
-    'admin' => array(
-        'mackan' => '21e1873893e7f04378890ca1b9f8666bdec062f1'
-    )
-);
+// $settings['users'] = array
+// (
+//     'admin' => array(
+//         'mackan' => '21e1873893e7f04378890ca1b9f8666bdec062f1'
+//     )
+// );
 
 // $config['users'] = array
 // (

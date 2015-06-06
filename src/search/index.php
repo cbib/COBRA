@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // on teste si le visiteur a soumis le formulaire de connexion
 //if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 //	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
@@ -10,10 +10,10 @@
 require '../functions/html_functions.php';
 require '../functions/php_functions.php';
 require '../functions/mongo_functions.php';
-require('../session/control-session.php');
+require '../session/control-session.php';
 
 new_cobra_header();
-new_cobra_body();
+new_cobra_body(is_logged($_SESSION['login']));
 
 
 //include('connection.php');
@@ -37,7 +37,7 @@ echo'
 
 
 			<!--<div class="column-padding no-left-margin"><div class="container"><div class="col-xs-6"><h2>Select examples</h2><p>Select a species in the list :</p>-->
-			<!--<form role="form" action="src/resultats.php" method="post" >-->
+			<!--<form role="form" action="../../src/resultats.php" method="post" >-->
 
 			<div class="container">
 				<div class="col-xs-6">';
