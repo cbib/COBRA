@@ -11,3 +11,28 @@ ehthumbs.db
 Icon?
 Thumbs.db
 *.swp
+
+
+# Composer
+wiki/composer.lock
+wiki/composer.phar
+
+# Twig
+wiki/vendor/twig/twig/doc/*
+wiki/vendor/twig/twig/ext/*
+wiki/vendor/twig/twig/test/*
+
+# OS Generated
+.DS_Store*
+wiki/ehthumbs.db
+wiki/Icon?
+wiki/Thumbs.db
+wiki/*.swp
+
+# User themes
+wiki/themes/*
+!wiki/themes/index.html
+!wiki/themes/default/*
+
+# User config
+wiki/config.php
