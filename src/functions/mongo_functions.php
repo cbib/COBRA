@@ -135,6 +135,11 @@ function find_gene_by_regex(MongoCollection $me,MongoRegex $re){
 	#$cursor = $measurementsCollection->find($searchQuery,array('direction'=>1));
 
 }
+function get_all_GO_information(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, Mongocollection $ma,MongoCollection $vi,$species='null'){
+
+
+
+}
 
 ### Find all genes up-regulated in a given species when infected with given virus
 function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, Mongocollection $ma,MongoCollection $vi,$species='null'){

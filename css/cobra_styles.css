@@ -3,3 +3,164 @@
  * Copyright 2015-2019 COBRA, PLANT KBBE Inc.
  * Licensed under CBIB (https://github.com/CBIB/COBRA)
  */
+ 
+ 
+/*modify the width regarding to tyhe resolution of the screen*/
+
+@media (min-width: 768px) {
+  .table {
+    width: 750px;
+  }
+  .resultsbox{
+ 	width:750px
+ } 
+}
+@media (min-width: 992px) {
+  .container{
+    width:860px
+   }
+  .table {
+    width: 850px;
+  }
+  .content{
+ width:866px
+ }
+  .resultsbox{
+ 	width:850px
+ } 
+ .div#protein-details{
+	width: 425px;
+ }
+ .div#stat-details{
+	width: 425px;
+ }
+}
+@media (min-width: 1200px) {
+   .container{
+    width:1000px
+   }
+  .table {
+    width: 1000px;
+  }
+  .content{
+ width:1066px
+ }
+  .resultsbox{
+ 	width:1000px
+ } 
+ #protein-details{
+	width: 500px;
+ }
+ #stat-details{
+	width: 500px;
+ }
+}
+
+@media (min-width:1600px){
+ .container{
+ width:1460px
+ }
+ .table{
+ width:1500px
+ }
+ .content{
+ width:1466px
+ }
+ .resultsbox{
+ 	width:1200px
+ } 
+ #protein-details{
+	width: 600px;
+ }
+ #stat-details{
+	width: 600px;
+ }
+}
+
+@media (min-width:1800px){
+ .container{
+ width:1660px
+ }
+ .table{
+ width:1500px
+ }
+ .content{
+ width:1666px
+ }
+ .resultsbox{
+ 	width:1300px
+ } 
+ #protein-details{
+	width: 650px;
+ }
+ #stat-details{
+	width: 650px;
+ }
+ 
+}
+.resultsbox{
+
+	padding: 7px;
+   padding-top: 7px;
+   padding-right: 7px;
+   padding-bottom: 7px;
+   padding-left: 7px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	border-radius: 10px;
+	background-color: rgb(238, 238, 238);
+	color: rgb(51, 51, 51);
+}
+
+/* 
+$('#results').hover(
+       function(){ $(this).addClass('hover') },
+       function(){ $(this).removeClass('hover') }
+)
+ */
+.right {
+    float: right;
+}
+
+div.resultsbox:hover {
+    background-color: #0B614B;
+    color: #FFF
+}
+#protein-details{
+	background-color: #FFF;
+	margin-left: 10px;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+}
+#stat-details{
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+}
+#organism{
+	margin-top: 5px;
+	font-style: italic;
+
+}
+#interaction-tabs{
+    background-color: #7B3B3B;
+    width: 100%;
+    border-radius: 3px;
+    height: 30px;
+}
+
+}
+
+.results-left {
+   width: 73%;
+	padding-right: 5px;
+}
+.results-right {
+    float: right;
+    width: 25%;
+}
+

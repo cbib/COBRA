@@ -119,13 +119,13 @@ function make_user_preferences($user,Mongocollection $us){
 					echo '<label for="q">enter password</label>		
 							<wbr></wbr>
 							<span class="inp-group">
-								<input value="" name="password" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+								<input value="pwd1" name="pwd1" class="_string input inactive query optional ftext" id="pwd1" type="text" size="30" />
 							
 							</span>';
-					echo '<label for="q">confirm password</label>		
+					echo '<label for="pwd">confirm password</label>		
 							<wbr></wbr>
 							<span class="inp-group">
-								<input value="" name="password" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+								<input value="pwd2" name="pwd2" class="_string input inactive query optional ftext" id="pwd2" type="text" size="30" />
 								<input value="Go" class="fbutton" type="submit" />
 							</span>';
 		echo'			</div>
@@ -223,7 +223,7 @@ echo '
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="../src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/database/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
@@ -285,14 +285,14 @@ function make_species_list($cursor){
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/database/src/resultats.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/database/src/search.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-field ff-multi">
     				<div align="center" class="ff-inline ff-right" >
     					<label for="species" class="ff-label">Search:</label>
 
     					<span class="inp-group">
-    						<select name="speciesID" class="fselect input" id="speciesID">
+    						<select name="organism" class="fselect input" id="organism">
     							<option value="">All species</option>
     	 						<option disabled="disabled" value="">---</option>';   
 						//Parcours de chaque ligne du curseur
@@ -300,20 +300,20 @@ function make_species_list($cursor){
 					  	echo '<option value="'.$line.'">'.$line.'</option>';
 					}
 					echo '</select>
-    						<label for="q">for</label>
+    						<label for="search">for</label>
     					</span>
     					<wbr></wbr>
     					<span class="inp-group">
-    						<input value="" name="q" class="_string input inactive query optional ftext" id="q" type="text" size="30" />
+    						<input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
     						<input value="Go" class="fbutton" type="submit" />
     					</span>
     					<wbr></wbr>
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="/database/src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="/database/src/search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
     						or 
-    						<a class="nowrap" href="/database/src/resultats.php?speciesID=Solanum+lycopersicum&q=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="/database/src/search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>

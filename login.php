@@ -1,9 +1,9 @@
 <?php
-
+session_start();
 require 'src/functions/html_functions.php';
 require 'src/functions/php_functions.php';
 require 'src/functions/mongo_functions.php';
-session_start();
+
 new_cobra_header();
 
 $db=mongoConnector();
@@ -83,7 +83,9 @@ else{
 							// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
 							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
 							
-							header('Location: ./src/search/index.php'); 
+							//header('Location: ./src/search/index.php'); 
+							header('Location: ./wiki/index.php'); 
+
 						} 
 						else{
 							echo '<p>Désolé, ces champs n\'ont pas encore été renseignés... </p>'."\n";

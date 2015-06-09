@@ -1398,66 +1398,7 @@ orthologs_col.insert(orthologs_table)
 #orthologs_col.put(orthologs_table.items())
 
 
-#### Users Tables
 
-# characters = string.ascii_letters + string.punctuation  + string.digits
-# password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
-# print "bdartigues password :" + password_gen
-# password=hashlib.md5(password_gen).hexdigest()
-# 
-# users_table={
-# 	'login':'bdartigues',
-# 	'pwd': password,
-# 	'firstname':'dartigues',
-# 	'lastname' : 'benjamin',
-# 	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
-# 	'grade':'administrator'
-# 	
-# }
-# users_col.insert(users_table)
-
-# password=hashlib.md5("").hexdigest()
-# users_table={
-# 	'login':'bdartigues',
-# 	'pwd': password,
-# 	'firstname':'dartigues',
-# 	'lastname' : 'benjamin',
-# 	'email_adress':'benjamin.dartigues@u-bordeaux.fr',
-# 	'grade':'administrator'
-# 	
-# }
-# users_col.insert(users_table)
-# 
-# 
-# 
-# 
-# 
-# 
-# characters = string.ascii_letters + string.punctuation  + string.digits
-# password =  "".join(choice(characters) for x in range(randint(8, 16)))
-# print password
-
-# users_table={
-# 	'username':'Fordon',
-# 	'login_md5':'',
-# 	'email_adress':'',
-# 	'role':'contributor'
-# 	
-# }
-# users_table={
-# 	'username':'vdecroocq',
-# 	'login_md5':'',
-# 	'email_adress':'',
-# 	'role':'contributor'
-# 	
-# }
-# users_table={
-# 	'username':'mnikolski',
-# 	'login_md5':'',
-# 	'email_adress':'',
-# 	'role':'contributor'
-# 	
-# }
 
 
 

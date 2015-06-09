@@ -51,7 +51,7 @@ echo'
 }
 
 
-function new_cobra_body($IsLogged='null'){
+function new_cobra_body($IsLogged='null', $type='null'){
 echo'
 
     </head>
@@ -101,11 +101,14 @@ echo'
       	<!-- Right side column. Contains the navbar and content of the page -->
          <aside class="right-side">     
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-               <h1>Quick search
-                  <small>COBRA a plant virus interaction database</small>
-               </h1>
-            	<ol class="breadcrumb">
+            <section class="content-header">';
+            	
+            	
+               echo '<h1>'.$type.'<small>COBRA a plant virus interaction database</small></h1>';
+            	
+            	
+            	
+            	echo '<ol class="breadcrumb">
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
                   <li><a href="/database/src/description/">description</a></li>
                   <li><a href="/database/">Quick search</a></li>

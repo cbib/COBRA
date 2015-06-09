@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
@@ -12,7 +12,7 @@ require ROOT_PATH.'src/functions/html_functions.php';
 include ROOT_PATH.'src/functions/php_functions.php';
 include ROOT_PATH.'src/functions/mongo_functions.php';
 */
-session_start();
+
 new_cobra_header();
 
 
@@ -181,7 +181,7 @@ $cursor=find_all_viruses($virusesCollection);
 
 
 echo '<h2> VIruses lists</h2> <div class="container">';
-echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+echo'<table id="example" class="table table-bordered" cellspacing="0">';
 echo'<thead><tr>';
 	
 	//recupere le titre

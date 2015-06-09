@@ -1,4 +1,5 @@
 <?php
+session_start();
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
@@ -12,9 +13,6 @@ session_start();
 
 new_cobra_header();
 
-?>
-
-<?php
 new_cobra_body($_SESSION['login']);
 	//Instanciation de la connexion
 	$db=mongoConnector();
@@ -31,9 +29,9 @@ new_cobra_body($_SESSION['login']);
 
 
 	
-	$speciesID=control_post(htmlspecialchars($_GET['speciesID']));
-	//$listID=control_post(htmlspecialchars($_GET['listID']));
-	$textID=control_post(htmlspecialchars($_GET['q']));
+$speciesID=control_post(htmlspecialchars($_GET['organism']));
+//$listID=control_post(htmlspecialchars($_GET['listID']));
+$textID=control_post(htmlspecialchars($_GET['search']));
 // on remplace le retour charriot par <br>
 	//$listID = str_replace('\r\n','<br>',$listID);
 	
@@ -132,6 +130,7 @@ new_cobra_body($_SESSION['login']);
 		$keys = array_values(array_unique($keys));
 		
 		echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+		//header table start
 		echo'<thead><tr>';
 	
 		//recupere le titre
@@ -169,13 +168,11 @@ new_cobra_body($_SESSION['login']);
 					
 				}
 		}
-		//echo "<th>infection agent</th>";
-		//fin du header de la table
 		echo'</tr></thead>';
+		//header table end
 	
 		//Debut du corps de la table
 		echo'<tbody>';
-		//Parcour de chaque ligne du curseur
 		foreach($cursor as $line) {
 			echo "<tr>";
 		
