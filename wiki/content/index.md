@@ -42,7 +42,8 @@ Date: 2015/01/29
 			to implement complex and durable resistance in any crop species.</p>
 
 
-			<p>The purpose here is to provide knowledge on the viral factor(s) that determine(s) the breaking of the resistance provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred by the new candidate genes prior to transfer to crop species.
+			<p>The purpose here is to provide knowledge on the viral factor(s) that determine(s) the breaking of the resistance 
+			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred by the new candidate genes prior to transfer to crop species.
 			In conclusion, COBRA is expected to provide new targets for resistance to plant viruses, distinct from the well- 
 			described mechanism related to translation initiation factors eIF4E and eIF4G. This will allow the selection of 
 			new cultivars in tomato, barley and stone fruit trees combining different mechanisms of resistance for sustainable 
@@ -53,7 +54,7 @@ Date: 2015/01/29
 		
 	</div>
 </div>
-#COBRA Funding And Partners
+<!---#COBRA Funding And Partners-->
 <div class="col-md-6" >
 	<div class="col-md-6" >
 				<img src="/database/images/new_INRA.png" width="200"/>

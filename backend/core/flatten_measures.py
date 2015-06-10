@@ -50,13 +50,14 @@ for a_sample in samples_with_results:
 			#logger.info("new measure %s",measure[id_col])
 
 			for tgt_id in robust_id_mapping(measure[id_col],this_mapping):
-				#logger.info("tgt_id %s",tgt_id)
+				logger.info("tgt_id %s",tgt_id)
 				#logger.info("Tgid = %s",tgt_id)
 				this_doc={"xp":this_path}
 				if experimental_results['type']=="contrast":
 					this_doc['type']="contrast"
 					this_doc['gene']=tgt_id
 					this_doc['gene_original_id']=measure[id_col]
+					this_doc['species']=this_genome['full_name']
 					
 					
 					this_doc['logFC']=measure.get("logFC",None)

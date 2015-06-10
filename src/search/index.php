@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 // on teste si le visiteur a soumis le formulaire de connexion
 //if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 //	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
@@ -9,7 +9,7 @@ require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
 new_cobra_header();
-new_cobra_body(is_logged($_SESSION['login']));
+new_cobra_body(is_logged($_SESSION['login']),"Quick search");
 
 
 //include('connection.php');

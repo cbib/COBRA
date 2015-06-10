@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
@@ -16,7 +16,7 @@ include ROOT_PATH.'src/functions/mongo_functions.php';
 new_cobra_header();
 
 
-new_cobra_body();
+new_cobra_body($_SESSION['login'],"Datasets and statistics");
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");

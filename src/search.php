@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
@@ -37,15 +37,20 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$orthologsCollection = new Mongocollection($db, "orthologs");
 
 	
+	get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
+
 	
-	//search in measurmeent table
-	$search_string=$search;
-	$regex=new MongoRegex("/^$search_string/m");
-	$cursor = find_gene_by_regex($measurementsCollection,$regex);
-	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-	echo'<h1 style="text-align:center"> Samples informations </h1>';
-	echo '</div>';
-	$array = iterator_to_array($cursor);
+	
+	
+	
+	// //search in measurmeent table
+// 	$search_string=$search;
+// 	$regex=new MongoRegex("/^$search_string/m");
+// 	$cursor = find_gene_by_regex($measurementsCollection,$regex);
+// 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+// 	//echo'<h1 style="text-align:center"> Samples informations </h1>';
+// 	echo '</div>';
+// 	$array = iterator_to_array($cursor);
 	
 
 // echo'<div class="container">

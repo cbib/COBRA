@@ -101,8 +101,121 @@ function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
     }
     return $cursor;
 }
+function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
+	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+	echo'<h1 style="text-align:center"> Orthology informations </h1>';
+	echo '</div>';
+	#$current_plaza_id="AT1G01060";
+	echo "test plaza id ".$current_plaza_id;
+
+	if ($current_plaza_id!=""){
+	
+		
+		echo $current_plaza_id;
+		#echo $species_ID;
+		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
+		#$MongoGridFSCursor->skip(3)->limit(8);
+		foreach($MongoGridFSCursor as $MongoGridFSFile) {
+			#error_log($MongoGridFSFile->getBytes(), 0);
+
+			
+			
+			$stream = $MongoGridFSFile->getResource();
+ 			if ($stream) {
+     			#while (($buffer = fgets($stream, 4096)) !== false) {
+	     		$cpt=0;
+	     		while (($buffer = stream_get_line($stream, 1024, "\n")) !== false) {
+//         			#echo $buffer;
+					#$row=split('[\t]', $buffer);
+					
+					
+					#if ($cpt<10){
+					
+					#echo "start line : ".$buffer."\n";
+					#$row=split('[\t]', $buffer);
+					$row=preg_split('/\s+/', $buffer);
+					if ($current_plaza_id==$row[0]){
+						echo "start line : ".$buffer."\n";
+						$ortholog_list_id=split('[,]', $row[1]);
+						foreach ($ortholog_list_id as $ortholog){
+							#echo "start line : ".$buffer."\n";
+							$cursor=$mappingsCollection->aggregate(array( 
+								array('$match' => array('type'=>'gene_to_prot')),  
+								array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+								array('$match' => array('src'=>"plaza_gene_id")),  
+								array('$unwind'=>'$src_to_tgt'),    
+								array('$match' => array('src_to_tgt.0'=>$ortholog)),  
+								array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+							));
+							
+							if (count($cursor['result'])!=0){
+								echo '<h2> orthologs table </h2> <div class="container">';
+								echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+								echo'<thead><tr>';
+
+								//recupere le titre
+								#echo "<th>type</th>";
+								echo "<th>Mapping type</th>";
+								echo "<th>src ID</th>";
+								echo "<th>src type</th>";
+								echo "<th>src_version</th>";
+								echo "<th>tgt ID</th>";
+								echo "<th>tgt type</th>";
+								echo "<th>tgt_version</th>";
+								echo "<th>species</th>";
+								
+								echo'</tr></thead>';
+
+								//Debut du corps de la table
+								echo'<tbody>';
+
+								foreach($cursor['result'] as $line) {
+
+									//echo $line['src_to_tgt'];
+									for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+										echo "<tr>";
+										
+										echo '<td>'.$line['type'].'</td>';
+
+										echo '<td>'.$line['src_to_tgt'][0].'</td>';
+										echo '<td>'.$line['src'].'</td>';
+										echo '<td>'.$line['src_version'].'</td>';
+
+										//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+
+										echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+		
+	
+										//}
+										echo '<td>'.$line['tgt'].'</td>';
+										echo '<td>'.$line['tgt_version'].'</td>';
+										echo '<td>'.$line['species'].'</td>';
+										echo "</tr>";
+									}
+
+								}
+								echo'</tbody></table></div>';
+								
+								#echo $ortholog."\n";
+								#var_dump($cursor);
+								#echo "\n";
+							}
+							
+							
+						}
+					}
+				}
+			}
+		}
+	}
 
 
+
+
+
+
+
+}
 ### Find all aliases
 
 
@@ -119,7 +232,193 @@ function find_description_by_regex(MongoCollection $sa,MongoRegex $re){
 	#$cursor = $measurementsCollection->find($searchQuery,array('direction'=>1));
 
 }
+function get_all_results_from_samples(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,$search_string='null'){
+	//$search_string=$textID;
+	$regex=new MongoRegex("/^$search_string/m");
+	$cursor = find_gene_by_regex($measurementsCollection,$regex);
+	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+	echo'<h1 style="text-align:center"> Samples informations </h1>';
+	echo '</div>';
+	//makeDatatableFromFindByRegex($cursor);
+	
+	$array = iterator_to_array($cursor);
+	$keys =array();
 
+	foreach ($array as $k => $v) {
+			foreach ($v as $a => $b) {
+				$keys[] = $a;
+			  }
+	}
+	$keys = array_values(array_unique($keys));
+	
+	echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+	//header table start
+	echo'<thead><tr>';
+
+	//recupere le titre
+	foreach (array_slice($keys,1) as $key => $value) {
+			if ($value=='gene'){
+				echo "<th>" . $value . "</th>";
+			
+			}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+		
+			if ($value=='direction'){
+				echo "<th>" . $value . "</th>";
+				
+			}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+		
+			if ($value=='logFC'){
+				echo "<th>" . $value . "</th>";
+				
+			}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+		
+			if ($value=='type'){
+				echo "<th>" . $value . "</th>";
+				
+			}
+	}
+	foreach (array_slice($keys,1) as $key => $value) {
+		
+			if ($value=='xp'){
+				echo "<th>" . $value . "</th>";
+				
+			}
+	}
+	echo'</tr></thead>';
+	//header table end
+
+	//Debut du corps de la table
+	echo'<tbody>';
+	foreach($cursor as $line) {
+		echo "<tr>";
+	
+		//Slice de l'id Mongo
+		#echo $line->count();
+	  
+		foreach(array_slice($keys,1) as $key => $value) {
+			
+			
+			#http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+			
+			if ($value=='gene'){
+				if (stristr($line[$value],"MU")) {
+					if(is_array($line[$value])){;
+						#http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
+						echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
+						
+					}
+					else {
+						echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+		
+					}
+				}
+				else if (stristr($line[$value],"AT")) {
+					if(is_array($line[$value])){;
+				
+						echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".show_array($line[$value])."&type=locus\">".show_array($line[$value])."</a></td>";
+						
+					}
+					else {
+						echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$line[$value]."&type=locus\">".$line[$value]."</a></td>";
+					}
+				}
+				else{
+					if(is_array($line[$value])){;
+				
+						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
+						
+					}
+					
+					else {
+						//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
+						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+						#echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+
+							
+						#get_protein_info($url);
+						#echo "<td>".$line[$value]."</td>";
+					}
+				}
+				
+				# http://pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=
+				#use table from 
+				
+				
+			}
+		
+		}
+	
+		foreach(array_slice($keys,1) as $key => $value) {
+
+			if($value=='direction'){
+				if(is_array($line[$value])){;
+					echo"<td>".show_array($line[$value])."</td>";
+				}
+				else {
+					echo "<td>".$line[$value]."</td>";
+				}
+			}
+		}
+		foreach(array_slice($keys,1) as $key => $value) {
+
+			if($value=='logFC'){
+				if(is_array($line[$value])){;
+					echo"<td>".show_array($line[$value])."</td>";
+				}
+				else {
+					echo "<td>".$line[$value]."</td>";
+				}
+			}
+		}
+		foreach(array_slice($keys,1) as $key => $value) {
+
+			if($value=='type'){
+				if(is_array($line[$value])){;
+					echo"<td>".show_array($line[$value])."</td>";
+				}
+				else {
+					echo "<td>".$line[$value]."</td>";
+				}
+			}
+		}
+		foreach(array_slice($keys,1) as $key => $value) {
+
+			if($value=='xp'){
+				if(is_array($line[$value])){;
+					echo"<td>".show_array($line[$value])."</td>";
+				}
+				else {
+					//list($xp_String_id, $ex_results, $file_number) 
+					$xp_details= explode(".", $line[$value]);
+					$xp_String_id=$xp_details[0];
+					//echo "<td>".$xp_String_id."</td>";
+					$file_number=$xp_details[2]+1;
+					$xp_id = new MongoId($xp_String_id);
+					$xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
+					
+					echo "<td><a href=description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+					//echo"<td>".$line[$value]."</td>";
+					
+				}
+			}
+		}
+	
+	
+		echo "</tr>";
+	}
+	echo'</tbody></table>';
+
+
+
+
+
+}
 
 //function find_protein_by_gene()
 function find_gene_by_regex(MongoCollection $me,MongoRegex $re){

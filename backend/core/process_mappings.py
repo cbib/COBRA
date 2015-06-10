@@ -38,38 +38,49 @@ for map_doc in mappings_to_process:
 
 	sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
 	
-	# save raw data 
-	mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
+	
+	
+	# Save raw data > 65536 lines.
+	if len(sheet_values)> 65000:
+		# tgt_file=map_doc['data_file'].split('.')
+# 		tgt_file=data_dir+tgt_file[0]+".tsv"
+# 		logger.info("tgt file %s",tgt_file)
+# 		file=open(tgt_file, 'wb')
+# 		for row in sheet_values:
+# 			cpt=0
+# 			for x in row:
+# 				if cpt==0:
+# 					logger.info("row value %s",row[x])
+# 
+# 					file.write(row[x])
+# 					file.write("\t")
+# 				else:
+# 					logger.info("row value %s",row[x])
+# 
+# 					file.write(row[x])
+# 					file.write("\n")	
+# 			cpt+=1
+# 		file.closed
+		file=open(src_file, 'rb')
+		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
+			fp.write(file)
+		## adding fs file to the collection
+		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
+
+		mappings_col.update({"_id":map_doc['_id']},{"$push":{"mapping_file":fp.data_file}})
+		# Close opened file
+		file.close()
+	
+	else:
+	
+		# save raw data 
+		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 
 	# build dict mapper, save them as k,v docs 
 	a_to_b = collections.defaultdict(list)
 	b_to_a = collections.defaultdict(list)
 	src_col = map_doc['src']
-	tgt_col = map_doc['tgt']
-	#if mappings_col.find({"description":{"$exists":True}}):
-	# if map_doc['description']!="none":
-# 		a_to_d = collections.defaultdict(list)
-# 		desc_col=map_doc['description']
-# 		
-# 		for r in sheet_values:
-# 			a_to_d[r[src_col]].append(r[desc_col])
-# 			
-# 		# check 1-to-1 mapping
-# 		a_to_d_tally=collections.Counter(map(len,a_to_d.values()))
-# 		
-# 		if len(a_to_d_tally)>1:
-# 			logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",desc_col,src_col)
-# 		else:
-# 			logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",desc_col,src_col)
-# 
-# 		
-# 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"src_to_desc":a_to_d.items()}})
-		
-		
-		
-		
-		
-		
+	tgt_col = map_doc['tgt']	
 	for r in sheet_values:
 		a_to_b[r[src_col]].append(r[tgt_col])
 		b_to_a[r[tgt_col]].append(r[src_col])

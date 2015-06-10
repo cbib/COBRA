@@ -18,18 +18,14 @@ if "log" not in globals():
 
 # clear db 
 
-species_col.remove()
-viruses_col.remove()
+
+
 publications_col.remove()
 samples_col.remove()
-mappings_col.remove()
 measurements_col.remove()
 interactions_col.remove()
-orthologs_col.remove()
+#orthologs_col.remove()
 #users_col.remove()
-for grid_out in fs.find({}, timeout=False):
-	
-	fs.delete(grid_out._id)
 #orthologs_col.gridfs.drop()
 #db.drop_collection("orthologs_col.files")
 #db.drop_collection("orthologs_col.chunks")
@@ -41,95 +37,9 @@ for grid_out in fs.find({}, timeout=False):
 
 
 
-####Viruses
-
-### Virus to add 
-#PepMV, ToCV, TSWV, PVY for tomato
-#LMV, TuMV and arabidopsis
-#BaYMV BaMMV, BYDV, CYDV in barley
 
 
-m_canon={
-	"full_name":"Monosporascus Cannonballus",
-	"abbrev_name":"M. canonballus",
-	"aliases":["monosporascus_cannonballus"],
-	"taxid":155416,
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Fungi",
-		"phylum":	"Ascomycota",
-		"class":	"Sordariomycetes",
-		"subclass":	"Sordariomycetidae",
-		"order":	"Sordariales",
-		"family":	"Incertae sedis",
-		"genus":	"Monosporascus",
-		"species": "M. cannonballus"
-	},
-	"wikipedia":"http://en.wikipedia.org/wiki/Monosporascus_cannonballus"
-}
-viruses_col.insert(m_canon)
 
-cmv={
-	"full_name":"Cucumber mosaic virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
-	"aliases":['cmv'],
-	"classification":{
-		"top_level":"viruses",
-		"group":"Group IV ((+)ssRNA)",
-		"order":"Unassigned",
-		"family":"Bromoviridae",
-		"genus":"Cucumovirus",
-		"species":"Cucumber mosaic virus",
-	}
-	
-}
-viruses_col.insert(cmv)
-
-wmv={
-	"full_name":"Watermelon mosaic virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Watermelon_mosaic_virus",
-	"aliases":['wmv'],
-	"classification":{
-		"top_level":"viruses",
-		"group":"Group IV ((+)ssRNA)",
-		"order":"Unassigned",
-		"family":"Potyviridae",
-		"genus":"Potyvirus",
-		"species":"Watermelon mosaic virus",
-	}
-}	
-viruses_col.insert(wmv)
-
-ppox={
-	"full_name":"Plum pox",
-	"wikipedia":"http://en.wikipedia.org/wiki/Plum_pox",
-	"aliases":['sharka','ppv'],
-	"classification":{
-		"top_level":"viruses",
-		"group": "Group IV ((+)ssRNA)",
-		"family": "Potyviridae",
-		"genus": "Potyvirus",
-		"species": "Plum pox virus"
-	}
-	
-}
-viruses_col.insert(ppox)
-
-tev={
-	"full_name":"Tobacco etch virus",
-	"wikipedia":"http://en.wikipedia.org/wiki/Tobacco_etch_virus",
-	"aliases":['tev'],
-	"classification":{
-		"top_level":"viruses",
-		"group":"Group IV ((+)ssRNA)",
-		"order":"Unassigned",
-		"family":"Potyviridae",
-		"genus":"Potyvirus",
-		"species":"Tobacco etch virus",
-	}
-	
-}
-viruses_col.insert(tev)
 
 
 #### Barley
@@ -156,110 +66,7 @@ viruses_col.insert(tev)
 #}
 #orthologs_col.insert(orthologs)
 
-##### Species 
 
-# Melon 
-melon={
-	"full_name":"Cucumis melo",
-	"abbrev_name":"C. melo",
-	"aliases":["cucumis_melo","melon"],
-	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
-	"wikipedia":"http://en.wikipedia.org/wiki/Muskmelon",
-	"preferred_id":"icugi_unigene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
-
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Rosids"],
-		"order":	"Cucurbitales",
-		"family":	"Cucurbitaceae",
-		"genus":	"Cucumis",
-		"species":	"C. melo",
-	}
-}
-species_col.insert(melon)
-
-# Prunus 
-prunus={
-	"full_name":"Prunus domestica",
-	"abbrev_name":"P. domestica",
-	"aliases":["prunus_domestica","prunus"],
-	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
-	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
-	"preferred_id":"unigene",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked":	["Angiosperms","Eudicots","Rosids"],
-		"order":	"Rosales",
-		"family":	"Rosaceae",
-		"genus":	"Prunus",
-		"subgenus":	"Prunus",
-		"section":	"Prunus",
-		"species":	"P. domestica",
-	}
-}
-species_col.insert(prunus)
-
-# Arabidopsis
-arabidopsis_thaliana={
-	"full_name":"Arabidopsis thaliana",
-	"abbrev_name":"A. Thaliana",
-	"aliases":["thale cress", "mouse-ear cress","arabidopsis"],
-	"taxid":3702, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
-	"wikipedia":"http://en.wikipedia.org/wiki/Arabidopsis_thaliana",
-	"preferred_id":"AGI_TAIR",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Rosids"],
-		"order":	"Brassicales",
-		"family":	"Brassicaceae",
-		"genus":	"Arabidopsis",
-		"species":	"A. Thaliana",
-	}
-}
-species_col.insert(arabidopsis_thaliana)
-
-# Tomato
-tomato={
-	"full_name":"Solanum lycopersicum",
-	"abbrev_name":"S. Lycopersicum",
-	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
-	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
-	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
-	"preferred_id":"SGN_U",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","Asterids"],
-		"order":	"Solanales",
-		"family":	"Solanaceae",
-		"genus":	"Solanum",
-		"species":	"S. Lycopersicum",
-	}
-}
-species_col.insert(tomato)
-
-# Barley
-barley={
-	"full_name":"Hordeum vulgare",
-	"abbrev_name":"H. vulgare",
-	"aliases":["hordeum_vulgare","barley"],
-	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
-	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"not defined",
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Monocots","Commelinids"],
-		"order":	"Poales",
-		"family":	"Poaceae",
-		"genus":	"Pooideae",
-		"species":	"H. vulgare",
-	}
-}
-species_col.insert(barley)
 
 
 
@@ -293,317 +100,7 @@ prunus_pub={
 }
 publications_col.insert(prunus_pub)
 
-##Mapping PRunus Domestica
 
-
-mapping_table={
-	"data_file":"mappings/Table_S1.xls",
-	"species":"Prunus Domestica",
-	"type":"gene_to_prot",
-	"src":"unigene",
-	"src_version":"",
-	"tgt":"NCBI_Protein_code",
-	"tgt_version":"",
-	"description":"Sequence",
-	"url":"",
-	"doi":"",
-	"key":"unigene_2_ncbi_protein",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":2,
-		"column_keys":['idx','unigene', 'Sequence', 'Jojo-W1', 'Jojo-W2', 'Jojo-W+PPV', 'Jojo-M+PPV', 'fold_change', 'logFC', 'logCPM', 'PValue', 'FDR', 'Description', 'AccPrunus', 'DescPrunus', 'AccNCBI', 'DescNCBI', 'AccPlants', 'DescPlants', 'AccPRG', 'DescPRG','NCBI_Protein_code'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-## mapping Table melon
-#est_to_gene
-
-mapping_table={
-	"data_file":"mappings/1471-2164-13-601-s7.xls",
-	"species":"Cucumis melo",
-	"type":"est_to_gene",
-	"src":"est_unigen",
-	"src_version":"Melogen_melo_v1",
-	"tgt":"icugi_unigene",
-	"tgt_version":"v4",
-	"description":"sequence",
-	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
-	"doi":"10.1186/1471-2164-13-601-s7",
-	"key":"est_2_unigene",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":3,
-		"column_keys":['idx','est_unigen','sequence','icugi_unigene'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-#gene_to_gene
-mapping_table={
-	"data_file":"mappings/Melon_Icugi_to_Melonomics.xls",
-	"species":"Cucumis melo",
-	"type":"gene_to_gene",
-	"src":"icugi_unigene",
-	"src_version":"v4",
-	"tgt":"Melonomics_gene_id",
-	"tgt_version":"v3.5",
-	"description":"none",
-	"url":"not published",
-	"doi":"not published",
-	"key":"est_2_unigene",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','icugi_unigene','Melonomics_gene_id'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/plaza_id_conversion.cme.xls",
-	"species":"Cucumis melo",
-	"type":"gene_to_prot",
-	"src":"plaza_gene_id",
-	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"Melonomics_gene_id",
-	"tgt_version":"v3.5",
-	"description":"none",
-	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
-	"doi":"not published",
-	"key":"plaza_gene_id_to_melonomics_id",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','Melonomics_gene_id','Tid','uniprot'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#Mapping Table Barley
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/plaza_id_conversion.hvu.xls",
-	"species":"Hordeum vulgare",
-	"type":"gene_to_prot",
-	"src":"plaza_gene_id",
-	"src_version":"PLAZA 3.0 Monocots",
-	"tgt":"barley_protein_id",
-	"tgt_version":"test",
-	"description":"none",
-	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.hvu.csv.gz",
-	"doi":"10.1186/1471-2164-13-601-s7",
-	"key":"plaza_gene_id_to_barley_id",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','barley_gene_id','barley_protein_id', 'id', 'Tid','uniprot'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-
-#Mapping Table Tomato
-
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
-	"species":"Solanum lycopersicum",
-	"type":"gene_to_prot",
-	"src":"SGN_U",
-	"src_version":"tomato200607#2",
-	"tgt":"UniProt",
-	"tgt_version":"",
-	"description":"description",
-	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.tab",
-	"doi":"none",
-	"key":"SGN_U_2_Uniprot",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_U', 'Swissprot_name', 'Species_code','UniProt','SwissProt_ID', 'full_ID', 'identity', 'aligment_length', 'mismatches', 'gap_openings', 'query_start_position', 'query_end_position', 'subject_start_position', 'subject_end_position', 'e-value', 'hit_score','description'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_gene
-mapping_table={
-	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
-	"species":"Solanum lycopersicum",
-	"type":"gene_to_gene",
-	"src":"SGN_U",
-	"src_version":"tomato200607#2",
-	"tgt":"ITAG",
-	"tgt_version":"2_3",
-	"description":"InterproDescription",
-	"GO":"GOAccession",
-	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
-	"doi":"none",
-	"key":"SGN_U_2_ITAG",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','SGN_U','ITAG','InterproDescription','GOAccession'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/plaza_id_conversion.sly.xls",
-	"species":"Solanum lycopersicum",
-	"type":"gene_to_prot",
-	"src":"plaza_gene_id",
-	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"ITAG_pid",
-	"tgt_version":"2_3",
-	"description":"none",
-	"GO":"GOAccession",
-	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.sly.csv.gz",
-	"doi":"none",
-	"key":"Plaza_gene_id_to_ITAG",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','ITAG_pid','uniprot'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#est_to_gene
-mapping_table={
-	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
-	"species":"Solanum lycopersicum",
-	"type":"est_to_gene",
-	"src":"SGN_S",
-	"src_version":"tom1",
-	"tgt":"SGN_U",
-	"tgt_version":"tomato200607#2",
-	"description":"NA",
-	"url":"",
-	"doi":"none",
-	"key":"SGN_S_2_SGN_U",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','SGN_U'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-
-
-#Mapping Table Arabidopsis
-
-#est_to_gene
-mapping_table={
-	"data_file":"mappings/CATMA_2.3_07122011.xls",
-	"species":"Arabidopsis thaliana",
-	"type":"est_to_gene",
-	"src":"CATMA_ID",
-	"src_version":"CATMA V2.1",
-	"tgt":"AGI_TAIR",
-	"tgt_version":"2_3",
-	"description":"Description",
-	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
-	"doi":"none",
-	"key":"CATMA_2_AGI",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":4,
-		"column_keys":['idx','CATMA_ID','Probe_type','AGI_TAIR','Gene_type','Description'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
-	"species":"Arabidopsis thaliana",
-	"type":"gene_to_prot",
-	"src":"AGI_TAIR",
-	"src_version":"TAIR10",
-	"tgt":"Uniprot",
-	"tgt_version":"",
-	"description":"none",
-	"url":"ftp://ftp.arabidopsis.org/home/tair/Proteins/Id_conversions/Uniprot_TAIR10_May2012.txt",
-	"doi":"none",
-	"key":"AGI_2_Uniprot",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','AGI_TAIR','Uniprot'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_prot
-mapping_table={
-	"data_file":"mappings/plaza_id_conversion.ath.xls",
-	"species":"Arabidopsis thaliana",
-	"type":"gene_to_prot",
-	"src":"plaza_gene_id",
-	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"uniprot",
-	"tgt_version":"",
-	"description":"none",
-	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ath.csv",
-	"doi":"none",
-	"key":"PLAZA_2_Uniprot",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','alias','uniprot'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
-
-#gene_to_gene_symbol
-mapping_table={
-	"data_file":"mappings/gene_aliases_20131231.xls",
-	"species":"Arabidopsis thaliana",
-	"type":"gene_to_symbol",
-	"src":"AGI_TAIR",
-	"src_version":"TAIR10",
-	"tgt":"symbol",
-	"tgt_version":"",
-	"description":"none",
-	"url":"ftp://ftp.arabidopsis.org/home/tair/TAIR_Data_20131231/gene_aliases_20131231.gz",
-	"doi":"none",
-	"key":"AGI_2_Name",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','AGI_TAIR','symbol','full_name'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
 
 
 ## samples 
@@ -1304,6 +801,391 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 samples_col.insert(prunus_samples)
 
 
+# Barley
+barley_samples={
+	"src_pub":"not published", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"barley-BYDV virus RNAseq results",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"Morex_Contig","start","end","value_1","value_2","log2(fold_change)","significant","value_1","value_2","logFC","significant","value_1","value_2","log2(fold_change)","significant","#Polymorphism(55vs56)","assembly info","#significant"],
+		"sheet_index":0,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":"RNASeq_summary_short.xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/RNASeq_summary_short.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":2,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":3,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":4,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":5,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":6,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":7,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":8,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":9,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":10,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":11,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":12,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":13,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+barley_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"strain":"",
+	"name":"",
+	"xp_page":{
+	"content":""""""},
+	"assay":{"type":"RNA-Seq"},
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx',"gene","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Morex_Contig","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
+		"sheet_index":14,
+		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+	},
+	"experimental_results":[{
+		"name":".xls",
+		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
+		"description":"Differentially expressed unigenes",
+		"type":"contrast",
+		"conditions":[
+			"non-infected",
+			{"infected":True,"infection_agent":"bydv","label":"infected with BYDV"}
+		]
+	}]
+}
+samples_col.insert(barley_samples)
+
+
 #### Interactions Table
 
 
@@ -1341,57 +1223,7 @@ interactions_table={
 interactions_col.insert(interactions_table)
 
 
-#### Ortholog Tables
 
-
-###PGJDB
-# orthologs_table={
-# 	"data_file":"orthologs/33090_clusters_1_57_0.xls",
-# 	"src":"NCBI_locus_identifier",
-# 	"tgt":"cluster_number",
-# 	"xls_parsing":{
-# 		"n_rows_to_skip":1,
-# 		"column_keys":['idx','NCBI_gene_identifier','NCBI_locus_identifier','clusters_ref','function','organism','cluster_number'],
-# 		"sheet_index":0		
-# 	}
-# }
-# orthologs_col.insert(orthologs_table)
-
-###PLAZA
-
-
-orthologs_table={
-
-	'data_file':'orthologs/integrative_orthology.ORTHO.tsv',
-	'src':'plaza_gene_identifier',
-	'tgt':'orthologs_list_identifier',
-	'version':"dicots_3.0",
-	'xls_parsing':{
-		'n_rows_to_skip':0,
-		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
-		'sheet_index':0
-		
-	}
-}
-
-orthologs_col.insert(orthologs_table)
-
-
-# orthologs_table={
-# 
-# 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',
-# 	'src':'plaza_gene_identifier',
-# 	'tgt':'orthologs_list_identifier',
-# 	'version':"monocots_3.0",
-# 	'xls_parsing':{
-# 		'n_rows_to_skip':0,
-# 		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
-# 		'sheet_index':0
-# 		
-# 	}
-# }
-# 
-# orthologs_col.insert(orthologs_table)
 
 #for key, value in orthologs_table.items():
 	

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require 'src/functions/html_functions.php';
 require 'src/functions/php_functions.php';
 require 'src/functions/mongo_functions.php';
@@ -42,7 +43,7 @@ else{
 			// first time no form submitted
 			new_cobra_body(isset($_SESSION['login']));
 			echo '
-			<form id="connect" method="post" action="">
+			<form id="login_form" method="post" action="">
 			<fieldset><legend>Authentication required</legend>
 			
 				<p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
@@ -76,6 +77,7 @@ else{
 					
 	
  						if (($person['lastname'] != '') && ($person['firstname'] != '')){
+ 							session_start();
 							// On  enregistre ses données dans la session
 							$_SESSION['login'] = $login; // permet de vérifier que l'utilisateur est bien connecté
 							$_SESSION['firstname'] = $person['firstname'];
@@ -83,8 +85,8 @@ else{
 							// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
 							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
 							
-							//header('Location: ./src/search/index.php'); 
-							header('Location: ./wiki/index.php'); 
+							header('Location: /database/index.php'); 
+							///header('Location: ./wiki/index.php'); 
 
 						} 
 						else{
@@ -110,8 +112,10 @@ else{
 		} // end of (isset($_POST['submit']))
 	}
 	else{
-
-		header('Location: ./src/search/index.php');  
+		
+		
+		//header('Location: ./src/search/index.php');  
+		header('Location: /database/index.php'); 
 
 	}
 }

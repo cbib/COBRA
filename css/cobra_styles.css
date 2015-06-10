@@ -37,16 +37,16 @@
 }
 @media (min-width: 1200px) {
    .container{
-    width:1000px
+    width:1060px
    }
   .table {
-    width: 1000px;
+    width: 1100px;
   }
   .content{
  width:1066px
  }
   .resultsbox{
- 	width:1000px
+ 	width:1100px
  } 
  #protein-details{
 	width: 500px;
@@ -67,7 +67,7 @@
  width:1466px
  }
  .resultsbox{
- 	width:1200px
+ 	width:1500px
  } 
  #protein-details{
 	width: 600px;
@@ -82,13 +82,13 @@
  width:1660px
  }
  .table{
- width:1500px
+ width:1700px
  }
  .content{
  width:1666px
  }
  .resultsbox{
- 	width:1300px
+ 	width:1700px
  } 
  #protein-details{
 	width: 650px;
@@ -97,6 +97,10 @@
 	width: 650px;
  }
  
+}
+.skin-blue .right-side > .content-header{
+background-color: rgb(238, 238, 238);
+
 }
 .resultsbox{
 

@@ -6,7 +6,7 @@ echo'
 <html>
 <head>
 <meta charset="UTF-8">
-<title>COBRA - Database</title>
+<title>COBRA</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <!-- bootstrap 3.0.2 -->
@@ -72,7 +72,7 @@ echo'
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <li>
-							<a href="/">
+							<a href="/database/">
 								<i class="fa fa-home"></i> 
 								<span>About COBRA</span>
 							</a>
@@ -85,11 +85,21 @@ echo'
                   </li>
                   <li>
                      <a href="/database/src/description/">
-                        <i class="fa fa-info"></i> <span>Dataset and Statistics</span>
+                        <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                      </a>
                   </li>
-                     <li>
-                     	<a href="/database/src/info/WebSite/">
+                  <li>
+                     <a href="/">
+                        <i class="fa fa-info"></i> <span>Wiki</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="/database/src/tools/">
+                        <i class="fa fa-cogs"></i> <span>Tools</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="/database/src/info/WebSite/">
                         <i class="fa fa-question"></i> <span>Help</span>
                      </a>
                   </li>
@@ -111,6 +121,7 @@ echo'
             	echo '<ol class="breadcrumb">
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
                   <li><a href="/database/src/description/">description</a></li>
+                  <li><a href="/">wiki home</a></li>
                   <li><a href="/database/">Quick search</a></li>
                   ';if ($IsLogged){echo '
                   <li><a href="/database/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';

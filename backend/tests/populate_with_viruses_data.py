@@ -1,0 +1,175 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import sys
+sys.path.append("..")
+sys.path.append(".")
+from config import *
+from helpers.basics import load_config
+from helpers.logger import Logger
+from helpers.db_helpers import * 
+import string
+from random import *
+
+# Script 
+import datetime
+if "log" not in globals():
+  log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
+
+# clear db 
+
+viruses_col.remove()
+
+####Viruses
+
+### Virus to add 
+#PepMV, ToCV, TSWV, PVY for tomato
+#LMV, TuMV and arabidopsis
+#BaYMV BaMMV, BYDV, CYDV in barley
+
+
+m_canon={
+	"full_name":"Monosporascus Cannonballus",
+	"abbrev_name":"M. canonballus",
+	"aliases":["monosporascus_cannonballus"],
+	"taxid":155416,
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Fungi",
+		"phylum":	"Ascomycota",
+		"class":	"Sordariomycetes",
+		"subclass":	"Sordariomycetidae",
+		"order":	"Sordariales",
+		"family":	"Incertae sedis",
+		"genus":	"Monosporascus",
+		"species": "M. cannonballus"
+	},
+	"wikipedia":"http://en.wikipedia.org/wiki/Monosporascus_cannonballus"
+}
+viruses_col.insert(m_canon)
+
+cmv={
+	"full_name":"Cucumber mosaic virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",
+	"aliases":['cmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Bromoviridae",
+		"genus":"Cucumovirus",
+		"species":"Cucumber mosaic virus",
+	}
+	
+}
+viruses_col.insert(cmv)
+
+wmv={
+	"full_name":"Watermelon mosaic virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Watermelon_mosaic_virus",
+	"aliases":['wmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Watermelon mosaic virus",
+	}
+}	
+viruses_col.insert(wmv)
+
+ppox={
+	"full_name":"Plum pox",
+	"wikipedia":"http://en.wikipedia.org/wiki/Plum_pox",
+	"aliases":['sharka','ppv'],
+	"classification":{
+		"top_level":"viruses",
+		"group": "Group IV ((+)ssRNA)",
+		"family": "Potyviridae",
+		"genus": "Potyvirus",
+		"species": "Plum pox virus"
+	}
+	
+}
+viruses_col.insert(ppox)
+
+tev={
+	"full_name":"Tobacco etch virus",
+	"wikipedia":"http://en.wikipedia.org/wiki/Tobacco_etch_virus",
+	"aliases":['tev'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Tobacco etch virus",
+	}
+	
+}
+viruses_col.insert(tev)
+
+bydv={
+	"full_name":"Barley yellow dwarf virus",
+	"wikipedia":"",
+	"aliases":['bydv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Luteoviridae",
+		"genus":"Luteovirus",
+		"species":"Barley yellow dwarf virus",
+	}
+	
+}
+viruses_col.insert(bydv)
+
+bymv={
+	"full_name":"Barley yellow mosaic virus",
+	"wikipedia":"",
+	"aliases":['bydv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Bymovirus",
+		"species":"Barley yellow mosaic virus",
+	}
+	
+}
+viruses_col.insert(bymv)
+
+sbcmv={
+	"full_name":"Soil-borne cereal mosaic virus",
+	"wikipedia":"",
+	"aliases":['sbcmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Virgaviridae",
+		"genus":"Furovirus",
+		"species":"Soil-borne cereal mosaic virus",
+	}
+	
+}
+viruses_col.insert(sbcmv)
+
+sbwmv={
+	"full_name":"Soil-borne wheat mosaic virus",
+	"wikipedia":"",
+	"aliases":['sbwmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Virgaviridae",
+		"genus":"Furovirus",
+		"species":"Soil-borne wheat mosaic virus",
+	}
+	
+}
+viruses_col.insert(sbwmv)
