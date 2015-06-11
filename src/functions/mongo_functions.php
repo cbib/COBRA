@@ -101,6 +101,11 @@ function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
     }
     return $cursor;
 }
+
+function get_plaza_id($id='null'){
+	
+
+}
 function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Orthology informations </h1>';
@@ -208,13 +213,6 @@ function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollectio
 			}
 		}
 	}
-
-
-
-
-
-
-
 }
 ### Find all aliases
 
@@ -251,7 +249,7 @@ function get_all_results_from_samples(MongoCollection $measurementsCollection,Mo
 	}
 	$keys = array_values(array_unique($keys));
 	
-	echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+	echo'<table id="samplestable" class="table table-bordered" cellspacing="0" width="100%">';
 	//header table start
 	echo'<thead><tr>';
 

@@ -37,7 +37,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$orthologsCollection = new Mongocollection($db, "orthologs");
 
 	
-	get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
+	//get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
 
 	
 	
@@ -58,13 +58,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
 
 //if more than one results (often the case when search by gene symbol or keywords
+
+
+
 echo '<div class="resultsbox" id="results">
  			<div class="results-right">
  				<div class="organism">'.$organism.'</div>
  				<div class="associations"></div>
  			</div>
  			<div class="results-left">
- 				<div class="officialSymbol">HB1 (AT2G16060)</div>
+ 				<div class="officialSymbol">HB1 ('.$search.')</div>
  				<div class="associations">Matching Synonym: HEMOGLOBIN</div> 
  				<div class="definition">non-symbiotic hemoglobin 1</div>
  		
@@ -335,7 +338,7 @@ else{
 		});
 	});
 	$(document).ready(function() {
-		$('#example2').dataTable( {
+		$('#samplestable').dataTable( {
 			"scrollX": true,
 			"jQueryUI": true,
 			"pagingType": "full_numbers",

@@ -5,6 +5,23 @@
  */
  
  
+#protein-details{
+	background-color: #FFF;
+	margin-left: 0px;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+}
+#stat-details{
+	background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+}
+ 
+ 
 /*modify the width regarding to tyhe resolution of the screen*/
 
 @media (min-width: 768px) {
@@ -12,47 +29,55 @@
     width: 750px;
   }
   .resultsbox{
- 	width:750px
+ 	width:650px
  } 
+ .div#protein-details{
+	width: 375px;
+ }
+ .div#stat-details{
+	width: 375px;
+ }
 }
 @media (min-width: 992px) {
   .container{
-    width:860px
-   }
-  .table {
-    width: 850px;
+    	width:860px
+  }
+  .dataTable {
+    	width: 850px;
   }
   .content{
- width:866px
- }
-  .resultsbox{
- 	width:850px
- } 
- .div#protein-details{
-	width: 425px;
- }
- .div#stat-details{
-	width: 425px;
- }
+ 		width:866px
+  }
+  .resultsbox#results{
+ 		width:650px
+  }  
+  .div#protein-details{
+		width: 425px;
+  }
+  .div#stat-details{
+		width: 425px;
+  }
 }
+
+/*my mac screen*/
 @media (min-width: 1200px) {
    .container{
     width:1060px
    }
-  .table {
+  .dataTable {
     width: 1100px;
   }
   .content{
  width:1066px
  }
-  .resultsbox{
- 	width:1100px
+  .resultsbox#results{
+ 	width:1000px
  } 
- #protein-details{
-	width: 500px;
+ .div#protein-details{
+	width: 550px;
  }
- #stat-details{
-	width: 500px;
+ .div#stat-details{
+	width: 550px;
  }
 }
 
@@ -60,44 +85,67 @@
  .container{
  width:1460px
  }
- .table{
+ .dataTable {
  width:1500px
  }
  .content{
  width:1466px
  }
- .resultsbox{
+ .resultsbox#results{
  	width:1500px
  } 
- #protein-details{
-	width: 600px;
+ .div#protein-details{
+	width: 750px;
  }
- #stat-details{
-	width: 600px;
+ .div#stat-details{
+	width: 750px;
  }
 }
-
+/* Second screen  */
 @media (min-width:1800px){
+ .container{
+ width:1650px
+ }
+ .dataTables_wrapper{
+ width:1600px
+ }
+ .content{
+ width:1630px
+ }
+ .resultsbox#results{
+ 	width:1600px
+ } 
+ #protein-details{
+	width: 780px;
+ }
+ #stat-details{
+	width: 780px;
+ }
+ 
+}
+@media (min-width:1920px){
  .container{
  width:1660px
  }
- .table{
+ .dataTable{
  width:1700px
  }
  .content{
  width:1666px
  }
  .resultsbox{
- 	width:1700px
+ 	width:1500px
  } 
- #protein-details{
-	width: 650px;
+ .div#protein-details{
+	width: 850px;
  }
- #stat-details{
-	width: 650px;
+ .div#stat-details{
+	width: 850px;
  }
  
 }
+
+/* need to define this part like that because content -header inherits from */
 .skin-blue .right-side > .content-header{
 background-color: rgb(238, 238, 238);
 
@@ -109,7 +157,7 @@ background-color: rgb(238, 238, 238);
    padding-right: 7px;
    padding-bottom: 7px;
    padding-left: 7px;
-	margin-left: 10px;
+	margin-left: 0px;
 	margin-bottom: 5px;
 	border-radius: 10px;
 	background-color: rgb(238, 238, 238);
@@ -130,21 +178,7 @@ div.resultsbox:hover {
     background-color: #0B614B;
     color: #FFF
 }
-#protein-details{
-	background-color: #FFF;
-	margin-left: 10px;
-	border-radius: 10px;
-	padding: 10px 10px 0px;
-	float: left;
-	border: 1px solid #DDD;
-}
-#stat-details{
-	background-color: #FFF;
-	border-radius: 10px;
-	padding: 10px 10px 0px;
-	float: left;
-	border: 1px solid #DDD;
-}
+
 #organism{
 	margin-top: 5px;
 	font-style: italic;

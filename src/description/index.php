@@ -73,7 +73,7 @@ $cursor=find_all_mappings($mappingsCollection);
 
 ###MAPPING TABLE
 echo '<h2> Mapping lists</h2> <div class="container">';
-echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+echo'<table id="mappingtable" class="table table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
 	
 	//recupere le titre
@@ -116,7 +116,7 @@ $cursor=find_all_species($speciesCollection);
 
 
 echo '<h2> Species lists</h2> <div class="container">';
-echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+echo'<table id="speciestable" class="table table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
 	
 	//recupere le titre
@@ -181,7 +181,7 @@ $cursor=find_all_viruses($virusesCollection);
 
 
 echo '<h2> VIruses lists</h2> <div class="container">';
-echo'<table id="example" class="table table-bordered" cellspacing="0">';
+echo'<table id="virustable" class="table table-bordered" cellspacing="0">';
 echo'<thead><tr>';
 	
 	//recupere le titre
@@ -251,3 +251,89 @@ new_cobra_footer();
 
 
 ?>
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+	$('#mappingtable').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+$(document).ready(function() {
+	$('#speciestable').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+$(document).ready(function() {
+	$('#virustable').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+</script>

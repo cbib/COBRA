@@ -50,7 +50,7 @@ for a_sample in samples_with_results:
 			#logger.info("new measure %s",measure[id_col])
 
 			for tgt_id in robust_id_mapping(measure[id_col],this_mapping):
-				logger.info("tgt_id %s",tgt_id)
+				#logger.info("tgt_id %s",tgt_id)
 				#logger.info("Tgid = %s",tgt_id)
 				this_doc={"xp":this_path}
 				if experimental_results['type']=="contrast":
@@ -69,13 +69,20 @@ for a_sample in samples_with_results:
 						except TypeError:
 							logger.critical("Error calculating logFC")
 							continue
-					this_doc['FDR']=measure.get("FDR",None)
-					this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+					elif this_doc['logFC']=="NA":
+						logger.critical("Error calculating logFC")
+						continue
+					else:	
+						
+						this_doc['FDR']=measure.get("FDR",None)
+						this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+						measurements_to_insert.insert(this_doc)
+						n_op+=1
 				else:
 					logger.critical("Experiment type %s not handled yet",experimental_results['type'])
 					continue
-				measurements_to_insert.insert(this_doc)
-				n_op+=1
+				#measurements_to_insert.insert(this_doc)
+				#n_op+=1
 				if n_op>=10000:
 					res=measurements_to_insert.execute()
 					logger.info("Inserted %s documents",res)

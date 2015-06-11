@@ -21,7 +21,11 @@ echo '
 			to implement complex and durable resistance in any crop species. COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
 			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
 			by the new candidate genes prior to transfer to crop species
-	</div>    	
+	</div> 
+	<div id="protein-details">
+	
+	
+	</div>  	
 </main>
  
       

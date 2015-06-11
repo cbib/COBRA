@@ -58,14 +58,14 @@ Date: 2015/01/29
 <div class="col-md-6" >
 	<div class="col-md-6" >
 				<img src="/database/images/new_INRA.png" width="200"/>
-				<img src="/database/images/noordsat.jpg"  height="136" width="200"/>
-				<img src="/database/images/jki.gif"  height="136" width="200"/>
-				<img src="/database/images/ipk.png" height="136" width="200"/>
+				<img src="/database/images/noordsat.jpg" />
+				<img src="/database/images/jki.gif"  />
+				<img src="/database/images/ipk.png" />
 	</div>
 	<div class="col-md-6" >
-				<img src="/database/images/cgfb.jpg" height="136" width="200"/>
-				<img src="/database/images/abiopep3.jpg" height="136" width="200"/>
-				<img src="/database/images/LOGO_CSIC.jpg" height="136" width="200"/>
+				<img src="/database/images/cgfb.jpg"/>
+				<img src="/database/images/abiopep3.jpg" />
+				<img src="/database/images/LOGO_CSIC.jpg" />
 				
 	</div>
 </div>

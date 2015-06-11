@@ -804,7 +804,7 @@ samples_col.insert(prunus_samples)
 # Barley
 barley_samples={
 	"src_pub":"not published", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"barley-BYDV virus RNAseq results",
 	"xp_page":{
@@ -831,7 +831,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -858,7 +858,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -885,7 +885,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -912,7 +912,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -940,7 +940,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -968,7 +968,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -995,7 +995,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1022,7 +1022,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1049,7 +1049,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1077,7 +1077,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1105,7 +1105,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1133,7 +1133,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
@@ -1160,7 +1160,7 @@ samples_col.insert(barley_samples)
 
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
-	"species":"H. vulgare", # any abbrev name, key or full name, 
+	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"",
 	"xp_page":{
