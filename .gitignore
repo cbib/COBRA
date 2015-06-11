@@ -36,3 +36,4 @@ wiki/themes/*
 
 # User config
 wiki/config.php
+/nbproject/private/
