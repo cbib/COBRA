@@ -3454,35 +3454,4 @@ fieldset[disabled] .btn-vk.active {
   background-color: #ffffff;
 }
 
-/* COBRA-specific styles/overrides */
 
-.label-success {
-    background-color: #A2C756;
-}
-
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-    background-color: #3D7130;
-    border-color: #3D7130;
-}
-   
-@font-face {
-    font-family: Nikodecs;
-    src: url(../fonts/Nikodecs.otf);
-}
-
-.cobra-logo {
-	color: #3D7130;
-	font-family: Nikodecs, Verdana, sans;
-	font-size: 4em;
-	text-align: center;
-}
-
-.cobra-logo img {
-	width: 120px;
-	margin: auto;
-	margin-top: 20px;
-}
-.container{
-
-	#background-color: #3D7130;
-}

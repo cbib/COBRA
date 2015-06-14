@@ -10,22 +10,32 @@ require './src/session/control-session.php';
 
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']), "Home");
-
-
-
-
+$db=mongoConnector();
+$grid = $db->getGridFS();
+$speciesCollection = new Mongocollection($db, "species");
 
 echo '
 <main id="content" class="homepage">
-	<div id="mission-objectives">COBRA benefits from multidisciplinary research teams involving genomics, bio-informatics, population genetics, molecular biology, virology and plant breeding. It focuses on three major crops, barley for cereals, tomato for vegetables and Prunus species for fruit trees. The originality of COBRA is to test the generic mode of interference of plant viruses, from annual plants to perennials and from dicotyledons to monocotyledons and use this information 
-			to implement complex and durable resistance in any crop species. COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
+	<div id="mission-objectives">COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
 			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
 			by the new candidate genes prior to transfer to crop species
 	</div> 
-	<div id="protein-details">
-	
-	
-	</div>  	
+	<div id="search-box">';
+        make_species_list(find_species_list($speciesCollection));
+echo'
+	</div> 
+    
+
+    <input id="topQuery" type="hidden" value=""></input>
+
+    <input id="query" class="ui-autocomplete-input" type="search" name="query" accesskey="4" value="" autocomplete="off"></input>
+
+    <span class="ui-helper-hidden-accessible" role="status" aria-live="polite"></span>
+
+    <a id="advanced-search-toggle" class="caret_grey" href="#">Advanced</a>
+    <input type="hidden" name="sort" value="score"></input>
+
+    <a id="search-button" class="icon icon-functional button" href="" onclick="return false" data-icon="1" title="Search">Search</a>
 </main>
  
       

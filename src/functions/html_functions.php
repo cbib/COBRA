@@ -89,7 +89,7 @@ echo'
                      </a>
                   </li>
                   <li>
-                     <a href="/">
+                     <a href="/database/wiki/">
                         <i class="fa fa-info"></i> <span>Wiki</span>
                      </a>
                   </li>

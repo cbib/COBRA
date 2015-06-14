@@ -55,21 +55,46 @@ Date: 2015/01/29
 	</div>
 </div>
 <!---#COBRA Funding And Partners-->
+
+
+
+
 <div class="col-md-6" >
-	<div class="col-md-6" >
-				<img src="/database/images/new_INRA.png" width="200"/>
-				<img src="/database/images/noordsat.jpg" />
-				<img src="/database/images/jki.gif"  />
-				<img src="/database/images/ipk.png" />
-	</div>
-	<div class="col-md-6" >
-				<img src="/database/images/cgfb.jpg"/>
-				<img src="/database/images/abiopep3.jpg" />
-				<img src="/database/images/LOGO_CSIC.jpg" />
-				
-	</div>
+    <div class="col-md-6" >
+        <div id="image_container">
+            <hr  size=0.5>
+            <img class="displayed" src="/database/images/new_inra_w186.png"/>
+        </div>
+        <div id="image_container">
+            <hr  size=0.5>                           
+            <img class="displayed" src="/database/images/noordsat_w186.jpg" />
+        </div>
+        <div id="image_container">
+            <hr  size=1>
+            <img class="displayed" src="/database/images/jki_w186.gif"  />
+        </div>
+        <div id="image_container">
+            <hr  size=1>
+            <img class="displayed" src="/database/images/ipk.png" />
+        </div>
+    </div>
+    <div class="col-md-6" >
+        <div id="image_container">
+            <hr  size=1>
+            <img class="displayed" src="/database/images/cgfb_w186.jpg"/>
+        </div>
+        <div id="image_container">
+            <hr  size=1>
+            <img class="displayed" src="/database/images/abiopep3_w186.jpg" />
+        </div>
+        <div id="image_container">
+            <hr  size=1>
+            <img class="displayed" src="/database/images/LOGO_csic_w186.jpg" />
+        </div>
+
+    </div>
 </div>
-<hr size=4 width=30% align=center> 
+
 
 
 

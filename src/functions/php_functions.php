@@ -286,28 +286,28 @@ function make_species_list($cursor){
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
     	<form action="/database/src/search.php" method="get" class="clear search-form homepage-search-form">
-    		<fieldset>
-    			<div class="form-field ff-multi">
-    				<div align="center" class="ff-inline ff-right" >
-    					<label for="species" class="ff-label">Search:</label>
+            <fieldset>
+                <div class="form-field ff-multi">
+                    <div align="center" class="ff-inline ff-right" >
+                        <label for="species" class="ff-label">Search:</label>
 
-    					<span class="inp-group">
-    						<select name="organism" class="fselect input" id="organism">
-    							<option value="">All species</option>
-    	 						<option disabled="disabled" value="">---</option>';   
-						//Parcours de chaque ligne du curseur
-					foreach($cursor as $line) {
-					  	echo '<option value="'.$line.'">'.$line.'</option>';
-					}
-					echo '</select>
-    						<label for="search">for</label>
-    					</span>
-    					<wbr></wbr>
-    					<span class="inp-group">
-    						<input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
-    						<input value="Go" class="fbutton" type="submit" />
-    					</span>
-    					<wbr></wbr>
+                            <span class="inp-group">
+                                <select name="organism" class="fselect input" id="organism">
+                                        <option value="">All species</option>
+                                        <option disabled="disabled" value="">---</option>';   
+                                //Parcours de chaque ligne du curseur
+                            foreach($cursor as $line) {
+                                    echo '<option value="'.$line.'">'.$line.'</option>';
+                            }
+                            echo '</select>
+                                    <label for="search">for</label>
+                            </span>
+                            <wbr></wbr>
+                            <span class="inp-group">
+                                    <input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
+                                    <i class="fa fa-search"></i> <span><input value="Search" class="fbutton" type="submit" /></span>
+                            </span>
+                            <wbr></wbr>
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
@@ -323,6 +323,7 @@ function make_species_list($cursor){
     </div>
     </div>';
 }
+
 function make_CrossCompare_list($cursor){
 
     
