@@ -163,10 +163,13 @@
  
  #image_container{
   border-radius: 20px; 
-  vertical-align: middle;
+/*  vertical-align: middle;*/
   text-align: center;
-  background-color: #A9F5E1;
+  background-color: #E6E6E6;
 
+  }
+  .img#partner_logo{
+    vertical-align: middle;  
   }
 /*home page */
 
@@ -284,7 +287,12 @@ background-color: rgb(238, 238, 238);
 	margin-top: 20px;
 }
 .container{
-	background-color: #3D7130;
+	background-color: #E6E6E6;
+}
+
+.container#rounded-container{
+	background-color: #E6E6E6;
+        border-radius: 20px; 
 }
 .caret_grey::after {
     border-top: 5px solid #999;

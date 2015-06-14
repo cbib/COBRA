@@ -98,10 +98,54 @@ mapping_table={
 mappings_col.insert(mapping_table)
 
 #gene_to_prot
+
+mapping_table={
+	"data_file":"mappings/icugi_unigen--melonomics--uniprot--annotation.xls",
+	"species":"Cucumis melo",
+	"type":"gene_to_prot",
+	"src":"icugi_unigene",
+	"src_version":"v4",
+	"tgt":"uniprot_id",
+	"tgt_version":"swissprot",
+	"description":"none",
+	"url":"not published",
+	"doi":"not published",
+	"key":"unigen_2_uniprot",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','icugi_unigene','Melonomics_gene_id','uniprot_id','annotation'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+mapping_table={
+	"data_file":"mappings/icugi_unigen--melonomics--uniprot--annotation.xls",
+	"species":"Cucumis melo",
+	"type":"gene_to_prot",
+	"src":"Melonomics_gene_id",
+	"src_version":"v4",
+	"tgt":"uniprot_id",
+	"tgt_version":"swissprot",
+	"description":"none",
+	"url":"not published",
+	"doi":"not published",
+	"key":"melonomics_gene_id_2_uniprot",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','icugi_unigene','Melonomics_gene_id','uniprot_id','annotation'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
-	"type":"gene_to_prot",
+	"type":"gene_to_gene",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
 	"tgt":"Melonomics_gene_id",

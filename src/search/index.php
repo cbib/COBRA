@@ -28,7 +28,7 @@ $interactionsCollection = new Mongocollection($db, "interactions");
 
 
 echo'
-<div class="container">
+
     <div class="col-md-6">';
         make_species_list(find_species_list($speciesCollection));
         echo '<h2> Using list of genes ids</h2>';
@@ -74,7 +74,7 @@ echo'
             </div>
         </div>
     </div>      
-</div>
+
 	
 
 

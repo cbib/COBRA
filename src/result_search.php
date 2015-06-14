@@ -7,8 +7,8 @@ include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
 
 
-define("RDFAPI_INCLUDE_DIR", "/Users/benjamindartigues/COBRA/GIT/COBRA/lib/rdfapi-php/api/");
-include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
+//define("RDFAPI_INCLUDE_DIR", "/Users/benjamindartigues/COBRA/GIT/COBRA/lib/rdfapi-php/api/");
+//include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 
 
 new_cobra_header();
@@ -59,7 +59,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
 //if more than one results (often the case when search by gene symbol or keywords
 
-
+//search in samples 
+$mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true),'species'=>$organism),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'src_to_tgt'=>1,'tgt_to_src'=>1,'_id'=>0));
 
 echo '<div class="resultsbox" id="results">
  			<div class="results-right">
@@ -74,7 +75,6 @@ echo '<div class="resultsbox" id="results">
  			</div>
      	<div class="linkURL">http://thebiogrid.org/1462/summary/arabidopsis-thaliana/hb1.html</div></div>';
  //else
-$mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true)),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'_id'=>0));
 
 foreach ($mappings_to_process as $map_doc){
 		
@@ -84,7 +84,151 @@ foreach ($mappings_to_process as $map_doc){
 	$description=$map_doc['description'];
 	$url = $map_doc['url'];
 	$map_file = $map_doc['mapping_file'];
+    $src_to_tgt = $map_doc['src_to_tgt'];
+    $tgt_to_src = $map_doc['tgt_to_src'];
+
+	if ($type=='gene_to_prot'){
+        echo 'gene to prot mapping\n';
+        foreach ($src_to_tgt as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'tgt : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'src : '.$column;    
+                    }
+                }  
+            }       
+        }
+        foreach ($tgt_to_src as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'src : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'tgt : '.$column;    
+                    }
+                }  
+            }       
+        }
+    }
+    else if ($type=='gene_to_gene'){
+        foreach ($src_to_tgt as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'tgt : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'src : '.$column;    
+                    }
+                }  
+            }       
+        }
+        foreach ($tgt_to_src as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'src : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'tgt : '.$column;    
+                    }
+                }  
+            }       
+        }
+    }
+    
+    else{
+        echo 'est to gene mapping'."\n";
+        foreach ($src_to_tgt as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'tgt : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'src : '.$column;    
+                    }
+                }  
+            }       
+        }
+        foreach ($tgt_to_src as $row){
+            $found=FALSE;
+            foreach ($row as $column){
+
+                if (is_array($column)){
+                   if ($found){
+                       echo 'src : '.$column[0];
+
+                   }
+                   
+    //               foreach ($column as $value){
+    //                   echo 'tgt :'.$value;
+    //               } 
+                }  
+                else {
+                    if ($column==$search){
+                        $found=TRUE;
+                        echo 'tgt : '.$column;    
+                    }
+                }  
+            }       
+        }
 	
+	}
 	if ($type=='gene_to_prot'){
 		foreach ($map_file as $doc){
 			if ($doc[$tgt_col]==$search){
@@ -126,6 +270,7 @@ foreach ($mappings_to_process as $map_doc){
 			}
 		}
 	}
+    
 		
 		
 	else if ($type=='gene_to_symbol'){

@@ -285,7 +285,7 @@ function make_species_list($cursor){
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/database/src/search.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="center" class="ff-inline ff-right" >
@@ -311,9 +311,9 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="/database/src/search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="/database/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
     						or 
-    						<a class="nowrap" href="/database/src/search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="/database/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>

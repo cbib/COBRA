@@ -40,7 +40,7 @@ $virusesCollection = new Mongocollection($db, "viruses");
 ###DISPLAY EXPERIMENT LIST
 
 
- echo '<h1>COBRA Datasets</h1><h2> Experiments lists</h2> <div class="container"><ul>';
+ echo '<h1>COBRA Datasets</h1><h2> Experiments lists</h2> <div class="container" id="rounded-container"><ul>';
  //echo '<a href=experiments.php>test</a>';
  foreach($cursor as $line) {
  	$title=$line['name'];
@@ -180,7 +180,7 @@ $cursor=find_all_viruses($virusesCollection);
 
 
 
-echo '<h2> VIruses lists</h2> <div class="container">';
+echo '<h2> Viruses lists</h2> <div class="container">';
 echo'<table id="virustable" class="table table-bordered" cellspacing="0">';
 echo'<thead><tr>';
 	
