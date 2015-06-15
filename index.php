@@ -7,7 +7,7 @@ require './src/functions/html_functions.php';
 require './src/functions/php_functions.php';
 require './src/functions/mongo_functions.php';
 require './src/session/control-session.php';
-
+define('CONTENT_EXT', '.md');
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']), "Home");
 $db=mongoConnector();
@@ -30,18 +30,18 @@ echo '
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="center" class="ff-inline ff-right" >
-                        <label for="species" class="ff-label">Search:</label>
-
+                        <!--<label for="species" class="ff-label">Search:</label>-->
                             <span class="inp-group">
                                 <select name="organism" class="fselect input" id="organism">
-                                        <option value="">All species</option>
+                                        <option selected="selected" value="All species">All species</option>
                                         <option disabled="disabled" value="">---</option>';   
                                 //Parcours de chaque ligne du curseur
                             foreach($cursor as $line) {
                                     echo '<option value="'.$line.'">'.$line.'</option>';
                             }
-                            echo '</select>
-                                    <label for="search">for</label>
+                            echo 
+                               '</select>
+                                <label for="search">for</label>
                             </span>
                             <wbr></wbr>
                             <span class="inp-group">

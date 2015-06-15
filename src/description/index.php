@@ -72,7 +72,8 @@ $cursor=find_all_mappings($mappingsCollection);
 
 
 ###MAPPING TABLE
-echo '<h2> Mapping lists</h2> <div class="container">';
+echo '<h2> Mapping lists</h2> ';
+//echo '<div class="container">';
 echo'<table id="mappingtable" class="table table-bordered" cellspacing="0" width="100%">';
 echo'<thead><tr>';
 	
@@ -103,7 +104,7 @@ echo "</tr>";
 
 }
 echo'</tbody></table>';
-echo'</div>';
+//echo'</div>';
 
 
 ###SPECIES REQUEST

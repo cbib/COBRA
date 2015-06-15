@@ -21,7 +21,7 @@ class Pico_Editor {
 		$this->is_logout = false;
 		$this->plugin_path = dirname(__FILE__);
 		$this->password = '';
-		session_start();
+		//session_start();
 
 		if(file_exists($this->plugin_path .'/pico_editor_config.php')){
 			global $pico_editor_password;

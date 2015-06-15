@@ -91,7 +91,180 @@ function make_experiment_type_list($cursor){
     echo '</select>';
     
 }
+function display_sample_table($cursor,$samplesCollection){
+    $array = iterator_to_array($cursor);
+    $keys =array();
 
+    foreach ($array as $k => $v) {
+            foreach ($v as $a => $b) {
+                $keys[] = $a;
+              }
+    }
+    $keys = array_values(array_unique($keys));
+
+    echo'<table id="example" class="table table-bordered" cellspacing="0" width="100%">';
+    //header table start
+    echo'<thead><tr>';
+
+    //recupere le titre
+    foreach (array_slice($keys,1) as $key => $value) {
+            if ($value=='gene'){
+                echo "<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='direction'){
+                echo "<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='logFC'){
+                echo "<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='type'){
+                echo "<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='xp'){
+                echo "<th>" . $value . "</th>";
+
+            }
+    }
+    echo'</tr></thead>';
+    //header table end
+
+    //Debut du corps de la table
+    echo'<tbody>';
+    foreach($cursor as $line) {
+        echo "<tr>";
+
+        //Slice de l'id Mongo
+        #echo $line->count();
+
+        foreach(array_slice($keys,1) as $key => $value) {
+
+
+            #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+
+            if ($value=='gene'){
+                if (stristr($line[$value],"MU")) {
+                    if(is_array($line[$value])){;
+                        #http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
+                        echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
+
+                    }
+                    else {
+                        echo"<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+
+                    }
+                }
+                else if (stristr($line[$value],"AT")) {
+                    if(is_array($line[$value])){;
+
+                        echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".show_array($line[$value])."&type=locus\">".show_array($line[$value])."</a></td>";
+
+                    }
+                    else {
+                        echo"<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$line[$value]."&type=locus\">".$line[$value]."</a></td>";
+                    }
+                }
+                else{
+                    if(is_array($line[$value])){;
+
+                        echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
+
+                    }
+
+                    else {
+                        //$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
+                        echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+                        #echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+
+
+                        #get_protein_info($url);
+                        #echo "<td>".$line[$value]."</td>";
+                    }
+                }
+
+                # http://pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=
+                #use table from 
+
+
+            }
+
+        }
+
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='direction'){
+                if(is_array($line[$value])){;
+                    echo"<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    echo "<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='logFC'){
+                if(is_array($line[$value])){;
+                    echo"<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    echo "<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='type'){
+                if(is_array($line[$value])){;
+                    echo"<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    echo "<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='xp'){
+                if(is_array($line[$value])){;
+                    echo"<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    //list($xp_String_id, $ex_results, $file_number) 
+                    $xp_details= explode(".", $line[$value]);
+                    $xp_String_id=$xp_details[0];
+                    //echo "<td>".$xp_String_id."</td>";
+                    $file_number=$xp_details[2]+1;
+                    $xp_id = new MongoId($xp_String_id);
+                    $xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
+
+                    echo "<td><a href=description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+                    //echo"<td>".$line[$value]."</td>";
+
+                }
+            }
+        }
+
+
+        echo "</tr>";
+    }
+    echo'</tbody></table>'; 
+}
 function make_user_preferences($user,Mongocollection $us){
 
 	echo '<h2> User preferences</h2>
@@ -293,7 +466,7 @@ function make_species_list($cursor){
 
                             <span class="inp-group">
                                 <select name="organism" class="fselect input" id="organism">
-                                        <option value="">All species</option>
+                                        <option value="">Allspecies</option>
                                         <option disabled="disabled" value="">---</option>';   
                                 //Parcours de chaque ligne du curseur
                             foreach($cursor as $line) {

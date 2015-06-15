@@ -32,19 +32,26 @@ class Pico {
 		$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
 		$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
 
+        
+       
 		// Get our url path and trim the / of the left and the right
 		if($request_url != $script_url) $url = trim(preg_replace('/'. str_replace('/', '\/', str_replace('index.php', '', $script_url)) .'/', '', $request_url, 1), '/');
-		$url = preg_replace('/\?.*/', '', $url); // Strip query string
+      
+
+        $url = preg_replace('/\?.*/', '', $url); // Strip query string
 		$this->run_hooks('request_url', array(&$url));
 
 		// Get the file path
 		if($url) $file = CONTENT_DIR . $url;
 		else $file = CONTENT_DIR .'index';
+       
 
 		// Load the file
+        
+        
 		if(is_dir($file)) $file = CONTENT_DIR . $url .'/index'. CONTENT_EXT;
 		else $file .= CONTENT_EXT;
-
+       
 		$this->run_hooks('before_load_content', array(&$file));
 		if(file_exists($file)){
 			$content = file_get_contents($file);
@@ -65,6 +72,7 @@ class Pico {
 		$this->run_hooks('content_parsed', array(&$content)); // Depreciated @ v0.8
 		
 		// Get all the pages
+        
 		$pages = $this->get_pages($settings['base_url'], $settings['pages_order_by'], $settings['pages_order'], $settings['excerpt_length']);
 		$prev_page = array();
 		$current_page = array();
@@ -101,6 +109,7 @@ class Pico {
 			'next_page' => $next_page,
 			'is_front_page' => $url ? false : true,
 		);
+        
 
 		$template = (isset($meta['template']) && $meta['template']) ? $meta['template'] : 'index';
 		$this->run_hooks('before_render', array(&$twig_vars, &$twig, &$template));
@@ -221,6 +230,7 @@ class Pico {
 		$sorted_pages = array();
 		$date_id = 0;
 		foreach($pages as $key=>$page){
+            //error_log($page, 0);
 			// Skip 404
 			if(basename($page) == '404'. CONTENT_EXT){
 				unset($pages[$key]);
@@ -236,9 +246,14 @@ class Pico {
 			$page_content = file_get_contents($page);
 			$page_meta = $this->read_file_meta($page_content);
 			$page_content = $this->parse_content($page_content);
-			$url = str_replace(CONTENT_DIR, $base_url .'/', $page);
+			//error_log($page, 0);
+            $url = str_replace(CONTENT_DIR, $base_url .'/', $page);
+            //error_log($url, 0);
 			$url = str_replace('index'. CONTENT_EXT, '', $url);
+            //error_log($url, 0);
 			$url = str_replace(CONTENT_EXT, '', $url);
+            //$url='/wiki/content'.$url;
+            //error_log($page_meta['title'], 0);
 			$data = array(
 				'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
 				'url' => $url,
@@ -332,6 +347,7 @@ class Pico {
 	                    $array_items = array_merge($array_items, $this->get_files($directory. "/" . $file, $ext));
 	                } else {
 	                    $file = $directory . "/" . $file;
+                        
 	                    if(!$ext || strstr($file, $ext)) $array_items[] = preg_replace("/\/\//si", "/", $file);
 	                }
 	            }
