@@ -1,6 +1,98 @@
 <?php
 include 'simple_html_dom.php';
 
+function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species){
+    $species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
+    foreach ($species_id_type as $value) {
+        $favourite_id=$value['preferred_id'];
+        echo $value['preferred_id'];
+    
+    }
+    $plaza_favorite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
+    //only one value is possible
+    foreach ($plaza_favorite_tgt_id as $value) {
+     $intermediary_id=$value['tgt'];
+        //echo $value['tgt'];
+    
+    }
+    if ($favourite_id==$intermediary_id){
+        // echo "same id";
+    }
+    else{
+        $cursor=get_top_ten_surexpressed_genes($me,$species);
+        //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
+        #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
+        $gene_list=array();
+        foreach ($cursor as $value) {
+        //echo $value['logFC']."\n";
+        //echo $value['gene']."\n";
+            array_push($gene_list,$value);
+        //echo $value['infection_agent']."\n";
+        }
+        //At this poitn we have a list of gene id, with the id type
+        $transformed_list=convert_into_specific_id($ma,$gene_list,$favourite_id,$intermediary_id,$species);
+
+        $plaza_list=convert_into_plaza_id($ma,$transformed_list,$species);
+    }
+}
+
+function get_source_and_target($src_to_tgt,$value='null',$favourite_id='null',$intermediary_id='null'){
+    $src_and_tgt=array();
+    foreach ($src_to_tgt as $row){
+        $found=FALSE;
+        foreach ($row as $column){
+            if (is_array($column)){                      
+                if ($found){
+                    $tgt=$column[0];
+                    $src_and_tgt[$favourite_id]=$value;
+                    $src_and_tgt[$intermediary_id]=$tgt;                            
+                    //echo 'tgt : '.$column[0];    
+                }
+            }  
+            else {                         
+                if ($column==$value){
+                    $found=TRUE;                                               
+                    //echo 'src : '.$column;    
+                }
+            }  
+        }       
+    }
+    return $src_and_tgt;
+}
+function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
+    $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
+    $fields=array('src_to_tgt'=>1);
+    $mapping=$ma->find($query, $fields);
+    
+    $cursor=array();
+    foreach ($mapping as $map_doc){
+        
+        $src_to_tgt = $map_doc['src_to_tgt'];
+        foreach ($gene_list as $value) {
+            
+            array_push($cursor, get_source_and_target($src_to_tgt,$value['gene'],$favourite_id,$intermediary_id));
+            
+        }
+       
+    }
+    return $cursor;
+        
+}
+function convert_into_plaza_id(Mongocollection $ma,$gene_list_attributes,$species='null'){
+    
+    foreach ($gene_list_attributes as $attributes) {
+        foreach ($attributes as $key => $value) {
+            echo $key;
+            echo $value;
+        }
+        #$ma->find(array('src'=>'plaza_gene_id'),array('tgt'=>1));
+        //echo $attributes['gene'];
+        //$attributes['gene'];
+    }
+    
+    
+}
+
 ### Connexion
 function mongoConnector() {
 
@@ -33,6 +125,14 @@ function mongoPersistantConnector() {
 		exit();
 	}
 }
+
+function get_top_ten_surexpressed_genes(Mongocollection $me, $species='null'){
+    $cursor=$me->find(array('direction'=>'up','species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
+    $cursor->sort(array('logFC' => -1));
+    $cursor->limit(10);
+    return $cursor;
+}
+
 
 
 ##Get all orthologs src to tgt : 

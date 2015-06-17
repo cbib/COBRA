@@ -13,6 +13,8 @@ new_cobra_body(is_logged($_SESSION['login']), "Home");
 $db=mongoConnector();
 $grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
+$measurementsCollection = new Mongocollection($db, "measurements");
+$mappingsCollection = new Mongocollection($db, "mappings");
 
 echo '
 <main id="content" class="homepage">
@@ -45,7 +47,7 @@ echo '
                             </span>
                             <wbr></wbr>
                             <span class="inp-group">
-                                    <input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
+                                    <input value="" name="search" class="input_search" id="search" type="text" size="30" />
                                     <i class="fa fa-search"></i> <span><input value="Search" class="fbutton" type="submit" /></span>
                             </span>
                             <wbr></wbr>
@@ -88,7 +90,14 @@ echo'
  
       
       
-      ';
+      ';//'gene'=>array('$ne'=>'')
+$species='Arabidopsis thaliana';
+//$species='Hordeum vulgare';
+
+
+
+
+
 
 new_cobra_footer();
 

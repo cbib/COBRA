@@ -201,13 +201,17 @@ def get_mapping(src,tgt):
 		if "src_to_tgt" not in mapping_doc:
 			logger.critical("Mapping not yet imported into db, run process_mappings.py first")
 			return None
+		#logger.info( "mapping doc : %d",mapping_doc['src_to_tgt'])
+
 		mapping_dict=dict(mapping_doc['src_to_tgt'])
+		#logger.info( "try to find src : %s",id_to_map,a_map.get(id_to_map,[]))
 		return mapping_dict
 
 
 def robust_id_mapping(id_to_map,a_map):
+	#logger.info( "try to find src : %s for tgt : %s",id_to_map,a_map.get(id_to_map,[]))
 	if len(a_map)==0:
-		#logger.info("map null")
+		logger.info("map null")
 		return id_to_map
 	else:
 		return a_map.get(id_to_map,[])

@@ -150,13 +150,13 @@ table.display {
 	 * then filling in the gaps with other borders.
 	 */
 }
-
+/*cursor: hand;*/
 table.display thead th {
 	padding: 3px 18px 3px 10px;
 	border-bottom: 1px solid black;
 	font-weight: bold;
 	cursor: pointer;
-	* cursor: hand;
+	
 }
 
 table.display tfoot th {

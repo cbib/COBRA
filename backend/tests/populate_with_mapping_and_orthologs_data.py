@@ -29,8 +29,8 @@ for grid_out in fs.find({}, timeout=False):
 
 
 mapping_table={
-	"data_file":"mappings/Table_S1.xls",
-	"species":"Prunus Domestica",
+	"data_file":"mappings/journal.pone.0100477.s004.xls",
+	"species":"Prunus domestica",
 	"type":"gene_to_prot",
 	"src":"unigene",
 	"src_version":"",

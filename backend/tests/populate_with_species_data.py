@@ -51,7 +51,7 @@ prunus={
 	"aliases":["prunus_domestica","prunus"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
-	"preferred_id":"unigene",
+	"preferred_id":"NCBI_Protein_code",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -113,7 +113,7 @@ barley={
 	"aliases":["hordeum_vulgare","barley"],
 	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
 	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"Locus_Gene_Name",
+	"preferred_id":"protein_id",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",

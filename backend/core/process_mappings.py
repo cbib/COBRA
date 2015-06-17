@@ -82,6 +82,8 @@ for map_doc in mappings_to_process:
 	src_col = map_doc['src']
 	tgt_col = map_doc['tgt']	
 	for r in sheet_values:
+		#a_to_b[str(r[src_col])].append(str(r[tgt_col]))
+		#b_to_a[str(r[tgt_col])].append(str(r[src_col]))
 		a_to_b[r[src_col]].append(r[tgt_col])
 		b_to_a[r[tgt_col]].append(r[src_col])
 	# check 1-to-1 mapping

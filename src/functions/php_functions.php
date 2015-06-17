@@ -91,6 +91,7 @@ function make_experiment_type_list($cursor){
     echo '</select>';
     
 }
+
 function display_sample_table($cursor,$samplesCollection){
     $array = iterator_to_array($cursor);
     $keys =array();

@@ -10,6 +10,8 @@ from helpers.logger import Logger
 from helpers.db_helpers import * 
 
 
+#measurements_col.remove()
+
 # Script supposed to be run in the background to populate the DB with available datasets 
 if "log" not in globals():
   logger = Logger.init_logger('FLATTEN_%s'%(cfg.language_code), load_config())
@@ -35,19 +37,33 @@ for a_sample in samples_with_results:
 		logger.info("Having %d insertions to make",n_op)
 		logger.info("normalizing sample %s (%s/%s)",this_path,a_sample['name'],os.path.split(experimental_results['data_file'])[-1])
 		
+		
+		conditions=experimental_results.get('conditions',{})
+		if(not isinstance(conditions[1], (str, unicode))):
+			infection_agent=conditions[1].get('infection_agent',{})
+		else:
+			infection_agent=conditions[1]
+
+		logger.info("conditions %s",infection_agent)
 		# get mapping to apply 
 		parser_config=experimental_results.get('xls_parsing',{})
+		
 		parser_config.update(a_sample.get('xls_parsing',{}))
 		# genome config 
 		this_genome=find_species_doc(a_sample['species'])
+		logger.info("species = %s",this_genome['full_name'])
 		id_col=parser_config['id_type']
-
 		this_mapping=get_mapping(id_col,this_genome['preferred_id'])
+		logger.info("mapping length %d",len(this_mapping))
+		
+		if this_genome['full_name']=="Prunus domestica":
+			
+			logger.info("10005 = %s",this_mapping.keys())
 		if this_mapping==None:
 			logger.critical("Cannot perform ID conversion")
 			continue
 		for measure in experimental_results['values']:
-			#logger.info("new measure %s",measure[id_col])
+			logger.info("new measure %s",measure[id_col])
 
 			for tgt_id in robust_id_mapping(measure[id_col],this_mapping):
 				#logger.info("tgt_id %s",tgt_id)
@@ -56,8 +72,13 @@ for a_sample in samples_with_results:
 				if experimental_results['type']=="contrast":
 					this_doc['type']="contrast"
 					this_doc['gene']=tgt_id
+					this_doc['infection_agent']=infection_agent
 					this_doc['gene_original_id']=measure[id_col]
+					
 					this_doc['species']=this_genome['full_name']
+					#logger.info("Tgid = %s",tgt_id)
+					#if this_genome['full_name']=='Prunus domestica':
+						#logger.info("Tgid = %s",tgt_id)
 					
 					
 					this_doc['logFC']=measure.get("logFC",None)
