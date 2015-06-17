@@ -1,11 +1,14 @@
 <?php
 include 'simple_html_dom.php';
+function ben_function2(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
+    get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
 
-function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species){
-    $species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
+}
+function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$top_value=10){
+    $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $favourite_id=$value['preferred_id'];
-        echo $value['preferred_id'];
+        //echo $value['preferred_id'];
     
     }
     $plaza_favorite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
@@ -15,37 +18,43 @@ function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $s
         //echo $value['tgt'];
     
     }
+   
+    $cursor=get_top_surexpressed_genes($me,$species,$top_value);
+    //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
+    #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
+    $gene_list=array();
+    foreach ($cursor as $value) {
+    //echo $value['logFC']."\n";
+    //echo $value['gene']."\n";
+        array_push($gene_list,$value);
+    //echo $value['infection_agent']."\n";
+    } 
     if ($favourite_id==$intermediary_id){
-        // echo "same id";
+         echo "same id";
+        $gene_list_attributes=convert_into_plaza_id($ma,$gene_list,$favourite_id,$species);
+
     }
     else{
-        $cursor=get_top_ten_surexpressed_genes($me,$species);
-        //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
-        #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
-        $gene_list=array();
-        foreach ($cursor as $value) {
-        //echo $value['logFC']."\n";
-        //echo $value['gene']."\n";
-            array_push($gene_list,$value);
-        //echo $value['infection_agent']."\n";
-        }
+        
         //At this poitn we have a list of gene id, with the id type
         $transformed_list=convert_into_specific_id($ma,$gene_list,$favourite_id,$intermediary_id,$species);
 
-        $plaza_list=convert_into_plaza_id($ma,$transformed_list,$species);
+        $gene_list_attributes=convert_into_plaza_id($ma,$transformed_list,$intermediary_id,$species);
+        
     }
+    return $gene_list_attributes;
 }
 
-function get_source_and_target($src_to_tgt,$value='null',$favourite_id='null',$intermediary_id='null'){
-    $src_and_tgt=array();
+function get_source_and_target($src_to_tgt,$value_array,$value='null',$favourite_id='null',$intermediary_id='null'){
+    //$src_and_tgt=array();
     foreach ($src_to_tgt as $row){
         $found=FALSE;
         foreach ($row as $column){
             if (is_array($column)){                      
                 if ($found){
                     $tgt=$column[0];
-                    $src_and_tgt[$favourite_id]=$value;
-                    $src_and_tgt[$intermediary_id]=$tgt;                            
+                    $value_array[$favourite_id]=$value;
+                    $value_array[$intermediary_id]=$tgt;                           
                     //echo 'tgt : '.$column[0];    
                 }
             }  
@@ -57,7 +66,31 @@ function get_source_and_target($src_to_tgt,$value='null',$favourite_id='null',$i
             }  
         }       
     }
-    return $src_and_tgt;
+    return $value_array;
+}
+function get_target_and_source($tgt_to_src,$value,$intermediary_id='null'){
+    //$tgt_and_src=array();
+    foreach ($tgt_to_src as $row){
+        $found=FALSE;
+        foreach ($row as $column){
+            if (is_array($column)){                      
+                if ($found){
+                    $src=$column[0];
+                    $value["plaza_id"]=$column[0];
+                    
+                }
+            }  
+            else {                         
+                if ($column==$value[$intermediary_id]){
+                    $found=TRUE;
+                    $tgt=$column;
+                    
+                    //echo 'src : '.$column;    
+                }
+            }  
+        }       
+    }
+    return $value;
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
@@ -70,7 +103,7 @@ function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='
         $src_to_tgt = $map_doc['src_to_tgt'];
         foreach ($gene_list as $value) {
             
-            array_push($cursor, get_source_and_target($src_to_tgt,$value['gene'],$favourite_id,$intermediary_id));
+            array_push($cursor, get_source_and_target($src_to_tgt,$value,$value['gene'],$favourite_id,$intermediary_id));
             
         }
        
@@ -78,17 +111,35 @@ function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='
     return $cursor;
         
 }
-function convert_into_plaza_id(Mongocollection $ma,$gene_list_attributes,$species='null'){
+function convert_into_plaza_id(Mongocollection $ma,$gene_list_attributes,$intermediary_id,$species='null'){
     
-    foreach ($gene_list_attributes as $attributes) {
-        foreach ($attributes as $key => $value) {
-            echo $key;
-            echo $value;
+    
+    
+//    foreach ($gene_list_attributes as $attributes) {
+//        foreach ($attributes as $key => $value) {
+//            echo $key;
+//            echo $value;
+//        }
+//        
+//        //echo $attributes['gene'];
+//        //$attributes['gene'];
+//    }
+    $query=array('src'=>'plaza_gene_id','tgt'=>$intermediary_id);
+    $fields=array('tgt_to_src'=>1);
+    $mapping=$ma->find($query, $fields);
+    $cursor=array();
+    foreach ($mapping as $map_doc){
+        
+        $tgt_to_src = $map_doc['tgt_to_src'];
+        foreach ($gene_list_attributes as $value) {
+            
+            array_push($cursor, get_target_and_source($tgt_to_src,$value,$intermediary_id));
+            
         }
-        #$ma->find(array('src'=>'plaza_gene_id'),array('tgt'=>1));
-        //echo $attributes['gene'];
-        //$attributes['gene'];
+       
     }
+    return $cursor;
+   
     
     
 }
@@ -126,10 +177,10 @@ function mongoPersistantConnector() {
 	}
 }
 
-function get_top_ten_surexpressed_genes(Mongocollection $me, $species='null'){
+function get_top_surexpressed_genes(Mongocollection $me, $species='null',$top_value=10){
     $cursor=$me->find(array('direction'=>'up','species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
     $cursor->sort(array('logFC' => -1));
-    $cursor->limit(10);
+    $cursor->limit($top_value);
     return $cursor;
 }
 
@@ -206,7 +257,7 @@ function get_plaza_id($id='null'){
 	
 
 }
-function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
+function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 	echo '</div>';
@@ -216,7 +267,7 @@ function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollectio
 	if ($current_plaza_id!=""){
 	
 		
-		echo $current_plaza_id;
+		//echo $current_plaza_id;
 		#echo $species_ID;
 		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
 		#$MongoGridFSCursor->skip(3)->limit(8);
@@ -240,7 +291,7 @@ function get_all_orthologs(MongoGridFS $grid,Mongocollection $orthologsCollectio
 					#$row=split('[\t]', $buffer);
 					$row=preg_split('/\s+/', $buffer);
 					if ($current_plaza_id==$row[0]){
-						echo "start line : ".$buffer."\n";
+						#echo "start line : ".$buffer."\n";
 						$ortholog_list_id=split('[,]', $row[1]);
 						foreach ($ortholog_list_id as $ortholog){
 							#echo "start line : ".$buffer."\n";

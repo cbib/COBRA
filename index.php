@@ -15,6 +15,7 @@ $grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
 $measurementsCollection = new Mongocollection($db, "measurements");
 $mappingsCollection = new Mongocollection($db, "mappings");
+$orthologsCollection = new Mongocollection($db, "orthologs");
 
 echo '
 <main id="content" class="homepage">
@@ -91,11 +92,92 @@ echo'
       
       
       ';//'gene'=>array('$ne'=>'')
+
+        
+//$species='Arabidopsis thaliana';
+////$species='Hordeum vulgare';
+//$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species);
+//foreach ($gene_list_attributes as $attributes) {
+//    foreach ($attributes as $key => $value) {
+//        echo $key."\r\t";
+//        echo $value."\r\n";
+//        echo "</br>";
+//    }      
+//        //echo $attributes['gene'];
+//        //$attributes['gene'];
+//}
+//
+//echo "</br>";
+//$gene_list_attributes=array();
+//$species='Hordeum vulgare';
+////$species='Hordeum vulgare';
+//$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species);
+//foreach ($gene_list_attributes as $attributes) {
+//    foreach ($attributes as $key => $value) {
+//        echo $key."\r\t";
+//        echo $value."\r\n";
+//        echo "</br>";
+//    }      
+//        //echo $attributes['gene'];
+//        //$attributes['gene'];
+//}
+echo "</br>";
+$gene_list_attributes=array();
+//$species='Cucumis melo';
 $species='Arabidopsis thaliana';
 //$species='Hordeum vulgare';
+$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species,50);
 
+foreach ($gene_list_attributes as $attributes) {
+    foreach ($attributes as $key => $value) {
+        
+          //echo $key."\r\t";
+          //echo $value."\r\n";
+        if ($value != "NA"){
+            //echo $key."\r\t";
+            //echo $value."\r\n";
+            
+            if ($key=="plaza_id"){
+                echo $key."\r\t";
+                echo $value."\r\n";
+                echo "</br>";
+                ben_function2($grid,$mappingsCollection,$orthologsCollection,$species,$value);
 
-
+                
+            }
+            else{
+                echo $key."\r\t";
+                echo $value."\r\n";
+                echo "</br>";
+            }
+        }
+        else{
+            echo $key."\r\t";
+            echo $value."No id found\r\n";
+            echo "</br>";
+            echo "No  plaza id found\r\n";
+            echo "</br>";
+        }
+        
+    }
+    
+        //echo $attributes['gene'];
+        //$attributes['gene'];
+}
+//echo "</br>";
+//$gene_list_attributes=array();
+//$species='Solanum lycopersicum';
+////$species='Hordeum vulgare';
+//$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species);
+//foreach ($gene_list_attributes as $attributes) {
+//    foreach ($attributes as $key => $value) {
+//        echo $key."\r\t";
+//        echo $value."\r\n";
+//        echo "</br>";
+//    }      
+//        //echo $attributes['gene'];
+//        //$attributes['gene'];
+//}
 
 
 
