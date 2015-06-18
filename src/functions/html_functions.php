@@ -152,25 +152,27 @@ function new_href($link='null'){
 function new_cobra_footer(){
 echo'
 
-    <hr />
-    <div class="row">
-        <!-- Left col -->
-
-        <section class="col-lg-12 connectedSortable">
-            <p class="text-muted" style="text-align: right;">
-                Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
-            </p>
-            <p class="text-muted" style="text-align: right;">
-                Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
-            </p>
-        </section><!-- right col -->
-    </div><!-- /.row (main row) -->
-
-                    </section><!-- /.content -->
-                </aside><!-- /.right-side -->
-            </div><!-- ./wrapper -->
-        </body>
-    </html>
+                    <hr />
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-12 connectedSortable">
+                            <p class="text-muted" style="text-align: right;">
+                                Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
+                            </p>
+                            <p class="text-muted" style="text-align: right;">
+                                Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
+                            </p>
+                        </section><!-- right col -->
+                    </div>
+                    <!-- /.row (main row) -->
+                </section>
+            <!-- /.content -->
+            </aside>
+            <!-- /.right-side -->
+        </div>
+<!-- ./wrapper -->
+    </body>
+</html>
 
     
     ';

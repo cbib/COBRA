@@ -30,7 +30,7 @@ function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $s
     //echo $value['infection_agent']."\n";
     } 
     if ($favourite_id==$intermediary_id){
-         echo "same id";
+        //echo "same id";
         $gene_list_attributes=convert_into_plaza_id($ma,$gene_list,$favourite_id,$species);
 
     }
@@ -262,7 +262,8 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 	echo '</div>';
 	#$current_plaza_id="AT1G01060";
-	echo "test plaza id ".$current_plaza_id;
+    $initial_species=array('AT','CM','HV','SL');
+	//echo "test plaza id ".$current_plaza_id;
 
 	if ($current_plaza_id!=""){
 	
@@ -294,68 +295,137 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 						#echo "start line : ".$buffer."\n";
 						$ortholog_list_id=split('[,]', $row[1]);
 						foreach ($ortholog_list_id as $ortholog){
-							#echo "start line : ".$buffer."\n";
-							$cursor=$mappingsCollection->aggregate(array( 
-								array('$match' => array('type'=>'gene_to_prot')),  
-								array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
-								array('$match' => array('src'=>"plaza_gene_id")),  
-								array('$unwind'=>'$src_to_tgt'),    
-								array('$match' => array('src_to_tgt.0'=>$ortholog)),  
-								array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
-							));
+                            foreach ($initial_species as $value) {
+                                if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
+                                    #echo "start line : ".$buffer."\n";
+                                    $cursor=$mappingsCollection->aggregate(array( 
+                                        array('$match' => array('type'=>'gene_to_prot')),  
+                                        array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+                                        array('$match' => array('src'=>"plaza_gene_id")),  
+                                        array('$unwind'=>'$src_to_tgt'),    
+                                        array('$match' => array('src_to_tgt.0'=>$ortholog)),  
+                                        array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+                                    ));
+
+                                    if (count($cursor['result'])!=0){
+                                        echo '<h2> orthologs table </h2> <div class="container">';
+                                        echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+                                        echo'<thead><tr>';
+
+                                        //recupere le titre
+                                        #echo "<th>type</th>";
+                                        echo "<th>Mapping type</th>";
+                                        echo "<th>src ID</th>";
+                                        echo "<th>src type</th>";
+                                        echo "<th>src_version</th>";
+                                        echo "<th>tgt ID</th>";
+                                        echo "<th>tgt type</th>";
+                                        echo "<th>tgt_version</th>";
+                                        echo "<th>species</th>";
+
+                                        echo'</tr></thead>';
+
+                                        //Debut du corps de la table
+                                        echo'<tbody>';
+
+                                        foreach($cursor['result'] as $line) {
+
+                                            //echo $line['src_to_tgt'];
+                                            for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+                                                echo "<tr>";
+
+                                                echo '<td>'.$line['type'].'</td>';
+
+                                                echo '<td>'.$line['src_to_tgt'][0].'</td>';
+                                                echo '<td>'.$line['src'].'</td>';
+                                                echo '<td>'.$line['src_version'].'</td>';
+
+                                                //for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+
+                                                echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+
+
+                                                //}
+                                                echo '<td>'.$line['tgt'].'</td>';
+                                                echo '<td>'.$line['tgt_version'].'</td>';
+                                                echo '<td>'.$line['species'].'</td>';
+                                                echo "</tr>";
+                                            }
+
+                                        }
+                                        echo'</tbody></table></div>';
+
+                                        #echo $ortholog."\n";
+                                        #var_dump($cursor);
+                                        #echo "\n";
+                                    }
 							
-							if (count($cursor['result'])!=0){
-								echo '<h2> orthologs table </h2> <div class="container">';
-								echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
-								echo'<thead><tr>';
-
-								//recupere le titre
-								#echo "<th>type</th>";
-								echo "<th>Mapping type</th>";
-								echo "<th>src ID</th>";
-								echo "<th>src type</th>";
-								echo "<th>src_version</th>";
-								echo "<th>tgt ID</th>";
-								echo "<th>tgt type</th>";
-								echo "<th>tgt_version</th>";
-								echo "<th>species</th>";
-								
-								echo'</tr></thead>';
-
-								//Debut du corps de la table
-								echo'<tbody>';
-
-								foreach($cursor['result'] as $line) {
-
-									//echo $line['src_to_tgt'];
-									for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-										echo "<tr>";
-										
-										echo '<td>'.$line['type'].'</td>';
-
-										echo '<td>'.$line['src_to_tgt'][0].'</td>';
-										echo '<td>'.$line['src'].'</td>';
-										echo '<td>'.$line['src_version'].'</td>';
-
-										//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-
-										echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-		
-	
-										//}
-										echo '<td>'.$line['tgt'].'</td>';
-										echo '<td>'.$line['tgt_version'].'</td>';
-										echo '<td>'.$line['species'].'</td>';
-										echo "</tr>";
-									}
-
-								}
-								echo'</tbody></table></div>';
-								
-								#echo $ortholog."\n";
-								#var_dump($cursor);
-								#echo "\n";
-							}
+							
+                                }
+                            }
+                            
+//							#echo "start line : ".$buffer."\n";
+//							$cursor=$mappingsCollection->aggregate(array( 
+//								array('$match' => array('type'=>'gene_to_prot')),  
+//								array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+//								array('$match' => array('src'=>"plaza_gene_id")),  
+//								array('$unwind'=>'$src_to_tgt'),    
+//								array('$match' => array('src_to_tgt.0'=>$ortholog)),  
+//								array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+//							));
+//							
+//							if (count($cursor['result'])!=0){
+//								echo '<h2> orthologs table </h2> <div class="container">';
+//								echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+//								echo'<thead><tr>';
+//
+//								//recupere le titre
+//								#echo "<th>type</th>";
+//								echo "<th>Mapping type</th>";
+//								echo "<th>src ID</th>";
+//								echo "<th>src type</th>";
+//								echo "<th>src_version</th>";
+//								echo "<th>tgt ID</th>";
+//								echo "<th>tgt type</th>";
+//								echo "<th>tgt_version</th>";
+//								echo "<th>species</th>";
+//								
+//								echo'</tr></thead>';
+//
+//								//Debut du corps de la table
+//								echo'<tbody>';
+//
+//								foreach($cursor['result'] as $line) {
+//
+//									//echo $line['src_to_tgt'];
+//									for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//										echo "<tr>";
+//										
+//										echo '<td>'.$line['type'].'</td>';
+//
+//										echo '<td>'.$line['src_to_tgt'][0].'</td>';
+//										echo '<td>'.$line['src'].'</td>';
+//										echo '<td>'.$line['src_version'].'</td>';
+//
+//										//for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//
+//										echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+//		
+//	
+//										//}
+//										echo '<td>'.$line['tgt'].'</td>';
+//										echo '<td>'.$line['tgt_version'].'</td>';
+//										echo '<td>'.$line['species'].'</td>';
+//										echo "</tr>";
+//									}
+//
+//								}
+//								echo'</tbody></table></div>';
+//								
+//								#echo $ortholog."\n";
+//								#var_dump($cursor);
+//								#echo "\n";
+//							}
 							
 							
 						}
