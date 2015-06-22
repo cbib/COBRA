@@ -11,14 +11,14 @@ require './src/session/control-session.php';
 
 
 
-
-//define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
-//define('CONTENT_DIR', ROOT_DIR .'wiki/content/');
-//define('CONTENT_EXT', '.md');
-//define('LIB_DIR', ROOT_DIR .'wiki/lib/');
-//define('PLUGINS_DIR', ROOT_DIR .'wiki/plugins/');
-//define('THEMES_DIR', ROOT_DIR .'wiki/themes/');
-//define('CACHE_DIR', LIB_DIR .'wiki/cache/');
+define('CONTENT_EXT', '.md');
+define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
+define('CONTENT_DIR', ROOT_DIR .'wiki/content/');
+define('CONTENT_EXT', '.md');
+define('LIB_DIR', ROOT_DIR .'wiki/lib/');
+define('PLUGINS_DIR', ROOT_DIR .'wiki/plugins/');
+define('THEMES_DIR', ROOT_DIR .'wiki/themes/');
+define('CACHE_DIR', LIB_DIR .'wiki/cache/');
 
 
 

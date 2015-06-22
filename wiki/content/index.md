@@ -5,14 +5,14 @@ Author:
 Date: 2015/01/29
 */
 
-
+#overview
 		
 <div class="col-md-12" >		
     <div class="col-md-6" >
             <div class="column-padding no-right-margin">
                     <div class="plain-box"><h2 id="features">A COmbination of systems Biology and experimental high-throughput approaches to engIneer durable Resistance against plAnt viruses in crops</h2>
                     </div>
-                            <p>(PLANT-KBBE) 2014-2017 										Projet COBRA</p>
+                            <p>(PLANT-KBBE) 2013 										Projet COBRA</p>
                             <p>COBRA plant virus interaction database is developed in coordination with other plant genomics and 										bioinformatics groups via the  consortium. The Plant KBBE project is funded by the 										European Commission within its 7th Framework Programme, under the thematic area 						</p>
                             <p>ANR Programme: <a href="http://www.agence-nationale-recherche.fr/en/funded-projects/?tx_lwmsuivibilan_pi1[Programme]=843">Food & Feed: crop yields and nutrition security in the context of climate change (PLANT-KBBE) 2013</a></p>
 
@@ -58,11 +58,12 @@ Date: 2015/01/29
 
 
 
+
     <div class="col-md-6" >
         <div class="col-md-6" >
             <div id="image_container">
                 <hr  size=0.5>
-                <img class="displayed" id="partner_logo" src="/database/images/new_inra2_w186.png"/>
+                <img class="displayed" id="partner_logo" src="/database/images/new_inra_w186.png"/>
             </div>
             <div id="image_container">
                 <hr  size=0.5>                           

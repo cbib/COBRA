@@ -33,17 +33,12 @@ class Pico {
 		$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
 
         
-        //error_log('script url : '.$script_url, 0);
-        //error_log('request url : '.$request_url, 0);
-
        
 		// Get our url path and trim the / of the left and the right
 		if($request_url != $script_url) $url = trim(preg_replace('/'. str_replace('/', '\/', str_replace('index.php', '', $script_url)) .'/', '', $request_url, 1), '/');
       
-        //error_log('url : '.$url, 0);
 
         $url = preg_replace('/\?.*/', '', $url); // Strip query string
-        //error_log('url : '.$url, 0);
 		$this->run_hooks('request_url', array(&$url));
 
 		// Get the file path
@@ -56,7 +51,6 @@ class Pico {
         
 		if(is_dir($file)) $file = CONTENT_DIR . $url .'/index'. CONTENT_EXT;
 		else $file .= CONTENT_EXT;
-        //error_log('file : '.$file, 0);
        
 		$this->run_hooks('before_load_content', array(&$file));
 		if(file_exists($file)){
@@ -201,7 +195,7 @@ class Pico {
 	protected function get_config()
 	{
 		global $config;
-		include_once(ROOT_DIR .'config.php');
+		@include_once(ROOT_DIR .'config.php');
 
 		$defaults = array(
 			'site_title' => 'Pico',
@@ -235,7 +229,6 @@ class Pico {
 		$pages = $this->get_files(CONTENT_DIR, CONTENT_EXT);
 		$sorted_pages = array();
 		$date_id = 0;
-        $page_number=0;
 		foreach($pages as $key=>$page){
             //error_log($page, 0);
 			// Skip 404
@@ -254,16 +247,13 @@ class Pico {
 			$page_meta = $this->read_file_meta($page_content);
 			$page_content = $this->parse_content($page_content);
 			//error_log($page, 0);
-            
             $url = str_replace(CONTENT_DIR, $base_url .'/', $page);
             //error_log($url, 0);
 			$url = str_replace('index'. CONTENT_EXT, '', $url);
-             //error_log('url '.$url, 0);
+            //error_log($url, 0);
 			$url = str_replace(CONTENT_EXT, '', $url);
             //$url='/wiki/content'.$url;
-            //error_log('page number '.CONTENT_EXT, 0);
-            //error_log('url '.$url, 0);
-            //error_log('page meta title : '.$page_meta['title'], 0);
+            //error_log($page_meta['title'], 0);
 			$data = array(
 				'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
 				'url' => $url,
@@ -282,7 +272,6 @@ class Pico {
 				$date_id++;
 			}
 			else $sorted_pages[] = $data;
-            $page_number++;
 		}
 		
 		if($order == 'desc') arsort($sorted_pages);
@@ -350,21 +339,15 @@ class Pico {
 	 */ 
 	protected function get_files($directory, $ext = '')
 	{
-        error_log('in get file', 0);
-        error_log('directory : '.$directory, 0);
-        error_log('ext : '.$ext, 0);
 	    $array_items = array();
 	    if($handle = opendir($directory)){
 	        while(false !== ($file = readdir($handle))){
 	            if(preg_match("/^(^\.)/", $file) === 0){
 	                if(is_dir($directory. "/" . $file)){
-                        //error_log('is a directory : '. $file, 0);
-
 	                    $array_items = array_merge($array_items, $this->get_files($directory. "/" . $file, $ext));
 	                } else {
 	                    $file = $directory . "/" . $file;
-                        //error_log('file'.$file, 0);
-
+                        
 	                    if(!$ext || strstr($file, $ext)) $array_items[] = preg_replace("/\/\//si", "/", $file);
 	                }
 	            }

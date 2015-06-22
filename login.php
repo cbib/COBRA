@@ -15,7 +15,7 @@ $usersCollection = new Mongocollection($db, "users");
 
 if ((isset($_GET['act'])) && ($_GET['act'] == 'logout'))
 {
-	new_cobra_body(False,'Login page');
+	new_cobra_body(False);
 	if ((isset($_SESSION['login'])) && (!empty($_SESSION['login']))){
 		$_SESSION = array();
 		

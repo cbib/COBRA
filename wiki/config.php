@@ -22,7 +22,7 @@ $config['custom_setting'] = 'Hello'; 	// Can be accessed by {{ config.custom_set
 
 */
 //$config['base_url'] = 'http://localhost/Pico-master'; 				// Override base URL (e.g. http://example.com)
-$config['base_url'] = 'content';
+$config['base_url'] = '';
 $config['theme'] = 'cobra_main';
 $config['pages_order_by'] = 'alpha';
 $config['pages_order'] = 'asc';
@@ -47,4 +47,3 @@ $config['pages_order'] = 'asc';
 //         )
 //     )
 // );
-?>
