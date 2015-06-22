@@ -376,6 +376,10 @@ mappings_col.insert(mapping_table)
 
 #Mapping Table Arabidopsis
 
+#prot_to_gene
+
+
+
 #est_to_gene
 mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
