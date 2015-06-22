@@ -7,7 +7,34 @@
 
 /*modify the width regarding to tyhe resolution of the screen*/
 
+@media (min-width: 568px) {
+  .container{
+    width:400px
+   }
+  .table {
+    width: 550px;
+  }
+  .resultsbox{
+ 	width:450px
+ } 
+ .dataTable {
+    	width: 468px;
+  }
+  .content{
+ 	width:400px
+  }
+ .div#protein-details{
+	width: 175px;
+ }
+ .div#stat-details{
+	width: 175px;
+ }
+}
+
 @media (min-width: 768px) {
+  .container{
+    width:600px
+   }
   .table {
     width: 750px;
   }
@@ -18,7 +45,7 @@
     	width: 668px;
   }
   .content{
- 	width:599px
+ 	width:600px
   }
  .div#protein-details{
 	width: 375px;
@@ -35,7 +62,7 @@
     	width: 892px;
   }
   .content{
- 	width:812px
+ 	width:830px
   }
   .resultsbox#results{
  	width:650px

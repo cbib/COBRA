@@ -10,6 +10,7 @@ from helpers.logger import Logger
 from helpers.db_helpers import * 
 import string
 from random import *
+from HTMLParser import HTMLParser
 
 # Script 
 import datetime
@@ -20,7 +21,12 @@ if "log" not in globals():
 users_col.remove()
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
+
+print characters
+parser = HTMLParser()
+characters = parser.unescape(characters)
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "bdartigues password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -37,7 +43,8 @@ users_table={
 }
 users_col.insert(users_table)
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "mnikolski password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -55,7 +62,8 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "agroppi password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -73,7 +81,8 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "vdecroocq password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -91,7 +100,8 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "sgerman_retana password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -109,7 +119,8 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+#characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "jwalter password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()

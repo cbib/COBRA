@@ -22,7 +22,24 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
     echo '
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
+    	<div class="checkbox">
+        <form action="ortholog_search_result.php">
+            <input type="hidden" name="envoi" value="yes">
+            
+            ';   
+                            //Parcours de chaque ligne du curseur
+                            foreach($cursor as $line) {
+                                    echo '<input tabindex="10" type="checkbox" id="square-checkbox-2" checked>
+                  <label for="square-checkbox-2">CSS3 Expert</label>';
+                                    echo '<input type="checkbox" name="options[]" value="'.$line.'">&nbsp;'.$line.'<br>';
+                                    
+                            }
+                            echo '
+            
+            <input type="submit">
+        </form>
+        </div>
+        <form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="center" class="ff-inline ff-right" >
@@ -117,84 +134,7 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 
 
 //$species='Cucumis melo';
-$species='Arabidopsis thaliana';
-//$species='Hordeum vulgare';
-$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species,10);
 
-$species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
-foreach ($species_id_type as $value) {
-    $favourite_id=$value['preferred_id'];
-    //echo $value['preferred_id'];    
-}
-$plaza_favorite_tgt_id=$mappingsCollection->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
-//only one value is possible
-foreach ($plaza_favorite_tgt_id as $value) {
- $intermediary_id=$value['tgt'];
-    //echo $value['tgt'];
-
-}
-
-
-    
-foreach ($gene_list_attributes as $attributes) {
-    echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
-    echo'<thead><tr>';
-    echo "<th>Gene id</th>";
-    echo "<th>Gene preferred Id</th>";
-    echo "<th>Protein uniprot id</th>";
-    echo "<th>Plaza id</th>";
-    echo "<th>logFC</th>";
-    echo "<th>infection agent</th>";
-    echo "<th>species</th>";
-    echo'</tr></thead><tbody>';
-    $cpt=0;
-    foreach ($attributes as $key => $value) {
-        if ($cpt==0){
-            echo "<tr>";
-            echo '<td>'.$attributes['gene'].'</td>';
-            echo '<td>'.$attributes[$favourite_id].'</td>';
-            echo '<td>'.$attributes[$intermediary_id].'</td>'; 
-            echo '<td>'.$attributes['plaza_id'].'</td>';
-            echo '<td>'.$attributes['logFC'].'</td>';
-            echo '<td>'.$attributes['infection_agent'].'</td>';
-            echo '<td>'.$species.'</td>';
-            echo "</tr>";
-            echo'</tbody></table>';
-        }
-
-        
-        
-        if ($value != "NA"){
-            //echo $key."\r\t";
-            //echo $value."\r\n";
-            
-            if ($key=="plaza_id"){
-                //echo $key."\r\t";
-                //echo $value."\r\n";
-                //echo "</br>";
-                ben_function2($grid,$mappingsCollection,$orthologsCollection,$species,$value);
-
-                
-            }
-            else{
-//                echo $key."\r\t";
-//                echo $value."\r\n";
-//                echo "</br>";
-            }
-        }
-        else{
-//            echo $key."\r\t";
-//            echo $value."No id found\r\n";
-//            
-//            echo "</br>";
-        }
-        $cpt++;
-        
-    }
-    
-        //echo $attributes['gene'];
-        //$attributes['gene'];
-}
 
     
 
