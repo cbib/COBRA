@@ -47,14 +47,14 @@ echo'
 <!--  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> -->
 <!--  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script> -->
 <![endif]-->
-</head>';
+';
 }
 
 
 function new_cobra_body($IsLogged='null', $type='null'){
 echo'
 
-    
+    </head>
     <body class="skin-blue">
     <!-- header logo: style can be found in header.less -->
 
@@ -121,8 +121,8 @@ echo'
             	echo '<ol class="breadcrumb">
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
                   <li><a href="/database/src/description/">description</a></li>
-                  <li><a href="/wiki/">wiki home</a></li>
-                  <li><a href="/database/src/search/">Quick search</a></li>
+                  <li><a href="/">wiki home</a></li>
+                  <li><a href="/database/">Quick search</a></li>
                   ';if ($IsLogged){echo '
                   <li><a href="/database/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
                   echo '<li><a href="/database/login.php?act=logout">Logout</a></li>';}
