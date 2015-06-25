@@ -195,14 +195,15 @@ function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='nu
 	#ask for the right species files
 	
 	$cursor=$or->find(array('mapping_file.species' => $species ),array('_id'=>0, 'mapping_file'=>array('$elemMatch'=> array('species' => $species))));
-
+    $file_path='';
 	foreach ( $cursor as $array ){
 		foreach ($array['mapping_file'] as $key=>$value ){
 			
 			
 			foreach ($value as $type=>$filename ){
 				if ($type=="file"){
-					#echo $filename;
+                  $file_path=$filename;
+                    //echo $filename;
 				}
 			#foreach ($value as $filename ){
 			#		echo $filename;
@@ -224,7 +225,7 @@ function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='nu
 	
 	
 	$MongoGridFSCursor=array();
-	$MongoGridFSCursor= $grid->find(array('data_file'=>$filename));
+	$MongoGridFSCursor= $grid->find(array('data_file'=>$file_path));
 	
 ##function to retrieve 
 

@@ -2,6 +2,12 @@ data/*
 backend/tests/*.pyc
 backend/*.pyc
 backend/helpers/*.pyc
+backend/config.pyc
+backend/helpers/__init__.pyc
+backend/helpers/basics.pyc
+backend/helpers/db_helpers.pyc
+backend/helpers/logger.pyc
+backend/helpers/path.pyc
 
 lib/*
 

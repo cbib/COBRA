@@ -1,11 +1,15 @@
- <?php
- session_start(); // ici on continue la session
- if ((!isset($_SESSION['login'])) || ($_SESSION['login'] == ''))
- {
-	// La variable $_SESSION['login'] n'existe pas, ou bien elle est vide
-	// <=> la personne ne s'est PAS connectée
-	echo '<p>You have to be <a href="/database/login.php"> logged</a>.</p>'."\n";
-	exit();
- }
+<?php
+session_start(); // ici on continue la session
+
  
- ?>
+ 
+if ((!isset($_SESSION['login'])) || ($_SESSION['login'] == ''))
+{
+    new_cobra_header();
+    new_cobra_body(False, "Login form");
+	echo '<p>You have to be <a href="/database/login.php"> logged</a>.</p>'."\n";
+	new_cobra_footer();
+    exit();
+}
+ 
+?>
