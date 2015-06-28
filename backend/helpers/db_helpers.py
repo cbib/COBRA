@@ -69,10 +69,57 @@ def aliases_for_species_matching(classification_query):
 
 def get_possible_aliases(species_txt):
 	return aliases_for_species_matching({"_id":find_species_doc(species_txt)['_id']})
+	
+	
+	
+	
+def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
+	rows_to_data=[]
+	with open(src_file, 'rb') as f:
+		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+		cpt=0
+		try:
+			#logger.info("number of rows:%s",len(list(csvreader)))
+			for row in csvreader:
+				cpt+=1
+				values=[]
+				#logger.info("rows:%s and len %d",row,len(row))
+				values.append(cpt);
+				
+
+				for col in range(len(row)):
+					values.append(row[col])
+						
+				if len(column_keys)!=len(values):
+					logger.info("columns keys length:%d",len(column_keys))
+					logger.info("value length :%d",len(values))
+					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
+				this_dict=dict(zip(column_keys,values))
+				if id_col: #enforce id col type
+					if isinstance(this_dict[id_col],Number):
+						this_dict[id_col]=str(int(this_dict[id_col]))
+				rows_to_data.append(this_dict)
+						
+         #logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
+				
+			#if id_col: #enforce id col type 
+			#	if isinstance(this_dict[id_col],Number):
+			#		this_dict[id_col]=str(int(this_dict[id_col]))
+         #rows_to_data.append(this_dict)		
+		except csv.Error as e:
+			sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+
+	return rows_to_data	
+	#logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+	
+	#logger.info("rows:%s",row)
+	
+	 
+
 
 # def get_mapping_table(src,tgt):
 # 	mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
-def parse_csv_table(src_file,column_keys,n_rows_to_skip,species_initials,id_col=None):
+def parse_ortholog_table(src_file,column_keys,n_rows_to_skip,species_initials,id_col=None):
 	rows_to_data=[]
 	for initial in species_initials:
 		logger.info("species initial:%s",initial)
@@ -124,14 +171,21 @@ def parse_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,id_col=Non
         current_sheet.name
         rows_to_data=[]
         logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+        
         for row in range(n_rows_to_skip,current_sheet.nrows):
+        
                 values=[row]
+                #logger.info("lenght:%d",(len(values)))
+
                 for col in range(current_sheet.ncols):
+                			
                         values.append(current_sheet.cell(row,col).value)
+                        #logger.info("column keys:%d",(row))
                         #logger.info("currentsheet nrows:%s",(current_sheet.cell(row,col).value))
                 if len(column_keys)!=len(values):
                 			#logger.info("column keys:%d",(len(column_keys)))
                 			#logger.info("lenght:%d",(len(values)))
+
                 			logger.critical("Mismatching number of columns and number of keys at location\n%s/sheet:%d/nrow:%d"%(src_file,sheet_index,row))
                 this_dict=dict(zip(column_keys,values))
                 if id_col: #enforce id col type 

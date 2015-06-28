@@ -91,7 +91,182 @@ function make_experiment_type_list($cursor){
     echo '</select>';
     
 }
+function get_sample_table_in_string($cursor,$samplesCollection){
+    $table_string="";
+    $array = iterator_to_array($cursor);
+    $keys =array();
 
+    foreach ($array as $k => $v) {
+            foreach ($v as $a => $b) {
+                $keys[] = $a;
+              }
+    }
+    $keys = array_values(array_unique($keys));
+
+    
+    //header table start
+    $table_string.='<thead><tr>';
+    $table_string.='<thead><tr>';
+    //recupere le titre
+    foreach (array_slice($keys,1) as $key => $value) {
+            if ($value=='gene'){
+                $table_string.="<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='direction'){
+                $table_string.="<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='logFC'){
+                $table_string.="<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='type'){
+                $table_string.="<th>" . $value . "</th>";
+
+            }
+    }
+    foreach (array_slice($keys,1) as $key => $value) {
+
+            if ($value=='xp'){
+                $table_string.="<th>" . $value . "</th>";
+
+            }
+    }
+    $table_string.='</tr></thead>';
+    //header table end
+
+    //Debut du corps de la table
+    $table_string.='<tbody>';
+    foreach($cursor as $line) {
+        $table_string.="<tr>";
+
+        //Slice de l'id Mongo
+        #$table_string.=$line->count();
+
+        foreach(array_slice($keys,1) as $key => $value) {
+
+
+            #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+
+            if ($value=='gene'){
+                if (stristr($line[$value],"MU")) {
+                    if(is_array($line[$value])){;
+                        #http://www.arabidopsis.org/servlets/TairObject?name=AT5G03160&type=locus
+                        $table_string.="<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".show_array($line[$value])."&searchtype=unigene&organism=melon\">".show_array($line[$value])."</a></td>";
+
+                    }
+                    else {
+                        $table_string.="<td><a href=\"http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=".$line[$value]."&searchtype=unigene&organism=melon\">".$line[$value]."</a></td>";
+
+                    }
+                }
+                else if (stristr($line[$value],"AT")) {
+                    if(is_array($line[$value])){;
+
+                        $table_string.="<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".show_array($line[$value])."&type=locus\">".show_array($line[$value])."</a></td>";
+
+                    }
+                    else {
+                        $table_string.="<td><a href=\"http://www.arabidopsis.org/servlets/TairObject?name=".$line[$value]."&type=locus\">".$line[$value]."</a></td>";
+                    }
+                }
+                else{
+                    if(is_array($line[$value])){;
+
+                        $table_string.="<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".show_array($line[$value])."\">".show_array($line[$value])."</a></td>";
+
+                    }
+
+                    else {
+                        //$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
+                        $table_string.="<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
+                        #$table_string.="<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+
+
+                        #get_protein_info($url);
+                        #$table_string.="<td>".$line[$value]."</td>";
+                    }
+                }
+
+                # http://pgsb.helmholtz-muenchen.de/cgi-bin/db2/barleyV2/gene_report.cgi?gene=
+                #use table from 
+
+
+            }
+
+        }
+
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='direction'){
+                if(is_array($line[$value])){;
+                    $table_string.="<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    $table_string.="<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='logFC'){
+                if(is_array($line[$value])){;
+                    $table_string.="<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    $table_string.="<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='type'){
+                if(is_array($line[$value])){;
+                    $table_string.="<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    $table_string.="<td>".$line[$value]."</td>";
+                }
+            }
+        }
+        foreach(array_slice($keys,1) as $key => $value) {
+
+            if($value=='xp'){
+                if(is_array($line[$value])){;
+                    $table_string.="<td>".show_array($line[$value])."</td>";
+                }
+                else {
+                    //list($xp_String_id, $ex_results, $file_number) 
+                    $xp_details= explode(".", $line[$value]);
+                    $xp_String_id=$xp_details[0];
+                    //$table_string.="<td>".$xp_String_id."</td>";
+                    $file_number=$xp_details[2]+1;
+                    $xp_id = new MongoId($xp_String_id);
+                    $xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
+
+                    $table_string.="<td><a href=description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+                    //$table_string.="<td>".$line[$value]."</td>";
+
+                }
+            }
+        }
+
+
+        $table_string.="</tr>";
+    }
+    $table_string.='</tbody>'; 
+    return $table_string;
+}
 function display_sample_table($cursor,$samplesCollection){
     $array = iterator_to_array($cursor);
     $keys =array();
@@ -271,7 +446,7 @@ function make_user_preferences($user,Mongocollection $us){
 	echo '<h2> User preferences</h2>
     		<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
     			<h3> login details</h3>';
-   foreach ( $user as $person ) { 
+    foreach ( $user as $person ) { 
 		if (($person['login'] != '') && ($person['pwd'] != '')){
 			echo 'You are currently logged in as '.$person['login'].'.';
 			
@@ -279,36 +454,40 @@ function make_user_preferences($user,Mongocollection $us){
 			
 			
 		}
-	echo '</div></br>';	
+        echo '</div>'
+        . '</br>';	
 		
-	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
-			<div id="SpeciesSearch" class="js_panel">
-    			<input type="hidden" class="panel_type" value="SearchBox" />
-				<h3> Change password</h3>';
+        echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+                <div id="SpeciesSearch" class="js_panel">
+                    <input type="hidden" class="panel_type" value="SearchBox" />
+                    <h3> Change password</h3>';
 		
-		echo'<form action="/database/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
-				<fieldset>
-					<div class="form-field ff-multi">
-						<div align="center" class="ff-inline ff-right" >';
-					echo '<label for="q">enter password</label>		
-							<wbr></wbr>
-							<span class="inp-group">
-								<input value="pwd1" name="pwd1" class="_string input inactive query optional ftext" id="pwd1" type="text" size="30" />
-							
-							</span>';
-					echo '<label for="pwd">confirm password</label>		
-							<wbr></wbr>
-							<span class="inp-group">
-								<input value="pwd2" name="pwd2" class="_string input inactive query optional ftext" id="pwd2" type="text" size="30" />
-								<input value="Go" class="fbutton" type="submit" />
-							</span>';
-		echo'			</div>
-					</div>
-				</fieldset>
-			  </form>';
-   
-   }
-   echo '</div></div>';
+               echo'<form action="/database/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
+                        <fieldset>
+                            <div class="form-field ff-multi">
+                                <div align="center" class="ff-inline ff-right" >';
+                              echo '<label for="q">enter password</label>		
+                                    <wbr></wbr>
+                                    <span class="inp-group">
+                                        <input value="" name="pwd1" class="_string input inactive query optional ftext" id="pwd1" type="text" size="30" />
+                                    </span>';
+                              echo '<label for="pwd">confirm password</label>		
+                                    <wbr></wbr>
+                                    <span class="inp-group">
+                                        <input value="" name="pwd2" class="_string input inactive query optional ftext" id="pwd2" type="text" size="30" />
+                                        <input value="Go" class="fbutton" type="submit" />
+                                    </span>';
+                           echo'</div>
+                            </div>
+				        </fieldset>
+			        </form>';  
+    }
+        echo '</div>'
+        . '</div>';
+        
+        echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">'
+        . '</div>';
+
 }
 
 function make_viruses_list($cursor){
@@ -467,7 +646,7 @@ function make_species_list($cursor){
 
                             <span class="inp-group">
                                 <select name="organism" class="fselect input" id="organism">
-                                        <option value="">Allspecies</option>
+                                        <option value="All species" selected="selected">All species</option>
                                         <option disabled="disabled" value="">---</option>';   
                                 //Parcours de chaque ligne du curseur
                             foreach($cursor as $line) {

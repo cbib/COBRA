@@ -1,8 +1,9 @@
 <?php
-include 'simple_html_dom.php';
-function ben_function2(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
-    get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
 
+include 'simple_html_dom.php';
+function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
+    $cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
+    return $cursor_array;
 }
 function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$top_value=10){
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
@@ -91,6 +92,19 @@ function get_target_and_source($tgt_to_src,$value,$intermediary_id='null'){
         }       
     }
     return $value;
+}
+function get_gene_ontology_details(Mongocollection $ma,$species='null',$gene_id='null'){
+    $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'type'=>'gene_to_go');
+    $fields=array('src_to_tgt'=>1);
+    $mapping=$ma->find($query, $fields);
+    $cursor=array();
+    foreach ($mapping as $map_doc){
+        
+        $src_to_tgt = $map_doc['src_to_tgt'];
+        
+        
+    }
+    return $mapping; 
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
@@ -224,12 +238,12 @@ function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='nu
 	#echo "this is the corresponding orthology file : ".$filename;
 	
 	
-	$MongoGridFSCursor=array();
+	//$MongoGridFSCursor=array();
 	$MongoGridFSCursor= $grid->find(array('data_file'=>$file_path));
 	
-##function to retrieve 
+    ##function to retrieve 
 
- return $MongoGridFSCursor;
+    return $MongoGridFSCursor;
 
 }
 
@@ -258,38 +272,110 @@ function get_plaza_id($id='null'){
 	
 
 }
+function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='null',$src='null'){
+   	$cursor=$collection->find(array('mapping_file.species' => $species ),array('_id'=>0, 'mapping_file'=>array('$elemMatch'=> array('species' => $species))));
+    
+    $file_path='';
+	foreach ( $cursor as $array ){
+		foreach ($array['mapping_file'] as $key=>$value ){
+			
+			
+			foreach ($value as $type=>$filename ){
+				if ($type=="file"){
+                  $file_path=$filename;
+                    //echo $filename;
+				}
+			#foreach ($value as $filename ){
+			#		echo $filename;
+			
+			
+			
+			// foreach ($value as $keys=>$values ){
+// 				echo $keys;
+// 				echo $values;
+// 				$filename=$keys;
+// 				#if ($keys=="file"){
+// 				#	$filename=$values;
+// 				#	echo $values;
+// 				#}
+			}
+		}
+	}
+    $MongoGridFSCursor= $grid->find(array('data_file'=>$file_path));
+	
+    ##function to retrieve 
+
+    return $MongoGridFSCursor;
+   
+}
+function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
+   	
+    $go_list_term=array();
+    
+
+    //$MongoGridFSCursor=  get_grid_file($grid, $mappingsCollection,$speciesID,$src);
+    $MongoGridFSCursor= $grid->find(array('data_file'=>$filename));
+    $species=$mappingsCollection->find(array('mapping_file.file'=>$filename),array('mapping_file.species'=>1));
+    foreach ($species as $array){       
+        foreach ($array['mapping_file'] as $key=>$value ){
+            foreach($MongoGridFSCursor as $MongoGridFSFile) {
+                $stream = $MongoGridFSFile->getResource();
+                if ($stream) {
+                    #while (($buffer = fgets($stream, 4096)) !== false) {
+                    $cpt=0;
+                    while (($buffer = stream_get_line($stream, 1024, "\n")) !== false) {
+                        //echo $buffer.'<br>';
+                        $row=preg_split('/\t+/', $buffer);
+                        //echo $row[0].'<br>';
+
+                        if ($src==$row[0]){
+                            $tmp_array=array();
+                            array_push($tmp_array, $row[0]);
+                            array_push($tmp_array, $row[3]);
+                            array_push($tmp_array, $row[4]);
+                            array_push($tmp_array, $row[5]);
+                            array_push($tmp_array, $row[9]);
+                            if ($key=='species'){
+                                array_push($tmp_array, $value);
+                            }
+
+                            array_push($go_list_term,$tmp_array);
+                            
+                            //echo 'test'.$row[0].'-'.$row[3].'-'.$row[4].'-'.$row[5].'<br>';
+
+                        }
+                        $cpt++;
+                    }
+                }
+            } 
+        }
+    }
+    return $go_list_term;
+
+
+}
+
 function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
-	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-	echo'<h1 style="text-align:center"> Orthology informations </h1>';
-	echo '</div>';
+//	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+//	echo'<h1 style="text-align:center"> Orthology informations </h1>';
+//	echo '</div>';
+   
 	#$current_plaza_id="AT1G01060";
     $initial_species=array('AT','CM','HV','SL');
 	//echo "test plaza id ".$current_plaza_id;
-
+    $table_string="";
 	if ($current_plaza_id!=""){
-	
-		
-		//echo $current_plaza_id;
-		#echo $species_ID;
+
 		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
 		#$MongoGridFSCursor->skip(3)->limit(8);
 		foreach($MongoGridFSCursor as $MongoGridFSFile) {
 			#error_log($MongoGridFSFile->getBytes(), 0);
-
-			
-			
 			$stream = $MongoGridFSFile->getResource();
  			if ($stream) {
      			#while (($buffer = fgets($stream, 4096)) !== false) {
-	     		$cpt=0;
+	     		
 	     		while (($buffer = stream_get_line($stream, 1024, "\n")) !== false) {
-//         			#echo $buffer;
-					#$row=split('[\t]', $buffer);
-					
-					
-					#if ($cpt<10){
-					
-					#echo "start line : ".$buffer."\n";
+         			#echo "start line : ".$buffer."\n";
 					#$row=split('[\t]', $buffer);
 					$row=preg_split('/\s+/', $buffer);
 					if ($current_plaza_id==$row[0]){
@@ -307,64 +393,93 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                         array('$match' => array('src_to_tgt.0'=>$ortholog)),  
                                         array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
                                     ));
-
+                                    
                                     if (count($cursor['result'])!=0){
-                                        echo '<h2> orthologs table </h2> <div class="container">';
-                                        echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
-                                        echo'<thead><tr>';
-
-                                        //recupere le titre
-                                        #echo "<th>type</th>";
-                                        echo "<th>Mapping type</th>";
-                                        echo "<th>src ID</th>";
-                                        echo "<th>src type</th>";
-                                        echo "<th>src_version</th>";
-                                        echo "<th>tgt ID</th>";
-                                        echo "<th>tgt type</th>";
-                                        echo "<th>tgt_version</th>";
-                                        echo "<th>species</th>";
-
-                                        echo'</tr></thead>';
-
-                                        //Debut du corps de la table
-                                        echo'<tbody>';
-
+                                          
+                               
                                         foreach($cursor['result'] as $line) {
 
                                             //echo $line['src_to_tgt'];
                                             for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-                                                echo "<tr>";
-
-                                                echo '<td>'.$line['type'].'</td>';
-
-                                                echo '<td>'.$line['src_to_tgt'][0].'</td>';
-                                                echo '<td>'.$line['src'].'</td>';
-                                                echo '<td>'.$line['src_version'].'</td>';
-
-                                                //for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
-
-                                                echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-
-
-                                                //}
-                                                echo '<td>'.$line['tgt'].'</td>';
-                                                echo '<td>'.$line['tgt_version'].'</td>';
-                                                echo '<td>'.$line['species'].'</td>';
-                                                echo "</tr>";
+                                                $table_string.="<tr>";
+                                                //echo "<tr>";
+                                                $table_string.='<td>'.$line['type'].'</td>';
+                                                //echo '<td>'.$line['type'].'</td>';
+                                                $table_string.='<td>'.$line['src_to_tgt'][0].'</td>';
+                                                //echo '<td>'.$line['src_to_tgt'][0].'</td>';
+                                                $table_string.='<td>'.$line['src'].'</td>';
+                                                //echo '<td>'.$line['src'].'</td>';
+                                                $table_string.='<td>'.$line['src_version'].'</td>';
+                                                //echo '<td>'.$line['src_version'].'</td>';
+                                                $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                                //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                                $table_string.='<td>'.$line['tgt'].'</td>';
+                                                //echo '<td>'.$line['tgt'].'</td>';
+                                                $table_string.='<td>'.$line['tgt_version'].'</td>';
+                                                //echo '<td>'.$line['tgt_version'].'</td>';
+                                                $table_string.='<td>'.$line['species'].'</td>';
+                                                //echo '<td>'.$line['species'].'</td>';
+                                                $table_string.="<tr>";
+                                                //echo "</tr>";
+                                              
                                             }
-
-                                        }
-                                        echo'</tbody></table></div>';
-
-                                        #echo $ortholog."\n";
-                                        #var_dump($cursor);
-                                        #echo "\n";
-                                    }
-							
-							
+                                        }                                                                                                                                                                            
+/*                                        echo '<h2> orthologs table </h2> <div class="container">';
+//                                        echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+//                                        echo'<thead><tr>';
+//
+//                                        //recupere le titre
+//                                        #echo "<th>type</th>";
+//                                        echo "<th>Mapping type</th>";
+//                                        echo "<th>src ID</th>";
+//                                        echo "<th>src type</th>";
+//                                        echo "<th>src_version</th>";
+//                                        echo "<th>tgt ID</th>";
+//                                        echo "<th>tgt type</th>";
+//                                        echo "<th>tgt_version</th>";
+//                                        echo "<th>species</th>";
+//
+//                                        echo'</tr></thead>';
+//
+//                                        //Debut du corps de la table
+//                                        echo'<tbody>';
+//
+//                                        foreach($cursor['result'] as $line) {
+//
+//                                            //echo $line['src_to_tgt'];
+//                                            for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//                                                echo "<tr>";
+//
+//                                                echo '<td>'.$line['type'].'</td>';
+//
+//                                                echo '<td>'.$line['src_to_tgt'][0].'</td>';
+//                                                echo '<td>'.$line['src'].'</td>';
+//                                                echo '<td>'.$line['src_version'].'</td>';
+//
+//                                                //for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//
+//                                                echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+//
+//
+//                                                //}
+//                                                echo '<td>'.$line['tgt'].'</td>';
+//                                                echo '<td>'.$line['tgt_version'].'</td>';
+//                                                echo '<td>'.$line['species'].'</td>';
+//                                                echo "</tr>";
+//                                            }
+//
+//                                        }
+//                                        echo'</tbody></table></div>';*/ 
+                                    }                                   														
                                 }
-                            }
-                            
+                            }                          
+ 						}
+					}
+				}
+			}
+		}
+	}
+    return $table_string;                           
 //							#echo "start line : ".$buffer."\n";
 //							$cursor=$mappingsCollection->aggregate(array( 
 //								array('$match' => array('type'=>'gene_to_prot')),  
@@ -429,12 +544,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //							}
 							
 							
-						}
-					}
-				}
-			}
-		}
-	}
+
 }
 ### Find all aliases
 
@@ -2123,6 +2233,7 @@ function find_all_viruses(MongoCollection $vi){
 
 function find_all_xp_name(Mongocollection $sa){
 	$cursor=$sa->find(array(),array('name'=>1));
+    
 	return $cursor;
 }
 function get_all_variety(Mongocollection $sa){

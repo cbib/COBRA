@@ -8,10 +8,24 @@ require '../functions/php_functions.php';
 require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
+
+
+
+
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']),"Quick search");
 
 
+
+echo '
+<main id="content" class="homepage">
+	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
+			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
+			by the new candidate genes prior to transfer to crop species</p>
+	</div> 
+	';
+
+echo '</main>';
 //include('connection.php');
 
 

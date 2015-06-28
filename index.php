@@ -39,6 +39,7 @@ echo '</main>';
 
 
 
+
 new_cobra_footer();
 
 ?>

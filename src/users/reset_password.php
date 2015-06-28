@@ -19,10 +19,11 @@
 			new_cobra_body($_SESSION['login'],"");
 			$pwd=md5($_GET['pwd1']);
 			$usersCollection->update(array('firstname'=>$_SESSION['firstname'],'lastname'=>$_SESSION['lastname']), array('$set' => array('pwd' => $pwd)));
+            echo "<p> your new password has been successfully saved";
 		}
 		else{
 			//alert("you need to confirm with the same password !!! ");
-			echo "<script>alert('ok');</script>"; 
+			echo "<script>alert('you need to confirm with the same password');</script>"; 
 
 			
 			header ('Location: ../search/index.php');

@@ -18,8 +18,8 @@ if "log" not in globals():
 
 # clear db 
 
-mappings_col.remove()
-orthologs_col.remove()
+mappings_col.drop()
+orthologs_col.drop()
 for grid_out in fs.find({}, timeout=False):
 	
 	fs.delete(grid_out._id)
@@ -447,7 +447,7 @@ mappings_col.insert(mapping_table)
 
 #gene_to_gene_symbol
 mapping_table={
-	"data_file":"mappings/gene_aliases_20131231.xls",
+	"data_file":"mappings/arabidopsis_thaliana_gene_aliases_20131231.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"gene_to_symbol",
 	"src":"AGI_TAIR",
@@ -469,7 +469,27 @@ mapping_table={
 mappings_col.insert(mapping_table)
 
 
-
+mapping_table={
+	"data_file":"mappings/gene_ontology/ATH_GO_GOSLIM.tsv",
+	"species":"Arabidopsis thaliana",
+	"type":"gene_to_go",
+	"src":"AGI_TAIR",
+	"src_version":"Tair",
+	"tgt":"GO_ID",
+	"tgt_version":"",
+	"url":"https://www.arabidopsis.org/download_files/GO_and_PO_Annotations/Gene_Ontology_Annotations/ATH_GO_GOSLIM.txt",
+	"doi":"",
+	"src_pub":"Berardini, TZ, Mundodi, S, Reiser, R, Huala, E, Garcia-Hernandez, M,Zhang, P, Mueller, LM, Yoon, J, Doyle, A, Lander, G, Moseyko, N, Yoo,D, Xu, I, Zoeckler, B, Montoya, M, Miller, N, Weems, D, and Rhee, SY(2004) Functional annotation of the Arabidopsis genome usingcontrolled vocabularies. Plant Physiol. 135(2):1-11.",
+	"key":"Tair_2_GO",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','AGI_TAIR','TAIR_accession','object_name','relationship_type','GO_term','GO_ID','TAIR_Keyword_ID','Aspect','GOslim_term','Evidence_code','Evidence_description','Evidence_with','Reference','Annotator','Date'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
 #### Ortholog Tables
 
 

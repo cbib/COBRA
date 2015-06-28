@@ -25,6 +25,8 @@
 
  	make_user_preferences($user,$usersCollection);
 
+    
+    
  	new_cobra_footer();
  	
  

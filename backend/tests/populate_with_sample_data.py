@@ -20,10 +20,10 @@ if "log" not in globals():
 
 
 
-publications_col.remove()
-samples_col.remove()
-measurements_col.remove()
-interactions_col.remove()
+publications_col.drop()
+samples_col.drop()
+measurements_col.drop()
+interactions_col.drop()
 #orthologs_col.remove()
 #users_col.remove()
 #orthologs_col.gridfs.drop()
@@ -833,7 +833,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd2",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -860,7 +860,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd3",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -887,7 +887,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd4",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -914,7 +914,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym7",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -942,7 +942,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym16HB",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -970,7 +970,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym17",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -996,8 +996,8 @@ samples_col.insert(barley_samples)
 barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
-	"strain":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"strain":"",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym1",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1024,7 +1024,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym18",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1051,7 +1051,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym8_rym9",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1079,7 +1079,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym13",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1107,7 +1107,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym3",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1135,7 +1135,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym14HB",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},
@@ -1162,7 +1162,7 @@ barley_samples={
 	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
-	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus",
+	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym15",
 	"xp_page":{
 	"content":""""""},
 	"assay":{"type":"RNA-Seq"},

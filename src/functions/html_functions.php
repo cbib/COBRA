@@ -50,7 +50,111 @@ echo'
 ';
 }
 
-
+function add_accordion_panel($table_thead_tbody_string){
+    echo'<div class="panel-group" id="accordion_documents">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>
+                            <a class="accordion-toggle collapsed" href="#collapse_documents" data-parent="#accordion_documents" data-toggle="collapse">
+                                Samples details
+                            </a>				
+                        </h3>
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="collapse_documents">
+                        
+                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                            
+                           ';
+                            echo  $table_thead_tbody_string;
+                            echo'
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>    
+     <br/>';
+    
+    
+    
+    
+    
+/*   echo'<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
+//    echo'<thead><tr>';
+//
+//    //recupere le titre
+//    #echo "<th>type</th>";
+//    echo "<th>Mapping type</th>";
+//    echo "<th>src ID</th>";
+//    echo "<th>src type</th>";
+//    echo "<th>src_version</th>";
+//    echo "<th>tgt ID</th>";
+//    echo "<th>tgt type</th>";
+//    echo "<th>tgt_version</th>";
+//    echo "<th>species</th>";
+//
+//    echo'</tr></thead>';
+//
+//    //Debut du corps de la table
+//    echo'<tbody>';
+//    foreach($cursor['result'] as $line) {
+//
+//        //echo $line['src_to_tgt'];
+//        for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//            echo "<tr>";
+//
+//            echo '<td>'.$line['type'].'</td>';
+//
+//            echo '<td>'.$line['src_to_tgt'][0].'</td>';
+//            echo '<td>'.$line['src'].'</td>';
+//            echo '<td>'.$line['src_version'].'</td>';
+//
+//            //for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
+//
+//            echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+//
+//
+//            //}
+//            echo '<td>'.$line['tgt'].'</td>';
+//            echo '<td>'.$line['tgt_version'].'</td>';
+//            echo '<td>'.$line['species'].'</td>';
+//            echo "</tr>";
+//        }
+//
+//    }
+//    echo'</tbody></table></div>';
+//    
+//    echo'<div class="panel-group" id="accordion_documents">
+//                <div class="panel panel-default">
+//                    <div class="panel-heading">
+//                        <h3>
+//                            <a class="accordion-toggle collapsed" href="#collapse_documents" data-parent="#accordion_documents" data-toggle="collapse">
+//                                Documents and Presentations
+//                            </a>				
+//                        </h3>
+//                    </div>
+//                    <div class="panel-body panel-collapse collapse" id="collapse_documents">
+//                        
+//                        <table class="table table-condensed table-hover table-striped">
+//                            <thead>
+//                                <tr>
+//                                    <th style="width:250px;">Gene Ontology Biological Process</th>
+//                                    
+//                                </tr>
+//                            </thead>
+//                            
+//                            <tbody>
+//                                <tr><td><a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[3].'" title="'.$go_info[2].'">'.$go_info[2].'</a>
+//             					 		<span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info[4].'" title="Go Evidence Code">'.$go_info[4].'</a>]
+//             					 		</span></td></tr>                                
+//                            </tbody>
+//                            
+//                        </table>
+//                    </div>
+//                    
+//                </div>
+//            </div>    
+//            <br/>';*/
+}
 function new_cobra_body($IsLogged='null', $type='null'){
 echo'
 
@@ -72,10 +176,10 @@ echo'
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <li>
-							<a href="/database/">
-								<i class="fa fa-home"></i> 
-								<span>About COBRA</span>
-							</a>
+					<a href="/database/wiki">
+						<i class="fa fa-home"></i> 
+						<span>About COBRA</span>
+					</a>
                	</li>
                   <li>
                      <a href="/database/src/search/">
@@ -88,11 +192,11 @@ echo'
                         <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                      </a>
                   </li>
-                  <li>
+                  <!--<li>
                      <a href="/database/wiki/">
                         <i class="fa fa-info"></i> <span>Wiki</span>
                      </a>
-                  </li>
+                  </li>-->
                   <li>
                      <a href="/database/src/tools/">
                         <i class="fa fa-cogs"></i> <span>Tools</span>

@@ -5,7 +5,7 @@
  */
  
 
-/*modify the width regarding to tyhe resolution of the screen*/
+/*modify the width regarding to screen resolution*/
 
 @media (min-width: 768px) {
   .table {
@@ -18,13 +18,31 @@
     	width: 668px;
   }
   .content{
- 	width:599px
+ 	width:599px;
+        /*font-size: 0.7em;*/
   }
  .div#protein-details{
 	width: 375px;
  }
  .div#stat-details{
 	width: 375px;
+ }
+ /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+        /*font-size: 0.7em;*/
+
+ }
+ .right-side > .content-header > .breadcrumb{
+        
+        font-size: 0.7em;
+        position: absolute;
+        margin-top: 5px;
+        top: 0px;
+        right: 0px;
+        float: right;
+
  }
 }
 @media (min-width: 992px) {
@@ -40,12 +58,30 @@
   .resultsbox#results{
  	width:650px
   }  
-  .div#protein-details{
-	width: 425px;
+  #summary > #protein-details{
+	width: 380px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
   }
-  .div#stat-details{
-	width: 425px;
+ #summary > #stat-details{
+	width: 380px;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
   }
+  /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+        
+
+ }
 }
 
 /*my mac screen*/
@@ -59,25 +95,53 @@
   .content{
     width:1030px
   }
-  .container{
-
+  .tinted-box
+  {
     width:1000px
   }
+  #summary{
+    width:1000px 
+  }
+  
   .resultsbox#results{
  	width:1000px
   } 
- .div#protein-details{
-	width: 550px;
+ #summary > #protein-details{
+	width: 500px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
   }
- .div#stat-details{
-	width: 550px;
+ #summary > #stat-details{
+	width: 500px;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
   }
   #image_container{ 
   height: 120px;
   width : 200px;
-  
-
   }
+  
+  #summary > #accordion_documents{
+    width : 550px;
+    
+  }
+  #go_process > .table{
+    width : 500px;  
+  }
+  /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+      
+
+ }
 }
 
 @media (min-width:1600px){
@@ -93,12 +157,23 @@
  .resultsbox#results{
     width:1500px
  } 
- .div#protein-details{
-    width: 750px;
- }
- .div#stat-details{
-    width: 750px;
- }
+ #summary > #protein-details{
+	width: 650px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
+  }
+ #summary > #stat-details{
+	width: 650px;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+  }
  #image_container{
   border-radius: 3px; 
   height: 120px;
@@ -108,6 +183,12 @@
   background-color: #A9F5E1;
 
   }
+  /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+
+ }
 }
 /* Second screen  */
 @media (min-width:1800px){
@@ -123,18 +204,35 @@
  .resultsbox#results{
     width:1600px
  } 
- #protein-details{
-    width: 780px;
- }
- #stat-details{
-    width: 780px;
- }
+ #summary > #protein-details{
+	width: 780px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
+  }
+ #summary > #stat-details{
+	width: 780px;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: left;
+	border: 1px solid #DDD;
+  }
  #image_container{
 
   height: 120px;
   width : 350px;
 
   }
+  /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+
+ }
  
 }
 @media (min-width:1920px){
@@ -155,6 +253,12 @@
  }
  .div#stat-details{
     width: 850px;
+ }
+ /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+
  }
  
 }
@@ -190,23 +294,14 @@ div.resultsbox:hover {
     background-color: #0B614B;
     color: #FFF
 }
+/*div.panel-group:hover {
+    background-color: #0B614B;
+    color: #FFF
+}*/
 /*one result page*/
 
-#protein-details{
-	background-color: #FFF;
-	margin-left: 0px;
-	border-radius: 10px;
-	padding: 10px 10px 0px;
-	float: left;
-	border: 1px solid #DDD;
-}
-#stat-details{
-	background-color: #FFF;
-	border-radius: 10px;
-	padding: 10px 10px 0px;
-	float: left;
-	border: 1px solid #DDD;
-}
+
+
 
 #search-box{
         background-color: #FFF;
@@ -222,12 +317,7 @@ div.resultsbox:hover {
 
  
 
-/*header fixed part*/
-/* need to define this part like that because content -header inherits from */
-.skin-blue .right-side > .content-header{
-background-color: rgb(238, 238, 238);
 
-}
 
 
 .right {

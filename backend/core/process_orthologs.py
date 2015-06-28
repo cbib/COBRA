@@ -45,7 +45,7 @@ for map_doc in orthologs_to_process:
 			logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
 
 
-		sheet_values = parse_csv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],species_initials)
+		sheet_values = parse_ortholog_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],species_initials)
 		# save raw data 
 		logger.info("sheet_value %d",len(sheet_values))
 		species_initials=[]
