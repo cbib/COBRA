@@ -95,7 +95,7 @@
   .content{
     width:1030px
   }
-  .tinted-box
+  #summary > .tinted-box
   {
     width:1000px
   }
@@ -201,6 +201,13 @@
  .content{
     width:1630px
  }
+ #summary > .tinted-box
+  {
+    width:1600px
+  }
+  #summary{
+    width:1600px 
+  }
  .resultsbox#results{
     width:1600px
  } 
@@ -220,6 +227,15 @@
 	padding: 10px 10px 0px;
 	float: left;
 	border: 1px solid #DDD;
+  }
+  #summary > #sample_info{
+      width: 780px;
+      background-color: #FFF;
+      border-radius: 10px;
+      padding: 10px 10px 0px;
+      float: left;
+      border: 1px solid #DDD;
+      
   }
  #image_container{
 

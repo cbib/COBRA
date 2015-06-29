@@ -164,6 +164,29 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+
+mapping_table={
+	"data_file":"mappings/gene_ontology/go.cme.tsv",
+	"species":"Cucumis melo",
+	"type":"gene_to_go",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"GO_ID",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.cme.csv.gz",
+	"doi":"not published",
+	"key":"plaza gene id to go id",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
 #Mapping Table Barley
 
 #to add barley_HighConf_genes_MIPS_23Mar12_HumReadDesc.txt
@@ -173,7 +196,7 @@ mappings_col.insert(mapping_table)
 
 #gene_to_GO
 mapping_table={
-	"data_file":"mappings/go.hvu.xls",
+	"data_file":"mappings/gene_ontology/go.hvu.tsv",
 	"species":"Hordeum vulgare",
 	"type":"gene_to_go",
 	"src":"plaza_gene_id",
@@ -183,7 +206,7 @@ mapping_table={
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/GO/go.hvu.csv.gz",
 	"doi":"",
-	"key":"plaza_gene_id_to_go",
+	"key":"plaza gene_id to go id",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -344,6 +367,31 @@ mapping_table={
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx','plaza_gene_id','ITAG_pid','uniprot_id'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+#gene_to_go
+
+mapping_table={
+	"data_file":"mappings/gene_ontology/go.sly.tsv",
+	"species":"Solanum lycopersicum",
+	"type":"gene_to_go",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"GO_ID",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.sly.csv.gz",
+	"doi":"not published",
+	"key":"plaza gene id to go id",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
 		"sheet_index":0,
 	}
 }
