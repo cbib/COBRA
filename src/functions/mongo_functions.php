@@ -6,7 +6,7 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     return $cursor_array;
 }
 
-function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$top_value=10){
+function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     //get the preferred id for this species
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
@@ -23,7 +23,7 @@ function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $
     
     }
     //get the n top genes in the transcriptomics data
-    $cursor=get_n_top_surexpressed_genes($me,$species,$top_value);
+    $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
     //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
     #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
     $gene_list=array();
@@ -203,9 +203,15 @@ function mongoPersistantConnector() {
 	}
 }
 
-function get_n_top_surexpressed_genes(Mongocollection $me, $species='null',$top_value=10){
-    $cursor=$me->find(array('direction'=>'up','species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
-    $cursor->sort(array('logFC' => -1));
+function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
+    $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
+    if ($type="down"){
+       $cursor->sort(array('logFC' => 1)); 
+    }
+    else{
+       $cursor->sort(array('logFC' => -1)); 
+    }
+    
     $cursor->limit($top_value);
     return $cursor;
 }
@@ -213,7 +219,96 @@ function get_n_top_surexpressed_genes(Mongocollection $me, $species='null',$top_
 
 
 ##Get all orthologs src to tgt : 
+function get_interactor(array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
 
+    //need to have a list of symbol and a list of uniprot id to search in interactions table
+    foreach ($protein_id as $id){
+        $search=array("type"=>"prot_to_prot");
+        $select=array("src_to_tgt"=>1,'mapping_file'=>1,'pub'=>1,"method"=>1,"host_name"=>1,"virus_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
+        $query=$interactionsCollection->find($search,$select);
+        foreach ($query as $value) {
+            $src_to_tgt=$value['src_to_tgt'];
+            $mapping_file=$value['mapping_file'];
+            echo 'from_mapping_file prot id :'.$id.'<br/>';
+            foreach ($mapping_file as $mapping_doc) {
+                $host_prot_id=$mapping_doc[$value['src']];
+                $virus_prot_id=$mapping_doc[$value['tgt']];
+                $method=$mapping_doc[$value['method']];
+                $pub=$mapping_doc[$value['pub']];
+                $hostname=$mapping_doc[$value['host_name']];
+                $virusname=$mapping_doc[$value['virus_name']];
+                $host_taxon=$mapping_doc[$value['host_taxon']];
+                $virus_taxon=$mapping_doc[$value['virus_taxon']];
+                if ($host_prot_id == $id){
+                    echo 'from_mapping_file'.$virus_prot_id.'<br/>';
+                    echo 'from_mapping_file'.$method.'<br/>';
+                    echo 'from_mapping_file'.$pub.'<br/>';
+                    echo 'from_mapping_file'.$hostname.'<br/>';
+                    echo 'from_mapping_file'.$virusname.'<br/>';
+                    echo 'from_mapping_file'.$host_taxon.'<br/>';
+                    echo 'from_mapping_file'.$virus_taxon.'<br/>';
+                    echo 'from_mapping_file'.$method.'<br/>';
+                    echo 'from_mapping_file'.$method.'<br/>';
+                    echo 'from_mapping_file'.$method.'<br/>';
+                    echo 'from_mapping_file'.$method.'<br/>';
+                }
+
+            }
+            foreach ($src_to_tgt as $row){
+                $found=FALSE;
+                foreach ($row as $column){
+
+                    if (is_array($column)){
+                        if ($found){                      
+                            echo 'tgt : '.$column[0];
+                        }
+                    }  
+                    else {
+                        if ($column==$id){
+                            $found=TRUE;
+                            echo 'src : '.$column;    
+                        }
+                    }  
+                }       
+            }
+            
+        }
+    }
+    foreach ($gene_symbol as $symbol){
+		$cursor=$interactionsCollection->aggregate(array( 
+			array('$unwind'=>'$mapping_file'), 
+			array('$match'=> array('mapping_file.Host_prot'=>$symbol)),
+			array('$project' => array('mapping_file.Host_virus'=>1,'mapping_file.Virus_prot'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
+		));
+		if (count($cursor['result'])!=0){
+			echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+			//var_dump($cursor);
+			echo '<dl class="dl-horizontal">';
+			for ($i = 0; $i < count($cursor['result']); $i++) {
+				$mapping_file=$cursor['result'][$i]['mapping_file'];
+				
+				//echo $mapping_file['Reference'];
+									echo'<dt>Host</dt>
+									<dd>'.$mapping_file['host'].'</dd>';
+									echo'<dt>Virus</dt>
+								  <dd>'.$mapping_file['virus'].'</dd>';
+								  echo'<dt>Viral Protein</dt>
+								  <dd>'.$mapping_file['Virus_prot'].'</dd>';
+								  echo'<dt>Putative function</dt>
+								  <dd>'.$mapping_file['Putative_function'].'</dd>';
+								  echo'<dt>Reference</dt>
+								  <dd>'.$mapping_file['Reference'].'</dd>';
+								  echo'<dt>Accession number</dt>
+								  <dd>'.$mapping_file['Accession_number'].'</dd>';
+								  echo'<dt>Method</dt>
+								  <dd>'.$mapping_file['method'].'</dd>';
+								  
+			}
+			echo' </dl>';
+		}
+		
+	}
+}
 
 
 function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='null', $gene_id='null',$key='null'){
@@ -235,7 +330,7 @@ function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='nu
 			#		echo $filename;
 			
 			
-			
+		
 			// foreach ($value as $keys=>$values ){
 // 				echo $keys;
 // 				echo $values;

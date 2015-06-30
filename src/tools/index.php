@@ -144,7 +144,7 @@ $table_string.='
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Perl
+                    <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Solanum lycopersicum
                 </label>
             </div>
         </div>

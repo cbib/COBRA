@@ -45,28 +45,28 @@ else{
 			
             
             
-            echo '
-			<form id="login_form" method="post" action="">
-                <fieldset>
-                    <legend>
-                        Authentication required
-                    </legend>			
-                    <p>
-                        A username and password are being requested by https://cobra. The site says: "Secure Site"
-                    </p>
-                    <p>
-                        <label for="login">Username : </label>
-                        <input type="text" id="login" name="login" tabindex="1" value="" />
-                    </p>
-                    <p>
-                        <label for="pwd">Password :</label>
-                        <input type="password" id="pwd" name="pwd" tabindex="2" />
-                    </p>
-                </fieldset>
-                <div>
-                    <input type="submit" name="submit" value="Connexion" tabindex="3" />
-                </div>
-			</form>';
+//            echo '
+//			<form id="login_form" method="post" action="">
+//                <fieldset>
+//                    <legend>
+//                        Authentication required
+//                    </legend>			
+//                    <p>
+//                        A username and password are being requested by https://cobra. The site says: "Secure Site"
+//                    </p>
+//                    <p>
+//                        <label for="login">Username : </label>
+//                        <input type="text" id="login" name="login" tabindex="1" value="" />
+//                    </p>
+//                    <p>
+//                        <label for="pwd">Password :</label>
+//                        <input type="password" id="pwd" name="pwd" tabindex="2" />
+//                    </p>
+//                </fieldset>
+//                <div>
+//                    <input type="submit" name="submit" value="Connexion" tabindex="3" />
+//                </div>
+//			</form>';
             
             
             

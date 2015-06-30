@@ -118,8 +118,9 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 
 //$species='Cucumis melo';
 $species='Arabidopsis thaliana';
+$type="down";
 //$species='Hordeum vulgare';
-$gene_list_attributes=get_ortholog_list_for_arabidopsis($mappingsCollection,$measurementsCollection,$speciesCollection,$species,10);
+$gene_list_attributes=get_ortholog_list_for_arabidopsis($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$type,10);
 
 //$species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
 //foreach ($species_id_type as $value) {

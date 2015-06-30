@@ -16,7 +16,7 @@ import datetime
 if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 
-# clear collections to fill
+# Clear collections to fill
 mappings_col.drop()
 orthologs_col.drop()
 interactions_col.drop()
@@ -31,7 +31,7 @@ for grid_out in fs.find({}, timeout=False):
 ###################################################################################################################
 
 
-#gene_to_prot - unigene to NCBI_Protein_code
+# Gene_to_prot - unigene to NCBI_Protein_code
 mapping_table={
 	"data_file":"mappings/journal.pone.0100477.s004.xls",
 	"species":"Prunus domestica",
@@ -56,7 +56,7 @@ mappings_col.insert(mapping_table)
 
 ## MAPPING TABLE MELON
 
-#est_to_gene est_unigen to icugi_unigene
+# Est_to_gene est_unigen to icugi_unigene
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
 	"species":"Cucumis melo",
@@ -79,7 +79,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_gene icugi_unigene to melonomics 
+# Gene_to_gene icugi_unigene to melonomics 
 mapping_table={
 	"data_file":"mappings/Melon_Icugi_to_Melonomics.xls",
 	"species":"Cucumis melo",
@@ -102,7 +102,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_prot - icugi_unigene to  swissprot
+# Gene_to_prot - icugi_unigene to  swissprot
 mapping_table={
 	"data_file":"mappings/icugi_unigen--melonomics--uniprot--annotation.xls",
 	"species":"Cucumis melo",
@@ -125,7 +125,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_prot - melonomics to uniprot
+# Gene_to_prot - melonomics to uniprot
 mapping_table={
 	"data_file":"mappings/icugi_unigen--melonomics--uniprot--annotation.xls",
 	"species":"Cucumis melo",
@@ -148,7 +148,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_gene - plaza to melonomics
+# Gene_to_gene - plaza to melonomics
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
@@ -171,7 +171,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_go - plaza to gene ontology
+# Gene_to_go - plaza to gene ontology
 mapping_table={
 	"data_file":"mappings/gene_ontology/go.cme.tsv",
 	"species":"Cucumis melo",
@@ -205,7 +205,7 @@ mappings_col.insert(mapping_table)
 # ## AHRD-Version 2.0
 # # Human Readable Descriptions (AHRD)
 
-#gene_to_go - Plaza to gene ontology
+# Gene_to_go - Plaza to gene ontology
 mapping_table={
 	"data_file":"mappings/gene_ontology/go.hvu.tsv",
 	"species":"Hordeum vulgare",
@@ -228,7 +228,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#prot_to_desc - Protein_id to Human Readable Descriptions (AHRD)
+# Prot_to_desc - Protein_id to Human Readable Descriptions (AHRD)
 mapping_table={
 	"data_file":"mappings/barley_HighConf_genes_MIPS_23Mar12_HumReadDesc.xls",
 	"species":"Hordeum vulgare",
@@ -251,7 +251,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_gene - Plaza to barlex
+# Gene_to_gene - Plaza to barlex
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.hvu.xls",
 	"species":"Hordeum vulgare",
@@ -274,7 +274,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#est_to_gene - Morex_Contig to protein_id
+# Est_to_gene - Morex_Contig to protein_id
 mapping_table={
 	"data_file":"mappings/Barlex_list_genes.xls",
 	"species":"Hordeum vulgare",
@@ -307,7 +307,7 @@ mappings_col.insert(mapping_table)
 
 #to add "url":”ftp://ftp.sgn.cornell.edu/genomes/Solanum_lycopersicum/id_conversion/tomato_unigenes_solyc_conversion_annotated.txt",
 
-#gene_to_prot - SGN_U to uniprot
+# Gene_to_prot - SGN_U to uniprot
 mapping_table={
 	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
 	"species":"Solanum lycopersicum",
@@ -330,7 +330,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_gene - SGN_U to ITAG gene
+# Gene_to_gene - SGN_U to ITAG gene
 mapping_table={
 	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
 	"species":"Solanum lycopersicum",
@@ -354,7 +354,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_prot - Plaza to ITAG protein
+# Gene_to_prot - Plaza to ITAG protein
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.sly.xls",
 	"species":"Solanum lycopersicum",
@@ -378,7 +378,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_go - Plaza to gene ontology
+# Gene_to_go - Plaza to gene ontology
 mapping_table={
 	"data_file":"mappings/gene_ontology/go.sly.tsv",
 	"species":"Solanum lycopersicum",
@@ -401,7 +401,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#est_to_gene - SGN_S to SGN_S
+# Est_to_gene - SGN_S to SGN_S
 mapping_table={
 	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
 	"species":"Solanum lycopersicum",
@@ -433,7 +433,7 @@ mappings_col.insert(mapping_table)
 ###################################################################################################################
 
 
-#est_to_gene - CATMA_ID to TAIR AGI gene id
+# Est_to_gene - CATMA_ID to TAIR AGI gene id
 mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
 	"species":"Arabidopsis thaliana",
@@ -456,7 +456,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_prot - TAIR AGI gene id to uniprot id
+# Gene_to_prot - TAIR AGI gene id to uniprot id
 mapping_table={
 	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
 	"species":"Arabidopsis thaliana",
@@ -479,7 +479,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_prot - Plaza to uniprot
+# Gene_to_prot - Plaza to uniprot
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.ath.xls",
 	"species":"Arabidopsis thaliana",
@@ -502,7 +502,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_gene_symbol - TAIR AGI gene id to gene symbol
+# Gene_to_gene_symbol - TAIR AGI gene id to gene symbol
 mapping_table={
 	"data_file":"mappings/arabidopsis_thaliana_gene_aliases_20131231.xls",
 	"species":"Arabidopsis thaliana",
@@ -525,7 +525,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-#gene_to_go - TAIR AGI gene id to gene ontology
+# Gene_to_go - TAIR AGI gene id to gene ontology
 mapping_table={
 	"data_file":"mappings/gene_ontology/ATH_GO_GOSLIM.tsv",
 	"species":"Arabidopsis thaliana",
@@ -547,7 +547,7 @@ mapping_table={
 	}
 }
 mappings_col.insert(mapping_table)
-#### Ortholog Tables
+
 
 
 
@@ -555,11 +555,7 @@ mappings_col.insert(mapping_table)
 ############################################ ORTHOLOGY TABLES #####################################################
 ###################################################################################################################
 
-
-
-
-
-#Plaza Orthologs - Dicots
+# Plaza Orthologs - Dicots
 orthologs_table={
 
 	'data_file':'orthologs/integrative_orthology.ORTHO.tsv',
@@ -576,7 +572,7 @@ orthologs_table={
 orthologs_col.insert(orthologs_table)
 
 
-#PGJDB Orthologs
+# PGJDB Orthologs
 # orthologs_table={
 # 	"data_file":"orthologs/33090_clusters_1_57_0.xls",
 # 	"src":"NCBI_locus_identifier",
@@ -590,7 +586,7 @@ orthologs_col.insert(orthologs_table)
 # orthologs_col.insert(orthologs_table)
 
 
-#Plaza Orthologs - Monocots
+# Plaza Orthologs - Monocots
 # orthologs_table={
 # 
 # 	'data_file':'orthologs/integrative_orthology.ORTHO_monocots.tsv',
@@ -608,6 +604,8 @@ orthologs_col.insert(orthologs_table)
 # orthologs_col.insert(orthologs_table)
 
 
+
+
 ###################################################################################################################
 ############################################ INTERACTION TABLES ###################################################
 ###################################################################################################################
@@ -615,15 +613,16 @@ orthologs_col.insert(orthologs_table)
 
 
 
-#Literature and partner - Interaction potyvirus
+# Literature and partner - Interaction potyvirus
 interactions_table={
 	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
-	"src":"Virus_prot",
-	"tgt":"Host_prot",
+	"src":"Virus_symbol",
+	"tgt":"Host_symbol",
+	"type":"symbol_to_symbol",
 	"virus_class":"potyvirus",
 	"xls_parsing":{
 		"n_rows_to_skip":3,
-		"column_keys":['idx','Virus_prot','Host_prot','method','virus','host','Putative_function','Reference','Accession_number'],
+		"column_keys":['idx','Virus_symbol','Host_symbol','method','virus','host','Putative_function','Reference','Accession_number'],
 		"sheet_index":0,
 		
 	}
@@ -632,14 +631,20 @@ interactions_table={
 interactions_col.insert(interactions_table)
 
 
-#host pathogen interaction db
+# Host pathogen interaction db
 interactions_table={
 	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
+	"type":"prot_to_prot",
 	"src":"protein_xref_1",
+	"src_version":"uniprot",
 	"tgt":"protein_xref_2",
-	"species_one":"protein_taxid_1_name",
-	"species_two":"protein_taxid_2_name",
-	"virus_class":"various",
+	"tgt_version":"uniprot",
+	"host_name":"protein_taxid_1_name",
+	"virus_name":"protein_taxid_2_name",
+	"method":"detection_method",
+	"pub":"pmid",
+	"host_taxon":"protein_taxid_1_cat",
+	"virus_taxon":"protein_taxid_2_cat",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx','protein_xref_1','alternative_identifiers_1','protein_alias_1','protein_xref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
@@ -649,3 +654,5 @@ interactions_table={
 
 }
 interactions_col.insert(interactions_table)
+
+

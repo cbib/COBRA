@@ -23,7 +23,7 @@ if "log" not in globals():
 publications_col.drop()
 samples_col.drop()
 measurements_col.drop()
-interactions_col.drop()
+
 #orthologs_col.remove()
 #users_col.remove()
 #orthologs_col.gridfs.drop()
@@ -1186,41 +1186,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 
-#### Interactions Table
 
-
-interactions_table={
-	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
-	"src":"Virus_prot",
-	"tgt":"Host_prot",
-	"virus_class":"potyvirus",
-	"xls_parsing":{
-		"n_rows_to_skip":3,
-		"column_keys":['idx','Virus_prot','Host_prot','method','virus','host','Putative_function','Reference','Accession_number'],
-		"sheet_index":0,
-		
-	}
-
-}
-interactions_col.insert(interactions_table)
-
-
-interactions_table={
-	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
-	"src":"protein_xref_1",
-	"tgt":"protein_xref_2",
-	"species_one":"protein_taxid_1_name",
-	"species_two":"protein_taxid_2_name",
-	"virus_class":"various",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','protein_xref_1','alternative_identifiers_1','protein_alias_1','protein_xref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
-		"sheet_index":0,
-		
-	}
-
-}
-interactions_col.insert(interactions_table)
 
 
 

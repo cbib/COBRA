@@ -66,11 +66,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     
     if ($organism=='All species'){
-        $mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true)),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'src_to_tgt'=>1,'tgt_to_src'=>1,'_id'=>0));
+        $mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true)),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'species'=>1,'src_to_tgt'=>1,'tgt_to_src'=>1,'_id'=>0));
 
     }
     else{
-        $mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true),'species'=>$organism),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'mapping_file'=>1,'src_to_tgt'=>1,'tgt_to_src'=>1,'_id'=>0));
+        $mappings_to_process=$mappingsCollection->find(array('src_to_tgt'=>array('$exists'=>true),'species'=>$organism),array('type'=>1,'description'=>1,'url'=>1,'src'=>1,'tgt'=>1,'species'=>1,'mapping_file'=>1,'src_to_tgt'=>1,'tgt_to_src'=>1,'_id'=>0));
     }
     
     
@@ -82,6 +82,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     foreach ($mappings_to_process as $map_doc){
 
+        $species= $map_doc['species'];
         $src_col = $map_doc['src'];
         $tgt_col = $map_doc['tgt'];
         $type=$map_doc['type'];
@@ -94,7 +95,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $tgt_to_src = $map_doc['tgt_to_src'];
         
         //echo $type."\n";
-        
+        //most of table are from plaza db
+        //need to first translate into plaza id.
         if ($type=='gene_to_go'){
             $go_id_list=array();
             foreach ($src_to_tgt as $row){
@@ -105,7 +107,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                         if ($found){
                             foreach ($column as $go_tgt){
                                 array_push($go_id_list, $go_tgt);
-                                //echo 'tgt : '.$go_tgt;
+                                echo 'tgt : '.$go_tgt;
                             }
 
                         }
@@ -161,14 +163,20 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //                   echo 'tgt :'.$value;
     //               } 
                 }  
-                else {
+                else{
                     if ($column==$search){
                         $found=TRUE;
                         //echo 'tgt : '.$column;    
                     }
-                }  
-            }       
+               }  
+           }       
         }
+            
+            
+            
+            
+            
+            
     /*//	if ($type=='gene_to_prot'){
     //        echo 'gene to prot mapping\n';
     //        foreach ($src_to_tgt as $row){
@@ -343,8 +351,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                         }
                         elseif ($key==$src_col){
                             array_push($gene_symbol,$value);
-//                            echo'<dt>'.$key.'</dt>
-//                                  <dd>'.$value.'</dd>';
+                            echo'<dt>'.$key.'</dt>
+                                  <dd>'.$value.'</dd>';
                         }
                         else{
                             
@@ -369,8 +377,67 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                         }
                         elseif ($key==$tgt_col) {
                             array_push($proteins_id,$value);
-//                            echo'<dt>'.$key.'</dt>
-//                                  <dd>'.$value.'</dd>';
+                            echo'<dt>'.$key.'</dt>
+                                  <dd>'.$value.'</dd>';
+                        }
+                        
+                        else{
+                            
+                        }
+                    }
+                }            
+            }
+            else if ($type=='gene_to_gene'){
+                if ($doc[$tgt_col]==$search){
+                    foreach ($doc as $key =>$value){
+                        if ($key=="idx" OR $key==$tgt_col){
+                        }
+                        else if($key==$description){
+                            array_push($descriptions,$value);
+
+                        }
+                        elseif ($key=="alias") {
+                            array_push($gene_symbol,$value);
+
+                        }
+                        elseif ($key=="symbol") {
+                            array_push($gene_symbol,$value);
+
+                        }
+                        elseif ($key==$src_col){
+                            array_push($gene_symbol,$value);
+                            if ($key=="plaza_gene_id"){
+                                $plaza_id=$value;
+                                echo 'test:'.$plaza_id;
+                            }
+                            echo'<dt>'.$key.'</dt>
+                                  <dd>'.$value.'</dd>';
+                        }
+                        else{
+                            
+                        }
+                    }
+                }
+                if ($doc[$src_col]==$search){
+                    foreach ($doc as $key =>$value){
+                        if ($key=="idx" OR $key==$src_col){
+                        }
+                        else if($key==$description){
+                            array_push($descriptions,$value);
+
+                        }
+                        elseif ($key=="symbol") {
+                            array_push($gene_symbol,$value);
+
+                        }
+                        elseif ($key=="alias") {
+                            array_push($gene_symbol,$value);
+
+                        }
+                        elseif ($key==$tgt_col) {
+                            array_push($proteins_id,$value);
+                            echo'<dt>'.$key.'</dt>
+                                  <dd>'.$value.'</dd>';
                         }
                         
                         else{
@@ -480,27 +547,59 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //                echo $tgt_col.'<br>';
 //                echo $doc[$src_col];
 //                echo $search.'<br>';
-               if ($doc[$src_col]==$search){
-                    foreach ($doc as $key =>$value){
-                        if ($key=="idx" OR $key==$src_col){
-                                //echo '<li>'.$key.' : '.$value.'</li></br>';
+                if ($src_col=="plaza_gene_id"){
+                    echo'found';
+                    echo $tgt_col;
+                    echo $doc[$src_col];
+                    if ($doc[$src_col]==$plaza_id){
+                        
+;                         foreach ($doc as $key =>$value){
+                             if ($key=="idx"){
+                                 
+                             }
+                             else if($key==$src_col){
+                                echo '<li>'.$key.' : '.$value.'</li></br>';
 
-                        }
-                        else if($key==$tgt_col){
-//                            echo'<dt>'.$key.'</dt>
-//                                  <dd>'.$value.'</dd>';
-                            //array_push($gene_symbol,$doc[$tgt_col]);
-                        }
-                        else if($key==$description){
-                            array_push($descriptions,$value);
-                        }
-                        else{
-//                            echo'<dt>'.$key.'</dt>
-//                                  <dd>'.$value.'</dd>';
-                        }
+                             }
+                             else if($key==$tgt_col){
+                                 echo'<dt>'.$key.'</dt>
+                                       <dd>'.$value.'</dd>';
+                                 //array_push($gene_symbol,$doc[$tgt_col]);
+                             }
+                             else if($key==$description){
+                                 array_push($descriptions,$value);
+                             }
+                             else{
+                                 echo'<dt> gene to go key '.$key.'</dt>
+                                       <dd>gene to go value '.$value.'</dd>';
+                             }
 
-                    }
-                } 
+                         }
+                     }
+                }
+                else{
+                    if ($doc[$src_col]==$search){
+                         foreach ($doc as $key =>$value){
+                             if ($key=="idx" OR $key==$src_col){
+                                     //echo '<li>'.$key.' : '.$value.'</li></br>';
+
+                             }
+                             else if($key==$tgt_col){
+     //                            echo'<dt>'.$key.'</dt>
+     //                                  <dd>'.$value.'</dd>';
+                                 //array_push($gene_symbol,$doc[$tgt_col]);
+                             }
+                             else if($key==$description){
+                                 array_push($descriptions,$value);
+                             }
+                             else{
+     //                            echo'<dt>'.$key.'</dt>
+     //                                  <dd>'.$value.'</dd>';
+                             }
+
+                         }
+                     }
+                }
             }
             //search in the gen_to_desc mapping table
 
@@ -666,7 +765,7 @@ foreach ($go_id_list as $go_info){
 echo   '<div id="summary">   
             <div id="protein-details">
                 <div id="organism" class="right"><h4>'.$total_go_biological_process[0][5].'</h4></div>
-                <h1>'.$gene_symbol[0].'</h1>';
+                <h1>'.$descriptions[0].'</h1>';
                 echo'<div id="aliases">';
                 for ($i = 1; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
@@ -696,7 +795,7 @@ echo   '<div id="summary">
                 }
                 echo '</div>';
                 echo'
-                <div id="definition">defintion : '.$descriptions[0].'</div> 
+                <div id="definition">definition : '.$descriptions[0].'</div> 
                 <div id="goTerms">
                     <div class="goTermsBlock">
                         <br/>
@@ -946,6 +1045,11 @@ echo   '<div id="summary">
 					</a>
 				</div>
 			</div>
+            ';
+                  //$protein="Q39255";   
+                  
+                  get_interactor($gene_symbol,$proteins_id,$total_go_biological_process[0][5],$interactionsCollection);
+                    echo'
             
             
         </div>
