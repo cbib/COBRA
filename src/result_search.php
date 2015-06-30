@@ -14,7 +14,7 @@ use PhpObo\Parser;
 
 new_cobra_header();
 
-new_cobra_body($_SESSION['login'],"Result Summary");
+new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
 
 if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
 
@@ -62,7 +62,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //search in samples
     make_species_list(find_species_list($speciesCollection));
     
-    
+    echo '<hr>';
     
     
     if ($organism=='All species'){
@@ -901,7 +901,7 @@ echo   '<div id="summary">
          
             <input type="hidden" id="displayView" value="summary" />
             <input type="hidden" id="displaySort" value="" />
-         
+            
             <div id="stat-details">
  				<div id="interaction-tabs">
                 <ul>
@@ -946,12 +946,7 @@ echo   '<div id="summary">
 					</a>
 				</div>
 			</div>
-            <div class="sample_info">';
-                          
-                $cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
-                add_accordion_panel(get_sample_table_in_string($cursor,$samplesCollection)); 
-                //display_sample_table($cursor,$samplesCollection);                   
-                 echo'</div>
+            
             
         </div>
      	';
@@ -961,7 +956,12 @@ echo   '<div id="summary">
          //display_sample_table($cursor,$samplesCollection);                   
           //echo'            
       
-     	
+//     	<div class="sample_info">';
+//       
+//                $cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
+//                add_accordion_panel(get_sample_table_in_string($cursor,$samplesCollection),"Sample details","ortholog_search"); 
+//                //display_sample_table($cursor,$samplesCollection);                   
+//                 echo'</div>
  
  
 

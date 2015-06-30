@@ -5,13 +5,16 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     $cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
-function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$top_value=10){
+
+function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$top_value=10){
+    //get the preferred id for this species
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $favourite_id=$value['preferred_id'];
         //echo $value['preferred_id'];
     
     }
+    //get the target id for this species of the plza mapping table
     $plaza_favorite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
     //only one value is possible
     foreach ($plaza_favorite_tgt_id as $value) {
@@ -19,8 +22,8 @@ function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $s
         //echo $value['tgt'];
     
     }
-   
-    $cursor=get_top_surexpressed_genes($me,$species,$top_value);
+    //get the n top genes in the transcriptomics data
+    $cursor=get_n_top_surexpressed_genes($me,$species,$top_value);
     //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
     #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
     $gene_list=array();
@@ -30,17 +33,26 @@ function ben_function(Mongocollection $ma,Mongocollection $me,Mongocollection $s
         array_push($gene_list,$value);
     //echo $value['infection_agent']."\n";
     } 
+    // At this point we have a list of n top-genes id,
+    // we need to check if the species favourite id is equal
+    // to the id needed to convert into plaza id
+    
+    
+    //Same : direct conversion using plaza mapping table
     if ($favourite_id==$intermediary_id){
         //echo "same id";
         $gene_list_attributes=convert_into_plaza_id($ma,$gene_list,$favourite_id,$species);
 
     }
+    // here we need to first translate into intermediary id before translate into plaza id
     else{
-        
-        //At this poitn we have a list of gene id, with the id type
         $transformed_list=convert_into_specific_id($ma,$gene_list,$favourite_id,$intermediary_id,$species);
-
-        $gene_list_attributes=convert_into_plaza_id($ma,$transformed_list,$intermediary_id,$species);
+        if (count($transformed_list)!=0){
+            $gene_list_attributes=convert_into_plaza_id($ma,$transformed_list,$intermediary_id,$species);
+        }
+        else{
+            
+        }
         
     }
     return $gene_list_attributes;
@@ -191,7 +203,7 @@ function mongoPersistantConnector() {
 	}
 }
 
-function get_top_surexpressed_genes(Mongocollection $me, $species='null',$top_value=10){
+function get_n_top_surexpressed_genes(Mongocollection $me, $species='null',$top_value=10){
     $cursor=$me->find(array('direction'=>'up','species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
     $cursor->sort(array('logFC' => -1));
     $cursor->limit($top_value);

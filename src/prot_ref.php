@@ -8,7 +8,7 @@ new_cobra_header();
 ?>
 
 <?php
-new_cobra_body();
+new_cobra_body($_SESSION['login'], "protein reference details","section_prot_reference");
 
 	//Recuperation des variables de la page main
 	#$requestID=control_post($_POST['requestID']);

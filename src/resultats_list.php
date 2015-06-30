@@ -11,7 +11,7 @@ define("RDFAPI_INCLUDE_DIR", "/Users/benjamindartigues/COBRA/GIT/COBRA/lib/rdfap
 include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 
 
-new_cobra_header();
+new_cobra_header($_SESSION['login'], "Result tabs","section_result_tabs");
 
 ?>
 

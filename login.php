@@ -41,17 +41,72 @@ else{
 		if (!isset($_POST['submit']))
 		{
 			// first time no form submitted
-			new_cobra_body(isset($_SESSION['login']));
-			echo '
-			<form id="login_form" method="post" action="">
-			<fieldset><legend>Authentication required</legend>
+			new_cobra_body(isset($_SESSION['login']),"Login form","section_login");
 			
-				<p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
-				<p><label for="login">Login : </label><input type="text" id="login" name="login" tabindex="1" value="" /></p>
-				<p><label for="pwd">Password :</label><input type="password" id="pwd" name="pwd" tabindex="2" /></p>
-			</fieldset>
-			<div><input type="submit" name="submit" value="Connexion" tabindex="3" /></div>
+            
+            
+            echo '
+			<form id="login_form" method="post" action="">
+                <fieldset>
+                    <legend>
+                        Authentication required
+                    </legend>			
+                    <p>
+                        A username and password are being requested by https://cobra. The site says: "Secure Site"
+                    </p>
+                    <p>
+                        <label for="login">Username : </label>
+                        <input type="text" id="login" name="login" tabindex="1" value="" />
+                    </p>
+                    <p>
+                        <label for="pwd">Password :</label>
+                        <input type="password" id="pwd" name="pwd" tabindex="2" />
+                    </p>
+                </fieldset>
+                <div>
+                    <input type="submit" name="submit" value="Connexion" tabindex="3" />
+                </div>
 			</form>';
+            
+            
+            
+            echo'<form id="login_form" class="form-horizontal" method="post" action="">
+                <legend>
+                    Authentication required
+                </legend>
+                <p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
+                <div class="form-group">
+                  <label for="login" class="col-sm-2 control-label">Username </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Username">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="pwd" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Password">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" id="checkbox_remember_me"> Remember me
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="submit"  value="Connexion" class="btn btn-default">Sign in</button>
+                  </div>
+                </div>
+              </form>';
+              //<form class="form-inline">';
+              
+            
 		}
 		else
 		{
@@ -90,7 +145,7 @@ else{
 
 						} 
 						else{
-							echo '<p>Désolé, ces champs n\'ont pas encore été renseignés... </p>'."\n";
+							echo '<p>Sorry, these fields have not been filled... </p>'."\n";
 						
 						}
 					}
@@ -99,7 +154,7 @@ else{
 				{
 						// Erreur dans le login et / ou dans le mot de passe ...
 						new_cobra_body(False);
-						echo '<p>Désolé, vous avez peut-être fait une erreur dans la saisie des identifiants, votre parcours se finit là ... </p>'."\n";
+						echo '<p>Sorry, you may have made an error in the input identifiers... </p>'."\n";
 						
 				}
 				
@@ -107,7 +162,7 @@ else{
 			else
 			{
 				// il n'y a personne qui répond à ces 2 identifiants
-				echo '<p>Désolé, vous avez peut-être fait une erreur dans la saisie des identifiants, mais votre parcours se finit là ... </p>'."\n";
+				echo '<p>Sorry, you may have made an error with the input identifiers </p>'."\n";
 			};
 		} // end of (isset($_POST['submit']))
 	}

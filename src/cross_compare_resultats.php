@@ -13,7 +13,7 @@ session_start();
 new_cobra_header();
 
 
-	new_cobra_body($_SESSION['login']);
+	new_cobra_body($_SESSION['login'],"Cross comparison","section_cross_compare");
 	//Instanciation de la connexion
 	$db=mongoConnector();
 

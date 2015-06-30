@@ -13,7 +13,7 @@ require '../session/control-session.php';
 
 
 new_cobra_header();
-new_cobra_body(is_logged($_SESSION['login']),"Quick search");
+new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_search");
 
 
 
@@ -40,27 +40,28 @@ $publicationsCollection = new Mongocollection($db, "publications");
 $interactionsCollection = new Mongocollection($db, "interactions");
 
 
+make_species_list(find_species_list($speciesCollection));
 
+echo '<br/>';
 echo'
+    <div class="col-md-6" id="left_col">';
+        
+        
 
-    <div class="col-md-6">';
-        make_species_list(find_species_list($speciesCollection));
-        echo '<h2> Using list of genes ids</h2>';
-
-        echo '</hr>';
+        
         make_gene_id_text_list();
-        echo '<h2> Cross compare datasets</h2>';
+        
 
-        echo '</hr>';
+        echo '<hr/>';
         make_CrossCompare_list(find_species_list($speciesCollection));
         make_viruses_list(find_viruses_list($virusCollection));
 
     echo' 
     </div>
-    <div class="col-md-6"  style="border: 2px solid grey">
+    <div class="col-md-6" id="right_col">
         <div class="col-md-12" >
             <div class="column-padding no-right-margin">
-                <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">
+                <div class="tinted-box no-top-margin" style="border:1px solid grey ">
                     <h1 style="text-align:center">	Some statistics...</h1>
                 </div>
                 <p><h4>Last update : '.getlastmod().'</h4></p> 
@@ -81,7 +82,7 @@ echo'
                 ));
                 echo '<p><h4> Pathogens per top_level</h4>';
                 foreach ($cursor['result'] as $doc){
-                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
                 }
                 echo '
 

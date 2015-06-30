@@ -102,6 +102,7 @@ function get_sample_table_in_string($cursor,$samplesCollection){
               }
     }
     $keys = array_values(array_unique($keys));
+    $table_string.='<table id="example3" class="table table-bordered" cellspacing="0" width="100%">';
 
     
     //header table start
@@ -264,7 +265,8 @@ function get_sample_table_in_string($cursor,$samplesCollection){
 
         $table_string.="</tr>";
     }
-    $table_string.='</tbody>'; 
+    $table_string.='</tbody>';
+    $table_string.='</table>';
     return $table_string;
 }
 function display_sample_table($cursor,$samplesCollection){
@@ -573,7 +575,8 @@ function make_whats_new(){
 function make_gene_id_text_list(){
 
 echo '
-    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <div class="tinted-box">
+    <h2> Using list of genes ids</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
     	<form action="/database/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
@@ -585,11 +588,11 @@ AT1G06520
 AT1G03110</textarea>
 		
 				</div>
-				<wbr></wbr>
+				<wbr/>
     				<span class="inp-group">
     					<input value="Go" class="fbutton" type="submit" />
     				</span>
-    			<wbr></wbr>
+    			<wbr/>
     		</fieldset>
     	</form>
     </div>
@@ -635,13 +638,13 @@ function make_species_list($cursor){
 
     //echo '<select class="form-control" id="speciesID" name="speciesID">';
     echo '
-    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
-    <div id="SpeciesSearch" class="js_panel">
+    <!--<div class="tinted-box no-top-margin" id="search_panel">-->
+    <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
     	<form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
-                    <div align="center" class="ff-inline ff-right" >
+                    <div align="left" class="ff-inline ff-right" >
                         <label for="species" class="ff-label">Search:</label>
 
                             <span class="inp-group">
@@ -655,12 +658,12 @@ function make_species_list($cursor){
                             echo '</select>
                                     <label for="search">for</label>
                             </span>
-                            <wbr></wbr>
+                            <wbr/>
                             <span class="inp-group">
                                     <input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
                                     <i class="fa fa-search"></i> <span><input value="Search" class="fbutton" type="submit" /></span>
                             </span>
-                            <wbr></wbr>
+                            <wbr/>
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
@@ -674,7 +677,7 @@ function make_species_list($cursor){
     		</fieldset>
     	</form>
     </div>
-    </div>';
+    <!--</div>-->';
 }
 
 function make_CrossCompare_list($cursor){
@@ -682,6 +685,7 @@ function make_CrossCompare_list($cursor){
     
     echo '
     <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <h2> Cross compare datasets</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
     	<form action="../src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
@@ -701,7 +705,7 @@ function make_CrossCompare_list($cursor){
 					  echo '</select>
     						<label for="q">versus</label>
     					</span>
-    					<wbr></wbr>
+    					<wbr/>
     					<span class="inp-group">
     						<select name="species2ID" class="fselect input" id="species2ID">
     							<option value="">All species</option>
@@ -714,7 +718,7 @@ function make_CrossCompare_list($cursor){
 
     						<input value="Go" class="fbutton" type="submit" />
     					</span>
-    					<wbr></wbr>
+    					<wbr/>
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 

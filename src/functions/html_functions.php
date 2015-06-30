@@ -30,6 +30,9 @@ echo'
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
 
+<!-- Include iCheck skin -->
+<link rel="stylesheet" href="/database/css/icheck/all.css" />
+
 <!-- jQuery 2.0.2 -->
 <script src="/database/js/jquery.min.js"></script>
 
@@ -50,24 +53,24 @@ echo'
 ';
 }
 
-function add_accordion_panel($table_thead_tbody_string){
+function add_accordion_panel($table_thead_tbody_string,$panel_title='null',$unique_id='null'){
+    
     echo'<div class="panel-group" id="accordion_documents">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3>
-                            <a class="accordion-toggle collapsed" href="#collapse_documents" data-parent="#accordion_documents" data-toggle="collapse">
-                                Samples details
+                            <a class="accordion-toggle collapsed" href="#'.$unique_id.'" data-parent="#accordion_documents" data-toggle="collapse">
+                                '.$panel_title.'
                             </a>				
                         </h3>
                     </div>
-                    <div class="panel-body panel-collapse collapse" id="collapse_documents">
+                    <div class="panel-body panel-collapse collapse" id="'.$unique_id.'">
                         
-                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                             
                            ';
                             echo  $table_thead_tbody_string;
                             echo'
-                        </table>
+                        
                     </div>
                     
                 </div>
@@ -155,7 +158,7 @@ function add_accordion_panel($table_thead_tbody_string){
 //            </div>    
 //            <br/>';*/
 }
-function new_cobra_body($IsLogged='null', $type='null'){
+function new_cobra_body($IsLogged='null', $type='null',$section_id='null'){
 echo'
 
     </head>
@@ -225,7 +228,7 @@ echo'
             	echo '<ol class="breadcrumb">
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
                   <li><a href="/database/src/description/">description</a></li>
-                  <li><a href="/">wiki home</a></li>
+                  <li><a href="/database/">wiki home</a></li>
                   <li><a href="/database/">Quick search</a></li>
                   ';if ($IsLogged){echo '
                   <li><a href="/database/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
@@ -240,7 +243,7 @@ echo'
             </section>
 
             <!-- Main content -->
-            <section class="content">
+            <section class="content" id="'.$section_id.'">
 ';
 
 }
