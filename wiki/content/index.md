@@ -63,33 +63,33 @@ Date: 2015/01/29
         <div class="col-md-6" >
             <div id="image_container">
                 <hr  size=0.5>
-                <img class="displayed" id="partner_logo" src="/database/images/new_inra_w186.png"/>
+                <img class="displayed" id="partner_logo" src="/images/new_inra_w186.png"/>
             </div>
             <div id="image_container">
                 <hr  size=0.5>                           
-                <img class="displayed" id="partner_logo" src="/database/images/noordsat_w186.jpg" />
+                <img class="displayed" id="partner_logo" src="/images/noordsat_w186.jpg" />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/database/images/jki_w186.gif"  />
+                <img class="displayed" id="partner_logo" src="/images/jki_w186.gif"  />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/database/images/ipk.png"  />
+                <img class="displayed" id="partner_logo" src="/images/ipk.png"  />
             </div>
         </div>
         <div class="col-md-6" >
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/database/images/cgfb_w186.jpg" height="85"/>
+                <img class="displayed" id="partner_logo" src="/images/cgfb_w186.jpg" height="85"/>
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/database/images/abiopep3_w186.jpg" height="85" />
+                <img class="displayed" id="partner_logo" src="/images/abiopep3_w186.jpg" height="85" />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/database/images/LOGO_csic_w186.jpg" />
+                <img class="displayed" id="partner_logo" src="/images/LOGO_csic_w186.jpg" />
             </div>
 
         </div>
@@ -102,13 +102,13 @@ Date: 2015/01/29
 <!---<div id="topSplitBox-Right">
 	<h3>COBRA Funding And Partners</h3>
 		<div id="partnerImages">
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/new_INRA.png" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/noordsat.jpg"  height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/jki.gif"  height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/cgfb.jpg" height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/abiopep3.jpg" height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/LOGO_CSIC.jpg" height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/database/images/ipk.png" height="136" width="240"/></a> 	  
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/new_INRA.png" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/noordsat.jpg"  height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/jki.gif"  height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/cgfb.jpg" height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/abiopep3.jpg" height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/LOGO_CSIC.jpg" height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/ipk.png" height="136" width="240"/></a> 	  
 		</div>
 	<div><a class='partners' href='http://wiki.thebiogrid.org/doku.php/partners' title='Additional BioGRID Partners'>more partners</a></div>
 </div>-->

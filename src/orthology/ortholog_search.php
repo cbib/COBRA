@@ -22,7 +22,7 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //    echo '
 //    <div id="SpeciesSearch" class="js_panel">
 //    	<input type="hidden" class="panel_type" value="SearchBox" />
-//    	<form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
+//    	<form action="/src/result_search.php" method="get" class="clear search-form homepage-search-form">
 //            <fieldset>
 //                <div class="form-field ff-multi">
 //                    <div align="center" class="ff-inline ff-right" >
@@ -48,9 +48,9 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //    				</div>
 //    				<div class="ff-notes">
 //    					<p class="search-example " style="padding : 6px">e.g. 
-//    						<a class="nowrap" href="/database/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
+//    						<a class="nowrap" href="/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
 //    						or 
-//    						<a class="nowrap" href="/database/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+//    						<a class="nowrap" href="/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
 //    						
 //    					</p>
 //    				</div>
@@ -164,7 +164,7 @@ foreach ($gene_list_attributes as $attributes) {
 //            echo '<td>'.$species.'</td>';
 //            echo "</tr>";
 //            echo'</tbody></table>';
-            echo '<div style="cursor: pointer;" onclick="window.location=\'/database/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
+            echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
                     <div class="results-right">
                         <div class="organism"> Organism:'.$species.'</div>
                         <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>

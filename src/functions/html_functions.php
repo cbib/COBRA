@@ -10,39 +10,39 @@ echo'
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <!-- bootstrap 3.0.2 -->
-<link href="/database/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
-<link href="/database/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Ionicons -->
-<link href="/database/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="/database/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <!-- Datatable style -->
-<link rel="stylesheet" type="text/css" href="/database/css/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/dataTables.bootstrap.css">
 
 <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="/database/css/cobra_styles.css">	
+<link rel="stylesheet" type="text/css" href="/css/cobra_styles.css">	
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
 
 <!-- Include iCheck skin -->
-<link rel="stylesheet" href="/database/css/icheck/all.css" />
+<link rel="stylesheet" href="/css/icheck/all.css" />
 
 <!-- jQuery 2.0.2 -->
-<script src="/database/js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="/database/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" language="javascript" src="/database/js/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="/database/js/dataTables.bootstrap.js"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="/js/dataTables.bootstrap.js"></script>
 
 <!-- AdminLTE App -->
-<script src="/database/js/app.js" type="text/javascript"></script>
+<script src="/js/app.js" type="text/javascript"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
@@ -53,7 +53,7 @@ echo'
 ';
 }
 
-function add_accordion_panel($table_thead_tbody_string,$panel_title='null',$unique_id='null'){
+function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'){
     
     echo'<div class="panel-group" id="accordion_documents">
                 <div class="panel panel-default">
@@ -68,7 +68,7 @@ function add_accordion_panel($table_thead_tbody_string,$panel_title='null',$uniq
                         
                             
                            ';
-                            echo  $table_thead_tbody_string;
+                            echo  $table_string;
                             echo'
                         
                     </div>
@@ -172,41 +172,41 @@ echo'
             <section class="sidebar">
                <!-- Sidebar user panel -->
                <div class="cobra-logo">
-               	<img src="/database/images/cobra-icon.png" />
+               	<img src="/images/cobra-icon.png" />
                   <p>COBRA</p>
                </div>
 
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <li>
-					<a href="/database/wiki">
+					<a href="/wiki">
 						<i class="fa fa-home"></i> 
 						<span>About COBRA</span>
 					</a>
                	</li>
                   <li>
-                     <a href="/database/src/search/">
+                     <a href="/src/search/">
                         <i class="fa fa-search"></i> 
                         <span>Quick Search</span>
                      </a>
                   </li>
                   <li>
-                     <a href="/database/src/description/">
+                     <a href="/src/description/">
                         <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                      </a>
                   </li>
                   <!--<li>
-                     <a href="/database/wiki/">
+                     <a href="/wiki/">
                         <i class="fa fa-info"></i> <span>Wiki</span>
                      </a>
                   </li>-->
                   <li>
-                     <a href="/database/src/tools/">
+                     <a href="/src/tools/">
                         <i class="fa fa-cogs"></i> <span>Tools</span>
                      </a>
                   </li>
                   <li>
-                     <a href="/database/src/info/WebSite/">
+                     <a href="/src/info/WebSite/">
                         <i class="fa fa-question"></i> <span>Help</span>
                      </a>
                   </li>
@@ -227,14 +227,14 @@ echo'
             	
             	echo '<ol class="breadcrumb">
                   <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                  <li><a href="/database/src/description/">description</a></li>
-                  <li><a href="/database/">wiki home</a></li>
-                  <li><a href="/database/">Quick search</a></li>
+                  <li><a href="/src/description/">description</a></li>
+                  <li><a href="/">wiki home</a></li>
+                  <li><a href="/">Quick search</a></li>
                   ';if ($IsLogged){echo '
-                  <li><a href="/database/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
-                  echo '<li><a href="/database/login.php?act=logout">Logout</a></li>';}
+                  <li><a href="/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
+                  echo '<li><a href="/login.php?act=logout">Logout</a></li>';}
                   else{
-                  	echo '<li><a href="/database/login.php">Login</a></li>';
+                  	echo '<li><a href="/login.php">Login</a></li>';
                   }
                   echo '
                   
@@ -309,7 +309,7 @@ echo'
       			<div class="col-xs-6">
       			<div class="species-box">
         			<a href="Arabidopsis_thaliana/Info/Index">
-          				<span class="sp-img"><img src="/database/images/A_thaliana.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
+          				<span class="sp-img"><img src="/images/A_thaliana.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
           				<span>Arabidopsis thaliana</span>
          
         			</a>
@@ -318,7 +318,7 @@ echo'
       			</br>
       			<div class="species-box">
         			<a href="Arabidopsis_thaliana/Info/Index">
-          				<span class="sp-img"><img src="/database/images/barley.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
+          				<span class="sp-img"><img src="/images/barley.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
           				<span>Hordeum vulgare</span>
         			</a>
         			
@@ -326,7 +326,7 @@ echo'
       			</br>
       			<div class="species-box">
         			<a href="Arabidopsis_thaliana/Info/Index">
-          				<span class="sp-img"><img src="/database/images/tomato.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
+          				<span class="sp-img"><img src="/images/tomato.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
           				<span>Solanum lycopersicum</span>
         			</a>
         			
@@ -336,7 +336,7 @@ echo'
       			</br>
       			<div class="species-box">
         			<a href="Arabidopsis_thaliana/Info/Index">
-          				<span class="sp-img"><img src="/database/images/melon.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
+          				<span class="sp-img"><img src="/images/melon.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
           				<span>Cucumis melo</span>
         			</a>
         			
@@ -344,7 +344,7 @@ echo'
       			</br>
       			<div class="species-box">
         			<a href="Arabidopsis_thaliana/Info/Index">
-          				<span class="sp-img"><img src="/database/images/prunus.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
+          				<span class="sp-img"><img src="/images/prunus.jpg" alt="Arabidopsis thaliana" title="Browse Arabidopsis thaliana" height="48" width="48" /></span>
           				<span>Prunus domestica</span>
         			</a>
         			

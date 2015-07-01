@@ -7,12 +7,12 @@
 
 /*modify the width regarding to screen resolution*/
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .table {
     width: 750px;
   }
   .resultsbox{
- 	width:650px
+ 	width:650px;
  } 
  .dataTable {
     	width: 668px;
@@ -45,7 +45,7 @@
 
  }
 }
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px){
   .container{
     	width:860px
   }
@@ -53,10 +53,10 @@
     	width: 892px;
   }
   .content{
- 	width:812px
+ 	width:812px;
   }
   .resultsbox#results{
- 	width:650px
+ 	width:650px;
   }  
   #summary > #protein-details{
 	width: 380px;
@@ -85,7 +85,7 @@
 }
 
 /*my mac screen*/
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (max-width: 1600px) {
    .container{
     width:1060px;
    }
@@ -206,7 +206,7 @@
  }
 }
 
-@media (min-width:1600px){
+@media (min-width:1600px) and (max-width: 1800px) {
  .container{
     width:1460px
  }
@@ -253,26 +253,108 @@
  }
 }
 /* Second screen  */
-@media (min-width:1800px){
+@media (min-width:1800px) and (max-width: 1920px){
  .container{
-    width:1650px
+    width:1650px;
  }
- .dataTables_wrapper{
-    width:1600px
- }
+ 
  .content{
-    width:1630px
+    width:1630px;
  }
  #summary > .tinted-box
   {
-    width:1600px
+    width:1600px;
   }
+  #section_result_summary > .tinted-box{
+    width:1600px  ;
+  }
+  
+  
+  #section_quick_search > #content > .col-md-6#right_col{
+      width:750px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: right;
+     border: 1px solid #DDD; 
+  }
+#section_quick_search  > #content >  .col-md-6#left_col{
+     width:790px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 10px;
+     float: left;
+     border: 1px solid #DDD; 
+     
+  }
+/*  #section_quick_search > .col-md-6#left_col > .tinted-box{
+     width:750px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 10px;
+     float: left;
+     border: 1px solid #DDD; 
+  }*/
   #summary{
-    width:1600px 
+    width:1600px; 
   }
  .resultsbox#results{
-    width:1600px
+    width:1600px;
  } 
+/* .dataTables_wrapper{
+    width:1600px;
+ }*/
+ mapping_table > .dataTables_wrapper#mapping_wrapper{
+    width:1550px; 
+ }
+ #viruses_table > .dataTables_wrapper#mapping_wrapper{
+    width:1550px;
+ }
+ #species_table > .dataTables_wrapper#mapping_wrapper{
+    width:1550px ;
+ }
+ 
+ 
+ .body#dataTables_scrollHeadInner{
+      width:600px;
+  }
+  .resultsbox#results{
+ 	width:970px;
+  } 
+  #section_quick_search > #content > #SpeciesSearch{
+     width:1570px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+  }
+  #section_result_summary > #SpeciesSearch{
+     width:1600px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+  }
+  
+
+  .right-side > .content-header > .breadcrumb{
+        
+        font-size: 0.9em;
+        position: absolute;
+        margin-top: 10px;
+        top: 0px;
+        right: 0px;
+        float: right;
+ 
+ 
+  }
  #summary > #protein-details{
 	width: 780px;
         background-color: #FFF;
@@ -287,7 +369,7 @@
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 10px 10px 0px;
-	float: left;
+	float: right;
 	border: 1px solid #DDD;
   }
   #summary > #sample_info{
@@ -315,16 +397,16 @@
 }
 @media (min-width:1920px){
  .container{
-    width:1660px
+    width:1660px;
  }
  .dataTable{
-    width:1700px
+    width:1700px;
  }
  .content{
-     width:1750px
+     width:1750px;
  }
  .resultsbox{
-    width:1500px
+    width:1500px;
  } 
  .div#protein-details{
     width: 850px;

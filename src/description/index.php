@@ -34,20 +34,20 @@ $virusesCollection = new Mongocollection($db, "viruses");
 ###EXPERIMENT REQUEST
 
 
- $cursor=find_all_xp_name($samplesCollection);
+$cursor=find_all_xp_name($samplesCollection);
 $table_string="";
 
 ###DISPLAY EXPERIMENT LIST
 
- $table_string.='<h1>COBRA Datasets</h1>';
+$table_string.='<h1>COBRA Datasets</h1>';
  
- $table_string.='<ul>';
+$table_string.='<ul>';
  //$table_string.='<a href=experiments.php>test</a>';
- foreach($cursor as $line) {
+foreach($cursor as $line) {
  	$title=$line['name'];
  	//echo str_replace(' ','\s',$title);
 	$table_string.='<li value='.$line['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$line['name'].'</a></li>';
-	}
+}
  //makeDatatableFromFind($cursor);
 $table_string.='</ul>';
 add_accordion_panel($table_string, "Experiments lists","Experiments_lists");
@@ -107,7 +107,7 @@ $table_string.='</tr>';
 $table_string.='</tbody></table>';
 
 
-add_accordion_panel($table_string, "Mappings Table", "Mappings_Table");
+add_accordion_panel($table_string, "Mappings Table", "mapping_table");
 
 
 $table_string="";
@@ -171,7 +171,7 @@ $table_string.='</tr>';
 
 }
 $table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Species list", "Species_list");
+add_accordion_panel($table_string, "Species table", "Species_table");
 
 
 $table_string="";
@@ -238,7 +238,7 @@ $table_string.='</tr>';
 
 }
 $table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Virus list", "Virus_list");
+add_accordion_panel($table_string, "Viruses table", "virus_table");
 
 
 

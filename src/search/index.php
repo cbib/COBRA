@@ -18,14 +18,14 @@ new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_searc
 
 
 echo '
-<main id="content" class="homepage">
+<main id="content" class="seachpage">
 	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
 			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
 			by the new candidate genes prior to transfer to crop species</p>
 	</div> 
 	';
 
-echo '</main>';
+
 //include('connection.php');
 
 
@@ -42,29 +42,19 @@ $interactionsCollection = new Mongocollection($db, "interactions");
 
 make_species_list(find_species_list($speciesCollection));
 
-echo '<br/>';
+echo'</hr>';
 echo'
     <div class="col-md-6" id="left_col">';
-        
-        
 
-        
         make_gene_id_text_list();
         
-
-        echo '<hr/>';
         make_CrossCompare_list(find_species_list($speciesCollection));
         make_viruses_list(find_viruses_list($virusCollection));
 
-    echo' 
-    </div>
-    <div class="col-md-6" id="right_col">
-        <div class="col-md-12" >
-            <div class="column-padding no-right-margin">
-                <div class="tinted-box no-top-margin" style="border:1px solid grey ">
-                    <h1 style="text-align:center">	Some statistics...</h1>
-                </div>
-                <p><h4>Last update : '.getlastmod().'</h4></p> 
+        
+     
+    $stat_string="";
+    $stat_string.='<p><h4>Last update : '.getlastmod().'</h4></p> 
                 <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
                 <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
 
@@ -73,87 +63,126 @@ echo'
                 $cursor=$speciesCollection->aggregate(array(
                 array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
                 ));
-                echo '<p> <h4>Species per top_level</h4>';
+                $stat_string.='<p> <h4>Species per top_level</h4>';
                 foreach ($cursor['result'] as $doc){
-                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
                 }
                 $cursor=$virusCollection->aggregate(array(
                 array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
                 ));
-                echo '<p><h4> Pathogens per top_level</h4>';
+                $stat_string.='<p><h4> Pathogens per top_level</h4>';
                 foreach ($cursor['result'] as $doc){
-                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
+                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
                 }
-                echo '
+    
+    
+    
+    
+    echo' 
+    </div>
+    <div class="col-md-6" id="right_col">';
+    add_accordion_panel($stat_string, "Some statistics...", "stat_panel");
+    echo' </div>';
 
-            </div>
-        </div>
-    </div>      
 
-	
+//        echo'<div class="col-md-12" >
+//            <div class="column-padding no-right-margin">
+//                <div class="tinted-box no-top-margin" style="border:1px solid grey ">
+//                    <h1 style="text-align:center">	Some statistics...</h1>
+//                </div>
+//                
+//
+//                <p><h4>Last update : '.getlastmod().'</h4></p> 
+//                <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
+//                <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
+//
+//                <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
+//
+//                $cursor=$speciesCollection->aggregate(array(
+//                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+//                ));
+//                echo '<p> <h4>Species per top_level</h4>';
+//                foreach ($cursor['result'] as $doc){
+//                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+//                }
+//                $cursor=$virusCollection->aggregate(array(
+//                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+//                ));
+//                echo '<p><h4> Pathogens per top_level</h4>';
+//                foreach ($cursor['result'] as $doc){
+//                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
+//                }
+//                echo '
+//
+//            </div>
+//        </div>
+//    </div>      
 
 
 
-';
+
+
+
+echo '</main>';
  new_cobra_footer();	
  
  
  
- //obsolet code
+ /*obsolet code
  //
  //
  //
  //
 //new_cobra_species_container();
-echo '
-    <!--<div class="container">
-                <div class="form-field ff-multi">
-                        <div class=ff-inline ff-right">
-                                <img src="images/NINSAR_LOGO.jpg" />
-                                <img src="images/LOGO_CSIC.jpg" />
-                                <img src="images/abiopep.jpg" />
-                                <img src="images/INRA.jpg" />
-                                <img src="images/GAFL.jpg" />
-                        </div>
-                </div>
-        </div>-->
-    <!--<div class="plain-box">
-        <div class="form-group">
-            <label for="requestID">Multiple Select List</label>
-            <select multiple class="form-control" id="requestID" name="requestID">
-                <option value="Request1">get all uniprot id from genes up regulated from a given species in microarray analysis of infection by a given virus</option>
-                <option value="Request2">get all angiosperms infected by a given pathogen</option>
-                <option value="Request3">find a gene using a regular expression</option>
-                <option value="Request4">Request 4</option>
-                <option value="Request5">Request 5</option>
-            </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="textInput">choose a gene id</label>
-            <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
-        </div>
-        <div class="form-group">
-            <label for="logFCInput">choose min logFC value</label>
-            <input type="number" step="0.0001" name="logFCInput" class ="form-control" placeholder="Tapez ici..." id="logFCInput">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-        </form>
-        </div>
-        -->';                                
-
-
- echo '<!--<div class="plain-box">
-                        <h2 id="features">
-                        Some statistics...
-                        </h2>
-                </div>-->';
- echo'
-<!--<div class="column-padding no-left-margin"><div class="container"><div class="col-xs-6"><h2>Select examples</h2><p>Select a species in the list :</p>-->
-<!--<form role="form" action="../../src/resultats.php" method="post" >-->';
+//echo '
+//    <!--<div class="container">
+//                <div class="form-field ff-multi">
+//                        <div class=ff-inline ff-right">
+//                                <img src="images/NINSAR_LOGO.jpg" />
+//                                <img src="images/LOGO_CSIC.jpg" />
+//                                <img src="images/abiopep.jpg" />
+//                                <img src="images/INRA.jpg" />
+//                                <img src="images/GAFL.jpg" />
+//                        </div>
+//                </div>
+//        </div>-->
+//    <!--<div class="plain-box">
+//        <div class="form-group">
+//            <label for="requestID">Multiple Select List</label>
+//            <select multiple class="form-control" id="requestID" name="requestID">
+//                <option value="Request1">get all uniprot id from genes up regulated from a given species in microarray analysis of infection by a given virus</option>
+//                <option value="Request2">get all angiosperms infected by a given pathogen</option>
+//                <option value="Request3">find a gene using a regular expression</option>
+//                <option value="Request4">Request 4</option>
+//                <option value="Request5">Request 5</option>
+//            </select>
+//            </div>
+//        </div>
+//
+//        <div class="form-group">
+//            <label for="textInput">choose a gene id</label>
+//            <input type="text" name="textInput" class ="form-control" placeholder="Tapez ici..." id="textInput">
+//        </div>
+//        <div class="form-group">
+//            <label for="logFCInput">choose min logFC value</label>
+//            <input type="number" step="0.0001" name="logFCInput" class ="form-control" placeholder="Tapez ici..." id="logFCInput">
+//        </div>
+//        <div class="form-group">
+//            <button type="submit" class="btn btn-default">Submit</button>
+//        </div>
+//        </form>
+//        </div>
+//        -->';                                
+//
+//
+// echo '<!--<div class="plain-box">
+//                        <h2 id="features">
+//                        Some statistics...
+//                        </h2>
+//                </div>-->';
+// echo'
+//<!--<div class="column-padding no-left-margin"><div class="container"><div class="col-xs-6"><h2>Select examples</h2><p>Select a species in the list :</p>-->
+//<!--<form role="form" action="../../src/resultats.php" method="post" >-->';
  
         #make_plaza_orthologs(get_plaza_orthologs($grid,"plaza_gene_identifier",));
         //make_species_list_2();
@@ -175,7 +204,7 @@ echo '
  #find_species_list($speciesCollection);
 #$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
 #<div class="container">
-#	<div class="col-xs-6">
+#	<div class="col-xs-6">*/
 
 
 

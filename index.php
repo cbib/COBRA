@@ -20,8 +20,6 @@ define('CONTENT_EXT', '.md');
 //define('THEMES_DIR', ROOT_DIR .'wiki/themes/');
 //define('CACHE_DIR', LIB_DIR .'wiki/cache/');
 
-echo hexdec("65");
-
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']), "Home","section_home");
 $db=mongoConnector();

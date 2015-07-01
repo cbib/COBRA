@@ -24,7 +24,7 @@ if ((!isset($login)) || ($login == ''))
  {
 	// La variable $_SESSION['login'] n'existe pas, ou bien elle est vide
 	// <=> la personne ne s'est PAS connectée
-	//echo '<p>You have to be <a href="/database/login.php"> logged</a>.</p>'."\n";
+	//echo '<p>You have to be <a href="/login.php"> logged</a>.</p>'."\n";
 	//exit();
 	return False;
  }
@@ -464,7 +464,7 @@ function make_user_preferences($user,Mongocollection $us){
                     <input type="hidden" class="panel_type" value="SearchBox" />
                     <h3> Change password</h3>';
 		
-               echo'<form action="/database/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
+               echo'<form action="/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
                         <fieldset>
                             <div class="form-field ff-multi">
                                 <div align="center" class="ff-inline ff-right" >';
@@ -579,7 +579,7 @@ echo '
     <h2> Using list of genes ids</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/database/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
@@ -638,10 +638,10 @@ function make_species_list($cursor){
 
     //echo '<select class="form-control" id="speciesID" name="speciesID">';
     echo '
-    <!--<div class="tinted-box no-top-margin" id="search_panel">-->
+    
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/database/src/result_search.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="/src/result_search.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
@@ -667,24 +667,23 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="/database/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
     						or 
-    						<a class="nowrap" href="/database/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>
     			</div>
     		</fieldset>
     	</form>
-    </div>
-    <!--</div>-->';
+    </div><hr/>';
 }
 
 function make_CrossCompare_list($cursor){
 
     
     echo '
-    <div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    <div class="tinted-box" style="border:1px">
     <h2> Cross compare datasets</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
