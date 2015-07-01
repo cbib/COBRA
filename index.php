@@ -3,10 +3,10 @@
 // on teste si le visiteur a soumis le formulaire de connexion
 //if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 //	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
-require './src/functions/html_functions.php';
-require './src/functions/php_functions.php';
-require './src/functions/mongo_functions.php';
-require './src/session/control-session.php';
+require 'src/functions/html_functions.php';
+require 'src/functions/php_functions.php';
+require 'src/functions/mongo_functions.php';
+require 'src/session/control-session.php';
 
 
 
