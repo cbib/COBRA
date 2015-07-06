@@ -281,7 +281,7 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
        $cursor->sort(array('logFC' => 1)); 
     }
     else{
-       $cursor->sort(array('logFC' => -1)); 
+       $cursor->sort(array('logFC' => 1)); 
     }
     
     $cursor->limit($top_value);

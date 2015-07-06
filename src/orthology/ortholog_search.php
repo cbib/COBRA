@@ -118,8 +118,7 @@ $data = $_POST['species'];
 $genes=$_POST['regulation'];
 $Topgene=$_POST['Topgene'];
 
-echo $genes;
-echo $Topgene;
+
 
 //$species='Cucumis melo';
 foreach ($data as $species){
