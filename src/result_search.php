@@ -1558,7 +1558,7 @@ echo   '<div id="summary">
                                     </thead>
 
                                     <tbody>';
-                                        echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
+                                        echo small_table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
 
                                echo'</tbody>
 
