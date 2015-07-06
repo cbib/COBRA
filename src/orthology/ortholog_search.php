@@ -166,15 +166,13 @@ foreach ($gene_list_attributes as $attributes) {
 //            echo'</tbody></table>';
             echo '<div style="cursor: pointer;" onclick="window.location=\'https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
                     <div class="results-right">
-                        <div class="organism"> Organism:'.$species.'</div>
-                        <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
-                        <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
+                        <div class="organism"> '.$species.'</div>
+                        <div class="infection agent"> '.$attributes['infection_agent'].'</div>
+                        <div class="logFC"> Log FC: '.$attributes['logFC'].'</div>
                     </div>
                     <div class="results-left">
-                        <div class="officialSymbol"> Gene identifier: '.$attributes['gene'].'</div>
-                        <div class="favourite identifier"> Preferred gene identifier'.$attributes[$favourite_id].'</div>
-                        <div class="plaza identifier"> Preferred plaza target identifier: '.$attributes['plaza_id'].'</div>                        
-                        <div class="protein identifier"> Preferred plaza target identifier'.$attributes[$intermediary_id].'</div>
+                        <div class="officialSymbol"> <h1><strong>'.$attributes['gene'].'</strong></h1></div>
+                        
                     </div>
                 
             </div>';
