@@ -1545,13 +1545,8 @@ echo   '<div id="summary">
 
                                 <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                     <tr>';
-                                        echo "<th>Mapping type</th>";
-                                        echo "<th>src ID</th>";
-                                        echo "<th>src type</th>";
-                                        echo "<th>src_version</th>";
-                                        echo "<th>tgt ID</th>";
-                                        echo "<th>tgt type</th>";
-                                        echo "<th>tgt_version</th>";
+                                        echo "<th>ID</th>";
+                                        echo "<th>ID type</th>";
                                         echo "<th>species</th>";
                                         echo'
                                     </tr>
