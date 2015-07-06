@@ -161,12 +161,12 @@ $table_string.='
             <div class="col-xs-6">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="regulation" value="Down_Expressed" /> Down Expressed
+                        <input type="checkbox" name="regulation" value="Down" /> Down Expressed
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="regulation" value="Up_Expressed" /> Up Expressed
+                        <input type="checkbox" name="regulation" value="Up" /> Up Expressed
                     </label>
                 </div>
             </div>
