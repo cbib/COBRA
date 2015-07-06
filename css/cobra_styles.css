@@ -6,7 +6,146 @@
  
 
 /*modify the width regarding to screen resolution*/
+@media screen and (max-width: 991px){
+  /*body {
+ *         background-color:red;
+ *             }*/
+    /*header fixed part*/
 
+  /* need to define this part like that because content -header inherits from */
+  .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+  }
+  .right-side > .content-header > .breadcrumb{
+
+        font-size: 0.8em;
+        position: absolute;
+        margin-top: 10px;
+        top: 0px;
+        right: 0px;
+        float: right;
+  }
+
+  /*content fixed part*/
+
+
+
+  .container{
+        width:800px;
+  }
+  .dataTable {
+        width: 800px;
+  }
+  #mapping_table > .table{
+    width:800px;
+  }
+  #viruses_table > .dataTables_wrapper#mapping_wrapper{
+    width:800px;
+  }
+  #species_table > .dataTables_wrapper#mapping_wrapper{
+    width:800px ;
+  }
+  .body#dataTables_scrollHeadInner{
+      width:500px;
+  }
+  .content{
+        width:890px;
+  }
+  #summary{
+    width:890px;
+  }
+  #summary > #protein-details{
+        width: 385px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
+  }
+  #summary > #stat-details{
+        width: 385px;
+        background-color: #FFF;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: right;
+        border: 1px solid #DDD;
+  }
+  #summary > .tinted-box
+  {
+    width:900px;
+  }
+  #summary > #accordion_documents{
+    width : 450px;
+
+  }
+  .resultsbox#results{
+        width:830px;
+  }
+  #section_result_summary > .tinted-box{
+    width:900px  ;
+  }
+
+
+ #section_quick_search > #content {
+     width:890px;
+     background-color: #FFF;
+     margin-left: 2px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+  #section_result_summary > #SpeciesSearch{
+     width:890px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+  #image_container{
+  border-radius: 20px;
+  height: 120px;
+  width : 200px;
+  text-align: center;
+  background-color: #E6E6E6;
+
+  }
+  #go_process > .table{
+    width : 400px;
+  }
+  #section_quick_search > .col-md-6#right_col{
+      width:350px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: right;
+     border: 1px solid #DDD;
+  }
+  #section_quick_search > .col-md-6#left_col{
+     width:390px;
+     background-color: #FFF;
+     margin-left: 0px;
+
+     /*padding: 10px 10px 0px;*/
+     float: left;
+
+  }
+  #section_quick_search > .col-md-6#left_col > .tinted-box{
+     width:350px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 10px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+
+
+}
 
       
 
@@ -40,7 +179,7 @@
   .dataTable {
     	width: 900px;
   }
-  mapping_table > .table{
+  #mapping_table > .table{
     width:900px; 
   }
   #viruses_table > .dataTables_wrapper#mapping_wrapper{
@@ -149,9 +288,113 @@
   }
 }
 @media screen and (min-width: 1300px) and (max-width: 1600px) {
-    body {
+    /*body {
         background-color:yellow;
-    }
+    }*/
+    .container{
+    width:1100px;
+ }
+ .dataTable {
+    width:1100px;
+ }
+ mapping_table > .dataTables_wrapper#mapping_wrapper{
+    width:1100px;
+ }
+ #viruses_table > .dataTables_wrapper#mapping_wrapper{
+    width:1100px;
+ }
+ #species_table > .dataTables_wrapper#mapping_wrapper{
+    width:1100px ;
+ }
+ .content{
+    width:1200px;
+ }
+ .resultsbox#results{
+    width:1100px;
+ }
+ .panel-collapse#ortho-table > .table {
+  width:340px;
+ }
+ #summary > #protein-details{
+        width: 540px;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
+  }
+ #summary > #stat-details{
+        width: 540px;
+        background-color: #FFF;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: right;
+        border: 1px solid #DDD;
+  }
+ #summary{
+    width:1100px;
+  }
+ #image_container{
+  border-radius: 20px;
+  height: 120px;
+  width : 200px;
+  text-align: center;
+  background-color: #E6E6E6;
+
+  }
+  #section_result_summary > #SpeciesSearch{
+     width:1100px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+  /*header fixed part*/
+ /* need to define this part like that because content -header inherits from */
+ .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+
+ }
+ #section_quick_search > .col-md-6#left_col{
+     width:390px;
+     background-color: #FFF;
+     margin-left: 0px;
+
+     /*padding: 10px 10px 0px;*/
+     float: left;
+
+  }
+  #section_quick_search > .col-md-6#left_col > .tinted-box{
+     width:350px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 10px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+  #section_quick_search > #SpeciesSearch{
+     width:1100px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+#section_quick_search > #content {
+     width:1100px;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD;
+  }
+
 }
 @media screen and (min-width: 1600px) and (max-width: 1920px) {
  /*body {
@@ -177,7 +420,10 @@
  }
  .resultsbox#results{
     width:1490px;
- } 
+ }
+ .panel-collapse#ortho-table > .table {
+  width:640px;
+ }  
  #summary > #protein-details{
 	width: 740px;
         background-color: #FFF;
@@ -260,9 +506,9 @@
     
 }
 @media screen and (min-width: 1920px) and (max-width: 2200px) {
-    body {
+    /*body {
         background-color:green;
-    }
+    }*/
      .container{
     width:1660px;
  }

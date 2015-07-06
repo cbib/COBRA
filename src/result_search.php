@@ -1532,6 +1532,41 @@ echo   '<div id="summary">
                         </div></div>';
                     }
                 }
+		echo'<div class="panel-group" id="accordion_documents">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                            Paralogs and Orthologs table
+                                    </a>				
+                                </h3>
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="ortho-table">
+
+                                <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                                    <tr>';
+                                        echo "<th>Mapping type</th>";
+                                        echo "<th>src ID</th>";
+                                        echo "<th>src type</th>";
+                                        echo "<th>src_version</th>";
+                                        echo "<th>tgt ID</th>";
+                                        echo "<th>tgt type</th>";
+                                        echo "<th>tgt_version</th>";
+                                        echo "<th>species</th>";
+                                        echo'
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>';
+                                        echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
+
+                               echo'</tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>';
                         echo'
                            
 
