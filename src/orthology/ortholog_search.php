@@ -402,7 +402,7 @@ foreach ($data as $species){
                 }
             }
             else{
-                    echo '<div> No Orthologs found for this gene</div>'
+                    echo '<div> No Orthologs found for this gene</div>';
     //            echo $key."\r\t";
     //            echo $value."No id found\r\n";
     //            
