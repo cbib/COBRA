@@ -138,7 +138,7 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "vschurdi_levraud password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -157,7 +157,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "jlgallois :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -177,7 +177,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "jmaudergeon password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -197,7 +197,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "brodamillans password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -217,7 +217,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "jagarcia password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -237,7 +237,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "maaranda password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -257,7 +257,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "jaguero password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -277,7 +277,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "amendez password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -297,7 +297,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "nstein password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -317,7 +317,7 @@ users_col.insert(users_table)
 
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "leichel password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -334,7 +334,7 @@ users_table={
 }
 users_col.insert(users_table)
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "fordon password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -352,7 +352,7 @@ users_table={
 users_col.insert(users_table)
 
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters  + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "sfarber password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
@@ -369,7 +369,7 @@ users_table={
 }
 users_col.insert(users_table)
 
-characters = string.ascii_letters + string.punctuation  + string.digits
+characters = string.ascii_letters + string.digits
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
 print "dperovic password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
