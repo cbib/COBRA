@@ -204,11 +204,11 @@ echo'
                         <i class="fa fa-cogs"></i> <span>Tools</span>
                      </a>
                   </li>
-                  <li>
+                 <!-- <li>
                      <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/info/WebSite/">
                         <i class="fa fa-question"></i> <span>Help</span>
                      </a>
-                  </li>
+                  </li>-->
                </ul>
             </section>
             <!-- /.sidebar -->
