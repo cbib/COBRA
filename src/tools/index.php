@@ -156,6 +156,25 @@ $table_string.='
         </div>
     </div>
     <div class=col-md-6>
+        <div class="form-group">
+            <label class="col-xs-3 control-label"> Favourites Species</label>
+            <div class="col-xs-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="reg_down" value="Down_Expressed" /> Down Expressed
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="reg_up" value="Up_Expressed" /> Up Expressed
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="logFCInput">choose min logFC value</label>
+            <input type="number" step="1" name="Topgene" class ="form-control" placeholder="" id="top_gene">
+         </div>
     </div>
 </form>';
 
