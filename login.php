@@ -140,7 +140,7 @@ else{
 							// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
 							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
 							
-							header('Location: /index.php'); 
+							header('Location: index.php'); 
 							///header('Location: ./wiki/index.php'); 
 
 						} 
@@ -170,7 +170,7 @@ else{
 		
 		
 		//header('Location: ./src/search/index.php');  
-		header('Location: /index.php'); 
+		header('Location: index.php'); 
 
 	}
 }

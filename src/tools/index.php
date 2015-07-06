@@ -1,9 +1,9 @@
 <?php
 
-require '../functions/html_functions.php';
-require '../functions/php_functions.php';
-require '../functions/mongo_functions.php';
-require '../session/control-session.php';
+require '/var/www/html/COBRA/src/functions/html_functions.php';
+require '/var/www/html/COBRA/src/functions/php_functions.php';
+require '/var/www/html/COBRA/src/functions/mongo_functions.php';
+require '/var/www/html/COBRA/src/session/control-session.php';
 
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools");
@@ -114,9 +114,9 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //        //$attributes['gene'];
 //}
 ///////////////////////////////////////////////////
-
+$table_string="";
 $table_string.='
-<form id="icheckForm" method="post" class="form-horizontal" action="/src/orthology/ortholog_search.php">
+<form id="icheckForm" method="post" class="form-horizontal" action="https://services.cbib.u-bordeaux2.fr/cobra/src/orthology/ortholog_search.php">
     
 
     <div class="form-group">
@@ -173,48 +173,27 @@ add_accordion_panel($table_string, "Perform Orthologs search on high expressed g
 
 
 <script>
-$(document).ready(function() {
-    $('#icheckForm')
-        .formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                job: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The job position is required'
-                        }
-                    }
-                },
-                'species[]': {
-                    validators: {
-                        choice: {
-                            min: 1,
-                            max: 3,
-                            message: 'Please choose 1 - 3 species'
-                        }
-                    }
-                }
-            }
-        })
-        .find('input[name="job"], input[name="languages[]"]')
-            // Init icheck elements
-            .icheck({
-                // The tap option is only available in v2.0
-                tap: true,
-                checkboxClass: 'icheckbox_square-red',
-                radioClass: 'iradio_square-red'
-            })
-            // Called when the radios/checkboxes are changed
-            .on('ifChanged', function(e) {
-                // Get the field name
-                var field = $(this).attr('name');
-                $('#icheckForm').formValidation('revalidateField', field);
-            })
-            .end();
+
+$(document).ready(function () {
+$('#icheckForm').validate({
+    rules: {
+        "species[]": {
+               required: true,
+               minlength: 1,
+               maxlength: 3,
+               message:'Please choose 1 - 3 species'
+             
+        }
+       
+    },
+    highlight: function (element) {
+        $(element).closest('.form-group').removeClass('success').addClass('error');
+    },
+    success: function (element) {
+        element.text('OK!').addClass('valid')
+            .closest('.form-group').removeClass('error').addClass('success');
+    }
 });
+});
+
 </script>

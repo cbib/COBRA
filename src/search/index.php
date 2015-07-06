@@ -3,10 +3,10 @@
 // on teste si le visiteur a soumis le formulaire de connexion
 //if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 //	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
-require '../functions/html_functions.php';
-require '../functions/php_functions.php';
-require '../functions/mongo_functions.php';
-require '../session/control-session.php';
+require '/var/www/html/COBRA/src/functions/html_functions.php';
+require '/var/www/html/COBRA/src/functions/php_functions.php';
+require '/var/www/html/COBRA/src/functions/mongo_functions.php';
+require '/var/www/html/COBRA/src/session/control-session.php';
 
 
 
@@ -18,7 +18,7 @@ new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_searc
 
 
 echo '
-<main id="content" class="seachpage">
+<main id="content" class="searchpage">
 	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
 			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
 			by the new candidate genes prior to transfer to crop species</p>
@@ -81,7 +81,7 @@ echo'
     echo' 
     </div>
     <div class="col-md-6" id="right_col">';
-    add_accordion_panel($stat_string, "Some statistics...", "stat_panel");
+    add_accordion_panel($stat_string, "Some statistics", "stat_panel");
     echo' </div>';
 
 

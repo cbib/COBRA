@@ -10,22 +10,23 @@
 		{% endif %}
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
-        <link href="/wiki/themes/cobra_main/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="/wiki/themes/cobra_main/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="/wiki/themes/cobra_main/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="/wiki/themes/cobra_main/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/css/AdminLTE.css" rel="stylesheet" type="text/css" />
         <!-- Cobra style -->
-        <link href="/css/cobra_styles.css" rel="stylesheet" type="text/css" />
+        <link href="https://services.cbib.u-bordeaux2.fr/cobra/css/cobra_styles.css" rel="stylesheet" type="text/css" />
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/wiki/themes/cobra_main/js/bootstrap.min.js" type="text/javascript"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+        <script src="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+        <script src="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
-        <script src="/wiki/themes/cobra_main/js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/js/AdminLTE/app.js" type="text/javascript"></script>
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,24 +45,24 @@
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
                     <div class="cobra-logo">
-						<img src="/wiki/themes/cobra_main/img/cobra-icon.png" />
+						<img src="https://services.cbib.u-bordeaux2.fr/cobra/wiki/themes/cobra_main/img/cobra-icon.png" />
                         <p>COBRA</p>
                     </div>
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="/wiki">
+                            <a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">
                                 <i class="fa fa-home"></i> <span>About COBRA</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/src/search/">
+                            <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/search/">
                                 <i class="fa fa-search"></i> <span>Quick search</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/src/description/">
+                            <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">
                                 <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                             </a>
                         </li>
@@ -71,12 +72,12 @@
                             </a>
                         </li>-->
                         <li>
-                     		<a href="/src/tools/">
+                     		<a href="https://services.cbib.u-bordeaux2.fr/cobra/src/tools/">
                         		<i class="fa fa-cogs"></i> <span>Tools</span>
                      		</a>
                   		</li>
                         <li>
-                            <a href="/src/info/WebSite/index.php">
+                            <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/info/WebSite/index.php">
                                 <i class="fa fa-question"></i> <span>Help</span>
                             </a>
                         </li>
@@ -93,7 +94,7 @@
                         {{ meta.title }}
                         <small>{{ meta.description }}</small>
                     </h1>
-                    <ol class="breadcrumb">
+                    <!--<ol class="breadcrumb">
                         {% for page in pages %}
 							{% if meta.title == page.title %}
 								<li class="active"><i class="fa fa-file"></i> {{ page.title }}</li>
@@ -101,7 +102,7 @@
 								<li><a href="{{ page.url }}"><i class="fa fa-file"></i>{{ page.title }}</a></li>
 							{% endif %}
 						{% endfor %}
-                    </ol>
+                    </ol>-->
                 </section>
 
                 <!-- Main content -->
@@ -114,6 +115,7 @@
 <hr />
 <div class="row">
 	<!-- Left col -->
+	<!--
 	<section class="col-lg-4 connectedSortable"> 
 		<div class="box box-primary">
 			<div class="box-header">
@@ -124,6 +126,7 @@
 			</div>
 			<div class="box-body">
 				<ul>
+				<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/content/species.md">Species</a></li>
 					{% for page in pages %}
 					{% if page == current_page %}
 						<li>{{ page.title }}</li>
@@ -134,16 +137,17 @@
 				</ul>
 			</div>
 		</div>
-	</section><!-- /.Left col -->
+	</section>--><!-- /.Left col -->
 	<!-- right col (We are only adding the ID to make the widgets sortable)-->
-	<section class="col-lg-8 connectedSortable">
+	<!--<section class="col-lg-8 connectedSortable">
 		<p class="text-muted" style="text-align: right;">
 			Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
 		</p>
 		<p class="text-muted" style="text-align: right;">
 			Wiki powered by <a href="http://picocms.org/">Pico CMS</a>
 		</p>
-	</section><!-- right col -->
+	</section>-->
+<!-- right col -->
 </div><!-- /.row (main row) -->
 
 

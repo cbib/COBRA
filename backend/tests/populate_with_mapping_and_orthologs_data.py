@@ -337,10 +337,10 @@ mapping_table={
 	"type":"gene_to_gene",
 	"src":"SGN_U",
 	"src_version":"tomato200607#2",
-	"tgt":"ITAG",
+	"tgt":"ITAG_pid",
 	"tgt_version":"2_3",
 	"description":"InterproDescription",
-	"GO":"GOAccession",
+	"GO":"GO_ID",
 	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
 	"doi":"none",
 	"key":"SGN_U_2_ITAG",
@@ -348,7 +348,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','SGN_U','ITAG','InterproDescription','GOAccession'],
+		"column_keys":['idx','SGN_U','ITAG_pid','InterproDescription','GO_ID'],
 		"sheet_index":0,
 	}
 }

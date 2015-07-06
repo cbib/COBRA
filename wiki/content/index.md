@@ -63,33 +63,33 @@ Date: 2015/01/29
         <div class="col-md-6" >
             <div id="image_container">
                 <hr  size=0.5>
-                <img class="displayed" id="partner_logo" src="/images/new_inra_w186.png"/>
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/logo-inra_w186.jpg"/>
             </div>
             <div id="image_container">
                 <hr  size=0.5>                           
-                <img class="displayed" id="partner_logo" src="/images/noordsat_w186.jpg" />
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/noordsat_w186.jpg" />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/images/jki_w186.gif"  />
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/jki_w186.gif"  />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/images/ipk.png"  />
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/ipk.png"  />
             </div>
         </div>
         <div class="col-md-6" >
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/images/cgfb_w186.jpg" height="85"/>
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/cgfb_w186.jpg" height="85"/>
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/images/abiopep3_w186.jpg" height="85" />
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/abiopep3_w186.jpg" height="85" />
             </div>
             <div id="image_container">
                 <hr  size=1>
-                <img class="displayed" id="partner_logo" src="/images/LOGO_csic_w186.jpg" />
+                <img class="displayed" id="partner_logo" src="https://services.cbib.u-bordeaux2.fr/cobra/images/logo_csic_w186.jpg" />
             </div>
 
         </div>
@@ -107,12 +107,12 @@ Date: 2015/01/29
 			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/jki.gif"  height="136" width="240"/></a>
 			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/cgfb.jpg" height="136" width="240"/></a>
 			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/abiopep3.jpg" height="136" width="240"/></a>
-			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/LOGO_CSIC.jpg" height="136" width="240"/></a>
+			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/logo_csic_w186.jpg" height="136" width="240"/></a>
 			<a target='_blank' href='http://www.nih.gov/' title='National Institutes of Health'><img src="/images/ipk.png" height="136" width="240"/></a> 	  
 		</div>
 	<div><a class='partners' href='http://wiki.thebiogrid.org/doku.php/partners' title='Additional BioGRID Partners'>more partners</a></div>
 </div>-->
-
+/*
 ##Configuration
 
 Pico documentation: [http://picocms.org/docs.html](http://picocms.org/docs.html)
@@ -120,7 +120,7 @@ Pico documentation: [http://picocms.org/docs.html](http://picocms.org/docs.html)
 Editor URL: [http://cobra-beta/admin](/admin)
 
 Wiki editor password: **cobrawikiedit**
-
+*/
 
 
 

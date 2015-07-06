@@ -255,7 +255,7 @@ function get_sample_table_in_string($cursor,$samplesCollection){
                     $xp_id = new MongoId($xp_String_id);
                     $xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
 
-                    $table_string.="<td><a href=description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+                    $table_string.="<td><a href=https://services.cbib.u-bordeaux2.fr/cobra/description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
                     //$table_string.="<td>".$line[$value]."</td>";
 
                 }
@@ -431,7 +431,7 @@ function display_sample_table($cursor,$samplesCollection){
                     $xp_id = new MongoId($xp_String_id);
                     $xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
 
-                    echo "<td><a href=description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+                    echo "<td><a href=https://services.cbib.u-bordeaux2.fr/cobra/description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
                     //echo"<td>".$line[$value]."</td>";
 
                 }
@@ -464,7 +464,7 @@ function make_user_preferences($user,Mongocollection $us){
                     <input type="hidden" class="panel_type" value="SearchBox" />
                     <h3> Change password</h3>';
 		
-               echo'<form action="/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
+               echo'<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
                         <fieldset>
                             <div class="form-field ff-multi">
                                 <div align="center" class="ff-inline ff-right" >';
@@ -533,7 +533,7 @@ function make_whats_new(){
 	<div class="plain-box">
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="src/resultats.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-field ff-multi">
     				<div class="ff-inline ff-right">
@@ -559,9 +559,9 @@ function make_whats_new(){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example">e.g. 
-    						<a class="nowrap" href="src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT5G03160">AT5G03160</a> 
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats.php?speciesID=Arabidopsis+thaliana&q=AT5G03160">AT5G03160</a> 
     						or 
-    						<a class="nowrap" href="/Multi/psychic?q=chx28;site=ensemblunit">chx28</a>
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/Multi/psychic?q=chx28;site=ensemblunit">chx28</a>
     					</p>
     				</div>
     			</div>
@@ -579,7 +579,7 @@ echo '
     <h2> Using list of genes ids</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
@@ -641,7 +641,7 @@ function make_species_list($cursor){
     
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/src/result_search.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
@@ -667,9 +667,9 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
     						or 
-    						<a class="nowrap" href="/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>
@@ -687,7 +687,7 @@ function make_CrossCompare_list($cursor){
     <h2> Cross compare datasets</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="../src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/cross_compare_resultats.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-field ff-multi">
     				<div align="center" class="ff-inline ff-right" >
@@ -721,7 +721,7 @@ function make_CrossCompare_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="src/cross_compare_resultats.php?species1ID=Arabidopsis+thaliana&species2ID=Solanum+lycopersicum">Arabidospis thaliana versus Solanum lycopersicum</a> 
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/cross_compare_resultats.php?species1ID=Arabidopsis+thaliana&species2ID=Solanum+lycopersicum">Arabidospis thaliana versus Solanum lycopersicum</a> 
     					</p>
     				</div>
     			</div>
@@ -736,7 +736,7 @@ function make_species_list_2(){
 	echo' 
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="/Multi/psychic" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/Multi/psychic" method="get" class="clear search-form homepage-search-form">
     			<fieldset>
     					<input value="ensemblunit" name="site" type="hidden" />
     					<div class="form-field ff-multi">
@@ -1140,7 +1140,7 @@ function makeDatatableFromFindByRegex($cursor) {
 					else {
 						//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
 						echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
-						#echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+						#echo"<td><a href=\"https://services.cbib.u-bordeaux2.fr/cobra/src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
 
 								
 						#get_protein_info($url);
@@ -1283,7 +1283,7 @@ function makeDatatableFromFind($cursor) {
 						else {
 								//$url="http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value];
 								echo"<td><a href=\"http://solgenomics.net/search/unigene.pl?unigene_id=".$line[$value]."\">".$line[$value]."</a></td>";
-								#echo"<td><a href=\"../src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
+								#echo"<td><a href=\"https://services.cbib.u-bordeaux2.fr/cobra/src/prot_ref.php?protID=".$line[$value]."\">".$line[$value]."</a></td>";
 
 								
 								#get_protein_info($url);

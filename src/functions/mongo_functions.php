@@ -1,12 +1,11 @@
 <?php
-
 include 'simple_html_dom.php';
 function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
     $cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
 
-function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
+function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     //get the preferred id for this species
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
@@ -41,18 +40,16 @@ function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $
     //Same : direct conversion using plaza mapping table
     if ($favourite_id==$intermediary_id){
         //echo "same id";
-        $gene_list_attributes=convert_into_plaza_id($ma,$gene_list,$favourite_id,$species);
+        $gene_list_attributes=convert_into_plaza_id_list($ma,$gene_list,$favourite_id,$species);
 
     }
     // here we need to first translate into intermediary id before translate into plaza id
     else{
         $transformed_list=convert_into_specific_id($ma,$gene_list,$favourite_id,$intermediary_id,$species);
         if (count($transformed_list)!=0){
-            $gene_list_attributes=convert_into_plaza_id($ma,$transformed_list,$intermediary_id,$species);
+            $gene_list_attributes=convert_into_plaza_id_list($ma,$transformed_list,$intermediary_id,$species);
         }
-        else{
-            
-        }
+        
         
     }
     return $gene_list_attributes;
@@ -60,21 +57,25 @@ function get_ortholog_list_for_arabidopsis(Mongocollection $ma,Mongocollection $
 
 function get_source_and_target($src_to_tgt,$value_array,$value='null',$favourite_id='null',$intermediary_id='null'){
     //$src_and_tgt=array();
+    #echo 'entering get source and target'.$value;
     foreach ($src_to_tgt as $row){
         $found=FALSE;
         foreach ($row as $column){
             if (is_array($column)){                      
                 if ($found){
                     $tgt=$column[0];
+                    
+                    
                     $value_array[$favourite_id]=$value;
                     $value_array[$intermediary_id]=$tgt;                           
-                    //echo 'tgt : '.$column[0];    
+                    #echo 'tgt : '.$column[0];  
+                    
                 }
             }  
             else {                         
                 if ($column==$value){
                     $found=TRUE;                                               
-                    //echo 'src : '.$column;    
+                    #echo 'src : '.$column;    
                 }
             }  
         }       
@@ -83,22 +84,25 @@ function get_source_and_target($src_to_tgt,$value_array,$value='null',$favourite
 }
 function get_target_and_source($tgt_to_src,$value,$intermediary_id='null'){
     //$tgt_and_src=array();
+    #echo 'entering  get tgt from  src'.$value[$intermediary_id];
+    #echo 'tgt from  src size : '.count($tgt_to_src);
     foreach ($tgt_to_src as $row){
         $found=FALSE;
         foreach ($row as $column){
             if (is_array($column)){                      
                 if ($found){
                     $src=$column[0];
-                    $value["plaza_id"]=$column[0];
+                    $value['plaza_id']=$column[0];
+                    #echo 'found : '.$column[0];
                     
                 }
             }  
             else {                         
-                if ($column==$value[$intermediary_id]){
+                if ($column==$value[$intermediary_id] || strstr($column, $value[$intermediary_id])){
                     $found=TRUE;
                     $tgt=$column;
                     
-                    //echo 'src : '.$column;    
+                    #echo 'src : '.$column;    
                 }
             }  
         }       
@@ -119,6 +123,7 @@ function get_gene_ontology_details(Mongocollection $ma,$species='null',$gene_id=
     return $mapping; 
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
+    #echo $favourite_id.'----'.$intermediary_id;
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
     $fields=array('src_to_tgt'=>1);
     $mapping=$ma->find($query, $fields);
@@ -137,7 +142,70 @@ function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='
     return $cursor;
         
 }
-function convert_into_plaza_id(Mongocollection $ma,$gene_list_attributes,$intermediary_id,$species='null'){
+function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$species='null'){
+    //first get the species
+    if ($species=='All species'){
+       $query=array($match=>array('src_to_tgt.0'=>$id));
+        $fields=array('species'=>1);
+        //then get th e corresponding plaza id
+        $cursor=$ma->find($query, $fields);
+        foreach ($cursor as $item){
+            $species=$item['species'];
+        } 
+    }
+    
+    
+    $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
+    foreach ($species_id_type as $value) {
+        $preferred_src_id=$value['preferred_id'];
+        #echo $value['preferred_id'].'<br/>';
+    
+    }
+    //get the target id for this species in the plaza mapping table
+    $plaza_favourite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','type'=>array('$nin'=>array('gene_to_go')),'species'=>$species),array('tgt'=>1));
+    //only one value is possible
+    
+    foreach ($plaza_favourite_tgt_id as $value) {
+        $plaza_tgt_id=$value['tgt'];
+        #echo $value['tgt'].'<br/>';
+    
+    }
+    $gene_list=array();
+    #echo 'id : '.$id.'<br/>';
+    //$gene_list['gene']=$id;
+    $gene_list=array(array('gene'=>$id));
+    
+    $transformed_list=array();
+    $plaza_id=array();
+    if ($preferred_src_id==$plaza_tgt_id){
+        //echo "same id";
+        $plaza_id=convert_into_plaza_id_list($ma,$gene_list,$preferred_src_id,$species);
+
+    }
+    // here we need to first translate into intermediary id before translate into plaza id
+    else{
+        #echo 'intermediary id needed<br/>';
+        $transformed_list=convert_into_specific_id($ma,$gene_list,$preferred_src_id,$plaza_tgt_id,$species);
+        
+        if (count($transformed_list)!=0){
+            #echo 'id translated successfully:'.$transformed_list[0][$plaza_tgt_id];
+            $plaza_id=convert_into_plaza_id_list($ma,$transformed_list,$plaza_tgt_id,$species);
+        }
+        foreach ($plaza_id as $value) {
+            #echo 'plaza id :'.$value['plaza_id'];
+            $plaza_id_string=$value['plaza_id'];
+        }
+        
+        
+        
+    }
+    return $plaza_id_string;
+    
+    
+	
+
+}
+function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$intermediary_id,$species='null'){
     
     
     
@@ -222,15 +290,22 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
 function get_interactor(array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
 
     //need to have a list of symbol and a list of uniprot id to search in interactions table
+    $global_intact_array=array();
+    $pro_int_array=array();
+    $lit_int_array=array();
     foreach ($protein_id as $id){
+        
         $search=array("type"=>"prot_to_prot");
         $select=array("src_to_tgt"=>1,'mapping_file'=>1,'pub'=>1,"method"=>1,"host_name"=>1,"virus_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
         $query=$interactionsCollection->find($search,$select);
         foreach ($query as $value) {
+            
             $src_to_tgt=$value['src_to_tgt'];
             $mapping_file=$value['mapping_file'];
-            echo 'from_mapping_file prot id :'.$id.'<br/>';
+//            echo 'from_mapping_file prot id :'.$id.'<br/>';
             foreach ($mapping_file as $mapping_doc) {
+                
+                
                 $host_prot_id=$mapping_doc[$value['src']];
                 $virus_prot_id=$mapping_doc[$value['tgt']];
                 $method=$mapping_doc[$value['method']];
@@ -239,75 +314,133 @@ function get_interactor(array $gene_symbol, array $protein_id,$species, MongoCol
                 $virusname=$mapping_doc[$value['virus_name']];
                 $host_taxon=$mapping_doc[$value['host_taxon']];
                 $virus_taxon=$mapping_doc[$value['virus_taxon']];
+   
                 if ($host_prot_id == $id){
-                    echo 'from_mapping_file'.$virus_prot_id.'<br/>';
-                    echo 'from_mapping_file'.$method.'<br/>';
-                    echo 'from_mapping_file'.$pub.'<br/>';
-                    echo 'from_mapping_file'.$hostname.'<br/>';
-                    echo 'from_mapping_file'.$virusname.'<br/>';
-                    echo 'from_mapping_file'.$host_taxon.'<br/>';
-                    echo 'from_mapping_file'.$virus_taxon.'<br/>';
-                    echo 'from_mapping_file'.$method.'<br/>';
-                    echo 'from_mapping_file'.$method.'<br/>';
-                    echo 'from_mapping_file'.$method.'<br/>';
-                    echo 'from_mapping_file'.$method.'<br/>';
+                    $tmp_array=array();
+//                    echo 'prot id mapped !!!!!:'.$id.'<br/>';
+//                    echo $mapping_doc[$value['src']];
+//                    echo $mapping_doc[$value['tgt']];
+                    $src_array=array();
+                    array_push($src_array, 'src');
+                    array_push($src_array, $mapping_doc[$value['src']]);
+                    array_push($tmp_array, $src_array);
+                    $tgt_array=array();
+                    array_push($tgt_array, 'tgt');
+                    array_push($tgt_array, $mapping_doc[$value['tgt']]);
+                    array_push($tmp_array, $tgt_array);
+                    $method_array=array();
+                    array_push($method_array, 'method');
+                    array_push($method_array, $mapping_doc[$value['method']]);
+                    array_push($tmp_array, $method_array);
+                    $pub_array=array();
+                    array_push($pub_array, 'pub');
+                    array_push($pub_array, $mapping_doc[$value['pub']]);
+                    array_push($tmp_array, $pub_array);
+                    $host_name_array=array();
+                    array_push($host_name_array, 'host_name');
+                    array_push($host_name_array, $mapping_doc[$value['host_name']]);
+                    array_push($tmp_array, $host_name_array);
+                    $virus_name_array=array();
+                    array_push($virus_name_array, 'virus_name');
+                    array_push($virus_name_array, $mapping_doc[$value['virus_name']]);
+                    array_push($tmp_array, $virus_name_array);
+                    $host_taxon_array=array();                  
+                    array_push($host_taxon_array, 'host_taxon');
+                    array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
+                    array_push($tmp_array, $host_taxon_array);
+                    $virus_taxon_array=array();
+                    array_push($virus_taxon_array, 'virus_taxon');
+                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
+                    array_push($tmp_array, $virus_taxon_array);
+                    
+                    array_push($pro_int_array, $tmp_array);
+
+                    /*echo 'from_mapping_file host protein'.$host_prot_id.'<br/>';
+                    echo 'from_mapping_file virus protein'.$virus_prot_id.'<br/>';
+                    echo 'from_mapping_file method :'.$method.'<br/>';
+                    echo 'from_mapping_file publication pmid : '.$pub.'<br/>';
+                    echo 'from_mapping_file host name  :'.$hostname.'<br/>';
+                    echo 'from_mapping_file virus name : '.$virusname.'<br/>';
+                    echo 'from_mapping_file host taxon :'.$host_taxon.'<br/>';
+                    echo 'from_mapping_file virus taxon :'.$virus_taxon.'<br/>'; 
+                       */        
                 }
-
-            }
-            foreach ($src_to_tgt as $row){
-                $found=FALSE;
-                foreach ($row as $column){
-
-                    if (is_array($column)){
-                        if ($found){                      
-                            echo 'tgt : '.$column[0];
-                        }
-                    }  
-                    else {
-                        if ($column==$id){
-                            $found=TRUE;
-                            echo 'src : '.$column;    
-                        }
-                    }  
-                }       
-            }
-            
+            }     
         }
     }
+    array_push($global_intact_array, $pro_int_array);
     foreach ($gene_symbol as $symbol){
+        
 		$cursor=$interactionsCollection->aggregate(array( 
 			array('$unwind'=>'$mapping_file'), 
-			array('$match'=> array('mapping_file.Host_prot'=>$symbol)),
-			array('$project' => array('mapping_file.Host_virus'=>1,'mapping_file.Virus_prot'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
+			array('$match'=> array('mapping_file.Host_symbol'=>$symbol)),
+			array('$project' => array('mapping_file.Host_symbol'=>1,'mapping_file.Virus_symbol'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
 		));
 		if (count($cursor['result'])!=0){
-			echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
 			//var_dump($cursor);
-			echo '<dl class="dl-horizontal">';
+			//echo '<dl class="dl-horizontal">';
 			for ($i = 0; $i < count($cursor['result']); $i++) {
 				$mapping_file=$cursor['result'][$i]['mapping_file'];
 				
 				//echo $mapping_file['Reference'];
-									echo'<dt>Host</dt>
-									<dd>'.$mapping_file['host'].'</dd>';
-									echo'<dt>Virus</dt>
-								  <dd>'.$mapping_file['virus'].'</dd>';
-								  echo'<dt>Viral Protein</dt>
-								  <dd>'.$mapping_file['Virus_prot'].'</dd>';
-								  echo'<dt>Putative function</dt>
-								  <dd>'.$mapping_file['Putative_function'].'</dd>';
-								  echo'<dt>Reference</dt>
-								  <dd>'.$mapping_file['Reference'].'</dd>';
-								  echo'<dt>Accession number</dt>
-								  <dd>'.$mapping_file['Accession_number'].'</dd>';
-								  echo'<dt>Method</dt>
-								  <dd>'.$mapping_file['method'].'</dd>';
-								  
+//                echo'<dt>Host</dt>
+//                <dd>'.$mapping_file['host'].'</dd>';
+//                echo'<dt>Virus</dt>
+//                <dd>'.$mapping_file['virus'].'</dd>';
+//                echo'<dt>Viral Protein</dt>
+//                <dd>'.$mapping_file['Virus_symbol'].'</dd>';
+//                echo'<dt>Putative function</dt>
+//                <dd>'.$mapping_file['Putative_function'].'</dd>';
+//                echo'<dt>Reference</dt>
+//                <dd>'.$mapping_file['Reference'].'</dd>';
+//                echo'<dt>Accession number</dt>
+//                <dd>'.$mapping_file['Accession_number'].'</dd>';
+//                echo'<dt>Method</dt>
+//                <dd>'.$mapping_file['method'].'</dd>';
+                $tmp_array=array();
+
+                $src_array=array();
+                array_push($src_array, 'src');
+                array_push($src_array, $symbol);
+                array_push($tmp_array, $src_array);
+                $tgt_array=array();
+                array_push($tgt_array, 'tgt');
+                array_push($tgt_array, $mapping_file['Virus_symbol']);
+                array_push($tmp_array, $tgt_array);
+                $method_array=array();
+                array_push($method_array, 'method');
+                array_push($method_array, $mapping_file['method']);
+                array_push($tmp_array, $method_array);
+                $pub_array=array();
+                array_push($pub_array, 'pub');
+                array_push($pub_array, $mapping_file['Reference']);
+                array_push($tmp_array, $pub_array);
+                $host_name_array=array();
+                array_push($host_name_array, 'host_name');
+                array_push($host_name_array, $mapping_file['host']);
+                array_push($tmp_array, $host_name_array);
+                $virus_name_array=array();
+                array_push($virus_name_array, 'virus_name');
+                array_push($virus_name_array, $mapping_file['virus']);
+                array_push($tmp_array, $virus_name_array);
+                $host_taxon_array=array();                  
+                array_push($host_taxon_array, 'Accession_number');
+                array_push($host_taxon_array, $mapping_file['Accession_number']);
+                array_push($tmp_array, $host_taxon_array);
+                $virus_taxon_array=array();
+                array_push($virus_taxon_array, 'Putative_function');
+                array_push($virus_taxon_array, $mapping_file['Putative_function']);
+                array_push($tmp_array, $virus_taxon_array);
+                    
+                array_push($lit_int_array, $tmp_array);				  
 			}
-			echo' </dl>';
+			//echo' </dl>';
 		}
 		
 	}
+    array_push($global_intact_array, $lit_int_array);
+    return $global_intact_array;
 }
 
 
@@ -375,10 +508,7 @@ function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
     return $cursor;
 }
 
-function get_plaza_id($id='null'){
-	
 
-}
 function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='null',$src='null'){
    	$cursor=$collection->find(array('mapping_file.species' => $species ),array('_id'=>0, 'mapping_file'=>array('$elemMatch'=> array('species' => $species))));
     
@@ -415,14 +545,84 @@ function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='n
     return $MongoGridFSCursor;
    
 }
-function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
-   	
+function read_grid_plaza_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
+   	#echo 'entering read grid plaza file : '.$filename.$src;
     $go_list_term=array();
-    
+    $already_added_go_terms=array();
 
     //$MongoGridFSCursor=  get_grid_file($grid, $mappingsCollection,$speciesID,$src);
     $MongoGridFSCursor= $grid->find(array('data_file'=>$filename));
     $species=$mappingsCollection->find(array('mapping_file.file'=>$filename),array('mapping_file.species'=>1));
+    foreach ($species as $array){  
+        foreach ($array['mapping_file'] as $key=>$value ){
+            if ($key=='species'){
+                $species_name=$value;
+            }
+        }
+    }
+       
+       
+            
+                                   
+            
+    foreach($MongoGridFSCursor as $MongoGridFSFile) {
+        echo 'reading grid file';
+        $stream = $MongoGridFSFile->getResource();
+        if ($stream) {
+            #while (($buffer = fgets($stream, 4096)) !== false) {
+            $cpt=0;
+            while (($buffer = stream_get_line($stream, 1024, "\n")) !== false) {
+                //echo $buffer.'<br>';
+                $row=preg_split('/\t+/', $buffer);
+                //echo $row[0].'<br>';
+
+                if ($src==str_replace("\"", "", $row[2])){
+                    $tmp_array=array();
+                    $found=FALSE;
+                    foreach($already_added_go_terms as $term){
+                        if ($term==str_replace("\"", "", $row[3])){
+                            $found=TRUE;
+                        }
+                    }
+                    if($found==FALSE){
+                        $tmp_array['plaza id']=str_replace("\"", "", $row[2]);                                                     
+                        $tmp_array['species']=$species_name;                               
+                        $tmp_array['GO_ID']=str_replace("\"", "", $row[3]);
+                        $tmp_array['evidence']=str_replace("\"", "", $row[4]);
+                        
+//                        array_push($tmp_array, str_replace("\"", "", $row[2]));
+//                        array_push($tmp_array, str_replace("\"", "", $row[3]));
+//                        array_push($tmp_array, str_replace("\"", "", $row[4]));
+//                        array_push($tmp_array, $species_name);
+                        array_push($go_list_term,$tmp_array); 
+                        array_push($already_added_go_terms, str_replace("\"", "", $row[3]));
+
+                    }
+
+
+
+                    //echo 'test'.$row[0].'-'.$row[3].'-'.$row[4].'-'.$row[5].'<br>';
+
+                }
+                $cpt++;
+            }
+        }
+    } 
+        
+    
+    return $go_list_term;
+
+
+}
+function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
+   	#echo 'entering read grid file : '.$filename;
+    $go_list_term=array();
+    $already_added_go_terms=array();
+
+    //$MongoGridFSCursor=  get_grid_file($grid, $mappingsCollection,$speciesID,$src);
+    $MongoGridFSCursor= $grid->find(array('data_file'=>$filename));
+    $species=$mappingsCollection->find(array('mapping_file.file'=>$filename),array('mapping_file.species'=>1));
+    
     foreach ($species as $array){       
         foreach ($array['mapping_file'] as $key=>$value ){
             foreach($MongoGridFSCursor as $MongoGridFSFile) {
@@ -437,16 +637,35 @@ function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsColl
 
                         if ($src==$row[0]){
                             $tmp_array=array();
-                            array_push($tmp_array, $row[0]);
-                            array_push($tmp_array, $row[3]);
-                            array_push($tmp_array, $row[4]);
-                            array_push($tmp_array, $row[5]);
-                            array_push($tmp_array, $row[9]);
-                            if ($key=='species'){
-                                array_push($tmp_array, $value);
+                            $found=FALSE;
+                            foreach($already_added_go_terms as $term){
+                                if ($term==$row[5]){
+                                    $found=TRUE;
+                                }
                             }
+                            if($found==FALSE){
+                               
+                                //array_push($tmp_array, $row[0]);
+                                $tmp_array['gene_name']=$row[0];
+                                //array_push($tmp_array, $row[3]);
+                                $tmp_array['relationship']=$row[3];
+                                
+                                //array_push($tmp_array, $row[4]);
+                                $tmp_array['description']=$row[4];
+                                //array_push($tmp_array, $row[5]);
+                                $tmp_array['GO_ID']=$row[5];
+                                $tmp_array['evidence']=$row[9];
+                                //array_push($tmp_array, $row[9]);
+                                if ($key=='species'){
+                                    array_push($tmp_array, $value);
+                                }
 
-                            array_push($go_list_term,$tmp_array);
+                                array_push($go_list_term,$tmp_array); 
+                                array_push($already_added_go_terms, $row[5]);
+
+                            }
+                            
+                            
                             
                             //echo 'test'.$row[0].'-'.$row[3].'-'.$row[4].'-'.$row[5].'<br>';
 
@@ -2493,4 +2712,5 @@ function get_tgt_id_from_src_id(Mongocollection $me,$src_id='null'){
 
 
 ?>
+
 

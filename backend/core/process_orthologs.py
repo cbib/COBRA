@@ -39,7 +39,7 @@ for map_doc in orthologs_to_process:
 	if map_doc['src']=="plaza_gene_identifier" :
 		species_initials=[]
 		# Get species keys identifier by searching available mapping file for plaza
-		species_to_process=mappings_col.find({"src":"plaza_gene_id"},{"species":1})
+		species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 		for species in species_to_process:
 			species_initials.append(species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize())
 			logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
@@ -49,7 +49,7 @@ for map_doc in orthologs_to_process:
 		# save raw data 
 		logger.info("sheet_value %d",len(sheet_values))
 		species_initials=[]
-		species_to_process=mappings_col.find({"src":"plaza_gene_id"},{"species":1})
+		species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 		for species in species_to_process:
 			species_initials=species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize()
 			tgt_file=data_dir+"orthologs/integrative_orthology."+map_doc['version']+"ORTHO_COBRA"+species_initials+".tsv"

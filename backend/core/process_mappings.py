@@ -48,16 +48,20 @@ for map_doc in mappings_to_process:
 	fileName, fileExtension = os.path.splitext(src_file)
 	if fileExtension!='.xls' and fileExtension!='.xlsx':
 		sheet_values = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
-
+		logger.info("Successfully parse tsv file")
 	else:
 		sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
 
-		
+		logger.info("Successfully parse xls file")
 	
 	try:
+		logger.info("entering try")
 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 		#break
+		
+		logger.info("mapping_file updated")
 	except DocumentTooLarge:
+			
 		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
 		file=open(src_file, 'rb')
 		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:

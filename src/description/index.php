@@ -249,7 +249,7 @@ add_accordion_panel($table_string, "Viruses table", "virus_table");
 
 
 #'type'=>1,'src'=>1,'tgt'=>1,'src_version'=>1,'tgt_version'=>1)
-new_cobra_species_container();
+#new_cobra_species_container();
 
 
 new_cobra_footer();

@@ -114,13 +114,13 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //        //$attributes['gene'];
 //}
 ///////////////////////////////////////////////////
-
+$data = $_POST['species'];
 
 //$species='Cucumis melo';
 $species='Arabidopsis thaliana';
 $type="down";
 //$species='Hordeum vulgare';
-$gene_list_attributes=get_ortholog_list_for_arabidopsis($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$type,10);
+$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$type,10);
 
 //$species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
 //foreach ($species_id_type as $value) {
@@ -164,7 +164,7 @@ foreach ($gene_list_attributes as $attributes) {
 //            echo '<td>'.$species.'</td>';
 //            echo "</tr>";
 //            echo'</tbody></table>';
-            echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
+            echo '<div style="cursor: pointer;" onclick="window.location=\'https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
                     <div class="results-right">
                         <div class="organism"> Organism:'.$species.'</div>
                         <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
