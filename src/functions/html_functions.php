@@ -172,7 +172,7 @@ echo'
                <!-- Sidebar user panel -->
                <a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/"><div class="cobra-logo">
                	<img src="https://services.cbib.u-bordeaux2.fr/cobra/images/cobra-icon.png" alt="COBRA logo" />
-                  <p>COBRA beta</p>
+                  <p>COBRA</p>
                </div></a>
 
                <!-- sidebar menu: : style can be found in sidebar.less -->
