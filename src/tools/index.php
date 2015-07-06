@@ -118,42 +118,44 @@ $table_string="";
 $table_string.='
 <form id="icheckForm" method="post" class="form-horizontal" action="https://services.cbib.u-bordeaux2.fr/cobra/src/orthology/ortholog_search.php">
     
-
-    <div class="form-group">
-        <label class="col-xs-3 control-label"> Favourites Species</label>
-        <div class="col-xs-6">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="species[]" value="Arabidopsis thaliana" /> Arabidopsis thaliana
-                </label>
+    <div class=col-md-6>
+        <div class="form-group">
+            <label class="col-xs-3 control-label"> Favourites Species</label>
+            <div class="col-xs-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="species[]" value="Arabidopsis thaliana" /> Arabidopsis thaliana
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="species[]" value="Cucumis melo" /> Cucumis melo
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="species[]" value="Hordeum vulgare" /> Hordeum vulgare
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="species[]" value="Prunus persica" /> Prunus persica
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Solanum lycopersicum
+                    </label>
+                </div>
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="species[]" value="Cucumis melo" /> Cucumis melo
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="species[]" value="Hordeum vulgare" /> Hordeum vulgare
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="species[]" value="Prunus persica" /> Prunus persica
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Solanum lycopersicum
-                </label>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-5 col-xs-offset-3">
+                <button type="submit" class="btn btn-default">Validate</button>
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-xs-5 col-xs-offset-3">
-            <button type="submit" class="btn btn-default">Validate</button>
-        </div>
+    <div class=col-md-6>
     </div>
 </form>';
 
