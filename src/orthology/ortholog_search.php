@@ -231,7 +231,7 @@ foreach ($data as $species){
                         </div>    
                  <br/>';
 
-    //                echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+    /*               echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
     //                echo'<h1 style="text-align:center"> Orthology informations </h1>';
     //                echo '</div>';
     //                #$current_plaza_id="AT1G01060";
@@ -390,14 +390,14 @@ foreach ($data as $species){
     //                            }
     //                        }
     //                    }
-    //                }
+    //                }*/
 
 
                 }
                 else{
-    //                echo $key."\r\t";
-    //                echo $value."\r\n";
-    //                echo "</br>";
+                    echo $key."\r\t";
+                    echo $value."\r\n";
+                    echo "</br>";
                       echo '<div> No Orthologs found for this gene</div>';
                 }
             }
