@@ -37,18 +37,18 @@ echo'
 
 <!-- Bootstrap -->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" language="javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.dataTables.js"></script>
-<script type="text/javascript" language="javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/dataTables.bootstrap.js"></script>
 
 <!-- AdminLTE App -->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/js/app.js" type="text/javascript"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
-<!--[if lt IE 9]>
+<!--[if lt IE 9]>-->
 <!--  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> -->
 <!--  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script> -->
-<![endif]-->
+<!--[endif]-->
 ';
 }
 
@@ -171,7 +171,7 @@ echo'
             <section class="sidebar">
                <!-- Sidebar user panel -->
                <div class="cobra-logo">
-               	<img src="https://services.cbib.u-bordeaux2.fr/cobra/images/cobra-icon.png" />
+               	<img src="https://services.cbib.u-bordeaux2.fr/cobra/images/cobra-icon.png" alt="COBRA logo" />
                   <p>COBRA</p>
                </div>
 

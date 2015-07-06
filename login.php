@@ -70,8 +70,9 @@ else{
             
             
             
-            echo'<form id="login_form" class="form-horizontal" method="post" action="">
-                <legend>
+            echo'<form id="login_form" class="form-horizontal" method="post" action="login.php">
+                <fieldset>
+		<legend>
                     Authentication required
                 </legend>
                 <p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
@@ -103,6 +104,7 @@ else{
                     <button type="submit" name="submit"  value="Connexion" class="btn btn-default">Sign in</button>
                   </div>
                 </div>
+		</fieldset>
               </form>';
               //<form class="form-inline">';
               

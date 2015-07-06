@@ -90,7 +90,7 @@
     width:1000px  ;
   } 
 
- }
+ 
  #section_quick_search > #content {
      width:990px;
      background-color: #FFF;
@@ -120,7 +120,7 @@
   #go_process > .table{
     width : 500px;  
   }  
-#section_quick_search > .col-md-6#right_col{
+  #section_quick_search > .col-md-6#right_col{
       width:450px;
      background-color: #FFF;
      margin-left: 0px;
@@ -129,12 +129,12 @@
      float: right;
      border: 1px solid #DDD;
   }
-#section_quick_search > .col-md-6#left_col{
+  #section_quick_search > .col-md-6#left_col{
      width:490px;
      background-color: #FFF;
      margin-left: 0px;
 
-     //padding: 10px 10px 0px;
+     /*padding: 10px 10px 0px;*/
      float: left;
 
   }
@@ -158,28 +158,28 @@
     background-color:blue;
  }*/
  .container{
-    width:1300px;
+    width:1490px;
  }
  .dataTable {
-    width:1300px;
+    width:1490px;
  }
  mapping_table > .dataTables_wrapper#mapping_wrapper{
-    width:1300px; 
+    width:1490px; 
  }
  #viruses_table > .dataTables_wrapper#mapping_wrapper{
-    width:1300px;
+    width:1490px;
  }
  #species_table > .dataTables_wrapper#mapping_wrapper{
-    width:1300px ;
+    width:1490px ;
  }
  .content{
-    width:1300px;
+    width:1650px;
  }
  .resultsbox#results{
-    width:1300px;
+    width:1490px;
  } 
  #summary > #protein-details{
-	width: 640px;
+	width: 740px;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
@@ -196,7 +196,7 @@
 	border: 1px solid #DDD;
   }
  #summary{
-    width:1300px;
+    width:1490px;
   }
  #image_container{
   border-radius: 20px; 
@@ -207,7 +207,7 @@
 
   }
 #section_result_summary > #SpeciesSearch{
-     width:1300px;
+     width:1490px;
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
@@ -226,7 +226,7 @@
      background-color: #FFF;
      margin-left: 0px;
 
-     //padding: 10px 10px 0px;
+     /*padding: 10px 10px 0px;*/
      float: left;
 
   }
@@ -240,7 +240,7 @@
      border: 1px solid #DDD;
   }
 #section_quick_search > #SpeciesSearch{
-     width:1390px;
+     width:1490px;
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
@@ -249,7 +249,7 @@
      border: 1px solid #DDD;
   }
 #section_quick_search > #content {
-     width:1390px;
+     width:1490px;
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
@@ -367,10 +367,10 @@ div.resultsbox:hover {
 
 }
 #interaction-tabs{
-    background-color: #7B3B3B;
+    background-color: #81F7BE;
     width: 100%;
     border-radius: 3px;
-    height: 30px;
+    height: 40px;
 }
 
 

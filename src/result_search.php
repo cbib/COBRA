@@ -1226,19 +1226,19 @@ echo   '<div id="summary">
             <input type="hidden" id="displaySort" value="" />
             
             <div id="stat-details">
- 				<div id="interaction-tabs">
-                <ul>
-                    <li title="stats" id="statsTab" class="noClickTab">Stats & Options</li>
-                </ul>
-            </div>
+ 		<div id="interaction-tabs">
+                	<h1>
+                   	Interactions and homologies
+                	</h1>
+            	</div>
          	
      
      	
             <div id="statsAndFilters">
 
-				<div id="pubStats" class="right">
+				<!--<div id="pubStats" class="right">
 					<strong>Publications:</strong>0
-				</div>
+				</div>-->
 				<h3>Current Statistics</h3>
 				';
 //                echo 'gene symbol  : '.count($gene_symbol);
@@ -1553,13 +1553,13 @@ echo   '<div id="summary">
                             <div class="statDetails"></div>
                         </div>
                         <br></br>
-                        <div class="right" style="margin-top: 3px">
+                        <!--<div class="right" style="margin-top: 3px">
                             Customize how your results are displayed...
                         </div>
                         <h3>Search Filters</h3>
                             <a id="filterLink" href="http://thebiogrid.org/scripts/displayFilterList.php">
                                 <div id="filterButton" class="noFilter" style="background-color: rgb(238, 238, 238); color: rgb(51, 51, 51);"></div>
-                            </a>
+                            </a>-->
                     </div>
 			</div>
             ';
