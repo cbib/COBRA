@@ -157,7 +157,7 @@ $table_string.='
     </div>
     <div class=col-md-6>
         <div class="form-group">
-            <label class="col-xs-3 control-label"> Regulation sign</label>
+            <label class="col-xs-3 control-label"> Expression level</label>
             <div class="col-xs-6">
                 <div class="checkbox">
                     <label>
