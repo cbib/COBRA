@@ -395,10 +395,10 @@ foreach ($data as $species){
 
                 }
                 else{
-                    echo $key."\r\t";
-                    echo $value."\r\n";
-                    echo "</br>";
-                      echo '<div> No Orthologs found for this gene</div>';
+//                    echo $key."\r\t";
+//                    echo $value."\r\n";
+//                    echo "</br>";
+//                      echo '<div> No Orthologs found for this gene</div>';
                 }
             }
             else{
