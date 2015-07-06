@@ -398,14 +398,12 @@ foreach ($data as $species){
     //                echo $key."\r\t";
     //                echo $value."\r\n";
     //                echo "</br>";
+                      echo '<div> No Orthologs found for this gene</div>';
                 }
             }
             else{
-                    echo '<div> No Orthologs found for this gene</div>';
-    //            echo $key."\r\t";
-    //            echo $value."No id found\r\n";
-    //            
-    //            echo "</br>";
+                    
+
             }
             $cpt++;
 
