@@ -180,7 +180,7 @@ $table_string.='
 
 
 
-add_accordion_panel($table_string, "Perform Orthologs search on high expressed genes","ortholog_search"); 
+add_accordion_panel($table_string, "Perform Orthologs search on differentially expressed genes","ortholog_search"); 
 
 
 

@@ -719,7 +719,7 @@ $total_go_molecular_function=array();
 //Categorize go term into function, process or component
 //coming from grid fs file.
 if (count($go_id_full_list)!=0){
-    echo 'go id full list is not empty';
+    #echo 'go id full list is not empty';
     $handle = fopen('https://services.cbib.u-bordeaux2.fr/cobra/data/mappings/gene_ontology/obo/gene_ontology.obo', 'r');
         //get all go term
 

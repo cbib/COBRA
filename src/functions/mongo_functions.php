@@ -570,7 +570,7 @@ function read_grid_plaza_mapping_file(MongoGridFS $grid, MongoCollection $mappin
                                    
             
     foreach($MongoGridFSCursor as $MongoGridFSFile) {
-        echo 'reading grid file';
+        #echo 'reading grid file';
         $stream = $MongoGridFSFile->getResource();
         if ($stream) {
             #while (($buffer = fgets($stream, 4096)) !== false) {

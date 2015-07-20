@@ -667,7 +667,7 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G06520">AT1G06520</a> 
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
     						or 
     						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
