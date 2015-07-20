@@ -18,7 +18,7 @@ if "log" not in globals():
 
 # clear db 
 
-gene_ontology_col.remove()
+gene_ontology_col.drop()
 
 # for grid_out in fs.find({}, timeout=False):
 # 	
@@ -29,23 +29,9 @@ gene_ontology_col.remove()
 
 
 mapping_table={
-	"data_file":"gene_ontology/ATH_GO_GOSLIM.xls",
-	"species":"Arabidopsis thaliana",
-	"type":"",
-	"src":"AGI_TAIR",
-	"src_version":"Tair",
-	"tgt":"GO term",
-	"tgt_version":"",
-	"relation":"relationship type",
+	"data_file":"gene_ontology/obo/gene_ontology.obo",
+	"type":"rdf/XML",
 	"url":"",
-	"doi":"",
-	"key":"unigene_2_ncbi_protein",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','locus_name','TAIR accession','object name','relationship type','GO term','GO ID','TAIR Keyword ID','Aspect','GOslim term','Evidence code','Evidence description','Evidence with','Reference','Annotator','Date annotated'],
-		"sheet_index":0,
-	}
+	"doi":"",	
 }
-mappings_col.insert(mapping_table)
+gene_ontology_col.insert(mapping_table)

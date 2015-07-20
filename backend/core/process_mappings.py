@@ -48,20 +48,16 @@ for map_doc in mappings_to_process:
 	fileName, fileExtension = os.path.splitext(src_file)
 	if fileExtension!='.xls' and fileExtension!='.xlsx':
 		sheet_values = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
-		logger.info("Successfully parse tsv file")
+
 	else:
 		sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
 
-		logger.info("Successfully parse xls file")
+		
 	
 	try:
-		logger.info("entering try")
 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 		#break
-		
-		logger.info("mapping_file updated")
 	except DocumentTooLarge:
-			
 		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
 		file=open(src_file, 'rb')
 		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
@@ -128,17 +124,18 @@ for map_doc in mappings_to_process:
 	try:
 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":a_to_b.items()}})
 	except OperationFailure:
-		print "Oops! operation failure. Using grid fs to store file..."
-		file=open(src_file, 'rb')
-		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
-			fp.write(file)
+		print "Oops! operation failure for src to tgt part. Using grid fs to store file..."
+		#tester si le fichier n'est pas déjà ajouté ?
+		#file=open(src_file, 'rb')
+		#with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
+			#fp.write(file)
 		## adding fs file to the collection
-		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
+		#logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
 
-		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
+		#mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
 		             #update({"_id":map_doc['_id']},{"$push":{"mapping_file":{"species":species['species'],"file":fp.data_file}}})
 		# Close opened file
-		file.close()
+		#file.close()
 		# build dict mapper, save them as k,v docs 
 		a_to_b = collections.defaultdict(list)
 		b_to_a = collections.defaultdict(list)
@@ -166,17 +163,17 @@ for map_doc in mappings_to_process:
 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":b_to_a.items()}})
 		
 	except OperationFailure:
-		print "Oops! operation failure. use grid fs to store file"
-		file=open(src_file, 'rb')
-		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
-			fp.write(file)
-		## adding fs file to the collection
-		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
-
-		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
-		             #update({"_id":map_doc['_id']},{"$push":{"mapping_file":{"species":species['species'],"file":fp.data_file}}})
-		# Close opened file
-		file.close()
+		print "Oops! operation failure for tgt to src part. use grid fs to store file"
+		# file=open(src_file, 'rb')
+# 		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
+# 			fp.write(file)
+# 		## adding fs file to the collection
+# 		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
+# 
+# 		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
+# 		             #update({"_id":map_doc['_id']},{"$push":{"mapping_file":{"species":species['species'],"file":fp.data_file}}})
+# 		# Close opened file
+# 		file.close()
 		# build dict mapper, save them as k,v docs 
 		a_to_b = collections.defaultdict(list)
 		b_to_a = collections.defaultdict(list)
