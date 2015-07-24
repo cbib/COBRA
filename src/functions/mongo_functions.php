@@ -835,13 +835,13 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
                             } 
                         }
                         elseif($ortholog[0].$ortholog[1]=="CM"){
-                           $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_prot','src'=>'plaza_gene_id','species'=>'Cucumis melo'), array('tgt'=>1,'_id'=>0));
+                           $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_gene','src'=>'plaza_gene_id','species'=>'Cucumis melo'), array('tgt'=>1,'_id'=>0));
                            foreach ($tgt_ids as $value) {
                                $tgt_id=$value['tgt'];
                                //echo $tgt_id;
                            }
                            $tgt=$mappingsCollection->aggregate(array(
-                                array('$match' => array('type'=>'gene_to_prot','src' => 'plaza_gene_id','species' => 'Cucumis melo')),  
+                                array('$match' => array('type'=>'gene_to_gene','src' => 'plaza_gene_id','species' => 'Cucumis melo')),  
                                 array('$project' => array('mapping_file'=>1,'_id'=>0)),
                                 array('$unwind'=>'$mapping_file'),
                                 array('$match' => array('mapping_file.plaza_gene_id'=>$ortholog)),

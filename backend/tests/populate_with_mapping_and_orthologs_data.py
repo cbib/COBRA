@@ -150,19 +150,19 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_prot - plaza to melonomics
+# Gene_to_gene - plaza to melonomics
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
-	"type":"gene_to_prot",
+	"type":"gene_to_gene",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"Melonomics_transcript_id",
+	"tgt":"Melonomics_gene_id",
 	"tgt_version":"v3.5",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
 	"doi":"not published",
-	"key":"plaza_gene_id_to_melonomics_transcript_id",
+	"key":"plaza_gene_id_to_melonomics_gene_id",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{

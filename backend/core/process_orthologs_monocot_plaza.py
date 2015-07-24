@@ -20,7 +20,7 @@ if "log" not in globals():
 # Script supposed to be run in the background to populate the DB with available datasets 
 
 
-
+orthologs_col.drop()
 
 logger.info("Running %s",sys.argv[0])
 
@@ -38,19 +38,21 @@ src_file= data_dir+'orthologs/integrative_orthology.ORTHO_monocots.tsv'
 # get xls parser config 
 #parser_config=map_doc['xls_parsing']
 
-species_initials=[]
+species_initial=[]
 # Get species keys identifier by searching available mapping file for plaza
 species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 for species in species_to_process:
-	species_initials.append(species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize())
+	species_initial.append(species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize())
 	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
 
-sheet_values = parse_ortholog_table(src_file,['plaza_gene_identifier','orthologs_list_identifier'],0,species_initials)
+sheet_values = parse_ortholog_table(src_file,['plaza_gene_identifier','orthologs_list_identifier'],0,species_initial)
 # save raw data 
 logger.info("sheet_value %d",len(sheet_values))
 species_initials=[]
 species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 for species in species_to_process:
+	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
+
 	species_initials=species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize()
 	tgt_file=data_dir+"orthologs/integrative_orthology.monocots_3.0ORTHO_COBRA"+species_initials+".tsv"
 	# this_doc={"data_file":tgt_file}
@@ -75,14 +77,14 @@ for species in species_to_process:
 		}
 	}
 	this_doc_id=orthologs_col.insert(orthologs_table)
-	orthologs_to_process=orthologs_col.find({"data_file":tgt_file,'version':"monocots_3.0"})
+	orthologs_to_process=orthologs_col.find({"mapping_file":{"$exists":False},"data_file":tgt_file,'version':"monocots_3.0"})
 	for map_doc in orthologs_to_process:
 	
 	
 		parser_config=map_doc['xls_parsing']
 		logger.info("tgt file %s",tgt_file)
 		file=open(tgt_file, 'wb')
-		logger.info("species initials : %s \n",species_initials)
+		#logger.info("species initials : %s \n",species_initials)
 		for row in sheet_values:
 			cpt=0
 			species_found=False;
@@ -104,10 +106,10 @@ for species in species_to_process:
 			species_found=False;
 		file.closed
 		file=open(tgt_file, 'rb')
-		sheet_value = parse_tsv_table(tgt_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+		sheet_value = parse_tsv_ortholog_plaza_table(tgt_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],species_initial,parser_config['sheet_index'])
 		
 		try:
-			orthologs_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_value}})
+			orthologs_col.update({"_id":map_doc['_id']},{"$push":{"mapping_file":sheet_value}})
 			#break
 		except DocumentTooLarge:
 			print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
