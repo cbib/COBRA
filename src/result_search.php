@@ -1121,16 +1121,16 @@ echo   '<div id="summary">
                                     </thead>
 
                                     <tbody>';
-                                        $timestart=microtime(true);
+                                        //$timestart=microtime(true);
                                         echo small_table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$organism,$plaza_id);
-                                        $timeend=microtime(true);
-                                        $time=$timeend-$timestart;
-
-                                        //Afficher le temps d'éxecution
-                                        $page_load_time = number_format($time, 3);
-                                        echo "Debut du script: ".date("H:i:s", $timestart);
-                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+//                                        $timeend=microtime(true);
+//                                        $time=$timeend-$timestart;
+//
+//                                        //Afficher le temps d'éxecution
+//                                        $page_load_time = number_format($time, 3);
+//                                        echo "Debut du script: ".date("H:i:s", $timestart);
+//                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
                                echo'</tbody>
 
                                 </table>
