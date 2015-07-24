@@ -707,11 +707,11 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
 //	echo '</div>';
    
 	#$current_plaza_id="AT1G01060";
-    echo "test plaza id ".$current_plaza_id;
+    //echo "test plaza id ".$current_plaza_id;
     $initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
     if ($current_plaza_id!=""){
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
 
         $cursors=$orthologsCollection->aggregate(array(
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -719,19 +719,19 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
             array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
             array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
         ));
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Debut du script: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Debut du script: ".date("H:i:s", $timestart);
+//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
         //var_dump($cursors);
         
         
         
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
         foreach ($cursors['result'] as $values) {
             $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
             $ortholog_list_id=split('[,]', $ortholog_list_id);
@@ -744,7 +744,7 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
                            $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_prot','src'=>'plaza_gene_id','species'=>'Arabidopsis thaliana'), array('tgt'=>1,'_id'=>0));
                            foreach ($tgt_ids as $value) {
                                $tgt_id=$value['tgt'];
-                               echo $tgt_id;
+                               //echo $tgt_id;
                            }
                            $tgt=$mappingsCollection->aggregate(array(
                                 array('$match' => array('type'=>'gene_to_prot','src' => 'plaza_gene_id','species' => 'Arabidopsis thaliana')),  
@@ -776,7 +776,7 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
                             $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_prot','src'=>'plaza_gene_id','species'=>'Hordeum vulgare'), array('tgt'=>1,'_id'=>0));
                            foreach ($tgt_ids as $value) {
                                $tgt_id=$value['tgt'];
-                               echo $tgt_id;
+                               //echo $tgt_id;
                            }
                            $tgt=$mappingsCollection->aggregate(array(
                                 array('$match' => array('type'=>'gene_to_prot','src' => 'plaza_gene_id','species' => 'Hordeum vulgare')),  
@@ -807,7 +807,7 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
                            $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_prot','src'=>'plaza_gene_id','species'=>'Solanum lycopersicum'), array('tgt'=>1,'_id'=>0));
                            foreach ($tgt_ids as $value) {
                                $tgt_id=$value['tgt'];
-                               echo $tgt_id;
+                               //echo $tgt_id;
                            }
                            $tgt=$mappingsCollection->aggregate(array(
                                 array('$match' => array('type'=>'gene_to_prot','src' => 'plaza_gene_id','species' => 'Solanum lycopersicum')),  
@@ -838,7 +838,7 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
                            $tgt_ids=$mappingsCollection->find(array('type'=>'gene_to_prot','src'=>'plaza_gene_id','species'=>'Cucumis melo'), array('tgt'=>1,'_id'=>0));
                            foreach ($tgt_ids as $value) {
                                $tgt_id=$value['tgt'];
-                               echo $tgt_id;
+                               //echo $tgt_id;
                            }
                            $tgt=$mappingsCollection->aggregate(array(
                                 array('$match' => array('type'=>'gene_to_prot','src' => 'plaza_gene_id','species' => 'Cucumis melo')),  
@@ -953,14 +953,14 @@ function get_ortholog(MongoGridFS $grid, MongoCollection $mappingsCollection, Mo
               //  }                          
  			}
         }
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Debut du script: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script  execute en " . $page_load_time . " sec";
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Debut du script: ".date("H:i:s", $timestart);
+//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//        echo "<br>Script  execute en " . $page_load_time . " sec";
         
     }
     
