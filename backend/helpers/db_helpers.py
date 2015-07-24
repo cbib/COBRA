@@ -22,6 +22,7 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from prettytable import PrettyTable
+
 from collections import defaultdict
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -85,7 +86,6 @@ def parseGOOBO(filename):
         #Add last term
         if currentGOTerm is not None:
             yield processGOTerm(currentGOTerm)
-
 def find_species_doc(txt):
 	"""Free text search for the species docs"""
 	return species_col.find_one({"$or":[{"full_name":txt},{"aliases":txt},{"abbrev_name":txt}]})
@@ -126,6 +126,7 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 				
 
 				for col in range(len(row)):
+					#logger.info("rows:%s ",row[col])
 					values.append(row[col])
 						
 				if len(column_keys)!=len(values):
@@ -146,7 +147,7 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
          #rows_to_data.append(this_dict)		
 		except csv.Error as e:
 			sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
-
+	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
 	return rows_to_data	
 	#logger.info("currentsheet nrows:%d",(current_sheet.nrows))
 	
@@ -154,7 +155,62 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 	
 	 
 
-
+def parse_tsv_ortholog_plaza_table(src_file,column_keys,n_rows_to_skip,species_initials,id_col=None):
+	rows_to_data=[]
+	with open(src_file, 'rb') as f:
+		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+		cpt=0
+		try:
+			#logger.info("number of rows:%s",len(list(csvreader)))
+			for row in csvreader:
+				cpt+=1
+				values=[]
+				ortho_list=[]
+				final_ortho_list=""
+				#logger.info("rows:%s and len %d",row,len(row))
+				values.append(cpt);
+				
+				values.append(row[0])
+				# text = 'abcdefg'
+# 				text = text[:1] + 'Z' + text[2:]
+# 				logger.info("text:%s",text)
+				#split row[1], keep only the COBRA species
+				for initials in species_initials:
+					#species_initials=species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize()
+					ortho_list=row[1].split(",")
+					
+					for ortho in ortho_list:
+						#logger.info("species initial :%s and ortho initial %s",initials,ortho[0]+ortho[1])
+						if (initials==ortho[0]+ortho[1]) and (ortho[2]!="R"):
+							final_ortho_list+=ortho+","
+							
+				values.append(final_ortho_list[:len(final_ortho_list)-1])
+						
+				if len(column_keys)!=len(values):
+					logger.info("columns keys length:%d",len(column_keys))
+					logger.info("value length :%d",len(values))
+					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
+				this_dict=dict(zip(column_keys,values))
+				if id_col: #enforce id col type
+					if isinstance(this_dict[id_col],Number):
+						this_dict[id_col]=str(int(this_dict[id_col]))
+				rows_to_data.append(this_dict)
+						
+         #logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys)-1)
+				
+			#if id_col: #enforce id col type 
+			#	if isinstance(this_dict[id_col],Number):
+			#		this_dict[id_col]=str(int(this_dict[id_col]))
+         #rows_to_data.append(this_dict)		
+		except csv.Error as e:
+			sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
+	return rows_to_data	
+	#logger.info("currentsheet nrows:%d",(current_sheet.nrows))
+	
+	#logger.info("rows:%s",row)
+	
+	 
 # def get_mapping_table(src,tgt):
 # 	mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
 def parse_ortholog_table(src_file,column_keys,n_rows_to_skip,species_initials,id_col=None):
