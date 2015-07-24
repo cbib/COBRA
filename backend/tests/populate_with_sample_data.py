@@ -1191,6 +1191,8 @@ samples_col.insert(barley_samples)
 
 
 
+
+
 #for key, value in orthologs_table.items():
 	
 #orthologs_col.put(orthologs_table.items())

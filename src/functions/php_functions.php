@@ -54,6 +54,12 @@ function show_array($array){
 function make_plaza_orthologs($cursor){
 
 
+return $cursor;
+
+}
+function go($stanza,$go_term_id){
+    $go_id=$go_id_list[$i];
+    return (isset($stanza['id']) && $stanza['id'] == $go_id_list[$i]);
 }
 function make_experiment_type_list($cursor){
 

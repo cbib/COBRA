@@ -18,7 +18,7 @@ if "log" not in globals():
 
 # Clear collections to fill
 mappings_col.drop()
-orthologs_col.drop()
+#orthologs_col.drop()
 interactions_col.drop()
 for grid_out in fs.find({}, timeout=False):
 	
@@ -54,7 +54,9 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-## MAPPING TABLE MELON
+###################################################################################################################
+############################################ CUCUMIS MELO #########################################################
+###################################################################################################################
 
 # Est_to_gene est_unigen to icugi_unigene
 mapping_table={
@@ -148,51 +150,75 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_gene - plaza to melonomics
+# Gene_to_prot - plaza to melonomics
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
-	"type":"gene_to_gene",
+	"type":"gene_to_prot",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"Melonomics_gene_id",
+	"tgt":"Melonomics_transcript_id",
 	"tgt_version":"v3.5",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
 	"doi":"not published",
-	"key":"plaza_gene_id_to_melonomics_id",
+	"key":"plaza_gene_id_to_melonomics_transcript_id",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','Melonomics_gene_id','Tid','uniprot_id'],
+		"column_keys":['idx','plaza_gene_id','Melonomics_gene_id','Melonomics_transcript_id','uniprot_id'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
 
 # Gene_to_go - plaza to gene ontology
+# mapping_table={
+# 	"data_file":"mappings/gene_ontology/go.cme.tsv",
+# 	"species":"Cucumis melo",
+# 	"type":"gene_to_go",
+# 	"src":"plaza_gene_id",
+# 	"src_version":"PLAZA 3.0 Dicots",
+# 	"tgt":"GO_ID",
+# 	"tgt_version":"",
+# 	"description":"none",
+# 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.cme.csv.gz",
+# 	"doi":"not published",
+# 	"key":"plaza gene id to go id",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
+# Gene_to_go - plaza to gene ontology
 mapping_table={
-	"data_file":"mappings/gene_ontology/go.cme.tsv",
+	"data_file":"mappings/gene_ontology/go.cme.converted.tsv",
 	"species":"Cucumis melo",
 	"type":"gene_to_go",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"GO_ID",
+	"tgt":"GO_ID-evidence",
 	"tgt_version":"",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.cme.csv.gz",
 	"doi":"not published",
-	"key":"plaza gene id to go id",
+	"key":"plaza gene id to go id list",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+		"column_keys":['idx','plaza_gene_id','GO_ID-evidence'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
+
 
 
 
@@ -206,23 +232,45 @@ mappings_col.insert(mapping_table)
 # # Human Readable Descriptions (AHRD)
 
 # Gene_to_go - Plaza to gene ontology
+# mapping_table={
+# 	"data_file":"mappings/gene_ontology/go.hvu.tsv",
+# 	"species":"Hordeum vulgare",
+# 	"type":"gene_to_go",
+# 	"src":"plaza_gene_id",
+# 	"src_version":"PLAZA 3.0 Monocots",
+# 	"tgt":"GO_ID",
+# 	"tgt_version":"PLAZA 3.0 Monocots",
+# 	"description":"none",
+# 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/GO/go.hvu.csv.gz",
+# 	"doi":"",
+# 	"key":"plaza gene_id to go id",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
 mapping_table={
-	"data_file":"mappings/gene_ontology/go.hvu.tsv",
+	"data_file":"mappings/gene_ontology/go.hvu.converted.tsv",
 	"species":"Hordeum vulgare",
 	"type":"gene_to_go",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Monocots",
-	"tgt":"go",
+	"tgt":"GO_ID-evidence",
 	"tgt_version":"PLAZA 3.0 Monocots",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/GO/go.hvu.csv.gz",
 	"doi":"",
-	"key":"plaza gene_id to go id",
+	"key":"plaza gene id to go id list",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','id','species','plaza_gene_id','go','evidence','go_source','provider','comment','is_shown'],
+		"column_keys":['idx','plaza_gene_id','GO_ID-evidence'],
 		"sheet_index":0,
 	}
 }
@@ -232,8 +280,8 @@ mappings_col.insert(mapping_table)
 mapping_table={
 	"data_file":"mappings/barley_HighConf_genes_MIPS_23Mar12_HumReadDesc.xls",
 	"species":"Hordeum vulgare",
-	"type":"prot_to_desc",
-	"src":"protein_id",
+	"type":"gene_to_symbol",
+	"src":"transcript id",
 	"src_version":"mips.helmholtz",
 	"tgt":"description",
 	"tgt_version":"Assignment of Human Readable Descriptions (AHRD)",
@@ -245,7 +293,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','protein_id','Blast-Hit-Accession','AHRD-Quality-Code','description','Interpro-ID (Description)'],
+		"column_keys":['idx','transcript id','Blast-Hit-Accession','AHRD-Quality-Code','description','Interpro-ID (Description)'],
 		"sheet_index":0,
 	}
 }
@@ -258,7 +306,7 @@ mapping_table={
 	"type":"gene_to_prot",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Monocots",
-	"tgt":"protein_id",
+	"tgt":"transcript id",
 	"tgt_version":"Barlex",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.hvu.csv.gz",
@@ -268,34 +316,82 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','plaza_gene_id','gene_id','protein_id', 'id', 'Tid','uniprot_id'],
+		"column_keys":['idx','plaza_gene_id','gene_id','protein_id', 'id', 'transcript id','uniprot_id'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
 
 # Est_to_gene - Morex_Contig to protein_id
+# mapping_table={
+# 	"data_file":"mappings/Barlex_list_genes.xls",
+# 	"species":"Hordeum vulgare",
+# 	"type":"est_to_gene",
+# 	"src":"Morex_Contig",
+# 	"src_version":"",
+# 	"tgt":"protein_id",
+# 	"tgt_version":"",
+# 	"description":"none",
+# 	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
+# 	"doi":"10.1186/1471-2164-13-601-s7",
+# 	"key":"morex_contig_id_to_barley_id",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','FPC','BAC','Cluster ID','Morex_Contig','MorexChromosome','Morex Contig cM','BAC Contig','protein_id','Confidence','FunctionalAnnotation'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
+# Est_to_gene - Morex_Contig to protein_id
 mapping_table={
-	"data_file":"mappings/Barlex_list_genes.xls",
+	"data_file":"mappings/barlex_HC_gene.tsv",
 	"species":"Hordeum vulgare",
 	"type":"est_to_gene",
+	"confidence level":"HC",
 	"src":"Morex_Contig",
 	"src_version":"",
-	"tgt":"protein_id",
+	"tgt":"transcript id",
 	"tgt_version":"",
 	"description":"none",
 	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
 	"doi":"10.1186/1471-2164-13-601-s7",
-	"key":"morex_contig_id_to_barley_id",
+	"key":"morex_contig_id_to_barleyHC_id",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','FPC','BAC','Cluster ID','Morex_Contig','MorexChromosome','Morex Contig cM','BAC Contig','protein_id','Confidence','FunctionalAnnotation'],
+		"column_keys":['idx','FPC','BAC','Cluster ID','Morex_Contig','MorexChromosome','Morex Contig cM','BAC Contig','transcript id','Confidence','FunctionalAnnotation'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
+# Est_to_gene - Morex_Contig to protein_id
+mapping_table={
+	"data_file":"mappings/barlex_LC_gene.tsv",
+	"species":"Hordeum vulgare",
+	"type":"est_to_gene",
+	"confidence level":"LC",
+	"src":"Morex_Contig",
+	"src_version":"",
+	"tgt":"transcript id",
+	"tgt_version":"",
+	"description":"none",
+	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
+	"doi":"10.1186/1471-2164-13-601-s7",
+	"key":"morex_contig_id_to_barleyHC_id",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','FPC','BAC','Cluster ID','Morex_Contig','MorexChromosome','Morex Contig cM','BAC Contig','transcript id','Confidence','FunctionalAnnotation'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
 
 
 
@@ -332,14 +428,14 @@ mappings_col.insert(mapping_table)
 
 # Gene_to_gene - SGN_U to ITAG gene
 mapping_table={
-	"data_file":"mappings/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.annot.xls",
+	"data_file":"mappings/tomato_unigenes_solyc_conversion_annotated.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"gene_to_gene",
 	"src":"SGN_U",
 	"src_version":"tomato200607#2",
 	"tgt":"ITAG_pid",
 	"tgt_version":"2_3",
-	"description":"InterproDescription",
+	"description":"Description",
 	"GO":"GO_ID",
 	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
 	"doi":"none",
@@ -348,7 +444,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','SGN_U','ITAG_pid','InterproDescription','GO_ID'],
+		"column_keys":['idx','SGN_U','ITAG_pid','Description','interpro','GO_ID'],
 		"sheet_index":0,
 	}
 }
@@ -363,8 +459,7 @@ mapping_table={
 	"src_version":"PLAZA 3.0 Dicots",
 	"tgt":"ITAG_pid",
 	"tgt_version":"2_3",
-	"description":"none",
-	"GO":"GOAccession",
+	"description":"uniprot_id",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.sly.csv.gz",
 	"doi":"none",
 	"key":"Plaza_gene_id_to_ITAG",
@@ -378,30 +473,53 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_go - Plaza to gene ontology
+
+#Gene_to_go - Plaza to gene ontology
+# mapping_table={
+# 	"data_file":"mappings/gene_ontology/go.sly.tsv",
+# 	"species":"Solanum lycopersicum",
+# 	"type":"gene_to_go",
+# 	"src":"plaza_gene_id",
+# 	"src_version":"PLAZA 3.0 Dicots",
+# 	"tgt":"GO_ID",
+# 	"tgt_version":"",
+# 	"description":"none",
+# 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.sly.csv.gz",
+# 	"doi":"not published",
+# 	"key":"plaza gene id to go id",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
 mapping_table={
-	"data_file":"mappings/gene_ontology/go.sly.tsv",
+	"data_file":"mappings/gene_ontology/go.sly.converted.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"gene_to_go",
 	"src":"plaza_gene_id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"GO_ID",
+	"tgt":"GO_ID-evidence",
 	"tgt_version":"",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.sly.csv.gz",
 	"doi":"not published",
-	"key":"plaza gene id to go id",
+	"key":"plaza gene id to go id list",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+		"column_keys":['idx','plaza_gene_id','GO_ID-evidence'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
 
-# Est_to_gene - SGN_S to SGN_S
+# Est_to_gene - SGN_S to SGN_U
 mapping_table={
 	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
 	"species":"Solanum lycopersicum",
@@ -502,7 +620,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_gene_symbol - TAIR AGI gene id to gene symbol
+# Gene_to__symbol - TAIR AGI gene id to gene symbol
 mapping_table={
 	"data_file":"mappings/arabidopsis_thaliana_gene_aliases_20131231.xls",
 	"species":"Arabidopsis thaliana",
@@ -526,29 +644,73 @@ mapping_table={
 mappings_col.insert(mapping_table)
 
 # Gene_to_go - TAIR AGI gene id to gene ontology
+# mapping_table={
+# 	"data_file":"mappings/gene_ontology/ATH_GO_GOSLIM.tsv",
+# 	"species":"Arabidopsis thaliana",
+# 	"type":"gene_to_go",
+# 	"src":"AGI_TAIR",
+# 	"src_version":"Tair",
+# 	"tgt":"GO_ID",
+# 	"tgt_version":"",
+# 	"url":"https://www.arabidopsis.org/download_files/GO_and_PO_Annotations/Gene_Ontology_Annotations/ATH_GO_GOSLIM.txt",
+# 	"doi":"",
+# 	"src_pub":"Berardini, TZ, Mundodi, S, Reiser, R, Huala, E, Garcia-Hernandez, M,Zhang, P, Mueller, LM, Yoon, J, Doyle, A, Lander, G, Moseyko, N, Yoo,D, Xu, I, Zoeckler, B, Montoya, M, Miller, N, Weems, D, and Rhee, SY(2004) Functional annotation of the Arabidopsis genome usingcontrolled vocabularies. Plant Physiol. 135(2):1-11.",
+# 	"key":"Tair_2_GO",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":0,
+# 		"column_keys":['idx','AGI_TAIR','TAIR_accession','object_name','relationship_type','GO_term','GO_ID','TAIR_Keyword_ID','Aspect','GOslim_term','Evidence_code','Evidence_description','Evidence_with','Reference','Annotator','Date'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
+# Gene_to_go - TAIR AGI gene id to gene ontology
+# mapping_table={
+# 	"data_file":"mappings/gene_ontology/go.ath.tsv",
+# 	"species":"Arabidopsis thaliana",
+# 	"type":"gene_to_go",
+# 	"src":"plaza_gene_id",
+# 	"src_version":"PLAZA 3.0 Dicots",
+# 	"tgt":"GO_ID",
+# 	"tgt_version":"",
+# 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.ath.csv.gz",
+# 	"doi":"",
+# 	"src_pub":"Berardini, TZ, Mundodi, S, Reiser, R, Huala, E, Garcia-Hernandez, M,Zhang, P, Mueller, LM, Yoon, J, Doyle, A, Lander, G, Moseyko, N, Yoo,D, Xu, I, Zoeckler, B, Montoya, M, Miller, N, Weems, D, and Rhee, SY(2004) Functional annotation of the Arabidopsis genome usingcontrolled vocabularies. Plant Physiol. 135(2):1-11.",
+# 	"key":"plaza gene id to go grid id",
+# 	# parser config 
+# 		# xls parser configuration, are propagated to all entries in  "experimental_results",
+# 	"xls_parsing":{
+# 		"n_rows_to_skip":1,
+# 		"column_keys":['idx','id','species','plaza_gene_id','GO_ID','evidence','go_source','provider','comment','is_shown'],
+# 		"sheet_index":0,
+# 	}
+# }
+# mappings_col.insert(mapping_table)
+
+# Gene_to_go - TAIR AGI gene id to gene ontology
 mapping_table={
-	"data_file":"mappings/gene_ontology/ATH_GO_GOSLIM.tsv",
+	"data_file":"mappings/gene_ontology/go.ath.converted.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"gene_to_go",
-	"src":"AGI_TAIR",
-	"src_version":"Tair",
-	"tgt":"GO_ID",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"GO_ID-evidence",
 	"tgt_version":"",
-	"url":"https://www.arabidopsis.org/download_files/GO_and_PO_Annotations/Gene_Ontology_Annotations/ATH_GO_GOSLIM.txt",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/GO/go.ath.csv.gz",
 	"doi":"",
 	"src_pub":"Berardini, TZ, Mundodi, S, Reiser, R, Huala, E, Garcia-Hernandez, M,Zhang, P, Mueller, LM, Yoon, J, Doyle, A, Lander, G, Moseyko, N, Yoo,D, Xu, I, Zoeckler, B, Montoya, M, Miller, N, Weems, D, and Rhee, SY(2004) Functional annotation of the Arabidopsis genome usingcontrolled vocabularies. Plant Physiol. 135(2):1-11.",
-	"key":"Tair_2_GO",
+	"key":"plaza gene id to go id list",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','AGI_TAIR','TAIR_accession','object_name','relationship_type','GO_term','GO_ID','TAIR_Keyword_ID','Aspect','GOslim_term','Evidence_code','Evidence_description','Evidence_with','Reference','Annotator','Date'],
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','GO_ID-evidence'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
-
-
 
 
 ###################################################################################################################
@@ -556,20 +718,20 @@ mappings_col.insert(mapping_table)
 ###################################################################################################################
 
 # Plaza Orthologs - Dicots
-orthologs_table={
-
-	'data_file':'orthologs/integrative_orthology.ORTHO.tsv',
-	'src':'plaza_gene_identifier',
-	'tgt':'orthologs_list_identifier',
-	'version':"dicots_3.0",
-	'xls_parsing':{
-		'n_rows_to_skip':0,
-		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
-		'sheet_index':0
-		
-	}
-}
-orthologs_col.insert(orthologs_table)
+# orthologs_table={
+# 
+# 	'data_file':'orthologs/integrative_orthology.ORTHO.tsv',
+# 	'src':'plaza_gene_identifier',
+# 	'tgt':'orthologs_list_identifier',
+# 	'version':"dicots_3.0",
+# 	'xls_parsing':{
+# 		'n_rows_to_skip':0,
+# 		'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],
+# 		'sheet_index':0
+# 		
+# 	}
+# }
+# orthologs_col.insert(orthologs_table)
 
 
 # PGJDB Orthologs

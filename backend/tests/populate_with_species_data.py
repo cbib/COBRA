@@ -113,7 +113,7 @@ barley={
 	"aliases":["hordeum_vulgare","barley"],
 	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
 	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"protein_id",
+	"preferred_id":"transcript id",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
