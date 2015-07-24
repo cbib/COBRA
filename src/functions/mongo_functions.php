@@ -58,7 +58,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
 
 function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourite_id='null',$intermediary_id='null'){
     //$src_and_tgt=array();
-    echo 'entering get target from source'.$value;
+    //echo 'entering get target from source'.$value;
     foreach ($src_to_tgt as $row){
         $found=FALSE;
         foreach ($row as $column){
@@ -69,14 +69,14 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
                     
                     $value_array[$favourite_id]=$value;
                     $value_array['search']=$tgt;                           
-                    echo 'tgt : '.$column[0];  
+                    //echo 'tgt : '.$column[0];  
                     
                 }
             }  
             else {                         
                 if ($column==$value){
                     $found=TRUE;                                               
-                    echo 'src : '.$column;    
+                    //echo 'src : '.$column;    
                 }
             }  
         }       
@@ -98,7 +98,7 @@ function get_gene_ontology_details(Mongocollection $ma,$species='null',$gene_id=
     return $mapping; 
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
-    echo $favourite_id.'----'.$intermediary_id;
+    //echo $favourite_id.'----'.$intermediary_id;
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
     $fields=array('src_to_tgt'=>1);
     $mapping=$ma->find($query, $fields);
@@ -133,7 +133,7 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $preferred_src_id=$value['preferred_id'];
-        echo $value['preferred_id'].'<br/>';
+        //echo $value['preferred_id'].'<br/>';
     
     }
     //get the target id for this species in the plaza mapping table
@@ -142,11 +142,11 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
     
     foreach ($plaza_favourite_tgt_id as $value) {
         $plaza_tgt_id=$value['tgt'];
-        echo $value['tgt'].'<br/>';
+        //echo $value['tgt'].'<br/>';
     
     }
     $gene_list=array();
-    echo 'id : '.$id.'<br/>';
+    //echo 'id : '.$id.'<br/>';
     //$gene_list['gene']=$id;
     $gene_list=array(array('search'=>$id));
     
@@ -156,7 +156,7 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
         //echo "same id";
         $plaza_id=convert_into_plaza_id_list($ma,$gene_list,$plaza_tgt_id,$species);
         foreach ($plaza_id as $value) {
-            echo 'plaza id :'.$value['plaza_id'];
+            //echo 'plaza id :'.$value['plaza_id'];
             $plaza_id_string=$value['plaza_id'];
         }
 
@@ -164,15 +164,15 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
     
     // here we need to first translate into intermediary id before translate into plaza id
     else{
-        echo 'intermediary id needed<br/>';
+        //echo 'intermediary id needed<br/>';
         $transformed_list=convert_into_specific_id($ma,$gene_list,$preferred_src_id,$plaza_tgt_id,$species);
         
         if (count($transformed_list)!=0){
-            echo 'id translated successfully:'.$transformed_list[0][$plaza_tgt_id];
+            //echo 'id translated successfully:'.$transformed_list[0][$plaza_tgt_id];
             $plaza_id=convert_into_plaza_id_list($ma,$transformed_list,$plaza_tgt_id,$species);
         }
         foreach ($plaza_id as $value) {
-            echo 'plaza id :'.$value['plaza_id'];
+            //echo 'plaza id :'.$value['plaza_id'];
             $plaza_id_string=$value['plaza_id'];
         }
         
@@ -188,7 +188,7 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
 
 function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
     
-    echo 'entering convert '.$plaza_tgt_id.' into plaza id';
+    //echo 'entering convert '.$plaza_tgt_id.' into plaza id';
     $query=array('src'=>'plaza_gene_id','tgt'=>$plaza_tgt_id);
     $fields=array('tgt_to_src'=>1);
     $mapping=$ma->find($query, $fields);
@@ -210,8 +210,8 @@ function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$p
 }
 function get_source_from_target($tgt_to_src,$value,$plaza_tgt_id='null'){
     //$tgt_and_src=array();
-    echo 'entering  get tgt from  src'.$value['search'];
-    echo 'tgt from  src size : '.count($tgt_to_src);
+    //echo 'entering  get tgt from  src'.$value['search'];
+    //echo 'tgt from  src size : '.count($tgt_to_src);
     foreach ($tgt_to_src as $row){
         $found=FALSE;
         foreach ($row as $column){
@@ -219,7 +219,7 @@ function get_source_from_target($tgt_to_src,$value,$plaza_tgt_id='null'){
                 if ($found){
                     $src=$column[0];
                     $value['plaza_id']=$column[0];
-                    echo 'found : '.$column[0];
+                    //echo 'found : '.$column[0];
                     
                 }
             }  
@@ -228,7 +228,7 @@ function get_source_from_target($tgt_to_src,$value,$plaza_tgt_id='null'){
                     $found=TRUE;
                     $tgt=$column;
                     
-                    echo 'src : '.$column;    
+                    //echo 'src : '.$column;    
                 }
             }  
         }       
