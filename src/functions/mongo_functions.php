@@ -248,7 +248,7 @@ function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$p
             ));
         foreach ($plaza_id['result'] as $result) {
             
-            echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
+            //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
             $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
             array_push($cursor,$value);
             
@@ -1151,7 +1151,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 //	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 //	echo '</div>';
-     echo "test plaza id ".$current_plaza_id;
+     //echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
     if ($current_plaza_id!=""){
