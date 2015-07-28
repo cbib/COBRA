@@ -6,20 +6,69 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     return $cursor_array;
 }
 
+//function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
+//    //get the preferred id for this species
+//    $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
+//    foreach ($species_id_type as $value) {
+//        $favourite_id=$value['preferred_id'];
+//        //echo $value['preferred_id'];
+//    
+//    }
+//    //get the target id for this species of the plza mapping table
+//    $plaza_favorite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
+//    //only one value is possible
+//    foreach ($plaza_favorite_tgt_id as $value) {
+//     $intermediary_id=$value['tgt'];
+//        //echo $value['tgt'];
+//    
+//    }
+//    //get the n top genes in the transcriptomics data
+//    $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
+//    //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
+//    #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
+//    $gene_list=array();
+//    foreach ($cursor as $value) {
+//    //echo $value['logFC']."\n";
+//    //echo $value['gene']."\n";
+//        array_push($gene_list,$value);
+//    //echo $value['infection_agent']."\n";
+//    } 
+//    // At this point we have a list of n top-genes id,
+//    // we need to check if the species favourite id is equal
+//    // to the id needed to convert into plaza id
+//    
+//    
+//    //Same : direct conversion using plaza mapping table
+//    if ($favourite_id==$intermediary_id){
+//        //echo "same id";
+//        $gene_list_attributes=convert_into_plaza_id_list($ma,$gene_list,$favourite_id,$species);
+//
+//    }
+//    // here we need to first translate into intermediary id before translate into plaza id
+//    else{
+//        $transformed_list=convert_into_specific_id($ma,$gene_list,$favourite_id,$intermediary_id,$species);
+//        if (count($transformed_list)!=0){
+//            $gene_list_attributes=convert_into_plaza_id_list($ma,$transformed_list,$intermediary_id,$species);
+//        }
+//        
+//        
+//    }
+//    return $gene_list_attributes;
+//}
 function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     //get the preferred id for this species
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $favourite_id=$value['preferred_id'];
-        //echo $value['preferred_id'];
+        //echo $value['preferred_id'].'</br>';
     
     }
     //get the target id for this species of the plza mapping table
-    $plaza_favorite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
+    $plaza_favorite_tgt_id=$ma->find(array('type'=>array('$nin'=>array('gene_to_go')),'src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
     //only one value is possible
     foreach ($plaza_favorite_tgt_id as $value) {
-     $intermediary_id=$value['tgt'];
-        //echo $value['tgt'];
+        $intermediary_id=$value['tgt'];
+        //echo $value['tgt'].'</br>';
     
     }
     //get the n top genes in the transcriptomics data
@@ -29,10 +78,11 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     $gene_list=array();
     foreach ($cursor as $value) {
     //echo $value['logFC']."\n";
-    //echo $value['gene']."\n";
-        array_push($gene_list,$value);
+        //echo 'gene to found : '.$value['gene'].'</br>';
+        array_push($gene_list,array('search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
+        
     //echo $value['infection_agent']."\n";
-    } 
+    }
     // At this point we have a list of n top-genes id,
     // we need to check if the species favourite id is equal
     // to the id needed to convert into plaza id
@@ -185,29 +235,50 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
 	
 
 }
-
 function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
     
-    //echo 'entering convert '.$plaza_tgt_id.' into plaza id';
-    $query=array('src'=>'plaza_gene_id','tgt'=>$plaza_tgt_id);
-    $fields=array('tgt_to_src'=>1);
-    $mapping=$ma->find($query, $fields);
     $cursor=array();
-    foreach ($mapping as $map_doc){
-        
-        $tgt_to_src = $map_doc['tgt_to_src'];
-        foreach ($gene_list_attributes as $value) {
+    foreach ($gene_list_attributes as $value) {
+        $plaza_id=$ma->aggregate(array(
+            array('$match' => array('src'=>'plaza_gene_id','species'=>'Arabidopsis thaliana')),   
+            array('$project' => array('mapping_file'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('mapping_file.'.$plaza_tgt_id=>$value['search'])), 
+            array('$project' => array('mapping_file.plaza_gene_id'=>1,'_id'=>0))
+            ));
+        foreach ($plaza_id['result'] as $result) {
             
-            array_push($cursor, get_source_from_target($tgt_to_src,$value,$plaza_tgt_id));
+            echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
+            $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
+            array_push($cursor,$value);
             
         }
-       
+        
     }
     return $cursor;
-   
-    
-    
 }
+//function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
+//    
+//    //echo 'entering convert '.$plaza_tgt_id.' into plaza id';
+//    $query=array('src'=>'plaza_gene_id','tgt'=>$plaza_tgt_id);
+//    $fields=array('tgt_to_src'=>1);
+//    $mapping=$ma->find($query, $fields);
+//    $cursor=array();
+//    foreach ($mapping as $map_doc){
+//        
+//        $tgt_to_src = $map_doc['tgt_to_src'];
+//        foreach ($gene_list_attributes as $value) {
+//            
+//            array_push($cursor, get_source_from_target($tgt_to_src,$value,$plaza_tgt_id));
+//            
+//        }
+//       
+//    }
+//    return $cursor;
+//   
+//    
+//    
+//}
 function get_source_from_target($tgt_to_src,$value,$plaza_tgt_id='null'){
     //$tgt_and_src=array();
     //echo 'entering  get tgt from  src'.$value['search'];
@@ -1081,7 +1152,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 //	echo '</div>';
      echo "test plaza id ".$current_plaza_id;
-    $initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
+    //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
     if ($current_plaza_id!=""){
         $cursors=$orthologsCollection->aggregate(array(
@@ -1097,16 +1168,16 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
             $ortholog_list_id=split('[,]', $ortholog_list_id);
             foreach ($ortholog_list_id as $ortholog){
                 //echo 'ortholog'.$ortholog;
-                foreach ($initial_species as $key => $value) {
-                    if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
+                //foreach ($initial_species as $key => $value) {
+                    //if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                         #echo "start line : ".$buffer."\n";
                         $cursor=$mappingsCollection->aggregate(array( 
-                            array('$match' => array('type'=>'gene_to_prot')),  
-                            array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
+                            array('$match' => array('key'=>'PLAZA_conversion')),  
+                            array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'_id'=>0)),    
                             array('$match' => array('src'=>"plaza_gene_id")),  
                             array('$unwind'=>'$src_to_tgt'),    
                             array('$match' => array('src_to_tgt.0'=>$ortholog)),  
-                            array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
+                            array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'_id'=>0))
                         ));
 
                         if (count($cursor['result'])!=0){
@@ -1118,7 +1189,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                 for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
                                     $table_string.="<tr>";
                                     //echo "<tr>";
-                                    $table_string.='<td>'.$line['type'].'</td>';
+                                    //$table_string.='<td>'.$line['type'].'</td>';
                                     //echo '<td>'.$line['type'].'</td>';
                                     $table_string.='<td>'.$line['src_to_tgt'][0].'</td>';
                                     //echo '<td>'.$line['src_to_tgt'][0].'</td>';
@@ -1186,9 +1257,9 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //                                        }
 //                                        echo'</tbody></table></div>'; 
                         }                                   														
-                    }
+                    //}
 
-                }                          
+                //}                          
  			}
         }
     }

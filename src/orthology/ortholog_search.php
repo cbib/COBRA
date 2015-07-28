@@ -173,18 +173,17 @@ foreach ($data as $species){
                          <div class="results-right">
                         <div class="organism"> Organism:'.$species.'</div>
                         <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
-                        <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
                     </div>
                     <div class="results-left">
-                        <div class="officialSymbol"> Gene identifier: '.$attributes['gene'].'</div>
-                        <div class="favourite identifier"> Preferred gene identifier'.$attributes[$favourite_id].'</div>
-                        <div class="plaza identifier"> Preferred plaza target identifier: '.$attributes['plaza_id'].'</div>                        
-                        <div class="protein identifier"> Preferred plaza target identifier'.$attributes[$intermediary_id].'</div>
+                        <div class="officialSymbol"> Gene identifier: '.$attributes['search'].'</div>
+                        <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
                     </div>
 
                 </div>';
             }
-
+            /*<div class="favourite identifier"> Preferred gene identifier'.$attributes[$favourite_id].'</div>
+                        <div class="plaza identifier"> Preferred plaza target identifier: '.$attributes['plaza_id'].'</div>                        
+                        <div class="protein identifier"> Preferred plaza target identifier'.$attributes[$intermediary_id].'</div>*/
 
 
 
@@ -209,7 +208,7 @@ foreach ($data as $species){
 
                                     <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                         <tr>';
-                                            echo "<th>Mapping type</th>";
+                                            //echo "<th>Mapping type</th>";
                                             echo "<th>src ID</th>";
                                             echo "<th>src type</th>";
                                             echo "<th>src_version</th>";

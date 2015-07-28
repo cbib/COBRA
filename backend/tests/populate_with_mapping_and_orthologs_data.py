@@ -162,7 +162,7 @@ mapping_table={
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
 	"doi":"not published",
-	"key":"plaza_gene_id_to_melonomics_gene_id",
+	"key":"PLAZA_conversion",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -311,7 +311,7 @@ mapping_table={
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.hvu.csv.gz",
 	"doi":"10.1186/1471-2164-13-601-s7",
-	"key":"plaza_gene_id_to_barley_id",
+	"key":"PLAZA_conversion",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -462,7 +462,7 @@ mapping_table={
 	"description":"uniprot_id",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.sly.csv.gz",
 	"doi":"none",
-	"key":"Plaza_gene_id_to_ITAG",
+	"key":"PLAZA_conversion",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -609,7 +609,7 @@ mapping_table={
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ath.csv",
 	"doi":"none",
-	"key":"PLAZA_2_Uniprot",
+	"key":"PLAZA_conversion",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
