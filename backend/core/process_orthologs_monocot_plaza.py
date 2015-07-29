@@ -20,7 +20,7 @@ if "log" not in globals():
 # Script supposed to be run in the background to populate the DB with available datasets 
 
 
-orthologs_col.drop()
+orthologs_col.remove({'version': 'monocots_3.0'})
 
 logger.info("Running %s",sys.argv[0])
 
@@ -76,45 +76,46 @@ for species in species_to_process:
 		
 		}
 	}
-	this_doc_id=orthologs_col.insert(orthologs_table)
-	orthologs_to_process=orthologs_col.find({"mapping_file":{"$exists":False},"data_file":tgt_file,'version':"monocots_3.0"})
-	for map_doc in orthologs_to_process:
+	orthologs_col.insert(orthologs_table)
+	#orthologs_to_process=orthologs_col.find({"mapping_file":{"$exists":False},"data_file":tgt_file,'version':"monocots_3.0"})
+	#for map_doc in orthologs_to_process:
 	
 	
-		parser_config=map_doc['xls_parsing']
-		logger.info("tgt file %s",tgt_file)
-		file=open(tgt_file, 'wb')
-		#logger.info("species initials : %s \n",species_initials)
-		for row in sheet_values:
-			cpt=0
-			species_found=False;
-			for x in row:
+	parser_config=orthologs_table['xls_parsing']
+	logger.info("tgt file %s",tgt_file)
+	file=open(tgt_file, 'wb')
+	#logger.info("species initials : %s \n",species_initials)
+	for row in sheet_values:
+		cpt=0
+		species_found=False;
+		for x in row:
+			if cpt==0:
+				#logger.info("plaza id first letter : %s,\n",row[x][0]+row[x][1])
+				if (species_initials==row[x][0]+row[x][1]) and (row[x][2]!="R"):
+					#logger.info("species initials found : %s \n",species_initials)
+					species_found=True;
+			if species_found :
 				if cpt==0:
-					#logger.info("plaza id first letter : %s,\n",row[x][0]+row[x][1])
-					if (species_initials==row[x][0]+row[x][1]) and (row[x][2]!="R"):
-						#logger.info("species initials found : %s \n",species_initials)
-						species_found=True;
-				if species_found :
-					if cpt==0:
-						file.write(row[x])
-						file.write("\t")
-					else:
-						file.write(row[x])
-						file.write("\n")	
-				
-				cpt+=1
-			species_found=False;
-		file.closed
-		file=open(tgt_file, 'rb')
-		sheet_value = parse_tsv_ortholog_plaza_table(tgt_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],species_initial,parser_config['sheet_index'])
-		
-		try:
-			orthologs_col.update({"_id":map_doc['_id']},{"$push":{"mapping_file":sheet_value}})
-			#break
-		except DocumentTooLarge:
-			print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
+					file.write(row[x])
+					file.write("\t")
+				else:
+					file.write(row[x])
+					file.write("\n")	
+			
+			cpt+=1
+		species_found=False;
+	file.closed
+	file=open(tgt_file, 'rb')
+	sheet_value = parse_tsv_ortholog_plaza_table(tgt_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],species_initial,parser_config['sheet_index'])
+	
+	try:
+		logger.info("map_doc _id : %s \n",orthologs_table['_id'])
+		orthologs_col.update({"_id":orthologs_table['_id']},{"$push":{"mapping_file":sheet_value}})
+		#break
+	except DocumentTooLarge:
+		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
 
-		file.close()
+	file.close()
 
 		
 

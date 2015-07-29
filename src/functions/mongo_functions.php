@@ -240,17 +240,20 @@ function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$p
     $cursor=array();
     foreach ($gene_list_attributes as $value) {
         $plaza_id=$ma->aggregate(array(
-            array('$match' => array('src'=>'plaza_gene_id','species'=>$species)),   
+            array('$match' => array('key'=>'PLAZA_conversion','src'=>'plaza_gene_id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.'.$plaza_tgt_id=>$value['search'])), 
             array('$project' => array('mapping_file.plaza_gene_id'=>1,'_id'=>0))
             ));
+        $cpt=0;
         foreach ($plaza_id['result'] as $result) {
-            
-            //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
-            $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
-            array_push($cursor,$value);
+            if ($cpt<1){
+                //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
+                $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
+                array_push($cursor,$value);
+                $cpt++;
+            }
             
         }
         
@@ -342,7 +345,7 @@ function mongoPersistantConnector() {
 
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
     $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
-    if ($type="down"){
+    if ($type=="down"){
        $cursor->sort(array('logFC' => 1)); 
     }
     else{
