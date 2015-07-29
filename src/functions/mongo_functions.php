@@ -240,7 +240,7 @@ function convert_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$p
     $cursor=array();
     foreach ($gene_list_attributes as $value) {
         $plaza_id=$ma->aggregate(array(
-            array('$match' => array('src'=>'plaza_gene_id','species'=>'Arabidopsis thaliana')),   
+            array('$match' => array('src'=>'plaza_gene_id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.'.$plaza_tgt_id=>$value['search'])), 
