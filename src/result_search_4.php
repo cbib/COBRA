@@ -57,7 +57,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $go_duo_list=array();
     echo '<hr>';
     
-    $timestart=microtime(true);
+    //$timestart=microtime(true);
     //get_everything using full table mapping
     $cursor=$mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
@@ -70,11 +70,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
     if(count($cursor['result'])>1){
         
-        echo 'HIGHER THAN ONE :'.count($cursor['result']);
+        //echo 'HIGHER THAN ONE :'.count($cursor['result']);
         foreach ($cursor['result'] as $result) {
             
             
-            echo 'species : '.$result['species'].' and '.$result['mapping_file']['Gene ID'];
+            //echo 'species : '.$result['species'].' and '.$result['mapping_file']['Gene ID'];
             echo '<hr>';
             //echo $result['mapping_file']['Gene ontology ID'];
             $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
@@ -94,7 +94,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             array_push($gene_id,$result['mapping_file']['Gene ID']);
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
-                echo 'symbol : '.$symbol;
+                //echo 'symbol : '.$symbol;
                 array_push($gene_symbol,$symbol);
 
                 
@@ -105,16 +105,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $plaza_id=$result['mapping_file']['Plaza ID'];
 
         }
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Debut du script: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-
-        echo '<hr>';
-        $timestart=microtime(true);
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Debut du script: ".date("H:i:s", $timestart);
+//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//        echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+//
+//        echo '<hr>';
+        //$timestart=microtime(true);
         $total_go_biological_process=array();
         $total_go_cellular_component=array();
         $total_go_molecular_function=array();
@@ -160,21 +160,21 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
             }
         }
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Debut du script: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-
-        echo '<hr>';
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Debut du script: ".date("H:i:s", $timestart);
+//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//        echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+//
+//        echo '<hr>';
         
         
     }
     else{
         foreach ($cursor['result'] as $result) {
-            echo $result['mapping_file']['Gene ID 2'];
+            //echo $result['mapping_file']['Gene ID 2'];
             //echo $result['mapping_file']['Gene ontology ID'];
             $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
             foreach ($go_id_evidence as $duo) {
@@ -193,7 +193,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             array_push($gene_id,$result['mapping_file']['Gene ID']);
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
-                echo 'symbol : '.$symbol;
+                //echo 'symbol : '.$symbol;
                 array_push($gene_symbol,$symbol);
 
                 
@@ -204,16 +204,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $plaza_id=$result['mapping_file']['Plaza ID'];
 
         }
-    $timeend=microtime(true);
-    $time=$timeend-$timestart;
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-
-    echo '<hr>';
-    $timestart=microtime(true);
+//    $timeend=microtime(true);
+//    $time=$timeend-$timestart;
+//    //Afficher le temps d'éxecution
+//    $page_load_time = number_format($time, 3);
+//    echo "Debut du script: ".date("H:i:s", $timestart);
+//    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+//
+//    echo '<hr>';
+//    $timestart=microtime(true);
     $total_go_biological_process=array();
     $total_go_cellular_component=array();
     $total_go_molecular_function=array();
@@ -259,16 +259,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
         }
     }
-    $timeend=microtime(true);
-    $time=$timeend-$timestart;
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-
-    echo '<hr>';
-    
+//    $timeend=microtime(true);
+//    $time=$timeend-$timestart;
+//    //Afficher le temps d'éxecution
+//    $page_load_time = number_format($time, 3);
+//    echo "Debut du script: ".date("H:i:s", $timestart);
+//    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+//
+//    echo '<hr>';
+//    
     }
     /*foreach ($cursor['result'] as $result) {
         echo $result['mapping_file']['Gene ID 2'];
