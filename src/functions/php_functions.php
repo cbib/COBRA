@@ -585,7 +585,7 @@ echo '
     <h2> Using list of genes ids</h2>
     <div id="SpeciesSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats_list.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats_list3.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
@@ -647,7 +647,7 @@ function make_species_list($cursor){
     
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_4.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
@@ -673,9 +673,9 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_4.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
     						or 
-    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_4.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>

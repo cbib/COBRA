@@ -24,7 +24,7 @@ echo '
 			by the new candidate genes prior to transfer to crop species</p>
 	</div> 
 	';
-
+echo '<?php if($current_page == index.php){ echo \'class="active"\'; } ?\>';
 
 //include('connection.php');
 
@@ -48,8 +48,8 @@ echo'
 
         make_gene_id_text_list();
         
-        make_CrossCompare_list(find_species_list($speciesCollection));
-        make_viruses_list(find_viruses_list($virusCollection));
+        //make_CrossCompare_list(find_species_list($speciesCollection));
+        //make_viruses_list(find_viruses_list($virusCollection));
 
         
      

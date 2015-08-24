@@ -119,13 +119,16 @@ $genes=$_POST['regulation'];
 $Topgene=$_POST['Topgene'];
 
 
-
 //$species='Cucumis melo';
+$species='Arabidopsis thaliana';
+$type="down";
+//$species='Hordeum vulgare';
 foreach ($data as $species){
-    //$species='Arabidopsis thaliana';
+    echo '<H1>Results for '.$species.'</H1>';
+    
     $type=$genes;
-    //$species='Hordeum vulgare';
-    $gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$type,$Topgene);
+    
+    $gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$genes,$Topgene);
 
     //$species_id_type=$speciesCollection->find(array('full_name'=>$species),array('preferred_id'=>1));
     //foreach ($species_id_type as $value) {
@@ -139,9 +142,6 @@ foreach ($data as $species){
     //    //echo $value['tgt'];
     //
     //}
-
-
-
 
     foreach ($gene_list_attributes as $attributes) {
 
@@ -169,21 +169,23 @@ foreach ($data as $species){
     //            echo '<td>'.$species.'</td>';
     //            echo "</tr>";
     //            echo'</tbody></table>';
-                echo '<div style="cursor: pointer;" onclick="window.location=\'https://services.cbib.u-bordeaux2.fr/cobra/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['gene'].'\';" class="resultsbox" id="results">
-                         <div class="results-right">
-                        <div class="organism"> Organism:'.$species.'</div>
-                        <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
-                    </div>
-                    <div class="results-left">
-                        <div class="officialSymbol"> Gene identifier: '.$attributes['search'].'</div>
-                        <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
-                    </div>
+                echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\';" class="resultsbox" id="results">
+                        <div class="results-right">
+                            <div class="organism"> Organism:'.$species.'</div>
+                            <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
+
+                        </div>
+                        <div class="results-left">
+                            <div class="officialSymbol"> Gene identifier: '.$attributes['search'].'</div>
+                            <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
+
+                        </div>
 
                 </div>';
             }
             /*<div class="favourite identifier"> Preferred gene identifier'.$attributes[$favourite_id].'</div>
-                        <div class="plaza identifier"> Preferred plaza target identifier: '.$attributes['plaza_id'].'</div>                        
-                        <div class="protein identifier"> Preferred plaza target identifier'.$attributes[$intermediary_id].'</div>*/
+            <div class="plaza identifier"> Preferred plaza target identifier: '.$attributes['plaza_id'].'</div>                        
+            <div class="protein identifier"> Preferred plaza target identifier'.$attributes[$intermediary_id].'</div>*/
 
 
 
@@ -200,17 +202,18 @@ foreach ($data as $species){
                                 <div class="panel-heading">
                                     <h3>
                                         <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents" data-toggle="collapse">
-                                                Ortholog table
+                                                Ortholog table 
+                                                <div id="organism" class="right"><h4>THALIANA</h4></div>
                                         </a>				
                                     </h3>
                                 </div>
                                 <div class="panel-body panel-collapse collapse" id="ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'">
 
-                                    <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                                    <table class="table table-condensed table-hover table-striped">                                                                
+                                        <thead>
                                         <tr>';
                                             //echo "<th>Mapping type</th>";
                                             echo "<th>src ID</th>";
-                                            echo "<th>src type</th>";
                                             echo "<th>src_version</th>";
                                             echo "<th>tgt ID</th>";
                                             echo "<th>tgt type</th>";
@@ -232,7 +235,7 @@ foreach ($data as $species){
                         </div>    
                  <br/>';
 
-    /*               echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+    //                echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
     //                echo'<h1 style="text-align:center"> Orthology informations </h1>';
     //                echo '</div>';
     //                #$current_plaza_id="AT1G01060";
@@ -391,20 +394,21 @@ foreach ($data as $species){
     //                            }
     //                        }
     //                    }
-    //                }*/
+    //                }
 
 
                 }
                 else{
-//                    echo $key."\r\t";
-//                    echo $value."\r\n";
-//                    echo "</br>";
-//                      echo '<div> No Orthologs found for this gene</div>';
+    //                echo $key."\r\t";
+    //                echo $value."\r\n";
+    //                echo "</br>";
                 }
             }
             else{
-                    
-
+    //            echo $key."\r\t";
+    //            echo $value."No id found\r\n";
+    //            
+    //            echo "</br>";
             }
             $cpt++;
 
@@ -413,8 +417,9 @@ foreach ($data as $species){
             //echo $attributes['gene'];
             //$attributes['gene'];
     }
+}
 
-}  
+    
 
 new_cobra_footer();
 ////////////////////////////////////////////////////

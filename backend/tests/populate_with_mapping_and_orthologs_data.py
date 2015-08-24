@@ -58,6 +58,28 @@ mappings_col.insert(mapping_table)
 ############################################ CUCUMIS MELO #########################################################
 ###################################################################################################################
 
+# full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
+mapping_table={
+	"data_file":"mappings/cucumis_melo_full.tsv",
+	"species":"Cucumis melo",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"ICUGI",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Plaza ID','Gene ontology ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+
 # Est_to_gene est_unigen to icugi_unigene
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
@@ -150,7 +172,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_gene - plaza to melonomics
+# Gene_to_prot - plaza to melonomics
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
@@ -253,6 +275,29 @@ mappings_col.insert(mapping_table)
 # 	}
 # }
 # mappings_col.insert(mapping_table)
+
+
+# full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
+mapping_table={
+	"data_file":"mappings/hordeum_vulgare_full.tsv",
+	"species":"Hordeum vulgare",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"ICUGI",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Protein name','Alias','Plaza ID','Gene ontology ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
 
 mapping_table={
 	"data_file":"mappings/gene_ontology/go.hvu.converted.tsv",
@@ -403,6 +448,76 @@ mappings_col.insert(mapping_table)
 
 #to add "url":”ftp://ftp.sgn.cornell.edu/genomes/Solanum_lycopersicum/id_conversion/tomato_unigenes_solyc_conversion_annotated.txt",
 
+
+# full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
+mapping_table={
+	"data_file":"mappings/solanum_lycopersicum_full.tsv",
+	"species":"Solanum lycopersicum",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"SolGenomics",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Alias','Description','Plaza ID','Gene ontology ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+# Est_to_gene - SGN_S to SGN_U
+mapping_table={
+	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
+	"species":"Solanum lycopersicum",
+	"type":"est_to_gene",
+	"src":"SGN_S",
+	"src_version":"tom1",
+	"tgt":"SGN_U",
+	"tgt_version":"tomato200607#2",
+	"description":"NA",
+	"url":"",
+	"doi":"none",
+	"key":"SGN_S_2_SGN_U",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','SGN_S','SGN_U'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+# Gene_to_gene - SGN_U to ITAG gene
+mapping_table={
+	"data_file":"mappings/tomato_unigenes_solyc_conversion_annotated.tsv",
+	"species":"Solanum lycopersicum",
+	"type":"gene_to_gene",
+	"src":"SGN_U",
+	"src_version":"tomato200607#2",
+	"tgt":"ITAG_pid",
+	"tgt_version":"2_3",
+	"description":"Description",
+	"GO":"GO_ID",
+	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
+	"doi":"none",
+	"key":"SGN_U_2_ITAG",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','SGN_U','ITAG_pid','Description','interpro','GO_ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
 # Gene_to_prot - SGN_U to uniprot
 mapping_table={
 	"data_file":"mappings/tomato_species_unigene_2009_01_14.v1.blastx.swissprot.m8.filtered.annotated.xls",
@@ -426,20 +541,22 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Gene_to_gene - SGN_U to ITAG gene
+
+
+# Gene_to_symbol - SGN_U to symbol
 mapping_table={
 	"data_file":"mappings/tomato_unigenes_solyc_conversion_annotated.tsv",
 	"species":"Solanum lycopersicum",
-	"type":"gene_to_gene",
+	"type":"gene_to_symbol",
 	"src":"SGN_U",
 	"src_version":"tomato200607#2",
-	"tgt":"ITAG_pid",
+	"tgt":"Description",
 	"tgt_version":"2_3",
 	"description":"Description",
 	"GO":"GO_ID",
 	"url":"ftp://ftp.solgenomics.net/unigene_builds/combined_species_assemblies/tomato_species/unigene_annotations/tomato_species_unigenes.v2.Solyc_ITAG2.3.genemodels.map.txt",
 	"doi":"none",
-	"key":"SGN_U_2_ITAG",
+	"key":"SGN_U_2_SYMBOL",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -519,28 +636,7 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-# Est_to_gene - SGN_S to SGN_U
-mapping_table={
-	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
-	"species":"Solanum lycopersicum",
-	"type":"est_to_gene",
-	"src":"SGN_S",
-	"src_version":"tom1",
-	"tgt":"SGN_U",
-	"tgt_version":"tomato200607#2",
-	"description":"NA",
-	"url":"",
-	"doi":"none",
-	"key":"SGN_S_2_SGN_U",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','SGN_U'],
-		"sheet_index":0,
-	}
-}
-mappings_col.insert(mapping_table)
+
 
 
 
@@ -549,6 +645,27 @@ mappings_col.insert(mapping_table)
 ###################################################################################################################
 ############################################ ARABIDOPSIS THALIANA #################################################
 ###################################################################################################################
+
+
+# full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
+mapping_table={
+	"data_file":"mappings/arabidopsis_thaliana_full.tsv",
+	"species":"Arabidopsis thaliana",
+	"type":"full_table",
+	"src":"CATMA_ID",
+	"src_version":"CATMA V2.1",
+	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
 
 
 # Est_to_gene - CATMA_ID to TAIR AGI gene id
@@ -576,7 +693,7 @@ mappings_col.insert(mapping_table)
 
 # Gene_to_prot - TAIR AGI gene id to uniprot id
 mapping_table={
-	"data_file":"mappings/Uniprot_TAIR10_may2012.xls",
+	"data_file":"mappings/Uniprot_TAIR10_may2012_sorted.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"gene_to_prot",
 	"src":"AGI_TAIR",

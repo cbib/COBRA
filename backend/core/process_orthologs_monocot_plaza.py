@@ -110,7 +110,7 @@ for species in species_to_process:
 	
 	try:
 		logger.info("map_doc _id : %s \n",orthologs_table['_id'])
-		orthologs_col.update({"_id":orthologs_table['_id']},{"$push":{"mapping_file":sheet_value}})
+		orthologs_col.update({"_id":orthologs_table['_id']},{"$set":{"mapping_file":sheet_value}})
 		#break
 	except DocumentTooLarge:
 		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
