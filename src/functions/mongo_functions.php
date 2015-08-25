@@ -794,8 +794,9 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 
                     //echo $line['species'];
                     $table_string.="<tr>";
-
-                    $table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
+                    
+                    $table_string.='<td>https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_4.php?organism='.$line['species'].'&search='.$line['mapping_file']['Gene ID'].'</td>';
+                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
                     //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
                     $table_string.='<td>'.$line['mapping_file']['Protein ID'].'</td>';
 
