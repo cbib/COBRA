@@ -604,20 +604,21 @@ echo   '<div id="summary">
 
                                             if ($attributes[0]=='src'){
 
-                                                $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='method') {
                                                  $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
 
                                             }
+                                           
                                             elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
