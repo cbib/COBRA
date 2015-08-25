@@ -424,6 +424,7 @@
      border: 1px solid #DDD;
   }
 }
+/*my mac screen */
 @media screen and (min-width: 1200px) and (max-width: 1299px) {
     /*body {
  *         background-color:red;
@@ -671,6 +672,7 @@
   }
 
 }
+/*My second screen*/
 @media screen and (min-width: 1600px) and (max-width: 1920px) {
  /*body {
     background-color:blue;
@@ -696,9 +698,9 @@
  .resultsbox#results{
     width:1490px;
  }
- .panel-collapse#ortho-table > .table {
+/* .panel-collapse#ortho-table > .table {
   width:640px;
- }  
+ }  */
  #summary > #protein-details{
 	width: 740px;
         background-color: #FFF;
