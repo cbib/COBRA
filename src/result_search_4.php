@@ -749,9 +749,9 @@ echo   '<div id="summary">
                             <div class="statDetails"></div>
                         </div>
                         <br></br>
-                        <div class="right" style="margin-top: 3px">
+                        <!--<div class="right" style="margin-top: 3px">
                            test
-                        </div>
+                        </div>-->
                         <h3>ORTHOLOGS</h3>
                             <a id="filterLink" href="http://thebiogrid.org/scripts/displayFilterList.php">
                                 <div id="filterButton" class="noFilter" style="background-color: rgb(238, 238, 238); color: rgb(51, 51, 51);"></div>
