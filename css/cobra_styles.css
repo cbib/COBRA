@@ -721,7 +721,8 @@
 	border: 1px solid #DDD;
   }
  #summary{
-    width:1490px;
+    //width:1490px;
+    width:100%;
   }
  #image_container{
   border-radius: 20px; 
