@@ -694,7 +694,7 @@
  }
  .content{
     //width:1650px;
-    width:100%;
+    width:80%;
  }
  .resultsbox#results{
     width:1490px;
@@ -746,7 +746,7 @@
   /*header fixed part*/
  /* need to define this part like that because content -header inherits from */
  .skin-blue .right-side > .content-header{
-        background-color: rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
 
  }
  #section_quick_search > .col-md-6#left_col{
