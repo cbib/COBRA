@@ -172,7 +172,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         
         
     }
-    else{
+    else if (count($cursor['result'])==1){
         foreach ($cursor['result'] as $result) {
             //echo $result['mapping_file']['Gene ID 2'];
             //echo $result['mapping_file']['Gene ontology ID'];
@@ -204,61 +204,61 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $plaza_id=$result['mapping_file']['Plaza ID'];
 
         }
-//    $timeend=microtime(true);
-//    $time=$timeend-$timestart;
-//    //Afficher le temps d'éxecution
-//    $page_load_time = number_format($time, 3);
-//    echo "Debut du script: ".date("H:i:s", $timestart);
-//    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-//
-//    echo '<hr>';
-//    $timestart=microtime(true);
-    $total_go_biological_process=array();
-    $total_go_cellular_component=array();
-    $total_go_molecular_function=array();
-    if (count($go_id_list)!=0){
+  //    $timeend=microtime(true);
+  //    $time=$timeend-$timestart;
+  //    //Afficher le temps d'éxecution
+  //    $page_load_time = number_format($time, 3);
+  //    echo "Debut du script: ".date("H:i:s", $timestart);
+  //    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+  //    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+  //
+  //    echo '<hr>';
+  //    $timestart=microtime(true);
+        $total_go_biological_process=array();
+        $total_go_cellular_component=array();
+        $total_go_molecular_function=array();
+        if (count($go_id_list)!=0){
 
-        foreach ($go_id_list as $go_info){
+            foreach ($go_id_list as $go_info){
 
-            //$timestart1=microtime(true);
-            $go_term=$GOCollection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
-            foreach ($go_term as $term){
-                foreach ($term as $go){
-                    foreach ($go as $value){
-                       if ($value['namespace']=='molecular_function'){
+                //$timestart1=microtime(true);
+                $go_term=$GOCollection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
+                foreach ($go_term as $term){
+                    foreach ($term as $go){
+                        foreach ($go as $value){
+                           if ($value['namespace']=='molecular_function'){
 
 
-                            //$go_info['GO_ID']=$value['id'];
-                            $go_info['description']=$value['name'];
-                            $go_info['namespace']=$value['namespace'];
-                            //echo $value['name'];
-                            //$go_info['evidence']=$go_id_list[$i]['evidence'];
-                            array_push($total_go_molecular_function, $go_info);
-                            array_push($already_added_go_term,$go_info);
+                                //$go_info['GO_ID']=$value['id'];
+                                $go_info['description']=$value['name'];
+                                $go_info['namespace']=$value['namespace'];
+                                //echo $value['name'];
+                                //$go_info['evidence']=$go_id_list[$i]['evidence'];
+                                array_push($total_go_molecular_function, $go_info);
+                                array_push($already_added_go_term,$go_info);
+                            }
+                            if ($value['namespace']=='biological_process') {
+                                $go_info['description']=$value['name'];   
+                                $go_info['namespace']=$value['namespace'];
+                                array_push($total_go_biological_process, $go_info);
+                                array_push($already_added_go_term,$go_info);
+
+                            }
+                            if ($value['namespace']=='cellular_component'){
+                                $go_info['description']=$value['name']; 
+                                $go_info['namespace']=$value['namespace'];
+                                array_push($total_go_cellular_component, $go_info);
+                                array_push($already_added_go_term,$go_info);
+                            }   
+                           //echo $go['namespace']; 
                         }
-                        if ($value['namespace']=='biological_process') {
-                            $go_info['description']=$value['name'];   
-                            $go_info['namespace']=$value['namespace'];
-                            array_push($total_go_biological_process, $go_info);
-                            array_push($already_added_go_term,$go_info);
 
-                        }
-                        if ($value['namespace']=='cellular_component'){
-                            $go_info['description']=$value['name']; 
-                            $go_info['namespace']=$value['namespace'];
-                            array_push($total_go_cellular_component, $go_info);
-                            array_push($already_added_go_term,$go_info);
-                        }   
-                       //echo $go['namespace']; 
                     }
 
                 }
 
             }
-
         }
-    }
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
 //    //Afficher le temps d'éxecution
@@ -269,6 +269,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //
 //    echo '<hr>';
 //    
+    }
+    else{
+        echo'<div class="container">
+        <h2>No Results found for \''.$search.'\'</h2>'
+      . '</div>';	
     }
     /*foreach ($cursor['result'] as $result) {
         echo $result['mapping_file']['Gene ID 2'];
