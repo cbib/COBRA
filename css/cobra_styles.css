@@ -693,7 +693,8 @@
     width:1490px ;
  }
  .content{
-    width:1650px;
+    //width:1650px;
+    width:95%;
  }
  .resultsbox#results{
     width:1490px;
@@ -722,7 +723,7 @@
   }
  #summary{
     //width:1490px;
-    width:100%;
+    width:95%;
   }
  #image_container{
   border-radius: 20px; 
