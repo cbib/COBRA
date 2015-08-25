@@ -764,15 +764,15 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 <h3>
                                     <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
-                                            Paralogs and Orthologs table
+                                            Homologs table
                                     </a>				
                                 </h3>
                             </div>
                             <div class="panel-body panel-collapse collapse" id="ortho-table">
                                 <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                     <tr>';
-                                        echo "<th>ID</th>";
-                                        echo "<th>ID type</th>";
+                                        echo "<th>gene ID</th>";
+                                        echo "<th>protein ID</th>";
                                         echo "<th>species</th>";
                                         echo'
                                     </tr>
