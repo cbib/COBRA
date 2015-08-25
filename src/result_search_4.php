@@ -618,7 +618,7 @@ echo   '<div id="summary">
                                             }
                                            
                                             elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
