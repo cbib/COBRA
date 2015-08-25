@@ -694,7 +694,7 @@
  }
  .content{
     //width:1650px;
-    width:95%;
+    width:100%;
  }
  .resultsbox#results{
     width:1490px;
@@ -723,7 +723,7 @@
   }
  #summary{
     //width:1490px;
-    width:95%;
+    width:100%;
   }
  #image_container{
   border-radius: 20px; 
@@ -734,7 +734,8 @@
 
   }
 #section_result_summary > #SpeciesSearch{
-     width:1490px;
+     //width:1490px;
+     width:100%;
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
