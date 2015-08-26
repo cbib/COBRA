@@ -465,7 +465,7 @@
 }
 .content{
  	//width:1000px;
-        width:100%;
+        width:84%;
   }
 #summary{
     width:950px;
@@ -503,7 +503,7 @@
 #section_result_summary > .tinted-box{
     width:950px  ;
   } 
-#section_quick_search > #content {
+#section_quick_search > #content > #SpeciesSearch{
      //width:950px;
      width:100%;
      background-color: #FFF;
