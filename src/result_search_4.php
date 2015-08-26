@@ -271,103 +271,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //    
     }
     else{
-        echo'<div class="container">
+        echo'<div id="summary">
         <h2>No Results found for \''.$search.'\'</h2>'
       . '</div>';	
     }
-    /*foreach ($cursor['result'] as $result) {
-        echo $result['mapping_file']['Gene ID 2'];
-        //echo $result['mapping_file']['Gene ontology ID'];
-        $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
-        foreach ($go_id_evidence as $duo) {
-            if (!in_array($duo, $go_duo_list)){
-                $tmp_array=array();
-                array_push($go_duo_list, $duo);
-                $duo_id=explode("-", $duo);
-                $tmp_array['evidence']=$duo_id[1];
-                $tmp_array['GO_ID']=$duo_id[0];
-                array_push($go_id_list,$tmp_array);
-            }
-
-        }
-        array_push($proteins_id,$result['mapping_file']['Protein ID']);
-        array_push($descriptions,$result['mapping_file']['Description']);
-        array_push($gene_id,$result['mapping_file']['Gene ID']);
-        array_push($gene_symbol,$result['mapping_file']['Symbol']);
-        array_push($gene_alias,$result['mapping_file']['Alias']);
-        array_push($est_id,$result['mapping_file']['Probe ID']);
-        array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
-        $plaza_id=$result['mapping_file']['Plaza ID'];
-        
-    }
-    $timeend=microtime(true);
-    $time=$timeend-$timestart;
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-    
-    echo '<hr>';
-    $timestart=microtime(true);
-    $total_go_biological_process=array();
-    $total_go_cellular_component=array();
-    $total_go_molecular_function=array();
-    if (count($go_id_list)!=0){
-
-        foreach ($go_id_list as $go_info){
-
-            //$timestart1=microtime(true);
-            $go_term=$GOCollection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
-            foreach ($go_term as $term){
-                foreach ($term as $go){
-                    foreach ($go as $value){
-                       if ($value['namespace']=='molecular_function'){
-
-
-                            //$go_info['GO_ID']=$value['id'];
-                            $go_info['description']=$value['name'];
-                            $go_info['namespace']=$value['namespace'];
-                            //echo $value['name'];
-                            //$go_info['evidence']=$go_id_list[$i]['evidence'];
-                            array_push($total_go_molecular_function, $go_info);
-                            array_push($already_added_go_term,$go_info);
-                        }
-                        if ($value['namespace']=='biological_process') {
-                            $go_info['description']=$value['name'];   
-                            $go_info['namespace']=$value['namespace'];
-                            array_push($total_go_biological_process, $go_info);
-                            array_push($already_added_go_term,$go_info);
-
-                        }
-                        if ($value['namespace']=='cellular_component'){
-                            $go_info['description']=$value['name']; 
-                            $go_info['namespace']=$value['namespace'];
-                            array_push($total_go_cellular_component, $go_info);
-                            array_push($already_added_go_term,$go_info);
-                        }   
-                       //echo $go['namespace']; 
-                    }
-
-                }
-
-            }
-
-        }
-    }
-    $timeend=microtime(true);
-    $time=$timeend-$timestart;
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
-
-    echo '<hr>';*/
 }
 else{
 	echo'<div class="container">
-        <h2>No Results found for \''.$search.'\'</h2>'
+        <h2>you have uncorrectly defined your request</h2>'
       . '</div>';	
 }
 
@@ -708,6 +619,15 @@ echo   '<div id="summary">
                                         }
                                         elseif ($attributes[0]=='pub') {
                                             $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $found=FALSE;
+                                            foreach ($pub_list as $pub) {
+                                                if ($attributes[1]==$pub){
+                                                    $found=TRUE;
+                                                }
+                                            }
+                                            if ($found==FALSE){
+                                                array_push($pub_list, $attributes[1]);
+                                            }
                                         }
                                         elseif ($attributes[0]=='host_name') {
                                             $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
