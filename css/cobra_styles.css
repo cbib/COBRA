@@ -706,6 +706,7 @@ mapping_table > .dataTables_wrapper#mapping_wrapper{
         padding: 10px 10px 0px;
         float: left;
         border: 1px solid #DDD;
+        display: table;
   }
  #summary > #stat-details{
 	//width: 640px;
@@ -715,6 +716,7 @@ mapping_table > .dataTables_wrapper#mapping_wrapper{
 	padding: 10px 10px 0px;
 	float: right;
 	border: 1px solid #DDD;
+        display: table;
   }
  #summary{
     //width:1490px;
