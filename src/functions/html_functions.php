@@ -258,7 +258,7 @@ function new_href($link='null'){
 function new_cobra_footer(){
 echo'
 
-                    <hr />
+                    
                     <div class="row">
                         <!-- Left col -->
                         <section class="col-lg-12 connectedSortable">
