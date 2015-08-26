@@ -560,10 +560,8 @@ echo   '<div id="summary">
      	
             <div id="statsAndFilters">
 
-				<div id="pubStats" class="right">
-					<strong>Publications:</strong>0
-				</div>
-				<h3>Current Statistics</h3>
+				
+				<h3>Current Interactors</h3>
 				';
                 $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
                 $counter=0;
@@ -582,6 +580,7 @@ echo   '<div id="summary">
                     $counter++;
                 }
                 $counter=0;
+                $pub_list=array();
                 foreach ($interaction_array as $array){
                     if ($counter==0){
                         echo'
@@ -623,6 +622,17 @@ echo   '<div id="summary">
                                            
                                             elseif ($attributes[0]=='pub') {
                                                  $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $found=FALSE;
+                                                 foreach ($pub_list as $pub) {
+                                                     if ($attributes[1]==$pub){
+                                                         $found=TRUE;
+                                                     }
+                                                 }
+                                                 if (!$found){
+                                                     array_push($pub_list, $pub);
+                                                 }
+                                                     
+                                                 
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
@@ -747,6 +757,9 @@ echo   '<div id="summary">
                                 $total=$total_protein_litterature+$total_protein_intact;
                         
                                 echo $total.' Physical Interactions
+                            </div>
+                            <div id="pubStats" class="right">
+                                <strong>Publications:</strong>'.count($pub_list).'
                             </div>
                         </div>
                         <div class="genetic-ltp statisticRow">
