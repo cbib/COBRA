@@ -462,9 +462,7 @@ echo   '<div id="summary">
             
             <div id="stat-details">
  				<div id="interaction-tabs">
-                <ul>
-                    <li title="stats" id="statsTab" class="noClickTab">Stats & Options</li>
-                </ul>
+                <h3>Current Interactors</h3>
             </div>
          	
      
@@ -472,7 +470,7 @@ echo   '<div id="summary">
             <div id="statsAndFilters">
 
 				
-				<h3>Current Interactors</h3>
+				
 				';
                 $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
                 $counter=0;
