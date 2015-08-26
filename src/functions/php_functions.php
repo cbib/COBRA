@@ -682,7 +682,7 @@ function make_species_list($cursor){
     			</div>
     		</fieldset>
     	</form>
-    </div><hr/>';
+    </div>';
 }
 
 function make_CrossCompare_list($cursor){
