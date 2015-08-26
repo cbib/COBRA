@@ -44,7 +44,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     $gene_list=array();
     foreach ($cursor as $value) {
     //echo $value['logFC']."\n";
-        echo 'gene to found : '.$value['gene'].'</br>';
+        //echo 'gene to found : '.$value['gene'].'</br>';
         array_push($gene_list,array('search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
         
     //echo $value['infection_agent']."\n";
@@ -56,7 +56,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     
     //Same : direct conversion using plaza mapping table
     if ($favourite_id==$intermediary_id){
-        echo "same id";
+        //echo "same id";
         $gene_list_attributes=convert_without_intermediary_id_into_plaza_id_list($ma,$gene_list,$favourite_id,$species);
 
     }
@@ -73,7 +73,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
    
-    echo $favourite_id.'----'.$intermediary_id.'</br>';
+    //echo $favourite_id.'----'.$intermediary_id.'</br>';
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
     $fields=array('src_to_tgt'=>1);
     $mapping=$ma->find($query, $fields);
@@ -83,7 +83,7 @@ function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='
         
         $src_to_tgt = $map_doc['src_to_tgt'];
         foreach ($gene_list as $value) {
-            echo 'search: '.$value['search'].'</br>';
+            //echo 'search: '.$value['search'].'</br>';
             array_push($transformed_list, get_target_from_source($src_to_tgt,$value,$value['search'],$favourite_id,$intermediary_id));
             
         }
@@ -105,7 +105,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
                     //if (($tgt!="" )&& ($tgt!="NA")){
                         $value_array[$favourite_id]=$value;
                         $value_array['tgt']=$tgt;                           
-                        echo 'tgt : '.$column[0].'</br>';  
+                        //echo 'tgt : '.$column[0].'</br>';  
                     //}
                     
                 }
@@ -205,10 +205,10 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
 }
 
 function convert_with_intermediary_id_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
-    echo $plaza_tgt_id.'----'.$plaza_tgt_id;
+    //echo $plaza_tgt_id.'----'.$plaza_tgt_id;
     $cursor=array();
     foreach ($gene_list_attributes as $value) {
-        echo $value['search'];
+        //echo $value['search'];
         $plaza_id=$ma->aggregate(array(
             array('$match' => array('key'=>'PLAZA_conversion','src'=>'plaza_gene_id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -220,7 +220,7 @@ function convert_with_intermediary_id_into_plaza_id_list(Mongocollection $ma,$ge
         foreach ($plaza_id['result'] as $result) {
             
             if ($cpt<1){
-                echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
+                //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
                 $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
                 array_push($cursor,$value);
                 $cpt++;
@@ -232,10 +232,10 @@ function convert_with_intermediary_id_into_plaza_id_list(Mongocollection $ma,$ge
     return $cursor;
 }
 function convert_without_intermediary_id_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
-    echo $plaza_tgt_id.'----'.$plaza_tgt_id;
+    //echo $plaza_tgt_id.'----'.$plaza_tgt_id;
     $cursor=array();
     foreach ($gene_list_attributes as $value) {
-        echo $value['search'];
+        //echo $value['search'];
         $plaza_id=$ma->aggregate(array(
             array('$match' => array('key'=>'PLAZA_conversion','src'=>'plaza_gene_id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -247,7 +247,7 @@ function convert_without_intermediary_id_into_plaza_id_list(Mongocollection $ma,
         foreach ($plaza_id['result'] as $result) {
             
             if ($cpt<1){
-                echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
+                //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
                 $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
                 array_push($cursor,$value);
                 $cpt++;
