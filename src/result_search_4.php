@@ -55,7 +55,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $plaza_ids=array();
     $est_id=array();
     $go_duo_list=array();
-    echo '<hr>';
+    //echo '<hr>';
     
     //$timestart=microtime(true);
     //get_everything using full table mapping
@@ -75,7 +75,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             
             
             //echo 'species : '.$result['species'].' and '.$result['mapping_file']['Gene ID'];
-            echo '<hr>';
+            //echo '<hr>';
             //echo $result['mapping_file']['Gene ontology ID'];
             $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
             foreach ($go_id_evidence as $duo) {
@@ -372,7 +372,7 @@ else{
 }
 
 
-echo '<hr>';
+//echo '<hr>';
 
 
 
@@ -454,7 +454,7 @@ echo   '<div id="summary">
                                 </div>
                             </div>
                         </div>    
-                        <!--<br/>-->';
+                        <!--<hr>-->';
                         echo'
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
