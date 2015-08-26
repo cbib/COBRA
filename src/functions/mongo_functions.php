@@ -6,7 +6,7 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     return $cursor_array;
 }
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
-    echo $type;
+    //echo $type;
     //$cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
     if ($type=="up"){
         $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1))->sort(array('logFC'=>-1));
@@ -113,7 +113,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
             else {                         
                 if ($column==$value){
                     $found=TRUE;                                               
-                    echo 'src : '.$column.'</br>';    
+                    //echo 'src : '.$column.'</br>';    
                 }
             }  
         }       
@@ -1145,7 +1145,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 //	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 //	echo '</div>';
-     echo "test plaza id ".$current_plaza_id;
+     //echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
     if ($current_plaza_id!=""){
@@ -1162,7 +1162,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
             //echo 'ortholog list : '.$ortholog_list_id;
             $ortholog_list_id=split('[,]', $ortholog_list_id);
             foreach ($ortholog_list_id as $ortholog){
-                echo 'ortholog'.$ortholog;
+                //echo 'ortholog'.$ortholog;
                 //foreach ($initial_species as $key => $value) {
                     //if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                         #echo "start line : ".$buffer."\n";
