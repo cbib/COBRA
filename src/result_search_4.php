@@ -453,8 +453,7 @@ echo   '<div id="summary">
                                 echo'
                                 </div>
                             </div>
-                        </div>    
-                        <!--<hr>-->';
+                        </div>';
                         echo'
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">

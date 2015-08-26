@@ -48,9 +48,9 @@
   .body#dataTables_scrollHeadInner{
       width:500px;
   }
-  .content{
+/*  .content{
         width:890px;
-  }
+  }*/
   #summary{
     width:890px;
   }
@@ -189,9 +189,9 @@
   .body#dataTables_scrollHeadInner{
       width:600px;
   }
-  .content{
+/*  .content{
  	width:1050px;
-  }
+  }*/
   #summary{
     width:990px;
   } 
@@ -328,9 +328,9 @@
   .body#dataTables_scrollHeadInner{
       width:500px;
   }
-  .content{
+/*  .content{
  	width:900px;
-  }
+  }*/
   #summary{
     width:890px;
   } 
@@ -463,10 +463,10 @@
 .body#dataTables_scrollHeadInner{
       width:600px;
 }
-.content{
+/*.content{
  	//width:1000px;
         width:84%;
-  }
+  }*/
 #summary{
     width:950px;
   } 
@@ -580,9 +580,9 @@ mapping_table > .dataTables_wrapper#mapping_wrapper{
 #species_table > .dataTables_wrapper#mapping_wrapper{
     width:1100px ;
  }
-.content{
+/*.content{
     width:1200px;
- }
+ }*/
 .resultsbox#results{
     width:1100px;
  }
@@ -690,10 +690,10 @@ mapping_table > .dataTables_wrapper#mapping_wrapper{
  #species_table > .dataTables_wrapper#mapping_wrapper{
     width:1490px ;
  }
- .content{
+/* .content{
     //width:1650px;
     width:85%;
- }
+ }*/
  .resultsbox#results{
     width:1490px;
  }
@@ -819,9 +819,9 @@ mapping_table > .dataTables_wrapper#mapping_wrapper{
  .dataTable{
     width:1700px;
  }
- .content{
+/* .content{
      width:1750px;
- }
+ }*/
  .resultsbox{
     width:1500px;
  } 
