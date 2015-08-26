@@ -628,8 +628,8 @@ echo   '<div id="summary">
                                                          $found=TRUE;
                                                      }
                                                  }
-                                                 if (!$found){
-                                                     array_push($pub_list, $pub);
+                                                 if ($found==FALSE){
+                                                     array_push($pub_list, $attributes[1]);
                                                  }
                                                      
                                                  
