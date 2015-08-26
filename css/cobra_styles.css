@@ -505,6 +505,7 @@
   } 
 #section_quick_search > #content {
      width:950px;
+     width:100%;
      background-color: #FFF;
      margin-left: 2px;
      border-radius: 10px;
