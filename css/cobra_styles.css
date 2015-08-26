@@ -495,7 +495,8 @@
     
   }
 .resultsbox#results{
- 	width:930px;
+ 	//width:930px;
+        width:80%;
   }  
 #section_result_summary > .tinted-box{
     width:950px  ;
