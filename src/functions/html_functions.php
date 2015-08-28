@@ -24,7 +24,7 @@ echo'
 <link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/dataTables.bootstrap.css">
 
 <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/cobra_styles.css">	
+<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/cobra_styles2.css">	
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
