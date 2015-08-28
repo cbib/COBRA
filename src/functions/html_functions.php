@@ -242,8 +242,7 @@ echo'
             </section>
 
             <!-- Main content -->
-            <section class="content" id="'.$section_id.'">
-';
+            <section class="container" id="'.$section_id.'">';
 
 }
 
