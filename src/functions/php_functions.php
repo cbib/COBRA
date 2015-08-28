@@ -583,7 +583,7 @@ function make_gene_id_text_list(){
 echo '
     <div class="tinted-box">
     <h2> Using list of genes ids</h2>
-    <div id="SpeciesSearch" class="js_panel">
+    <div id="ListSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
     	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats_list3.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
