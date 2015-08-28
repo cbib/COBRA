@@ -74,7 +74,7 @@ $cursor=find_all_mappings($mappingsCollection);
 
 ###MAPPING TABLE
 
-$table_string.='<table id="mapping" class="table table-condensed table-hover table-striped">';
+$table_string.='<table id="mapping" class="table table-hover">';
 //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
 $table_string.='<thead><tr>';
 	
@@ -121,7 +121,7 @@ $cursor=find_all_species($speciesCollection);
 
 
 
-$table_string.='<table id="species" class="table table-condensed table-hover table-striped">';
+$table_string.='<table id="species" class="table table-hover">';
 $table_string.='<thead><tr>';
 	
 	//recupere le titre
@@ -186,7 +186,7 @@ $cursor=find_all_viruses($virusesCollection);
 
 
 
-$table_string.='<table id="virus" class="table table-condensed table-hover table-striped">';
+$table_string.='<table id="virus" class="table table-hover">';
 
 //$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
 $table_string.='<thead><tr>';

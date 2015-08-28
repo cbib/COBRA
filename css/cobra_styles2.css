@@ -1,0 +1,168 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 26, 2015, 4:36:23 PM
+    Author     : benjamindartigues
+*/
+/*#section_result_summary{
+    width:80%; 
+    
+}*/
+.left-side {
+    min-height: 100%
+}
+.right {
+    float: right;
+}
+.cobra-logo {
+	color: #3D7130;
+	font-family: Nikodecs, Verdana, sans;
+	font-size: 4em;
+	text-align: center;
+}
+
+.cobra-logo img {
+	width: 120px;
+	margin: auto;
+	margin-top: 20px;
+}
+.label-success {
+    background-color: #A2C756;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #3D7130;
+    border-color: #3D7130;
+}
+   
+@font-face {
+    font-family: Nikodecs;
+    src: url(../fonts/Nikodecs.otf);
+}
+#ListSearch{
+    padding: 10px 10px 0px;
+}
+  #accordion_documents{
+        border-radius: 10px;
+        display: table;
+        margin: auto auto;
+        vertical-align:middle;
+        display:inline-block;
+        width:100%;
+        float: left;
+        
+        
+        
+    }
+    
+  #section_result_summary{
+       width:80%; 
+   }
+  #SpeciesSearch{
+     //width:970px;
+     width:100%;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+  }
+  #left_col{
+     width:50%;
+     background-color: #FFF;
+     padding-right: 0px;
+     padding-left: 0px;
+     border: 1px solid #DDD;
+     //padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+     border-radius: 10px;
+     
+  }
+  #right_col{
+     width:50%;
+     background-color: #FFF;
+     padding-right: 0px;
+     padding-left: 0px;
+     //height: 100%;
+    
+     //padding: 10px 10px 0px;
+     float: right;
+     border: 1px solid #DDD; 
+     border-radius: 10px;
+     height: 167px;
+     
+  }
+  #summary > #protein-details{
+	//width: 480px;
+        width: 50%;
+        //height: 50%;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        float: left;
+        border: 1px solid #DDD;
+  }
+ #summary > #stat-details{
+	//width: 480px;
+        width: 50%;
+        //height: 50%;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: right;
+	border: 1px solid #DDD;
+  }
+  #image_container{ 
+  height: 120px;
+  width : 200px;
+  }
+  .skin-blue .right-side > .content-header{
+        background-color: rgb(238, 238, 238);
+        /*font-size: 0.7em;*/
+
+ }
+ .right-side > .content-header > .breadcrumb{
+        
+        font-size: 0.7em;
+        position: absolute;
+        margin-top: 5px;
+        top: 0px;
+        right: 0px;
+        float: right;
+
+ }
+ .col-md-4{
+     height:290px;
+ }
+ #section_quick_search,#section_result_summary,#section_description,#section_tools{
+     //width:970px;
+     width:100%;
+     //background-color: #FFF;
+     margin-left: 0px;
+     //border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     //border: 1px solid #DDD; 
+  }
+  
+  #section_description > .container{
+    padding: 10px 10px 0px;
+  }
+  #section_tools >  .container{
+    float: left;
+    padding: 10px 10px 0px;
+     //width:970px;
+     //width:88%;
+     //border: 1px solid #DDD;
+    
+  }
+/*  .container{
+    padding: 10px 10px 0px;
+  }*/
+ 
