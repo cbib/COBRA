@@ -94,7 +94,7 @@ and open the template in the editor.
      float: right;
      border: 1px solid #DDD; 
      border-radius: 10px;
-     height: 167px;
+     //height: 167px;
      
   }
   #summary > #protein-details{
