@@ -209,7 +209,7 @@ foreach ($data as $species){
                                 </div>
                                 <div class="panel-body panel-collapse collapse" id="ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'">
 
-                                    <table class="table table-condensed table-hover table-striped">                                                                
+                                    <table class="table table-hover">                                                                
                                         <thead>
                                         <tr>';
                                             //echo "<th>Mapping type</th>";
@@ -233,7 +233,7 @@ foreach ($data as $species){
 
                             </div>
                         </div>    
-                 <br/>';
+                 <div id="shift_line"></div>';
 
     //                echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
     //                echo'<h1 style="text-align:center"> Orthology informations </h1>';

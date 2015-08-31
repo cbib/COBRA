@@ -16,7 +16,7 @@ and open the template in the editor.
 #shift_line{
     display: block;
     clear: both;
-    height: 20;
+    height: 20px;
     margin: 40px 0 80px;
     padding: 0;
     border: 0;
@@ -38,7 +38,7 @@ and open the template in the editor.
    background-color: rgb(238, 238, 238);
    color: rgb(51, 51, 51);
 }
-div.resultsbox:hover {
+.div.resultsbox:hover {
     background-color: #0B614B;
     color: #FFF
 }
@@ -95,11 +95,11 @@ div.resultsbox:hover {
         
         
         
-    }
+  }
     
   #section_result_summary{
        width:80%; 
-   }
+  }
   #SpeciesSearch{
      //width:970px;
      width:100%;
