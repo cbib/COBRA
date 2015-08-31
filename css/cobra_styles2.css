@@ -11,6 +11,45 @@ and open the template in the editor.
     width:80%; 
     
 }*/
+/*multiple results page*/
+
+#shift_line{
+    display: block;
+    clear: both;
+    height: 20;
+    margin: 40px 0 80px;
+    padding: 0;
+    border: 0;
+    font-family: arial;
+    text-align: center;
+    font-size: 60px;
+    line-height: 1;
+    
+}
+.resultsbox{
+   padding: 7px;
+   padding-top: 7px;
+   padding-right: 7px;
+   padding-bottom: 7px;
+   padding-left: 7px;
+   margin-left: 0px;
+   margin-bottom: 5px;
+   border-radius: 10px;
+   background-color: rgb(238, 238, 238);
+   color: rgb(51, 51, 51);
+}
+div.resultsbox:hover {
+    background-color: #0B614B;
+    color: #FFF
+}
+.results-left {
+   width: 73%;
+	padding-right: 5px;
+}
+.results-right {
+    float: right;
+    width: 25%;
+}
 .left-side {
     min-height: 100%
 }
@@ -140,7 +179,7 @@ and open the template in the editor.
  .col-md-4{
      height:290px;
  }
- #section_quick_search,#section_home, #section_result_summary,#section_description,#section_tools{
+ #section_quick_search,#section_diff_exp_genes,#section_home, #section_result_summary,#section_description,#section_tools{
      //width:970px;
      width:100%;
      //background-color: #FFF;
