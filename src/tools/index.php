@@ -173,7 +173,7 @@ $table_string.='
         </div>
         <div class="form-group">
             <label for="logFCInput">choose numbers of genes</label>
-            <input type="number" step="1" name="Topgene" class ="form-control" min="0" max="50" placeholder="" id="top_gene">
+            <input type="number" step="1" name="Topgene" class ="form-control" min="1" max="50" placeholder="" id="top_gene">
          </div>
     </div>
 </form>';
