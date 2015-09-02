@@ -213,12 +213,12 @@ foreach ($data as $species){
                                         <thead>
                                         <tr>';
                                             //echo "<th>Mapping type</th>";
-                                            echo "<th>src ID</th>";
-                                            echo "<th>src_version</th>";
+                                            echo "<th>Gene ID</th>";
+                                            echo "<th>Source</th>";
                                             //echo "<th>tgt ID</th>";
-                                            echo "<th>tgt type</th>";
-                                            echo "<th>tgt_version</th>";
-                                            echo "<th>species</th>";
+                                            echo "<th>Transcript/protein ID</th>";
+                                            echo "<th>Source</th>";
+                                            echo "<th>Species</th>";
                                             echo'
                                         </tr>
                                         </thead>
