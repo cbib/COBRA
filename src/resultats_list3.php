@@ -121,9 +121,17 @@ for ($c=0;$c<count($id_details);$c++){
                 }
 
             }
-            array_push($proteins_id,$result['mapping_file']['Protein ID']);
-            array_push($descriptions,$result['mapping_file']['Description']);
-            array_push($gene_id,$result['mapping_file']['Gene ID']);
+            if (!in_array($proteins_id, $result['mapping_file']['Protein ID'])){
+                array_push($proteins_id,$result['mapping_file']['Protein ID']);
+            }
+            if (!in_array($descriptions, $result['mapping_file']['Description'])){
+
+                array_push($descriptions,$result['mapping_file']['Description']);
+            }
+            if (!in_array($gene_id,$result['mapping_file']['Gene ID'])){
+
+                array_push($gene_id,$result['mapping_file']['Gene ID']);
+            }
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
@@ -131,8 +139,14 @@ for ($c=0;$c<count($id_details);$c++){
 
                 
             }
-            array_push($gene_alias,$result['mapping_file']['Alias']);
-            array_push($est_id,$result['mapping_file']['Probe ID']);
+            if (!in_array($gene_alias,$result['mapping_file']['Alias'])){
+
+                array_push($gene_alias,$result['mapping_file']['Alias']);
+            }
+            if (!in_array($est_id,$result['mapping_file']['Probe ID'])){
+
+                array_push($est_id,$result['mapping_file']['Probe ID']);
+            }
             array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
             $plaza_id=$result['mapping_file']['Plaza ID'];
 
@@ -204,7 +218,7 @@ for ($c=0;$c<count($id_details);$c++){
 
 
     }
-    else{
+    else if (count($cursor['result'])==1){
         foreach ($cursor['result'] as $result) {
         //echo $result['mapping_file']['Gene ID 2'];
         //echo $result['mapping_file']['Gene ontology ID'];
@@ -292,6 +306,12 @@ for ($c=0;$c<count($id_details);$c++){
 
             }
         }
+    
+        
+        
+        }
+    else{
+        
 //        $timeend=microtime(true);
 //        $time=$timeend-$timestart;
 //        //Afficher le temps d'éxecution
