@@ -120,8 +120,8 @@ $Topgene=$_POST['Topgene'];
 
 
 //$species='Cucumis melo';
-$species='Arabidopsis thaliana';
-$type="down";
+//$species='Arabidopsis thaliana';
+//$type="down";
 //$species='Hordeum vulgare';
 foreach ($data as $species){
     echo '<H1>Results for '.$species.'</H1>';

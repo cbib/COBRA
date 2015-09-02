@@ -22,7 +22,7 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
     return $cursor;
 }
 function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
-    //get the preferred id for this species
+    //echo 'get the preferred id for this species : '.$species;
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $favourite_id=$value['preferred_id'];
