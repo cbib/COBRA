@@ -215,7 +215,7 @@ foreach ($data as $species){
                                             //echo "<th>Mapping type</th>";
                                             echo "<th>src ID</th>";
                                             echo "<th>src_version</th>";
-                                            echo "<th>tgt ID</th>";
+                                            //echo "<th>tgt ID</th>";
                                             echo "<th>tgt type</th>";
                                             echo "<th>tgt_version</th>";
                                             echo "<th>species</th>";
