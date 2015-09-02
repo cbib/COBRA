@@ -16,7 +16,7 @@ and open the template in the editor.
 #shift_line{
     display: block;
     clear: both;
-    height: 20px;
+    //height: 20px;
     margin: 40px 0 80px;
     padding: 0;
     border: 0;
