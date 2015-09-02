@@ -135,7 +135,7 @@ for ($c=0;$c<count($id_details);$c++){
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
-                if (in_array($gene_symbol,$symbol)==FALSE){
+                if (in_array($symbol,$gene_symbol)==FALSE){
                     array_push($gene_symbol,$symbol);
                 }
                 
