@@ -197,11 +197,11 @@ foreach ($data as $species){
                     //echo $key."\r\t";
                     //echo $value."\r\n";
                     //echo "</br>";
-                    echo'<div class="panel-group" id="accordion_documents">
+                    echo'<div class="panel-group" id="accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3>
-                                        <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
                                                 Ortholog table 
                                                 <div id="organism" class="right"><h4>THALIANA</h4></div>
                                         </a>				
