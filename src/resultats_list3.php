@@ -121,14 +121,14 @@ for ($c=0;$c<count($id_details);$c++){
                 }
 
             }
-            if (!in_array($proteins_id, $result['mapping_file']['Protein ID'])){
+            if (in_array($proteins_id, $result['mapping_file']['Protein ID'])==FALSE){
                 array_push($proteins_id,$result['mapping_file']['Protein ID']);
             }
-            if (!in_array($descriptions, $result['mapping_file']['Description'])){
+            if (in_array($descriptions, $result['mapping_file']['Description'])==FALSE){
 
                 array_push($descriptions,$result['mapping_file']['Description']);
             }
-            if (!in_array($gene_id,$result['mapping_file']['Gene ID'])){
+            if (in_array($gene_id,$result['mapping_file']['Gene ID'])==FALSE){
 
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
             }
@@ -139,11 +139,11 @@ for ($c=0;$c<count($id_details);$c++){
 
                 
             }
-            if (!in_array($gene_alias,$result['mapping_file']['Alias'])){
+            if (in_array($gene_alias,$result['mapping_file']['Alias'])==FALSE){
 
                 array_push($gene_alias,$result['mapping_file']['Alias']);
             }
-            if (!in_array($est_id,$result['mapping_file']['Probe ID'])){
+            if (in_array($est_id,$result['mapping_file']['Probe ID'])==FALSE){
 
                 array_push($est_id,$result['mapping_file']['Probe ID']);
             }
