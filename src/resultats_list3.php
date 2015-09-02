@@ -38,6 +38,7 @@ $listID = str_replace('\r\n','<br>',$listID);
 //echo $listID;
 $id_details= explode("\r\n", $listID);
 make_species_list(find_species_list($speciesCollection));
+echo '<div id="shift_line"></div>';
 for ($c=0;$c<count($id_details);$c++){
 //	$textID=$listID
 //?speciesID=&q=SGN-U603893
@@ -54,11 +55,11 @@ for ($c=0;$c<count($id_details);$c++){
 
     //echo 'page'.$c.'---'.$id_details[$c];
 
-    echo'<div class="panel-group" id="result_accordion_documents">
+    echo'<div class="panel-group" id="result_accordion_documents_'.str_replace(".", "_", $search).'">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <a class="accordion-toggle collapsed" href="#result_'.str_replace(".", "_", $search).'" data-parent="#result_accordion_documents" data-toggle="collapse">
+                        <a class="accordion-toggle collapsed" href="#result_'.str_replace(".", "_", $search).'" data-parent="#result_accordion_documents_'.str_replace(".", "_", $search).'" data-toggle="collapse">
                                 '.$search.'
                         </a>				
                     </h3>
@@ -223,7 +224,13 @@ for ($c=0;$c<count($id_details);$c++){
             array_push($proteins_id,$result['mapping_file']['Protein ID']);
             array_push($descriptions,$result['mapping_file']['Description']);
             array_push($gene_id,$result['mapping_file']['Gene ID']);
-            array_push($gene_symbol,$result['mapping_file']['Symbol']);
+            $symbol_list=explode(",", $result['mapping_file']['Symbol']);
+            foreach ($symbol_list as $symbol) {
+                echo 'symbol : '.$symbol;
+                array_push($gene_symbol,$symbol);
+
+                
+            }
             array_push($gene_alias,$result['mapping_file']['Alias']);
             array_push($est_id,$result['mapping_file']['Probe ID']);
             array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
@@ -299,7 +306,16 @@ for ($c=0;$c<count($id_details);$c++){
             <div id="protein-details">'.$gene_id[0].'
             
                 <div id="organism" class="right"><h4>'.$species.'</h4></div>';
-                echo '<h1>'.$gene_symbol[0].'</h1> ';
+                echo '<h1>';
+                for ($i = 0; $i < count($gene_symbol); $i++) {
+                    if ($i==count($gene_symbol)-1){
+                        echo $gene_symbol[$i];
+                    }
+                    else{
+                        echo $gene_symbol[$i].', ';
+                    }
+                }
+                echo '</h1> ';
                 if (count($descriptions)!=0){
                     echo'<div id="aliases"> Description : ';
                     for ($i = 0; $i < count($descriptions); $i++) {

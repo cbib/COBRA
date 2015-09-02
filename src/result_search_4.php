@@ -164,7 +164,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             <div id="protein-details">'.$gene_id[0].'
             
                 <div id="organism" class="right"><h4>'.$organism.'</h4></div>';
-                echo '<h1>'.$gene_symbol[0].'</h1> ';
+                echo '<h1>';
+                for ($i = 0; $i < count($gene_symbol); $i++) {
+                    if ($i==count($gene_symbol)-1){
+                        echo $gene_symbol[$i];
+                    }
+                    else{
+                        echo $gene_symbol[$i].', ';
+                    }
+                }
+                echo '</h1> ';
                 echo'<div id="aliases"> Description : ';
                 for ($i = 0; $i < count($descriptions); $i++) {
                     if ($i==count($descriptions)-1){
@@ -711,7 +720,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             <div id="protein-details">'.$gene_id[0].'
             
                 <div id="organism" class="right"><h4>'.$organism.'</h4></div>';
-                echo '<h1>'.$gene_symbol[0].'</h1> ';
+                echo '<h1>';
+                for ($i = 0; $i < count($gene_symbol); $i++) {
+                    if ($i==count($gene_symbol)-1){
+                        echo $gene_symbol[$i];
+                    }
+                    else{
+                        echo $gene_symbol[$i].', ';
+                    }
+                }
+                echo '</h1> ';
                 echo'<div id="aliases"> Description : ';
                 for ($i = 0; $i < count($descriptions); $i++) {
                     if ($i==count($descriptions)-1){

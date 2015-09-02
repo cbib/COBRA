@@ -39,7 +39,7 @@ $table_string="";
 
 ###DISPLAY EXPERIMENT LIST
 
-$table_string.='<h1>COBRA Datasets</h1>';
+//$table_string.='<h1>COBRA Datasets</h1>';
  
 $table_string.='<ul>';
  //$table_string.='<a href=experiments.php>test</a>';
