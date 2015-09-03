@@ -339,7 +339,7 @@ for ($c=0;$c<count($id_details);$c++){
                     }
                 }
                 echo '</h1> ';
-                if (count($descriptions)!=0){
+                if (count($descriptions)>0){
                     echo'<div id="aliases"> Description : ';
                     for ($i = 0; $i < count($descriptions); $i++) {
                         if ($i==count($descriptions)-1){
@@ -352,7 +352,7 @@ for ($c=0;$c<count($id_details);$c++){
                     }
                     echo '</div>';
                 }
-                if (count($gene_alias)!=0){
+                if (count($gene_alias)>0){
                     echo'<div id="aliases"> Alias : ';
                     for ($i = 0; $i < count($gene_alias); $i++) {
                         if ($i==count($gene_alias)-1){
@@ -365,17 +365,18 @@ for ($c=0;$c<count($id_details);$c++){
                     echo '</div>';
                 }
                 
-                
-                echo'<div id="protein aliases"> Protein ids : ';
-                for ($i = 0; $i < count($proteins_id); $i++) {
-                    if ($i==count($proteins_id)-1){
-                        echo $proteins_id[$i];
+                if (count($proteins_id)>0){
+                    echo'<div id="protein aliases"> Protein ids : ';
+                    for ($i = 0; $i < count($proteins_id); $i++) {
+                        if ($i==count($proteins_id)-1){
+                            echo $proteins_id[$i];
+                        }
+                        else{
+                            echo $proteins_id[$i].', ';
+                        }
                     }
-                    else{
-                        echo $proteins_id[$i].', ';
-                    }
+                    echo '</div>';
                 }
-                echo '</div>';
                 echo'
                
                 <div id="goTerms">
