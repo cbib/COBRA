@@ -84,7 +84,7 @@ and open the template in the editor.
 #ListSearch{
     padding: 10px 10px 0px;
 }
-  #accordion_documents{
+#accordion_documents{
         border-radius: 10px;
         display: table;
         margin: auto auto;
@@ -135,6 +135,9 @@ and open the template in the editor.
      border-radius: 10px;
      //height: 167px;
      
+  }
+  #summary{
+     height: 100%; 
   }
   #summary > #protein-details{
 	//width: 480px;
