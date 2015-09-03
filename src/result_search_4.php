@@ -120,6 +120,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
             array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
             $plaza_id=$result['mapping_file']['Plaza ID'];
+            $species=$result['species'];
 
         }
 //        $timeend=microtime(true);
@@ -180,7 +181,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         echo   '<div id="summary">   
             <div id="protein-details">'.$gene_id[0].'
             
-                <div id="organism" class="right"><h4>'.$organism.'</h4></div>';
+                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
@@ -359,7 +360,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
              	  | <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
              	  ';
                     
-                    
+                    echo '<a target="_BLANK" href=\"http://solgenomics.net/search/unigene.pl?unigene_id="'.$search.'"\">';
+                   
                     for ($i = 0; $i < count($proteins_id); $i++) {                        
                         echo'| <a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">UniprotKB</a>';   
                     } 
@@ -708,6 +710,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
             array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
             $plaza_id=$result['mapping_file']['Plaza ID'];
+            $species=$result['species'];
 
         }
   //    $timeend=microtime(true);
@@ -768,7 +771,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         echo   '<div id="summary">   
             <div id="protein-details">'.$gene_id[0].'
             
-                <div id="organism" class="right"><h4>'.$organism.'</h4></div>';
+                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
