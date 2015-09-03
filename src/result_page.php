@@ -776,10 +776,11 @@ echo'<div id="summary">
 
             }
         }
-        echo   '<div id="summary">   
+echo   '<div id="summary">   
             <div id="protein-details">'.$gene_id[0].'
             
-                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
+               <div id="organism" class="right"><h4>'.$species.'</h4></div>
+               <div id="description_section">';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
@@ -830,7 +831,7 @@ echo'<div id="summary">
                     echo '</div>';
                 }
                 echo'
-               
+                </div>
                 <div id="goTerms">
                     <div class="goTermsBlock">
                         <br/>
@@ -941,7 +942,7 @@ echo'<div id="summary">
                         </div>';                               
                         echo'
                     </div>
-                </div>
+                
                 <div id="linkouts">
                     <h3>External Database Linkouts</h3>';
              		//<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
@@ -972,13 +973,14 @@ echo'<div id="summary">
                     } 
                     echo'
                 </div>
-                <div class="bottomSpacer"></div>    
+            <div class="bottomSpacer"></div>    
             </div>
+        </div>
          
             <input type="hidden" id="displayView" value="summary" />
             <input type="hidden" id="displaySort" value="" />
             
-            <div id="stat-details">
+        <div id="stat-details">
             <div id="statsAndFilters">
 
 				
