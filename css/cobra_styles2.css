@@ -150,7 +150,7 @@ and open the template in the editor.
         //display: inline-block;
         display: table-cell;
         float: left;
-        height: 100%;
+        //height: 100%;
         //border: 1px solid #DDD;
   }
   #summary > #protein-details > #description_section{
