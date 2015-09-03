@@ -354,13 +354,30 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     </div>
                 </div>
                 <div id="linkouts">
-                    <h3>External Database Linkouts</h3>
-             		<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
-             	  <!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
-             	  | <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
-             	  ';
+                    <h3>External Database Linkouts</h3>';
+                    if ($species == "Arabidopsis thaliana"){
+                        echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>';
+                    }
+                    else if ($species == "Solanum lycopersicum"){
+                        
+                        echo'<a target="_BLANK" href="http://solgenomics.net/search/unigene.pl?unigene_id='.$search.'">Sol genomics</a>';
+                    }
+                    else if ($species == "Cucumis melo"){
+                        
+                        
+                    }
+                    else if ($species == "Hordeum vulgare"){
+                        
+                        
+                    }
+                    else{
+                        
+                    }
+             	  //<!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
+             	  //| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
+             	  
                     
-                    echo '<a target="_BLANK" href=\"http://solgenomics.net/search/unigene.pl?unigene_id="'.$search.'"\">';
+                    
                    
                     for ($i = 0; $i < count($proteins_id); $i++) {                        
                         echo'| <a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">UniprotKB</a>';   
@@ -935,13 +952,30 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     </div>
                 </div>
                 <div id="linkouts">
-                    <h3>External Database Linkouts</h3>
-             		<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
-             	  <!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
-             	  | <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
-             	  ';
+                    <h3>External Database Linkouts</h3>';
+             		//<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
+             	  //<!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
+             	  //| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
+             	  //';
                     
-                    
+                    if ($species == "Arabidopsis thaliana"){
+                        echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>';
+                    }
+                    else if ($species == "Solanum lycopersicum"){
+                        
+                        echo'<a target="_BLANK" href="http://solgenomics.net/search/unigene.pl?unigene_id='.$search.'">Sol genomics</a>';
+                    }
+                    else if ($species == "Cucumis melo"){
+                        
+                        
+                    }
+                    else if ($species == "Hordeum vulgare"){
+                        
+                        
+                    }
+                    else{
+                        
+                    }
                     for ($i = 0; $i < count($proteins_id); $i++) {                        
                         echo'| <a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">UniprotKB</a>';   
                     } 
