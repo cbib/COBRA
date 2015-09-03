@@ -243,13 +243,14 @@ echo'<div id="summary">
                 echo'
                
                 <div id="goTerms">
+                    <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
                         <br/>
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Biological Process </strong> ('.  count($total_go_biological_process).')
+                                        <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
                                     </a>				
                                 </div>
                                 <div class="panel-body panel-collapse collapse" id="go_process">
@@ -283,7 +284,7 @@ echo'<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Cellular Component </strong> ('.  count($total_go_cellular_component).')
+                                        <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
                                     </a>				
 
                                 </div>
@@ -320,7 +321,7 @@ echo'<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Molecular Function </strong> ('.  count($total_go_molecular_function).')
+                                        <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
                                     </a>				
 
                                 </div>
@@ -834,13 +835,14 @@ echo   '<div id="summary">
                 echo'
                 </div>
                 <div id="goTerms">
+                    <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
                         <br/>
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Biological Process </strong> ('.  count($total_go_biological_process).')
+                                        <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
                                     </a>				
                                 </div>
                                 <div class="panel-body panel-collapse collapse" id="go_process">
@@ -874,7 +876,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Cellular Component </strong> ('.  count($total_go_cellular_component).')
+                                        <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
                                     </a>				
 
                                 </div>
@@ -911,7 +913,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Gene Ontology Molecular Function </strong> ('.  count($total_go_molecular_function).')
+                                        <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
                                     </a>				
 
                                 </div>
