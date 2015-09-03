@@ -205,13 +205,13 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     echo '</div>';
                 }
                 if (count($gene_alias)>0){
-                    echo'<div id="aliases"> Alias : ';
+                    echo'<div id="aliases"> Alias';
                     for ($i = 0; $i < count($gene_alias); $i++) {
                         if ($i==count($gene_alias)-1){
-                            echo $gene_alias[$i];
+                            echo ': '.$gene_alias[$i];
                         }
                         else{
-                            echo $gene_alias[$i].', ';
+                            echo ': '.$gene_alias[$i].', ';
                         }
                     }
 
