@@ -653,6 +653,7 @@ echo'<div id="summary">
 
                     </div>
                 </div>
+                <div id="shift_line"></div>
             </div>';
                   //$protein="Q39255";   
                   
