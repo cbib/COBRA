@@ -777,10 +777,11 @@ echo'<div id="summary">
             }
         }
 echo   '<div id="summary">   
-            <div id="protein-details">'.$gene_id[0].'
+            <div id="protein-details">
             
-               <div id="organism" class="right"><h4>'.$species.'</h4></div>
-               <div id="description_section">';
+               
+               <div id="description_section">'.$gene_id[0].'
+               <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
