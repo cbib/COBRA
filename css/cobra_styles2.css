@@ -151,6 +151,26 @@ and open the template in the editor.
 	//width: 480px;
         width: 50%;
         //height: 50%;
+/*        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: right;
+	border: 1px solid #DDD;*/
+  }
+  #summary > #stat-details > #statsAndFilters{
+	//width: 480px;
+        //width: 50%;
+        //height: 50%;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	float: right;
+	border: 1px solid #DDD;
+  }
+  #summary > #stat-details > #ortholog_section{
+	//width: 480px;
+        //width: 50%;
+        //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 10px 10px 0px;

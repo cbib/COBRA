@@ -178,10 +178,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
             }
         }
-        echo   '<div id="summary">   
-            <div id="protein-details">'.$gene_id[0].'
+echo'<div id="summary">   
+        <div id="protein-details">'.$gene_id[0].'
             
-                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
+            <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
@@ -384,21 +384,17 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     } 
                     echo'
                 </div>
-                <div class="bottomSpacer"></div>    
-            </div>
+            <div class="bottomSpacer"></div>    
+        </div>
          
-            <input type="hidden" id="displayView" value="summary" />
-            <input type="hidden" id="displaySort" value="" />
+        <input type="hidden" id="displayView" value="summary" />
+        <input type="hidden" id="displaySort" value="" />
             
-            <div id="stat-details">
- 				<div id="interaction-tabs">
-                <!--<ul>
-                    <li title="stats" id="statsTab" class="noClickTab">Stats & Options</li>
-                </ul>-->
-            </div>
-         	
-     
-     	
+
+
+
+
+        <div id="stat-details">
             <div id="statsAndFilters">
 
 				
@@ -593,81 +589,75 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                         </div></div>';
                     }
                 }
-                        echo'
+                        
                            
 
                                 
 
-                        <div class="physical-ltp statisticRow">
-                            <div class="physical colorFill" style="width: 0%;"></div>
-                            <div class="statDetails">
-                                <div class="left"></div>
-                                <div class="right"></div>
-                                    '; 
-                                $total=$total_protein_litterature+$total_protein_intact;
-                        
-                                echo $total.' Physical Interactions
-                            </div>
-                            <div id="pubStats" class="right">
-                                <strong>Publications:</strong>'.count($pub_list).'
-                            </div>
+               echo'<div class="physical-ltp statisticRow">
+                        <div class="physical colorFill" style="width: 0%;"></div>
+                        <div class="statDetails">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                                '; 
+                            $total=$total_protein_litterature+$total_protein_intact;
+
+                            echo $total.' Physical Interactions
                         </div>
-                        <div class="genetic-ltp statisticRow">
-                            <div class="genetic colorFill" style="width: 0%;"></div>
-                            <div class="statDetails"></div>
+                        <div id="pubStats" class="right">
+                            <strong>Publications:</strong>'.count($pub_list).'
                         </div>
-                        <br></br>
-                        <!--<div class="right" style="margin-top: 3px">
-                           test
-                        </div>-->
-                        <h3>Orthologs</h3>
-                            <!--<a id="filterLink" href="http://thebiogrid.org/scripts/displayFilterList.php">
-                                <div id="filterButton" class="noFilter" style="background-color: rgb(238, 238, 238); color: rgb(51, 51, 51);"></div>
-                            </a>-->
                     </div>
-			
-            ';
-            echo'<div class="panel-group" id="accordion_documents">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3>
-                                    <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
-                                            Homologs table
-                                    </a>				
-                                </h3>
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="ortho-table">
-                                <table class="table table-condensed table-hover table-striped">                                                                <thead>
-                                    <tr>';
-                                        echo "<th>gene ID</th>";
-                                        echo "<th>protein ID</th>";
-                                        echo "<th>species</th>";
-                                        echo'
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>';
-                                        //$timestart=microtime(true);
-                                        echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
-//                                        $timeend=microtime(true);
-//                                        $time=$timeend-$timestart;
-//
-//                                        //Afficher le temps d'éxecution
-//                                        $page_load_time = number_format($time, 3);
-//                                        echo "Debut du script: ".date("H:i:s", $timestart);
-//                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
-                               echo'</tbody>
-
-                                </table>
-                            </div>
-
+                    <div class="genetic-ltp statisticRow">
+                        <div class="genetic colorFill" style="width: 0%;"></div>
+                        <div class="statDetails"></div>
+                    </div>
+                    <br></br> 
+            </div>';
+       echo'<div id="ortholog_section">
+            <h3>Orthologs</h3>
+                <div class="panel-group" id="accordion_documents">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>
+                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                        Homologs table
+                                </a>				
+                            </h3>
                         </div>
-                    </div>';
+                        <div class="panel-body panel-collapse collapse" id="ortho-table">
+                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                                <tr>';
+                                    echo "<th>gene ID</th>";
+                                    echo "<th>protein ID</th>";
+                                    echo "<th>species</th>";
+                                    echo'
+                                </tr>
+                                </thead>
+
+                                <tbody>';
+                                    //$timestart=microtime(true);
+                                    echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+    //                                        $timeend=microtime(true);
+    //                                        $time=$timeend-$timestart;
+    //
+    //                                        //Afficher le temps d'éxecution
+    //                                        $page_load_time = number_format($time, 3);
+    //                                        echo "Debut du script: ".date("H:i:s", $timestart);
+    //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+                           echo'</tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>';
                   //$protein="Q39255";   
                   
-       echo'</div>
-        </div>';
+   echo'</div>
+    </div>';
 //        $timeend=microtime(true);
 //        $time=$timeend-$timestart;
 //        //Afficher le temps d'éxecution
