@@ -192,7 +192,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 }
                 echo '</h1> ';
                 if (count($descriptions)>0){
-                    echo'<div id="aliases"> Description : ';
+                    echo'<div id="aliases"> Description: ';
                     for ($i = 0; $i < count($descriptions); $i++) {
                         if ($i==count($descriptions)-1){
                             echo $descriptions[$i];
@@ -208,17 +208,27 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     echo'<div id="aliases"> Alias';
                     for ($i = 0; $i < count($gene_alias); $i++) {
                         if ($i==count($gene_alias)-1){
-                            echo ': '.$gene_alias[$i];
+                            if ($gene_alias[$i]==""){   
+                                echo ': NA';
+                            }
+                            else{
+                                echo ': '.$gene_alias[$i];
+                            }
                         }
                         else{
-                            echo ': '.$gene_alias[$i].', ';
+                            if ($gene_alias[$i]==""){   
+                                echo ': NA,';
+                            }
+                            else{
+                                echo ': '.$gene_alias[$i].',';
+                            }
                         }
                     }
 
                     echo '</div>';
                 }
                 if (count($proteins_id)>0){
-                    echo'<div id="protein aliases"> Protein ids : ';
+                    echo'<div id="protein aliases"> Protein ids: ';
                     for ($i = 0; $i < count($proteins_id); $i++) {
                         if ($i==count($proteins_id)-1){
                             echo $proteins_id[$i];
