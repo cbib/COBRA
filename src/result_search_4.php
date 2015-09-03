@@ -989,9 +989,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             
             <div id="stat-details">
  				<div id="interaction-tabs">
-                <ul>
+                <!--<ul>
                     <li title="stats" id="statsTab" class="noClickTab">Stats & Options</li>
-                </ul>
+                </ul>-->
             </div>
          	
      
@@ -1217,10 +1217,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                         <!--<div class="right" style="margin-top: 3px">
                            test
                         </div>-->
-                        <h3>ORTHOLOGS</h3>
-                            <a id="filterLink" href="http://thebiogrid.org/scripts/displayFilterList.php">
+                        <h3>Orthologs</h3>
+                            <!--<a id="filterLink" href="http://thebiogrid.org/scripts/displayFilterList.php">
                                 <div id="filterButton" class="noFilter" style="background-color: rgb(238, 238, 238); color: rgb(51, 51, 51);"></div>
-                            </a>
+                            </a>-->
                     </div>
 			
             ';
