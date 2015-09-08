@@ -153,7 +153,7 @@ and open the template in the editor.
         //height: 100%;
         //border: 1px solid #DDD;
   }
-  #summary > #protein-details > #description_section{
+  #summary > #protein-details > #section_description{
 	//width: 480px;
         width: 100%;
         //height: 50%;
@@ -165,6 +165,17 @@ and open the template in the editor.
         border: 1px solid #DDD;
   }
   #summary > #protein-details > #goTerms{
+	//width: 480px;
+        width: 100%;
+        //height: 50%;
+        background-color: #FFF;
+        margin-left: 0px;
+        border-radius: 10px;
+        padding: 10px 10px 0px;
+        //float: left;
+        border: 1px solid #DDD;
+  }
+   #summary > #protein-details > #linkouts{
 	//width: 480px;
         width: 100%;
         //height: 50%;
@@ -233,7 +244,7 @@ and open the template in the editor.
  .col-md-4{
      height:290px;
  }
- #section_quick_search,#goTerms,#linkouts,#section_login,#section_diff_exp_genes,#section_home,#section_result_tabs,#section_result_summary,#section_description,#section_tools{
+ #section_quick_search,#section_login,#section_diff_exp_genes,#section_home,#section_result_tabs,#section_result_summary,#section_tools{
      //width:970px;
      width:100%;
      //background-color: #FFF;
