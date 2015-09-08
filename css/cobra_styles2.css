@@ -38,7 +38,7 @@ and open the template in the editor.
    background-color: rgb(238, 238, 238);
    color: rgb(51, 51, 51);
 }
-.div.resultsbox:hover {
+.resultsbox:hover {
     background-color: #0B614B;
     color: #FFF
 }
@@ -266,6 +266,7 @@ and open the template in the editor.
      //border: 1px solid #DDD;
     
   }
+  
 /*  .container{
     padding: 10px 10px 0px;
   }*/
