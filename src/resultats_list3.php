@@ -386,14 +386,14 @@ for ($c=0;$c<count($id_details);$c++){
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
                         <br/>
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#go_process-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
                                     </a>				
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="go_process">
+                                <div class="panel-body panel-collapse collapse" id="go_process-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
                                 if (count($total_go_biological_process)!=0){
                                     echo'
@@ -419,16 +419,16 @@ for ($c=0;$c<count($id_details);$c++){
                             </div>
                         </div>';
                         echo'
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#go_component-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="go_component">
+                                <div class="panel-body panel-collapse collapse" id="go_component-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
                                 if (count($total_go_cellular_component)!=0){
                                     echo'
@@ -456,16 +456,16 @@ for ($c=0;$c<count($id_details);$c++){
                         </div>    
                         <!--<br/>-->';
                                 echo'
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#go_function-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="go_function">
+                                <div class="panel-body panel-collapse collapse" id="go_function-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
                                 if (count($total_go_molecular_function)!=0){
                                     echo'
@@ -558,16 +558,16 @@ for ($c=0;$c<count($id_details);$c++){
                 foreach ($interaction_array as $array){
                     if ($counter==0){
                         echo'
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#lit_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong> Intact Database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
+                                <div class="panel-body panel-collapse collapse" id="lit_interact-'.str_replace(".", "_", $gene_id[0]).'">';
 
                                     echo'
                                     <div class="goProcessTerms goTerms">';
@@ -647,16 +647,16 @@ for ($c=0;$c<count($id_details);$c++){
                         echo'
                                
                             
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_interact" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#database_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong> Litterature database </strong> ('.  $total_protein_litterature.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_interact">
+                                <div class="panel-body panel-collapse collapse" id="database_interact-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
 
                                 echo'
