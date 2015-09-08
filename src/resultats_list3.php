@@ -753,16 +753,16 @@ for ($c=0;$c<count($id_details);$c++){
             </div>';
        echo'<div id="ortholog_section">
             <h3>Orthologs</h3>
-                <div class="panel-group" id="accordion_documents">
+                <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                <a class="accordion-toggle collapsed" href="#ortho-table-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         Homologs table
                                 </a>				
                             </h3>
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="ortho-table">
+                        <div class="panel-body panel-collapse collapse" id="ortho-table-'.str_replace(".", "_", $gene_id[0]).'">
                             <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                 <tr>';
                                     echo "<th>gene ID</th>";
