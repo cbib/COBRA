@@ -233,7 +233,7 @@ and open the template in the editor.
  .col-md-4{
      height:290px;
  }
- #section_quick_search,#goTerms,#section_login,#section_diff_exp_genes,#section_home,#section_result_tabs,#section_result_summary,#section_description,#section_tools{
+ #section_quick_search,#goTerms,#linkouts,#section_login,#section_diff_exp_genes,#section_home,#section_result_tabs,#section_result_summary,#section_description,#section_tools{
      //width:970px;
      width:100%;
      //background-color: #FFF;

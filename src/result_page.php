@@ -945,7 +945,7 @@ echo   '<div id="summary">
                         </div>';                               
                         echo'
                     </div>
-                
+                </div>
                 <div id="linkouts">
                     <h3>External Database Linkouts</h3>';
              		//<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
@@ -977,7 +977,7 @@ echo   '<div id="summary">
                     echo'
                 </div>
             <div class="bottomSpacer"></div>    
-            </div>
+            
         </div>
          
             <input type="hidden" id="displayView" value="summary" />
