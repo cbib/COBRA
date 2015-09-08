@@ -781,7 +781,7 @@ echo   '<div id="summary">
             <div id="protein-details">
             
                
-               <div id="description_section">'.$gene_id[0].'
+               <div id="section_description">'.$gene_id[0].'
                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
