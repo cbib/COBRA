@@ -36,6 +36,7 @@ interactions_col.drop()
 
 
 # Literature and partner - Interaction potyvirus
+
 interactions_table={
 	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
 	"src":"Virus_symbol",
@@ -45,6 +46,38 @@ interactions_table={
 	"xls_parsing":{
 		"n_rows_to_skip":3,
 		"column_keys":['idx','Virus_symbol','Host_symbol','method','virus','host','Putative_function','Reference','Accession_number'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)
+
+interactions_table={
+	"data_file":"interactomics/potexvirus/Potexvirus.Interactors.xls",
+	"src":"Virus_symbol",
+	"tgt":"Host_symbol",
+	"type":"symbol_to_symbol",
+	"virus_class":"potexvirus",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Virus_symbol','Virus_name','Host_symbol','Host_name','method','virus','host','Putative_function','Reference','Accession_number'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)
+
+interactions_table={
+	"data_file":"interactomics/Tobamovirus/Tobamovirus.Interactors.28.07.15.xlsx",
+	"src":"Virus_symbol",
+	"tgt":"Host_symbol",
+	"type":"symbol_to_symbol",
+	"virus_class":"tobamovirus",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Virus_symbol','Virus_name','Host_symbol','Host_name','method','virus','host','Putative_function','Reference','Accession_number'],
 		"sheet_index":0,
 		
 	}
