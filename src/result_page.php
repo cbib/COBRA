@@ -412,10 +412,16 @@ echo'<div id="summary">
                         $total_protein_intact=count($array);
 
                     }
-                    else{
+                    else if ($counter==1){
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
                             $total_protein_litterature++;
+                        }
+                    }
+                    else{
+                        $total_protein_biogrid=0;
+                        foreach ($array as $intact){
+                            $total_protein_biogrid++;
                         }
                     }
                     $counter++;
@@ -510,7 +516,7 @@ echo'<div id="summary">
                                 echo'
                                 </div></div></div>';
                     }
-                    else{
+                    else if ($counter==1){
                         echo'
                                
                             
@@ -580,6 +586,88 @@ echo'<div id="summary">
                                     $string_seq.='</ul></span>';
                                     add_accordion_panel($string_seq, $tgt, $tgt);
                                     $total_protein_litterature++;
+
+                                }
+                                $counter++;
+                                
+
+                                echo'
+                                </div>';
+
+                            echo'
+                            </div>
+                        </div></div>';
+                    }
+                    else{
+                        echo'
+                               
+                            
+                        <div class="panel-group" id="accordion_documents">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#database_biogrid" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> Biogrid database </strong> ('.  $total_protein_biogrid.')
+                                    </a>				
+
+                                </div>
+                                <div class="panel-body panel-collapse collapse" id="database_biogrid">
+                                ';
+
+                                echo'
+                                <div class="goProcessTerms goTerms">
+
+                                ';
+                                $total_protein_biogrid=0;
+                                foreach ($array as $lit){
+                                    
+                                    $string_seq='<ul><span class="goTerm">';
+                                    foreach ($lit as $attributes){
+                                        
+
+                                        if ($attributes[0]=='src'){
+                                            $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='tgt') {
+                                            $tgt=$attributes[1];
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='method') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='pub') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $found=FALSE;
+                                            foreach ($pub_list as $pub) {
+                                                if ($attributes[1]==$pub){
+                                                    $found=TRUE;
+                                                }
+                                            }
+                                            if ($found==FALSE){
+                                                array_push($pub_list, $attributes[1]);
+                                            }
+                                        }
+                                        elseif ($attributes[0]=='host A name') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> host A name :'.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='host B name') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> host B name :'.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='Accession_number') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                        }
+//                                        elseif ($attributes[0]=='Putative_function') {
+//                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+//                                        }
+                                        else{
+
+                                        }
+
+
+                                    }
+                                    $string_seq.='</ul></span>';
+                                    add_accordion_panel($string_seq, $tgt, $tgt);
+                                    $total_protein_biogrid++;
 
                                 }
                                 $counter++;

@@ -330,6 +330,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     $global_intact_array=array();
     $pro_int_array=array();
     $lit_int_array=array();
+    $biogrid_int_array=array();
     foreach ($protein_id as $id){
         
         $search=array("type"=>"prot_to_prot");
@@ -477,9 +478,63 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 			}
 			//echo' </dl>';
 		}
+        //biogrid interaction data
+        $cursor=$interactionsCollection->aggregate(array(
+            
+			array('$unwind'=>'$mapping_file'), 
+			array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
+			array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
+		));
+        if (count($cursor['result'])!=0){
+			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+			//var_dump($cursor);
+			//echo '<dl class="dl-horizontal">';
+			for ($i = 0; $i < count($cursor['result']); $i++) {
+				$mapping_file=$cursor['result'][$i]['mapping_file'];
+                $species=$cursor['result'][$i]['species'];
+                $tmp_array=array();
+
+                $src_array=array();
+                array_push($src_array, 'src');
+                array_push($src_array, $symbol);
+                array_push($tmp_array, $src_array);
+                $tgt_array=array();
+                array_push($tgt_array, 'tgt');
+                array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
+                array_push($tmp_array, $tgt_array);
+                $method_array=array();
+                array_push($method_array, 'method');
+                array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
+                array_push($tmp_array, $method_array);
+                $pub_array=array();
+                array_push($pub_array, 'pub');
+                array_push($pub_array, $mapping_file['PUBMED_ID']);
+                array_push($tmp_array, $pub_array);
+                $host_name_array=array();
+                array_push($host_name_array, 'host A name');
+                array_push($host_name_array, $species);
+                array_push($tmp_array, $host_name_array);
+                $virus_name_array=array();
+                array_push($virus_name_array, 'host B name');
+                array_push($virus_name_array, $species);
+                array_push($tmp_array, $virus_name_array);
+                $host_taxon_array=array();                  
+                array_push($host_taxon_array, 'Accession_number');
+                array_push($host_taxon_array, $mapping_file['SOURCE']);
+                array_push($tmp_array, $host_taxon_array);
+//                $virus_taxon_array=array();
+//                array_push($virus_taxon_array, 'Putative_function');
+//                array_push($virus_taxon_array, $mapping_file['Putative_function']);
+//                array_push($tmp_array, $virus_taxon_array);
+                    
+                array_push($biogrid_int_array, $tmp_array);				
+                
+            }
+        }
 		
 	}
     array_push($global_intact_array, $lit_int_array);
+    array_push($global_intact_array, $biogrid_int_array);
     return $global_intact_array;
 }
 
