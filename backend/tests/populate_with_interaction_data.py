@@ -109,3 +109,42 @@ interactions_table={
 
 }
 interactions_col.insert(interactions_table)
+
+#BIOGRID Plant-plant interactions
+
+interactions_table={
+	"data_file":"interactomics/biogrid/BIOGRID-ORGANISM-Solanum_lycopersicum-3.4.128.tab.xls",
+	"src":"INTERACTOR_A",
+	"tgt":"INTERACTOR_B",
+	"src_symbol":"OFFICIAL_SYMBOL_A",
+	"tgt_symbol":"OFFICIAL_SYMBOL_B",
+	"type":"symbol_to_symbol",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','INTERACTOR_A','INTERACTOR_B','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)
+
+
+interactions_table={
+	"data_file":"interactomics/biogrid/BIOGRID-ORGANISM-Arabidopsis_thaliana_Columbia-3.4.128.tab.xls",
+	"src":"INTERACTOR_A",
+	"tgt":"INTERACTOR_B",
+	"src_symbol":"OFFICIAL_SYMBOL_A",
+	"tgt_symbol":"OFFICIAL_SYMBOL_B",
+	"type":"symbol_to_symbol",
+	"species":"Arabidopsis thaliana",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','INTERACTOR_A','INTERACTOR_B','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)

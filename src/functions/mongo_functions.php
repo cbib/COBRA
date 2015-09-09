@@ -333,11 +333,12 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     foreach ($protein_id as $id){
         
         $search=array("type"=>"prot_to_prot");
-        $select=array("src_to_tgt"=>1,'mapping_file'=>1,'pub'=>1,"method"=>1,"host_name"=>1,"virus_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
+        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"host_name"=>1,"virus_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
         $query=$interactionsCollection->find($search,$select);
         foreach ($query as $value) {
             
-            $src_to_tgt=$value['src_to_tgt'];
+            
+            //$src_to_tgt=$value['src_to_tgt'];
             $mapping_file=$value['mapping_file'];
 //            echo 'from_mapping_file prot id :'.$id.'<br/>';
             foreach ($mapping_file as $mapping_doc) {

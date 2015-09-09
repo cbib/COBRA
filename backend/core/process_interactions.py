@@ -45,28 +45,28 @@ for map_doc in interactions_to_process:
 	interactions_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 
 	# build dict mapper, save them as k,v docs 
-	a_to_b = collections.defaultdict(list)
-	b_to_a = collections.defaultdict(list)
+	#a_to_b = collections.defaultdict(list)
+	#b_to_a = collections.defaultdict(list)
 	
-	src_col = map_doc['src']
-	tgt_col = map_doc['tgt']
-	for r in sheet_values:
-		a_to_b[r[src_col]].append(r[tgt_col])
-		b_to_a[r[tgt_col]].append(r[src_col])
+	#src_col = map_doc['src']
+	#tgt_col = map_doc['tgt']
+	#for r in sheet_values:
+	#	a_to_b[r[src_col]].append(r[tgt_col])
+	#	b_to_a[r[tgt_col]].append(r[src_col])
 	# check 1-to-1 mapping
-	a_to_b_tally=collections.Counter(map(len,a_to_b.values()))
-	b_to_a_tally=collections.Counter(map(len,b_to_a.values()))
-	if len(a_to_b_tally)>1:
-		logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",tgt_col,src_col)
-	else:
-		logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",tgt_col,src_col)
-
-	if len(b_to_a_tally)>1:
-		logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",src_col,tgt_col)
-	else:
-		logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",src_col,tgt_col)
+	#a_to_b_tally=collections.Counter(map(len,a_to_b.values()))
+	#b_to_a_tally=collections.Counter(map(len,b_to_a.values()))
+	#if len(a_to_b_tally)>1:
+	#	logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",tgt_col,src_col)
+	#else:
+	#	logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",tgt_col,src_col)
+        #
+	#if len(b_to_a_tally)>1:
+	#	logger.info("Multiple %s mapping to a single %s, building a 1-n mapping table",src_col,tgt_col)
+	#else:
+	#	logger.info("Single %s mapping to a single %s, building a 1-1 mapping table",src_col,tgt_col)
 
 	# save raw data 
-	interactions_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":a_to_b.items()}})
-	interactions_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":b_to_a.items()}})
+	#interactions_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":a_to_b.items()}})
+	#interactions_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":b_to_a.items()}})
 
