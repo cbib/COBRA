@@ -191,6 +191,9 @@ echo'<div id="summary">
                         echo $gene_symbol[$i].', ';
                     }
                 }
+                if (count($gene_symbol)==0){
+                    echo $gene_alias[0];
+                }
                 echo '</h1> ';
                 if (count($descriptions)>0){
                     echo'<div id="aliases"> Description: ';
