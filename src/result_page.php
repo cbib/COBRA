@@ -110,7 +110,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 
             }
-            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE){
+            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!=""){
 
                 array_push($gene_alias,$result['mapping_file']['Alias']);
             }
