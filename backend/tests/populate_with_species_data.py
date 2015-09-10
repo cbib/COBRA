@@ -66,6 +66,28 @@ prunus={
 }
 species_col.insert(prunus)
 
+peach={
+	"full_name":"Prunus persica",
+	"abbrev_name":"P. persica",
+	"aliases":["prunus_persica","peach"],
+	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
+	"wikipedia":"https://en.wikipedia.org/wiki/Peach",
+	"preferred_id":"NCBI_Protein_code",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked":	["Angiosperms","Eudicots","Rosids"],
+		"order":	"Rosales",
+		"family":	"Rosaceae",
+		"genus":	"Prunus",
+		"subgenus":	"Amygdalus",
+		"section":	"Prunus",
+		"species":	"P. persica",
+	}
+}
+species_col.insert(peach)
+
+
 # Arabidopsis
 arabidopsis_thaliana={
 	"full_name":"Arabidopsis thaliana",
