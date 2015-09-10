@@ -108,8 +108,42 @@ tev={
 	}
 	
 }
-viruses_col.insert(tev)
 
+viruses_col.insert(tev)
+pvx={
+	"full_name":"Potato virus X",
+	"wikipedia":"https://en.wikipedia.org/wiki/Potato_virus_X",
+	"aliases":['pvx','PVX'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Tymovirales",
+		"family":"Alphaflexiviridae",
+		"genus":"Potexvirus",
+		"species":"Potato virus X",
+	}
+	
+}
+viruses_col.insert(pvx)
+
+
+
+
+tmv={
+	"full_name":"Tobacco mosaic virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Tobacco_mosaic_virus",
+	"aliases":['tmv','TMV'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Virgaviridae",
+		"genus":"Tobamovirus",
+		"species":"Tobacco mosaic virus",
+	}
+	
+}
+viruses_col.insert(tmv)
 bydv={
 	"full_name":"Barley yellow dwarf virus",
 	"wikipedia":"",

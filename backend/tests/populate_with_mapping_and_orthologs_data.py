@@ -33,7 +33,7 @@ for grid_out in fs.find({}, timeout=False):
 
 # Gene_to_prot - unigene to NCBI_Protein_code
 mapping_table={
-	"data_file":"mappings/journal.pone.0100477.s004.xls",
+	"data_file":"mappings/journal.pone.0100477.s004.tsv",
 	"species":"Prunus domestica",
 	"type":"gene_to_prot",
 	"src":"unigene",
