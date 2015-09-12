@@ -452,7 +452,7 @@ function display_sample_table($cursor,$samplesCollection){
 function make_user_preferences($user,Mongocollection $us){
 
 	echo '<h2> User preferences</h2>
-    		<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
+    		<div id="user_pref">
     			<h3> login details</h3>';
     foreach ( $user as $person ) { 
 		if (($person['login'] != '') && ($person['pwd'] != '')){
@@ -465,9 +465,8 @@ function make_user_preferences($user,Mongocollection $us){
         echo '</div>'
         . '</br>';	
 		
-        echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">
-                <div id="SpeciesSearch" class="js_panel">
-                    <input type="hidden" class="panel_type" value="SearchBox" />
+        echo '<div id="change_password">
+                
                     <h3> Change password</h3>';
 		
                echo'<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
@@ -490,8 +489,8 @@ function make_user_preferences($user,Mongocollection $us){
 				        </fieldset>
 			        </form>';  
     }
-        echo '</div>'
-        . '</div>';
+        echo 
+        '</div>';
         
         echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">'
         . '</div>';

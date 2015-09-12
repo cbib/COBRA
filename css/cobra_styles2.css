@@ -7,12 +7,19 @@ and open the template in the editor.
     Created on : Aug 26, 2015, 4:36:23 PM
     Author     : benjamindartigues
 */
-/*#section_result_summary{
-    width:80%; 
-    
-}*/
-/*multiple results page*/
 
+
+//Users preference
+#user_pref, #change_password{
+     //width:970px;
+     width:100%;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+}
 #shift_line{
     display: block;
     clear: both;
