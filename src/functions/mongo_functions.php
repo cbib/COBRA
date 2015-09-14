@@ -1263,25 +1263,27 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                 //echo $line['src_to_tgt'];
                                 for ($i = 0; $i < count($line['src_to_tgt'][1]); $i++) {
                                     $table_string.="<tr>";
-                                    //echo "<tr>";
-                                    //$table_string.='<td>'.$line['type'].'</td>';
-                                    //echo '<td>'.$line['type'].'</td>';
                                     $table_string.='<td>'.$line['src_to_tgt'][0].'</td>';
-                                    //echo '<td>'.$line['src_to_tgt'][0].'</td>';
-                                    //$table_string.='<td>'.$line['src'].'</td>';
-                                    //echo '<td>'.$line['src'].'</td>';
                                     $table_string.='<td>'.$line['src_version'].'</td>';
-                                    //echo '<td>'.$line['src_version'].'</td>';
-                                    $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                    if ($species=="Arabidopsis thaliana"){
+                                        
+                                        $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                        
+                                        
+                                    }
+                                    else if ($species=="Cucumis melo"){
+                                        $table_string.='<td><a href=\"https://melonomics.net/feature/'.$line['src_to_tgt'][1][$i].'\">'.$line['src_to_tgt'][1][$i].'</a></td>';
+                                        
+                                    }
+                                    else if ($species=="Solanum lycopersicum"){
+                                        $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                    }
+                                    else{
+                                        $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                    }
                                     $table_string.='<td>'.$line['tgt'].'</td>';
-                                    //echo '<td>'.$line['tgt'].'</td>';
-                                    //$table_string.='<td>'.$line['tgt_version'].'</td>';
-                                    //echo '<td>'.$line['tgt_version'].'</td>';
                                     $table_string.='<td>'.$line['species'].'</td>';
-                                    //echo '<td>'.$line['species'].'</td>';
                                     $table_string.="<tr>";
-                                    //echo "</tr>";
 
                                 }
                             }                                                                                                                                                                            
