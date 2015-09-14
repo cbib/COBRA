@@ -1272,7 +1272,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                         
                                     }
                                     else if ($line['species']=="Cucumis melo"){
-                                        $table_string.='<td><a href=\"https://melonomics.net/feature/'.$line['src_to_tgt'][1][$i].'\">'.$line['src_to_tgt'][1][$i].'</a></td>';
+                                        $table_string.='<td><a href=https://melonomics.net/feature/'.$line['src_to_tgt'][1][$i].'>'.$line['src_to_tgt'][1][$i].'</a></td>';
                                         
                                     }
                                     else if ($line['species']=="Solanum lycopersicum"){
