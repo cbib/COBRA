@@ -21,6 +21,29 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
     $cursor->limit($top_value);
     return $cursor;
 }
+function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
+    $gene_list=array();
+    $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
+    foreach ($cursor as $value) {
+
+        $cursor2=$ma->aggregate(array(
+        array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
+        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+        array('$unwind'=>'$mapping_file'),
+        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$value['gene']),array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.Alias'=>$value['gene']),array('mapping_file.Probe ID'=>$value['gene']),array('mapping_file.Gene ID'=>$value['gene']),array('mapping_file.Gene ID 2'=>$value['gene'])))),
+        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
+        
+        foreach ($cursor2['result'] as $result) {
+            $plaza_id=$result['mapping_file']['Plaza ID'];
+            array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
+
+            
+            
+        }
+    }
+    return $gene_list;
+    
+}
 function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     //echo 'get the preferred id for this species : '.$species;
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));

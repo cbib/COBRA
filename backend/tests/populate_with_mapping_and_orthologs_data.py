@@ -54,6 +54,49 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
+# full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
+mapping_table={
+	"data_file":"mappings/prunus_full_table.tsv",
+	"species":"Prunus persica",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"NCBI",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene ID 2','Protein ID','Protein ID 2','Protein ID 3','Description','Plaza ID','Gene ontology ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+# Gene_to_prot - plaza to melonomics
+mapping_table={
+	"data_file":"mappings/plaza_id_conversion.ppe.xls",
+	"species":"Prunus persica",
+	"type":"gene_to_gene",
+	"src":"plaza_gene_id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"GDR_gene_id",
+	"tgt_version":"",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ppe.csv.gz",
+	"doi":"not published",
+	"key":"PLAZA_conversion",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','plaza_gene_id','GDR_gene_id','GDR_transcript_id','uniprot_id'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
 ###################################################################################################################
 ############################################ CUCUMIS MELO #########################################################
 ###################################################################################################################
