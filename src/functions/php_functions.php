@@ -457,10 +457,7 @@ function make_user_preferences($user,Mongocollection $us){
     foreach ( $user as $person ) { 
 		if (($person['login'] != '') && ($person['pwd'] != '')){
 			echo 'You are currently logged in as '.$person['login'].'.';
-			
-			
-			
-			
+	
 		}
         echo '</div>'
         . '</br>';	
@@ -492,8 +489,7 @@ function make_user_preferences($user,Mongocollection $us){
         echo 
         '</div>';
         
-        echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey">'
-        . '</div>';
+       
 
 }
 
