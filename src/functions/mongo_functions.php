@@ -1267,16 +1267,19 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                     $table_string.='<td>'.$line['src_version'].'</td>';
                                     if ($line['species']=="Arabidopsis thaliana"){
                                         
-                                        $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                                        
-                                        
+                                        //$table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                        $table_string.='<td><a href=http://www.uniprot.org/uniprot/'.$line['src_to_tgt'][1][$i].'>'.$line['src_to_tgt'][1][$i].'</a></td>';
+
                                     }
                                     else if ($line['species']=="Cucumis melo"){
                                         $table_string.='<td><a href=https://melonomics.net/feature/'.$line['src_to_tgt'][1][$i].'>'.$line['src_to_tgt'][1][$i].'</a></td>';
                                         
                                     }
                                     else if ($line['species']=="Solanum lycopersicum"){
-                                        $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                        //$table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                                        $table_string.='<td><a href=http://solcyc.solgenomics.net/LYCO/NEW-IMAGE?type=GENE-IN-MAP&object='.$line['src_to_tgt'][1][$i].'>'.$line['src_to_tgt'][1][$i].'</a></td>';
+
+                                  
                                     }
                                     else{
                                         $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
