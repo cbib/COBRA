@@ -19,7 +19,7 @@ if "log" not in globals():
 # Clear collections to fill
 mappings_col.drop()
 #orthologs_col.drop()
-interactions_col.drop()
+#interactions_col.drop()
 for grid_out in fs.find({}, timeout=False):
 	
 	fs.delete(grid_out._id)
