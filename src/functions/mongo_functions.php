@@ -1265,17 +1265,17 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                     $table_string.="<tr>";
                                     $table_string.='<td>'.$line['src_to_tgt'][0].'</td>';
                                     $table_string.='<td>'.$line['src_version'].'</td>';
-                                    if ($species=="Arabidopsis thaliana"){
+                                    if ($speciesID=="Arabidopsis thaliana"){
                                         
                                         $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
                                         
                                         
                                     }
-                                    else if ($species=="Cucumis melo"){
+                                    else if ($speciesID=="Cucumis melo"){
                                         $table_string.='<td><a href=\"https://melonomics.net/feature/'.$line['src_to_tgt'][1][$i].'\">'.$line['src_to_tgt'][1][$i].'</a></td>';
                                         
                                     }
-                                    else if ($species=="Solanum lycopersicum"){
+                                    else if ($speciesID=="Solanum lycopersicum"){
                                         $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
                                     }
                                     else{
