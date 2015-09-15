@@ -458,21 +458,21 @@ echo'<div id="summary">
 
                                             if ($attributes[0]=='src'){
 
-                                                $string_seq.='<li value='.$ $attributes[1].'> host protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='method') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
 
                                             }
                                            
                                             elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
                                                  $found=FALSE;
                                                  foreach ($pub_list as $pub) {
                                                      if ($attributes[1]==$pub){
@@ -487,19 +487,19 @@ echo'<div id="summary">
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='host_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
 
                                             }
                                             else{
@@ -548,17 +548,17 @@ echo'<div id="summary">
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -570,16 +570,16 @@ echo'<div id="summary">
                                             }
                                         }
                                         elseif ($attributes[0]=='host_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='virus_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Putative_function') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function: '.$attributes[1].'</li>';
                                         }
                                         else{
 
@@ -630,17 +630,17 @@ echo'<div id="summary">
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> protein A:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein A: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> protein B:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -652,13 +652,13 @@ echo'<div id="summary">
                                             }
                                         }
                                         elseif ($attributes[0]=='host A name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name A:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name A: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='host B name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name B:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
                                         }
 //                                        elseif ($attributes[0]=='Putative_function') {
 //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
@@ -1139,21 +1139,21 @@ echo   '<div id="summary">
 
                                             if ($attributes[0]=='src'){
 
-                                                $string_seq.='<li value='.$ $attributes[1].'> host protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='method') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
 
                                             }
                                            
                                             elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
                                                  $found=FALSE;
                                                  foreach ($pub_list as $pub) {
                                                      if ($attributes[1]==$pub){
@@ -1168,19 +1168,19 @@ echo   '<div id="summary">
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='host_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
 
                                             }
                                             else{
@@ -1229,17 +1229,17 @@ echo   '<div id="summary">
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -1251,16 +1251,16 @@ echo   '<div id="summary">
                                             }
                                         }
                                         elseif ($attributes[0]=='host_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='virus_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Putative_function') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function: '.$attributes[1].'</li>';
                                         }
                                         else{
 
@@ -1311,17 +1311,17 @@ echo   '<div id="summary">
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> protein A:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein A: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> protein B:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -1333,13 +1333,13 @@ echo   '<div id="summary">
                                             }
                                         }
                                         elseif ($attributes[0]=='host A name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name A:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name A: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='host B name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name B:'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
                                         }
 //                                        elseif ($attributes[0]=='Putative_function') {
 //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
