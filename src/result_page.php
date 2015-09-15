@@ -558,7 +558,7 @@ echo'<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -640,7 +640,7 @@ echo'<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -1239,7 +1239,7 @@ echo   '<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -1321,7 +1321,7 @@ echo   '<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'</li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
