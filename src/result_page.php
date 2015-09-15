@@ -698,9 +698,10 @@ echo'<div id="summary">
                             <div class="left"></div>
                             <div class="right"></div>
                                 '; 
-                            $total=$total_protein_litterature+$total_protein_intact+$total_protein_biogrid;
-
-                            echo $total.' Physical Interactions
+                            $total_plant_virus=$total_protein_litterature+$total_protein_intact;
+                            $total_plant_plant=$total_protein_biogrid;
+                            echo $total_plant_virus.' Plant/Virus Interactions';
+                            echo $total_plant_plant.' Plant/Plant Interactions
                         </div>
                         <div id="pubStats" class="right">
                             <strong>Publications:</strong>'.count($pub_list).'
