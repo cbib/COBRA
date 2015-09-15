@@ -183,8 +183,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
         }
 echo'<div id="summary">   
-        <div id="protein-details">'.$gene_id[0].'
+        <div id="protein-details">
             <div id="details">
+            <div id="section_description"'.$gene_id[0].'
             <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
@@ -248,6 +249,7 @@ echo'<div id="summary">
                     echo '</div>';
                 }
                 echo'
+                </div>
                 </div>
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
@@ -890,6 +892,10 @@ echo   '<div id="summary">
                     else{
                         echo $gene_symbol[$i].', ';
                     }
+                    
+                }
+                if (count($gene_symbol)==0){
+                    echo $gene_alias[0];
                 }
                 echo '</h1> ';
                 if (count($descriptions)>0){
