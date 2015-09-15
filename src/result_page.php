@@ -1311,11 +1311,11 @@ echo   '<div id="summary">
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein A:'.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein B:'.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
                                             $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
@@ -1333,10 +1333,10 @@ echo   '<div id="summary">
                                             }
                                         }
                                         elseif ($attributes[0]=='host A name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host A name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name A:'.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='host B name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host B name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name B:'.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
                                             $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
@@ -1379,7 +1379,7 @@ echo   '<div id="summary">
                                 '; 
                             $total_plant_virus=$total_protein_litterature+$total_protein_intact;
                             $total_plant_plant=$total_protein_biogrid;
-                            echo $total_plant_virus.' Plant/Virus Interactions';
+                            echo $total_plant_virus.'Plant/Virus Interactions';
                             echo $total_plant_plant.'Plant/Plant Interactions
                            
                         </div>
