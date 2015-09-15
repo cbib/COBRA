@@ -660,7 +660,7 @@ echo'<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> host name B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Authors: '.$attributes[1].'</li>';
                                         }
 //                                        elseif ($attributes[0]=='Putative_function') {
 //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
@@ -1322,6 +1322,8 @@ echo   '<div id="summary">
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
+                                            //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
+                                            //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
                                             $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
@@ -1346,7 +1348,7 @@ echo   '<div id="summary">
                                             $string_seq.='<li value='.$ $attributes[1].'> host name B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Authors: '.$attributes[1].'</li>';
                                         }
 //                                        elseif ($attributes[0]=='Putative_function') {
 //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
