@@ -184,7 +184,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         }
 echo'<div id="summary">   
         <div id="protein-details">
-            <div id="details">
+            <!--<div id="details">-->
             <div id="section_description">'.$gene_id[0].'
             <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
@@ -250,7 +250,7 @@ echo'<div id="summary">
                 }
                 echo'
                 </div>
-                </div>
+                <!--</div>-->
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
