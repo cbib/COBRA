@@ -432,7 +432,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     }
     array_push($global_intact_array, $pro_int_array);
     foreach ($gene_symbol as $symbol){
-        echo $symbol;
+        //echo $symbol;
         //$symbol='P58IPK';
         
 		$cursor=$interactionsCollection->aggregate(array( 
