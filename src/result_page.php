@@ -424,11 +424,21 @@ echo'<div id="summary">
                             $total_protein_litterature++;
                         }
                     }
-                    else{
-                        $total_protein_biogrid=0;
-                        foreach ($array as $intact){
-                            $total_protein_biogrid++;
+                    $total_protein_biogrid=0;
+                    $tgt="";
+                    $tgt_array=array();
+                    foreach ($array as $intact){
+                        foreach ($intact as $value) {
+                            if ($value[0]=='tgt'){
+                                $tgt=$value[1];
+                            }
+
                         }
+                        if (in_array($tgt,$tgt_array)===FALSE){
+                           $total_protein_biogrid++; 
+                        }
+
+
                     }
                     $counter++;
                 }
@@ -1118,8 +1128,20 @@ echo   '<div id="summary">
                     }
                     else{
                         $total_protein_biogrid=0;
+                        $tgt="";
+                        $tgt_array=array();
                         foreach ($array as $intact){
-                            $total_protein_biogrid++;
+                            foreach ($intact as $value) {
+                                if ($value[0]=='tgt'){
+                                    $tgt=$value[1];
+                                }
+                                
+                            }
+                            if (in_array($tgt,$tgt_array)===FALSE){
+                               $total_protein_biogrid++; 
+                            }
+
+                            
                         }
                     }
                     $counter++;
