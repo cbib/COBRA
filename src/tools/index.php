@@ -139,8 +139,7 @@ $table_string.='
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="species[]" value="Prunus species" /> Prunus species
-                    </label>
+                        <input type="checkbox" name="species[]" value="Prunus species" />Prunus species</label>
                 </div>
                 <div class="checkbox">
                     <label>
