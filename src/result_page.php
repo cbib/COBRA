@@ -240,10 +240,13 @@ echo'<div id="summary">
                     echo'<div id="protein aliases"> Protein ids: ';
                     for ($i = 0; $i < count($proteins_id); $i++) {
                         if ($i==count($proteins_id)-1){
-                            echo $proteins_id[$i];
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
+                            //echo $proteins_id[$i];
                         }
                         else{
-                            echo $proteins_id[$i].', ';
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>, ';
+
+                            //echo $proteins_id[$i].', ';
                         }
                     }
                     echo '</div>';
@@ -950,10 +953,13 @@ echo   '<div id="summary">
                     echo'<div id="protein aliases"> Protein ids : ';
                     for ($i = 0; $i < count($proteins_id); $i++) {
                         if ($i==count($proteins_id)-1){
-                            echo $proteins_id[$i];
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
+                            //echo $proteins_id[$i];
                         }
                         else{
-                            echo $proteins_id[$i].', ';
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>, ';
+
+                            //echo $proteins_id[$i].', ';
                         }
                     }
                     echo '</div>';
