@@ -238,18 +238,35 @@ for ($c=0;$c<count($id_details);$c++){
                 }
 
             }
-            array_push($proteins_id,$result['mapping_file']['Protein ID']);
-            array_push($descriptions,$result['mapping_file']['Description']);
-            array_push($gene_id,$result['mapping_file']['Gene ID']);
+            if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
+                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
+            }
+            if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
+
+                array_push($descriptions,$result['mapping_file']['Description']);
+            }
+            if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
+
+                array_push($gene_id,$result['mapping_file']['Gene ID']);
+            }
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
-                array_push($gene_symbol,$symbol);
+                if (in_array($symbol,$gene_symbol)==FALSE){
+                    array_push($gene_symbol,$symbol);
+                }
+                
 
                 
             }
-            array_push($gene_alias,$result['mapping_file']['Alias']);
-            array_push($est_id,$result['mapping_file']['Probe ID']);
+            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE){
+
+                array_push($gene_alias,$result['mapping_file']['Alias']);
+            }
+            if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
+
+                array_push($est_id,$result['mapping_file']['Probe ID']);
+            }
             array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
             $plaza_id=$result['mapping_file']['Plaza ID'];
 
