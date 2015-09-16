@@ -642,7 +642,7 @@ function make_species_list($cursor){
     
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/result_page.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
