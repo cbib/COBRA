@@ -614,7 +614,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#database_biogrid" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Biogrid database </strong> ('.  $total_protein_biogrid.')
+                                        <strong> Biogrid plant/plant interaction database </strong> ('.  $total_protein_biogrid.')
                                     </a>				
 
                                 </div>
@@ -707,16 +707,16 @@ echo   '<div id="summary">
 
                echo'<div class="physical-ltp statisticRow">
                         <div class="physical colorFill" style="width: 0%;"></div>
-                        <div class="statDetails">
+                        <!--<div class="statDetails">
                             <div class="left"></div>
                             <div class="right"></div>
                                 '; 
-                            $total_plant_virus=$total_protein_litterature+$total_protein_intact;
-                            $total_plant_plant=$total_protein_biogrid;
-                            echo $total_plant_virus.' Plant/Virus Interactions <br>';
-                            echo $total_plant_plant.' Plant/Plant Interactions
+                            //$total_plant_virus=$total_protein_litterature+$total_protein_intact;
+                            //$total_plant_plant=$total_protein_biogrid;
+                            //echo $total_plant_virus.' Plant/Virus Interactions <br>';
+                            //echo $total_plant_plant.' Plant/Plant Interactions
                            
-                        </div>
+                        echo '</div>-->
                         <div id="pubStats" class="right">
                             <strong>Publications:</strong>'.count($pub_list).'
                         </div>
