@@ -107,6 +107,9 @@ and open the template in the editor.
 /*  #section_result_summary{
        width:80%; 
   }*/
+.container{
+   width:100%; 
+}
   #SpeciesSearch{
      //width:970px;
      width:100%;
