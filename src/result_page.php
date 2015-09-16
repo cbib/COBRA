@@ -63,7 +63,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
-        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$search),array('mapping_file.Protein ID'=>$search),array('mapping_file.Alias'=>$search),array('mapping_file.Probe ID'=>$search),array('mapping_file.Gene ID'=>$search),array('mapping_file.Gene ID 2'=>$search),array('mapping_file.Symbol'=>$search)))),
+        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$search),array('mapping_file.Uniprot ID'=>$search),array('mapping_file.Protein ID'=>$search),array('mapping_file.Protein ID 2'=>$search),array('mapping_file.Alias'=>$search),array('mapping_file.Probe ID'=>$search),array('mapping_file.Gene ID'=>$search),array('mapping_file.Gene ID 2'=>$search),array('mapping_file.Symbol'=>$search)))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
 
     //var_dump($cursor);
@@ -89,8 +89,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 }
 
             }
-            if (in_array($result['mapping_file']['Protein ID'],$proteins_id)==FALSE){
-                array_push($proteins_id,$result['mapping_file']['Protein ID']);
+            if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
+                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
             }
             if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
 
@@ -806,8 +806,8 @@ echo'<div id="summary">
                 }
 
             }
-            if (in_array($result['mapping_file']['Protein ID'],$proteins_id)==FALSE){
-                array_push($proteins_id,$result['mapping_file']['Protein ID']);
+            if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
+                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
             }
             if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
 

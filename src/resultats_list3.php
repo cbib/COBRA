@@ -97,7 +97,7 @@ for ($c=0;$c<count($id_details);$c++){
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
-        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$search),array('mapping_file.Protein ID'=>$search),array('mapping_file.Alias'=>$search),array('mapping_file.Probe ID'=>$search),array('mapping_file.Gene ID'=>$search),array('mapping_file.Gene ID 2'=>$search),array('mapping_file.Symbol'=>$search)))),
+        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$search),array('mapping_file.Uniprot ID'=>$search),array('mapping_file.Protein ID'=>$search),array('mapping_file.Protein ID 2'=>$search),array('mapping_file.Alias'=>$search),array('mapping_file.Probe ID'=>$search),array('mapping_file.Gene ID'=>$search),array('mapping_file.Gene ID 2'=>$search),array('mapping_file.Symbol'=>$search)))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
 
     //var_dump($cursor);
@@ -121,8 +121,8 @@ for ($c=0;$c<count($id_details);$c++){
                 }
 
             }
-            if (in_array($result['mapping_file']['Protein ID'],$proteins_id)==FALSE){
-                array_push($proteins_id,$result['mapping_file']['Protein ID']);
+            if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
+                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
             }
             if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
 
@@ -329,7 +329,7 @@ for ($c=0;$c<count($id_details);$c++){
             <div id="protein-details">
             
                
-               <div id="description_section">'.$gene_id[0].'
+               <div id="section_description">'.$gene_id[0].'
                <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
@@ -340,9 +340,12 @@ for ($c=0;$c<count($id_details);$c++){
                         echo $gene_symbol[$i].', ';
                     }
                 }
+                if (count($gene_symbol)==0){
+                    echo $gene_alias[0];
+                }
                 echo '</h1> ';
                 if (count($descriptions)>0){
-                    echo'<div id="aliases"> Description : ';
+                    echo'<div id="aliases"> Description: ';
                     for ($i = 0; $i < count($descriptions); $i++) {
                         if ($i==count($descriptions)-1){
                             echo $descriptions[$i];
@@ -354,22 +357,31 @@ for ($c=0;$c<count($id_details);$c++){
                     }
                     echo '</div>';
                 }
-                
                 if (count($gene_alias)>0){
-                    echo'<div id="aliases"> Alias : ';
+                    echo'<div id="aliases"> Alias';
                     for ($i = 0; $i < count($gene_alias); $i++) {
                         if ($i==count($gene_alias)-1){
-                            echo $gene_alias[$i];
+                            if ($gene_alias[$i]==""){   
+                                echo ': NA';
+                            }
+                            else{
+                                echo ': '.$gene_alias[$i];
+                            }
                         }
                         else{
-                            echo $gene_alias[$i].', ';
+                            if ($gene_alias[$i]==""){   
+                                echo ': NA,';
+                            }
+                            else{
+                                echo ': '.$gene_alias[$i].',';
+                            }
                         }
                     }
 
                     echo '</div>';
                 }
                 if (count($proteins_id)>0){
-                    echo'<div id="protein aliases"> Protein ids : ';
+                    echo'<div id="protein aliases"> Protein ids: ';
                     for ($i = 0; $i < count($proteins_id); $i++) {
                         if ($i==count($proteins_id)-1){
                             echo $proteins_id[$i];
@@ -545,10 +557,30 @@ for ($c=0;$c<count($id_details);$c++){
                         $total_protein_intact=count($array);
 
                     }
-                    else{
+                    else if ($counter==1){
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
                             $total_protein_litterature++;
+                        }
+                    }
+                    else{
+                        
+                        $total_protein_biogrid=0;
+                        $tgt="";
+                        $tgt_array=array();
+                        foreach ($array as $intact){
+                            foreach ($intact as $value) {
+                                if ($value[0]=='tgt'){
+                                    $tgt=$value[1];
+                                }
+                                
+                            }
+                            if (in_array($tgt,$tgt_array)===FALSE){
+                               array_push($tgt_array, $tgt);
+                               $total_protein_biogrid++; 
+                            }
+
+                            
                         }
                     }
                     $counter++;
@@ -558,16 +590,16 @@ for ($c=0;$c<count($id_details);$c++){
                 foreach ($interaction_array as $array){
                     if ($counter==0){
                         echo'
-                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
+                        <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#lit_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
                                         <strong> Intact Database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="lit_interact-'.str_replace(".", "_", $gene_id[0]).'">';
+                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
 
                                     echo'
                                     <div class="goProcessTerms goTerms">';
@@ -581,21 +613,21 @@ for ($c=0;$c<count($id_details);$c++){
 
                                             if ($attributes[0]=='src'){
 
-                                                $string_seq.='<li value='.$ $attributes[1].'> host protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein :<a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='method') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
 
                                             }
                                            
                                             elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication :<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
                                                  $found=FALSE;
                                                  foreach ($pub_list as $pub) {
                                                      if ($attributes[1]==$pub){
@@ -610,19 +642,19 @@ for ($c=0;$c<count($id_details);$c++){
 
                                             }
                                             elseif ($attributes[0]=='host_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus name :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus name: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='host_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='virus_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon :'.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
 
                                             }
                                             else{
@@ -643,20 +675,20 @@ for ($c=0;$c<count($id_details);$c++){
                                 echo'
                                 </div></div></div>';
                     }
-                    else{
+                    else if ($counter==1){
                         echo'
                                
                             
-                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
+                        <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#database_interact" data-parent="#accordion_documents" data-toggle="collapse">
                                         <strong> Litterature database </strong> ('.  $total_protein_litterature.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_interact-'.str_replace(".", "_", $gene_id[0]).'">
+                                <div class="panel-body panel-collapse collapse" id="database_interact">
                                 ';
 
                                 echo'
@@ -671,17 +703,17 @@ for ($c=0;$c<count($id_details);$c++){
                                         
 
                                         if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$ $attributes[1].'> host protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral protein: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> method :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> publication :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
                                                 if ($attributes[1]==$pub){
@@ -693,16 +725,16 @@ for ($c=0;$c<count($id_details);$c++){
                                             }
                                         }
                                         elseif ($attributes[0]=='host_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> host name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='virus_name') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> viral name :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> viral name: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Accession number: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='Putative_function') {
-                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function: '.$attributes[1].'</li>';
                                         }
                                         else{
 
@@ -713,6 +745,94 @@ for ($c=0;$c<count($id_details);$c++){
                                     $string_seq.='</ul></span>';
                                     add_accordion_panel($string_seq, $tgt, $tgt);
                                     $total_protein_litterature++;
+
+                                }
+                                $counter++;
+                                
+
+                                echo'
+                                </div>';
+
+                            echo'
+                            </div>
+                        </div></div>';
+                    }
+                    else{
+                        echo'
+                               
+                            
+                        <div class="panel-group" id="accordion_documents">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#database_biogrid" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> Biogrid database </strong> ('.  $total_protein_biogrid.')
+                                    </a>				
+
+                                </div>
+                                <div class="panel-body panel-collapse collapse" id="database_biogrid">
+                                ';
+
+                                echo'
+                                <div class="goProcessTerms goTerms">
+
+                                ';
+                                $total_protein_biogrid=0;
+                                $tgt="";
+                                $tgt_array=array();
+                                foreach ($array as $lit){
+                                    
+                                    $string_seq='<ul><span class="goTerm">';
+                                    foreach ($lit as $attributes){
+                                        
+
+                                        if ($attributes[0]=='src'){
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein A: '.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='tgt') {
+                                            $tgt=$attributes[1];
+                                            
+                                            $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='method') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='pub') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                            $found=FALSE;
+                                            foreach ($pub_list as $pub) {
+                                                if ($attributes[1]==$pub){
+                                                    $found=TRUE;
+                                                }
+                                            }
+                                            if ($found==FALSE){
+                                                array_push($pub_list, $attributes[1]);
+                                            }
+                                        }
+                                        elseif ($attributes[0]=='host A name') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name A: '.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='host B name') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> host name B: '.$attributes[1].'</li>';
+                                        }
+                                        elseif ($attributes[0]=='Accession_number') {
+                                            $string_seq.='<li value='.$ $attributes[1].'> Authors: '.$attributes[1].'</li>';
+                                        }
+//                                        elseif ($attributes[0]=='Putative_function') {
+//                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+//                                        }
+                                        else{
+
+                                        }
+
+
+                                    }
+                                    $string_seq.='</ul></span>';
+                                    if (in_array($tgt,$tgt_array)===FALSE){
+                                        array_push($tgt_array, $tgt);
+                                        add_accordion_panel($string_seq, $tgt, $tgt);
+                                        $total_protein_biogrid++;
+                                    }
 
                                 }
                                 $counter++;
@@ -737,9 +857,10 @@ for ($c=0;$c<count($id_details);$c++){
                             <div class="left"></div>
                             <div class="right"></div>
                                 '; 
-                            $total=$total_protein_litterature+$total_protein_intact;
-
-                            echo $total.' Physical Interactions
+                            $total_plant_virus=$total_protein_litterature+$total_protein_intact;
+                            $total_plant_plant=$total_protein_biogrid;
+                            echo $total_plant_virus.' Plant/Virus Interactions <br>';
+                            echo $total_plant_plant.' Plant/Plant Interactions
                         </div>
                         <div id="pubStats" class="right">
                             <strong>Publications:</strong>'.count($pub_list).'
