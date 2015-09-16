@@ -607,16 +607,16 @@ for ($c=0;$c<count($id_details);$c++){
                 foreach ($interaction_array as $array){
                     if ($counter==0){
                         echo'
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#lit_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong> Intact Database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
+                                <div class="panel-body panel-collapse collapse" id="lit_interact-'.str_replace(".", "_", $gene_id[0]).'">';
 
                                     echo'
                                     <div class="goProcessTerms goTerms">';
@@ -696,16 +696,16 @@ for ($c=0;$c<count($id_details);$c++){
                         echo'
                                
                             
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_interact" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#database_interact-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong> Litterature database </strong> ('.  $total_protein_litterature.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_interact">
+                                <div class="panel-body panel-collapse collapse" id="database_interact-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
 
                                 echo'
@@ -778,16 +778,16 @@ for ($c=0;$c<count($id_details);$c++){
                         echo'
                                
                             
-                        <div class="panel-group" id="accordion_documents">
+                        <div class="panel-group" id="accordion_documents-'.str_replace(".", "_", $gene_id[0]).'">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_biogrid" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#database_biogrid-'.str_replace(".", "_", $gene_id[0]).'" data-parent="#accordion_documents-'.str_replace(".", "_", $gene_id[0]).'" data-toggle="collapse">
                                         <strong> Biogrid database </strong> ('.  $total_protein_biogrid.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_biogrid">
+                                <div class="panel-body panel-collapse collapse" id="database_biogrid-'.str_replace(".", "_", $gene_id[0]).'">
                                 ';
 
                                 echo'
