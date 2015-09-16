@@ -625,6 +625,7 @@ echo'<div id="summary">
 
                                 ';
                                 $total_protein_biogrid=0;
+                                $tgt="";
                                 $tgt_array=array();
                                 foreach ($array as $lit){
                                     
@@ -674,7 +675,7 @@ echo'<div id="summary">
 
                                     }
                                     $string_seq.='</ul></span>';
-                                    if (in_array($tgt,$tgt_array)==FALSE){
+                                    if (in_array($tgt,$tgt_array)===FALSE){
                                         array_push($tgt_array, $tgt);
                                         add_accordion_panel($string_seq, $tgt, $tgt);
                                         $total_protein_biogrid++;
@@ -1316,6 +1317,7 @@ echo   '<div id="summary">
 
                                 ';
                                 $total_protein_biogrid=0;
+                                $tgt="";
                                 $tgt_array=array();
                                 foreach ($array as $lit){
                                     
@@ -1370,7 +1372,7 @@ echo   '<div id="summary">
 
                                     }
                                     $string_seq.='</ul></span>';
-                                    if (in_array($tgt,$tgt_array)==FALSE){
+                                    if (in_array($tgt,$tgt_array)===FALSE){
                                         array_push($tgt_array, $tgt);
                                         add_accordion_panel($string_seq, $tgt, $tgt);
                                         $total_protein_biogrid++;
