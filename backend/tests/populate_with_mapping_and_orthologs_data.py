@@ -63,12 +63,12 @@ mapping_table={
 	"src_version":"NCBI",
 	"url":"",
 	"doi":"none",
-	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINIDALT1/PROTEINIDALT2/UNIPROTID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Gene ID 2','Protein ID','Protein ID 2','Protein ID 3','Description','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Gene ID','Gene ID 2','Protein ID','Protein ID 2','Uniprot ID','Description','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
@@ -115,7 +115,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Description','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
@@ -334,7 +334,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Protein name','Alias','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Description','Protein name','Alias','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
@@ -506,7 +506,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Alias','Description','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Alias','Description','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
@@ -704,7 +704,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Protein ID','Description','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Description','Plaza ID','Alias','Gene ontology ID','Symbol'],
 		"sheet_index":0,
 	}
 }
@@ -874,7 +874,7 @@ mappings_col.insert(mapping_table)
 
 
 ###################################################################################################################
-############################################ ORTHOLOGY TABLES #####################################################
+############################################ ORTHOLOG TABLES #####################################################
 ###################################################################################################################
 
 # Plaza Orthologs - Dicots
@@ -936,45 +936,45 @@ mappings_col.insert(mapping_table)
 
 
 # Literature and partner - Interaction potyvirus
-interactions_table={
-	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
-	"src":"Virus_symbol",
-	"tgt":"Host_symbol",
-	"type":"symbol_to_symbol",
-	"virus_class":"potyvirus",
-	"xls_parsing":{
-		"n_rows_to_skip":3,
-		"column_keys":['idx','Virus_symbol','Host_symbol','method','virus','host','Putative_function','Reference','Accession_number'],
-		"sheet_index":0,
-		
-	}
-
-}
-interactions_col.insert(interactions_table)
+#interactions_table={
+#	"data_file":"interactomics/potyvirus/Potyvirus.Interactors.xls",
+#	"src":"Virus_symbol",
+#	"tgt":"Host_symbol",
+#	"type":"symbol_to_symbol",
+#	"virus_class":"potyvirus",
+#	"xls_parsing":{
+#		"n_rows_to_skip":3,
+#		"column_keys":['idx','Virus_symbol','Host_symbol','method','virus','host','Putative_function','Reference','Accession_number'],
+#		"sheet_index":0,
+#		
+#	}
+#
+#}
+#interactions_col.insert(interactions_table)
 
 
 # Host pathogen interaction db
-interactions_table={
-	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
-	"type":"prot_to_prot",
-	"src":"protein_xref_1",
-	"src_version":"uniprot",
-	"tgt":"protein_xref_2",
-	"tgt_version":"uniprot",
-	"host_name":"protein_taxid_1_name",
-	"virus_name":"protein_taxid_2_name",
-	"method":"detection_method",
-	"pub":"pmid",
-	"host_taxon":"protein_taxid_1_cat",
-	"virus_taxon":"protein_taxid_2_cat",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','protein_xref_1','alternative_identifiers_1','protein_alias_1','protein_xref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
-		"sheet_index":0,
-		
-	}
-
-}
-interactions_col.insert(interactions_table)
+#interactions_table={
+#	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
+#	"type":"prot_to_prot",
+#	"src":"protein_xref_1",
+#	"src_version":"uniprot",
+#	"tgt":"protein_xref_2",
+#	"tgt_version":"uniprot",
+#	"host_name":"protein_taxid_1_name",
+#	"virus_name":"protein_taxid_2_name",
+#	"method":"detection_method",
+#	"pub":"pmid",
+#	"host_taxon":"protein_taxid_1_cat",
+#	"virus_taxon":"protein_taxid_2_cat",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','protein_xref_1','alternative_identifiers_1','protein_alias_1','protein_xref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
+#		"sheet_index":0,
+#		
+#	}
+#
+#}
+#interactions_col.insert(interactions_table)
 
 
