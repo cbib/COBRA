@@ -625,6 +625,7 @@ echo'<div id="summary">
 
                                 ';
                                 $total_protein_biogrid=0;
+                                $tgt_array=array();
                                 foreach ($array as $lit){
                                     
                                     $string_seq='<ul><span class="goTerm">';
@@ -672,8 +673,10 @@ echo'<div id="summary">
 
                                     }
                                     $string_seq.='</ul></span>';
-                                    add_accordion_panel($string_seq, $tgt, $tgt);
-                                    $total_protein_biogrid++;
+                                    if (in_array($tgt,$tgt_array)==FALSE){
+                                        add_accordion_panel($string_seq, $tgt, $tgt);
+                                        $total_protein_biogrid++;
+                                    }
 
                                 }
                                 $counter++;
@@ -1311,9 +1314,11 @@ echo   '<div id="summary">
 
                                 ';
                                 $total_protein_biogrid=0;
+                                $tgt_array=array();
                                 foreach ($array as $lit){
                                     
                                     $string_seq='<ul><span class="goTerm">';
+                                    
                                     foreach ($lit as $attributes){
                                         
 
@@ -1322,6 +1327,8 @@ echo   '<div id="summary">
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
+                                            
+                                            
                                             //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
                                             //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
                                             $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
@@ -1360,8 +1367,11 @@ echo   '<div id="summary">
 
                                     }
                                     $string_seq.='</ul></span>';
-                                    add_accordion_panel($string_seq, $tgt, $tgt);
-                                    $total_protein_biogrid++;
+                                    if (in_array($tgt,$tgt_array)==FALSE){
+                                        add_accordion_panel($string_seq, $tgt, $tgt);
+                                        $total_protein_biogrid++;
+                                    }
+                                    
 
                                 }
                                 $counter++;
