@@ -637,6 +637,7 @@ echo'<div id="summary">
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
+                                            array_push($tgt_array, $tgt);
                                             $string_seq.='<li value='.$ $attributes[1].'> protein B: '.$attributes[1].'</li>';
                                         }
                                         elseif ($attributes[0]=='method') {
@@ -1327,6 +1328,7 @@ echo   '<div id="summary">
                                         }
                                         elseif ($attributes[0]=='tgt') {
                                             $tgt=$attributes[1];
+                                            array_push($tgt_array, $tgt);
                                             
                                             
                                             //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
