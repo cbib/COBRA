@@ -104,9 +104,9 @@ and open the template in the editor.
         
   }
     
-  #section_result_summary{
+/*  #section_result_summary{
        width:80%; 
-  }
+  }*/
   #SpeciesSearch{
      //width:970px;
      width:100%;
