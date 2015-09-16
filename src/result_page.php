@@ -437,6 +437,7 @@ echo'<div id="summary">
                                 
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
+                               array_push($tgt_array, $tgt);
                                $total_protein_biogrid++; 
                             }
 
@@ -1141,6 +1142,7 @@ echo   '<div id="summary">
                                 
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
+                               array_push($tgt_array, $tgt);
                                $total_protein_biogrid++; 
                             }
 
