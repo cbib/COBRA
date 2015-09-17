@@ -443,7 +443,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Intact Database </strong> ('. $total_protein_intact.')
+                                        <strong> Host Pathogen Interaction database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
@@ -532,7 +532,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#database_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Litterature database </strong> ('.  $total_protein_litterature.')
+                                        <strong> Litterature plant/virus database </strong> ('.  $total_protein_litterature.')
                                     </a>				
 
                                 </div>
