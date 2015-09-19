@@ -357,6 +357,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     $lit_int_array=array();
     $biogrid_int_array=array();
     $intact_int_array=array();
+    $timestart=microtime(true);
     foreach ($protein_id as $id){
         
         $search=array("type"=>"prot_to_prot");
@@ -562,6 +563,13 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 	}
     array_push($global_intact_array, $lit_int_array);
     array_push($global_intact_array, $biogrid_int_array);
+    $timeend=microtime(true);
+    $time=$timeend-$timestart;
+    //Afficher le temps d'éxecution
+    $page_load_time = number_format($time, 3);
+    echo "Debut du script: ".date("H:i:s", $timestart);
+    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
     return $global_intact_array;
 }
 
