@@ -400,7 +400,7 @@ echo   '<div id="summary">
 				';
                 $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
                 $counter=0;
-                
+                $timestart=microtime(true);
                 foreach ($interaction_array as $array){
                     if ($counter==0){
                         $total_protein_intact=count($array);
@@ -701,7 +701,13 @@ echo   '<div id="summary">
                     }
                 }
                         
-                           
+                $timeend=microtime(true);
+                $time=$timeend-$timestart;
+                //Afficher le temps d'éxecution
+                $page_load_time = number_format($time, 3);
+                echo "Debut du script: ".date("H:i:s", $timestart);
+                echo "<br>Fin du script: ".date("H:i:s", $timeend);
+                echo "<br>Script for plaza id execute en " . $page_load_time . " sec";          
 
                                 
 
