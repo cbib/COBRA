@@ -148,3 +148,25 @@ interactions_table={
 
 }
 interactions_col.insert(interactions_table)
+
+#IntAct db
+interactions_table={
+	"data_file":"interactomics/Intact/intact_full.xls",
+	"type":"prot_to_prot",
+	"src":"protein_xref_1",
+	"src_version":"uniprot",
+	"tgt":"protein_xref_2",
+	"tgt_version":"uniprot",
+	"organism_name1":"Taxid interactor A",
+	"organism_name2":"Taxid interactor B",
+	"method":"detection_method",
+	"pub":"pmid",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','protein_EBI_ref_1','protein_EBI_ref_2','protein_xref_1','protein_xref_2','alternative_identifiers_1','alternative_identifiers_2','detection_method','author_name','pmid','Taxid interactor A','Taxid interactor B','interaction_type','source_database_id','interaction_identifier','confidence'],
+		"sheet_index":0,
+		
+	}
+
+}
+interactions_col.insert(interactions_table)

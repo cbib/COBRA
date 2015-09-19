@@ -6,7 +6,9 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     return $cursor_array;
 }
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
-    //echo $type;
+    echo $type;
+    echo $top_value;
+    echo $species;
     //$cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
     if ($type=="up"){
         $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1))->sort(array('logFC'=>-1));
@@ -354,6 +356,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     $pro_int_array=array();
     $lit_int_array=array();
     $biogrid_int_array=array();
+    $intact_int_array=array();
     foreach ($protein_id as $id){
         
         $search=array("type"=>"prot_to_prot");
