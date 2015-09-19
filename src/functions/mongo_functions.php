@@ -844,6 +844,14 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
     $table_string="";
     if ($current_plaza_id!=""){
         //$timestart=microtime(true);
+        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>'SL07G056320'),array('mapping_file.$'=>1,'_id'=>0));
+        foreach ($cursors as $cursor){
+            foreach ($cursor as $go){
+                foreach ($go as $value){
+                    echo $value['orthologs_list_identifier'];
+                }
+            }
+        }
 
         $cursors=$orthologsCollection->aggregate(array(
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -851,6 +859,8 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
             array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
             array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
         ));
+
+                
 //        $timeend=microtime(true);
 //        $time=$timeend-$timestart;
 //
