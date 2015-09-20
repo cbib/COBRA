@@ -846,20 +846,20 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         //$timestart=microtime(true);
         $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
         foreach ($cursors as $cursor){
-            foreach ($cursor as $go){
-                foreach ($go as $value){
+            foreach ($cursor as $mapping_file){
+                foreach ($mapping_file as $value){
                     //$ortholog_list_id=$value['orthologs_list_identifier'];
                     $ortholog_list_id=split('[,]', $value['orthologs_list_identifier']);
                 }
             }
         }
 
-        $cursors=$orthologsCollection->aggregate(array(
-            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-            array('$unwind'=>'$mapping_file'),
-            array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
-            array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
-        ));
+//        $cursors=$orthologsCollection->aggregate(array(
+//            array('$project' => array('mapping_file'=>1,'_id'=>0)),
+//            array('$unwind'=>'$mapping_file'),
+//            array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
+//            array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
+//        ));
 
                 
 //        $timeend=microtime(true);
@@ -879,30 +879,30 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
 //            //echo $ortholog_list_id;
 //            $ortholog_list_id=split('[,]', $ortholog_list_id);
-            foreach ($ortholog_list_id as $ortholog){
-                //echo 'ortholog'.$ortholog;
-             //   foreach ($initial_species as $key => $value) {
-             //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
-                        #echo "start line : ".$buffer."\n";
-                $ortholog_data=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
-                foreach ($ortholog_data as $data){
-                    $species=$data['species'];
-                    foreach ($data['mapping_file'] as $value){
-                        
-                    //echo $value['Gene ID'];
-                        $table_string.="<tr>";
+        foreach ($ortholog_list_id as $ortholog){
+            //echo 'ortholog'.$ortholog;
+         //   foreach ($initial_species as $key => $value) {
+         //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
+                    #echo "start line : ".$buffer."\n";
+            $ortholog_data=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+            foreach ($ortholog_data as $data){
+                $species=$data['species'];
+                foreach ($data['mapping_file'] as $value){
 
-                        $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                        //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
-                        //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                        $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
+                //echo $value['Gene ID'];
+                    $table_string.="<tr>";
 
-                        //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
+                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
+                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
 
-                        $table_string.='<td>'.$data['species'].'</td>';
-                        //echo '<td>'.$line['species'].'</td>';
-                        $table_string.="</tr>";
-                    }
+                    //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
+
+                    $table_string.='<td>'.$data['species'].'</td>';
+                    //echo '<td>'.$line['species'].'</td>';
+                    $table_string.="</tr>";
+                }
 //                    $table_string.="<tr>";
 //                    
 //                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$value['species'].'&search='.$value['mapping_file']['Gene ID'].'">'.$value['mapping_file']['Gene ID'].'</a></td>';
@@ -915,11 +915,11 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //                    $table_string.='<td>'.$line['species'].'</td>';
 //                    //echo '<td>'.$line['species'].'</td>';
 //                    $table_string.="</tr>";
-                        
-                    
-                }
-                
-                
+
+
+            }
+
+
 //                $tgt=$mappingsCollection->aggregate(array(
 //                array('$match' => array('type'=>'full_table')),  
 //                array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -946,7 +946,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //
 //
 //                }                         
- 			}
+        }
         //}
         $timeend=microtime(true);
         $time=$timeend-$timestart;
