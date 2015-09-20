@@ -848,7 +848,8 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         foreach ($cursors as $cursor){
             foreach ($cursor as $go){
                 foreach ($go as $value){
-                    //echo $value['orthologs_list_identifier'].'</br>';
+                    //$ortholog_list_id=$value['orthologs_list_identifier'];
+                    $ortholog_list_id=split('[,]', $value['orthologs_list_identifier']);
                 }
             }
         }
@@ -874,10 +875,10 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         
         
         $timestart=microtime(true);
-        foreach ($cursors['result'] as $values) {
-            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
-            //echo $ortholog_list_id;
-            $ortholog_list_id=split('[,]', $ortholog_list_id);
+//        foreach ($cursors['result'] as $values) {
+//            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
+//            //echo $ortholog_list_id;
+//            $ortholog_list_id=split('[,]', $ortholog_list_id);
             foreach ($ortholog_list_id as $ortholog){
                 //echo 'ortholog'.$ortholog;
              //   foreach ($initial_species as $key => $value) {
@@ -946,7 +947,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //
 //                }                         
  			}
-        }
+        //}
         $timeend=microtime(true);
         $time=$timeend-$timestart;
 
