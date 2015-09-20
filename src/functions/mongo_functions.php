@@ -885,22 +885,23 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                         #echo "start line : ".$buffer."\n";
                 $ortholog_data=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
-                    //echo 'data: '.$data['species'];
-                    
+                    $species=$data['species'];
+                    foreach ($data['mapping_file'] as $value){
                         
                     //echo $value['Gene ID'];
-                    $table_string.="<tr>";
+                        $table_string.="<tr>";
 
-                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$data['species'].'&search='.$data['mapping_file']['Gene ID'].'">'.$data['mapping_file']['Gene ID'].'</a></td>';
-                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
-                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$data['mapping_file']['Uniprot ID'].'">'.$data['mapping_file']['Uniprot ID'].'</a></td>';
+                        $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                        //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
+                        //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+                        $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
 
-                    //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
+                        //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
-                    $table_string.='<td>'.$data['species'].'</td>';
-                    //echo '<td>'.$line['species'].'</td>';
-                    $table_string.="</tr>";
+                        $table_string.='<td>'.$data['species'].'</td>';
+                        //echo '<td>'.$line['species'].'</td>';
+                        $table_string.="</tr>";
+                    }
 //                    $table_string.="<tr>";
 //                    
 //                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$value['species'].'&search='.$value['mapping_file']['Gene ID'].'">'.$value['mapping_file']['Gene ID'].'</a></td>';
