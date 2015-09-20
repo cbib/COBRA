@@ -883,6 +883,28 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
              //   foreach ($initial_species as $key => $value) {
              //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                         #echo "start line : ".$buffer."\n";
+                $cursors=$orthologsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+                foreach ($cursors as $cursor){
+                    foreach ($cursor as $go){
+                        foreach ($go as $value){
+                            echo $value['species'];
+                            
+//                    $table_string.="<tr>";
+//                    
+//                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$value['species'].'&search='.$value['mapping_file']['Gene ID'].'">'.$value['mapping_file']['Gene ID'].'</a></td>';
+//                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
+//                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+//                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['mapping_file']['Uniprot ID'].'">'.$value['mapping_file']['Uniprot ID'].'</a></td>';
+//
+//                    //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
+//
+//                    $table_string.='<td>'.$line['species'].'</td>';
+//                    //echo '<td>'.$line['species'].'</td>';
+//                    $table_string.="</tr>";
+                        }
+                    }
+                }
+                
                 
                 $tgt=$mappingsCollection->aggregate(array(
                 array('$match' => array('type'=>'full_table')),  
