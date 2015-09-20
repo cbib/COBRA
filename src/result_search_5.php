@@ -109,11 +109,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 
             }
-            if (in_array($result['mapping_file']['Gene ID 2'],$gene_alias)==FALSE){
+            if (in_array($result['mapping_file']['Gene ID 2'],$gene_alias)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
 
                 array_push($gene_alias,$result['mapping_file']['Gene ID 2']);
             }
-            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE){
+            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!="NA"){
 
                 array_push($gene_alias,$result['mapping_file']['Alias']);
             }
