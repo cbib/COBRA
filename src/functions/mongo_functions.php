@@ -551,20 +551,20 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
             }
             
         }*/
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
         $cursor=$interactionsCollection->aggregate(array( 
 			array('$unwind'=>'$mapping_file'), 
 			array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
 			array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
 		));
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Script starting at: ".date("H:i:s", $timestart);
-        echo "<br>Script ending at: ".date("H:i:s", $timeend);
-        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
-        $timestart=microtime(true);
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Script starting at: ".date("H:i:s", $timestart);
+//        echo "<br>Script ending at: ".date("H:i:s", $timeend);
+//        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
+        //$timestart=microtime(true);
         if (count($cursor['result'])!=0){
 			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
 			//var_dump($cursor);
@@ -611,13 +611,13 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 
             }
         }
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Script starting at: ".date("H:i:s", $timestart);
-        echo "<br>Script ending at: ".date("H:i:s", $timeend);
-        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Script starting at: ".date("H:i:s", $timestart);
+//        echo "<br>Script ending at: ".date("H:i:s", $timeend);
+//        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
 		
 	}
     array_push($global_intact_array, $lit_int_array);
