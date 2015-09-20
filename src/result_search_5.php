@@ -446,7 +446,7 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Host Pathogen Interaction database </strong> ('. $total_protein_intact.')
+                                        <strong> Host Pathogen Interaction/IntAct database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
