@@ -844,14 +844,14 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
     $table_string="";
     if ($current_plaza_id!=""){
         //$timestart=microtime(true);
-//        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
-//        foreach ($cursors as $cursor){
-//            foreach ($cursor as $go){
-//                foreach ($go as $value){
-//                    echo $value['orthologs_list_identifier'];
-//                }
-//            }
-//        }
+        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
+        foreach ($cursors as $cursor){
+            foreach ($cursor as $go){
+                foreach ($go as $value){
+                    echo $value['orthologs_list_identifier'].'</br>';
+                }
+            }
+        }
 
         $cursors=$orthologsCollection->aggregate(array(
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -873,7 +873,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         
         
         
-        //$timestart=microtime(true);
+        $timestart=microtime(true);
         foreach ($cursors['result'] as $values) {
             $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
             //echo $ortholog_list_id;
@@ -912,16 +912,17 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                 }                         
  			}
         }
+        $timeend=microtime(true);
+        $time=$timeend-$timestart;
+
+        //Afficher le temps d'éxecution
+        $page_load_time = number_format($time, 3);
+        echo "Debut du script dans get_orthologs: ".date("H:i:s", $timestart);
+        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+        echo "<br>Script  execute en " . $page_load_time . " sec";
     }
     return $table_string; 
-//        $timeend=microtime(true);
-//        $time=$timeend-$timestart;
-//
-//        //Afficher le temps d'éxecution
-//        $page_load_time = number_format($time, 3);
-//        echo "Debut du script: ".date("H:i:s", $timestart);
-//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//        echo "<br>Script  execute en " . $page_load_time . " sec";
+    
         
                               
 }
