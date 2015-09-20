@@ -885,6 +885,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                         #echo "start line : ".$buffer."\n";
                 $ortholog_data=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
+                    echo 'data: '.$data['species'];
                     foreach ($data as $key){
                         foreach ($key as $value){
                             echo $value['species'];
