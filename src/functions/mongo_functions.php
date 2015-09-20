@@ -883,7 +883,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
              //   foreach ($initial_species as $key => $value) {
              //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                         #echo "start line : ".$buffer."\n";
-                $cursors=$orthologsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+                $cursors=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($cursors as $cursor){
                     foreach ($cursor as $go){
                         foreach ($go as $value){
