@@ -899,7 +899,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                     $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$line['species'].'&search='.$line['mapping_file']['Gene ID'].'">'.$line['mapping_file']['Gene ID'].'</a></td>';
                     //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
                     //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$line['mapping_file']['Uniprot ID'].'&search='.$line['mapping_file']['Uniprot ID'].'">'.$line['mapping_file']['Gene ID'].'</a></td>';
+                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$line['mapping_file']['Uniprot ID'].'">'.$line['mapping_file']['Uniprot ID'].'</a></td>';
 
                     //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
