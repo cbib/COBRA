@@ -563,7 +563,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
         $page_load_time = number_format($time, 3);
         echo "Script starting at: ".date("H:i:s", $timestart);
         echo "<br>Script ending at: ".date("H:i:s", $timeend);
-        echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
+        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
         $timestart=microtime(true);
         if (count($cursor['result'])!=0){
 			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
@@ -617,7 +617,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
         $page_load_time = number_format($time, 3);
         echo "Script starting at: ".date("H:i:s", $timestart);
         echo "<br>Script ending at: ".date("H:i:s", $timeend);
-        echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
+        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
 		
 	}
     array_push($global_intact_array, $lit_int_array);
