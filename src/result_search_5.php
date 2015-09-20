@@ -88,6 +88,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
                 array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
             }
+//            if (in_array($result['mapping_file']['Protein ID'],$proteins_id)==FALSE){
+//                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
+//            }
             if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
 
                 array_push($descriptions,$result['mapping_file']['Description']);
