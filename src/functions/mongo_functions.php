@@ -848,7 +848,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         foreach ($cursors as $cursor){
             foreach ($cursor as $go){
                 foreach ($go as $value){
-                    echo $value['orthologs_list_identifier'].'</br>';
+                    //echo $value['orthologs_list_identifier'].'</br>';
                 }
             }
         }

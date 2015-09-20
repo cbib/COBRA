@@ -708,9 +708,9 @@ echo   '<div id="summary">
                 $time=$timeend-$timestart;
                 //Afficher le temps d'éxecution
                 $page_load_time = number_format($time, 3);
-                echo "Debut du script: ".date("H:i:s", $timestart);
-                echo "<br>Fin du script: ".date("H:i:s", $timeend);
-                echo "<br>Script for plaza id execute en " . $page_load_time . " sec";          
+                echo "starting script at: ".date("H:i:s", $timestart);
+                echo "<br>Ending script at: ".date("H:i:s", $timeend);
+                echo "<br>Script for interaction data executed in " . $page_load_time . " sec";          
 
                                 
 
@@ -778,13 +778,13 @@ echo   '<div id="summary">
                 </div>
                 <div id="shift_line"></div>
             </div>';
-                           $timeend=microtime(true);
+                $timeend=microtime(true);
                 $time=$timeend-$timestart;
                 //Afficher le temps d'éxecution
                 $page_load_time = number_format($time, 3);
-                echo "Debut du script: ".date("H:i:s", $timestart);
-                echo "<br>Fin du script: ".date("H:i:s", $timeend);
-                echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+                echo "starting script at: ".date("H:i:s", $timestart);
+                echo "<br>Ending script at: ".date("H:i:s", $timeend);
+                echo "<br>Script for ortholog data executed in " . $page_load_time . " sec";   
                   //$protein="Q39255";   
                   
    echo'</div>
