@@ -508,7 +508,50 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
         
         
         //biogrid interaction data
-        $cursor=$interactionsCollection->aggregate(array( 
+        $interaction_data=$interactionsCollection->find(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+        foreach ($interaction_data as $data){
+            $species=$data['species'];
+            foreach ($data['mapping_file'] as $mapping_file){
+                $tmp_array=array();
+
+                $src_array=array();
+                array_push($src_array, 'src');
+                array_push($src_array, $symbol);
+                array_push($tmp_array, $src_array);
+                $tgt_array=array();
+                array_push($tgt_array, 'tgt');
+                array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
+                array_push($tmp_array, $tgt_array);
+                $method_array=array();
+                array_push($method_array, 'method');
+                array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
+                array_push($tmp_array, $method_array);
+                $pub_array=array();
+                array_push($pub_array, 'pub');
+                array_push($pub_array, $mapping_file['PUBMED_ID']);
+                array_push($tmp_array, $pub_array);
+                $host_name_array=array();
+                array_push($host_name_array, 'host A name');
+                array_push($host_name_array, $species);
+                array_push($tmp_array, $host_name_array);
+                $virus_name_array=array();
+                array_push($virus_name_array, 'host B name');
+                array_push($virus_name_array, $species);
+                array_push($tmp_array, $virus_name_array);
+                $host_taxon_array=array();                  
+                array_push($host_taxon_array, 'Accession_number');
+                array_push($host_taxon_array, $mapping_file['SOURCE']);
+                array_push($tmp_array, $host_taxon_array);
+//                $virus_taxon_array=array();
+//                array_push($virus_taxon_array, 'Putative_function');
+//                array_push($virus_taxon_array, $mapping_file['Putative_function']);
+//                array_push($tmp_array, $virus_taxon_array);
+                    
+                array_push($biogrid_int_array, $tmp_array);		
+            }
+            
+        }
+        /*$cursor=$interactionsCollection->aggregate(array( 
 			array('$unwind'=>'$mapping_file'), 
 			array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
 			array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
@@ -558,7 +601,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 array_push($biogrid_int_array, $tmp_array);				
                 
             }
-        }
+        }*/
 		
 	}
     array_push($global_intact_array, $lit_int_array);
@@ -567,9 +610,9 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     $time=$timeend-$timestart;
     //Afficher le temps d'éxecution
     $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for plaza id execute en " . $page_load_time . " sec";
+    echo "Script starting at: ".date("H:i:s", $timestart);
+    echo "<br>Script ending at: ".date("H:i:s", $timeend);
+    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
     return $global_intact_array;
 }
 
@@ -874,7 +917,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
         
         
         
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
 //        foreach ($cursors['result'] as $values) {
 //            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
 //            //echo $ortholog_list_id;
@@ -948,14 +991,14 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //                }                         
         }
         //}
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Debut du script dans get_orthologs: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script  execute en " . $page_load_time . " sec";
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Debut du script dans get_orthologs: ".date("H:i:s", $timestart);
+//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//        echo "<br>Script  execute en " . $page_load_time . " sec";
     }
     return $table_string; 
     

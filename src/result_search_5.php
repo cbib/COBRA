@@ -736,7 +736,7 @@ echo   '<div id="summary">
                     </div>
                     <br></br> 
             </div>';
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
        echo'<div id="ortholog_section">
             <h3>Orthologs</h3>
                 <div class="panel-group" id="accordion_documents">
@@ -778,13 +778,13 @@ echo   '<div id="summary">
                 </div>
                 <div id="shift_line"></div>
             </div>';
-                $timeend=microtime(true);
-                $time=$timeend-$timestart;
-                //Afficher le temps d'éxecution
-                $page_load_time = number_format($time, 3);
-                echo "starting script at: ".date("H:i:s", $timestart);
-                echo "<br>Ending script at: ".date("H:i:s", $timeend);
-                echo "<br>Script for ortholog data executed in " . $page_load_time . " sec";   
+//                $timeend=microtime(true);
+//                $time=$timeend-$timestart;
+//                //Afficher le temps d'éxecution
+//                $page_load_time = number_format($time, 3);
+//                echo "starting script at: ".date("H:i:s", $timestart);
+//                echo "<br>Ending script at: ".date("H:i:s", $timeend);
+//                echo "<br>Script for ortholog data executed in " . $page_load_time . " sec";   
                   //$protein="Q39255";   
                   
    echo'</div>
