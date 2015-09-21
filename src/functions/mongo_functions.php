@@ -27,10 +27,11 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
     $gene_list=array();
     $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
     foreach ($cursor as $value) {
-        echo 'gene to found : '.$value['gene'].'</br>';
+        
         $gene_name=split('[.]', $value['gene']);
         echo $gene_name[0];
         $value['gene']=$gene_name[0];
+        echo 'gene to found : '.$value['gene'].'</br>';
         $cursor2=$ma->aggregate(array(
         array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
         //array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
