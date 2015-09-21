@@ -1124,7 +1124,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //                }
 //            }
 //        }
-        
+        echo 'current_plaza_id: '.$current_plaza_id;
         
         $cursors=$orthologsCollection->aggregate(array(
             array('$match'=>array('species'=>$speciesID)),
