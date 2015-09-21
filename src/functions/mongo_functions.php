@@ -29,6 +29,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
     foreach ($cursor as $value) {
         echo 'gene to found : '.$value['gene'].'</br>';
         $gene_name=split('[.]', $value['gene']);
+        echo $gene_name[0];
         $value['gene']=$gene_name[0];
         $cursor2=$ma->aggregate(array(
         array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
