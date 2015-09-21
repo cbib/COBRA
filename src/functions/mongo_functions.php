@@ -30,12 +30,13 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         echo 'gene to found : '.$value['gene'].'</br>';
         $cursor2=$ma->aggregate(array(
         array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
-        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+        //array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$value['gene']),array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.Alias'=>$value['gene']),array('mapping_file.Probe ID'=>$value['gene']),array('mapping_file.Gene ID'=>$value['gene']),array('mapping_file.Gene ID 2'=>$value['gene'])))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         
         foreach ($cursor2['result'] as $result) {
+            echo $result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
             array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
 
