@@ -1113,6 +1113,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
      //echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
+    echo 'current_plaza_id: '.$current_plaza_id;
     if ($current_plaza_id!=""){
         
 //        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
