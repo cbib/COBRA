@@ -28,6 +28,8 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
     $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
     foreach ($cursor as $value) {
         echo 'gene to found : '.$value['gene'].'</br>';
+        $gene_name=split('[.]', $value['gene']);
+        $value['gene']=$gene_name[0];
         $cursor2=$ma->aggregate(array(
         array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
         //array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -36,7 +38,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         
         foreach ($cursor2['result'] as $result) {
-            echo $result['mapping_file']['Plaza ID'];
+            //echo $result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
             array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
 
