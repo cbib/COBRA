@@ -212,6 +212,7 @@ function make_orthologs_search_page($gene_list_attributes,$species='null'){
                                             </thead>
 
                                             <tbody>';
+                                                echo 'before entering into table_ortholog';
                                                 echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$value);
 
                                        echo'</tbody>
