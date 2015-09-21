@@ -125,12 +125,16 @@ $Topgene=$_POST['Topgene'];
 //$species='Hordeum vulgare';
 foreach ($data as $species){
     if ($species=="Prunus species"){
+        
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
         foreach ($species_id_type as $value) {
-            $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
+            //$gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
+            $gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$genes,$Topgene);
+
 
             make_orthologs_search_page($gene_list_attributes);
         }
+        echo '<H1>Results for '.$value['full_name'].'</H1>';
     }
     else{
         echo '<H1>Results for '.$species.'</H1>';
