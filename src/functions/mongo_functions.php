@@ -42,7 +42,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         
         foreach ($cursor2['result'] as $result) {
-            //echo $result['mapping_file']['Plaza ID'];
+            echo $result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
             array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
 
@@ -223,13 +223,9 @@ function make_orthologs_search_page($gene_list_attributes,$species='null'){
                      <div id="shift_line"></div>';
 
                     }
-                    else{
-
-                    }
+                    
                 }
-                else{
-
-                }
+                
                 $cpt++;
 
             }
