@@ -123,7 +123,9 @@ $Topgene=$_POST['Topgene'];
 //$species='Arabidopsis thaliana';
 //$type="down";
 //$species='Hordeum vulgare';
+
 foreach ($data as $species){
+    echo $species;
     if ($species=="Prunus species"){
         
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
