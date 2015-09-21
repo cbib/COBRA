@@ -183,6 +183,7 @@ function make_orthologs_search_page($gene_list_attributes,$species='null'){
 
 
                     if ($key=="plaza_id"){
+                        echo 'key: '.$value;
 
                         echo'<div class="panel-group" id="accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'">
                                 <div class="panel panel-default">
