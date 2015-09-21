@@ -1114,6 +1114,18 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
     if ($current_plaza_id!=""){
+        
+//        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
+//        foreach ($cursors as $cursor){
+//            foreach ($cursor as $mapping_file){
+//                foreach ($mapping_file as $value){
+//                    //$ortholog_list_id=$value['orthologs_list_identifier'];
+//                    $ortholog_list_id=split('[,]', $value['orthologs_list_identifier']);
+//                }
+//            }
+//        }
+        
+        
         $cursors=$orthologsCollection->aggregate(array(
             array('$match'=>array('species'=>$speciesID)),
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -1124,7 +1136,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
         //var_dump($cursors);
         foreach ($cursors['result'] as $values) {
             $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
-            //echo 'ortholog list : '.$ortholog_list_id;
+            echo 'ortholog list : '.$ortholog_list_id;
             $ortholog_list_id=split('[,]', $ortholog_list_id);
             foreach ($ortholog_list_id as $ortholog){
                 //echo 'ortholog'.$ortholog;
