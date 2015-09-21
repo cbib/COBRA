@@ -127,7 +127,7 @@ $Topgene=$_POST['Topgene'];
 foreach ($data as $species){
     echo 'species: '.$species;
     if ($species=="Prunus species"){
-        
+        echo '<H1>Results for Prunus species</H1>';
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
         foreach ($species_id_type as $value) {
             echo 'full name: '.$value['full_name'];
@@ -135,9 +135,9 @@ foreach ($data as $species){
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
 
 
-            make_orthologs_search_page($gene_list_attributes,$value['full_name']);
+            make_orthologs_search_page($gene_list_attributes,'Prunus persica');
         }
-        echo '<H1>Results for '.$value['full_name'].'</H1>';
+        
     }
     else{
         echo '<H1>Results for '.$species.'</H1>';
