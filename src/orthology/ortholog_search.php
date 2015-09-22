@@ -129,9 +129,9 @@ foreach ($data as $species){
     if ($species=="Prunus species"){
         echo '<H1>Results for Prunus species</H1>';
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
-        foreach ($species_id_type as $value) {
-            echo 'full name: '.$value['full_name'];
-            $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
+        foreach ($species_id_type as $species_value) {
+            echo 'full name: '.$species_value['full_name'];
+            $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$species_value['full_name'],$genes,$Topgene);
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
 
             
@@ -146,7 +146,7 @@ foreach ($data as $species){
 
                         echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\';" class="resultsbox" id="results">
                                 <div class="results-right">
-                                    <div class="organism"> Organism:'.$value['full_name'].'</div>
+                                    <div class="organism"> Organism:'.$species_value['full_name'].'</div>
                                     <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
 
                                 </div>
@@ -174,7 +174,7 @@ foreach ($data as $species){
                                             <h3>
                                                 <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
                                                         Ortholog table 
-                                                        <div id="organism" class="right"><h4>THALIANA</h4></div>
+                                                        <div id="organism" class="right"><h4>Prunus species</h4></div>
                                                 </a>				
                                             </h3>
                                         </div>
@@ -265,7 +265,7 @@ foreach ($data as $species){
                                         <h3>
                                             <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
                                                     Ortholog table 
-                                                    <div id="organism" class="right"><h4>THALIANA</h4></div>
+                                                    <div id="organism" class="right"><h4>'.$species.'</h4></div>
                                             </a>				
                                         </h3>
                                     </div>
