@@ -30,7 +30,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
     foreach ($cursor as $value) {
         
         $gene_name=split('[.]', $value['gene']);
-        echo $gene_name[0];
+        //echo $gene_name[0];
         $value['gene']=$gene_name[0];
         echo 'gene to found : '.$value['gene'].'</br>';
         $cursor2=$ma->aggregate(array(
@@ -42,7 +42,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         
         foreach ($cursor2['result'] as $result) {
-            echo $result['mapping_file']['Plaza ID'];
+            echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
             array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
 
@@ -50,6 +50,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
             
         }
     }
+    
     return $gene_list;
     
 }
@@ -152,7 +153,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
     }
     return $value_array;
 }
-function make_orthologs_search_page($gene_list_attributes,$species='null'){
+function make_orthologs_page($gene_list_attributes,$species='null'){
     foreach ($gene_list_attributes as $attributes) {
 
 
