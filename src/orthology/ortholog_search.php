@@ -146,7 +146,7 @@ foreach ($data as $species){
 
                         echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\';" class="resultsbox" id="results">
                                 <div class="results-right">
-                                    <div class="organism"> Organism:'.$species.'</div>
+                                    <div class="organism"> Organism:'.$value['full_name'].'</div>
                                     <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
 
                                 </div>
