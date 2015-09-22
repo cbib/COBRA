@@ -196,7 +196,7 @@ foreach ($data as $species){
 
                                                 <tbody>';
                                                     echo 'before entering into table_ortholog';
-                                                    echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$value);
+                                                    echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,'Prunus persica',$value);
 
                                            echo'</tbody>
 
