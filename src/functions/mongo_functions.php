@@ -142,7 +142,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     $species_id_type=$sp->find(array('full_name'=>$species),array('preferred_id'=>1));
     foreach ($species_id_type as $value) {
         $favourite_id=$value['preferred_id'];
-        echo $value['preferred_id'].'</br>';
+        //echo $value['preferred_id'].'</br>';
     
     }
     //get the target id for this species of the plza mapping table
@@ -150,7 +150,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     //only one value is possible
     foreach ($plaza_favorite_tgt_id as $value) {
         $intermediary_id=$value['tgt'];
-        echo $value['tgt'].'</br>';
+        //echo $value['tgt'].'</br>';
     
     }
     //get the n top genes in the transcriptomics data
@@ -160,7 +160,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     $gene_list=array();
     foreach ($cursor as $value) {
     //echo $value['logFC']."\n";
-        echo 'gene to found : '.$value['gene'].'</br>';
+        //echo 'gene to found : '.$value['gene'].'</br>';
         array_push($gene_list,array('search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
         
     //echo $value['infection_agent']."\n";
