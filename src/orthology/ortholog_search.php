@@ -125,12 +125,12 @@ $Topgene=$_POST['Topgene'];
 //$species='Hordeum vulgare';
 
 foreach ($data as $species){
-    echo 'species: '.$species;
+    //echo 'species: '.$species;
     if ($species=="Prunus species"){
         echo '<H1>Results for Prunus species</H1>';
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
         foreach ($species_id_type as $species_value) {
-            echo 'full name: '.$species_value['full_name'];
+            //echo 'full name: '.$species_value['full_name'];
             $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$species_value['full_name'],$genes,$Topgene);
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
 
@@ -166,7 +166,7 @@ foreach ($data as $species){
 
 
                         if ($key=="plaza_id"){
-                            echo 'key: '.$value;
+                            //echo 'key: '.$value;
 
                             echo'<div class="panel-group" id="accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'">
                                     <div class="panel panel-default">
@@ -195,7 +195,7 @@ foreach ($data as $species){
                                                 </thead>
 
                                                 <tbody>';
-                                                    echo 'before entering into table_ortholog';
+                                                    //echo 'before entering into table_ortholog';
                                                     echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,'Prunus persica',$value);
 
                                            echo'</tbody>

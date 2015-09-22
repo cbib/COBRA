@@ -90,9 +90,9 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     return $cursor_array;
 }
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
-    echo $type;
-    echo $top_value;
-    echo $species;
+    //echo $type;
+    //echo $top_value;
+    //echo $species;
     //$cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1));
     if ($type=="up"){
         $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1))->sort(array('logFC'=>-1));
@@ -115,7 +115,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         $gene_name=split('[.]', $value['gene']);
         //echo $gene_name[0];
         $value['gene']=$gene_name[0];
-        echo 'gene to found : '.$value['gene'].'</br>';
+        //echo 'gene to found : '.$value['gene'].'</br>';
         $cursor2=$ma->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         //array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
@@ -125,7 +125,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         
         foreach ($cursor2['result'] as $result) {
-            echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
+            //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
             array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
 
