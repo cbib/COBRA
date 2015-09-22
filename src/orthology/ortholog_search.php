@@ -134,7 +134,7 @@ foreach ($data as $species){
             $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
 
-
+            
             make_orthologs_page($gene_list_attributes,'Prunus persica');
         }
         
