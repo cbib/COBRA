@@ -131,9 +131,17 @@ foreach ($data as $species){
         $species_id_type=$speciesCollection->find(array('classification.genus'=>'Prunus'),array('preferred_id'=>1,'full_name'=>1));
         foreach ($species_id_type as $species_value) {
             //echo 'full name: '.$species_value['full_name'];
+            $timestart=microtime(true);
             $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$species_value['full_name'],$genes,$Topgene);
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
+            $timeend=microtime(true);
+            $time=$timeend-$timestart;
 
+            //Afficher le temps d'éxecution
+            $page_load_time = number_format($time, 3);
+            echo "Debut du script: ".date("H:i:s", $timestart);
+            echo "<br>Fin du script: ".date("H:i:s", $timeend);
+            echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
             
             //make_orthologs_page($gene_list_attributes,'Prunus persica');
             foreach ($gene_list_attributes as $attributes) {
