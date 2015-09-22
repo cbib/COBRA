@@ -116,16 +116,20 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
 
     //Afficher le temps d'éxecution
     $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+    echo "Script starting at: ".date("H:i:s", $timestart);
+    echo "<br>Script ending at: ".date("H:i:s", $timeend);
+    echo "<br>Script for top diff expressed genes executed in " . $page_load_time . " sec";
     foreach ($cursor as $value) {
         
         $gene_name=split('[.]', $value['gene']);
         //echo $gene_name[0];
         $value['gene']=$gene_name[0];
-        //echo 'gene to found : '.$value['gene'].'</br>';
+        echo 'gene to found : '.$value['gene'].'</br>';
         $timestart=microtime(true);
+        
+        
+        
+        
         $cursor2=$ma->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         //array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
@@ -135,12 +139,14 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
         $timeend=microtime(true);
         $time=$timeend-$timestart;
+        
+        
 
         //Afficher le temps d'éxecution
         $page_load_time = number_format($time, 3);
-        echo "Debut du script: ".date("H:i:s", $timestart);
-        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+        echo "Script starting at: ".date("H:i:s", $timestart);
+        echo "<br>Script ending at:".date("H:i:s", $timeend);
+        echo "<br>Script aggregate  executed in " . $page_load_time . " sec";
         foreach ($cursor2['result'] as $result) {
             //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
