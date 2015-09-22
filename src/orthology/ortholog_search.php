@@ -135,7 +135,88 @@ foreach ($data as $species){
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
 
             
-            make_orthologs_page($gene_list_attributes,'Prunus persica');
+            //make_orthologs_page($gene_list_attributes,'Prunus persica');
+            foreach ($gene_list_attributes as $attributes) {
+
+
+
+                $cpt=0;
+                foreach ($attributes as $key => $value) {
+                    if ($cpt==0){
+
+                        echo '<div style="cursor: pointer;" onclick="window.location=\'/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\';" class="resultsbox" id="results">
+                                <div class="results-right">
+                                    <div class="organism"> Organism:'.$species.'</div>
+                                    <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
+
+                                </div>
+                                <div class="results-left">
+                                    <div class="officialSymbol"> Gene identifier: '.$attributes['search'].'</div>
+                                    <div class="logFC"> Log fold change: '.$attributes['logFC'].'</div>
+
+                                </div>
+
+                        </div>';
+                    }
+
+
+
+
+                    if ($value != "NA"){
+
+
+                        if ($key=="plaza_id"){
+                            echo 'key: '.$value;
+
+                            echo'<div class="panel-group" id="accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3>
+                                                <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
+                                                        Ortholog table 
+                                                        <div id="organism" class="right"><h4>THALIANA</h4></div>
+                                                </a>				
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body panel-collapse collapse" id="ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'">
+
+                                            <table class="table table-hover">                                                                
+                                                <thead>
+                                                <tr>';
+                                                    //echo "<th>Mapping type</th>";
+                                                    echo "<th>Gene ID</th>";
+                                                    echo "<th>Source</th>";
+                                                    //echo "<th>tgt ID</th>";
+                                                    echo "<th>Transcript/protein ID</th>";
+                                                    echo "<th>Source</th>";
+                                                    echo "<th>Species</th>";
+                                                    echo'
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>';
+                                                    echo 'before entering into table_ortholog';
+                                                    echo table_ortholog_string($grid,$mappingsCollection,$orthologsCollection,$species,$value);
+
+                                           echo'</tbody>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>';    
+
+                            echo '<div id="shift_line"></div>';
+
+                        }
+
+                    }
+
+                    $cpt++;
+
+                }
+
+            }
         }
         
     }
