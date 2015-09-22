@@ -109,13 +109,23 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
 }
 function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     $gene_list=array();
+    $timestart=microtime(true);
     $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
+    $timeend=microtime(true);
+    $time=$timeend-$timestart;
+
+    //Afficher le temps d'éxecution
+    $page_load_time = number_format($time, 3);
+    echo "Debut du script: ".date("H:i:s", $timestart);
+    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
     foreach ($cursor as $value) {
         
         $gene_name=split('[.]', $value['gene']);
         //echo $gene_name[0];
         $value['gene']=$gene_name[0];
         //echo 'gene to found : '.$value['gene'].'</br>';
+        $timestart=microtime(true);
         $cursor2=$ma->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         //array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
@@ -123,7 +133,14 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$value['gene']),array('mapping_file.Uniprot ID'=>$value['gene']),array('mapping_file.Protein ID 2'=>$value['gene']),array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.Alias'=>$value['gene']),array('mapping_file.Probe ID'=>$value['gene']),array('mapping_file.Gene ID'=>$value['gene']),array('mapping_file.Gene ID 2'=>$value['gene'])))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
-        
+        $timeend=microtime(true);
+        $time=$timeend-$timestart;
+
+        //Afficher le temps d'éxecution
+        $page_load_time = number_format($time, 3);
+        echo "Debut du script: ".date("H:i:s", $timestart);
+        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
         foreach ($cursor2['result'] as $result) {
             //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
             $plaza_id=$result['mapping_file']['Plaza ID'];
