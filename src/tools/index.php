@@ -1,5 +1,5 @@
 <?php
-
+require '/var/www/html/COBRA/src/session/maintenance-session.php';
 require '/var/www/html/COBRA/src/functions/html_functions.php';
 require '/var/www/html/COBRA/src/functions/php_functions.php';
 require '/var/www/html/COBRA/src/functions/mongo_functions.php';

@@ -1,5 +1,6 @@
 <?php
 //session_start();
+require '../session/maintenance-session.php';
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
