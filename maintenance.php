@@ -1,8 +1,8 @@
  <?php
  	//session_start();
- 	include '../functions/html_functions.php';
- 	include '../functions/php_functions.php';
- 	include '../functions/mongo_functions.php';
+ 	include 'src/functions/html_functions.php';
+ 	include 'src/functions/php_functions.php';
+ 	include 'src/functions/mongo_functions.php';
  	//require '../session/control-session.php';
  
 	new_cobra_header();
