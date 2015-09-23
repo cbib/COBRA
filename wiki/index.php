@@ -1,4 +1,5 @@
 <?php
+require (realpath(dirname(__FILE__)) .'/'.'../src/session/maintenance-session.php');
 require (realpath(dirname(__FILE__)) .'/'.'../src/session/control-session.php');
 //session_start();
 define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
