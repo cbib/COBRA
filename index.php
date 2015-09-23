@@ -34,6 +34,7 @@ $grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
 echo '
 <main id="content" class="homepage">
+    <br>
 	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
 			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
 			by the new candidate genes prior to transfer to crop species</p>
