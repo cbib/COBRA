@@ -125,7 +125,7 @@ else{
 				if (count($userArray)!=0)
 		
 				{
-					echo 'here';
+					//echo 'here';
 					foreach ( $user as $person ) { 
 				//	echo $person['lastname'];
 				// var_dump($user);
