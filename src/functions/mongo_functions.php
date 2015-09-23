@@ -130,31 +130,39 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         
         
         
-        $cursor2=$ma->aggregate(array(
-        array('$match' => array('type'=>'full_table')),  
-        //array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
-        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
-        array('$unwind'=>'$mapping_file'),
-        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$value['gene']),array('mapping_file.Uniprot ID'=>$value['gene']),array('mapping_file.Protein ID 2'=>$value['gene']),array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.Alias'=>$value['gene']),array('mapping_file.Probe ID'=>$value['gene']),array('mapping_file.Gene ID'=>$value['gene']),array('mapping_file.Gene ID 2'=>$value['gene'])))),
-        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
+//        $cursor2=$ma->aggregate(array(
+//        array('$match' => array('type'=>'full_table')),  
+//        //array('$match' => array('$and'=>array(array('type'=>'full_table'),array('species'=>$species)))),  
+//        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+//        array('$unwind'=>'$mapping_file'),
+//        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$value['gene']),array('mapping_file.Uniprot ID'=>$value['gene']),array('mapping_file.Protein ID 2'=>$value['gene']),array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.Alias'=>$value['gene']),array('mapping_file.Probe ID'=>$value['gene']),array('mapping_file.Gene ID'=>$value['gene']),array('mapping_file.Gene ID 2'=>$value['gene'])))),
+//        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
+        
+        
+        $cursor2=$ma->find(array('mapping_file.Protein ID'=>$value['gene']),array('mapping_file.$'=>1,'_id'=>0));
+        foreach ($cursor2 as $data){
+                $species=$data['species'];
+                foreach ($data['mapping_file'] as $values){
+                    array_push($gene_list,array('plaza_id'=>$values['Plaza ID'],'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
+
+                }
+        }
+        
         $timeend=microtime(true);
         $time=$timeend-$timestart;
-        
-        
-
         //Afficher le temps d'éxecution
         $page_load_time = number_format($time, 3);
         echo "Script starting at: ".date("H:i:s", $timestart);
         echo "<br>Script ending at:".date("H:i:s", $timeend);
         echo "<br>Script aggregate  executed in " . $page_load_time . " sec";
-        foreach ($cursor2['result'] as $result) {
-            //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
-            $plaza_id=$result['mapping_file']['Plaza ID'];
-            array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
-
-            
-            
-        }
+//        foreach ($cursor2['result'] as $result) {
+//            //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
+//            $plaza_id=$result['mapping_file']['Plaza ID'];
+//            array_push($gene_list,array('plaza_id'=>$plaza_id,'search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
+//
+//            
+//            
+//        }
     }
     
     return $gene_list;
