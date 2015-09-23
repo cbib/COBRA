@@ -48,6 +48,6 @@ for go_doc in GO_to_process:
 	
         #db.gene_ontology.createIndex({GO_collections:1})
 
-        logger.info("Indexation on field \"GO_collections.id\" from collection \"gene_ontology\"")
-
-        gene_ontology_col.create_index("GO_collections.id",sparse=True)
+        
+logger.info("Indexation on field \"GO_collections.id\" from collection \"gene_ontology\"")
+gene_ontology_col.create_index("GO_collections.id",sparse=True)
