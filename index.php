@@ -6,15 +6,15 @@ session_start();
 
 #set_include_path('/var/www/html/COBRA/');
 
-$_SESSION['maintenance'] = "yes"; 
-require('src/session/maintenance-session.php');
+
 require('src/functions/html_functions.php');
 require('src/functions/php_functions.php');
 require('src/functions/mongo_functions.php');
 require('src/session/control-session.php');
 
 
-
+$_SESSION['maintenance'] = "yes"; 
+require('src/session/maintenance-session.php');
 
 
 
