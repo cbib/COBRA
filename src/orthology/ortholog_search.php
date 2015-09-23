@@ -277,10 +277,10 @@ foreach ($data as $species){
                                             <tr>';
                                                 //echo "<th>Mapping type</th>";
                                                 echo "<th>Gene ID</th>";
-                                                echo "<th>Source</th>";
+                                                //echo "<th>Source</th>";
                                                 //echo "<th>tgt ID</th>";
                                                 echo "<th>Transcript/protein ID</th>";
-                                                echo "<th>Source</th>";
+                                                //echo "<th>Source</th>";
                                                 echo "<th>Species</th>";
                                                 echo'
                                             </tr>

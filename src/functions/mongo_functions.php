@@ -116,7 +116,9 @@ function make_orthologs_page($gene_list_attributes,$species='null'){
 }
 function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
     //echo 'in ortholog table function';
-    $cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
+    $cursor_array=  get_ortholog($mappingsCollection,$orthologsCollection,$species,$plaza_id);
+
+    //$cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
@@ -1070,24 +1072,10 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                     //echo '<td>'.$line['species'].'</td>';
                     $table_string.="</tr>";
                 }
-//                    $table_string.="<tr>";
-//                    
-//                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$value['species'].'&search='.$value['mapping_file']['Gene ID'].'">'.$value['mapping_file']['Gene ID'].'</a></td>';
-//                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
-//                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-//                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['mapping_file']['Uniprot ID'].'">'.$value['mapping_file']['Uniprot ID'].'</a></td>';
-//
-//                    //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
-//
-//                    $table_string.='<td>'.$line['species'].'</td>';
-//                    //echo '<td>'.$line['species'].'</td>';
-//                    $table_string.="</tr>";
-
-
             }
 
 
-//                $tgt=$mappingsCollection->aggregate(array(
+/*                $tgt=$mappingsCollection->aggregate(array(
 //                array('$match' => array('type'=>'full_table')),  
 //                array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
 //                array('$unwind'=>'$mapping_file'),
@@ -1113,7 +1101,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //
 //
 //                }                         
-        }
+       
         //}
 //        $timeend=microtime(true);
 //        $time=$timeend-$timestart;
@@ -1122,7 +1110,8 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
 //        $page_load_time = number_format($time, 3);
 //        echo "Debut du script dans get_orthologs: ".date("H:i:s", $timestart);
 //        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//        echo "<br>Script  execute en " . $page_load_time . " sec";
+//        echo "<br>Script  execute en " . $page_load_time . " sec";*/
+        }
     }
     return $table_string; 
     
