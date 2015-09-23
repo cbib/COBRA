@@ -1202,6 +1202,11 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 
                                   
                                     }
+                                    else if ($line['species']=="Prunus persica"){
+                                        $table_string.='<td><a href=http://pathways.rosaceae.org/PEACH/search-query?type=GENE&gname='.$line['src_to_tgt'][1][$i].'>'.$line['src_to_tgt'][1][$i].'</a></td>';
+
+                                    }
+                                        
                                     else{
                                         $table_string.='<td>'.$line['src_to_tgt'][1][$i].'</td>';
                                     }
