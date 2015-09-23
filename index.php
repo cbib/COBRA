@@ -14,7 +14,7 @@ require('src/session/control-session.php');
 
 
 $_SESSION['maintenance'] = "yes"; 
-//require('src/session/maintenance-session.php');
+require('src/session/maintenance-session.php');
 
 
 
