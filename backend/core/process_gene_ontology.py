@@ -47,4 +47,4 @@ for go_doc in GO_to_process:
 	#gene_ontology_col.update({"_id":go_doc['_id']},{"$set":{"GO_collections.$.values":parseGOOBO(file).items()}})
 	
         #db.gene_ontology.createIndex({GO_collections:1})
-        gene_ontology_col.create_index("GO_collections",sparse=True)
+        #gene_ontology_col.create_index("GO_collections",sparse=True)
