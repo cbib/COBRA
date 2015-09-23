@@ -8,7 +8,6 @@
 
 $_SESSION['maintenance'] = "yes"; 
 require('src/session/maintenance-session.php');
-
 require('src/functions/html_functions.php');
 require('src/functions/php_functions.php');
 require('src/functions/mongo_functions.php');
