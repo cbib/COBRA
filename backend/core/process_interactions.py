@@ -70,8 +70,8 @@ for map_doc in interactions_to_process:
 	#interactions_col.update({"_id":map_doc['_id']},{"$set":{"src_to_tgt":a_to_b.items()}})
 	#interactions_col.update({"_id":map_doc['_id']},{"$set":{"tgt_to_src":b_to_a.items()}})
         
-        logger.info("Indexation on field \"mapping_file.Host_symbol\" from collection \"interactions\")
+        logger.info("Indexation on field \"mapping_file.Host_symbol\" from collection \"interactions\"")
         interactions_col.create_index("mapping_file.Host_symbol",sparse=True)
 
-        logger.info("Indexation on field \"mapping_file.OFFICIAL_SYMBOL_A\" from collection \"interactions\")
+        logger.info("Indexation on field \"mapping_file.OFFICIAL_SYMBOL_A\" from collection \"interactions\"")
         interactions_col.create_index("mapping_file.OFFICIAL_SYMBOL_A",sparse=True)
