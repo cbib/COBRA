@@ -139,22 +139,22 @@ function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$to
 }
 function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollection $sp,$species,$type='null',$top_value=10){
     $gene_list=array();
-    $timestart=microtime(true);
+    //$timestart=microtime(true);
     $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
-    $timeend=microtime(true);
-    $time=$timeend-$timestart;
-
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Script starting at: ".date("H:i:s", $timestart);
-    echo "<br>Script ending at: ".date("H:i:s", $timeend);
-    echo "<br>Script for top diff expressed genes executed in " . $page_load_time . " sec";
+//    $timeend=microtime(true);
+//    $time=$timeend-$timestart;
+//
+//    //Afficher le temps d'éxecution
+//    $page_load_time = number_format($time, 3);
+//    echo "Script starting at: ".date("H:i:s", $timestart);
+//    echo "<br>Script ending at: ".date("H:i:s", $timeend);
+//    echo "<br>Script for top diff expressed genes executed in " . $page_load_time . " sec";
     foreach ($cursor as $value) {
         
         $gene_name=split('[.]', $value['gene']);
         //echo $gene_name[0];
         $value['gene']=$gene_name[0];
-        echo 'gene to found : '.$value['gene'].'</br>';
+        //echo 'gene to found : '.$value['gene'].'</br>';
         //$timestart=microtime(true);
         
         
@@ -1136,7 +1136,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
      //echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL');
     $table_string="";
-    echo 'current_plaza_id: '.$current_plaza_id;
+    //echo 'current_plaza_id: '.$current_plaza_id;
     if ($current_plaza_id!=""){
         
 //        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
@@ -1148,7 +1148,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //                }
 //            }
 //        }
-        echo 'current_plaza_id: '.$current_plaza_id;
+        //echo 'current_plaza_id: '.$current_plaza_id;
         
         $cursors=$orthologsCollection->aggregate(array(
             array('$match'=>array('species'=>$speciesID)),
@@ -1160,7 +1160,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
         //var_dump($cursors);
         foreach ($cursors['result'] as $values) {
             $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
-            echo 'ortholog list : '.$ortholog_list_id;
+            //echo 'ortholog list : '.$ortholog_list_id;
             $ortholog_list_id=split('[,]', $ortholog_list_id);
             foreach ($ortholog_list_id as $ortholog){
                 //echo 'ortholog'.$ortholog;
