@@ -175,7 +175,7 @@ foreach ($data as $species){
                                             <h3>
                                                 <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
                                                         Ortholog table 
-                                                        <div id="organism" class="right"><h4>Prunus species</h4></div>
+                                                        <!--<div id="organism" class="right"><h4>Prunus species</h4></div>-->
                                                 </a>				
                                             </h3>
                                         </div>
@@ -266,7 +266,7 @@ foreach ($data as $species){
                                         <h3>
                                             <a class="accordion-toggle collapsed" href="#ortho-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-parent="#accordion_documents-'.$value.str_replace(".", "_", $attributes['logFC']).'" data-toggle="collapse">
                                                     Ortholog table 
-                                                    <div id="organism" class="right"><h4>'.$species.'</h4></div>
+                                                    <!--<div id="organism" class="right"><h4></h4></div>-->
                                             </a>				
                                         </h3>
                                     </div>
