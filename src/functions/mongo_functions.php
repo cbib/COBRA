@@ -1,6 +1,36 @@
 <?php
 
 include 'simple_html_dom.php';
+### Connexion
+function mongoConnector() {
+
+	try
+	{
+		$m = new Mongo(); // connect
+    		$db = $m->selectDB("cobra_db");
+	}
+	catch ( MongoConnectionException $e )
+	{
+    		echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
+    		exit();
+	}
+	return $db;	
+}
+function mongoPersistantConnector() {
+
+	try
+	{
+		//$m = new Mongo(); // connect
+		$m = new MongoClient("localhost:27017", array("persist" => "x"));
+    		$db = $m->selectDB("cobra_db");
+	}
+	catch ( MongoConnectionException $e )
+	{
+    		echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
+    		echo $e->getMessage();
+		exit();
+	}
+}
 function make_orthologs_page($gene_list_attributes,$species='null'){
     foreach ($gene_list_attributes as $attributes) {
 
@@ -241,35 +271,6 @@ function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='
     return $transformed_list;
         
 }
-function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourite_id='null',$intermediary_id='null'){
-    //$src_and_tgt=array();
-    //echo 'entering get target from source'.$value;
-    foreach ($src_to_tgt as $row){
-        $found=FALSE;
-        foreach ($row as $column){
-            if (is_array($column)){                      
-                if ($found){
-                    $tgt=$column[0];
-                    
-                    //if (($tgt!="" )&& ($tgt!="NA")){
-                        $value_array[$favourite_id]=$value;
-                        $value_array['tgt']=$tgt;                           
-                        //echo 'tgt : '.$column[0].'</br>';  
-                    //}
-                    
-                }
-            }  
-            else {                         
-                if ($column==$value){
-                    $found=TRUE;                                               
-                    //echo 'src : '.$column.'</br>';    
-                }
-            }  
-        }       
-    }
-    return $value_array;
-}
-
 function get_gene_ontology_details(Mongocollection $ma,$species='null',$gene_id='null'){
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'type'=>'gene_to_go');
     $fields=array('src_to_tgt'=>1);
@@ -283,7 +284,6 @@ function get_gene_ontology_details(Mongocollection $ma,$species='null',$gene_id=
     }
     return $mapping; 
 }
-
 function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$species='null'){
     //first get the species
     if ($species=='All species'){
@@ -352,7 +352,6 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
 	
 
 }
-
 function convert_with_intermediary_id_into_plaza_id_list(Mongocollection $ma,$gene_list_attributes,$plaza_tgt_id,$species='null'){
     //echo $plaza_tgt_id.'----'.$plaza_tgt_id;
     $cursor=array();
@@ -434,38 +433,33 @@ function get_source_from_target($tgt_to_src,$value,$plaza_tgt_id='null'){
     }
     return $value;
 }
-
-### Connexion
-function mongoConnector() {
-
-	try
-	{
-		$m = new Mongo(); // connect
-    		$db = $m->selectDB("cobra_db");
-	}
-	catch ( MongoConnectionException $e )
-	{
-    		echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
-    		exit();
-	}
-	return $db;	
-}
-
-
-function mongoPersistantConnector() {
-
-	try
-	{
-		//$m = new Mongo(); // connect
-		$m = new MongoClient("localhost:27017", array("persist" => "x"));
-    		$db = $m->selectDB("cobra_db");
-	}
-	catch ( MongoConnectionException $e )
-	{
-    		echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
-    		echo $e->getMessage();
-		exit();
-	}
+function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourite_id='null',$intermediary_id='null'){
+    //$src_and_tgt=array();
+    //echo 'entering get target from source'.$value;
+    foreach ($src_to_tgt as $row){
+        $found=FALSE;
+        foreach ($row as $column){
+            if (is_array($column)){                      
+                if ($found){
+                    $tgt=$column[0];
+                    
+                    //if (($tgt!="" )&& ($tgt!="NA")){
+                        $value_array[$favourite_id]=$value;
+                        $value_array['tgt']=$tgt;                           
+                        //echo 'tgt : '.$column[0].'</br>';  
+                    //}
+                    
+                }
+            }  
+            else {                         
+                if ($column==$value){
+                    $found=TRUE;                                               
+                    //echo 'src : '.$column.'</br>';    
+                }
+            }  
+        }       
+    }
+    return $value_array;
 }
 
 ##Get all orthologs src to tgt : 
@@ -751,8 +745,6 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
     return $global_intact_array;
 }
-
-
 function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='null', $gene_id='null',$key='null'){
 	
 	#ask for the right species files
@@ -795,7 +787,6 @@ function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='nu
     return $MongoGridFSCursor;
 
 }
-
 ### Find all synonyms
 function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
     #echo "entering get all synonyms";
@@ -816,8 +807,6 @@ function get_all_synonyms(Mongocollection $sp, $key='null', $value='null'){
     }
     return $cursor;
 }
-
-
 function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='null',$src='null'){
    	$cursor=$collection->find(array('mapping_file.species' => $species ),array('_id'=>0, 'mapping_file'=>array('$elemMatch'=> array('species' => $species))));
     
@@ -854,7 +843,6 @@ function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='n
     return $MongoGridFSCursor;
    
 }
-
 function small_table_ortholog_string(MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
     $cursor_array=get_ortholog($mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
@@ -1467,8 +1455,6 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 
 }
 ### Find all aliases
-
-
 function find_description_by_regex(MongoCollection $sa,MongoRegex $re){
 
 
@@ -1669,7 +1655,6 @@ function get_all_results_from_samples(MongoCollection $measurementsCollection,Mo
 
 
 }
-
 //function find_protein_by_gene()
 function find_gene_by_regex(MongoCollection $me,MongoRegex $re){
 
@@ -1689,7 +1674,6 @@ function get_all_GO_information(MongoCollection $me,Mongocollection $sp,Mongocol
 
 
 }
-
 ### Find all genes up-regulated in a given species when infected with given virus
 function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, Mongocollection $ma,MongoCollection $vi,$species='null'){
 	$cursor=array();
@@ -2050,7 +2034,6 @@ function get_all_genes_regulated(MongoCollection $me,Mongocollection $sp,Mongoco
 // 	}
 
 }
-
 function get_all_genes_up_regulated(MongoCollection $me,Mongocollection $sp,Mongocollection $sa, Mongocollection $ma,MongoCollection $vi,$logFCInput='null',$species='null', $virus='null',$est_id='null'){
 	
 	
@@ -2971,8 +2954,6 @@ function get_all_genes_up_regulated(MongoCollection $me,Mongocollection $sp,Mong
     
   
 }
-
-
 ### Find all pathogens experimentally infecting any angiosperm
 function get_all_pathogens_infecting_angiosperm(Mongocollection $sp,Mongocollection $sa){
 
