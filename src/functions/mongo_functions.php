@@ -85,7 +85,7 @@ function make_orthologs_page($gene_list_attributes,$species='null'){
         }
 }
 function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
-    echo 'in ortholog table function';
+    //echo 'in ortholog table function';
     $cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
@@ -125,7 +125,7 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
         //echo $gene_name[0];
         $value['gene']=$gene_name[0];
         echo 'gene to found : '.$value['gene'].'</br>';
-        $timestart=microtime(true);
+        //$timestart=microtime(true);
         
         
         
@@ -148,13 +148,15 @@ function get_ortholog_list_2(Mongocollection $ma,Mongocollection $me,Mongocollec
                 }
         }
         
-        $timeend=microtime(true);
-        $time=$timeend-$timestart;
-        //Afficher le temps d'éxecution
-        $page_load_time = number_format($time, 3);
-        echo "Script starting at: ".date("H:i:s", $timestart);
-        echo "<br>Script ending at:".date("H:i:s", $timeend);
-        echo "<br>Script aggregate  executed in " . $page_load_time . " sec";
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Script starting at: ".date("H:i:s", $timestart);
+//        echo "<br>Script ending at:".date("H:i:s", $timeend);
+//        echo "<br>Script aggregate  executed in " . $page_load_time . " sec";
+
+//        
 //        foreach ($cursor2['result'] as $result) {
 //            //echo 'result plaza id:'.$result['mapping_file']['Plaza ID'];
 //            $plaza_id=$result['mapping_file']['Plaza ID'];
