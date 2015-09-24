@@ -95,9 +95,9 @@ for a_sample in samples_with_results:
 					else:	
 						
 						this_doc['FDR']=measure.get("FDR",None)
-						this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
-						measurements_to_insert.insert(this_doc)
-						n_op+=1
+					this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+					measurements_to_insert.insert(this_doc)
+					n_op+=1
 				else:
 					logger.critical("Experiment type %s not handled yet",experimental_results['type'])
 					continue
