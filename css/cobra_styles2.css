@@ -233,7 +233,17 @@ and open the template in the editor.
 	//float: right;
 	border: 1px solid #DDD;
   }
-  #summary > #stat-details > #ortholog_section{
+  #summary > #stat-details > #statsAndFilters{
+	//width: 480px;
+        width: 100%;
+        //height: 50%;
+        background-color: #FFF;
+	border-radius: 10px;
+	padding: 10px 10px 0px;
+	//float: right;
+	border: 1px solid #DDD;
+  }
+  #summary > #stat-details > #expression_profile{
 	//width: 480px;
         width: 100%;
         //height: 50%;
