@@ -248,7 +248,7 @@ echo   '<div id="summary">
                 <div id="expression_profile">
                     <div id="title" class="right"><h4>Expression profile</h4></div>';
                 
-                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))));
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 foreach ($cursor as $result) {
                     foreach ($result as $key) {
                         echo $key['direction'];
