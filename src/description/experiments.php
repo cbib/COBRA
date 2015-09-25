@@ -198,7 +198,22 @@ new_cobra_body($_SESSION['login'],"Experiments Details","section_experiments");
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Samples Details </h1>';
-		echo '</div>';
+		echo '</div>'
+        . '<div class="col-sm-6 col-md-3">
+    <div class="chart-wrapper">
+      <div class="chart-title">
+        Cell Title
+      </div>
+      <div class="chart-stage">
+        <div id="grid-1-1">
+          <!-- chart goes here! -->
+        </div>
+      </div>
+      <div class="chart-notes">
+        Notes about this chart
+      </div>
+    </div>
+  </div>';
 	$conditions=array();
 	$file_counter=0;
 	foreach($experimental_results as $details) {
