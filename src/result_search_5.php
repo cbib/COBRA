@@ -258,7 +258,7 @@ echo   '<div id="summary">
 //                        
 //                    }
 //                      
-                    var_dump($value);
+                    var_dump($result);
                 }
                
                 echo'
