@@ -140,6 +140,7 @@ function get_experiment($xp_id='null',  MongoCollection $samplesCollection){
             $type=$details['type'];
             $variety=$details['variety'];
             $dpi=$details['day_after_inoculation'];
+            echo 'day after inoculation'.$dpi;
             $material=$details['material'];
         }
     }

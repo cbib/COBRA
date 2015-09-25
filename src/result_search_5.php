@@ -251,6 +251,11 @@ echo   '<div id="summary">
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 foreach ($cursor as $result) {
                     echo $result['direction'];
+                    echo $result['xp'];
+                    $xp_full_name=explode(".", $result['xp']);
+                    
+                    $experiment_id=$xp_full_name[0];
+                    get_experiment($experiment_id,$samplesCollection);
 //                    foreach ($result as $key) {
 //                        foreach ($key as $values) {
 //                            echo $values;
