@@ -127,6 +127,8 @@ function get_expression_info(Mongocollection $me, $species='null',$gene_id='null
 
 } 
 function get_experiment($xp_id='null',  MongoCollection $samplesCollection){
+    echo 'entering into get_experiment function with id: ';
+    echo $xp_id;
     $cursor = $samplesCollection->find(array('_id'=>$xp_id), array('species'=>1,'assay.type'=>1,'src_pub'=>1,'assay.design'=>1,'deposited.sample_description_url'=>1,'deposited.repository'=>1,'experimental_results'=>1,'_id'=>0));
     foreach ($cursor as $result) {
         $species=$result['species'];
