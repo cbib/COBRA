@@ -66,7 +66,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>$search),array('mapping_file.Uniprot ID'=>$search),array('mapping_file.Protein ID'=>$search),array('mapping_file.Protein ID 2'=>$search),array('mapping_file.Alias'=>$search),array('mapping_file.Probe ID'=>$search),array('mapping_file.Gene ID'=>$search),array('mapping_file.Gene ID 2'=>$search),array('mapping_file.Symbol'=>$search)))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
 
-    var_dump($cursor);
+    //var_dump($cursor);
 
     
     if (count($cursor['result'])>0){
