@@ -121,6 +121,11 @@ function table_ortholog_string(MongoGridFS $grid,MongoCollection $mappingsCollec
     //$cursor_array=get_all_orthologs($grid,$mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
+function get_expression_info(Mongocollection $me, $species='null',$gene_id='null'){
+   
+    $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1))->sort(array('logFC'=>-1));
+
+} 
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
     //echo $type;
     //echo $top_value;
