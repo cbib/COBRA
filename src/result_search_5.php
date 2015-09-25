@@ -250,15 +250,17 @@ echo   '<div id="summary">
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))));
                 foreach ($cursor as $result) {
-//                    foreach ($result as $key => $value) {
+                    foreach ($result as $key) {
+                        echo $key['direction'];
+                    }
 //                    
 //                        echo $value;
 //
 //}
 //                        
 //                    }
-                    echo '<br>';    
-                    var_dump($result);
+                    //echo '<br>';    
+                    //var_dump($result);
                 }
                
                 echo'
