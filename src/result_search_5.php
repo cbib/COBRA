@@ -257,7 +257,7 @@ echo   '<div id="summary">
 //}
 //                        
 //                    }
-//                      
+                    echo '<br>';    
                     var_dump($result);
                 }
                
