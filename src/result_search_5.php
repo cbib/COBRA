@@ -246,7 +246,14 @@ echo   '<div id="summary">
                 echo'
                 </div>
                 <div id="expression_profile">
-                    <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <div id="title" class="right"><h4>Expression profile</h4></div>';
+                
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))));
+                foreach ($cursor as $value) {
+                    var_dump($value);
+                }
+                
+                echo'
                 </div>             
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
