@@ -1314,7 +1314,7 @@ new_cobra_footer();
 
 
 <script type="text/javascript" class="init">
-    var species="<?php echo '$species'; ?>"; 
+    var species="<?php echo $species; ?>"; 
     $(function(){
     $('#container').highcharts({
         chart: {
