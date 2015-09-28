@@ -277,8 +277,8 @@ echo   '<div id="summary">
 //                    "data"=>[(int) $result['logFC']]
 //                    );
                     $sample=array(
-                        "name"=>'condition_'.$counter, 
-                        "data"=>[(float) $result['logFC']]
+                        'name'=>'condition_'.$counter, 
+                        'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, json_encode($sample));
                     
