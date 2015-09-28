@@ -247,8 +247,22 @@ echo   '<div id="summary">
                 </div>
                 <div id="expression_profile">
                     <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <div class="panel-group" id="accordion_documents">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents" data-toggle="collapse">
+                                        Homologs table
+                                    </a>				
+                                </h3>
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="expression-chart">
+                                <div id="container" style="min-width: 310px; height: 400px;"></div>
+                            </div>
 
-                    <div id="container" style="min-width: 310px; height: 400px;"></div>';
+                        </div>
+                    </div>
+                    
 
 
 
