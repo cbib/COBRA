@@ -280,7 +280,7 @@ echo   '<div id="summary">
                         'name'=>'condition_'.$counter, 
                         'data'=>[(float) $result['logFC']]
                     );
-                    array_push($series, json_encode($sample));
+                    array_push($series, $sample);
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
@@ -1346,7 +1346,7 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var serie = "<?php $series; ?>";
+    var serie ="<?php json_encode($series); ?>";
     $(function () {
     $('#container').highcharts({
         chart: {
@@ -1380,7 +1380,11 @@ new_cobra_footer();
 //            name: 'condition 6',
 //            data: [2]
 //        },]
+//            for(var valeur in serie){
+//                
+//            }
           series: serie
+          
     });
 });
 	$(document).ready(function() {
