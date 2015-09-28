@@ -303,6 +303,7 @@ echo   '<div id="summary">
                     //echo '<br>';    
                     //var_dump($result);
                 }
+                var_dump($series);
                
                 echo'
                 <div id="shift_line"></div>
