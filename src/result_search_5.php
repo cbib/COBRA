@@ -245,7 +245,39 @@ echo   '<div id="summary">
                 }
                 echo'
                 </div>
-                            
+                <div id="expression_profile">
+                    <div id="title" class="right"><h4>Expression profile</h4></div>
+
+                    <div id="container_" style="width:100%; height:300px;"></div>';
+
+
+                
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+                foreach ($cursor as $result) {
+                    //echo 'expression: '.$result['direction'].'<br>';
+                    //echo 'experiment full name: '.$result['xp'].'<br>';
+                    $xp_full_name=explode(".", $result['xp']);
+                    
+                    $experiment_id=$xp_full_name[0];
+                    get_experiment($experiment_id,$samplesCollection);
+//                    foreach ($result as $key) {
+//                        foreach ($key as $values) {
+//                            echo $values;
+//                        }
+//                        
+//                    }
+//                    
+//                        echo $value;
+//
+//}
+//                        
+//                    }
+                    //echo '<br>';    
+                    //var_dump($result);
+                }
+               
+                echo'
+                </div>             
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
@@ -788,39 +820,6 @@ echo   '<div id="summary">
                   //$protein="Q39255";   
                   
    echo'</div>
-       <div id="expression_profile">
-        <div id="title" class="right"><h4>Expression profile</h4></div>
-            
-        <div id="container" style="width:100%; height:400px;"></div>';        
-
-
-                
-        $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
-        foreach ($cursor as $result) {
-            //echo 'expression: '.$result['direction'].'<br>';
-            //echo 'experiment full name: '.$result['xp'].'<br>';
-            $xp_full_name=explode(".", $result['xp']);
-
-            $experiment_id=$xp_full_name[0];
-            get_experiment($experiment_id,$samplesCollection);
-//                    foreach ($result as $key) {
-//                        foreach ($key as $values) {
-//                            echo $values;
-//                        }
-//                        
-//                    }
-//                    
-//                        echo $value;
-//
-//}
-//                        
-//                    }
-            //echo '<br>';    
-            //var_dump($result);
-        }
-        echo '</div>';      
-        echo'
-        </div> 
         </div>';
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
@@ -1315,7 +1314,7 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
     $(document).ready(function () { 
         $('#container').highcharts({
-        //$('#expression_profile').append("<div class=\"graph\" id=\"" + container + "\"></div>");
+        //$('#container').append("<div class=\"graph\" id=\"" + container_chart + "\"></div>");
 
             chart: {
                 type: 'bar'
