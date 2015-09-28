@@ -1346,10 +1346,6 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var serie ="<?php json_encode($series); ?>";
-    for(var valeur in serie){
-       document.write(valeur + ' : ' + serie[valeur] + '  ');
-    }
     $(function () {
     $('#container').highcharts({
         chart: {
@@ -1383,7 +1379,7 @@ new_cobra_footer();
 //            name: 'condition 6',
 //            data: [2]
 //        },]
-          series: serie
+          series: <?php echo json_encode($series); ?>
 
           //series: serie
           
