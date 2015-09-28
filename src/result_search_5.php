@@ -248,7 +248,7 @@ echo   '<div id="summary">
                 <div id="expression_profile">
                     <div id="title" class="right"><h4>Expression profile</h4></div>
 
-                    <div id="container_" style="width:100%; height:300px;"></div>';
+                    <div id="container" style="width:100%; height:300px;"></div>';
 
 
                 
