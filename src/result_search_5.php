@@ -1311,10 +1311,11 @@ new_cobra_footer();
 
 
 
-
 <script type="text/javascript" class="init">
     $(document).ready(function () { 
-        $('#container').highcharts({
+        //$('#container').highcharts({
+        $('#' + container).append("<div class=\"graph\" id=\"" + graphid + "\"></div>");
+
             chart: {
                 type: 'bar'
             },
