@@ -266,14 +266,14 @@ echo   '<div id="summary">
 
 
 
-                echo 'testing with id '.$gene_id[0].' and alias '.$gene_alias[0];
+                //echo 'testing with id '.$gene_id[0].' and alias '.$gene_alias[0];
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 $counter=1;
                 $series=array();
                 foreach ($cursor as $result) {
-                    echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
-                    echo 'gene: '.$result['gene'].'<br>';
-                    echo 'day_after_inoculation: '.$result['day_after_inoculation'].'<br>';
+                    //echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
+                    //echo 'gene: '.$result['gene'].'<br>';
+                    //echo 'day_after_inoculation: '.$result['day_after_inoculation'].'<br>';
 //                    $sample=array(
 //                    "name"=>'condition_'.$counter, 
 //                    "data"=>[(int) $result['logFC']]
