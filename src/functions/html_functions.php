@@ -42,6 +42,7 @@ echo'
 
 <!--highcharts-->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
 <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
 
 
