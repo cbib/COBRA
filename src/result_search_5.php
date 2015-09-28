@@ -261,7 +261,7 @@ echo   '<div id="summary">
                             </div>
 
                         </div>
-                    </div>
+                    </div>';
                     
 
 
