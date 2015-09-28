@@ -246,12 +246,14 @@ echo   '<div id="summary">
                 echo'
                 </div>
                 <div id="expression_profile">
-                    <div id="title" class="right"><h4>Expression profile</h4></div>';
+                    <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <div id="container" style="width:100%; height:300px;"></div>';
+
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 foreach ($cursor as $result) {
-                    echo 'expression: '.$result['direction'].'<br>';
-                    echo 'experiment full name: '.$result['xp'].'<br>';
+                    //echo 'expression: '.$result['direction'].'<br>';
+                    //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
                     
                     $experiment_id=$xp_full_name[0];
@@ -805,7 +807,6 @@ echo   '<div id="summary">
                     </div>
                 </div>
                 <div id="shift_line"></div>
-                <div id="container" style="width:100%; height:400px;"></div>
             </div>';
 //                $timeend=microtime(true);
 //                $time=$timeend-$timestart;
@@ -849,7 +850,7 @@ else{
 
 
 
-//HTML OUTPUT
+/*HTML OUTPUT
 //echo   '<div id="summary">   
 //            <div id="protein-details">'.$gene_id[0].'
 //            
@@ -1297,7 +1298,7 @@ else{
 //                  //$protein="Q39255";   
 //                  
 //       echo'</div>
-//        </div>';
+//        </div>';*/
 
 
 new_cobra_footer();
