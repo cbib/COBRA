@@ -1311,27 +1311,27 @@ new_cobra_footer();
 
 
 <script type="text/javascript" class="init">
-    $(document).ready(function () { 
+    $function () { 
         $('#container').highcharts({
             chart: {
                 type: 'bar'
             },
             title: {
-                text: 'Fruit Consumption'
+                text: 'Gene Expression'
             },
             xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
+                categories: ['XP1', 'XP2', 'XP3']
             },
             yAxis: {
                 title: {
-                    text: 'Fruit eaten'
+                    text: 'level of differential expression '
                 }
             },
             series: [{
-                name: 'Jane',
+                name: 'infected',
                 data: [1, 0, 4]
             }, {
-                name: 'John',
+                name: 'non infected',
                 data: [5, 7, 3]
             }]
         });
