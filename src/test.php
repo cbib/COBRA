@@ -8,9 +8,9 @@ echo '
 <meta charset="UTF-8" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.min.js"></script>
+<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
 
 </head>
 <body>
