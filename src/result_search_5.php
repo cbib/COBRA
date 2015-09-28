@@ -789,9 +789,9 @@ echo   '<div id="summary">
                   
    echo'</div>
        <div id="expression_profile">
-        <div id="title" class="right"><h4>Expression profile</h4></div>';
-
-                    
+        <div id="title" class="right"><h4>Expression profile</h4></div>
+            
+        <div id="container" style="width:100%; height:400px;"></div>';        
 
 
                 
@@ -1314,8 +1314,8 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
     $(document).ready(function () { 
-        //$('#container').highcharts({
-        $('#expression_profile').append("<div class=\"graph\" id=\"" + container_chart + "\"></div>");
+        $('#container').highcharts({
+        //$('#expression_profile').append("<div class=\"graph\" id=\"" + container + "\"></div>");
 
             chart: {
                 type: 'bar'
