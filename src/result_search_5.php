@@ -246,9 +246,9 @@ echo   '<div id="summary">
                 echo'
                 </div>
                 <div id="expression_profile">
-                    <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <div id="title" class="right"><h4>Expression profile</h4></div>';
 
-                    <div id="plot_chart" style ="width:100%"></div>';
+                    
 
 
                 
@@ -821,6 +821,7 @@ echo   '<div id="summary">
                   
    echo'</div>
         </div>';
+   echo '<div id="plot_chart" style ="width:100%"></div>';
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
 //    //Afficher le temps d'éxecution
