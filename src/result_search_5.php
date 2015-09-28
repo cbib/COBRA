@@ -269,7 +269,7 @@ echo   '<div id="summary">
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 foreach ($cursor as $result) {
-                    //echo 'expression: '.$result['direction'].'<br>';
+                    echo 'expression: '.$result['logFC'].'<br>';
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
                     
