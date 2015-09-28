@@ -19,6 +19,7 @@ echo '
 </body>';
 
 ?>
+
 <script type="text/javascript" class="init">
 
 $(function () {
