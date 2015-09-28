@@ -818,7 +818,7 @@ echo   '<div id="summary">
             //echo '<br>';    
             //var_dump($result);
         }
-               
+        echo '</div>';      
         echo'
         </div> 
         </div>';
