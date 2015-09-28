@@ -1356,7 +1356,26 @@ new_cobra_footer();
         credits: {
             enabled: false
         },
-        series: serie
+        series: [{
+            name: 'condition 1',
+            data: [5]
+        }, {
+            name: 'condition 2',
+            data: [2]
+        }, {
+            name: 'condition 3',
+            data: [3]
+        },{
+            name: 'condition 4',
+            data: [2]
+        },{
+            name: 'condition 5',
+            data: [2]
+        },{
+            name: 'condition 6',
+            data: [2]
+        },]
+        //series: serie
     });
 });
 	$(document).ready(function() {
