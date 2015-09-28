@@ -266,27 +266,28 @@ echo   '<div id="summary">
 
 
 
-                
+                echo 'testing with id '.$gene_id[0].' and alias '.$gene_alias[0];
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
-                $counter=0;
+                $counter=1;
                 $series=array();
                 foreach ($cursor as $result) {
-                    //echo 'expression: '.$result['logFC'].'<br>';
+                    echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
+                    echo 'gene: '.$result['gene'].'<br>';
 //                    $sample=array(
 //                    "name"=>'condition_'.$counter, 
 //                    "data"=>[(int) $result['logFC']]
 //                    );
                     $sample=array(
-                        'name'=>'condition_'.$counter, 
+                        'name'=>'Condition '.$counter, 
                         'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, $sample);
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
-                    $xp_full_name=explode(".", $result['xp']);
+                    //$xp_full_name=explode(".", $result['xp']);
                     
-                    $experiment_id=$xp_full_name[0];
-                    get_experiment($experiment_id,$samplesCollection);
+                    //$experiment_id=$xp_full_name[0];
+                    //get_experiment($experiment_id,$samplesCollection);
                     $counter++;
 //                    foreach ($result as $key) {
 //                        foreach ($key as $values) {
@@ -1379,6 +1380,7 @@ new_cobra_footer();
 //            name: 'condition 6',
 //            data: [2]
 //        },]
+          
           series: <?php echo json_encode($series); ?>
 
           //series: serie
