@@ -1381,7 +1381,7 @@ new_cobra_footer();
 //            data: [2]
 //        },]
           for(var valeur in serie){
-             $(document).write(valeur + ' : ' + serie[valeur] + '  ');
+             document.write(valeur + ' : ' + serie[valeur] + '  ');
           }
           series: serie
           
