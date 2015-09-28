@@ -1322,7 +1322,7 @@ new_cobra_footer();
             type: 'column'
         },
         title: {
-            text: ''
+            text: genes 'differential expression'
         },
         xAxis: {
             categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
