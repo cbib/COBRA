@@ -821,7 +821,7 @@ echo   '<div id="summary">
                   
    echo'</div>
         </div>';
-   echo '<div id="plot_chart" style ="width:100%"></div>';
+   
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
 //    //Afficher le temps d'éxecution
@@ -1313,34 +1313,7 @@ new_cobra_footer();
 
 
 <script type="text/javascript" class="init">
-    $(function () { 
-       //$('#expression_profile').append("<div class=\"graph\" id=\"container\"></div>");
-
-        $('#plot_chart').highcharts({
-
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Gene Expression'
-            },
-            xAxis: {
-                categories: ['XP1', 'XP2', 'XP3']
-            },
-            yAxis: {
-                title: {
-                    text: 'level of differential expression '
-                }
-            },
-            series: [{
-                name: 'infected',
-                data: [1, 0, 4]
-            }, {
-                name: 'non infected',
-                data: [5, 7, 3]
-            }]
-        });
-    });
+    
 	$(document).ready(function() {
 		$('#example').dataTable( {
 			"scrollX": true,
