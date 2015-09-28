@@ -1315,13 +1315,14 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
     var species="<?php echo $species; ?>"; 
+    var genes="<?php echo $gene_id[0]; ?>"; 
     $(function () {
     $('#container').highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Column chart with negative values'
+            text: ''
         },
         xAxis: {
             categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
