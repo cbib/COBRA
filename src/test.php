@@ -23,7 +23,7 @@ echo '
 
 <script type="text/javascript" class="init">
 
-$(function () {
+$(document).ready(function () {
     $('#container').highcharts({
         chart: {
             type: 'column'
