@@ -1380,9 +1380,9 @@ new_cobra_footer();
 //            name: 'condition 6',
 //            data: [2]
 //        },]
-//            for(var valeur in serie){
-//                
-//            }
+          for(var valeur in serie){
+             $(document).write(valeur + ' : ' + serie[valeur] + '  ');
+          }
           series: serie
           
     });
