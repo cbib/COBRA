@@ -272,11 +272,15 @@ echo   '<div id="summary">
                 $series=array();
                 foreach ($cursor as $result) {
                     echo 'expression: '.$result['logFC'].'<br>';
-                    $array=array(
+//                    $sample=array(
+//                    "name"=>'condition_'.$counter, 
+//                    "data"=>[(int) $result['logFC']]
+//                    );
+                    $sample=array(
                     "name"=>'condition_'.$counter, 
-                    "data"=>[(int) $result['logFC']]
+                    "data"=>array(3)
                     );
-                    array_push($series, $array);
+                    array_push($series, json_encode($sample));
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
@@ -1341,7 +1345,7 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var serie = "<?php json_encode($series); ?>";
+    var serie = "<?php $series; ?>";
     $(function () {
     $('#container').highcharts({
         chart: {
@@ -1356,26 +1360,26 @@ new_cobra_footer();
         credits: {
             enabled: false
         },
-        series: [{
-            name: 'condition 1',
-            data: 5
-        }, {
-            name: 'condition 2',
-            data: 2
-        }, {
-            name: 'condition 3',
-            data: 3
-        },{
-            name: 'condition 4',
-            data: 2
-        },{
-            name: 'condition 5',
-            data: 2
-        },{
-            name: 'condition 6',
-            data: 2
-        },]
-        //series: serie
+//        series: [{
+//            name: 'condition 1',
+//            data: [5]
+//        }, {
+//            name: 'condition 2',
+//            data: [2]
+//        }, {
+//            name: 'condition 3',
+//            data: [3]
+//        },{
+//            name: 'condition 4',
+//            data: [2]
+//        },{
+//            name: 'condition 5',
+//            data: [2]
+//        },{
+//            name: 'condition 6',
+//            data: [2]
+//        },]
+          series: serie
     });
 });
 	$(document).ready(function() {
