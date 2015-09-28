@@ -271,7 +271,7 @@ echo   '<div id="summary">
                 $counter=0;
                 $series=array();
                 foreach ($cursor as $result) {
-                    echo 'expression: '.$result['logFC'].'<br>';
+                    //echo 'expression: '.$result['logFC'].'<br>';
 //                    $sample=array(
 //                    "name"=>'condition_'.$counter, 
 //                    "data"=>[(int) $result['logFC']]
@@ -303,7 +303,7 @@ echo   '<div id="summary">
                     //echo '<br>';    
                     //var_dump($result);
                 }
-                var_dump($series);
+                //var_dump($series);
                
                 echo'
                 <div id="shift_line"></div>
