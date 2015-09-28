@@ -1374,8 +1374,7 @@ new_cobra_footer();
         }, {
             name: 'Joe',
             data: [3, 4, 4, 2, 5]
-        }],
-        var NomVariable = '<?php echo $species; ?>' ; 
+        }]
     });
 });
 	$(document).ready(function() {
