@@ -247,7 +247,9 @@ echo   '<div id="summary">
                 </div>
                 <div id="expression_profile">
                     <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <div id="container" style="width:100%; height:300px;"></div>
                     <div id="container" style="width:100%; height:300px;"></div>';
+
 
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
