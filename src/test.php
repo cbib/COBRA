@@ -2,20 +2,20 @@
 
 echo '
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>PLATO DataBase</title>
-        <meta charset="UTF-8" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html>
+<head>
+<title>PLATO DataBase</title>
+<meta charset="UTF-8" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 </head>
-    <body>
+<body>
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>';
 
