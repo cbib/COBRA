@@ -273,8 +273,8 @@ echo   '<div id="summary">
                 foreach ($cursor as $result) {
                     echo 'expression: '.$result['logFC'].'<br>';
                     $array=array(
-                    "name"=>'conditions'.$counter, 
-                    "data"=>$result['logFC']
+                    "name"=>'condition_'.$counter, 
+                    "data"=>[(int) $result['logFC']]
                     );
                     array_push($series, $array);
                     
