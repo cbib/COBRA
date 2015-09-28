@@ -1312,7 +1312,7 @@ new_cobra_footer();
 
 
 <script type="text/javascript" class="init">
-    $(document).ready(function () { 
+    $(function () { 
        $('#expression_profile').append("<div class=\"graph\" id=\"container\"></div>");
 
         $('#container').highcharts({
