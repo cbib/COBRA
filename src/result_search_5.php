@@ -1389,7 +1389,7 @@ new_cobra_footer();
 
         });
         // Load the fonts
-Highcharts.createElement('link', {
+        Highcharts.createElement('link', {
    href: '//fonts.googleapis.com/css?family=Unica+One',
    rel: 'stylesheet',
    type: 'text/css'
