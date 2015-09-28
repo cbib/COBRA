@@ -1314,6 +1314,7 @@ new_cobra_footer();
 
 
 <script type="text/javascript" class="init">
+    var species="<?php echo '$species'; ?>"; 
     $(function(){
     $('#container').highcharts({
         chart: {
@@ -1323,7 +1324,7 @@ new_cobra_footer();
             text: 'gene differential expression'
         },
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            categories: [species, 'Oranges', 'Pears', 'Grapes', 'Bananas']
         },
         yAxis: {
             min: 0,
