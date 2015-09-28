@@ -1341,21 +1341,30 @@ new_cobra_footer();
             text: 'differential expression'
         },
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            categories: ['differents conditions',]
         },
         credits: {
             enabled: false
         },
         series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
+            name: 'condition 1',
+            data: [5]
         }, {
-            name: 'Jane',
-            data: [2, -2, -3, 2, 1]
+            name: 'condition 2',
+            data: [2]
         }, {
-            name: 'Joe',
-            data: [3, 4, 4, -2, 5]
-        }]
+            name: 'condition 3',
+            data: [3]
+        },{
+            name: 'condition 4',
+            data: [2]
+        },{
+            name: 'condition 5',
+            data: [2]
+        },{
+            name: 'condition 6',
+            data: [2]
+        },]
     });
 });
 	$(document).ready(function() {
