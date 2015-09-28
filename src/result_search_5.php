@@ -273,6 +273,7 @@ echo   '<div id="summary">
                 foreach ($cursor as $result) {
                     echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
                     echo 'gene: '.$result['gene'].'<br>';
+                    echo 'day_after_inoculation: '.$result['day_after_inoculation'].'<br>';
 //                    $sample=array(
 //                    "name"=>'condition_'.$counter, 
 //                    "data"=>[(int) $result['logFC']]
