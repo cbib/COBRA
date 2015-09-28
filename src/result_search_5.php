@@ -268,13 +268,22 @@ echo   '<div id="summary">
 
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+                $counter=0;
+                $series=array();
                 foreach ($cursor as $result) {
                     echo 'expression: '.$result['logFC'].'<br>';
+                    $array=array(
+                    "name"=>'conditions'.$counter, 
+                    "data"=>$result['logFC']
+                    );
+                    array_push($series, $array);
+                    
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
                     
                     $experiment_id=$xp_full_name[0];
                     get_experiment($experiment_id,$samplesCollection);
+                    $counter++;
 //                    foreach ($result as $key) {
 //                        foreach ($key as $values) {
 //                            echo $values;
@@ -1332,6 +1341,7 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
+    var series = <?php json_encode($series); ?>;
     $(function () {
     $('#container').highcharts({
         chart: {
@@ -1341,30 +1351,12 @@ new_cobra_footer();
             text: 'differential expression'
         },
         xAxis: {
-            categories: ['differents conditions',]
+            categories: ['samples',]
         },
         credits: {
             enabled: false
         },
-        series: [{
-            name: 'condition 1',
-            data: [5]
-        }, {
-            name: 'condition 2',
-            data: [2]
-        }, {
-            name: 'condition 3',
-            data: [3]
-        },{
-            name: 'condition 4',
-            data: [2]
-        },{
-            name: 'condition 5',
-            data: [2]
-        },{
-            name: 'condition 6',
-            data: [2]
-        },]
+        series: series
     });
 });
 	$(document).ready(function() {
