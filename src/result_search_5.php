@@ -1320,7 +1320,7 @@ new_cobra_footer();
             type: 'column'
         },
         title: {
-            text: 'Stacked column chart'
+            text: 'gene differential expression'
         },
         xAxis: {
             categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
@@ -1328,7 +1328,7 @@ new_cobra_footer();
         yAxis: {
             min: 0,
             title: {
-                text: 'Total fruit consumption'
+                text: 'Total fruit consumption (Log2)'
             },
             stackLabels: {
                 enabled: true,
@@ -1374,7 +1374,8 @@ new_cobra_footer();
         }, {
             name: 'Joe',
             data: [3, 4, 4, 2, 5]
-        }]
+        }],
+        var NomVariable = '<?php echo $species; ?>' ; 
     });
 });
 	$(document).ready(function() {
