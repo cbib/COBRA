@@ -292,6 +292,7 @@ echo   '<div id="summary">
                 }
                
                 echo'
+                <div id="shift_line"></div>
                 </div>             
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
@@ -404,6 +405,7 @@ echo   '<div id="summary">
                         </div>';                               
                         echo'
                     </div>
+                    <div id="shift_line"></div>
                 </div>
                 <div id="linkouts">
                     <h3>External Database Linkouts</h3>';
