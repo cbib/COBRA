@@ -279,7 +279,7 @@ echo   '<div id="summary">
 //                    "data"=>[(int) $result['logFC']]
 //                    );
                     $sample=array(
-                        'name'=>'Condition '.$counter, 
+                        'name'=>'Day post inoc '.$result['day_after_inoculation'], 
                         'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, $sample);
