@@ -444,7 +444,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			],
 			"contrast":"infected VS healthy",
 			"type":"contrast",
-                        "day_after_inoculation":"NA",s
+                        "day_after_inoculation":"NA",
 			"variety":"Tendral",
 			"day_after_inoculation":"NA",
                         "material":"cotyledon"
