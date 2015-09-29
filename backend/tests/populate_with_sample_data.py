@@ -414,7 +414,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			"contrast":"46d VS 15d",
 			"type":"contrast",
 			"variety":"T-111",
-         "material":"Fruit mesocarp"
+                        "material":"Fruit mesocarp"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/monosporascus_cannonballus/1471-2164-10-467-S2.XLS",
@@ -429,7 +429,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			"type":"contrast",
 			"variety":"pat81",
 			"day_after_inoculation":"NA",
-         "material":"root"
+                        "material":"root"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/cucumber_mosaic_virus/1471-2164-10-467-S3.XLS",
@@ -444,7 +444,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			"type":"contrast",
 			"variety":"Tendral",
 			"day_after_inoculation":"NA",
-         "material":"cotyledon"
+                        "material":"cotyledon"
 			
 		}
 	]
@@ -493,7 +493,7 @@ tomato_samples={
 			"type":"contrast",
 			"variety":"NA",
 			"day_after_inoculation":"NA",
-         "material":"NA"
+                        "material":"NA"
 			
 		}
 	]
@@ -550,7 +550,7 @@ AT_samples={
 			"type":"contrast",
 			"variety":"landsberg erecta",
 			"day_after_inoculation":7,
-         "material":"leaf"
+                        "material":"leaf"
 			
 		},
 		{
@@ -573,7 +573,7 @@ AT_samples={
 			"type":"contrast",
 			"variety":"landsberg erecta",
 			"day_after_inoculation":7,
-         "material":"leaf"
+                        "material":"leaf"
 			
 		}
 	]
@@ -621,7 +621,7 @@ AT_samples={
 			"type":"contrast",
 			"variety":"landsberg erecta",
 			"day_after_inoculation":7,
-         "material":"leaf"
+                        "material":"leaf"
 			
 		},
 		{
@@ -636,8 +636,8 @@ AT_samples={
 			"contrast":"infected VS healthy",
 			"type":"contrast",
 			"variety":"landsberg erecta",
-			"day_after_inoculation":7,
-         "material":"leaf"
+            		"day_after_inoculation":7,
+                        "material":"leaf"
 			
 		}
 	]
@@ -686,7 +686,7 @@ AT_samples={
 			"type":"contrast",
 			"variety":"landsberg erecta",
 			"day_after_inoculation":7,
-         "material":"leaf"
+                        "material":"leaf"
 			
 		},
 		{

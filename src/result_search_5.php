@@ -1358,7 +1358,8 @@ new_cobra_footer();
                 text: 'differential expression'
             },
             xAxis: {
-                categories: ['samples',]
+                categories: ['samples',],
+                title: {text: 'Samples'}
             },
             credits: {
                 enabled: false
