@@ -30,6 +30,7 @@ n_op=0
 measurements_to_insert=measurements_col.initialize_unordered_bulk_op()
 for a_sample in samples_with_results:
 	# i,experimental_results=enumerate(a_sample['experimental_results']).next()
+        assay=a_sample['assay']
 	for i,experimental_results in enumerate(a_sample['experimental_results']):
 		this_path=str(a_sample['_id'])+".experimental_results."+str(i)
 		if this_path in already_existing_xp:
