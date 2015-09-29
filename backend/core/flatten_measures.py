@@ -73,12 +73,13 @@ for a_sample in samples_with_results:
 					this_doc['gene']=tgt_id
 					this_doc['infection_agent']=infection_agent
 					this_doc['gene_original_id']=measure[id_col]
-                                        if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
-                                            this.doc['day_after_inoculation']=experimental_results['day_after_inoculation']
-                                        if experimental_results['variety']!="" and experimental_results['variety']!="NA":
-                                            this.doc['variety']=experimental_results['variety']
-                                        if experimental_results['material']!="" and experimental_results['material']!="NA":
-                                            this.doc['material']=experimental_results['material']
+                                        if assay['type']=="micro-array":
+                                            if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
+                                                this.doc['day_after_inoculation']=experimental_results['day_after_inoculation']
+                                            if experimental_results['variety']!="" and experimental_results['variety']!="NA":
+                                                this.doc['variety']=experimental_results['variety']
+                                            if experimental_results['material']!="" and experimental_results['material']!="NA":
+                                                this.doc['material']=experimental_results['material']
 
 					this_doc['species']=this_genome['full_name']
 					#logger.info("Tgid = %s",tgt_id)
