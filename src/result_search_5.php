@@ -1360,6 +1360,9 @@ new_cobra_footer();
             xAxis: {
                 categories: ['samples',]
             },
+            xAxis: {
+                categories: ['Differential expression(logFC)',]
+            },
             credits: {
                 enabled: false
             },
