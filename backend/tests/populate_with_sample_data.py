@@ -413,6 +413,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			"conditions":["15d","46d"],
 			"contrast":"46d VS 15d",
 			"type":"contrast",
+                        "day_after_inoculation":"NA",
 			"variety":"T-111",
                         "material":"Fruit mesocarp"
 		},
@@ -427,6 +428,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			],
 			"contrast":"infected VS healthy",
 			"type":"contrast",
+                        "day_after_inoculation":"NA",
 			"variety":"pat81",
 			"day_after_inoculation":"NA",
                         "material":"root"
@@ -442,6 +444,7 @@ The material used for the transcriptomic profile analyses came from three differ
 			],
 			"contrast":"infected VS healthy",
 			"type":"contrast",
+                        "day_after_inoculation":"NA",s
 			"variety":"Tendral",
 			"day_after_inoculation":"NA",
                         "material":"cotyledon"
