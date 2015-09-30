@@ -246,7 +246,8 @@ echo   '<div id="summary">
                 echo'
                 </div>
                 <div id="expression_profile">
-                    <div id="title" class="right"><h4>Expression profile</h4></div>
+                    <h3>Expression profile</h3>
+                    <!--<div id="title" class="right"><h4>Expression profile</h4></div>-->
                     <div class="panel-group" id="accordion_documents">
                         <div class="panel panel-default">
                             <div class="panel-heading">
