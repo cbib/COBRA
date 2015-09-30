@@ -285,9 +285,10 @@ echo   '<div id="summary">
                     array_push($series, $sample);
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
-                    //$xp_full_name=explode(".", $result['xp']);
+                    $xp_full_name=explode(".", $result['xp']);
                     
-                    //$experiment_id=$xp_full_name[0];
+                    $experiment_id=$xp_full_name[0];
+                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
                     //get_experiment($experiment_id,$samplesCollection);
                     $counter++;
 //                    foreach ($result as $key) {
@@ -1355,10 +1356,13 @@ new_cobra_footer();
                 type: 'column'
             },
             title: {
-                text: 'differential expression'
+                text: genes.' differential expression'
+            },
+            subtitle: {
+                text: $xp_name
             },
             xAxis: {
-                //categories: ['samples',],
+                categories: ['samples',],
                 title: {text: 'Samples'}
             },
             credits: {

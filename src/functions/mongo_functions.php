@@ -126,27 +126,27 @@ function get_expression_info(Mongocollection $me, $species='null',$gene_id='null
     $cursor=$me->find(array('direction'=>$type,'species' => $species,'gene'=>array('$ne'=>'')),array('_id'=>0,'gene' => 1,'logFC'=>1,'infection_agent'=>1))->sort(array('logFC'=>-1));
 
 } 
-function get_experiment($xp_id='null',  MongoCollection $samplesCollection){
-    //echo 'entering into get_experiment function with id: ';
-    //echo $xp_id;
-    $cursor = $samplesCollection->find(array('_id'=>new MongoId($xp_id)), array('species'=>1,'assay.type'=>1,'src_pub'=>1,'assay.design'=>1,'deposited.sample_description_url'=>1,'deposited.repository'=>1,'experimental_results'=>1,'_id'=>0));
+function get_experiment_name_with_id(MongoCollection $samplesCollection,$xp_id='null'){
+
+    $cursor = $samplesCollection->find(array('_id'=>new MongoId($xp_id)), array('name'=>1,'_id'=>0));
     foreach ($cursor as $result) {
-        $species=$result['species'];
- 		$source_pub=$result['src_pub'];
- 		$assay_info=$result['assay'];
- 		$deposit_info=$result['deposited'];
- 		$experimental_results=$result['experimental_results'];
         
-        foreach($experimental_results as $details) {
-            $conditions=$details['conditions'];
-            $contrast=$details['contrast'];
-            $type=$details['type'];
-            $variety=$details['variety'];
-            $dpi=$details['day_after_inoculation'];
-            //echo 'day after inoculation'.$dpi;
-            $material=$details['material'];
-        }
+        $name=$result['name'];
+ 		
     }
+    return $name;
+
+    
+}
+function get_experiment_type_with_id( MongoCollection $samplesCollection,$xp_id='null'){
+    
+    $cursor = $samplesCollection->find(array('_id'=>new MongoId($xp_id)), array('assay.type'=>1,'_id'=>0));
+    foreach ($cursor as $result) {
+        
+        $type=$result['assay.type'];
+ 		
+    }
+    return $type;
 
 }
 function get_n_top_diff_expressed_genes(Mongocollection $me, $species='null',$top_value=10,$type='null'){
