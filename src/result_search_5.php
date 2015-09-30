@@ -253,7 +253,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 <h3>
                                     <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents" data-toggle="collapse">
-                                        Expression data
+                                        <strong>Expression data</strong>
                                     </a>				
                                 </h3>
                             </div>
