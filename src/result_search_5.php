@@ -1366,6 +1366,9 @@ new_cobra_footer();
                 categories: ['samples',],
                 title: {text: 'Samples'}
             },
+            yAxis: {
+                type: 'logarithmic'
+            },
             credits: {
                 enabled: false
             },
