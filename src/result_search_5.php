@@ -811,7 +811,7 @@ echo   '<div id="summary">
                         <div class="panel-heading">
                           
                                 <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
-                                        Homologs table
+                                        <strong>Homologs table</strong>
                                 </a>				
 
                         </div>
