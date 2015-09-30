@@ -251,11 +251,11 @@ echo   '<div id="summary">
                     <div class="panel-group" id="accordion_documents">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>
+                                
                                     <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents" data-toggle="collapse">
                                         <strong>Expression data</strong>
                                     </a>				
-                                </h3>
+                           
                             </div>
                             <div class="panel-body panel-collapse collapse" id="expression-chart">
                                 <div id="container" style="min-width: 310px; height: 400px;"></div>
