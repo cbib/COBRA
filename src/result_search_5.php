@@ -315,7 +315,7 @@ echo   '<div id="summary">
                 <div id="goTerms">
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
-                        <br/>
+                        
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
