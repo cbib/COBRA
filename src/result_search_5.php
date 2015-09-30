@@ -809,11 +809,11 @@ echo   '<div id="summary">
                 <div class="panel-group" id="accordion_documents">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>
+                          
                                 <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
                                         Homologs table
                                 </a>				
-                            </h3>
+
                         </div>
                         <div class="panel-body panel-collapse collapse" id="ortho-table">
                             <table class="table table-condensed table-hover table-striped">                                                                <thead>
