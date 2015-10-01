@@ -283,7 +283,7 @@ echo   '<div id="summary">
                     
                     $sample=array(
                         'name'=>'Day post inoc '.$result['day_after_inoculation'],
-                        'infection_agent'=>"Tobacco etch virus",
+                        //'infection_agent'=>"Tobacco etch virus",
                         'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, $sample);
@@ -1405,8 +1405,12 @@ new_cobra_footer();
     //            data: [2]
     //        },]
 
-              series: <?php echo json_encode($series); ?>
-
+              series: <?php echo json_encode($series); ?>,
+              tooltip: {
+                formatter: function() {
+                    return 'The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series ';
+                }
+              }
               //series: serie
 
         });
