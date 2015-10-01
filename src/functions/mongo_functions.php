@@ -585,177 +585,178 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
         //echo 'gene alias: '.$gene_alias[0];
         //echo 'gene description: '.$descriptions[0];
         //$symbol='P58IPK';
-        
-		$cursor=$interactionsCollection->aggregate(array( 
-			array('$unwind'=>'$mapping_file'), 
-			array('$match'=> array('$or'=> array(array('mapping_file.Host_symbol'=>$symbol),array('mapping_file.Host_symbol'=>$gene_alias[0]),array('mapping_file.Host_symbol'=>$descriptions[0])))),
-			array('$project' => array('mapping_file.Host_symbol'=>1,'mapping_file.Virus_symbol'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
-		));
-		if (count($cursor['result'])!=0){
-			//echo '<h2> interactions was found for this gene '.$symbol.' number is'.count($cursor['result']).'</h2>';
-			//var_dump($cursor);
-			//echo '<dl class="dl-horizontal">';
-			for ($i = 0; $i < count($cursor['result']); $i++) {
-				$mapping_file=$cursor['result'][$i]['mapping_file'];
-				
-				//echo $mapping_file['Reference'];
-//                echo'<dt>Host</dt>
-//                <dd>'.$mapping_file['host'].'</dd>';
-//                echo'<dt>Virus</dt>
-//                <dd>'.$mapping_file['virus'].'</dd>';
-//                echo'<dt>Viral Protein</dt>
-//                <dd>'.$mapping_file['Virus_symbol'].'</dd>';
-//                echo'<dt>Putative function</dt>
-//                <dd>'.$mapping_file['Putative_function'].'</dd>';
-//                echo'<dt>Reference</dt>
-//                <dd>'.$mapping_file['Reference'].'</dd>';
-//                echo'<dt>Accession number</dt>
-//                <dd>'.$mapping_file['Accession_number'].'</dd>';
-//                echo'<dt>Method</dt>
-//                <dd>'.$mapping_file['method'].'</dd>';
-                $tmp_array=array();
+        if ($symbol != "NA" && $symbol !=""){
+            $cursor=$interactionsCollection->aggregate(array( 
+                array('$unwind'=>'$mapping_file'), 
+                array('$match'=> array('$or'=> array(array('mapping_file.Host_symbol'=>$symbol),array('mapping_file.Host_symbol'=>$gene_alias[0]),array('mapping_file.Host_symbol'=>$descriptions[0])))),
+                array('$project' => array('mapping_file.Host_symbol'=>1,'mapping_file.Virus_symbol'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
+            ));
+            if (count($cursor['result'])!=0){
+                //echo '<h2> interactions was found for this gene '.$symbol.' number is'.count($cursor['result']).'</h2>';
+                //var_dump($cursor);
+                //echo '<dl class="dl-horizontal">';
+                for ($i = 0; $i < count($cursor['result']); $i++) {
+                    $mapping_file=$cursor['result'][$i]['mapping_file'];
 
-                $src_array=array();
-                array_push($src_array, 'src');
-                array_push($src_array, $symbol);
-                array_push($tmp_array, $src_array);
-                $tgt_array=array();
-                array_push($tgt_array, 'tgt');
-                array_push($tgt_array, $mapping_file['Virus_symbol']);
-                array_push($tmp_array, $tgt_array);
-                $method_array=array();
-                array_push($method_array, 'method');
-                array_push($method_array, $mapping_file['method']);
-                array_push($tmp_array, $method_array);
-                $pub_array=array();
-                array_push($pub_array, 'pub');
-                array_push($pub_array, $mapping_file['Reference']);
-                array_push($tmp_array, $pub_array);
-                $host_name_array=array();
-                array_push($host_name_array, 'host_name');
-                array_push($host_name_array, $mapping_file['host']);
-                array_push($tmp_array, $host_name_array);
-                $virus_name_array=array();
-                array_push($virus_name_array, 'virus_name');
-                array_push($virus_name_array, $mapping_file['virus']);
-                array_push($tmp_array, $virus_name_array);
-                $host_taxon_array=array();                  
-                array_push($host_taxon_array, 'Accession_number');
-                array_push($host_taxon_array, $mapping_file['Accession_number']);
-                array_push($tmp_array, $host_taxon_array);
-                $virus_taxon_array=array();
-                array_push($virus_taxon_array, 'Putative_function');
-                array_push($virus_taxon_array, $mapping_file['Putative_function']);
-                array_push($tmp_array, $virus_taxon_array);
-                    
-                array_push($lit_int_array, $tmp_array);				  
-			}
-			//echo' </dl>';
-		}
-        
-        
-        //biogrid interaction data
-        /*$interaction_data=$interactionsCollection->find(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
-        foreach ($interaction_data as $data){
-            $species=$data['species'];
-            foreach ($data['mapping_file'] as $mapping_file){
-                $tmp_array=array();
+                    //echo $mapping_file['Reference'];
+    //                echo'<dt>Host</dt>
+    //                <dd>'.$mapping_file['host'].'</dd>';
+    //                echo'<dt>Virus</dt>
+    //                <dd>'.$mapping_file['virus'].'</dd>';
+    //                echo'<dt>Viral Protein</dt>
+    //                <dd>'.$mapping_file['Virus_symbol'].'</dd>';
+    //                echo'<dt>Putative function</dt>
+    //                <dd>'.$mapping_file['Putative_function'].'</dd>';
+    //                echo'<dt>Reference</dt>
+    //                <dd>'.$mapping_file['Reference'].'</dd>';
+    //                echo'<dt>Accession number</dt>
+    //                <dd>'.$mapping_file['Accession_number'].'</dd>';
+    //                echo'<dt>Method</dt>
+    //                <dd>'.$mapping_file['method'].'</dd>';
+                    $tmp_array=array();
 
-                $src_array=array();
-                array_push($src_array, 'src');
-                array_push($src_array, $symbol);
-                array_push($tmp_array, $src_array);
-                $tgt_array=array();
-                array_push($tgt_array, 'tgt');
-                array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
-                array_push($tmp_array, $tgt_array);
-                $method_array=array();
-                array_push($method_array, 'method');
-                array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
-                array_push($tmp_array, $method_array);
-                $pub_array=array();
-                array_push($pub_array, 'pub');
-                array_push($pub_array, $mapping_file['PUBMED_ID']);
-                array_push($tmp_array, $pub_array);
-                $host_name_array=array();
-                array_push($host_name_array, 'host A name');
-                array_push($host_name_array, $species);
-                array_push($tmp_array, $host_name_array);
-                $virus_name_array=array();
-                array_push($virus_name_array, 'host B name');
-                array_push($virus_name_array, $species);
-                array_push($tmp_array, $virus_name_array);
-                $host_taxon_array=array();                  
-                array_push($host_taxon_array, 'Accession_number');
-                array_push($host_taxon_array, $mapping_file['SOURCE']);
-                array_push($tmp_array, $host_taxon_array);
-//                $virus_taxon_array=array();
-//                array_push($virus_taxon_array, 'Putative_function');
-//                array_push($virus_taxon_array, $mapping_file['Putative_function']);
-//                array_push($tmp_array, $virus_taxon_array);
-                    
-                array_push($biogrid_int_array, $tmp_array);		
+                    $src_array=array();
+                    array_push($src_array, 'src');
+                    array_push($src_array, $symbol);
+                    array_push($tmp_array, $src_array);
+                    $tgt_array=array();
+                    array_push($tgt_array, 'tgt');
+                    array_push($tgt_array, $mapping_file['Virus_symbol']);
+                    array_push($tmp_array, $tgt_array);
+                    $method_array=array();
+                    array_push($method_array, 'method');
+                    array_push($method_array, $mapping_file['method']);
+                    array_push($tmp_array, $method_array);
+                    $pub_array=array();
+                    array_push($pub_array, 'pub');
+                    array_push($pub_array, $mapping_file['Reference']);
+                    array_push($tmp_array, $pub_array);
+                    $host_name_array=array();
+                    array_push($host_name_array, 'host_name');
+                    array_push($host_name_array, $mapping_file['host']);
+                    array_push($tmp_array, $host_name_array);
+                    $virus_name_array=array();
+                    array_push($virus_name_array, 'virus_name');
+                    array_push($virus_name_array, $mapping_file['virus']);
+                    array_push($tmp_array, $virus_name_array);
+                    $host_taxon_array=array();                  
+                    array_push($host_taxon_array, 'Accession_number');
+                    array_push($host_taxon_array, $mapping_file['Accession_number']);
+                    array_push($tmp_array, $host_taxon_array);
+                    $virus_taxon_array=array();
+                    array_push($virus_taxon_array, 'Putative_function');
+                    array_push($virus_taxon_array, $mapping_file['Putative_function']);
+                    array_push($tmp_array, $virus_taxon_array);
+
+                    array_push($lit_int_array, $tmp_array);				  
+                }
+                //echo' </dl>';
             }
-            
-        }*/
-        //$timestart=microtime(true);
-        $cursor=$interactionsCollection->aggregate(array( 
-			array('$unwind'=>'$mapping_file'), 
-			array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
-			array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
-		));
-//        $timeend=microtime(true);
-//        $time=$timeend-$timestart;
-//        //Afficher le temps d'éxecution
-//        $page_load_time = number_format($time, 3);
-//        echo "Script starting at: ".date("H:i:s", $timestart);
-//        echo "<br>Script ending at: ".date("H:i:s", $timeend);
-//        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
-        //$timestart=microtime(true);
-        if (count($cursor['result'])!=0){
-			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
-			//var_dump($cursor);
-			//echo '<dl class="dl-horizontal">';
-			for ($i = 0; $i < count($cursor['result']); $i++) {
-				$mapping_file=$cursor['result'][$i]['mapping_file'];
-                $species=$cursor['result'][$i]['species'];
-                $tmp_array=array();
 
-                $src_array=array();
-                array_push($src_array, 'src');
-                array_push($src_array, $symbol);
-                array_push($tmp_array, $src_array);
-                $tgt_array=array();
-                array_push($tgt_array, 'tgt');
-                array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
-                array_push($tmp_array, $tgt_array);
-                $method_array=array();
-                array_push($method_array, 'method');
-                array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
-                array_push($tmp_array, $method_array);
-                $pub_array=array();
-                array_push($pub_array, 'pub');
-                array_push($pub_array, $mapping_file['PUBMED_ID']);
-                array_push($tmp_array, $pub_array);
-                $host_name_array=array();
-                array_push($host_name_array, 'host A name');
-                array_push($host_name_array, $species);
-                array_push($tmp_array, $host_name_array);
-                $virus_name_array=array();
-                array_push($virus_name_array, 'host B name');
-                array_push($virus_name_array, $species);
-                array_push($tmp_array, $virus_name_array);
-                $host_taxon_array=array();                  
-                array_push($host_taxon_array, 'Accession_number');
-                array_push($host_taxon_array, $mapping_file['SOURCE']);
-                array_push($tmp_array, $host_taxon_array);
-//                $virus_taxon_array=array();
-//                array_push($virus_taxon_array, 'Putative_function');
-//                array_push($virus_taxon_array, $mapping_file['Putative_function']);
-//                array_push($tmp_array, $virus_taxon_array);
-                    
-                array_push($biogrid_int_array, $tmp_array);				
-                
+
+            //biogrid interaction data
+            /*$interaction_data=$interactionsCollection->find(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+            foreach ($interaction_data as $data){
+                $species=$data['species'];
+                foreach ($data['mapping_file'] as $mapping_file){
+                    $tmp_array=array();
+
+                    $src_array=array();
+                    array_push($src_array, 'src');
+                    array_push($src_array, $symbol);
+                    array_push($tmp_array, $src_array);
+                    $tgt_array=array();
+                    array_push($tgt_array, 'tgt');
+                    array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
+                    array_push($tmp_array, $tgt_array);
+                    $method_array=array();
+                    array_push($method_array, 'method');
+                    array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
+                    array_push($tmp_array, $method_array);
+                    $pub_array=array();
+                    array_push($pub_array, 'pub');
+                    array_push($pub_array, $mapping_file['PUBMED_ID']);
+                    array_push($tmp_array, $pub_array);
+                    $host_name_array=array();
+                    array_push($host_name_array, 'host A name');
+                    array_push($host_name_array, $species);
+                    array_push($tmp_array, $host_name_array);
+                    $virus_name_array=array();
+                    array_push($virus_name_array, 'host B name');
+                    array_push($virus_name_array, $species);
+                    array_push($tmp_array, $virus_name_array);
+                    $host_taxon_array=array();                  
+                    array_push($host_taxon_array, 'Accession_number');
+                    array_push($host_taxon_array, $mapping_file['SOURCE']);
+                    array_push($tmp_array, $host_taxon_array);
+    //                $virus_taxon_array=array();
+    //                array_push($virus_taxon_array, 'Putative_function');
+    //                array_push($virus_taxon_array, $mapping_file['Putative_function']);
+    //                array_push($tmp_array, $virus_taxon_array);
+
+                    array_push($biogrid_int_array, $tmp_array);		
+                }
+
+            }*/
+            //$timestart=microtime(true);
+            $cursor=$interactionsCollection->aggregate(array( 
+                array('$unwind'=>'$mapping_file'), 
+                array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
+                array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
+            ));
+    //        $timeend=microtime(true);
+    //        $time=$timeend-$timestart;
+    //        //Afficher le temps d'éxecution
+    //        $page_load_time = number_format($time, 3);
+    //        echo "Script starting at: ".date("H:i:s", $timestart);
+    //        echo "<br>Script ending at: ".date("H:i:s", $timeend);
+    //        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
+            //$timestart=microtime(true);
+            if (count($cursor['result'])!=0){
+                //echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+                //var_dump($cursor);
+                //echo '<dl class="dl-horizontal">';
+                for ($i = 0; $i < count($cursor['result']); $i++) {
+                    $mapping_file=$cursor['result'][$i]['mapping_file'];
+                    $species=$cursor['result'][$i]['species'];
+                    $tmp_array=array();
+
+                    $src_array=array();
+                    array_push($src_array, 'src');
+                    array_push($src_array, $symbol);
+                    array_push($tmp_array, $src_array);
+                    $tgt_array=array();
+                    array_push($tgt_array, 'tgt');
+                    array_push($tgt_array, $mapping_file['OFFICIAL_SYMBOL_B']);
+                    array_push($tmp_array, $tgt_array);
+                    $method_array=array();
+                    array_push($method_array, 'method');
+                    array_push($method_array, $mapping_file['EXPERIMENTAL_SYSTEM']);
+                    array_push($tmp_array, $method_array);
+                    $pub_array=array();
+                    array_push($pub_array, 'pub');
+                    array_push($pub_array, $mapping_file['PUBMED_ID']);
+                    array_push($tmp_array, $pub_array);
+                    $host_name_array=array();
+                    array_push($host_name_array, 'host A name');
+                    array_push($host_name_array, $species);
+                    array_push($tmp_array, $host_name_array);
+                    $virus_name_array=array();
+                    array_push($virus_name_array, 'host B name');
+                    array_push($virus_name_array, $species);
+                    array_push($tmp_array, $virus_name_array);
+                    $host_taxon_array=array();                  
+                    array_push($host_taxon_array, 'Accession_number');
+                    array_push($host_taxon_array, $mapping_file['SOURCE']);
+                    array_push($tmp_array, $host_taxon_array);
+    //                $virus_taxon_array=array();
+    //                array_push($virus_taxon_array, 'Putative_function');
+    //                array_push($virus_taxon_array, $mapping_file['Putative_function']);
+    //                array_push($tmp_array, $virus_taxon_array);
+
+                    array_push($biogrid_int_array, $tmp_array);				
+
+                }
             }
         }
 //        $timeend=microtime(true);
