@@ -592,7 +592,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 			array('$project' => array('mapping_file.Host_symbol'=>1,'mapping_file.Virus_symbol'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
 		));
 		if (count($cursor['result'])!=0){
-			//echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+			echo '<h2> interactions was found for this gene '.$symbol.' number is'.count($cursor['result'].'</h2>';
 			//var_dump($cursor);
 			//echo '<dl class="dl-horizontal">';
 			for ($i = 0; $i < count($cursor['result']); $i++) {
