@@ -1345,13 +1345,13 @@ new_cobra_footer();
 
 
 
-//<a href=experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>
+
 
 <script type="text/javascript" class="init">
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var xp_name="<?php echo '<a href=experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>'; ?>";
+    var xp_name="<?php echo '<a href=https://services.cbib.u-bordeaux2.fr/cobra/src/description/experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>'; ?>";
     $(function () {
         var Highcharts=$('#container').highcharts({
             chart: {
