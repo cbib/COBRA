@@ -295,7 +295,7 @@ echo   '<div id="summary">
                     
                     $experiment_id=$xp_full_name[0];
                     $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
-                    echo $xp_name;
+                    //echo $xp_name;
                     //get_experiment($experiment_id,$samplesCollection);
                     $counter++;
 //                    foreach ($result as $key) {
@@ -314,9 +314,9 @@ echo   '<div id="summary">
                     //var_dump($result);
                 }
                 //var_dump($series);
-                foreach($categories as $value) {
-                        echo $value;
-                }
+//                foreach($categories as $value) {
+//                        echo $value;
+//                }
                 echo'
                 <div id="shift_line"></div>
                 </div>             
