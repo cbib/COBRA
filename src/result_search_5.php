@@ -1368,7 +1368,8 @@ new_cobra_footer();
             },
             xAxis: {
                 
-                categories: ['samples','coucou','bye']
+                //categories: ['samples','coucou','bye']
+                categories: <?php echo json_encode($categories); ?>
                 //title: {text: 'Samples'}
             },
 //            yAxis: {
