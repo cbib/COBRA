@@ -526,6 +526,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 $virus_taxon=$mapping_doc[$value['virus_taxon']];
    
                 if ($host_prot_id == $id){
+                    echo 'key equal';
                     $tmp_array=array();
 //                    echo 'prot id mapped !!!!!:'.$id.'<br/>';
 //                    echo $mapping_doc[$value['src']];
@@ -580,7 +581,9 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     }
     array_push($global_intact_array, $pro_int_array);
     foreach ($gene_symbol as $symbol){
-        //echo $symbol;
+        echo 'gene symbol: '.$symbol;
+        echo 'gene alias: '.$gene_alias[0];
+        echo 'gene description: '.$descriptions[0];
         //$symbol='P58IPK';
         
 		$cursor=$interactionsCollection->aggregate(array( 
@@ -764,6 +767,8 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
 		
 	}
+    echo '$lit_int_array size: '.count($lit_int_array);
+    echo '$biogrid_int_array size: '.count($lit_int_array);
     array_push($global_intact_array, $lit_int_array);
     array_push($global_intact_array, $biogrid_int_array);
 //    $timeend=microtime(true);
