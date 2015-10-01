@@ -287,9 +287,7 @@ echo   '<div id="summary">
                     );
                     array_push($series, $sample);
                     array_push($categories, $result['variety']);
-                    foreach($categories as $value) {
-                        echo $value;
-                    }
+                    
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
@@ -314,7 +312,9 @@ echo   '<div id="summary">
                     //var_dump($result);
                 }
                 //var_dump($series);
-               
+                foreach($categories as $value) {
+                        echo $value;
+                }
                 echo'
                 <div id="shift_line"></div>
                 </div>             
