@@ -282,7 +282,8 @@ echo   '<div id="summary">
 //                    );
                     
                     $sample=array(
-                        'name'=>'Day post inoc '.$result['day_after_inoculation'], 
+                        'name'=>'Day post inoc '.$result['day_after_inoculation'],
+                        'infection_agent'=>"Tobacco etch virus",
                         'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, $sample);

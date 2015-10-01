@@ -705,7 +705,7 @@ AT_samples={
 			"type":"contrast",
 			"variety":"landsberg erecta",
 			"day_after_inoculation":7,
-            "material":"leaf"
+                        "material":"leaf"
 			
 		}
 	]
