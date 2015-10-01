@@ -526,7 +526,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 $virus_taxon=$mapping_doc[$value['virus_taxon']];
    
                 if ($host_prot_id == $id){
-                    echo 'key equal';
+                    //echo 'key equal';
                     $tmp_array=array();
 //                    echo 'prot id mapped !!!!!:'.$id.'<br/>';
 //                    echo $mapping_doc[$value['src']];
@@ -581,9 +581,9 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     }
     array_push($global_intact_array, $pro_int_array);
     foreach ($gene_symbol as $symbol){
-        echo 'gene symbol: '.$symbol;
-        echo 'gene alias: '.$gene_alias[0];
-        echo 'gene description: '.$descriptions[0];
+        //echo 'gene symbol: '.$symbol;
+        //echo 'gene alias: '.$gene_alias[0];
+        //echo 'gene description: '.$descriptions[0];
         //$symbol='P58IPK';
         
 		$cursor=$interactionsCollection->aggregate(array( 
@@ -592,7 +592,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 			array('$project' => array('mapping_file.Host_symbol'=>1,'mapping_file.Virus_symbol'=>1,'mapping_file.Putative_function'=>1,'mapping_file.host'=>1,'mapping_file.Accession_number'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'_id'=>0)), 
 		));
 		if (count($cursor['result'])!=0){
-			echo '<h2> interactions was found for this gene '.$symbol.' number is'.count($cursor['result']).'</h2>';
+			//echo '<h2> interactions was found for this gene '.$symbol.' number is'.count($cursor['result']).'</h2>';
 			//var_dump($cursor);
 			//echo '<dl class="dl-horizontal">';
 			for ($i = 0; $i < count($cursor['result']); $i++) {
