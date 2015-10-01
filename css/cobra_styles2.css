@@ -120,6 +120,16 @@ and open the template in the editor.
      float: left;
      border: 1px solid #DDD; 
   }
+  #mission-objectives{
+     //width:970px;
+     width:100%;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+  }
   #left_col{
      width:50%;
      background-color: #FFF;
