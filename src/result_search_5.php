@@ -287,6 +287,9 @@ echo   '<div id="summary">
                     );
                     array_push($series, $sample);
                     array_push($categories, $result['variety']);
+                    foreach($categories as $value) {
+                        echo $value;
+                    }
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
