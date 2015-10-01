@@ -1385,6 +1385,16 @@ new_cobra_footer();
             credits: {
                 enabled: false
             },
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                stops: [
+                    [0, '#2a2a2b'],
+                    [1, '#3e3e40']
+                ]
+            },
+            style: {
+                fontFamily: "'Unica One', sans-serif"
+            },
     //        series: [{
     //            name: 'condition 1',
     //            data: [5]
@@ -1406,14 +1416,15 @@ new_cobra_footer();
     //        },]
 
               series: <?php echo json_encode($series); ?>,
-              tooltip: {
-                formatter: function() {
-                    return 'The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series ';
-                }
-              }
+//              tooltip: {
+//                formatter: function() {
+//                    return 'The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series ';
+//                }
+//              }
               //series: serie
 
-        });
+        }
+       );
         // Load the fonts
         Highcharts.createElement('link', {
    href: '//fonts.googleapis.com/css?family=Unica+One',
