@@ -768,8 +768,8 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
 		
 	}
-    echo '$lit_int_array size: '.count($lit_int_array);
-    echo '$biogrid_int_array size: '.count($lit_int_array);
+    //echo '$lit_int_array size: '.count($lit_int_array);
+    //echo '$biogrid_int_array size: '.count($lit_int_array);
     array_push($global_intact_array, $lit_int_array);
     array_push($global_intact_array, $biogrid_int_array);
 //    $timeend=microtime(true);
