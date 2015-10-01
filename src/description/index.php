@@ -47,7 +47,7 @@ $table_string.='<ul>';
 foreach($cursor as $line) {
  	$title=$line['name'];
  	//echo str_replace(' ','\s',$title);
-	$table_string.='<li value='.$line['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$line['name'].'</a></li>';
+	$table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
 }
  //makeDatatableFromFind($cursor);
 $table_string.='</ul>';
