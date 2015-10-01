@@ -1340,7 +1340,7 @@ else{
 //                  
 //       echo'</div>
 //        </div>';*/
-
+/*//categories: <?php echo json_encode($categories); ?>,*/
 
 new_cobra_footer();
 
@@ -1367,8 +1367,8 @@ new_cobra_footer();
                 text: xp_name
             },
             xAxis: {
-                categories: <?php echo json_encode($categories); ?>,
-                //categories: ['samples',],
+                
+                categories: ['samples','coucou','bye'],
                 title: {text: 'Samples'}
             },
             yAxis: {
