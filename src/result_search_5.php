@@ -1368,13 +1368,13 @@ new_cobra_footer();
             },
             xAxis: {
                 
-                categories: ['samples','coucou','bye'],
-                title: {text: 'Samples'}
+                categories: ['samples','coucou','bye']
+                //title: {text: 'Samples'}
             },
-            yAxis: {
-                //type: 'logarithmic'
-                title: 'Log FC'
-            },
+//            yAxis: {
+//                //type: 'logarithmic'
+//                title: 'Log FC'
+//            },
             
             credits: {
                 enabled: false
