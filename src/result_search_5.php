@@ -294,6 +294,7 @@ echo   '<div id="summary">
                     
                     $experiment_id=$xp_full_name[0];
                     $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+                    echo $xp_name;
                     //get_experiment($experiment_id,$samplesCollection);
                     $counter++;
 //                    foreach ($result as $key) {
