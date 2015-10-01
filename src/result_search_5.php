@@ -248,11 +248,11 @@ echo   '<div id="summary">
                 <div id="expression_profile">
                     <h3>Expression profile</h3>
                     <!--<div id="title" class="right"><h4>Expression profile</h4></div>-->
-                    <div class="panel-group" id="accordion_documents">
+                    <div class="panel-group" id="accordion_documents_expression">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 
-                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
                                         <strong>Expression data</strong>
                                     </a>				
                            
