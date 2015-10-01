@@ -1367,6 +1367,10 @@ new_cobra_footer();
                 categories: ['samples',],
                 title: {text: 'Samples'}
             },
+            yAxis: {
+                //type: 'logarithmic'
+                title: 'Log FC'
+            },
             
             credits: {
                 enabled: false
