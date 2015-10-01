@@ -145,7 +145,7 @@ foreach ($data as $species){
                 foreach ($attributes as $key => $value) {
                     if ($cpt==0){
 
-                        echo '<div style="cursor: pointer;" onclick="window.location=\'https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\';" class="resultsbox" id="results">
+                        echo '<div style="cursor: pointer;" onclick="window.location=\'https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$attributes['search'].'\'; target="_blank" style="target-new: tab;"" class="resultsbox" id="results">
                                 <div class="results-right">
                                     <div class="organism"> Organism:'.$species_value['full_name'].'</div>
                                     <div class="infection agent"> Infection agent: '.$attributes['infection_agent'].'</div>
