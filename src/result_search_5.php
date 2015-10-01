@@ -271,6 +271,7 @@ echo   '<div id="summary">
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                 $counter=1;
                 $series=array();
+                $categories=array();
                 foreach ($cursor as $result) {
                     //echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
                     //echo 'gene: '.$result['gene'].'<br>';
@@ -279,11 +280,13 @@ echo   '<div id="summary">
 //                    "name"=>'condition_'.$counter, 
 //                    "data"=>[(int) $result['logFC']]
 //                    );
+                    
                     $sample=array(
                         'name'=>'Day post inoc '.$result['day_after_inoculation'], 
                         'data'=>[(float) $result['logFC']]
                     );
                     array_push($series, $sample);
+                    array_push($categories, $result['variety']);
                     
                     //echo 'experiment full name: '.$result['xp'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);
@@ -1364,7 +1367,8 @@ new_cobra_footer();
                 text: xp_name
             },
             xAxis: {
-                categories: ['samples',],
+                categories: <?php echo json_encode($categories); ?>,
+                //categories: ['samples',],
                 title: {text: 'Samples'}
             },
             yAxis: {
