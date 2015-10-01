@@ -1358,11 +1358,11 @@ new_cobra_footer();
                 type: 'column'
             },
             title: {
+                text: 'differential expression'
+            },
+            subtitle: {
                 text: xp_name
             },
-//            subtitle: {
-//                text: xp_name
-//            },
             xAxis: {
                 categories: ['samples',],
                 title: {text: 'Samples'}
