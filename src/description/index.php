@@ -80,11 +80,11 @@ $table_string.='<table id="mapping" class="table table-hover">';
 $table_string.='<thead><tr>';
 	
 	//recupere le titre
-	$table_string.='<th>type</th>';
-	$table_string.='<th>src</th>';
-	$table_string.='<th>src_version</th>';
-	$table_string.='<th>tgt</th>';
-	$table_string.='<th>tgt_version</th>';
+	//$table_string.='<th>type</th>';
+	$table_string.='<th>src id</th>';
+	$table_string.='<th>src version</th>';
+	$table_string.='<th>tgt id</th>';
+	$table_string.='<th>tgt version</th>';
 	$table_string.='<th>species</th>';
 
 	
@@ -96,7 +96,7 @@ $table_string.='<tbody>';
 
 foreach($cursor as $line) {
 $table_string.='<tr>';
-	$table_string.='<td>'.$line['type'].'</td>';
+	//$table_string.='<td>'.$line['type'].'</td>';
 	$table_string.='<td>'.$line['src'].'</td>';
 	$table_string.='<td>'.$line['src_version'].'</td>';
 	$table_string.='<td>'.$line['tgt'].'</td>';
