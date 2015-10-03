@@ -247,6 +247,7 @@ echo'
             </section>
 
             <!-- Main content -->
+            <div id="shift_line"></div>
             <section class="container" id="'.$section_id.'">';
 
 }

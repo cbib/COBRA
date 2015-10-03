@@ -40,7 +40,7 @@ $measurementsCollection = new Mongocollection($db, "measurements");
 $publicationsCollection = new Mongocollection($db, "publications");
 $interactionsCollection = new Mongocollection($db, "interactions");
 
-echo '<div id="shift_line"></div>';
+
 make_species_list(find_species_list($speciesCollection));
 
 echo'</hr>';
