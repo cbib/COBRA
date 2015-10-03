@@ -108,7 +108,8 @@ and open the template in the editor.
        width:80%; 
   }*/
 .container{
-   width:100%; 
+   width:100%;
+   margin-top : auto;
 }
   #SpeciesSearch{
      //width:970px;
