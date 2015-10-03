@@ -1418,9 +1418,40 @@ new_cobra_footer();
               series: <?php echo json_encode($series); ?>,
 //              tooltip: {
 //                formatter: function() {
-//                    return 'The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series ';
+//                    for series 
+//                    return '<ul>The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series </ul>';
 //                }
-//              }
+              }
+              tooltip: {
+                shared: true,
+                formatter: function () {
+                    var points = this.points;
+                    var pointsLength = points.length;
+                    var tooltipMarkup = pointsLength ? '<span style="font-size: 10px">' + points[0].key + '</span><br/>' : '';
+                    var index;
+                    var y_value_kwh;
+
+                    for(index = 0; index < pointsLength; index += 1) {
+                        y_value_kwh = (points[index].y/1000).toFixed(2);
+
+                        tooltipMarkup += '<span style="color:' + points[index].series.color + '">\u25CF</span> ' + points[index].series.name + ': <b>' + y_value_kwh  + ' kWh</b><br/>';
+                    }
+
+                    return tooltipMarkup;
+                }
+              }
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
               //series: serie
 
         }
