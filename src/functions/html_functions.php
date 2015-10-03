@@ -63,12 +63,10 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
     
     echo'<div class="panel-group" id="accordion_documents">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>
+                    <div class="panel-heading">  
                             <a class="accordion-toggle collapsed" href="#'.$unique_id.'" data-parent="#accordion_documents" data-toggle="collapse">
                                 '.$panel_title.'
                             </a>				
-                        </h3>
                     </div>
                     <div class="panel-body panel-collapse collapse" id="'.$unique_id.'">
                         
