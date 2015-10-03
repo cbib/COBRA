@@ -4,8 +4,6 @@ Description: About COBRA, the plant-virus interaction database
 Author:
 Date: 2015/01/29
 */
-
-#overview
 		
 <div class="col-md-12" >		
     <div class="col-md-6" >
