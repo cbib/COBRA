@@ -301,7 +301,7 @@ echo   '<div id="summary">
                     
                     
                     //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
-                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety']);
+                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
                     //array_push($logfc_array, $sample);
                     $samples=array('name'=>$result['variety'],'data'=>array($sample));
                     //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
@@ -1399,7 +1399,7 @@ new_cobra_footer();
                     var g=genes;
                     //window.alert(genes);
                 
-                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li></br>'
+                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>Variety : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
