@@ -1,5 +1,21 @@
 <?php 
+include './functions/html_functions.php';
+include './functions/php_functions.php';
+include './functions/mongo_functions.php';
+include '../wiki/vendor/autoload.php';
+require('./session/control-session.php');
+$db=mongoConnector();
 
+	$grid = $db->getGridFS();
+	//Selection des collections
+	$samplesCollection = new MongoCollection($db, "samples");
+	$speciesCollection = new Mongocollection($db, "species");
+	$mappingsCollection = new Mongocollection($db, "mappings");
+	$measurementsCollection = new Mongocollection($db, "measurements");
+	$virusesCollection = new Mongocollection($db, "viruses");
+	$interactionsCollection = new Mongocollection($db, "interactions");
+	$orthologsCollection = new Mongocollection($db, "orthologs");
+    $GOCollection = new Mongocollection($db, "gene_ontology");
 echo '
 <!DOCTYPE html>
 <html>
@@ -13,18 +29,56 @@ echo '
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
 
 </head>
-<body>
+<body>';
+echo'<div id="expression_profile">
+                    <h3>Expression profile</h3>
+                    <div class="panel-group" id="accordion_documents_expression">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+                                        <strong>Expression data</strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="expression-chart">
+                                <div id="container" style="min-width: 310px; height: 400px;"></div>
+                            </div>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-</body>
-</html>';
+                        </div>
+                    </div>';
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
+                $counter=1;
+                $series=array();
+                $categories=array();
+                foreach ($cursor as $result) {
+//                    $sample=array(
+//                        'name'=>'Day post inoc '.$result['day_after_inoculation'],
+//                        //'infection_agent'=>"Tobacco etch virus",
+//                        'data'=>[(float) $result['logFC']]
+//                    );
+                    array_push($series, $sample);
+                    array_push($categories, $result['variety']);
+                    //echo 'experiment full name: '.$result['xp'].'<br>';
+                    $xp_full_name=explode(".", $result['xp']);                   
+                    $experiment_id=$xp_full_name[0];
+                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+                    $counter++;
+
+                }
+
+                echo'<div id="shift_line"></div>'
+                . '</div></body>
+                </html>';
+
+    
 
 ?>
 
 <script type="text/javascript" class="init">
 
 $(function(){
-    $('#container').highcharts({
+    $('#container2').highcharts({
         chart: {
             type: 'column'
         },

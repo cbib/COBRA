@@ -247,7 +247,6 @@ echo   '<div id="summary">
                 </div>
                 <div id="expression_profile">
                     <h3>Expression profile</h3>
-                    <!--<div id="title" class="right"><h4>Expression profile</h4></div>-->
                     <div class="panel-group" id="accordion_documents_expression">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -263,64 +262,62 @@ echo   '<div id="summary">
 
                         </div>
                     </div>';
-                    
-
-
-
-                //echo 'testing with id '.$gene_id[0].' and alias '.$gene_alias[0];
+//                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+//                $counter=1;
+//                $series=array();
+//                $categories=array();
+//                foreach ($cursor as $result) {
+//                    $sample=array(
+//                        'name'=>'Day post inoc '.$result['day_after_inoculation'],
+//                        //'infection_agent'=>"Tobacco etch virus",
+//                        'data'=>[(float) $result['logFC']]
+//                    );
+//                    array_push($series, $sample);
+//                    array_push($categories, $result['variety']);
+//                    //echo 'experiment full name: '.$result['xp'].'<br>';
+//                    $xp_full_name=explode(".", $result['xp']);                   
+//                    $experiment_id=$xp_full_name[0];
+//                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+//                    $counter++;
+//
+//                }
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+
+                //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
                 $counter=1;
                 $series=array();
                 $categories=array();
+                $logfc_array=array();
                 foreach ($cursor as $result) {
-                    //echo 'gene_original_id: '.$result['gene_original_id'].'<br>';
-                    //echo 'gene: '.$result['gene'].'<br>';
-                    //echo 'day_after_inoculation: '.$result['day_after_inoculation'].'<br>';
-//                    $sample=array(
-//                    "name"=>'condition_'.$counter, 
-//                    "data"=>[(int) $result['logFC']]
-//                    );
-                    
-                    $sample=array(
-                        'name'=>'Day post inoc '.$result['day_after_inoculation'],
-                        //'infection_agent'=>"Tobacco etch virus",
-                        'data'=>[(float) $result['logFC']]
-                    );
-                    array_push($series, $sample);
-                    array_push($categories, $result['variety']);
-                    
-                    
+                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
                     //echo 'experiment full name: '.$result['xp'].'<br>';
-                    $xp_full_name=explode(".", $result['xp']);
+                    //echo 'variety :'.$result['variety'].'<br>';
                     
+                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
+                    $xp_full_name=explode(".", $result['xp']);                   
                     $experiment_id=$xp_full_name[0];
                     $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
-                    //echo $xp_name;
-                    //get_experiment($experiment_id,$samplesCollection);
+                    
+                    
+                    
+                    //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
+                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety']);
+                    //array_push($logfc_array, $sample);
+                    $samples=array('name'=>$result['variety'],'data'=>array($sample));
+                    //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
+                    array_push($series, $samples);
+                    
+                    array_push($categories, $result['variety'].$counter);
+                    //array_push($categories, $counter);
+
+                    
+                    
                     $counter++;
-//                    foreach ($result as $key) {
-//                        foreach ($key as $values) {
-//                            echo $values;
-//                        }
-//                        
-//                    }
-//                    
-//                        echo $value;
-//
-//}
-//                        
-//                    }
-                    //echo '<br>';    
-                    //var_dump($result);
+
                 }
-                //var_dump($series);
-//                foreach($categories as $value) {
-//                        echo $value;
-//                }
-                echo'
-                <div id="shift_line"></div>
-                </div>             
-                <div id="goTerms">
+                echo'<div id="shift_line"></div>'
+                . '</div>';             
+                echo'<div id="goTerms">
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
                         
@@ -1359,9 +1356,9 @@ new_cobra_footer();
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var xp_name="<?php echo '<a href=https://services.cbib.u-bordeaux2.fr/cobra/src/description/experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>'; ?>";
+    var xp_name="<?php echo '<a href=/src/description/experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>'; ?>";
     $(function () {
-        var Highcharts=$('#container').highcharts({
+        $('#container').highcharts({
             chart: {
                 type: 'column'
             },
@@ -1373,299 +1370,47 @@ new_cobra_footer();
             },
             xAxis: {
                 
-                //categories: ['samples','coucou','bye']
-                categories: <?php echo json_encode($categories); ?>
+                categories: ['samples']
+                
+                //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                
                 //title: {text: 'Samples'}
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Log FC'
+                },
+            
             },
 //            yAxis: {
 //                //type: 'logarithmic'
 //                title: 'Log FC'
 //            },
             
-            credits: {
-                enabled: false
-            },
-            backgroundColor: {
-                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-                stops: [
-                    [0, '#2a2a2b'],
-                    [1, '#3e3e40']
-                ]
-            },
-            style: {
-                fontFamily: "'Unica One', sans-serif"
-            },
-    //        series: [{
-    //            name: 'condition 1',
-    //            data: [5]
-    //        }, {
-    //            name: 'condition 2',
-    //            data: [2]
-    //        }, {
-    //            name: 'condition 3',
-    //            data: [3]
-    //        },{
-    //            name: 'condition 4',
-    //            data: [2]
-    //        },{
-    //            name: 'condition 5',
-    //            data: [2]
-    //        },{
-    //            name: 'condition 6',
-    //            data: [2]
-    //        },]
-
-              series: <?php echo json_encode($series); ?>,
-//              tooltip: {
-//                formatter: function() {
-//                    for series 
-//                    return '<ul>The value for <b>jbqrskd</b> is <b>ersfdqze</b>, in series </ul>';
-//                }
-              }
-              tooltip: {
-                shared: true,
-                formatter: function () {
-                    var points = this.points;
-                    var pointsLength = points.length;
-                    var tooltipMarkup = pointsLength ? '<span style="font-size: 10px">' + points[0].key + '</span><br/>' : '';
-                    var index;
-                    var y_value_kwh;
-
-                    for(index = 0; index < pointsLength; index += 1) {
-                        y_value_kwh = (points[index].y/1000).toFixed(2);
-
-                        tooltipMarkup += '<span style="color:' + points[index].series.color + '">\u25CF</span> ' + points[index].series.name + ': <b>' + y_value_kwh  + ' kWh</b><br/>';
-                    }
-
-                    return tooltipMarkup;
+            series: <?php echo json_encode($series); ?>,
+            tooltip: {
+                useHTML: true,
+                formatter: function(genes) {
+                //for series 
+                //+this.series.name+ xp name
+                    var s = '';
+                    
+                    var g=genes;
+                    //window.alert(genes);
+                
+                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li></br>'
+                         '</ul>';
+                   
+                    return s;
                 }
-              }
+            }
               
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+ 
               //series: serie
 
-        }
-       );
-        // Load the fonts
-        Highcharts.createElement('link', {
-   href: '//fonts.googleapis.com/css?family=Unica+One',
-   rel: 'stylesheet',
-   type: 'text/css'
-}, null, document.getElementsByTagName('head')[0]);
-
-Highcharts.theme = {
-   colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
-   chart: {
-      backgroundColor: {
-         linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-         stops: [
-            [0, '#2a2a2b'],
-            [1, '#3e3e40']
-         ]
-      },
-      style: {
-         fontFamily: "'Unica One', sans-serif"
-      },
-      plotBorderColor: '#606063'
-   },
-   title: {
-      style: {
-         color: '#E0E0E3',
-         textTransform: 'uppercase',
-         fontSize: '20px'
-      }
-   },
-   subtitle: {
-      style: {
-         color: '#E0E0E3',
-         textTransform: 'uppercase'
-      }
-   },
-   xAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      },
-      lineColor: '#707073',
-      minorGridLineColor: '#505053',
-      tickColor: '#707073',
-      title: {
-         style: {
-            color: '#A0A0A3'
-
-         }
-      }
-   },
-   yAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      },
-      lineColor: '#707073',
-      minorGridLineColor: '#505053',
-      tickColor: '#707073',
-      tickWidth: 1,
-      title: {
-         style: {
-            color: '#A0A0A3'
-         }
-      }
-   },
-   tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-         color: '#F0F0F0'
-      }
-   },
-   plotOptions: {
-      series: {
-         dataLabels: {
-            color: '#B0B0B3'
-         },
-         marker: {
-            lineColor: '#333'
-         }
-      },
-      boxplot: {
-         fillColor: '#505053'
-      },
-      candlestick: {
-         lineColor: 'white'
-      },
-      errorbar: {
-         color: 'white'
-      }
-   },
-   legend: {
-      itemStyle: {
-         color: '#E0E0E3'
-      },
-      itemHoverStyle: {
-         color: '#FFF'
-      },
-      itemHiddenStyle: {
-         color: '#606063'
-      }
-   },
-   credits: {
-      style: {
-         color: '#666'
-      }
-   },
-   labels: {
-      style: {
-         color: '#707073'
-      }
-   },
-
-   drilldown: {
-      activeAxisLabelStyle: {
-         color: '#F0F0F3'
-      },
-      activeDataLabelStyle: {
-         color: '#F0F0F3'
-      }
-   },
-
-   navigation: {
-      buttonOptions: {
-         symbolStroke: '#DDDDDD',
-         theme: {
-            fill: '#505053'
-         }
-      }
-   },
-
-   // scroll charts
-   rangeSelector: {
-      buttonTheme: {
-         fill: '#505053',
-         stroke: '#000000',
-         style: {
-            color: '#CCC'
-         },
-         states: {
-            hover: {
-               fill: '#707073',
-               stroke: '#000000',
-               style: {
-                  color: 'white'
-               }
-            },
-            select: {
-               fill: '#000003',
-               stroke: '#000000',
-               style: {
-                  color: 'white'
-               }
-            }
-         }
-      },
-      inputBoxBorderColor: '#505053',
-      inputStyle: {
-         backgroundColor: '#333',
-         color: 'silver'
-      },
-      labelStyle: {
-         color: 'silver'
-      }
-   },
-
-   navigator: {
-      handles: {
-         backgroundColor: '#666',
-         borderColor: '#AAA'
-      },
-      outlineColor: '#CCC',
-      maskFill: 'rgba(255,255,255,0.1)',
-      series: {
-         color: '#7798BF',
-         lineColor: '#A6C7ED'
-      },
-      xAxis: {
-         gridLineColor: '#505053'
-      }
-   },
-
-   scrollbar: {
-      barBackgroundColor: '#808083',
-      barBorderColor: '#808083',
-      buttonArrowColor: '#CCC',
-      buttonBackgroundColor: '#606063',
-      buttonBorderColor: '#606063',
-      rifleColor: '#FFF',
-      trackBackgroundColor: '#404043',
-      trackBorderColor: '#404043'
-   },
-
-   // special colors for some of the
-   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-   background2: '#505053',
-   dataLabelsColor: '#B0B0B3',
-   textColor: '#C0C0C0',
-   contrastTextColor: '#F0F0F3',
-   maskColor: 'rgba(255,255,255,0.3)'
-};
-
-// Apply the theme
-Highcharts.setOptions(Highcharts.theme);
+        });
     });
-
 	$(document).ready(function() {
 		$('#example').dataTable( {
 			"scrollX": true,
