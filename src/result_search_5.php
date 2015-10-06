@@ -252,7 +252,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                        <strong>Expression data</strong>
+                                        <strong> '.$gene_alias[0].' Expression data</strong>
                                     </a>				
                            
                             </div>
@@ -281,7 +281,9 @@ echo   '<div id="summary">
 //                    $counter++;
 //
 //                }
-                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+                
+                
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'MU60682'),array('gene'=>'MU60682'))),array('_id'=>0));
 
                 //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
                 $counter=1;
@@ -289,23 +291,20 @@ echo   '<div id="summary">
                 $categories=array();
                 $logfc_array=array();
                 foreach ($cursor as $result) {
-                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
-                    //echo 'experiment full name: '.$result['xp'].'<br>';
-                    //echo 'variety :'.$result['variety'].'<br>';
+                    echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
+                    echo 'experiment full name: '.$result['xp'].'<br>';
+                    echo 'variety :'.$result['variety'].'<br>';
                     
-                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
+                    echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);                   
                     $experiment_id=$xp_full_name[0];
-                    $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
                     
                     
                     
                     //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
                     $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                    //array_push($logfc_array, $sample);
-                    $samples=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>array($sample));
-                    //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
-                    array_push($series, $samples);
+                    array_push($logfc_array, $sample);
                     
                     array_push($categories, $result['variety'].$counter);
                     //array_push($categories, $counter);
@@ -315,6 +314,48 @@ echo   '<div id="summary">
                     $counter++;
 
                 }
+                $sample=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>$logfc_array);
+                array_push($series, $sample);
+                
+                
+                
+                
+                
+                
+//                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+//
+//                //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
+//                $counter=1;
+//                $series=array();
+//                $categories=array();
+//                $logfc_array=array();
+//                foreach ($cursor as $result) {
+//                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
+//                    //echo 'experiment full name: '.$result['xp'].'<br>';
+//                    //echo 'variety :'.$result['variety'].'<br>';
+//                    
+//                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
+//                    $xp_full_name=explode(".", $result['xp']);                   
+//                    $experiment_id=$xp_full_name[0];
+//                    $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+//                    
+//                    
+//                    
+//                    //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
+//                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+//                    //array_push($logfc_array, $sample);
+//                    $samples=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>array($sample));
+//                    //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
+//                    array_push($series, $samples);
+//                    
+//                    array_push($categories, $result['variety'].$counter);
+//                    //array_push($categories, $counter);
+//
+//                    
+//                    
+//                    $counter++;
+//
+//                }
                 echo'<div id="shift_line"></div>'
                 . '</div>';             
                 echo'<div id="goTerms">
