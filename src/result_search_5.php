@@ -1402,9 +1402,9 @@ new_cobra_footer();
         $('#container').highcharts({
             chart: {
                 type: 'column'
-            },
+            },.
             title: {
-                text: <?php echo $gene_id[0].' differential expression'; ?>
+                text: genes + <?php ' differential expression'; ?>
             },
             subtitle: {
                 text: xp_name
