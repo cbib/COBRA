@@ -291,11 +291,11 @@ echo   '<div id="summary">
                 $categories=array();
                 $logfc_array=array();
                 foreach ($cursor as $result) {
-                    echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
-                    echo 'experiment full name: '.$result['xp'].'<br>';
-                    echo 'variety :'.$result['variety'].'<br>';
+                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
+                    //echo 'experiment full name: '.$result['xp'].'<br>';
+                    //echo 'variety :'.$result['variety'].'<br>';
                     
-                    echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
+                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);                   
                     $experiment_id=$xp_full_name[0];
                     $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
@@ -1411,7 +1411,8 @@ new_cobra_footer();
             },
             xAxis: {
                 
-                categories: ['samples']
+                //categories: ['samples']
+                categories: <?php echo json_encode($categories); ?>
                 
                 //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
                 
