@@ -252,7 +252,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                        <strong> '.$gene_alias[0].' Expression data</strong>
+                                        <strong>  Expression data</strong>
                                     </a>				
                            
                             </div>
@@ -1404,7 +1404,7 @@ new_cobra_footer();
                 type: 'column'
             },
             title: {
-                text: 'differential expression'
+                text: <?php echo $gene_id[0].' differential expression'; ?>
             },
             subtitle: {
                 text: xp_name
