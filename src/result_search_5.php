@@ -1401,7 +1401,7 @@ new_cobra_footer();
         $('#container').highcharts({
             chart: {
                 type: 'column'
-            },.
+            },
             title: {
                 text: 'differential expression'
             },
