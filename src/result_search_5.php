@@ -1405,7 +1405,7 @@ new_cobra_footer();
                 type: 'column'
             },
             title: {
-                text: genes+ ' differential expression'
+                text: genes_alias + ' differential expression'
             },
 //            subtitle: {
 //                text: xp_name
