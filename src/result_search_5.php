@@ -1397,6 +1397,7 @@ new_cobra_footer();
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
+    var genes_alias="<?php echo $gene_alias[0]; ?>"; 
     var xp_name="<?php echo $xp_name[0]; ?>";
     $(function () {
         $('#container').highcharts({
