@@ -314,7 +314,7 @@ echo   '<div id="summary">
                     $counter++;
 
                 }
-                $sample=array('name'=>$xp_name,'data'=>$logfc_array);
+                $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
                 array_push($series, $sample);
                 
                 
@@ -1406,9 +1406,9 @@ new_cobra_footer();
             title: {
                 text: 'differential expression'
             },
-            subtitle: {
-                text: xp_name
-            },
+//            subtitle: {
+//                text: xp_name
+//            },
             xAxis: {
                 
                 //categories: ['samples']
