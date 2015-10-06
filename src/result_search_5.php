@@ -303,7 +303,7 @@ echo   '<div id="summary">
                     //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
                     $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
                     //array_push($logfc_array, $sample);
-                    $samples=array('name'=>$result['variety'],'data'=>array($sample));
+                    $samples=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>array($sample));
                     //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
                     array_push($series, $samples);
                     
