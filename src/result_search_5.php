@@ -1399,7 +1399,7 @@ new_cobra_footer();
                     var g=genes;
                     //window.alert(genes);
                 
-                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>Variety : '+ this.point.logFC +'</li></br>'
+                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
