@@ -296,7 +296,7 @@ echo   '<div id="summary">
                     //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);                   
                     $experiment_id=$xp_full_name[0];
-                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+                    $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
                     
                     
                     
@@ -1356,7 +1356,7 @@ new_cobra_footer();
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var xp_name="<?php echo '<a href=/src/description/experiments.php?xp='.str_replace(' ','\s',$xp_name).'>'.$xp_name.'</a>'; ?>";
+    var xp_name="<?php echo $xp_name[0]; ?>";
     $(function () {
         $('#container').highcharts({
             chart: {
