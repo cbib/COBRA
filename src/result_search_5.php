@@ -282,8 +282,7 @@ echo   '<div id="summary">
 //
 //                }
                 
-                
-                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'MU60682'),array('gene'=>'MU60682'))),array('_id'=>0));
+                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
 
                 //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
                 $counter=1;
@@ -1397,7 +1396,7 @@ new_cobra_footer();
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var xp_name="<?php echo $xp_name[0]; ?>";
+    var xp_name="<?php echo $xp_name; ?>";
     $(function () {
         $('#container').highcharts({
             chart: {
