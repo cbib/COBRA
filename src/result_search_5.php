@@ -306,7 +306,7 @@ echo   '<div id="summary">
                     $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
                     array_push($logfc_array, $sample);
                     
-                    array_push($categories, $result['variety'].$counter);
+                    array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']);
                     //array_push($categories, $counter);
 
                     
@@ -314,7 +314,7 @@ echo   '<div id="summary">
                     $counter++;
 
                 }
-                $sample=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>$logfc_array);
+                $sample=array('name'=>$xp_name,'data'=>$logfc_array);
                 array_push($series, $sample);
                 
                 
