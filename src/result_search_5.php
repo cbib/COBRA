@@ -1404,7 +1404,7 @@ new_cobra_footer();
                 type: 'column'
             },.
             title: {
-                text: genes
+                text: 'differential expression'
             },
             subtitle: {
                 text: xp_name
@@ -1422,7 +1422,7 @@ new_cobra_footer();
                 min: 0,
                 title: {
                     text: 'Log FC'
-                },
+                }
             
             },
 //            yAxis: {
