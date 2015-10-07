@@ -18,14 +18,8 @@ $db=mongoConnector();
 //$GOCollection = new Mongocollection($db, "gene_ontology");
 
 new_cobra_header();
-
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
-echo '<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select file to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload File" name="submit">
-</form>';
 
 
 new_cobra_footer(); 
