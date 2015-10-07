@@ -20,7 +20,7 @@ $db=mongoConnector();
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
-
+echo htmlspecialchars($_POST['Upload File']);
 
 new_cobra_footer(); 
   
