@@ -21,6 +21,13 @@ new_cobra_header();
 
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
+echo '<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>';
+
+
 new_cobra_footer(); 
   
 
