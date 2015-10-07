@@ -20,7 +20,7 @@ $db=mongoConnector();
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
-$target_dir = "uploads/";
+$target_dir = "https://services.cbib.u-bordeaux2.fr/cobra/src/docs/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -28,7 +28,7 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        echo "File is an image - " . $check["mime"] . ".";s
         $uploadOk = 1;
     } else {
         echo "File is not an image.";
