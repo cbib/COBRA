@@ -20,7 +20,7 @@ $db=mongoConnector();
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
-$target_dir = "https://services.cbib.u-bordeaux2.fr/cobra/src/docs/uploads/";
+$target_dir = "./uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
