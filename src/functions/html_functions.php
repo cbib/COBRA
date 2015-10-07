@@ -211,7 +211,7 @@ echo'
                   </li>
                   <li >
                      <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/docs/">
-                        <i class="fa fa-cogs"></i> <span>Tools</span>
+                        <i class="fa fa-upload"></i> <span>Docs</span>
                      </a>
                   </li>
                  <!-- <li>
