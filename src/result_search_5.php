@@ -594,7 +594,7 @@ echo   '<div id="summary">
                     
 
                     if ($counter==0){
-                        error_log('in counter value: '.$counter);               
+                        //error_log('in counter value: '.$counter);               
                         echo'
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
