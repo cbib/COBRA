@@ -620,7 +620,7 @@ echo   '<div id="summary">
                                             
                                             
                                             
-                                                error_log('key: '.$key.'and value: '.$value);
+                                                //error_log('key: '.$key.'and value: '.$value);
                                                 if ($key=='src'){
 
                                                     $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';

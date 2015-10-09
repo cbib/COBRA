@@ -597,7 +597,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                     array_push($tmp_array, $virus_taxon_array);
                     
                     
-                    var_dump($tmp_array);
+                    //var_dump($tmp_array);
                     array_push($hpidb_int_array, $tmp_array);
 
                     /*echo 'from_mapping_file host protein'.$host_prot_id.'<br/>';
