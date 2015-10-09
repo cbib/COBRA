@@ -496,15 +496,91 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
 function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
 
     //need to have a list of symbol and a list of uniprot id to search in interactions table
-    $global_intact_array=array();
-    $pro_int_array=array();
+    $global_interact_array=array();
+    $hpidb_int_array=array();
     $lit_int_array=array();
     $biogrid_int_array=array();
     $intact_int_array=array();
     //$timestart=microtime(true);
     foreach ($protein_id as $id){
         
-        $search=array("type"=>"prot_to_prot");
+        //hpidb data
+        $search=array("type"=>"prot_to_prot_hpidb");
+        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"src_name"=>1,"tgt_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
+        $query=$interactionsCollection->find($search,$select);
+        foreach ($query as $value) {
+            
+            
+            //$src_to_tgt=$value['src_to_tgt'];
+            $mapping_file=$value['mapping_file'];
+//            echo 'from_mapping_file prot id :'.$id.'<br/>';
+            foreach ($mapping_file as $mapping_doc) {
+                
+                
+                $host_prot_id=$mapping_doc[$value['src']];
+                $virus_prot_id=$mapping_doc[$value['tgt']];
+                $method=$mapping_doc[$value['method']];
+                $pub=$mapping_doc[$value['pub']];
+                $hostname=$mapping_doc[$value['src_name']];
+                $virusname=$mapping_doc[$value['tgt_name']];
+                $host_taxon=$mapping_doc[$value['host_taxon']];
+                $virus_taxon=$mapping_doc[$value['virus_taxon']];
+   
+                if ($host_prot_id == $id){
+                    //echo 'key equal';
+                    $tmp_array=array();
+//                    echo 'prot id mapped !!!!!:'.$id.'<br/>';
+//                    echo $mapping_doc[$value['src']];
+//                    echo $mapping_doc[$value['tgt']];
+                    $src_array=array();
+                    array_push($src_array, 'src');
+                    array_push($src_array, $mapping_doc[$value['src']]);
+                    array_push($tmp_array, $src_array);
+                    $tgt_array=array();
+                    array_push($tgt_array, 'tgt');
+                    array_push($tgt_array, $mapping_doc[$value['tgt']]);
+                    array_push($tmp_array, $tgt_array);
+                    $method_array=array();
+                    array_push($method_array, 'method');
+                    array_push($method_array, $mapping_doc[$value['method']]);
+                    array_push($tmp_array, $method_array);
+                    $pub_array=array();
+                    array_push($pub_array, 'pub');
+                    array_push($pub_array, $mapping_doc[$value['pub']]);
+                    array_push($tmp_array, $pub_array);
+                    $host_name_array=array();
+                    array_push($host_name_array, 'src_name');
+                    array_push($host_name_array, $mapping_doc[$value['src_name']]);
+                    array_push($tmp_array, $host_name_array);
+                    $virus_name_array=array();
+                    array_push($virus_name_array, 'tgt_name');
+                    array_push($virus_name_array, $mapping_doc[$value['tgt_name']]);
+                    array_push($tmp_array, $virus_name_array);
+                    $host_taxon_array=array();                  
+                    array_push($host_taxon_array, 'host_taxon');
+                    array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
+                    array_push($tmp_array, $host_taxon_array);
+                    $virus_taxon_array=array();
+                    array_push($virus_taxon_array, 'virus_taxon');
+                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
+                    array_push($tmp_array, $virus_taxon_array);
+                    
+                    array_push($hpidb_int_array, $tmp_array);
+
+                    /*echo 'from_mapping_file host protein'.$host_prot_id.'<br/>';
+                    echo 'from_mapping_file virus protein'.$virus_prot_id.'<br/>';
+                    echo 'from_mapping_file method :'.$method.'<br/>';
+                    echo 'from_mapping_file publication pmid : '.$pub.'<br/>';
+                    echo 'from_mapping_file host name  :'.$hostname.'<br/>';
+                    echo 'from_mapping_file virus name : '.$virusname.'<br/>';
+                    echo 'from_mapping_file host taxon :'.$host_taxon.'<br/>';
+                    echo 'from_mapping_file virus taxon :'.$virus_taxon.'<br/>'; 
+                       */        
+                }
+            }     
+        }
+        //intact
+        $search=array("type"=>"prot_to_prot_intact");
         $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"src_name"=>1,"tgt_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
         $query=$interactionsCollection->find($search,$select);
         foreach ($query as $value) {
@@ -564,7 +640,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
 //                    array_push($tmp_array, $virus_taxon_array);
                     
-                    array_push($pro_int_array, $tmp_array);
+                    array_push($intact_int_array, $tmp_array);
 
                     /*echo 'from_mapping_file host protein'.$host_prot_id.'<br/>';
                     echo 'from_mapping_file virus protein'.$virus_prot_id.'<br/>';
@@ -578,8 +654,15 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 }
             }     
         }
+        
     }
-    array_push($global_intact_array, $pro_int_array);
+    array_push($global_interact_array, $hpidb_int_array);
+    array_push($global_interact_array, $intact_int_array);
+    
+    
+    
+    
+    
     foreach ($gene_symbol as $symbol){
         //echo 'gene symbol: '.$symbol;
         //echo 'gene alias: '.$gene_alias[0];
@@ -770,8 +853,8 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 	}
     //echo '$lit_int_array size: '.count($lit_int_array);
     //echo '$biogrid_int_array size: '.count($lit_int_array);
-    array_push($global_intact_array, $lit_int_array);
-    array_push($global_intact_array, $biogrid_int_array);
+    array_push($global_interact_array, $lit_int_array);
+    array_push($global_interact_array, $biogrid_int_array);
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
 //    //Afficher le temps d'éxecution
@@ -779,7 +862,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //    echo "Script starting at: ".date("H:i:s", $timestart);
 //    echo "<br>Script ending at: ".date("H:i:s", $timeend);
 //    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
-    return $global_intact_array;
+    return $global_interact_array;
 }
 function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='null', $gene_id='null',$key='null'){
 	

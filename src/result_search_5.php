@@ -519,10 +519,14 @@ echo   '<div id="summary">
                 //$timestart=microtime(true);
                 foreach ($interaction_array as $array){
                     if ($counter==0){
+                        $total_protein_hpidb=count($array);
+
+                    }
+                    if ($counter==1){
                         $total_protein_intact=count($array);
 
                     }
-                    else if ($counter==1){
+                    else if ($counter==2){
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
                             $total_protein_litterature++;
@@ -559,7 +563,94 @@ echo   '<div id="summary">
                                 <div class="panel-heading">
 
                                     <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Host Pathogen Interaction/IntAct database </strong> ('. $total_protein_intact.')
+                                        <strong> Host Pathogen Interaction database </strong> ('. $total_protein_hpidb.')
+                                    </a>				
+
+                                </div>
+                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
+
+                                    echo'
+                                    <div class="goProcessTerms goTerms">';
+
+                                    echo'';
+
+                                    $total_protein_hpidb=0;
+                                    foreach ($array as $intact){
+                                        $string_seq='<ul><span class="goTerm">';
+                                        foreach ($intact as $attributes){
+
+                                            if ($attributes[0]=='src'){
+
+                                                $string_seq.='<li value='.$ $attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+
+                                            }
+                                            elseif ($attributes[0]=='tgt') {
+                                                 $tgt=$attributes[1];
+                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+
+                                            }
+                                            elseif ($attributes[0]=='method') {
+                                                 $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
+
+                                            }
+                                           
+                                            elseif ($attributes[0]=='pub') {
+                                                 $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                 $found=FALSE;
+                                                 foreach ($pub_list as $pub) {
+                                                     if ($attributes[1]==$pub){
+                                                         $found=TRUE;
+                                                     }
+                                                 }
+                                                 if ($found==FALSE){
+                                                     array_push($pub_list, $attributes[1]);
+                                                 }
+                                                     
+                                                 
+
+                                            }
+                                            elseif ($attributes[0]=='src_name') {
+                                                $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
+
+                                            }
+                                            elseif ($attributes[0]=='tgt_name') {
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus name: '.$attributes[1].'</li>';
+
+                                            }
+                                            elseif ($attributes[0]=='host_taxon') {
+                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
+
+                                            }
+                                            elseif ($attributes[0]=='virus_taxon') {
+                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
+
+                                            }
+                                            else{
+
+                                            }
+
+
+                                        }
+                                        $string_seq.='</ul></span>';
+                                        add_accordion_panel($string_seq, $tgt, $tgt);
+                                        $total_protein_hpidb++;
+
+                                    }
+                                    $counter++;
+                                    echo'
+                                    </div>';
+
+                                echo'
+                                </div></div></div>';
+                    }
+                    else if ($counter==1){
+                        echo'
+                        <div class="panel-group" id="accordion_documents">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> IntAct plant/plant interaction database </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
@@ -639,7 +730,7 @@ echo   '<div id="summary">
                                 echo'
                                 </div></div></div>';
                     }
-                    else if ($counter==1){
+                    else if ($counter==2){
                         echo'
                                
                             

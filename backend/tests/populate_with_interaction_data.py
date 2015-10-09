@@ -132,7 +132,7 @@ interactions_col.insert(interactions_table)
 # Host pathogen interaction db
 interactions_table={
 	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
-	"type":"prot_to_prot",
+	"type":"prot_to_prot_hpidb",
 	"src":"protein_xref_1",
 	"src_version":"uniprot",
 	"tgt":"protein_xref_2",
@@ -157,7 +157,7 @@ interactions_col.insert(interactions_table)
 #IntAct db
 interactions_table={
 	"data_file":"interactomics/Intact/intact_full.xls",
-	"type":"prot_to_prot",
+	"type":"prot_to_prot_intact",
 	"src":"protein_xref_1",
 	"src_version":"uniprot",
 	"tgt":"protein_xref_2",
