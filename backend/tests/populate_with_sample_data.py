@@ -717,7 +717,7 @@ samples_col.insert(AT_samples)
 # Prunus 
 
 prunus_samples={
-	"src_pub":19821986, # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":24959894, # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus domestica", # any abbrev name, key or full name,P. domestica 
 	"strain":"JoJo",
 	"name":"Transcriptomics of infection of P. domestica Jojo by PPV",
