@@ -597,52 +597,52 @@ echo   '<div id="summary">
                                     $total_protein_hpidb=0;
                                     foreach ($array as $intact){
                                         $string_seq='<ul><span class="goTerm">';
-                                        foreach ($intact as $attributes){
+                                        foreach ($intact as $key=>$value){
 
-                                            if ($attributes[0]=='src'){
+                                            if ($key=='src'){
 
-                                                $string_seq.='<li value='.$ $attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
 
                                             }
-                                            elseif ($attributes[0]=='tgt') {
+                                            elseif ($key=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$ $attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$value.'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
 
                                             }
-                                            elseif ($attributes[0]=='method') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> method: '.$attributes[1].'</li>';
+                                            elseif ($key=='method') {
+                                                 $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
 
                                             }
                                            
-                                            elseif ($attributes[0]=='pub') {
-                                                 $string_seq.='<li value='.$ $attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                            elseif ($key=='pub') {
+                                                 $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
                                                  $found=FALSE;
                                                  foreach ($pub_list as $pub) {
-                                                     if ($attributes[1]==$pub){
+                                                     if ($value==$pub){
                                                          $found=TRUE;
                                                      }
                                                  }
                                                  if ($found==FALSE){
-                                                     array_push($pub_list, $attributes[1]);
+                                                     array_push($pub_list, $value);
                                                  }
                                                      
                                                  
 
                                             }
-                                            elseif ($attributes[0]=='src_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host name: '.$attributes[1].'</li>';
+                                            elseif ($key=='src_name') {
+                                                $string_seq.='<li value='.$value.'> host name: '.$value.'</li>';
 
                                             }
-                                            elseif ($attributes[0]=='tgt_name') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus name: '.$attributes[1].'</li>';
+                                            elseif ($key=='tgt_name') {
+                                                $string_seq.='<li value='.$value.'> virus name: '.$value.'</li>';
 
                                             }
-                                            elseif ($attributes[0]=='host_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
+                                            elseif ($key=='host_taxon') {
+                                                $string_seq.='<li value='.$value.'> host taxon: '.$value.'</li>';
 
                                             }
-                                            elseif ($attributes[0]=='virus_taxon') {
-                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
+                                            elseif ($key=='virus_taxon') {
+                                                $string_seq.='<li value='.$ $value.'> virus taxon: '.$value.'</li>';
 
                                             }
                                             else{
