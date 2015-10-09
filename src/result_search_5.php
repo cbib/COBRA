@@ -541,20 +541,16 @@ echo   '<div id="summary">
                 $counter=0;
                 //$timestart=microtime(true);
                 foreach ($interaction_array as $array){
-                    error_log('counter value'.$counter);
                     if ($counter===0){
-                        error_log('in counter value: '.$counter);
                         $total_protein_hpidb=count($array);
 
                     }
                     if ($counter===1){
-                        error_log('in counter value: '.$counter);
 
                         $total_protein_intact=count($array);
 
                     }
                     else if ($counter===2){
-                        error_log('in counter value: '.$counter);
 
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
@@ -562,7 +558,6 @@ echo   '<div id="summary">
                         }
                     }
                     else{
-                        error_log('in counter value: '.$counter);
 
                         $total_protein_biogrid=0;
                         $tgt="";
@@ -596,7 +591,10 @@ echo   '<div id="summary">
                 $counter=0;
                 $pub_list=array();
                 foreach ($interaction_array as $array){
+                    
+
                     if ($counter==0){
+                        error_log('in counter value: '.$counter);               
                         echo'
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
@@ -615,10 +613,10 @@ echo   '<div id="summary">
                                     echo'';
 
                                     $total_protein_hpidb=0;
-                                    foreach ($array as $intact){
+                                    foreach ($array as $hpidb){
                                         $string_seq='<ul><span class="goTerm">';
-                                        foreach ($intact as $key=>$value){
-
+                                        foreach ($hpidb as $key=>$value){
+                                            error_log('key: '.$key.'and value: '.$value);
                                             if ($key=='src'){
 
                                                 $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
