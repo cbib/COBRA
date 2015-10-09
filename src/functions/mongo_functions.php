@@ -581,7 +581,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
         }
         //intact
         $search=array("type"=>"prot_to_prot_intact");
-        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"src_name"=>1,"tgt_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
+        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"src_name"=>1,"tgt_name"=>1,"src"=>1,"tgt"=>1);
         $query=$interactionsCollection->find($search,$select);
         foreach ($query as $value) {
             

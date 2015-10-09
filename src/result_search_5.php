@@ -562,12 +562,12 @@ echo   '<div id="summary">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Host Pathogen Interaction database </strong> ('. $total_protein_hpidb.')
+                                    <a class="accordion-toggle collapsed" href="#hpidb2" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> Host Pathogen Interaction (hpidb2)</strong> ('. $total_protein_hpidb.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
+                                <div class="panel-body panel-collapse collapse" id="hpidb2">';
 
                                     echo'
                                     <div class="goProcessTerms goTerms">';
@@ -649,12 +649,12 @@ echo   '<div id="summary">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#lit_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> IntAct plant/plant interaction database </strong> ('. $total_protein_intact.')
+                                    <a class="accordion-toggle collapsed" href="#intact" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> IntAct plant/plant interaction </strong> ('. $total_protein_intact.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="lit_interact">';
+                                <div class="panel-body panel-collapse collapse" id="intact">';
 
                                     echo'
                                     <div class="goProcessTerms goTerms">';
@@ -738,12 +738,12 @@ echo   '<div id="summary">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_interact" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Litterature plant/virus database </strong> ('.  $total_protein_litterature.')
+                                    <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> Litterature plant/virus </strong> ('.  $total_protein_litterature.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_interact">
+                                <div class="panel-body panel-collapse collapse" id="litterature">
                                 ';
 
                                 echo'
@@ -820,12 +820,12 @@ echo   '<div id="summary">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#database_biogrid" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong> Biogrid plant/plant interaction database </strong> ('.  $total_protein_biogrid.')
+                                    <a class="accordion-toggle collapsed" href="#biogrid" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong> Biogrid plant/plant interaction </strong> ('.  $total_protein_biogrid.')
                                     </a>				
 
                                 </div>
-                                <div class="panel-body panel-collapse collapse" id="database_biogrid">
+                                <div class="panel-body panel-collapse collapse" id="biogrid">
                                 ';
 
                                 echo'
