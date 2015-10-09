@@ -517,14 +517,14 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
             foreach ($mapping_file as $mapping_doc) {
                 
                 
-                $host_prot_id=$mapping_doc[$value['src']];
-                $virus_prot_id=$mapping_doc[$value['tgt']];
-                $method=$mapping_doc[$value['method']];
-                $pub=$mapping_doc[$value['pub']];
-                $hostname=$mapping_doc[$value['src_name']];
-                $virusname=$mapping_doc[$value['tgt_name']];
-                $host_taxon=$mapping_doc[$value['host_taxon']];
-                $virus_taxon=$mapping_doc[$value['virus_taxon']];
+                //$host_prot_id=$mapping_doc[$value['src']];
+                //$virus_prot_id=$mapping_doc[$value['tgt']];
+                //$method=$mapping_doc[$value['method']];
+                //$pub=$mapping_doc[$value['pub']];
+                //$hostname=$mapping_doc[$value['src_name']];
+                //$virusname=$mapping_doc[$value['tgt_name']];
+                //$host_taxon=$mapping_doc[$value['host_taxon']];
+                //$virus_taxon=$mapping_doc[$value['virus_taxon']];
    
                 if ($host_prot_id == $id){
                     //echo 'key equal';
@@ -532,38 +532,71 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //                    echo 'prot id mapped !!!!!:'.$id.'<br/>';
 //                    echo $mapping_doc[$value['src']];
 //                    echo $mapping_doc[$value['tgt']];
-                    $src_array=array();
-                    array_push($src_array, 'src');
-                    array_push($src_array, $mapping_doc[$value['src']]);
+                    
+                    
+//                    $src_array=array();
+//                    array_push($src_array, 'src');
+//                    array_push($src_array, $mapping_doc[$value['src']]);
+                    
+                    $src_array=array('src'=>$mapping_doc[$value['src']]);
                     array_push($tmp_array, $src_array);
-                    $tgt_array=array();
-                    array_push($tgt_array, 'tgt');
-                    array_push($tgt_array, $mapping_doc[$value['tgt']]);
+                    
+                    
+//                    $tgt_array=array();
+//                    array_push($tgt_array, 'tgt');
+//                    array_push($tgt_array, $mapping_doc[$value['tgt']]);
+                    
+                    $tgt_array=array('tgt'=>$mapping_doc[$value['tgt']]);
                     array_push($tmp_array, $tgt_array);
-                    $method_array=array();
-                    array_push($method_array, 'method');
-                    array_push($method_array, $mapping_doc[$value['method']]);
+                    
+                    
+//                    $method_array=array();
+//                    array_push($method_array,'method');
+                    //array_push($method_array, $mapping_doc[$value['method']]);
+                    
+                    $method_array=array('method'=>$mapping_doc[$value['method']]);
                     array_push($tmp_array, $method_array);
-                    $pub_array=array();
-                    array_push($pub_array, 'pub');
-                    array_push($pub_array, $mapping_doc[$value['pub']]);
+                    
+                    
+                    
+//                    $pub_array=array();
+//                    array_push($pub_array,'pub');
+//                    array_push($pub_array, $mapping_doc[$value['pub']]);
+                    
+                    $pub_array=array('pub'=>$mapping_doc[$value['pub']]);
                     array_push($tmp_array, $pub_array);
-                    $host_name_array=array();
-                    array_push($host_name_array, 'src_name');
-                    array_push($host_name_array, $mapping_doc[$value['src_name']]);
+                    
+
+                    //$host_name_array=array();
+                    //array_push($host_name_array, 'src_name');
+                    //array_push($host_name_array, $mapping_doc[$value['src_name']]);
+                    
+                    $host_name_array=array('src_name'=>$mapping_doc[$value['src_name']]);
                     array_push($tmp_array, $host_name_array);
-                    $virus_name_array=array();
-                    array_push($virus_name_array, 'tgt_name');
-                    array_push($virus_name_array, $mapping_doc[$value['tgt_name']]);
+                    
+
+                    //$virus_name_array=array();
+                    //array_push($virus_name_array, 'tgt_name');
+                    //array_push($virus_name_array, $mapping_doc[$value['tgt_name']]);
+                    
+                    $virus_name_array=array('tgt_name'=>$mapping_doc[$value['tgt_name']]);
                     array_push($tmp_array, $virus_name_array);
-                    $host_taxon_array=array();                  
-                    array_push($host_taxon_array, 'host_taxon');
-                    array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
+                    
+
+                    //$host_taxon_array=array();                  
+                    //array_push($host_taxon_array, 'host_taxon');
+                    //array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
+                    
+                    $host_taxon_array=array('host_taxon'=>$mapping_doc[$value['host_taxon']]);
                     array_push($tmp_array, $host_taxon_array);
-                    $virus_taxon_array=array();
-                    array_push($virus_taxon_array, 'virus_taxon');
-                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
+                    
+                    //$virus_taxon_array=array();
+                    //array_push($virus_taxon_array, 'virus_taxon');
+                    //array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
+                    $virus_taxon_array=array('virus_taxon'=>$mapping_doc[$value['virus_taxon']]);
                     array_push($tmp_array, $virus_taxon_array);
+                    
+                    
                     
                     array_push($hpidb_int_array, $tmp_array);
 
