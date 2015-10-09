@@ -663,7 +663,7 @@ echo   '<div id="summary">
                                 echo'
                                 </div></div></div>';
                     }
-                    else if ($counter==1){
+                    elseif ($counter==1){
                         echo'
                         <div class="panel-group" id="accordion_documents">
                             <div class="panel panel-default">
@@ -750,7 +750,7 @@ echo   '<div id="summary">
                                 echo'
                                 </div></div></div>';
                     }
-                    else if ($counter==2){
+                    elseif ($counter==2){
                         echo'
                                
                             
