@@ -517,7 +517,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
             foreach ($mapping_file as $mapping_doc) {
                 
                 
-                //$host_prot_id=$mapping_doc[$value['src']];
+                $host_prot_id=$mapping_doc[$value['src']];
                 //$virus_prot_id=$mapping_doc[$value['tgt']];
                 //$method=$mapping_doc[$value['method']];
                 //$pub=$mapping_doc[$value['pub']];
@@ -626,11 +626,11 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 
                 
                 $host_prot_id=$mapping_doc[$value['src']];
-                $virus_prot_id=$mapping_doc[$value['tgt']];
-                $method=$mapping_doc[$value['method']];
-                $pub=$mapping_doc[$value['pub']];
-                $hostname=$mapping_doc[$value['src_name']];
-                $virusname=$mapping_doc[$value['tgt_name']];
+//                $virus_prot_id=$mapping_doc[$value['tgt']];
+//                $method=$mapping_doc[$value['method']];
+//                $pub=$mapping_doc[$value['pub']];
+//                $hostname=$mapping_doc[$value['src_name']];
+//                $virusname=$mapping_doc[$value['tgt_name']];
                 //$host_taxon=$mapping_doc[$value['host_taxon']];
                 //$virus_taxon=$mapping_doc[$value['virus_taxon']];
    
