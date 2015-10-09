@@ -627,7 +627,7 @@ echo   '<div id="summary">
 
                                                 }
                                                 elseif ($key=='tgt') {
-                                                     $tgt=$attributes[1];
+                                                     $tgt=$value;
                                                     $string_seq.='<li value='.$value.'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
 
                                                 }
@@ -663,7 +663,7 @@ echo   '<div id="summary">
 
                                                 }
                                                 elseif ($key=='virus_taxon') {
-                                                    $string_seq.='<li value='.$ $value.'> virus taxon: '.$value.'</li>';
+                                                    $string_seq.='<li value='.$value.'> virus taxon: '.$value.'</li>';
 
                                                 }
                                                 else{
