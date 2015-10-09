@@ -558,9 +558,9 @@ echo   '<div id="summary">
                         $tgt_array=array();
                         foreach ($array as $intact){
                             foreach ($intact as $value) {
-                                //if ($value[0]=='tgt'){
-                                $tgt=$value['tgt'];
-                                //}
+                                if ($value[0]=='tgt'){
+                                    $tgt=$value[1];
+                                }
                                 
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
