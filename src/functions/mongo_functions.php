@@ -505,7 +505,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
     foreach ($protein_id as $id){
         
         $search=array("type"=>"prot_to_prot");
-        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"host_name"=>1,"virus_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
+        $select=array('mapping_file'=>1,'pub'=>1,"method"=>1,"src_name"=>1,"tgt_name"=>1,"src"=>1,"tgt"=>1,"host_taxon"=>1,"virus_taxon"=>1);
         $query=$interactionsCollection->find($search,$select);
         foreach ($query as $value) {
             
@@ -520,10 +520,10 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                 $virus_prot_id=$mapping_doc[$value['tgt']];
                 $method=$mapping_doc[$value['method']];
                 $pub=$mapping_doc[$value['pub']];
-                $hostname=$mapping_doc[$value['host_name']];
-                $virusname=$mapping_doc[$value['virus_name']];
-                $host_taxon=$mapping_doc[$value['host_taxon']];
-                $virus_taxon=$mapping_doc[$value['virus_taxon']];
+                $hostname=$mapping_doc[$value['src_name']];
+                $virusname=$mapping_doc[$value['tgt_name']];
+                //$host_taxon=$mapping_doc[$value['host_taxon']];
+                //$virus_taxon=$mapping_doc[$value['virus_taxon']];
    
                 if ($host_prot_id == $id){
                     //echo 'key equal';
@@ -548,21 +548,21 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
                     array_push($pub_array, $mapping_doc[$value['pub']]);
                     array_push($tmp_array, $pub_array);
                     $host_name_array=array();
-                    array_push($host_name_array, 'host_name');
-                    array_push($host_name_array, $mapping_doc[$value['host_name']]);
+                    array_push($host_name_array, 'src_name');
+                    array_push($host_name_array, $mapping_doc[$value['src_name']]);
                     array_push($tmp_array, $host_name_array);
                     $virus_name_array=array();
-                    array_push($virus_name_array, 'virus_name');
-                    array_push($virus_name_array, $mapping_doc[$value['virus_name']]);
+                    array_push($virus_name_array, 'tgt_name');
+                    array_push($virus_name_array, $mapping_doc[$value['tgt_name']]);
                     array_push($tmp_array, $virus_name_array);
-                    $host_taxon_array=array();                  
-                    array_push($host_taxon_array, 'host_taxon');
-                    array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
-                    array_push($tmp_array, $host_taxon_array);
-                    $virus_taxon_array=array();
-                    array_push($virus_taxon_array, 'virus_taxon');
-                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
-                    array_push($tmp_array, $virus_taxon_array);
+//                    $host_taxon_array=array();                  
+//                    array_push($host_taxon_array, 'host_taxon');
+//                    array_push($host_taxon_array, $mapping_doc[$value['host_taxon']]);
+//                    array_push($tmp_array, $host_taxon_array);
+//                    $virus_taxon_array=array();
+//                    array_push($virus_taxon_array, 'virus_taxon');
+//                    array_push($virus_taxon_array, $mapping_doc[$value['virus_taxon']]);
+//                    array_push($tmp_array, $virus_taxon_array);
                     
                     array_push($pro_int_array, $tmp_array);
 
