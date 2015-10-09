@@ -534,26 +534,36 @@ echo   '<div id="summary">
 				
 				<h3>Current Interactors</h3>
 				';
+                    
+                    
+                //get all inetrator for each dataset (biogrid, intact, hipdb, etc..)
                 $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
                 $counter=0;
                 //$timestart=microtime(true);
                 foreach ($interaction_array as $array){
                     error_log('counter value'.$counter);
                     if ($counter===0){
+                        error_log('in counter value: '.$counter);
                         $total_protein_hpidb=count($array);
 
                     }
                     if ($counter===1){
+                        error_log('in counter value: '.$counter);
+
                         $total_protein_intact=count($array);
 
                     }
                     else if ($counter===2){
+                        error_log('in counter value: '.$counter);
+
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
                             $total_protein_litterature++;
                         }
                     }
                     else{
+                        error_log('in counter value: '.$counter);
+
                         $total_protein_biogrid=0;
                         $tgt="";
                         $tgt_array=array();
@@ -574,6 +584,13 @@ echo   '<div id="summary">
                     }
                     $counter++;
                 }
+                
+                
+                
+                
+                
+                
+                
                 $counter=0;
                 $pub_list=array();
                 foreach ($interaction_array as $array){
