@@ -656,7 +656,7 @@ echo   '<div id="summary">
                                         $total_protein_hpidb++;
 
                                     }
-                                    $counter++;
+                                    //$counter++;
                                     echo'
                                     </div>';
 
@@ -743,7 +743,7 @@ echo   '<div id="summary">
                                         $total_protein_intact++;
 
                                     }
-                                    $counter++;
+                                    //$counter++;
                                     echo'
                                     </div>';
 
@@ -822,7 +822,7 @@ echo   '<div id="summary">
                                     $total_protein_litterature++;
 
                                 }
-                                $counter++;
+                                //$counter++;
                                 
 
                                 echo'
@@ -916,7 +916,7 @@ echo   '<div id="summary">
                                     
 
                                 }
-                                $counter++;
+                                //$counter++;
                                 
 
                                 echo'
@@ -926,6 +926,7 @@ echo   '<div id="summary">
                             </div>
                         </div></div>';
                     }
+                    $counter++;
                 }
                         
 //                $timeend=microtime(true);
