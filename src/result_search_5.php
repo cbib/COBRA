@@ -538,6 +538,7 @@ echo   '<div id="summary">
                 $counter=0;
                 //$timestart=microtime(true);
                 foreach ($interaction_array as $array){
+                    error_log('counter value'.$counter);
                     if ($counter===0){
                         $total_protein_hpidb=count($array);
 
