@@ -567,10 +567,12 @@ echo   '<div id="summary">
                         $total_protein_biogrid=0;
                         $tgt="";
                         $tgt_array=array();
-                        foreach ($array as $intact){
-                            foreach ($intact as $value) {
-                                if ($value[0]=='tgt'){
-                                    $tgt=$value[1];
+                        foreach ($array as $biogrid){
+                            foreach ($biogrid as $key=>$value) {
+                                
+                                
+                                if ($key=='tgt'){
+                                    $tgt=$value;
                                 }
                                 
                             }
