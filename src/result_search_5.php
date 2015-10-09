@@ -538,15 +538,15 @@ echo   '<div id="summary">
                 $counter=0;
                 //$timestart=microtime(true);
                 foreach ($interaction_array as $array){
-                    if ($counter==0){
+                    if ($counter===0){
                         $total_protein_hpidb=count($array);
 
                     }
-                    if ($counter==1){
+                    if ($counter===1){
                         $total_protein_intact=count($array);
 
                     }
-                    else if ($counter==2){
+                    else if ($counter===2){
                         $total_protein_litterature=0;
                         foreach ($array as $intact){
                             $total_protein_litterature++;
@@ -558,9 +558,9 @@ echo   '<div id="summary">
                         $tgt_array=array();
                         foreach ($array as $intact){
                             foreach ($intact as $value) {
-                                if ($value[0]=='tgt'){
-                                    $tgt=$value[1];
-                                }
+                                //if ($value[0]=='tgt'){
+                                $tgt=$value['tgt'];
+                                //}
                                 
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
