@@ -615,56 +615,60 @@ echo   '<div id="summary">
                                     $total_protein_hpidb=0;
                                     foreach ($array as $hpidb){
                                         $string_seq='<ul><span class="goTerm">';
-                                        foreach ($hpidb as $key=>$value){
-                                            error_log('key: '.$key.'and value: '.$value);
-                                            if ($key=='src'){
+                                        foreach ($hpidb as $values){
+                                            foreach ($values as $key=>$value){
+                                            
+                                            
+                                            
+                                                error_log('key: '.$key.'and value: '.$value);
+                                                if ($key=='src'){
 
-                                                $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
+                                                    $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
 
-                                            }
-                                            elseif ($key=='tgt') {
-                                                 $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$value.'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
+                                                }
+                                                elseif ($key=='tgt') {
+                                                     $tgt=$attributes[1];
+                                                    $string_seq.='<li value='.$value.'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
 
-                                            }
-                                            elseif ($key=='method') {
-                                                 $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
+                                                }
+                                                elseif ($key=='method') {
+                                                     $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
 
-                                            }
-                                           
-                                            elseif ($key=='pub') {
-                                                 $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
-                                                 $found=FALSE;
-                                                 foreach ($pub_list as $pub) {
-                                                     if ($value==$pub){
-                                                         $found=TRUE;
+                                                }            
+                                                elseif ($key=='pub') {
+                                                     $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
+                                                     $found=FALSE;
+                                                     foreach ($pub_list as $pub) {
+                                                         if ($value==$pub){
+                                                             $found=TRUE;
+                                                         }
                                                      }
-                                                 }
-                                                 if ($found==FALSE){
-                                                     array_push($pub_list, $value);
-                                                 }
-                                                     
-                                                 
+                                                     if ($found==FALSE){
+                                                         array_push($pub_list, $value);
+                                                     }
 
-                                            }
-                                            elseif ($key=='src_name') {
-                                                $string_seq.='<li value='.$value.'> host name: '.$value.'</li>';
 
-                                            }
-                                            elseif ($key=='tgt_name') {
-                                                $string_seq.='<li value='.$value.'> virus name: '.$value.'</li>';
 
-                                            }
-                                            elseif ($key=='host_taxon') {
-                                                $string_seq.='<li value='.$value.'> host taxon: '.$value.'</li>';
+                                                }
+                                                elseif ($key=='src_name') {
+                                                    $string_seq.='<li value='.$value.'> host name: '.$value.'</li>';
 
-                                            }
-                                            elseif ($key=='virus_taxon') {
-                                                $string_seq.='<li value='.$ $value.'> virus taxon: '.$value.'</li>';
+                                                }
+                                                elseif ($key=='tgt_name') {
+                                                    $string_seq.='<li value='.$value.'> virus name: '.$value.'</li>';
 
-                                            }
-                                            else{
+                                                }
+                                                elseif ($key=='host_taxon') {
+                                                    $string_seq.='<li value='.$value.'> host taxon: '.$value.'</li>';
 
+                                                }
+                                                elseif ($key=='virus_taxon') {
+                                                    $string_seq.='<li value='.$ $value.'> virus taxon: '.$value.'</li>';
+
+                                                }
+                                                else{
+
+                                                }
                                             }
 
 
