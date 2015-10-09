@@ -303,10 +303,30 @@ echo   '<div id="summary">
                     
                     
                     //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
-                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                    if (isset($result['day_after_inoculation'])){
+                        if (isset($result['variety'])){
+                           $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                            array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                        }
+                        else{
+                            $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                            array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                        }
+                        
+                    }
+                    else{
+                        if (isset($result['variety'])){
+                           $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                            array_push($categories, $result['species'].'/'.$result['variety']); 
+                        }
+                        else{
+                            $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                            array_push($categories, $result['species']);
+                        }
+                    }
                     array_push($logfc_array, $sample);
                     
-                    array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']);
+                    //array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']);
                     //array_push($categories, $counter);
 
                     
@@ -1533,7 +1553,7 @@ new_cobra_footer();
                     var g=genes;
                     //window.alert(genes);
                 
-                    s += '<ul><li>profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
+                    s += '<ul><li>'+if (typeof variable === 'undefined' || variable === null) {}+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
