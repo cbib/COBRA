@@ -64,6 +64,7 @@ if($dossier = opendir('./COBRA_depot/'))
        
     }
     $table_string.='</tbody></table>';
+    echo $table_string;
     
 }
 
