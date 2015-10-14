@@ -19,7 +19,7 @@ $db=mongoConnector();
 
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
-
+$docsCollection = new Mongocollection($db, "docs");
 $dossier = 'COBRA_depot/';
 $fichier = basename($_FILES['fileToUpload']['name']);
 $taille_maxi = 100000000;
@@ -45,6 +45,15 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
      if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
           echo 'Your file '.$fichier.' was upload successfully !';
+          $document = array( 
+            "full_file_name" => $dossier.$fichier, 
+            "description" => "database", 
+            "author" => $_SESSION['firstname'].$_SESSION['lastname']
+            
+          );
+          $db->$docs->insert($document);
+          
+          
           header('Location: index.php');
           
           
