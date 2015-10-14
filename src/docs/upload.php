@@ -46,11 +46,12 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
      if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
           echo 'Your file '.$fichier.' was upload successfully !';
+          $full_path=$dossier.$fichier;
+          $author_full_name=$_SESSION['firstname'].$_SESSION['lastname'];
           $document = array( 
-            "full_file_name" => $dossier.$fichier, 
-            "description" => "database", 
-            "author" => $_SESSION['firstname'].$_SESSION['lastname']
-            
+            "full_file_name" => $full_path, 
+            "description" => "database document from partners", 
+            "author" => $author_full_name 
           );
           $db->$docsCollection->insert($document);
           
