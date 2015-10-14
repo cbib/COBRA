@@ -19,8 +19,9 @@ $db=mongoConnector();
 
 new_cobra_header();
 
-new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
-
+new_cobra_body($_SESSION['Upload'],"Upload files Page","section_upload_file");
+echo '<div id="doc_pages">';
+echo '<div id="section_upload">';
 echo '<form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
 
@@ -29,8 +30,8 @@ echo '<form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="submit" value="Upload File" name="submit">
       </form>';
 
-echo '<div id="doc_pages">'
-. '     <div id="section_documents">';
+
+echo '<div id="section_documents">';
 $nb_files = 0;
     $table_string="";
 ###Document TABLE

@@ -290,7 +290,6 @@ and open the template in the editor.
 
  #section_quick_search,
  //#goTerms,
- #section_documents,
  #section_login,
  #section_diff_exp_genes,
  #section_disconnect,
@@ -298,6 +297,7 @@ and open the template in the editor.
  #section_user_details,
  #section_result_tabs,
  #section_result_summary,
+ #section_upload_file,
  #section_maintenance,
  #section_upload_file,
  #section_tools{
