@@ -2,7 +2,7 @@
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
-include '../wiki/vendor/autoload.php';
+include '../../wiki/vendor/autoload.php';
 require('../session/control-session.php');
 $db=mongoConnector();
 
@@ -54,7 +54,7 @@ if($dossier = opendir('./COBRA_depot/'))
     while(false !== ($fichier = readdir($dossier)))
     {
         if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
-            $nb_fichier++; // On incrémente le compteur de 1
+            $nb_files++; // On incrémente le compteur de 1
             $table_string.='<tr>';
             $table_string.='<td>'.$fichier.'</td>';
             $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
