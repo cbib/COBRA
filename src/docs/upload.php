@@ -47,13 +47,13 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
      if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
           echo 'Your file '.$fichier.' was upload successfully !';
-          //$full_path=$dossier.$fichier;
+          $full_path=$dossier.$fichier;
           $author_full_name=$_SESSION['firstname'].$_SESSION['lastname'];
           
           //tester l'existence du document
           
           // retrieve existing document
-          $criteria = array('full_file_name' => $dossier.$fichier);
+          $criteria = array('full_file_name' => $full_path);
           $doc = $docsCollection->findOne($criteria);
 
           if(!empty($doc) ){
