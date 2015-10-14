@@ -48,6 +48,7 @@ $table_string.='<thead><tr>';
 	
 	//fin du header de la table
 $table_string.='</tr></thead>';
+$table_string.='<tbody>';
 if($dossier = opendir('./COBRA_depot/'))
 {
     while(false !== ($fichier = readdir($dossier)))
@@ -62,26 +63,14 @@ if($dossier = opendir('./COBRA_depot/'))
         }
        
     }
+    $table_string.='</tbody></table>';
     
 }
+
 else{
      echo 'Le dossier n\' a pas pu être ouvert';
 }
-//Debut du corps de la table
-$table_string.='<tbody>';
 
-foreach($cursor as $line) {
-$table_string.='<tr>';
-	//$table_string.='<td>'.$line['type'].'</td>';
-	$table_string.='<td>'.$line['src'].'</td>';
-	$table_string.='<td>'.$line['src_version'].'</td>';
-	$table_string.='<td>'.$line['tgt'].'</td>';
-	$table_string.='<td>'.$line['tgt_version'].'</td>';
-	$table_string.='<td>'.$line['species'].'</td>';
-$table_string.='</tr>';
-
-}
-$table_string.='</tbody></table>';
 
 echo'</div>'
 . '</div>';
