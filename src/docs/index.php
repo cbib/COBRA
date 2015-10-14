@@ -34,6 +34,7 @@ echo '<form action="upload.php" method="post" enctype="multipart/form-data">
 
 
 echo '<div id="section_documents">';
+$docsCollection = new Mongocollection($db, "docs");
 $nb_files = 0;
     $table_string="";
 ###Document TABLE

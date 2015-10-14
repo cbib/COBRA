@@ -19,8 +19,8 @@ $db=mongoConnector();
 
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
+$docsCollection = $db->createCollection("docs");
 
-$docsCollection = new Mongocollection($db, "docs");
 $dossier = 'COBRA_depot/';
 $fichier = basename($_FILES['fileToUpload']['name']);
 $taille_maxi = 100000000;
