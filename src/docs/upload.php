@@ -29,11 +29,11 @@ $extension = strrchr($_FILES['fileToUpload']['name'], '.');
 //Début des vérifications de sécurité...
 if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
 {
-     $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+     $erreur = 'Upload valid obly for type png, gif, jpg, jpeg, txt or doc...';
 }
 if($taille>$taille_maxi)
 {
-     $erreur = 'Le fichier est trop gros...';
+     $erreur = 'File is over 100 Mo';
 }
 if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 {
@@ -45,10 +45,16 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
      if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
           echo 'Your file '.$fichier.' was upload successfully !';
+          header('Location: index.php');
+          
+          
+          
+          
+          
      }
      else //Sinon (la fonction renvoie FALSE).
      {
-          echo 'Echec de l\'upload !';
+          echo 'Upload failed, please check repertory permission!';
      }
 }
 else

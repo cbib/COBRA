@@ -29,6 +29,63 @@ echo '<form action="upload.php" method="post" enctype="multipart/form-data">
         <input type="submit" value="Upload File" name="submit">
       </form>';
 
+echo '<div id="doc_pages">'
+. '     <div id="section_documents">';
+$nb_files = 0;
+    $table_string="";
+###Document TABLE
+
+$table_string.='<table id="documents" class="table table-hover">';
+//$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+$table_string.='<thead><tr>';
+	
+	//recupere le titre
+	//$table_string.='<th>type</th>';
+	$table_string.='<th>File name</th>';
+	$table_string.='<th>From</th>';
+	
+
+	
+	//fin du header de la table
+$table_string.='</tr></thead>';
+if($dossier = opendir('./COBRA_depot/'))
+{
+    while(false !== ($fichier = readdir($dossier)))
+    {
+        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
+            $nb_fichier++; // On incrémente le compteur de 1
+            $table_string.='<tr>';
+            $table_string.='<td>'.$fichier.'</td>';
+            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
+            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
+            $table_string.='</tr>';
+        }
+       
+    }
+    
+}
+else{
+     echo 'Le dossier n\' a pas pu être ouvert';
+}
+//Debut du corps de la table
+$table_string.='<tbody>';
+
+foreach($cursor as $line) {
+$table_string.='<tr>';
+	//$table_string.='<td>'.$line['type'].'</td>';
+	$table_string.='<td>'.$line['src'].'</td>';
+	$table_string.='<td>'.$line['src_version'].'</td>';
+	$table_string.='<td>'.$line['tgt'].'</td>';
+	$table_string.='<td>'.$line['tgt_version'].'</td>';
+	$table_string.='<td>'.$line['species'].'</td>';
+$table_string.='</tr>';
+
+}
+$table_string.='</tbody></table>';
+
+echo'</div>'
+. '</div>';
+
 
 new_cobra_footer(); 
   
