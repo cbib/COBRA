@@ -22,7 +22,7 @@ new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 
 $dossier = 'COBRA_depot/';
 $fichier = basename($_FILES['fileToUpload']['name']);
-$taille_maxi = 100000;
+$taille_maxi = 100000000;
 $taille = filesize($_FILES['fileToUpload']['tmp_name']);
 $extensions = array('.doc','.txt','.png', '.gif', '.jpg', '.jpeg');
 $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
