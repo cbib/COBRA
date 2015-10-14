@@ -43,17 +43,30 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
           'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
      $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+     //onteste si le fichier est bien déplacé
      if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      {
           echo 'Your file '.$fichier.' was upload successfully !';
-          $full_path=$dossier.$fichier;
+          //$full_path=$dossier.$fichier;
           $author_full_name=$_SESSION['firstname'].$_SESSION['lastname'];
-          $document = array( 
+          
+          //tester l'existence du document
+          
+          // retrieve existing document
+          $criteria = array('full_file_name' => $dossier.$fichier);
+          $doc = $docsCollection->findOne($criteria);
+
+          if(!empty($doc) ){
+            echo 'Data Already Exist';
+          } 
+          else {
+            $document = array( 
             "full_file_name" => $full_path, 
             "description" => "database document from partners", 
             "author" => $author_full_name 
           );
-          $docsCollection->insert($document);
+            $docsCollection->insert($document);
+          }
           
           
           header('Location: index.php');
