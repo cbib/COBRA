@@ -53,7 +53,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
             "description" => "database document from partners", 
             "author" => $author_full_name 
           );
-          $db->$docsCollection->insert($document);
+          $docsCollection->insert($document);
           
           
           header('Location: index.php');
