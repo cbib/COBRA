@@ -17,6 +17,7 @@ $db=mongoConnector();
 //$orthologsCollection = new Mongocollection($db, "orthologs");
 //$GOCollection = new Mongocollection($db, "gene_ontology");
 
+$docsCollection = $db->createCollection("docs");
 new_cobra_header();
 
 new_cobra_body($_SESSION['Upload'],"Upload files Page","section_upload_file");
@@ -51,6 +52,11 @@ $table_string.='<thead><tr>';
 	//fin du header de la table
 $table_string.='</tr></thead>';
 $table_string.='<tbody>';
+
+
+
+$docs = $docsCollection->find();
+var_dump($docs);
 if($dossier = opendir('./COBRA_depot/'))
 {
     while(false !== ($fichier = readdir($dossier)))
