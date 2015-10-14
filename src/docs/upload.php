@@ -51,7 +51,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
             "author" => $_SESSION['firstname'].$_SESSION['lastname']
             
           );
-          $db->$docs->insert($document);
+          $db->$docsCollection->insert($document);
           
           
           header('Location: index.php');
