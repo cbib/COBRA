@@ -20,7 +20,7 @@ $db=mongoConnector();
 //$docsCollection = $db->createCollection("docs");
 new_cobra_header();
 
-new_cobra_body($_SESSION['Upload'],"Upload files Page","section_upload_file");
+new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
 echo '<form action="upload.php" method="post" enctype="multipart/form-data">
