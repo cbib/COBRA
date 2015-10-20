@@ -69,7 +69,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
           }
           
           
-          header('Location: index.php');
+          header('Location: ./index.php');
           
           
           

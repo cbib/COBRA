@@ -17,7 +17,7 @@ $db=mongoConnector();
 //$orthologsCollection = new Mongocollection($db, "orthologs");
 //$GOCollection = new Mongocollection($db, "gene_ontology");
 
-$docsCollection = $db->createCollection("docs");
+//$docsCollection = $db->createCollection("docs");
 new_cobra_header();
 
 new_cobra_body($_SESSION['Upload'],"Upload files Page","section_upload_file");
