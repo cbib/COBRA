@@ -36,7 +36,7 @@ echo '<form action="upload.php" method="post" enctype="multipart/form-data">
 echo '<div id="section_documents">';
 $docsCollection = new Mongocollection($db, "docs");
 $nb_files = 0;
-    $table_string="";
+$table_string="";
 ###Document TABLE
 
 $table_string.='<table id="documents" class="table table-hover">';
@@ -56,8 +56,10 @@ $table_string.='<tbody>';
 
 
 
-$docs = $docsCollection->find();
+$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'));
 var_dump($docs);
+
+
 if($dossier = opendir('./COBRA_depot/'))
 {
     while(false !== ($fichier = readdir($dossier)))
