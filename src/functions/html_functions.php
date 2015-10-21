@@ -270,7 +270,7 @@ echo'
 
                     
                     <div class="row">
-                        <!-- Left col -->
+                        <!-- Left col
                         <section class="col-lg-12 connectedSortable">-->
                         <section class="container">
                             <p class="text-muted" style="text-align: right;">
