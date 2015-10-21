@@ -79,8 +79,8 @@ if($dossier = opendir('./COBRA_depot/'))
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a href="#"></a></li>
-                      <li><a href="#">Download</a></li>
+                      <li><a href="#download" download="./COBRA_depot/'.$fichier.'">Download</a></li>
+                      <li><a href="#remove">Remove</a></li>
                       <!--<li role="separator" class="divider"></li>
                       <li><a href="#">Separated link</a></li>-->
                     </ul>
