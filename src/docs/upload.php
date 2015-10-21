@@ -66,7 +66,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
             "author" => $author_full_name 
             );
             $docsCollection->insert($document);
-            header('Location: ./index.php');
+            //header('Location: ./index.php');
           }
           
           

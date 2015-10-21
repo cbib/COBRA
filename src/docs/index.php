@@ -46,7 +46,7 @@ $table_string.='<thead><tr>';
 	//recupere le titre
 	//$table_string.='<th>type</th>';
 	$table_string.='<th>File name</th>';
-	$table_string.='<th>From</th>';
+	$table_string.='<th>Uploaded by</th>';
     $table_string.='<th></th>';
     
 	
