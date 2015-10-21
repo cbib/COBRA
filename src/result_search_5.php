@@ -1035,7 +1035,7 @@ echo   '<div id="summary">
                   //$protein="Q39255";   
                   
    echo'</div>
-        </div>';
+        </div></section>';
    
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
@@ -1051,13 +1051,13 @@ echo   '<div id="summary">
     else{
         echo'<div id="summary">
         <h2>No Results found for \''.$search.'\'</h2>'
-      . '</div>';	
+      . '</div></section>';	
     }
 }
 else{
 	echo'<div class="container">
         <h2>you have uncorrectly defined your request</h2>'
-      . '</div>';	
+      . '</div></section>';	
 }
 
 
