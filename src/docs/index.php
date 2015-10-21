@@ -73,17 +73,16 @@ if($dossier = opendir('./COBRA_depot/'))
             $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
             //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
             $table_string.='<td><div class="btn-group">
-                    <button type="button" class="btn btn-danger"><i class="fa fa-search"></i></button>
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="caret"></span>
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#">Download</a></li>
+                      <!--<li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>-->
                     </ul>
                   </div></td>';
             $table_string.='</tr>';
