@@ -271,7 +271,8 @@ echo'
                     
                     <div class="row">
                         <!-- Left col -->
-                        <section class="col-lg-12 connectedSortable">
+                        <section class="col-lg-12 connectedSortable">-->
+                        <section class="container">
                             <p class="text-muted" style="text-align: right;">
                                 Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
                             </p>
