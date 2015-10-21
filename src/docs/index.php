@@ -47,7 +47,7 @@ $table_string.='<thead><tr>';
 	//$table_string.='<th>type</th>';
 	$table_string.='<th>File name</th>';
 	$table_string.='<th>From</th>';
-    $table_string.='<th>Action</th>';
+    $table_string.='<th></th>';
     
 	
 
@@ -73,7 +73,7 @@ if($dossier = opendir('./COBRA_depot/'))
             $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
             //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
             $table_string.='<td><div class="btn-group">
-                    <button type="button" class="btn btn-danger">Action</button>
+                    <button type="button" class="btn btn-danger"><i class="fa fa-search"></i></button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="caret"></span>
                       <span class="sr-only">Toggle Dropdown</span>
