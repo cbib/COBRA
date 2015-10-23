@@ -91,8 +91,8 @@ foreach ($docs as $key) {
                 <ul class="dropdown-menu">
 
                   <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
-                  <li><a href="./COBRA_depot/'.$fichier.'">show file</a></li>
-                  <li><a href="#">Remove</a></li>
+                  <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
+                  <!--<li><a href="#">Remove</a></li>-->
                   <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
 
                   <!--<li role="separator" class="divider"></li>
