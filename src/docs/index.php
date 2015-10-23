@@ -113,7 +113,7 @@ echo $table_string;
 //var_dump($docs);
 
 
-//if($dossier = opendir('./COBRA_depot/'))
+/*if($dossier = opendir('./COBRA_depot/'))
 //{
 //    while(false !== ($fichier = readdir($dossier)))
 //    {
@@ -152,7 +152,7 @@ echo $table_string;
 //
 //else{
 //     echo 'Le dossier n\' a pas pu être ouvert';
-//}
+//}*/
 
 
 echo'</div>'
@@ -184,7 +184,7 @@ $(document).ready(function() {
         }
     } );
  
-    $('##myHrefbuttonremove').click( function () {
+    $('#myHrefbuttonremove').click( function () {
         table.row('.selected').remove().draw( false );
     } );
 } );
