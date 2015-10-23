@@ -73,7 +73,7 @@ foreach ($docs as $key) {
             $table_string.='<td>'.$fichier.'</td>';
         }
         if ($id=="author"){
-            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
+            $table_string.='<td>'.$id.'</td>';
         }
         //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
         
