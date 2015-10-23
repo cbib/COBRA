@@ -125,7 +125,7 @@ $("#myHrefbuttonremove").on('click', function() {
    
 });
 $(document).ready(function() {
-    var table = $('#example').DataTable();
+    var table = $('#documents').DataTable();
  
     $('#example tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
