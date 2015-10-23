@@ -92,9 +92,10 @@ foreach ($docs as $key) {
 
                   <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
                   <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
-                  <!--<li><a href="#">Remove</a></li>-->
                   <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
 
+
+                  <!--<li><a href="#">Remove</a></li>-->
                   <!--<li role="separator" class="divider"></li>
                   <li><a href="#">Separated link</a></li>-->
                 </ul>
@@ -166,10 +167,10 @@ new_cobra_footer();
 
 
 
-$("#myHrefbuttonremove").on('click', function() {
-   alert ("inside onclick");
-   
-});
+//$("#myHrefbuttonremove").on('click', function() {
+//   alert ("inside onclick");
+//   
+//});
 $(document).ready(function() {
     var table = $('#documents').DataTable();
  
@@ -183,7 +184,7 @@ $(document).ready(function() {
         }
     } );
  
-    $('#button').click( function () {
+    $('##myHrefbuttonremove').click( function () {
         table.row('.selected').remove().draw( false );
     } );
 } );
