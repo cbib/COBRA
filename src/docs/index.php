@@ -112,7 +112,7 @@ new_cobra_footer();
 ?>
 <script type="text/javascript" class="init">
 
-var docs= $docsCollection
+var docs= $docsCollection;
 
 $("#myHrefbuttonremove").on('click', function() {
    alert ("inside onclick");
