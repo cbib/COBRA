@@ -63,8 +63,8 @@ $table_string.='<tbody>';
 $docs = $docsCollection->find();
 foreach ($docs as $key) {
     
-    foreach ($key as $value) {
-        echo 'value: '.$value;
+    foreach ($key as $id=>$value) {
+        echo $id.': '.$value;
     }
     echo'<br>';
     
