@@ -59,6 +59,10 @@ $table_string.='<tbody>';
 
 
 $docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'));
+
+var_dump($docs);
+$docs = $docsCollection->find();
+
 var_dump($docs);
 
 
@@ -73,7 +77,7 @@ if($dossier = opendir('./COBRA_depot/'))
             $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
             //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
             $table_string.='<td><div class="btn-group">
-                    <button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="caret"></span>
                       <span class="sr-only">Toggle Dropdown</span>
@@ -112,12 +116,11 @@ new_cobra_footer();
 ?>
 <script type="text/javascript" class="init">
 
-var docs= $docsCollection;
+
 
 $("#myHrefbuttonremove").on('click', function() {
    alert ("inside onclick");
    
-    
 });
 
 
