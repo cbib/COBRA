@@ -63,6 +63,7 @@ $table_string.='<tbody>';
 $docs = $docsCollection->find();
 foreach ($docs as $key) {
     $nb_files++;
+    $fichier="";
     $table_string.='<tr>';
     foreach ($key as $id=>$value) {
         //echo $id.': '.$value;
@@ -98,6 +99,9 @@ foreach ($docs as $key) {
     
 }
 $table_string.='</tbody></table>';
+echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete selected items</button>';
+
+echo $table_string;
 //var_dump($docs);
 //$docs = $docsCollection->find();
 
