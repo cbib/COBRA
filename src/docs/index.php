@@ -59,9 +59,9 @@ $table_string.='<tbody>';
 
 
 
-$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
+//$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
+$docs = $docsCollection->find();
 foreach ($docs as $key) {
-     echo 'key: '.$key;
     foreach ($key as $value) {
         echo 'value: '.$value;
     }
