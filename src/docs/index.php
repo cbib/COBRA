@@ -60,8 +60,10 @@ $table_string.='<tbody>';
 
 
 $docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
-
-var_dump($docs);
+foreach ($docs as $key => $value) {
+    echo 'value: '.$value;
+}
+//var_dump($docs);
 //$docs = $docsCollection->find();
 
 //var_dump($docs);
