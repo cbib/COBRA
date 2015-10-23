@@ -62,59 +62,88 @@ $table_string.='<tbody>';
 //$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
 $docs = $docsCollection->find();
 foreach ($docs as $key) {
-    
+    $nb_files++;
+    $table_string.='<tr>';
     foreach ($key as $id=>$value) {
-        echo $id.': '.$value;
+        //echo $id.': '.$value;
+
+        if ($id=="full_file_name"){
+            $fichier=$id;
+            $table_string.='<td>'.$fichier.'</td>';
+        }
+        if ($id=="author"){
+            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
+        }
+        //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
+        
     }
-    echo'<br>';
+    $table_string.='<td><div class="btn-group">
+                <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+
+                  <li><a href="./'.$fichier.'" download>Download file</a></li>
+                  <li><a href="#">Remove</a></li>
+                  <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
+
+                  <!--<li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>-->
+                </ul>
+              </div></td>';
+        
+    $table_string.='</tr>';
     
 }
+$table_string.='</tbody></table>';
 //var_dump($docs);
 //$docs = $docsCollection->find();
 
 //var_dump($docs);
 
 
-if($dossier = opendir('./COBRA_depot/'))
-{
-    while(false !== ($fichier = readdir($dossier)))
-    {
-        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
-            $nb_files++; // On incrémente le compteur de 1
-            $table_string.='<tr>';
-            $table_string.='<td>'.$fichier.'</td>';
-            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
-            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
-            $table_string.='<td><div class="btn-group">
-                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="caret"></span>
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      
-                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
-                      <li><a href="#">Remove</a></li>
-                      <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
-                      
-                      <!--<li role="separator" class="divider"></li>
-                      <li><a href="#">Separated link</a></li>-->
-                    </ul>
-                  </div></td>';
-            $table_string.='</tr>';
-        }
-       
-    }
-    $table_string.='</tbody></table>';
-    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete seletcted items</button>';
-
-    echo $table_string;
-    
-}
-
-else{
-     echo 'Le dossier n\' a pas pu être ouvert';
-}
+//if($dossier = opendir('./COBRA_depot/'))
+//{
+//    while(false !== ($fichier = readdir($dossier)))
+//    {
+//        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
+//            $nb_files++; // On incrémente le compteur de 1
+//            $table_string.='<tr>';
+//            $table_string.='<td>'.$fichier.'</td>';
+//            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
+//            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
+//            $table_string.='<td><div class="btn-group">
+//                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
+//                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//                      <span class="caret"></span>
+//                      <span class="sr-only">Toggle Dropdown</span>
+//                    </button>
+//                    <ul class="dropdown-menu">
+//                      
+//                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
+//                      <li><a href="#">Remove</a></li>
+//                      <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
+//                      
+//                      <!--<li role="separator" class="divider"></li>
+//                      <li><a href="#">Separated link</a></li>-->
+//                    </ul>
+//                  </div></td>';
+//            $table_string.='</tr>';
+//        }
+//       
+//    }
+//    $table_string.='</tbody></table>';
+//    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete seletcted items</button>';
+//
+//    echo $table_string;
+//    
+//}
+//
+//else{
+//     echo 'Le dossier n\' a pas pu être ouvert';
+//}
 
 
 echo'</div>'
