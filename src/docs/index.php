@@ -97,6 +97,8 @@ if($dossier = opendir('./COBRA_depot/'))
        
     }
     $table_string.='</tbody></table>';
+    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete seletcted items</button>';
+
     echo $table_string;
     
 }
