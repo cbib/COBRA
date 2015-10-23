@@ -48,7 +48,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
      {
           echo 'Your file '.$fichier.' was upload successfully !';
           $full_path=$dossier.$fichier;
-          $author_full_name=$_SESSION['firstname'].$_SESSION['lastname'];
+          $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
           
           //tester l'existence du document
           
