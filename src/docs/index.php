@@ -69,11 +69,11 @@ foreach ($docs as $key) {
         //echo $id.': '.$value;
 
         if ($id=="full_file_name"){
-            $fichier=$id;
+            $fichier=$value;
             $table_string.='<td>'.$fichier.'</td>';
         }
         if ($id=="author"){
-            $table_string.='<td>'.$id.'</td>';
+            $table_string.='<td>'.$value.'</td>';
         }
         //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
         
