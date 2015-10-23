@@ -69,7 +69,9 @@ foreach ($docs as $key) {
         //echo $id.': '.$value;
 
         if ($id=="full_file_name"){
-            $fichier=$value;
+            
+            $cobra_repository = explode("/", $value);
+            $fichier=$cobra_repository[1];
             $table_string.='<td>'.$fichier.'</td>';
         }
         if ($id=="author"){
@@ -86,7 +88,7 @@ foreach ($docs as $key) {
                 </button>
                 <ul class="dropdown-menu">
 
-                  <li><a href="./'.$fichier.'" download>Download file</a></li>
+                  <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
                   <li><a href="#">Remove</a></li>
                   <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
 
