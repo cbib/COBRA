@@ -4,7 +4,7 @@ include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
 include '../../wiki/vendor/autoload.php';
 require('../session/control-session.php');
-$db=mongoConnector();
+
 
 //$grid = $db->getGridFS();
 ////Selection des collections
@@ -34,6 +34,7 @@ echo '<form action="upload.php" method="post" enctype="multipart/form-data">
 
 
 echo '<div id="section_documents">';
+$db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $nb_files = 0;
 $table_string="";
@@ -58,12 +59,12 @@ $table_string.='<tbody>';
 
 
 
-$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'));
+$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
 
 var_dump($docs);
-$docs = $docsCollection->find();
+//$docs = $docsCollection->find();
 
-var_dump($docs);
+//var_dump($docs);
 
 
 if($dossier = opendir('./COBRA_depot/'))

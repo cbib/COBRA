@@ -61,9 +61,9 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
           } 
           else {
             $document = array( 
-            "full_file_name" => $full_path, 
-            "description" => "database document from partners", 
-            "author" => $author_full_name 
+                "full_file_name" => $full_path, 
+                "description" => "database document from partners", 
+                "author" => $author_full_name 
             );
             $docsCollection->insert($document);
             //header('Location: ./index.php');
