@@ -193,12 +193,18 @@ for (i = 0; i < rowLength; i++){
 $(document).ready(function() {
     var table = $('#documents').DataTable();
     
+    
+    
+    
+    $('#example tbody').on( 'click', 'td', function () {
+            alert('Data:'+$(this).html().trim());
+    });      
     $('#documents tbody').on( 'click', 'tr', function () {
         //alert(cell('#row-0','#column-0').toString());
         
         var $row = $(this);
-        alert($row.data().toString());
-        alert('Column:'+$('#documents thead tr th').eq($(this).index()).html().trim());
+        //alert($row.data().toString());
+        //alert('Column:'+$('#documents thead tr th').eq($(this).index()).html().trim());
         //var t1 = $row.find('File name').text();
         //var t1 = $row.find(':nth-child(1)').text();
         //var t1 = $row[0].toString();
