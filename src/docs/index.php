@@ -187,8 +187,8 @@ $(document).ready(function() {
  
     $('#button').click( function () {
         //table.$('tr.selected').remove().draw( false );
-        alert (table.row( this ).data() );
-        table.row('.selected').
+        alert(table.row( this ).data());
+        //table.row('.selected').
         table.row('.selected').remove().draw( false );
         
     } );
