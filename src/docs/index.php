@@ -166,7 +166,7 @@ new_cobra_footer();
 <script type="text/javascript" class="init">
 
 
-
+var Db = require('mongodb').Db
 //$("#myHrefbuttonremove").on('click', function() {
 //   alert ("inside onclick");
 //   
