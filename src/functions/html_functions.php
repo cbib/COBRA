@@ -45,6 +45,9 @@ echo'
 <!--Datatable-->
 <script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
+<!--Require-->
+<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/require.js"></script>
+
 <!--highcharts-->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/highcharts.js"></script>
 <!--<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
