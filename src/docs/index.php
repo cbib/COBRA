@@ -40,7 +40,7 @@ $nb_files = 0;
 $table_string="";
 ###Document TABLE
 
-$table_string.='<table id="documents" class="table table-hover">';
+$table_string.='<table id="documents" class="table">';
 //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
 $table_string.='<thead><tr>';
 	
@@ -48,7 +48,7 @@ $table_string.='<thead><tr>';
 	//$table_string.='<th>type</th>';
 	$table_string.='<th>File name</th>';
 	$table_string.='<th>Uploaded by</th>';
-    $table_string.='<th></th>';
+    $table_string.='<th>Actions</th>';
     
 	
 
