@@ -81,8 +81,8 @@ foreach ($docs as $key) {
         
     }
     $table_string.='<td><div class="btn-group">
-                <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>
-                <button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete selected items</button>-->
+                <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
+                <button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete selected items</button>
 
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span>
