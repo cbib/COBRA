@@ -157,7 +157,7 @@ echo $table_string;
 
 echo'</div>'
 . '</div>';
-
+phpinfo();
 
 new_cobra_footer(); 
   
@@ -167,6 +167,9 @@ new_cobra_footer();
 
 
 var Db = require('mongodb').Db;
+require(['mongodb'], function (mongodb) {
+    //foo is now loaded.
+});
 //$("#myHrefbuttonremove").on('click', function() {
 //   alert ("inside onclick");
 //   
