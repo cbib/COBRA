@@ -238,7 +238,7 @@ $(document).ready(function() {
         
     } );
 } );
-
+var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
 //$(document).ready(function() {
 //		$('#documents').dataTable( {
 //			"scrollX": true,
