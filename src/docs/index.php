@@ -189,7 +189,7 @@ new_cobra_footer();
 //          //alert(cellVal);
 //    }
 //}
-db = db.getSiblingDB('<cobra_db>');
+//db = db.getSiblingDB('<cobra_db>');
 $(document).ready(function() {
     var table = $('#documents').DataTable();
 
