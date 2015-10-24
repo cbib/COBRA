@@ -194,8 +194,9 @@ $(document).ready(function() {
     var table = $('#documents').DataTable();
     
     $('#documents tbody').on( 'click', 'tr', function () {
+        
         var $row = $(this);
-        var t1 = $row.find('selected').text();
+        var t1 = $row.find('File name').text();
         //var t1 = $row.find(':nth-child(1)').text();
         alert(t1);
         if ( $(this).hasClass('selected') ) {
