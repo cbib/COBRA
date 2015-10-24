@@ -199,7 +199,8 @@ $(document).ready(function() {
     $('#documents tbody').on( 'click', 'tr', function () {
         alert('Data: '+$('#documents tbody tr th').html().trim());
         //alert(cell('#row-0','#column-0').toString());
-        
+        alert($(this).find('td').eq(0).html().trim());
+        //alert($(this).html().trim());
         //var $row = $(this);
         //alert($row.data().toString());
         //alert('Column:'+$('#documents thead tr th').eq($(this).index()).html().trim());
