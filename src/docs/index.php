@@ -192,10 +192,10 @@ for (i = 0; i < rowLength; i++){
 }
 $(document).ready(function() {
     var table = $('#documents').DataTable();
-    alert(table.$('tr.selected').length);
+    
     $('#documents tbody').on( 'click', 'tr', function () {
 
-        
+        alert(table.$('tr.selected').length);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
