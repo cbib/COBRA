@@ -197,7 +197,7 @@ $(document).ready(function() {
         //alert(cell('#row-0','#column-0').toString());
         
         var $row = $(this);
-        alert($row.html().trim());
+        alert($row.data().toString());
         //var t1 = $row.find('File name').text();
         //var t1 = $row.find(':nth-child(1)').text();
         //var t1 = $row[0].toString();
