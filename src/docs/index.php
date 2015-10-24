@@ -171,31 +171,28 @@ new_cobra_footer();
 //   alert ("inside onclick");
 //   
 //});
+var table = document.getElementById('documents');
+        
+var rowLength = table.rows.length;
+alert(rowLength);
+//loops through rows    
+for (i = 0; i < rowLength; i++){
+    var oCells = table.rows.item(i).cells;
+
+    var cellLength = oCells.length;
+   //loops through each cell in current row
+    for(var j = 0; j < cellLength; j++){
+          // get your cell info here
+          var cellVal = oCells.item(j).innerHTML;
+          alert(cellVal);
+    }
+}
 $(document).ready(function() {
     var table = $('#documents').DataTable();
  
     $('#documents tbody').on( 'click', 'tr', function () {
-        //$(this).toggleClass('selected');
-        //alert(table.row( this ).d);
-        //alert(table.$('tr.selected')["File name"]);
-         
 
-        //gets rows of table
-        //var table = document.getElementById('documents');
-        var rowLength = table.rows.length;
-        alert(rowLength);
-        //loops through rows    
-        for (i = 0; i < rowLength; i++){
-            var oCells = table.rows.item(i).cells;
-           
-            var cellLength = oCells.length;
-           //loops through each cell in current row
-            for(var j = 0; j < cellLength; j++){
-                  // get your cell info here
-                  var cellVal = oCells.item(j).innerHTML;
-                  alert(cellVal);
-            }
-        }
+        
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
