@@ -172,7 +172,7 @@ new_cobra_footer();
 //   
 //});
 var table = document.getElementById('documents');
-var row=table.$('tr.selected').length; 
+//var row=table.$('tr.selected').length; 
 
 var rowLength = table.rows.length;
 //alert(rowLength);
