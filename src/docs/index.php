@@ -190,8 +190,9 @@ for (i = 0; i < rowLength; i++){
           //alert(cellVal);
     }
 }
+
 $(document).ready(function() {
-    var table = $('#documents').DataTable();
+    var table = $('#documents').DataTable({buttons: ['copy', 'excel', 'pdf']});
 
     $('#documents tbody').on( 'click', 'td', function () {
         //alert('Data: '+$(this).html().trim());
@@ -227,6 +228,7 @@ $(document).ready(function() {
         
     } );
 } );
+
 //$(document).ready(function() {
 //		$('#documents').dataTable( {
 //			"scrollX": true,
