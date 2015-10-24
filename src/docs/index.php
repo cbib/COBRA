@@ -192,17 +192,15 @@ for (i = 0; i < rowLength; i++){
 }
 $(document).ready(function() {
     var table = $('#documents').DataTable();
-    
-    
-    
-    
+
     $('#documents tbody').on( 'click', 'td', function () {
-            alert('Data:'+$(this).html().trim());
+        //alert('Data: '+$(this).html().trim());
     });      
     $('#documents tbody').on( 'click', 'tr', function () {
+        alert('Data: '+$('#documents tbody tr th').html().trim());
         //alert(cell('#row-0','#column-0').toString());
         
-        var $row = $(this);
+        //var $row = $(this);
         //alert($row.data().toString());
         //alert('Column:'+$('#documents thead tr th').eq($(this).index()).html().trim());
         //var t1 = $row.find('File name').text();
