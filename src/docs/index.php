@@ -196,7 +196,7 @@ $(document).ready(function() {
     
     
     
-    $('#example tbody').on( 'click', 'td', function () {
+    $('#documents tbody').on( 'click', 'td', function () {
             alert('Data:'+$(this).html().trim());
     });      
     $('#documents tbody').on( 'click', 'tr', function () {
