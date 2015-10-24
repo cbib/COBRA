@@ -198,6 +198,7 @@ $(document).ready(function() {
         
         var $row = $(this);
         alert($row.data().toString());
+        alert('Column:'+$('#documents thead tr th').eq($(this).index()).html().trim());
         //var t1 = $row.find('File name').text();
         //var t1 = $row.find(':nth-child(1)').text();
         //var t1 = $row[0].toString();
