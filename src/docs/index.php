@@ -185,7 +185,8 @@ $(document).ready(function() {
     } );
  
     $('#myHrefbuttonremove').click( function () {
-        table.row('.selected').remove().draw( false );
+        table.$('tr.selected').remove().draw( false );
+        //table.row('.selected').remove().draw( false );
     } );
 } );
 //$(document).ready(function() {
