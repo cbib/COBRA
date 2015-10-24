@@ -40,7 +40,7 @@ $nb_files = 0;
 $table_string="";
 ###Document TABLE
 echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete selected items</button>';
-$table_string.='<table id="documents" class="display dataTable">';
+$table_string.='<table id="documents" class="display dataTable ">';
 //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
 $table_string.='<thead><tr>';
 	
@@ -187,7 +187,10 @@ $(document).ready(function() {
  
     $('#button').click( function () {
         //table.$('tr.selected').remove().draw( false );
+        alert (table.row( this ).data() );
+        table.row('.selected').
         table.row('.selected').remove().draw( false );
+        
     } );
 } );
 //$(document).ready(function() {
