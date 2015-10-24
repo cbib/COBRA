@@ -175,7 +175,7 @@ $(document).ready(function() {
     var table = $('#documents').DataTable();
  
     $('#documents tbody').on( 'click', 'tr', function () {
-        $(this).toggleClass('selected');
+        //$(this).toggleClass('selected');
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
