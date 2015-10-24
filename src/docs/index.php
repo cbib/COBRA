@@ -92,7 +92,7 @@ foreach ($docs as $key) {
 
                   <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
                   <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
-                  <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
+                  <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
 
 
                   <!--<li><a href="#">Remove</a></li>-->
@@ -171,26 +171,25 @@ new_cobra_footer();
 //   alert ("inside onclick");
 //   
 //});
-var table = document.getElementById('documents');
-//var row=table.$('tr.selected').length; 
-
-var rowLength = table.rows.length;
-//alert(rowLength);
-//loops through rows
-
-for (i = 0; i < rowLength; i++){
-    var oCells = table.rows.item(i).cells;
-    
-
-    var cellLength = oCells.length;
-   //loops through each cell in current row
-    for(var j = 0; j < cellLength; j++){
-          // get your cell info here
-          var cellVal = oCells.item(j).innerHTML;
-          //alert(cellVal);
-    }
-}
-
+//ANother way to loop into the table
+//var table = document.getElementById('documents');
+//
+//var rowLength = table.rows.length;
+////loops through rows
+//
+//for (i = 0; i < rowLength; i++){
+//    var oCells = table.rows.item(i).cells;
+//    
+//
+//    var cellLength = oCells.length;
+//   //loops through each cell in current row
+//    for(var j = 0; j < cellLength; j++){
+//          // get your cell info here
+//          var cellVal = oCells.item(j).innerHTML;
+//          //alert(cellVal);
+//    }
+//}
+db = db.getSiblingDB('<cobra_db>');
 $(document).ready(function() {
     var table = $('#documents').DataTable();
 
@@ -205,8 +204,11 @@ $(document).ready(function() {
     $('#documents tbody').on( 'click', 'tr', function () {
         //alert('Data: '+$('#documents tbody tr th').html().trim());
         //alert(cell('#row-0','#column-0').toString());
+        
+        
         var test=$(this).find('td').eq(0);
-        alert(test.html().trim());
+        //alert(test.html().trim());
+        
         //$('#table tr').eq(rowIndex).find('td').eq(columnIndex)
         //alert($(this).html().trim());
         //var $row = $(this);
