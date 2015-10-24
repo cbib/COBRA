@@ -176,6 +176,8 @@ $(document).ready(function() {
  
     $('#documents tbody').on( 'click', 'tr', function () {
         //$(this).toggleClass('selected');
+        //alert(table.row( this ).data());
+        alert(table.$('tr.selected').data());
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -187,7 +189,7 @@ $(document).ready(function() {
  
     $('#button').click( function () {
         //table.$('tr.selected').remove().draw( false );
-        alert(table.row( this ).data());
+        
         //table.row('.selected').
         table.row('.selected').remove().draw( false );
         
