@@ -194,12 +194,14 @@ $(document).ready(function() {
     var table = $('#documents').DataTable();
     
     $('#documents tbody').on( 'click', 'tr', function () {
+        //alert(cell('#row-0','#column-0').toString());
         
         var $row = $(this);
+        alert($row.html().trim());
         //var t1 = $row.find('File name').text();
         //var t1 = $row.find(':nth-child(1)').text();
-        var t1 = $row[0].text();
-        alert(t1);
+        //var t1 = $row[0].toString();
+        //alert(t1);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
