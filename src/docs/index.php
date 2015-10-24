@@ -195,7 +195,8 @@ $(document).ready(function() {
     
     $('#documents tbody').on( 'click', 'tr', function () {
         var $row = $(this);
-        var t1 = $row.find(':nth-child(1)').text();
+        var t1 = $row.first().text();
+        //var t1 = $row.find(':nth-child(1)').text();
         alert(t1);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
