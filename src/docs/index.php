@@ -190,13 +190,15 @@ for (i = 0; i < rowLength; i++){
           //alert(cellVal);
     }
 }
-$('#documents').DataTable( {
+
+$(document).ready(function() {
+    var table = $('#documents').DataTable();
+
+    new $.fn.dataTable.Buttons( table, {
     buttons: [
         'copy', 'excel', 'pdf'
     ]
-});
-$(document).ready(function() {
-    var table = $('#documents').DataTable();
+    } );
 
     $('#documents tbody').on( 'click', 'td', function () {
         //alert('Data: '+$(this).html().trim());
