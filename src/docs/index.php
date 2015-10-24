@@ -181,8 +181,9 @@ $(document).ready(function() {
          
 
         //gets rows of table
+        //var table = document.getElementById('documents');
         var rowLength = table.rows.length;
-
+        alert(rowLength);
         //loops through rows    
         for (i = 0; i < rowLength; i++){
             var oCells = table.rows.item(i).cells;
