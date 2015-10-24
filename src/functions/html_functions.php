@@ -22,6 +22,8 @@ echo'
 
 <!-- Datatable style -->
 <link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/Buttons-1.0.3/css/buttons.dataTables.css">
+
 
 <!-- Cobra style -->
 <link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/cobra_styles2.css">	
@@ -41,7 +43,7 @@ echo'
 <script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/dataTables.bootstrap.js"></script>
 
 <!--Datatable-->
-<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/Buttons-1.0.3/js/*.js"></script>
+<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
 <!--highcharts-->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/highcharts.js"></script>
