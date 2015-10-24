@@ -194,8 +194,9 @@ $(document).ready(function() {
     var table = $('#documents').DataTable();
     
     $('#documents tbody').on( 'click', 'tr', function () {
-
-        alert(table.$('tr.selected').length);
+        var $row = $(this);
+        var t1 = $row.find(':nth-child(1)').text();
+        alert(t1);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
