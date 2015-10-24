@@ -194,8 +194,11 @@ for (i = 0; i < rowLength; i++){
 $(document).ready(function() {
     var table = $('#documents').DataTable();
 
-    new $.fn.dataTable.Buttons( table, {buttons: ['copy', 'excel', 'pdf']} );
-    table.buttons().container().appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+    //new $.fn.dataTable.Buttons( table, { buttons: ['copy', 'excel', 'pdf']} );
+    //table.buttons().container().appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+    
+        
+        
     $('#documents tbody').on( 'click', 'td', function () {
         //alert('Data: '+$(this).html().trim());
     });      
