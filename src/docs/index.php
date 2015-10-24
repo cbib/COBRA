@@ -178,16 +178,22 @@ $(document).ready(function() {
         //$(this).toggleClass('selected');
         //alert(table.row( this ).d);
         //alert(table.$('tr.selected')["File name"]);
-        var oCells = $(this).cells;
-        var cellLength = oCells.length;
+         
 
-       //loops through each cell in current row
-        for(var j = 0; j < cellLength; j++){
+        //gets rows of table
+        var rowLength = table.rows.length;
 
-              // get your cell info here
-
-              var cellVal = oCells.item(j).innerHTML;
-              alert(cellVal);
+        //loops through rows    
+        for (i = 0; i < rowLength; i++){
+            var oCells = table.rows.item(i).cells;
+           
+            var cellLength = oCells.length;
+           //loops through each cell in current row
+            for(var j = 0; j < cellLength; j++){
+                  // get your cell info here
+                  var cellVal = oCells.item(j).innerHTML;
+                  alert(cellVal);
+            }
         }
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
