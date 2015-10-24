@@ -177,7 +177,18 @@ $(document).ready(function() {
     $('#documents tbody').on( 'click', 'tr', function () {
         //$(this).toggleClass('selected');
         //alert(table.row( this ).d);
-        alert(table.$('tr.selected')["File name"]);
+        //alert(table.$('tr.selected')["File name"]);
+        var oCells = $(this).cells;
+        var cellLength = oCells.length;
+
+       //loops through each cell in current row
+        for(var j = 0; j < cellLength; j++){
+
+              // get your cell info here
+
+              var cellVal = oCells.item(j).innerHTML;
+              alert(cellVal);
+        }
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
