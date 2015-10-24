@@ -197,9 +197,11 @@ $(document).ready(function() {
         //alert('Data: '+$(this).html().trim());
     });      
     $('#documents tbody').on( 'click', 'tr', function () {
-        alert('Data: '+$('#documents tbody tr th').html().trim());
+        //alert('Data: '+$('#documents tbody tr th').html().trim());
         //alert(cell('#row-0','#column-0').toString());
-        alert($(this).find('td').eq(0).html().trim());
+        var test=$(this).find('td').eq(0);
+        alert(test.html().trim());
+        //$('#table tr').eq(rowIndex).find('td').eq(columnIndex)
         //alert($(this).html().trim());
         //var $row = $(this);
         //alert($row.data().toString());
