@@ -172,24 +172,27 @@ new_cobra_footer();
 //   
 //});
 var table = document.getElementById('documents');
-        
+var row=table.$('tr.selected').length; 
+
 var rowLength = table.rows.length;
-alert(rowLength);
-//loops through rows    
+//alert(rowLength);
+//loops through rows
+
 for (i = 0; i < rowLength; i++){
     var oCells = table.rows.item(i).cells;
+    
 
     var cellLength = oCells.length;
    //loops through each cell in current row
     for(var j = 0; j < cellLength; j++){
           // get your cell info here
           var cellVal = oCells.item(j).innerHTML;
-          alert(cellVal);
+          //alert(cellVal);
     }
 }
 $(document).ready(function() {
     var table = $('#documents').DataTable();
- 
+    alert(table.$('tr.selected').length);
     $('#documents tbody').on( 'click', 'tr', function () {
 
         
