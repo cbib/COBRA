@@ -49,7 +49,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
         //testing if file has been moved
         if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
-             echo 'Your file '.$fichier.' was upload successfully !';
+             //echo 'Your file '.$fichier.' was upload successfully !';
              $full_path=$dossier.$fichier;
              $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
 
@@ -82,7 +82,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
         }
         else //Sinon (la fonction renvoie FALSE).
         {
-             echo 'Upload failed, please check repertory permission!';
+             //echo 'Upload failed, please check repertory permission!';
         }
     }
     else
@@ -103,7 +103,7 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
             $docsCollection->remove($criteria);
        }
        else{
-           echo 'document doesnt exist';
+           //echo 'document doesnt exist';
        }
     }  
 }
@@ -116,10 +116,12 @@ echo '<div id="section_upload">';
 //echo '<div id="bar_blank">
 //   <div id="bar_color"></div>
 //  </div>';
-echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
-         <!--<input type="hidden" value="myForm" name="-->'
+
+//<!--<input type="hidden" value="myForm" name="-->'
         //.ini_get("session.upload_progress.name")
-        .'"<!-->-->
+        //.'">
+echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
+         
         <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
 
         Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
