@@ -116,7 +116,7 @@ echo '<div id="section_upload">';
 //echo '<div id="bar_blank">
 //   <div id="bar_color"></div>
 //  </div>';
-echo '<form action="'.$_SERVER["PHP_SELF"].'" id="myForm" method="post" enctype="multipart/form-data" target="hidden_iframe">
+echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
          <!--<input type="hidden" value="myForm" name="-->'
         //.ini_get("session.upload_progress.name")
         .'"<!-->-->
@@ -127,7 +127,7 @@ echo '<form action="'.$_SERVER["PHP_SELF"].'" id="myForm" method="post" enctype=
         <input type="submit" value="Upload File" name="submit">
       </form>
        <!--<iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>-->
-      </div>';
+  </div>';
 
 
 echo '<div id="section_documents">';
