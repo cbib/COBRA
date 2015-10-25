@@ -8,7 +8,21 @@ and open the template in the editor.
     Author     : benjamindartigues
 */
 
+#bar_blank {
+  border: solid 1px #000;
+  height: 20px;
+  width: 300px;
+}
 
+#bar_color {
+  background-color: #006666;
+  height: 20px;
+  width: 0px;
+}
+
+#bar_blank, #hidden_iframe {
+  display: none;
+}
 //Users preference
 #user_pref, #change_password{
      //width:970px;
