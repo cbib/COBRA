@@ -157,7 +157,7 @@ echo $table_string;
 
 echo'</div>'
 . '</div>';
-phpinfo();
+//phpinfo();
 
 new_cobra_footer(); 
   
@@ -232,10 +232,11 @@ $(document).ready(function() {
         
         //table.row('.selected').
         table.row('.selected').remove().draw( false );
+        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php");
         
     } );
 } );
-var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
+//var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
 //$(document).ready(function() {
 //		$('#documents').dataTable( {
 //			"scrollX": true,
