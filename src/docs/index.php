@@ -319,9 +319,11 @@ $(document).ready(function() {
         
         //table.row('.selected').
         var full_path=table.$('tr.selected').find('td').eq(0);
+        
+        alert(full_path);
         table.row('.selected').remove().draw( false );
         
-        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path="+full_path);
+        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path=".concat(full_path));
         
     } );
 } );
