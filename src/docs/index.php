@@ -101,6 +101,7 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
        if(!empty($doc) ){
             
             $docsCollection->remove($criteria);
+            unlink('./'.$criteria);
        }
        else{
            //echo 'document doesnt exist';
