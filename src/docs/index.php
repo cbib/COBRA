@@ -110,7 +110,7 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
 
 new_cobra_header();
 
-new_cobra_body($_SESSION['upload'],"Upload files Page","section_upload_file");
+new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
 echo '<form action="'.$_SERVER["PHP_SELF"].'" method="post" enctype="multipart/form-data" target="hidden_iframe">
