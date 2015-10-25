@@ -292,8 +292,8 @@ $(document).ready(function() {
         //alert(cell('#row-0','#column-0').toString());
         
         
-        //var test=$(this).find('td').eq(0);
-        //alert(test.html().trim());
+        var test=$(this).find('td').eq(0);
+        alert(test.html().trim());
         
         //$('#table tr').eq(rowIndex).find('td').eq(columnIndex)
         //alert($(this).html().trim());
@@ -320,10 +320,10 @@ $(document).ready(function() {
         //table.row('.selected').
         var full_path=table.$('tr.selected').find('td').eq(0);
         
-        alert(full_path);
+        //alert(full_path);
         table.row('.selected').remove().draw( false );
         
-        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path=".concat(full_path));
+        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path=".concat(full_path.html().trim()));
         
     } );
 } );
