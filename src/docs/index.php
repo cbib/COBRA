@@ -18,12 +18,112 @@ require('../session/control-session.php');
 //$GOCollection = new Mongocollection($db, "gene_ontology");
 
 //$docsCollection = $db->createCollection("docs");
+
+
+
+$dossier = 'COBRA_depot/';
+
+
+
+if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
+    $fichier = basename($_FILES['fileToUpload']['name']);
+    $max_size = 100000000;
+    $size = filesize($_FILES['fileToUpload']['tmp_name']);
+    $extensions = array('.doc','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx');
+    $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
+    //Début des vérifications de sécurité...
+    if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+    {
+         $erreur = 'Upload valid only for type png, gif, jpg, jpeg, txt or doc...';
+    }
+    if($size>$max_size)
+    {
+         $erreur = 'File is over 100 Mo';
+    }
+    if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
+    {
+         $fichier = strtr($fichier, 
+          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+          'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+        $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+        //testing if file has been moved
+        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+        {
+             echo 'Your file '.$fichier.' was upload successfully !';
+             $full_path=$dossier.$fichier;
+             $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
+
+             //tester l'existence du document
+
+             // retrieve existing document
+             $criteria = array('full_file_name' => $full_path);
+             $doc = $docsCollection->findOne($criteria);
+
+             if(!empty($doc) ){
+               echo 'Data Already Exist';
+             } 
+             else {
+               $document = array( 
+                   "full_file_name" => $full_path, 
+                   "description" => "database document from partners", 
+                   "author" => $author_full_name 
+               );
+               $docsCollection->insert($document);
+               
+             }
+
+
+
+
+
+
+
+
+        }
+        else //Sinon (la fonction renvoie FALSE).
+        {
+             echo 'Upload failed, please check repertory permission!';
+        }
+    }
+    else
+    {
+         echo $erreur;
+    }
+}
+
+
+
+
+if ((isset($_GET['action'])) && ($_GET['action']!='')){
+    if ($_GET['action']=="remove"){
+        
+    }
+    else{
+        $doc = $docsCollection->findOne(array('full_file_name' => $_GET['full_path']));
+        if(!empty($doc) ){
+            echo 'Data Already Exist';
+        } 
+        else {
+            $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
+            $document = array( 
+                    "full_file_name" => $_GET['full_path'], 
+                    "description" => "database document from partners", 
+                    "author" => $author_full_name 
+            );
+            $docsCollection->insert($document);
+        }
+    }
+    
+}
+else{
+    
+}
 new_cobra_header();
 
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
-echo '<form action="upload.php" method="post" enctype="multipart/form-data">
+echo '<form action="index.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
 
         Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
@@ -190,6 +290,7 @@ new_cobra_footer();
 //    }
 //}
 //db = db.getSiblingDB('<cobra_db>');
+
 $(document).ready(function() {
     var table = $('#documents').DataTable();
 
@@ -200,13 +301,14 @@ $(document).ready(function() {
         
     $('#documents tbody').on( 'click', 'td', function () {
         //alert('Data: '+$(this).html().trim());
-    });      
+    }); 
+    
     $('#documents tbody').on( 'click', 'tr', function () {
         //alert('Data: '+$('#documents tbody tr th').html().trim());
         //alert(cell('#row-0','#column-0').toString());
         
         
-        var test=$(this).find('td').eq(0);
+        //var test=$(this).find('td').eq(0);
         //alert(test.html().trim());
         
         //$('#table tr').eq(rowIndex).find('td').eq(columnIndex)
@@ -224,6 +326,7 @@ $(document).ready(function() {
         else {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            
         }
     } );
  
@@ -231,8 +334,9 @@ $(document).ready(function() {
         //table.$('tr.selected').remove().draw( false );
         
         //table.row('.selected').
-        table.row('.selected').remove().draw( false );
-        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php");
+        table.$('tr.selected').find('td').eq(0);
+        var full_path=table.row('.selected').remove().draw( false );
+        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path="+full_path);
         
     } );
 } );

@@ -19,7 +19,8 @@ $db=mongoConnector();
 
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
-$docsCollection = $db->createCollection("docs");
+//$docsCollection = $db->createCollection("docs");
+
 
 $dossier = 'COBRA_depot/';
 $fichier = basename($_FILES['fileToUpload']['name']);
@@ -66,7 +67,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
                 "author" => $author_full_name 
             );
             $docsCollection->insert($document);
-            //header('Location: ./index.php');
+            header('Location: ./index.php');
           }
           
           
