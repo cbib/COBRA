@@ -96,8 +96,9 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
     if ($_GET['action']=="Remove"){
+       $criteria=array('full_file_name'=>$dossier.$_GET['full_path']);
        if(!empty($docsCollection->findOne($criteria)) ){
-            $criteria=array('full_file_name'=>$dossier.$_GET['full_path']);
+            
             $docsCollection->remove($criteria);
        }
        else{
