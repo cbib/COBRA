@@ -96,12 +96,11 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
     if ($_GET['action']=="Remove"){
-       
+       $criteria=array('full_file_name'=>$dossier.$_GET['full_path']);
+       $docsCollection->remove($criteria);
     }  
 }
-else{
-    
-}
+
 new_cobra_header();
 
 new_cobra_body($_SESSION['upload'],"Upload files Page","section_upload_file");
