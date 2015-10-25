@@ -18,8 +18,8 @@ require('../session/control-session.php');
 //$GOCollection = new Mongocollection($db, "gene_ontology");
 
 //$docsCollection = $db->createCollection("docs");
-
-
+$db=mongoConnector();
+$docsCollection = new Mongocollection($db, "docs");
 
 $dossier = 'COBRA_depot/';
 
@@ -97,23 +97,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
     if ($_GET['action']=="remove"){
         
-    }
-    else{
-        $doc = $docsCollection->findOne(array('full_file_name' => $_GET['full_path']));
-        if(!empty($doc) ){
-            echo 'Data Already Exist';
-        } 
-        else {
-            $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
-            $document = array( 
-                    "full_file_name" => $_GET['full_path'], 
-                    "description" => "database document from partners", 
-                    "author" => $author_full_name 
-            );
-            $docsCollection->insert($document);
-        }
-    }
-    
+    }  
 }
 else{
     
