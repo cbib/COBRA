@@ -113,18 +113,20 @@ new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
-echo '<div id="bar_blank">
-   <div id="bar_color"></div>
-  </div>';
+//echo '<div id="bar_blank">
+//   <div id="bar_color"></div>
+//  </div>';
 echo '<form action="'.$_SERVER["PHP_SELF"].'" id="myForm" method="post" enctype="multipart/form-data" target="hidden_iframe">
-        <input type="hidden" value="myForm" name="'.ini_get("session.upload_progress.name").'">
+         <!--<input type="hidden" value="myForm" name="-->'
+        //.ini_get("session.upload_progress.name")
+        .'"<!-->-->
         <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
 
         Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
     
         <input type="submit" value="Upload File" name="submit">
       </form>
-      <iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>
+       <!--<iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>-->
       </div>';
 
 
@@ -339,55 +341,55 @@ $(document).ready(function() {
     } );
 } );
 
-
-function toggleBarVisibility() {
-    var e = document.getElementById("bar_blank");
-    e.style.display = (e.style.display === "block") ? "none" : "block";
-}
-
-function createRequestObject() {
-    var http;
-    if (navigator.appName === "Microsoft Internet Explorer") {
-        http = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    else {
-        http = new XMLHttpRequest();
-    }
-    return http;
-}
-
-function sendRequest() {
-    var http = createRequestObject();
-    http.open("GET", "progress.php");
-    http.onreadystatechange = function () { handleResponse(http); };
-    http.send(null);
-}
-
-function handleResponse(http) {
-    var response;
-    if (http.readyState === 4) {
-        response = http.responseText;
-        document.getElementById("bar_color").style.width = response + "%";
-        document.getElementById("status").innerHTML = response + "%";
-
-        if (response < 100) {
-            setTimeout("sendRequest()", 1000);
-        }
-        else {
-            toggleBarVisibility();
-            document.getElementById("status").innerHTML = "Done.";
-        }
-    }
-}
-
-function startUpload() {
-    toggleBarVisibility();
-    setTimeout("sendRequest()", 1000);
-}
-
-(function () {
-    document.getElementById("myForm").onsubmit = startUpload;
-})();
+//
+//function toggleBarVisibility() {
+//    var e = document.getElementById("bar_blank");
+//    e.style.display = (e.style.display === "block") ? "none" : "block";
+//}
+//
+//function createRequestObject() {
+//    var http;
+//    if (navigator.appName === "Microsoft Internet Explorer") {
+//        http = new ActiveXObject("Microsoft.XMLHTTP");
+//    }
+//    else {
+//        http = new XMLHttpRequest();
+//    }
+//    return http;
+//}
+//
+//function sendRequest() {
+//    var http = createRequestObject();
+//    http.open("GET", "progress.php");
+//    http.onreadystatechange = function () { handleResponse(http); };
+//    http.send(null);
+//}
+//
+//function handleResponse(http) {
+//    var response;
+//    if (http.readyState === 4) {
+//        response = http.responseText;
+//        document.getElementById("bar_color").style.width = response + "%";
+//        document.getElementById("status").innerHTML = response + "%";
+//
+//        if (response < 100) {
+//            setTimeout("sendRequest()", 1000);
+//        }
+//        else {
+//            toggleBarVisibility();
+//            document.getElementById("status").innerHTML = "Done.";
+//        }
+//    }
+//}
+//
+//function startUpload() {
+//    toggleBarVisibility();
+//    setTimeout("sendRequest()", 1000);
+//}
+//
+//(function () {
+//    document.getElementById("myForm").onsubmit = startUpload;
+//})();
 
 
 //var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
