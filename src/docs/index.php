@@ -95,8 +95,8 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 
 
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
-    if ($_GET['action']=="remove"){
-        
+    if ($_GET['action']=="Remove"){
+       
     }  
 }
 else{
@@ -318,8 +318,9 @@ $(document).ready(function() {
         //table.$('tr.selected').remove().draw( false );
         
         //table.row('.selected').
-        table.$('tr.selected').find('td').eq(0);
-        var full_path=table.row('.selected').remove().draw( false );
+        var full_path=table.$('tr.selected').find('td').eq(0);
+        table.row('.selected').remove().draw( false );
+        
         window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path="+full_path);
         
     } );
