@@ -120,10 +120,10 @@ else{
 }
 new_cobra_header();
 
-new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
+new_cobra_body($_SESSION['upload'],"Upload files Page","section_upload_file");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
-echo '<form action="index.php" method="post" enctype="multipart/form-data">
+echo '<form action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
 
         Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
