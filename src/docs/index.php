@@ -121,6 +121,7 @@ echo '<form action="#" method="post" enctype="multipart/form-data">
     
         <input type="submit" value="Upload File" name="submit">
       </form>
+      <iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>
       </div>';
 
 
