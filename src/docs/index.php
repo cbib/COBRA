@@ -309,8 +309,8 @@ $(document).ready(function() {
         //alert(cell('#row-0','#column-0').toString());
         
         
-        var test=$(this).find('td').eq(0);
-        alert(test.html().trim());
+        //var test=$(this).find('td').eq(0);
+        //alert(test.html().trim());
         
         //$('#table tr').eq(rowIndex).find('td').eq(columnIndex)
         //alert($(this).html().trim());
