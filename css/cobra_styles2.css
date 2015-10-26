@@ -26,7 +26,7 @@ and open the template in the editor.
 
 //datatable selection
 
-tr.row_selected td {
+tr.selected td {
     background-color:blue !important;
 }
 
