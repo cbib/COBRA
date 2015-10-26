@@ -31,6 +31,9 @@ table.dataTable tbody tr.even.selected {
 table.dataTable tbody tr.odd.selected{
     background-color: #04B4AE;
 }
+table.dataTable tbody tr:hover {
+  background-color: #ffa;
+}
 
 
 //Users preference
