@@ -25,15 +25,15 @@ and open the template in the editor.
 }
 
 //datatable selection
-/*table.dataTable tbody tr.even.selected {
+table.dataTable tbody tr.even.selected {
     background-color: #04B4AE;
 }
 table.dataTable tbody tr.odd.selected{
     background-color: #04B4AE;
-}*/
-table.dataTable tbody tr:focus{
-    background-color: #04B4AE;
 }
+/*table.dataTable tbody tr:focus{
+    background-color: #04B4AE;
+}*/
 table.dataTable tbody tr:hover {
   background-color: #ffa;
 }
