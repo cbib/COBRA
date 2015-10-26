@@ -23,6 +23,14 @@ and open the template in the editor.
 #bar_blank, #hidden_iframe {
   display: none;
 }
+
+//datatable selection
+
+tr.row_selected td {
+    background-color:blue !important;
+}
+
+
 //Users preference
 #user_pref, #change_password{
      //width:970px;
