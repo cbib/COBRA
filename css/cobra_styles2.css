@@ -25,7 +25,10 @@ and open the template in the editor.
 }
 
 //datatable selection
-.table > tbody > .tr.selected {
+table.dataTable tbody tr.selected {
+    background-color:blue;
+}
+table.dataTable.display tbody tr.odd.selected{
     background-color:blue;
 }
 
