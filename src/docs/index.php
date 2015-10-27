@@ -327,9 +327,10 @@ $(document).ready(function() {
         else {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
+            $(this).css( "background-color", "#04B4AE" );
             
         }
-        $(this).css( "background-color", "#04B4AE" );
+        
         
     } );
  
