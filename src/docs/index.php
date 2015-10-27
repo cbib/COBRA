@@ -323,7 +323,7 @@ $(document).ready(function() {
         //alert(t1);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
-            $(this).css( "background-color", "#05B4AE" );
+            $(this).css( "background-color", "white" );
         }
         else {
             table.$('tr.selected').removeClass('selected');
