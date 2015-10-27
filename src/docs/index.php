@@ -329,6 +329,8 @@ $(document).ready(function() {
             $(this).addClass('selected');
             
         }
+        $(this).css( "background-color", "#04B4AE" );
+        
     } );
  
     $('#button').click( function () {
