@@ -578,6 +578,7 @@ echo   '<div id="summary">
 
                             
                         }
+                        echo $total_protein_biogrid;
                     }
                     $counter++;
                 }
