@@ -136,7 +136,7 @@ echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
 
 echo '<div id="section_documents">';
 $db=mongoConnector();
-$docsCollection = new Mongocollection($db, "docs");
+//$docsCollection = new Mongocollection($db, "docs");
 $nb_files = 0;
 $table_string="";
 ###Document TABLE

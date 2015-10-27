@@ -15,7 +15,7 @@ $db=mongoConnector();
 //$virusesCollection = new Mongocollection($db, "viruses");
 //$interactionsCollection = new Mongocollection($db, "interactions");
 //$orthologsCollection = new Mongocollection($db, "orthologs");
-//$GOCollection = new Mongocollection($db, "gene_ontology");
+$docsCollection = new Mongocollection($db, "docs");
 
 new_cobra_header();
 new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
