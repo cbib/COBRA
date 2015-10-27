@@ -330,7 +330,7 @@ $(document).ready(function() {
 //            $(this).addClass('selected');
 //            $(this).css( "background-color", "#04B4AE" );
             $(this).toggleClass('selected');
-            $(this).css( "background-color", "#04B4AE" );
+            $(this).css( "background-color", "#A9F5BC" );
             
         }
         
