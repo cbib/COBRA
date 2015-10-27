@@ -59,6 +59,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     //$timestart=microtime(true);
     //get_everything using full table mapping
+    
+    
+    //Add split funstion for search value in case of double value separated by colon
+    //consequently add multiple results page to test any alias when an alias is submitted.
     $cursor=$mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
