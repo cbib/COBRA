@@ -321,16 +321,19 @@ $(document).ready(function() {
         //var t1 = $row.find(':nth-child(1)').text();
         //var t1 = $row[0].toString();
         //alert(t1);
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-            $(this).css( "background-color", "white" );
-        }
-        else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-            $(this).css( "background-color", "#04B4AE" );
-            
-        }
+//        if ( $(this).hasClass('selected') ) {
+//            $(this).removeClass('selected');
+//            $(this).css( "background-color", "white" );
+//        }
+//        else {
+//            table.$('tr.selected').removeClass('selected');
+//            $(this).addClass('selected');
+//            $(this).css( "background-color", "#04B4AE" );
+//            
+//        }
+        $(this).toggleClass('selected');
+        $(this).css( "background-color", "#04B4AE" );
+        
         
         
     } );
