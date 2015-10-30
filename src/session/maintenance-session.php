@@ -3,7 +3,7 @@ session_start(); // ici on continue la session
 
  
  
-if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && ($_SESSION['firstname'] != 'Dartigues'))
+if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && (($_SESSION['firstname'] != 'Dartigues') && ($_SESSION['firstname'] != 'Benaben')))
 {
     header('Location: https://services.cbib.u-bordeaux2.fr/cobra/maintenance.php'); 
 //    new_cobra_header();
