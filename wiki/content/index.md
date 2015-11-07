@@ -16,7 +16,7 @@ Date: 2015/01/29
 
                             <p>Project ID: <a href="http://www.agence-nationale-recherche.fr/?Project=ANR-13-KBBE-0006" >ANR-13-KBBE-0006</a></p>
 
-                            <p>Project coordinator:Veronique DECROOCQ (UMR 1332 Biologie et Pathologie du Fruit)</p>
+                            <p>Project coordinator: Veronique DECROOCQ (UMR 1332 Biologie et Pathologie du Fruit)</p>
 
 
                     <div class="plain-box"><h2 id="features">Project overview</h2>
