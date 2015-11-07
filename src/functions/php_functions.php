@@ -473,12 +473,12 @@ function make_user_preferences($user,Mongocollection $us){
                               echo '<label for="q">enter password</label>		
                                     <wbr></wbr>
                                     <span class="inp-group">
-                                        <input value="" name="pwd1" class="_string input inactive query optional ftext" id="pwd1" type="text" size="30" />
+                                        <input type="password" value="" name="pwd1" class="_string input inactive query optional ftext" id="pwd1" type="text" size="30" />
                                     </span>';
                               echo '<label for="pwd">confirm password</label>		
                                     <wbr></wbr>
                                     <span class="inp-group">
-                                        <input value="" name="pwd2" class="_string input inactive query optional ftext" id="pwd2" type="text" size="30" />
+                                        <input type="password" value="" name="pwd2" class="_string input inactive query optional ftext" id="pwd2" type="text" size="30" />
                                         <input value="Go" class="fbutton" type="submit" />
                                     </span>';
                            echo'</div>
