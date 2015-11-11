@@ -1,7 +1,7 @@
 /*
 Title: Wiki Home
 Description: About COBRA, the plant-virus interaction database
-Author:
+Author: Benjamin Dartigues
 Date: 2015/01/29
 */
 		

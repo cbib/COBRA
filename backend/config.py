@@ -17,4 +17,5 @@ viruses_col=db.viruses
 orthologs_col=db.orthologs
 gene_ontology_col=db.gene_ontology
 users_col=db.users
+sequences_col=db.sequences
 fs = gridfs.GridFS(db)

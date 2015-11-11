@@ -57,7 +57,7 @@ echo'
 
 <!-- AdminLTE App -->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/js/app.js" type="text/javascript"></script>
-
+</head>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
 <!--[if lt IE 9]>-->
@@ -173,7 +173,8 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
 function new_cobra_body($IsLogged='null', $type='null',$section_id='null'){
 echo'
 
-    </head>
+    
+
     <body class="skin-blue">
     <!-- header logo: style can be found in header.less -->
 

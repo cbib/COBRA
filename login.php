@@ -75,7 +75,7 @@ else{
 		<legend>
                     Authentication required
                 </legend>
-                <p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>
+                <!--<p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>-->
                 <div class="form-group">
                   <label for="login" class="col-sm-2 control-label">Username </label>
                   <div class="col-sm-10">
