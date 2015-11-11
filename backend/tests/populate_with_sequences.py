@@ -24,7 +24,7 @@ sequences_col.drop()
 
 
 sequence_table={
-	"data_file":"Arabidopsis/arabidopsis_thaliana/sequences/Arabidopsis_TAIR10_all_sequences.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_all_sequences.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
