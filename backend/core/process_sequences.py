@@ -38,12 +38,36 @@ for map_doc in sequences_to_process:
 	
         # on recup la config du parser xls 
 	parser_config=map_doc['xls_parsing']
+        fileName, fileExtension = os.path.splitext(src_file)
+
+        if fileExtension!='.xls' and fileExtension!='.xlsx':
+		sheet_values = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+
+	else:
+		sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+
+		
+	
+	try:
+                sequences_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
+		#break
+	except DocumentTooLarge:
+		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
+		file=open(src_file, 'rb')
+		with fs.new_file(data_file=src_file,content_type='text/plain',  metadata=dict(src=map_doc['src'],tgt=map_doc['tgt'],n_rows_to_skip=parser_config['n_rows_to_skip'])) as fp:
+			fp.write(file)
+		## adding fs file to the collection
+		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
+
+		sequences_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
+		# Close opened file
+		file.close()
 
         # on parse le fichier
-	sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+	#sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
 	
 	# save raw data 
-	sequences_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
+	#sequences_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 
 	
         
