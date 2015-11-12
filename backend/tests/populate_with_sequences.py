@@ -39,4 +39,4 @@ sequence_table={
 		"sheet_index":0,
 	}
 }
-sequences_col.insert(mapping_table)
+sequences_col.insert(sequence_table)
