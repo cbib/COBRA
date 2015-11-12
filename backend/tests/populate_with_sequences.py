@@ -27,7 +27,7 @@ for grid_out in fs.find({}, timeout=False):
 
 
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_1.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_1.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -45,7 +45,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_2.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_2.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -63,7 +63,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_3.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_3.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -81,7 +81,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_4.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_4.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -99,7 +99,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_5.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_5.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -117,7 +117,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_6.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_6.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -135,7 +135,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_7.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_7.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -153,7 +153,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_8.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_8.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
@@ -171,7 +171,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"/data/Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_9.tsv",
+	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_9.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
