@@ -17,7 +17,7 @@ $mappingsCollection = new Mongocollection($db, "mappings");
 $orthologsCollection = new Mongocollection($db, "orthologs");
 
 
-  
+
 /*    $cursor=find_species_list($speciesCollection);
 //    echo '
 //    <div id="SpeciesSearch" class="js_panel">
