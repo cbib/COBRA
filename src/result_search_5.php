@@ -259,18 +259,7 @@ echo   '<div id="summary">
                             </div>
                             <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100|AT1G01100.4'),array('mapping_file.$'=>1));
-                                foreach ($sequence_metadata as $key => $value) {
-                                        echo $key;
-                                        if ($key=="mapping_file"){
-                                            foreach ($value as $data) {
-                                                
-                                                echo $data;
-                                            }
-                                        }
-                                        
-                                    
-                                    
-                                }
+                                
                                 
                             echo '</div>
 
@@ -607,8 +596,7 @@ echo   '<div id="summary">
                                 
                                 if ($value[0]=='tgt'){
                                     $tgt=$value[1];
-                                }
-                                
+                                }                                
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
                                array_push($tgt_array, $tgt);
