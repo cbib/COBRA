@@ -255,8 +255,8 @@ echo   '<div id="summary">
                         array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
                     )
                 );
-                var_dump($sequences_cursor);
-                //echo $cursor['result']['count'];
+                //var_dump($sequences_cursor);
+                echo $cursor['result'][0]['count'];
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
