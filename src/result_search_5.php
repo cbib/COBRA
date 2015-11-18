@@ -260,11 +260,11 @@ echo   '<div id="summary">
                             <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100|AT1G01100.4'),array('mapping_file.$'=>1));
                                 foreach ($sequence_metadata as $key => $value) {
-                                    echo $key;
+                                    echo $key.'</br>';
                                         
-                                    foreach ($value as $keys=>$data) {
-                                        echo $data;
-                                    }
+//                                    foreach ($value as $keys=>$data) {
+//                                        echo $data;
+//                                    }
                                         
                                     
                                 }
