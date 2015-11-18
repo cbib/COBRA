@@ -264,7 +264,7 @@ echo   '<div id="summary">
                                         
                                     foreach ($data as $key=>$value) {
                                         
-                                        if ($key=="mapping_file"){
+                                        if ($key==="mapping_file"){
                                             foreach ($value as $values) {
                                                 echo '>'.$values['Gene ID'].'</br>';
                                                 echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA>';
