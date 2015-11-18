@@ -248,6 +248,15 @@ echo   '<div id="summary">
                     }
                     echo '</div>';
                 }
+                $Mongocursor=$sequencesCollection->aggregate(
+                    array(
+                        array('$unwind'=>'$mapping_file'), 
+                        array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
+                        array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
+                    )
+                );
+                var_dump($cursor);
+                //echo $cursor['result']['count'];
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -258,14 +267,10 @@ echo   '<div id="summary">
                            
                             </div>
                             <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
-                                $cursor=$sequencesCollection->aggregate(
-                                    array(
-                                        array('$unwind'=>'$mapping_file'), 
-                                        array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
-                                        array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
-                                    )
-                                );
-                                echo $cursor['result']['count'];
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript 
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100'),array('mapping_file.$'=>1));
                                 foreach ($sequence_metadata as $data) {
                                    
