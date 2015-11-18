@@ -922,48 +922,51 @@ echo   '<div id="summary">
                                 $total_protein_biogrid=0;
                                 $tgt="";
                                 $tgt_array=array();
-                                foreach ($array as $lit){
+                                foreach ($array as $biogrid){
+                            //foreach ($biogrid as $data) {
+                                    
+                                //foreach ($array as $lit){
                                     
                                     $string_seq='<ul><span class="goTerm">';
                                     
-                                    foreach ($lit as $attributes){
+                                    //foreach ($lit as $attributes){
                                         
-
-                                        if ($attributes[0]=='src'){
-                                            $string_seq.='<li value='.$attributes[1].'> protein A: '.$attributes[1].'</li>';
+                                    foreach ($biogrid as $key=>$value) {
+                                        if ($key=='src'){
+                                            $string_seq.='<li value='.$value.'> protein A: '.$value.'</li>';
                                         }
-                                        elseif ($attributes[0]=='tgt') {
-                                            $tgt=$attributes[1];
+                                        elseif ($key=='tgt') {
+                                            $tgt=$value;
                                             
                                             
                                             
                                             //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
                                             //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
-                                            $string_seq.='<li value='.$attributes[1].'> protein B: '.$attributes[1].'</li>';
+                                            $string_seq.='<li value='.$value.'> protein B: '.$value.'</li>';
                                         }
-                                        elseif ($attributes[0]=='method') {
-                                            $string_seq.='<li value='.$attributes[1].'> method: '.$attributes[1].'</li>';
+                                        elseif ($key=='method') {
+                                            $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
                                         }
-                                        elseif ($attributes[0]=='pub') {
-                                            $string_seq.='<li value='.$attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                        elseif ($key=='pub') {
+                                            $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
-                                                if ($attributes[1]==$pub){
+                                                if ($value==$pub){
                                                     $found=TRUE;
                                                 }
                                             }
                                             if ($found==FALSE){
-                                                array_push($pub_list, $attributes[1]);
+                                                array_push($pub_list, $value);
                                             }
                                         }
-                                        elseif ($attributes[0]=='host A name') {
-                                            $string_seq.='<li value='.$attributes[1].'> host name A: '.$attributes[1].'</li>';
+                                        elseif ($key=='host A name') {
+                                            $string_seq.='<li value='.$value.'> host name A: '.$value.'</li>';
                                         }
-                                        elseif ($attributes[0]=='host B name') {
-                                            $string_seq.='<li value='.$attributes[1].'> host name B: '.$attributes[1].'</li>';
+                                        elseif ($key=='host B name') {
+                                            $string_seq.='<li value='.$value.'> host name B: '.$value.'</li>';
                                         }
-                                        elseif ($attributes[0]=='Accession_number') {
-                                            $string_seq.='<li value='.$attributes[1].'> Authors: '.$attributes[1].'</li>';
+                                        elseif ($key=='Accession_number') {
+                                            $string_seq.='<li value='.$value.'> Authors: '.$value.'</li>';
                                         }
 //                                        elseif ($attributes[0]=='Putative_function') {
 //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
