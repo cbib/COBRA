@@ -254,12 +254,13 @@ echo   '<div id="summary">
                         array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
                         array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
                     )
-                );
+               );
                 //var_dump($sequences_cursor);
                 foreach ($sequences_cursor['result'] as $result) {
-                    foreach ($result as $value) {
-                        echo $value;
-                    }
+                    echo $result["count"];
+//                    foreach ($result as $value) {
+//                        echo $value;
+//                    }
                     
                     
                 }
