@@ -263,7 +263,14 @@ echo   '<div id="summary">
                                    
                                         
                                     foreach ($data as $key=>$value) {
-                                        echo $key.'</br>';
+                                        
+                                        if ($key=="mapping_file"){
+                                            foreach ($value as $keys => $values) {
+                                                echo $keys.'</br>';
+                                                
+                                            }
+                                        }
+                                           
                                     }
                                         
                                     
