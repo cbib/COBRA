@@ -267,14 +267,15 @@ echo   '<div id="summary">
                                         if ($key=="mapping_file"){
                                             foreach ($value as $values) {
                                                 echo '>'.$values['Gene ID'].'</br>';
-                                                for ($i=0;$i< strlen($values['Sequence']) ;$i++){
-                                                    if ($i%30==0){
-                                                       echo  $values['Sequence'][$i].'</br>';
-                                                    }
-                                                    else{
-                                                       echo $values['Sequence'][$i]; 
-                                                    }
-                                                }
+                                                echo '<TEXTAREA name="nom" rows=4 cols=40>'.$values['Sequence'].'</TEXTAREA>';
+//                                                for ($i=0;$i< strlen($values['Sequence']) ;$i++){
+//                                                    if ($i%30==0 && $i!=0){
+//                                                       echo  $values['Sequence'][$i].'</br>';
+//                                                    }
+//                                                    else{
+//                                                       echo $values['Sequence'][$i]; 
+//                                                    }
+//                                                }
                                                 //echo $values['Sequence'].'</br>';
                                                 
                                             }
