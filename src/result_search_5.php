@@ -259,11 +259,11 @@ echo   '<div id="summary">
                             </div>
                             <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
                                 $cursor=$sequencesCollection->aggregate(
-                                    [
+                                    array(
                                         array('$unwind'=>'$mapping_file'), 
-                                        array( $match=> array('mapping_file.Gene ID'=>$gene_id[0])),
-                                        array( $group=> array( _id=> $gene_id[0], count=> array( $sum=> 1 )))
-                                    ]
+                                        array( '$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
+                                        array( '$group'=> array( '_id'=> $gene_id[0], 'count'=> array( $sum=> 1 )))
+                                    )
                                 );
                                 echo $cursor['results']['count'];
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100'),array('mapping_file.$'=>1));
