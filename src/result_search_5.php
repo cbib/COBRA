@@ -267,7 +267,7 @@ echo   '<div id="summary">
                                             }
                                         }
                                         
-                                    }
+                                    
                                     
                                 }
                                 
