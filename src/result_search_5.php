@@ -250,7 +250,9 @@ echo   '<div id="summary">
                 }
                 //$transcript_count=0;
                 $transcript_count=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
-                
+                echo '<div>'
+                . ' About this gene: This gene has '.$transcript_count.' transcripts'
+                . '</div>';
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
