@@ -265,7 +265,7 @@ echo   '<div id="summary">
                                         array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
                                     )
                                 );
-                                echo $cursor['results']['count'];
+                                echo $cursor['result']['count'];
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100'),array('mapping_file.$'=>1));
                                 foreach ($sequence_metadata as $data) {
                                    
