@@ -261,8 +261,8 @@ echo   '<div id="summary">
                                 $cursor=$sequencesCollection->aggregate(
                                     array(
                                         array('$unwind'=>'$mapping_file'), 
-                                        array( '$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
-                                        array( '$group'=> array( '_id'=> $gene_id[0], 'count'=> array( $sum=> 1 )))
+                                        array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
+                                        array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
                                     )
                                 );
                                 echo $cursor['results']['count'];
