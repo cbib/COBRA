@@ -599,12 +599,17 @@ echo   '<div id="summary">
                         
                         
                         foreach ($array as $biogrid){
-                            foreach ($biogrid as $value) {
+                            foreach ($biogrid as $data) {
                                 
-                                error_log($value[0]);
-                                if ($value[0]=="tgt"){
-                                    $tgt=$value[1];
-                                }                                
+                                foreach ($data as $key=>$value) {
+                                    if( $key=="tgt"){
+                                       $tgt=$value; 
+                                    }
+                                }
+//                                error_log($value[0]);
+//                                if ($value[0]=="tgt"){
+//                                    $tgt=$value[1];
+//                                }                                
                             }
                             if (in_array($tgt,$tgt_array)===FALSE){
                                array_push($tgt_array, $tgt);
