@@ -258,7 +258,7 @@ echo   '<div id="summary">
                 //var_dump($sequences_cursor);
                 foreach ($cursor['result'] as $result) {
                     foreach ($result as $value) {
-                        echo $value['count'];
+                        echo $value;
                     }
                     
                     
