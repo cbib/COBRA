@@ -257,7 +257,7 @@ echo   '<div id="summary">
                 );
                 //var_dump($sequences_cursor);
                 foreach ($cursor['result'] as $result) {
-                    echo $result;
+                    echo $result['count'];
                     
                 }
                 echo '<div class="panel-group" id="accordion_documents_sequence">
