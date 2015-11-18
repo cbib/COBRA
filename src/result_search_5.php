@@ -265,8 +265,8 @@ echo   '<div id="summary">
                                     foreach ($data as $key=>$value) {
                                         
                                         if ($key=="mapping_file"){
-                                            foreach ($value as $keys => $values) {
-                                                echo $keys.'</br>';
+                                            foreach ($value as $values) {
+                                                echo $values['Sequence'].'</br>';
                                                 
                                             }
                                         }
