@@ -272,7 +272,7 @@ echo   '<div id="summary">
                                             if ($key==="mapping_file"){
                                                 foreach ($value as $values) {
                                                     echo '>'.$values['transcript ID'].'</br>';
-                                                    echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA>';                                           
+                                                    echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>';                                           
                                                 }
                                             }
                                         }
