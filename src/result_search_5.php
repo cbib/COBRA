@@ -248,14 +248,14 @@ echo   '<div id="summary">
                     }
                     echo '</div>';
                 }
-                $Mongocursor=$sequencesCollection->aggregate(
+                $sequences_cursor=$sequencesCollection->aggregate(
                     array(
                         array('$unwind'=>'$mapping_file'), 
                         array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
                         array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
                     )
                 );
-                var_dump($cursor);
+                var_dump($sequences_cursor);
                 //echo $cursor['result']['count'];
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
