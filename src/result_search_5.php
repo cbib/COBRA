@@ -599,13 +599,15 @@ echo   '<div id="summary">
                         
                         
                         foreach ($array as $biogrid){
-                            foreach ($biogrid as $data) {
+                            //foreach ($biogrid as $data) {
+                            foreach ($biogrid as $key=>$value) {
                                 
-                                foreach ($data as $key=>$value) {
-                                    if( $key=="tgt"){
-                                       $tgt=$value; 
-                                    }
-                                }
+                                error_log($value);
+//                                foreach ($data as $key=>$value) {
+//                                    if( $key=="tgt"){
+//                                       $tgt=$value; 
+//                                    }
+//                                }
 //                                error_log($value[0]);
 //                                if ($value[0]=="tgt"){
 //                                    $tgt=$value[1];
