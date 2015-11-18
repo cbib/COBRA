@@ -256,14 +256,15 @@ echo   '<div id="summary">
                     )
                );
                 //var_dump($sequences_cursor);
-                foreach ($sequences_cursor['result'] as $result) {
-                    echo $result["count"];
-//                    foreach ($result as $value) {
-//                        echo $value;
-//                    }
-                    
-                    
-                }
+                echo $sequences_cursor['result']["count"];
+//                foreach ($sequences_cursor['result'] as $result) {
+//                    echo $result["count"];
+////                    foreach ($result as $value) {
+////                        echo $value;
+////                    }
+//                    
+//                    
+//                }
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
