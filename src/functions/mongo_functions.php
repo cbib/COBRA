@@ -898,6 +898,19 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
     return $global_interact_array;
 }
+function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id='null'){
+    $transcript_count=0;
+    $sequences_cursor=$sequencesCollection->aggregate(array(
+        array('$unwind'=>'$mapping_file'), 
+        array('$match'=> array('mapping_file.Gene ID'=>$gene_id)),
+        array('$group'=> array( '_id'=> $gene_id, 'count'=> array( '$sum'=> 1 )))
+    ));
+                
+    foreach ($sequences_cursor['result'] as $result) {
+        $transcript_count=$result["count"];
+    } 
+    return $transcript_count;
+}
 function get_plaza_orthologs(MongoGridFS $grid,Mongocollection $or, $species='null', $gene_id='null',$key='null'){
 	
 	#ask for the right species files

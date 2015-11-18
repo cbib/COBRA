@@ -248,23 +248,9 @@ echo   '<div id="summary">
                     }
                     echo '</div>';
                 }
-                $sequences_cursor=$sequencesCollection->aggregate(
-                    array(
-                        array('$unwind'=>'$mapping_file'), 
-                        array('$match'=> array('mapping_file.Gene ID'=>$gene_id[0])),
-                        array('$group'=> array( '_id'=> $gene_id[0], 'count'=> array( '$sum'=> 1 )))
-                    )
-               );
-                //var_dump($sequences_cursor);
-                echo $sequences_cursor['result']["count"];
-//                foreach ($sequences_cursor['result'] as $result) {
-//                    echo $result["count"];
-////                    foreach ($result as $value) {
-////                        echo $value;
-////                    }
-//                    
-//                    
-//                }
+                $transcript_count=0;
+                $transcript_count=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
+                
                 echo '<div class="panel-group" id="accordion_documents_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -278,33 +264,19 @@ echo   '<div id="summary">
                                 //get the number of transcript for this gene
                                 
                                 
-                                //with the number of transcript 
-                                $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100'),array('mapping_file.$'=>1));
-                                foreach ($sequence_metadata as $data) {
-                                   
-                                        
-                                    foreach ($data as $key=>$value) {
-                                        
-                                        if ($key==="mapping_file"){
-                                            foreach ($value as $values) {
-                                                echo '>'.$values['Gene ID'].'</br>';
-                                                echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA>';
-//                                                for ($i=0;$i< strlen($values['Sequence']) ;$i++){
-//                                                    if ($i%30==0 && $i!=0){
-//                                                       echo  $values['Sequence'][$i].'</br>';
-//                                                    }
-//                                                    else{
-//                                                       echo $values['Sequence'][$i]; 
-//                                                    }
-//                                                }
-                                                //echo $values['Sequence'].'</br>';
-                                                
+                                //with the number of transcript
+                                for ($i=1;$i<=$transcript_count;$i++){
+                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.transcript ID'=>'AT1G01100'.$i),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    echo '>'.$values['transcript ID'].'</br>';
+                                                    echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA>';                                           
+                                                }
                                             }
                                         }
-                                           
                                     }
-                                        
-                                    
                                 }
                                 
                             echo '</div>
