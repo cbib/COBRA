@@ -273,7 +273,7 @@ echo   '<div id="summary">
                                                 foreach ($value as $values) {
                                                     echo '>'.$values['transcript ID'].'</br>';
                                                     //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    echo '<p style="margin-right: 5%; margin-left: 5%;width=100%; text-align: center">'.$values['Sequence'].'</p></br>';
+                                                    echo '<pre style="margin-right: 5%; margin-left: 5%;width=100%; text-align: center">'.$values['Sequence'].'</pre></br>';
                                                 }
                                             }
                                         }
