@@ -248,7 +248,7 @@ echo   '<div id="summary">
                     }
                     echo '</div>';
                 }
-                $transcript_count=0;
+                //$transcript_count=0;
                 $transcript_count=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
                 
                 echo '<div class="panel-group" id="accordion_documents_sequence">
@@ -266,7 +266,7 @@ echo   '<div id="summary">
                                 
                                 //with the number of transcript
                                 for ($i=1;$i<=$transcript_count;$i++){
-                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.transcript ID'=>'AT1G01100'.$i),array('mapping_file.$'=>1));
+                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.transcript ID'=>'AT1G01100.'.$i),array('mapping_file.$'=>1));
                                     foreach ($sequence_metadata as $data) {
                                         foreach ($data as $key=>$value) {
                                             if ($key==="mapping_file"){
