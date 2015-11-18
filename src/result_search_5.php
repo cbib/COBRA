@@ -601,7 +601,7 @@ echo   '<div id="summary">
                         foreach ($array as $biogrid){
                             foreach ($biogrid as $value) {
                                 
-                                error_log($value);
+                                error_log($value[0]);
                                 if ($value[0]=="tgt"){
                                     $tgt=$value[1];
                                 }                                
