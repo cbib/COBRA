@@ -31,6 +31,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$measurementsCollection = new Mongocollection($db, "measurements");
 	$virusesCollection = new Mongocollection($db, "viruses");
 	$interactionsCollection = new Mongocollection($db, "interactions");
+    $sequencesCollection = new Mongocollection($db, "sequences");
 	$orthologsCollection = new Mongocollection($db, "orthologs");
     $GOCollection = new Mongocollection($db, "gene_ontology");
 
@@ -247,6 +248,23 @@ echo   '<div id="summary">
                     }
                     echo '</div>';
                 }
+                echo '<div class="panel-group" id="accordion_documents_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#sequence-fasta" data-parent="#accordion_documents_sequence" data-toggle="collapse">
+                                        <strong>Sequence</strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
+                                $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100|AT1G01100.4'),array('mapping_file.$'=>1));
+                                var_dump($sequence_metadata);
+                            echo '</div>
+
+                        </div>
+                    </div>';
+                    
                 echo'
                 </div>
                 <div id="expression_profile">
@@ -381,7 +399,9 @@ echo   '<div id="summary">
 //
 //                }
                 echo'<div id="shift_line"></div>'
-                . '</div>';             
+                //end div expression profile
+                . '</div>';  
+                //start div goterms
                 echo'<div id="goTerms">
                     <h3>Gene Ontology</h3>
                     <div class="goTermsBlock">
@@ -494,8 +514,9 @@ echo   '<div id="summary">
                         echo'
                     </div>
                     <div id="shift_line"></div>
-                </div>
-                <div id="linkouts">
+                </div>';
+                //end div go_terms
+                echo' <div id="linkouts">
                     <h3>External Database Linkouts</h3>';
              		//<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
              	  //<!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
