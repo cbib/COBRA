@@ -259,7 +259,15 @@ echo   '<div id="summary">
                             </div>
                             <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
                                 $sequence_metadata=$sequencesCollection->find(array('mapping_file.Gene ID'=>'AT1G01100|AT1G01100.4'),array('mapping_file.$'=>1));
-                                
+                                foreach ($sequence_metadata as $key => $value) {
+                                    echo $key;
+                                        
+                                    foreach ($value as $keys=>$data) {
+                                        echo $data;
+                                    }
+                                        
+                                    
+                                }
                                 
                             echo '</div>
 
@@ -593,7 +601,7 @@ echo   '<div id="summary">
                         foreach ($array as $biogrid){
                             foreach ($biogrid as $value) {
                                 
-                                
+                                error_log($value);
                                 if ($value[0]=='tgt'){
                                     $tgt=$value[1];
                                 }                                
