@@ -259,7 +259,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
-                                        <strong>Sequence</strong>
+                                        <strong>cDNA sequences </strong>
                                     </a>				
                            
                             </div>
@@ -293,7 +293,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
-                                        <strong>Gene Sequence</strong>
+                                        <strong>Unspliced (Gene) </strong>
                                     </a>				
                            
                             </div>
