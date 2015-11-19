@@ -23,159 +23,179 @@ for grid_out in fs.find({}, timeout=False):
 	
 	fs.delete(grid_out._id)
 
-##Mapping Prunus Domestica
+##Sequences Arabidopsis thaliana
 
 
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_1.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_1.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_2.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_2.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_3.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_3.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_4.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_4.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_5.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_5.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_6.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_6.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_7.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_7.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_8.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_8.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/SEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Arabidopsis/sequences/Arabidopsis_TAIR10_sequences_set_9.tsv",
+	"data_file":"Arabidopsis/sequences/CDNA/Arabidopsis_TAIR10_sequences_set_9.tsv",
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"TAIR",
-        "tgt":"Sequence",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_1.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
 	"url":"",
 	"doi":"none",
 	"key":"GENEID/SEQUENCE",
@@ -183,7 +203,115 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','transcript ID','Sequence'],
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_2.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_3.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_4.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_5.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_6.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Arabidopsis/sequences/GENE/gene_sequence_arabidopsis_thaliana_Ensembl_7.tsv",
+	"species":"Arabidopsis thaliana",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/TAIR",
+   "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
 		"sheet_index":0,
 	}
 }
