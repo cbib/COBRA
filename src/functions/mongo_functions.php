@@ -901,6 +901,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id='null'){
     $transcript_count=0;
     $sequences_cursor=$sequencesCollection->aggregate(array(
+        array('$match'=> array('tgt'=>'CDNA_Sequence')),
         array('$unwind'=>'$mapping_file'), 
         array('$match'=> array('mapping_file.Gene ID'=>$gene_id)),
         array('$group'=> array( '_id'=> $gene_id, 'count'=> array( '$sum'=> 1 )))
