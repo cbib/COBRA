@@ -252,17 +252,18 @@ echo   '<div id="summary">
                 $transcript_count=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
                 echo '<div>'
                 . ' About this gene: This gene has '.$transcript_count.' transcripts'
-                . '</div>';
-                echo '<div class="panel-group" id="accordion_documents_sequence">
+                . '</div></br>';
+                
+                echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 
-                                    <a class="accordion-toggle collapsed" href="#sequence-fasta" data-parent="#accordion_documents_sequence" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
                                         <strong>Sequence</strong>
                                     </a>				
                            
                             </div>
-                            <div class="panel-body panel-collapse collapse" id="sequence-fasta">';
+                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
                                 //get the number of transcript for this gene
                                 
                                 
@@ -286,6 +287,40 @@ echo   '<div id="summary">
 
                         </div>
                     </div>';
+                            
+                  echo '<div class="panel-group" id="accordion_documents_gene_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
+                                        <strong>Gene Sequence</strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript
+                                
+                                    $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    
+                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                
+                            echo '</div>
+
+                        </div>
+                    </div>';          
                     
                 echo'
                 </div>

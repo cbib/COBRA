@@ -303,7 +303,7 @@ sequence_table={
 	"species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"src_version":"ENSEMBL/TAIR",
-   "tgt":"Gene_Sequence",
+        "tgt":"Gene_Sequence",
 	"url":"",
 	"doi":"none",
 	"key":"GENEID/SEQUENCE",
