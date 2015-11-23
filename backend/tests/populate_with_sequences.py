@@ -316,3 +316,663 @@ sequence_table={
 	}
 }
 sequences_col.insert(sequence_table)
+
+##HORDEUM VULGARE
+
+## Unspliced genes sequences
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_1.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_2.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_3.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_4.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_5.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_6.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+##CDNA sequence
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_1.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_2.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_3.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_4.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_5.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_6.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_7.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_8.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_9.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_10.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_11.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_11.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_12.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Hordeum/sequences/CDNA/cdna_sequence_hordeum_vulgare_ensembl_13.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+##Solanum lycopersicum
+
+
+## Unspliced genes sequences
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_1.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_2.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_3.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_4.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_5.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_6.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+##CDNA sequence
+
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_1.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_2.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_3.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_4.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_5.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_6.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_7.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_8.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+
+
+
+
+
+
