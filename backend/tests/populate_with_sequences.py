@@ -435,6 +435,25 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 
+sequence_table={
+	"data_file":"Hordeum/sequences/GENE/gene_sequence_hordeum_vulgare_ensembl_7.tsv",
+	"species":"Hordeum vulgare",
+	"src":"Gene ID",
+	"src_version":"ENSEMBL/082214v1(IBSC_1.0)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
 
 ##CDNA sequence
 
