@@ -284,6 +284,8 @@ echo   '<div id="summary">
                                                     
                                                     //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
+                                                
+                                                    echo  '<button id="blast_button" type="button">Blast sequence</button>';
                                                 }
                                             }
                                         }
@@ -1745,6 +1747,13 @@ new_cobra_footer();
 		});
 	});
 	$(document).ready(function() {
+        $("#blast_button").click(function(){
+
+
+                $.ajax();
+
+
+        });
 		$('#samplestable').dataTable( {
 			"scrollX": true,
 			"jQueryUI": true,

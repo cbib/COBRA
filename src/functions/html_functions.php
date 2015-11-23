@@ -36,6 +36,7 @@ echo'
 
 <!-- jQuery 2.0.2 -->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.min.js"></script>
+<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://services.cbib.u-bordeaux2.fr/cobra/js/bootstrap.min.js" type="text/javascript"></script>
