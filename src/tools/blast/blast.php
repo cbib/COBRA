@@ -9,14 +9,16 @@ require '/var/www/html/COBRA/src/session/control-session.php';
 new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools");
 
+if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['sequence'])) && ($_POST['sequence']!=''))){
 
-if ((isset($_POST['search'])) && ($_POST['search']!='')) {
+
 
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
+    $sequence=control_post(htmlspecialchars($_POST['sequence']));
     
 }
-error_log('here is the search id: '.$search_id);
+error_log('here is the search id: '.$search_id.' and the sequence: '.$sequence);
 
 
 //$cmd_string = $database." ".$blast_program." ".$sequence_file." 
@@ -27,7 +29,7 @@ error_log('here is the search id: '.$search_id);
 
     /*  Execute command */
  
-$output = exec($cmd);
+//$output = exec($cmd);
 
 new_cobra_footer();	
 

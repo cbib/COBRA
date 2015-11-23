@@ -285,7 +285,7 @@ echo   '<div id="summary">
                                                     //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
-                                                    echo  '<button id="blast_button" type="button">Blast sequence</button>';
+                                                    echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                 }
                                             }
                                         }
@@ -1660,7 +1660,7 @@ new_cobra_footer();
     
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
-    var genes_alias="<?php echo $gene_alias[0]; ?>"; 
+    var genes_alias="<?php echo $gene_alias[0]; ?>";
     var xp_name="<?php echo $xp_name[0]; ?>";
     $(function () {
         $('#container').highcharts({
@@ -1746,17 +1746,21 @@ new_cobra_footer();
 				}
 		});
 	});
+    var msglist = document.getElementById("blast_button");
+
+    var sequence = msglist.getAttribute("data-sequence");
 	$(document).ready(function() {
         $("#blast_button").click(function(){
 
-
+                //this.getAttribute('data-sequence');
+                
                 $.ajax({
 
                     url : './tools/blast/blast.php', // La ressource ciblée
 
                     type : 'POST' ,// Le type de la requête HTTP.
 
-                    data : 'search=' + genes,
+                    data : 'search=' + genes + '&sequence=' + sequence,
                     dataType : 'html'
 
                 });
