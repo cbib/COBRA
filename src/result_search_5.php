@@ -1754,9 +1754,10 @@ new_cobra_footer();
 
                     url : './tools/blast/blast.php', // La ressource ciblée
 
-                    type : 'GET' ,// Le type de la requête HTTP.
+                    type : 'POST' ,// Le type de la requête HTTP.
 
-                    data : 'search=' + genes;
+                    data : 'search=' + genes,
+                    dataType : 'html'
 
                 });
 

@@ -10,10 +10,10 @@ new_cobra_header();
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools");
 
 
-if ((isset($_GET['search'])) && ($_GET['search']!='')) {
+if ((isset($_POST['search'])) && ($_POST['search']!='')) {
 
 
-	$search_id=control_post(htmlspecialchars($_GET['search']));
+	$search_id=control_post(htmlspecialchars($_POST['search']));
     
 }
 error_log('here is the search id: '.$search_id);
