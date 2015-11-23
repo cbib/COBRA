@@ -61,10 +61,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //$timestart=microtime(true);
     //get_everything using full table mapping
     
-    $cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
+    //$cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
     $searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/x")));
 
-	$cursor = $me->find($searchQuery);
+	$cursor = $measurementsCollection->find($searchQuery);
     
     
     $Commande = shell_exec('ls -al');
