@@ -1837,13 +1837,13 @@ new_cobra_footer();
 
                     data : 'search=' + genes + '&sequence=' + sequence,
                    
-                    //method: 'post',
+                    method: 'post',
 					cache: false,
 					async: true,
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
-						$('.content').empty().html(data);
+						$('.content_test').empty().html(data);
 					}
 				});
         });
