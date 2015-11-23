@@ -62,13 +62,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //get_everything using full table mapping
     
     //$cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
-    $searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/x")));
+    $searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/xi")));
 
 	$cursor = $measurementsCollection->find($searchQuery);
+    var_dump($cursor);
     
     
-    $Commande = shell_exec('ls -al /data');
-    echo "$Commande";
     
     //Add split funstion for search value in case of double value separated by colon
     //consequently add multiple results page to test any alias when an alias is submitted.
@@ -329,9 +328,32 @@ echo   '<div id="summary">
 
                         </div>
                     </div>';          
-                    
+                
+
+                //Launch shell command in php
+                //$Commande = shell_exec ('ls -al');
+                //echo "$Commande"; 
+                
+                            
+                            
                 echo'
+                    <div id="button"> 
+                         
+
+                    </div>
+                    <div id="wait" class="hidden"> 
+                         
+
+                    </div>
+                    <div id="result" > 
+                         
+
+                    </div>
                 </div>
+                
+
+
+
                 <div id="expression_profile">
                     <h3>Expression profile</h3>
                     <div class="panel-group" id="accordion_documents_expression">
