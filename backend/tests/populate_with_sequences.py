@@ -1010,7 +1010,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_3.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_3.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -1028,7 +1028,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_4.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_4.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -1046,7 +1046,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_5.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_5.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -1064,7 +1064,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_6.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_6.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -1082,7 +1082,7 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_7.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_7.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -1101,7 +1101,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_8.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_8.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
