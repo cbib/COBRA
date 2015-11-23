@@ -286,6 +286,32 @@ echo   '<div id="summary">
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
                                                     echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo '<center>
+                                                            <div class="loading" style="display: none">
+                                                                <i></i>
+                                                                <i></i>
+                                                                <i></i>
+                                                                <i></i>
+                                                                <i></i>
+                                                                <i></i>
+                                                            </div>
+                                                        </center>
+                                                        <div class="container animated fadeInDown">
+                                                            <div class="content">
+                                                                <div class="jumbotron">
+                                                                    <div class="controls">
+                                                                        <span class="prev"></span>
+                                                                        <span class="next"></span>
+                                                                    </div>
+                                                                    <ul class="slideshow">
+                                                                        <li></li>
+                                                                        <li></li>
+                                                                        <li></li>
+                                                                        <li></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>';
                                                 }
                                             }
                                         }
@@ -1746,14 +1772,17 @@ new_cobra_footer();
 				}
 		});
 	});
+    
+    $("#pleaseWait").show();
+// or
+    $("#pleaseWait").hide();
     var msglist = document.getElementById("blast_button");
 
     var sequence = msglist.getAttribute("data-sequence");
 	$(document).ready(function() {
         $("#blast_button").click(function(){
 
-                //this.getAttribute('data-sequence');
-                
+              
                 $.ajax({
 
                     url : './tools/blast/blast.php', // La ressource ciblée
@@ -1761,7 +1790,21 @@ new_cobra_footer();
                     type : 'POST' ,// Le type de la requête HTTP.
 
                     data : 'search=' + genes + '&sequence=' + sequence,
-                    dataType : 'html'
+                    dataType : 'html',
+//                    success:function(myoutput){                   
+//                        $(":hidden").val(myoutput.srno);
+//                        if(myoutput.flag=="1")
+//                        {                                       
+//                            window.location="chat.php";
+//                        }
+//                        else
+//                        {
+//                            $("#msg").html("Invalid Login");
+//                        }
+//                    }
+                    success : function(code_html, statut){ // code_html contient le HTML renvoyé
+                        }
+
 
                 });
 
@@ -1794,6 +1837,47 @@ new_cobra_footer();
 				}
 		});
 	});
+    
+    
+    function loader(){
+	$('#click').click(function() {
+				$.ajax({
+					 url: '/echo/html/',
+                    data: {
+                    html: "Some Testdata returned by ajax"
+                            },
+                    method: 'post',
+					cache: false,
+					async: true,
+					dataType: "html",
+					success: function (data) {
+						console.log("in ajax ", data.slice( 0, 100 ));
+						$('.content').empty().html(data);
+					}
+				});
+	});
+}
+$(document).ready(function(){
+    loader();
+});
+
+$(document).on({
+  ajaxStart: function() { 
+                    $(".content").fadeOut("slow");
+                    $(".loading").show();
+  },
+  ajaxStop: function() {
+      setTimeout(function() { 
+                     $(".loading").fadeOut("slow");
+                     $(".content").show("slow");     
+                  }, 1500);                                        
+  }    
+});
+
+
+
+
+
 </script>
 
 
