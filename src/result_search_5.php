@@ -297,7 +297,7 @@ echo   '<div id="summary">
                                                             </div>
                                                         </center>
                                                         <div class="container animated fadeInDown">
-                                                            <div class="content">
+                                                            <div class="content_test">
                                                                 <div class="jumbotron">
                                                                     <div class="controls">
                                                                         <span class="prev"></span>
@@ -1773,24 +1773,17 @@ new_cobra_footer();
 		});
 	});
     
-    $("#pleaseWait").show();
-// or
-    $("#pleaseWait").hide();
+   
     var msglist = document.getElementById("blast_button");
 
     var sequence = msglist.getAttribute("data-sequence");
-	$(document).ready(function() {
-        $("#blast_button").click(function(){
-
-              
-                $.ajax({
-
-                    url : './tools/blast/blast.php', // La ressource ciblée
-
-                    type : 'POST' ,// Le type de la requête HTTP.
-
-                    data : 'search=' + genes + '&sequence=' + sequence,
-                    dataType : 'html',
+//	$(document).ready(function() {
+//        $("#blast_button").click(function(){
+//                $.ajax({
+//                    url : './tools/blast/blast.php', // La ressource ciblée
+//                    type : 'POST' ,// Le type de la requête HTTP.
+//                    data : 'search=' + genes + '&sequence=' + sequence,
+//                    dataType : 'html',
 //                    success:function(myoutput){                   
 //                        $(":hidden").val(myoutput.srno);
 //                        if(myoutput.flag=="1")
@@ -1802,15 +1795,11 @@ new_cobra_footer();
 //                            $("#msg").html("Invalid Login");
 //                        }
 //                    }
-                    success : function(code_html, statut){ // code_html contient le HTML renvoyé
-                        }
-
-
-                });
-
-
-        });
-		$('#samplestable').dataTable( {
+//                });
+//    });
+        
+        
+	$('#samplestable').dataTable( {
 			"scrollX": true,
 			"jQueryUI": true,
 			"pagingType": "full_numbers",
@@ -1840,13 +1829,15 @@ new_cobra_footer();
     
     
     function loader(){
-	$('#click').click(function() {
+        $('#blast_button').click(function() {
 				$.ajax({
-					 url: '/echo/html/',
-                    data: {
-                    html: "Some Testdata returned by ajax"
-                            },
-                    method: 'post',
+					 url : './tools/blast/blast.php', // La ressource ciblée
+
+                    type : 'POST' ,// Le type de la requête HTTP.
+
+                    data : 'search=' + genes + '&sequence=' + sequence,
+                   
+                    //method: 'post',
 					cache: false,
 					async: true,
 					dataType: "html",
@@ -1855,24 +1846,24 @@ new_cobra_footer();
 						$('.content').empty().html(data);
 					}
 				});
-	});
-}
-$(document).ready(function(){
-    loader();
-});
+        });
+    }
+    $(document).ready(function(){
+        loader();
+    });
 
-$(document).on({
-  ajaxStart: function() { 
-                    $(".content").fadeOut("slow");
+    $(document).on({
+        ajaxStart: function() { 
+                    $(".content_test").fadeOut("slow");
                     $(".loading").show();
-  },
-  ajaxStop: function() {
-      setTimeout(function() { 
-                     $(".loading").fadeOut("slow");
-                     $(".content").show("slow");     
+        },
+        ajaxStop: function() {
+                    setTimeout(function() { 
+                    $(".loading").fadeOut("slow");
+                    $(".content_test").show("slow");     
                   }, 1500);                                        
-  }    
-});
+        }    
+    });
 
 
 
