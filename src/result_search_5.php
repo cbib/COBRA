@@ -61,6 +61,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //$timestart=microtime(true);
     //get_everything using full table mapping
     
+    $cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
+    $searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/x")));
+
+	$cursor = $me->find($searchQuery);
+    
+    
+    $Commande = shell_exec ('ls -al');
+    echo "$Commande";
     
     //Add split funstion for search value in case of double value separated by colon
     //consequently add multiple results page to test any alias when an alias is submitted.
