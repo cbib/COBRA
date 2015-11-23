@@ -35,7 +35,7 @@ logger.info("Found %d sequence tables to process",sequences_to_process.count())
 for map_doc in sequences_to_process:
 	# on recup le chemin du fichier
 	src_file= data_dir+map_doc['data_file']
-	
+	logger.info("src file: %s",src_file)
         # on recup la config du parser xls 
 	parser_config=map_doc['xls_parsing']
         fileName, fileExtension = os.path.splitext(src_file)
