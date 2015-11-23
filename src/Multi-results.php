@@ -88,11 +88,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //var_dump($cursor);
 
     
-    if (count($cursor['result'])==1){
-       echo 'only one results'; 
-       
-    }
-    elseif (count($cursor['result'])>1) {
+    if (count($cursor['result'])>=1) {
         
         $table_string.='<table id="result_list" class="table table-hover">';
         //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';

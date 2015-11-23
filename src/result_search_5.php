@@ -286,30 +286,22 @@ echo   '<div id="summary">
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
                                                     echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
-                                                    echo '<center>
-                                                            <div class="loading" style="display: none">
-                                                                <i></i>
-                                                                <i></i>
-                                                                <i></i>
-                                                                <i></i>
-                                                                <i></i>
-                                                                <i></i>
-                                                            </div>
-                                                        </center>
+                                                    echo '  <center>
+                                                                <div class="loading" style="display: none">
+                                                                    <i>test</i>
+                                                                
+                                                                </div>
+                                                            </center>
                                                         <div class="container animated fadeInDown">
                                                             <div class="content_test">
-                                                                <div class="jumbotron">
-                                                                    <div class="controls">
-                                                                        <span class="prev"></span>
-                                                                        <span class="next"></span>
-                                                                    </div>
-                                                                    <ul class="slideshow">
-                                                                        <li></li>
-                                                                        <li></li>
-                                                                        <li></li>
-                                                                        <li></li>
-                                                                    </ul>
-                                                                </div>
+                                                                
+                                                                <ul class="slideshow">
+                                                                    <li></li>
+                                                                    <li></li>
+                                                                    <li></li>
+                                                                    <li></li>
+                                                                </ul>
+                                                               
                                                             </div>
                                                         </div>';
                                                 }
@@ -323,7 +315,7 @@ echo   '<div id="summary">
                         </div>
                     </div>';
                             
-                  echo '<div class="panel-group" id="accordion_documents_gene_sequence">
+              echo '<div class="panel-group" id="accordion_documents_gene_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 
@@ -355,7 +347,8 @@ echo   '<div id="summary">
                             echo '</div>
 
                         </div>
-                    </div>';          
+                    </div>
+                </div>';          
                 
 
                 //Launch shell command in php
@@ -364,24 +357,8 @@ echo   '<div id="summary">
                 
                             
                             
-                echo'
-                    <div id="button"> 
-                         
-
-                    </div>
-                    <div id="wait" class="hidden"> 
-                         
-
-                    </div>
-                    <div id="result" > 
-                         
-
-                    </div>
-                </div>
-                
-
-
-
+                    echo'
+               
                 <div id="expression_profile">
                     <h3>Expression profile</h3>
                     <div class="panel-group" id="accordion_documents_expression">
@@ -1844,7 +1821,7 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
-						$('.content_test').empty().html(data);
+						//$('.content_test').empty().html(data);
 					}
 				});
         });
