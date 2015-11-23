@@ -67,7 +67,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$cursor = $measurementsCollection->find($searchQuery);
     
     
-    $Commande = shell_exec('ls -al');
+    $Commande = shell_exec('ls -al /data');
     echo "$Commande";
     
     //Add split funstion for search value in case of double value separated by colon
