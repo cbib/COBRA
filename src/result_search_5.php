@@ -1839,7 +1839,7 @@ new_cobra_footer();
                     setTimeout(function() { 
                     $(".loading").fadeOut("slow");
                     $(".content_test").show("slow");     
-                  }, 1500);                                        
+                  }, 5000);                                        
         }    
     });
 
