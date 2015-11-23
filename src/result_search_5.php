@@ -1750,7 +1750,15 @@ new_cobra_footer();
         $("#blast_button").click(function(){
 
 
-                $.ajax();
+                $.ajax({
+
+                    url : './tools/blast/blast.php', // La ressource ciblée
+
+                    type : 'GET' ,// Le type de la requête HTTP.
+
+                    data : 'search=' + genes;
+
+                });
 
 
         });
