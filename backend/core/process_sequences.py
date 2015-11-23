@@ -72,8 +72,8 @@ for map_doc in sequences_to_process:
 	
         
         
-logger.info("Indexation on field \"mapping_file.Gene ID\" from collection \"sequences\"")
-sequences_col.create_index("mapping_file.Gene ID",sparse=True)
+#logger.info("Indexation on field \"mapping_file.Gene ID\" from collection \"sequences\"")
+#sequences_col.create_index("mapping_file.Gene ID",sparse=True)
 
 logger.info("Indexation on field \"mapping_file.Transcript ID\" from collection \"sequences\"")
 sequences_col.create_index("mapping_file.Transcript ID",sparse=True)
