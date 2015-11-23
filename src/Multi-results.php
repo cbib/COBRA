@@ -93,7 +93,46 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
        
     }
     elseif (count($cursor['result'])>1) {
-        echo 'multi results'; 
+        
+        $table_string.='<table id="mapping" class="table table-hover">';
+        //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+        $table_string.='<thead><tr>';
+
+            //recupere le titre
+            //$table_string.='<th>type</th>';
+            $table_string.='<th>id</th>';
+            $table_string.='<th>species</th>';
+            
+
+
+            //fin du header de la table
+        $table_string.='</tr></thead>';
+
+        //Debut du corps de la table
+        $table_string.='<tbody>';
+        foreach ($cursor['result'] as $result) {
+            $table_string.='<tr>';
+            if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
+
+                array_push($gene_id,$result['mapping_file']['Gene ID']);
+                $table_string.='<td>'.$result['mapping_file']['Gene ID'].'</td>';
+                $table_string.='<td>'.$result['species'].'</td>';
+            }
+            
+            
+            //$table_string.='<td>'.$line['type'].'</td>';
+           
+            
+            $table_string.='</tr>';
+
+        }
+        
+        
+
+        }
+        $table_string.='</tbody></table>';
+        
+        
     }
     else{
        echo'<div id="summary"><h2>No Results found for \''.$search.'\'</h2></div></section>';	
