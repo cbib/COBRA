@@ -712,7 +712,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Transcript ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -724,7 +724,7 @@ sequences_col.insert(sequence_table)
 ## Unspliced genes sequences
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_1.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_1.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -743,7 +743,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_2.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_2.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -762,7 +762,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_3.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_3.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -781,7 +781,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_4.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_4.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -800,7 +800,7 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_5.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_5.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -819,7 +819,45 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 sequence_table={
-	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_ensembl_6.tsv",
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_6.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_7.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_8.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
@@ -841,14 +879,14 @@ sequences_col.insert(sequence_table)
 ##CDNA sequence
 
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_1.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_1.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -859,14 +897,14 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 sequence_table={
-	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_ensembl_2.tsv",
+	"data_file":"Solanum/sequences/CDNA/cdna_sequence_solanum_lycopersicum_Ensembl_2.tsv",
 	"species":"Solanum lycopersicum",
 	"src":"Gene ID",
 	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -885,7 +923,7 @@ sequence_table={
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -903,7 +941,7 @@ sequence_table={
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -921,7 +959,7 @@ sequence_table={
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -939,7 +977,7 @@ sequence_table={
         "tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -957,7 +995,7 @@ sequence_table={
 	"tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
@@ -976,7 +1014,7 @@ sequence_table={
 	"tgt":"CDNA_Sequence",
 	"url":"",
 	"doi":"none",
-	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	"key":"GENEID/TRANSCRIPTID/SEQUENCE",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
