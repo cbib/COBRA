@@ -875,6 +875,100 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_9.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_10.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_11.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_12.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Solanum/sequences/GENE/gene_sequence_solanum_lycopersicum_Ensembl_13.tsv",
+	"species":"Solanum lycopersicum",
+	"src":"Gene ID",
+	"src_version":"SL2.50 (2014-10-EnsemblPlants)",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
 
 ##CDNA sequence
 
