@@ -129,9 +129,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         
         
 
-        }
-        $table_string.='</tbody></table>';
         
+        $table_string.='</tbody></table>';
+        echo $table_string;
         
     }
     else{
