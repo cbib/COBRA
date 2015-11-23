@@ -23,6 +23,9 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from prettytable import PrettyTable
 
+
+csv.field_size_limit(sys.maxsize)
+
 from collections import defaultdict
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
