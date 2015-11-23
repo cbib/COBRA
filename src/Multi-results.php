@@ -94,7 +94,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     }
     elseif (count($cursor['result'])>1) {
         
-        $table_string.='<table id="mapping" class="table table-hover">';
+        $table_string.='<table id="result_list" class="table table-hover">';
         //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
         $table_string.='<thead><tr>';
 
@@ -151,3 +151,34 @@ else{
 new_cobra_footer();
 
 ?>
+
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+	$('#result_list').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+</script>
