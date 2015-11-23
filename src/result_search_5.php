@@ -1796,6 +1796,7 @@ new_cobra_footer();
 //                        }
 //                    }
 //                });
+//          });
 //    });
         
         
@@ -1825,7 +1826,7 @@ new_cobra_footer();
 							"thousands": "."
 				}
 		});
-	});
+	
     
     
     function loader(){
