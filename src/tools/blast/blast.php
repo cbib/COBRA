@@ -26,9 +26,9 @@ error_log('Here is the search id: '.$search_id.' and the sequence: '.$sequence);
 //".$blast_output." ".$job_name." ".$cfgBlastDbDir." ".$output_format. " 
 //".$options;
 //
-$cmd = "/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results2.txt -outfmt 13";// .$cmd_string;
+$cmd = '/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results2.txt -outfmt 13';// .$cmd_string;
 $output = exec($cmd);
-
+error_log($output);
 
 //./blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results.txt -outfmt 13
 
