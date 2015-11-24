@@ -1816,7 +1816,7 @@ new_cobra_footer();
 					async: true,
 					dataType: "html",
 					success: function (data) {
-						console.log("in ajax ", data.slice( 0, 100 ));
+						alert(data.slice( 0, 100 ));
                         $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
                             search : genes,
 
