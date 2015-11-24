@@ -1850,12 +1850,18 @@ new_cobra_footer();
                     $(".loading").show();
                     
         },
-        ajaxStop: function() {
-                    setTimeout(function() { 
+//        ajaxStop: function() {
+//                    setTimeout(function() { 
+//                    $(".loading").fadeOut("slow");
+//                    $(".content_test").show("slow");
+//                    
+//                  }, 5000);                                        
+//        }, 
+        ajaxComplete: function() {
+                    
                     $(".loading").fadeOut("slow");
                     $(".content_test").show("slow");
-                    
-                  }, 5000);                                        
+                                                         
         }    
     });
 
