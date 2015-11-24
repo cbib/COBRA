@@ -31,29 +31,29 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
 
-//
-//$file = "list.txt";
-//
-//$json = json_decode(file_get_contents($file));
 
+$file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
-$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json", "r");
-
-
-
-
-
-while (!feof($Json_file)) {
-
-    $line_of_text = fgets($Json_file);
-    $json = json_decode($line_of_text, true);
-
-    //print $json['key']. "<BR>";
-    echo '<p id="paragraph">results: </br>  '.$json['results'].'</p>';
-
+$json = json_decode(file_get_contents($file));
+for ($i=0;$i>11;$i++){
+    echo 'results: '.$json['BlastOutput2']['report']['params'];
 }
 
-fclose($handle);
+
+//$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json", "r");
+//while (!feof($Json_file)) {
+//
+//    $line_of_text = fgets($Json_file);
+//    $json = json_decode($line_of_text, true);
+//
+//    //print $json['key']. "<BR>";
+//    echo '<p id="paragraph">results: </br>  '.$json['results'].'</p>';
+//
+//}
+//fclose($handle);
+
+
+
 //echo '<p id="paragraph">results: </br>  '.$handle.'</p>';
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
