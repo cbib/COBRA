@@ -27,7 +27,7 @@ if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['seq
 //".$options;
 //
 //$cmd = '/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results2.txt -outfmt 13';// .$cmd_string;
-$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt -outfmt 13');
+$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
 
@@ -37,7 +37,7 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 //$json = json_decode(file_get_contents($file));
 
 
-$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt_1.json", "r");
+$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json", "r");
 
 
 
