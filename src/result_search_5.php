@@ -1816,7 +1816,7 @@ new_cobra_footer();
 					async: true,
 					dataType: "html",
 					success: function (data) {
-						alert(data);
+						//alert(data);
                         var jqObj = jQuery(data);
                         var par=jqObj.find("#paragraph");
                         
