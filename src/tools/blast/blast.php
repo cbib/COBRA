@@ -36,10 +36,10 @@ $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
 $json = json_decode(file_get_contents($file));
 
-for ($i=0;$i>11;$i++){
-   
-    echo '<p id="paragraph">results: </br>  '.$json['BlastOutput2']['report']['params'].'</p>';
-}
+//echo '<p id="paragraph">results: </br>  '.$json['BlastOutput2']['report']['params'].'</p>';
+echo '<p id="paragraph">results: </br>  '.var_dump($json).'</p>';
+
+
 
 
 //$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json", "r");
