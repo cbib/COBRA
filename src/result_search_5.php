@@ -1742,7 +1742,32 @@ new_cobra_footer();
 				}
 		});
 	});
-    
+    $('#samplestable').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
    
     //var msglist = document.getElementById("blast_button");
     var button_clicked=document.getElementById('blast_button').onclick();
@@ -1772,32 +1797,7 @@ new_cobra_footer();
 //    });
         
         
-	$('#samplestable').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
+
 	
     
     
@@ -1805,7 +1805,7 @@ new_cobra_footer();
         $('#blast_button').click(function() {
                 alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this).;
+                var target = $(this);
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
@@ -1846,15 +1846,15 @@ new_cobra_footer();
         loader();
     });
     
-    $(document).ready(function() {
-        $('#trancript_sequence_fasta').on('click button', function(event) {
-            var $target = $(event.target),
-                itemId = $target.data('id');
-                alert(itemId);
-
-            //do something with itemId
-        });
-    });
+//    $(document).ready(function() {
+//        $('#trancript_sequence_fasta').on('click button', function(event) {
+//            var $target = $(event.target),
+//                itemId = $target.data('id');
+//                alert(itemId);
+//
+//            //do something with itemId
+//        });
+//    });
 
     $(document).on({
         ajaxStart: function() { 
