@@ -16,33 +16,61 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
     //$sequence=control_post(htmlspecialchars($_POST['sequence']));
+    $db=mongoConnector();
+
+	
+    $sequencesCollection = new Mongocollection($db, "sequences");
+    
+    
+    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$search_id),array('mapping_file.$'=>1));
+    foreach ($sequence_metadata as $data) {
+        foreach ($data as $key=>$value) {
+            if ($key==="mapping_file"){
+                foreach ($value as $values) {
+                    ;
+
+                    // on place le contenu dans une variable. (exemple hein ^^)
+
+                    $contenu = '>'.$search_id."\n";
+                    $contenu .= $values['Transcript Sequence'];
+
+                    // on ouvre le fichier en écriture avec l'option a
+                    // il place aussi le pointeur en fin de fichier (il tentera de créer aussi le fichier si non existant)
+                    $h = fopen("tmp_'.$search_id.'.fasta", "a");
+                    fwrite($h, $contenu);
+                    fclose($h);
+                }
+            }
+        }
+    }
+    //it works below
+    //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
+
+    $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
+    $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
+
+    $json = json_decode(file_get_contents($file), true);
+    $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
+    $max_hits=0;
+    foreach ($hits as $result) {
+        foreach ($result['description'] as $value) {
+
+
+            if ($max_hits<10){
+                echo '<p id="paragraph">results: </br>  '.$value['title'].'</p>';
+            }
+            $max_hits++;
+        }
+    }
+
     
 }
 //echo '<p id="paragraph"> Here is the search id: '.$search_id.' </br> and the sequence: '.$sequence.'</p>';
 
 //error_log('Here is the search id: '.$search_id.' and the sequence: '.$sequence);
 
-$sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$search_id),array('mapping_file.$'=>1));
-foreach ($sequence_metadata as $data) {
-    foreach ($data as $key=>$value) {
-        if ($key==="mapping_file"){
-            foreach ($value as $values) {
-                ;
-                
-                // on place le contenu dans une variable. (exemple hein ^^)
-                
-                $contenu = '>'.$search_id."\n";
-                $contenu .= $values['Transcript Sequence'];
 
-                // on ouvre le fichier en écriture avec l'option a
-                // il place aussi le pointeur en fin de fichier (il tentera de créer aussi le fichier si non existant)
-                $h = fopen("tmp_'.$search_id.'.fasta", "a");
-                fwrite($h, $contenu);
-                fclose($h);
-            }
-        }
-    }
-}
+
 
 //$cmd_string = $database." ".$blast_program." ".$sequence_file." 
 //".$blast_output." ".$job_name." ".$cfgBlastDbDir." ".$output_format. " 
@@ -50,12 +78,9 @@ foreach ($sequence_metadata as $data) {
 //
 //$cmd = '/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results2.txt -outfmt 13';// .$cmd_string;
 
-//it works below
-//$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
 
 
 
-$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
 
 
 
@@ -65,21 +90,7 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 //error_log($output);
 
 
-$file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
-$json = json_decode(file_get_contents($file), true);
-$hits=$json['BlastOutput2']['report']['results']['search']['hits'];
-$max_hits=0;
-foreach ($hits as $result) {
-    foreach ($result['description'] as $value) {
-        
-    
-        if ($max_hits<10){
-            echo '<p id="paragraph">results: </br>  '.$value['title'].'</p>';
-        }
-        $max_hits++;
-    }
-}
 //
 //echo '<p id="paragraph">results: </br>  '.$hits[0]['description'][0]['title'].'</p>';
 //
