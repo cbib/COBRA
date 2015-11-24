@@ -35,8 +35,10 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
 $json = json_decode(file_get_contents($file));
+
 for ($i=0;$i>11;$i++){
-    echo 'results: '.$json['BlastOutput2']['report']['params'];
+   
+    echo '<p id="paragraph">results: </br>  '.$json['BlastOutput2']['report']['params'].'</p>';
 }
 
 
