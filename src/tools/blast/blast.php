@@ -18,7 +18,7 @@ if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['seq
 }
 echo '<p id="paragraph"> Here is the search id: '.$search_id.' </br> and the sequence: '.$sequence.'</p>';
 
-error_log('Here is the search id: '.$search_id.' and the sequence: '.$sequence);
+//error_log('Here is the search id: '.$search_id.' and the sequence: '.$sequence);
 
 
 
