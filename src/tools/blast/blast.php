@@ -35,7 +35,7 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
 $json = json_decode(file_get_contents($file), true);
-$hits=$json['BlastOutput2']['report']['params']['results']['hits'];
+$hits=$json['BlastOutput2']['report']['params']['results']['search']['hits'];
 $max_hits=0;
 foreach ($hits as $result) {
     
