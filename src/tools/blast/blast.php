@@ -40,7 +40,7 @@ $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
 echo '<p id="paragraph">results: </br>  '.$hits['description']['title'].'</p>';
 
 
-//echo '<p id="paragraph">results: </br>  '.$json['BlastOutput2']['report']['params']['matrix'].'</p>';
+echo '<p id="paragraph">results: </br>  '.$json['BlastOutput2']['report']['results']['search']['query_id'].'</p>';
 
 //$max_hits=0;
 //foreach ($hits as $result) {
