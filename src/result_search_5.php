@@ -1770,9 +1770,9 @@ new_cobra_footer();
     });
    
     //var msglist = document.getElementById("blast_button");
-    var button_clicked=document.getElementById('blast_button').onclick();
-    var clicked_sequence = button_clicked.getAttribute("data-sequence");
-    var clicked_transcript_id = button_clicked.getAttribute("data-id");
+//    var button_clicked=document.getElementById('blast_button').onclick();
+//    var clicked_sequence = button_clicked.getAttribute("data-sequence");
+//    var clicked_transcript_id = button_clicked.getAttribute("data-id");
     
 //	$(document).ready(function() {
 //        $("#blast_button").click(function(){
@@ -1805,7 +1805,7 @@ new_cobra_footer();
         $('#blast_button').click(function() {
                 alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this);
+                //var target = $(this);
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
