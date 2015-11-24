@@ -1821,6 +1821,7 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
+                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph" );
                         //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
 						//$('.content_test').empty().html(data);
 					}
@@ -1843,7 +1844,7 @@ new_cobra_footer();
                     setTimeout(function() { 
                     $(".loading").fadeOut("slow");
                     $(".content_test").show("slow");
-                    $( ".content_test" ).load( "tools/blast/blast.php #paragraph" );
+                    
                   }, 5000);                                        
         }    
     });
