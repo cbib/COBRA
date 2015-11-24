@@ -24,7 +24,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $sequencesCollection = new Mongocollection($db, "sequences");
     
     
-    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$search_id),array('mapping_file.$'=>1));
+    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>str_replace("_", ".",$search_id)),array('mapping_file.$'=>1));
     foreach ($sequence_metadata as $data) {
         foreach ($data as $key=>$value) {
             if ($key==="mapping_file"){
@@ -33,7 +33,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
                     // on place le contenu dans une variable. (exemple hein ^^)
 
-                    $contenu = '>'.$search_id."\n";
+                    $contenu = '>'.str_replace("_", ".",$search_id)."\n";
                     $contenu .= $values['Transcript Sequence'];
 
                     // on ouvre le fichier en écriture avec l'option a
