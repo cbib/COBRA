@@ -1748,7 +1748,7 @@ new_cobra_footer();
     var button_clicked=document.getElementById('blast_button').onclick();
     var clicked_sequence = button_clicked.getAttribute("data-sequence");
     var clicked_transcript_id = button_clicked.getAttribute("data-id");
-    alert(clicked_transcript_id);
+    
 //	$(document).ready(function() {
 //        $("#blast_button").click(function(){
 //                $.ajax({
@@ -1803,6 +1803,7 @@ new_cobra_footer();
     
     function loader(){
         $('#blast_button').click(function() {
+                alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
                 var target = $(this).;
 				$.ajax({
@@ -1840,8 +1841,19 @@ new_cobra_footer();
 				});
         });
     }
+    
     $(document).ready(function(){
         loader();
+    });
+    
+    $(document).ready(function() {
+        $('#trancript_sequence_fasta').on('click button', function(event) {
+            var $target = $(event.target),
+                itemId = $target.data('id');
+                alert(itemId);
+
+            //do something with itemId
+        });
     });
 
     $(document).on({
