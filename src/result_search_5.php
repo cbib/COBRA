@@ -1859,6 +1859,7 @@ new_cobra_footer();
     $(document).on({
         ajaxStart: function() { 
                     $(".content_test_"+clicked_transcript_id).fadeOut("slow");
+                    $(".content_test_"+clicked_transcript_id).hide();
                     $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
                     
                     $(".loading_"+clicked_transcript_id).show();
