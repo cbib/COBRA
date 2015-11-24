@@ -285,7 +285,7 @@ echo   '<div id="summary">
                                                     //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
-                                                    echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo  '<button data-id="'.$values['Transcript ID'].'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '  <center>
                                                                 <div class="loading" style="display: none">
                                                                     
@@ -1801,7 +1801,10 @@ new_cobra_footer();
     
     function loader(){
         $('#blast_button').click(function() {
+                //var seq= $(this).getAttribute("data-sequence");
+                
 				$.ajax({
+                    
 					 url : './tools/blast/blast.php', // La ressource ciblée
 
                     type : 'POST' ,// Le type de la requête HTTP.
@@ -1814,7 +1817,12 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
-                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph" );
+                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+                            search : genes,
+
+                            sequence : sequence
+                            
+                        } );
                         //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
 						//$('.content_test').empty().html(data);
 					}
