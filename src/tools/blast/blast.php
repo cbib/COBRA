@@ -36,7 +36,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
                     // on ouvre le fichier en écriture avec l'option a
                     // il place aussi le pointeur en fin de fichier (il tentera de créer aussi le fichier si non existant)
-                    $h = fopen("/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta", "a");
+                    $h = fopen('/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta', "a");
                     fwrite($h, $contenu);
                     fclose($h);
                 }
