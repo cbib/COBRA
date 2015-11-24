@@ -288,20 +288,13 @@ echo   '<div id="summary">
                                                     echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '  <center>
                                                                 <div class="loading" style="display: none">
-                                                                    <i>Loading</i>
+                                                                    
                                                                 
                                                                 </div>
                                                             </center>
                                                         <div class="container animated fadeInDown">
                                                             <div class="content_test">
-                                                                
-                                                                <ul class="slideshow">
-                                                                    <li></li>
-                                                                    <li></li>
-                                                                    <li></li>
-                                                                    <li></li>
-                                                                </ul>
-                                                               
+              
                                                             </div>
                                                         </div>';
                                                 }
