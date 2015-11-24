@@ -38,7 +38,7 @@ while (!feof($handle)) {
     $json = json_decode($line_of_text, true);
 
     //print $json['key']. "<BR>";
-    echo '<p id="paragraph">results: </br>  '.$json['key'].'</p>';
+    echo '<p id="paragraph">results: </br>  '.$json['results'].'</p>';
 
 }
 
