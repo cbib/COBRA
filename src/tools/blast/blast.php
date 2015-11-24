@@ -31,7 +31,19 @@ $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /d
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
 $handle =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt", "r");
-echo '<p id="paragraph">results: </br>  '.$handle.'</p>';
+
+while (!feof($handle)) {
+
+    $line_of_text = fgets($handle);
+    $json = json_decode($line_of_text, true);
+
+    //print $json['key']. "<BR>";
+    echo '<p id="paragraph">results: </br>  '.$json['key'].'</p>';
+
+}
+
+fclose(handle);
+//echo '<p id="paragraph">results: </br>  '.$handle.'</p>';
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
 //./blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results.txt -outfmt 13
