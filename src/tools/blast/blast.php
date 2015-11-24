@@ -16,7 +16,7 @@ if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['seq
     $sequence=control_post(htmlspecialchars($_POST['sequence']));
     
 }
-echo '<p id="paragraph"> Here is the search id: '.$search_id.' and the sequence: '.$sequence.'</p>';
+echo '<p id="paragraph"> Here is the search id: '.$search_id.' </br> and the sequence: '.$sequence.'</p>';
 
 
 //$cmd_string = $database." ".$blast_program." ".$sequence_file." 
