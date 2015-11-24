@@ -1821,7 +1821,7 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
-                        
+                        $( ".loading" ).load( "tools/blast/blast.php #paragraph" );
 						//$('.content_test').empty().html(data);
 					}
 				});
