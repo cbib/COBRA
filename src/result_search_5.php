@@ -1812,7 +1812,9 @@ new_cobra_footer();
 
                     type : 'POST' ,// Le type de la requête HTTP.
 
-                    data : 'search=' + genes + '&sequence=' + clicked_sequence,
+                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+                    data : 'search=' + genes,
+
                    
                     method: 'post',
 					cache: false,
