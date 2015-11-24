@@ -1802,7 +1802,7 @@ new_cobra_footer();
     function loader(){
         $('#blast_button').click(function() {
                 //var seq= $(this).getAttribute("data-sequence");
-                
+                var target = $(this);
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
@@ -1817,12 +1817,21 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						alert(data);
-                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-                            search : genes,
-
-                            sequence : sequence
-                            
-                        } );
+                        var jqObj = jQuery(data);
+                        var par=jqObj.find("#paragraph");
+                        
+                        $(".content_test").empty().append(par);
+                        
+                        //works to load results in element
+//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+//                            search : genes,
+//
+//                            sequence : sequence
+//                            
+//                        } );
+                        
+                        
+                        
                         //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
 						//$('.content_test').empty().html(data);
 					}
