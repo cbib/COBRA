@@ -287,13 +287,13 @@ echo   '<div id="summary">
                                                 
                                                     echo  '<button data-id="'.$values['Transcript ID'].'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '  <center>
-                                                                <div class="loading" style="display: none">
+                                                                <div class="loading_'.$values['Transcript ID'].'" style="display: none">
                                                                     
                                                                 
                                                                 </div>
                                                             </center>
                                                         <div class="container animated fadeInDown">
-                                                            <div class="content_test">
+                                                            <div class="content_test_'.$values['Transcript ID'].'">
               
                                                             </div>
                                                         </div>';
@@ -1744,9 +1744,11 @@ new_cobra_footer();
 	});
     
    
-    var msglist = document.getElementById("blast_button");
+    //var msglist = document.getElementById("blast_button");
+    var button_clicked=document.getElementById('blast_button').onclick;
+    var clicked_sequence = button_clicked.getAttribute("data-sequence");
+    var clicked_transcript_id = button_clicked.getAttribute("data-id");
 
-    var sequence = msglist.getAttribute("data-sequence");
 //	$(document).ready(function() {
 //        $("#blast_button").click(function(){
 //                $.ajax({
@@ -1802,14 +1804,14 @@ new_cobra_footer();
     function loader(){
         $('#blast_button').click(function() {
                 //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this);
+                var target = $(this).;
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
 
                     type : 'POST' ,// Le type de la requête HTTP.
 
-                    data : 'search=' + genes + '&sequence=' + sequence,
+                    data : 'search=' + genes + '&sequence=' + clicked_sequence,
                    
                     method: 'post',
 					cache: false,
@@ -1820,7 +1822,7 @@ new_cobra_footer();
                         var jqObj = jQuery(data);
                         var par=jqObj.find("#paragraph");
                         
-                        $(".content_test").empty().append(par);
+                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
                         
                         //works to load results in element
 //                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
@@ -1844,10 +1846,10 @@ new_cobra_footer();
 
     $(document).on({
         ajaxStart: function() { 
-                    $(".content_test").fadeOut("slow");
-                    $('.loading').html("<img src='../images/ajax-loader.gif' />");
+                    $(".content_test_"+clicked_transcript_id).fadeOut("slow");
+                    $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
                     
-                    $(".loading").show();
+                    $(".loading_"+clicked_transcript_id).show();
                     
         },
 //        ajaxStop: function() {
@@ -1859,8 +1861,8 @@ new_cobra_footer();
 //        }, 
         ajaxComplete: function() {
                     
-                    $(".loading").fadeOut("slow");
-                    $(".content_test").show("slow");
+                    $(".loading_"+clicked_transcript_id).fadeOut("slow");
+                    $(".content_test_"+clicked_transcript_id).show("slow");
                                                          
         }    
     });
