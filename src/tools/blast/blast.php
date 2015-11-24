@@ -36,8 +36,12 @@ $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
 $json = json_decode(file_get_contents($file), true);
 $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
+$max_hits=0;
 foreach ($hits as $result) {
-    echo '<p id="paragraph">results: </br>  '.$result['len'].'</p>';
+    if ($max_hits<10){
+        echo '<p id="paragraph">results: </br>  '.$result['len'].'</p>';
+    }
+    $max_hits++;
 }
 //
 //echo '<p id="paragraph">results: </br>  '.$hits[0]['description'][0]['title'].'</p>';
