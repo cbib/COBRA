@@ -1835,14 +1835,15 @@ new_cobra_footer();
         ajaxStart: function() { 
                     $(".content_test").fadeOut("slow");
                     $('.loading').html("<img src='../images/ajax-loader.gif' />");
-                    $( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+                    
                     $(".loading").show();
                     
         },
         ajaxStop: function() {
                     setTimeout(function() { 
                     $(".loading").fadeOut("slow");
-                    $(".content_test").show("slow");     
+                    $(".content_test").show("slow");
+                    $( ".content_test" ).load( "tools/blast/blast.php #paragraph" );
                   }, 5000);                                        
         }    
     });
