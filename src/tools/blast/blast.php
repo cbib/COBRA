@@ -15,6 +15,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
+    error_log('Here is the search id: '.$search_id);
+
     //$sequence=control_post(htmlspecialchars($_POST['sequence']));
     $db=mongoConnector();
 
