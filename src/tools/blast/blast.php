@@ -30,11 +30,22 @@ if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['seq
 $output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt -outfmt 13');
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
-$handle =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt", "r");
 
-while (!feof($handle)) {
+//
+//$file = "list.txt";
+//
+//$json = json_decode(file_get_contents($file));
 
-    $line_of_text = fgets($handle);
+
+$Json_file =fopen("/data/applications/ncbi-blast-2.2.31+/tmp/blast_results3.txt_1.json", "r");
+
+
+
+
+
+while (!feof($Json_file)) {
+
+    $line_of_text = fgets($Json_file);
     $json = json_decode($line_of_text, true);
 
     //print $json['key']. "<BR>";
@@ -42,7 +53,7 @@ while (!feof($handle)) {
 
 }
 
-fclose(handle);
+fclose($handle);
 //echo '<p id="paragraph">results: </br>  '.$handle.'</p>';
 //$output=  shell_exec('ls /data/applications/ncbi-blast-2.2.31+/tmp/');
 //error_log($output);
