@@ -12,8 +12,6 @@ new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools");
 if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['sequence'])) && ($_POST['sequence']!=''))){
 
 
-
-
 	$search_id=control_post(htmlspecialchars($_POST['search']));
     $sequence=control_post(htmlspecialchars($_POST['sequence']));
     
@@ -27,7 +25,13 @@ error_log('here is the search id: '.$search_id.' and the sequence: '.$sequence);
 //
 //$cmd = "/data/applications/ncbi/bin/blastx" .$cmd_string;
 
-    /*  Execute command */
+
+
+//./blastx -query ../tmp/test.fasta -db ../db/cobra_blast_proteome_db -out ../tmp/blast_results.txt -outfmt 13
+
+        
+        
+        /*  Execute command */
  
 //$output = exec($cmd);
 

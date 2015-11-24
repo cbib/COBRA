@@ -288,7 +288,7 @@ echo   '<div id="summary">
                                                     echo  '<button data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '  <center>
                                                                 <div class="loading" style="display: none">
-                                                                    <i>test</i>
+                                                                    <i>Loading</i>
                                                                 
                                                                 </div>
                                                             </center>
@@ -1821,6 +1821,7 @@ new_cobra_footer();
 					dataType: "html",
 					success: function (data) {
 						console.log("in ajax ", data.slice( 0, 100 ));
+                        
 						//$('.content_test').empty().html(data);
 					}
 				});
@@ -1833,7 +1834,9 @@ new_cobra_footer();
     $(document).on({
         ajaxStart: function() { 
                     $(".content_test").fadeOut("slow");
+                    $('.loading').html("<img src='../images/ajax-loader.gif' />");
                     $(".loading").show();
+                    
         },
         ajaxStop: function() {
                     setTimeout(function() { 
