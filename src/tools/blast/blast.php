@@ -22,7 +22,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 	
     $sequencesCollection = new Mongocollection($db, "sequences");
+
     
+    $jobsCollection = new Mongocollection($db, "jobs");
+
     
     $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>str_replace("_", ".",$search_id)),array('mapping_file.$'=>1));
     foreach ($sequence_metadata as $data) {
@@ -52,6 +55,18 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $file = "/data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt_1.json";
 
     $json = json_decode(file_get_contents($file), true);
+    
+    //Here add code to populate jobs Mongo collection,
+    $today = date("F j, Y, g:i a");
+    $document = array("job_owner_firstname" => $_SESSION['firstname'],
+                      "job_owner_lastname" => $_SESSION['lastname'],
+                      "date" => $today,
+                      "job_data" => $json
+                     );
+    $jobsCollection->insert($document);
+    
+    
+    
     $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
     $max_hits=0;
     foreach ($hits as $result) {
@@ -64,6 +79,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
             $max_hits++;
         }
     }
+    unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta');
 
     
 }
