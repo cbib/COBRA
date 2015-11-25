@@ -505,12 +505,12 @@ mapping_table={
 	"src_version":"SolGenomics",
 	"url":"",
 	"doi":"none",
-	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	"key":"PROBEID/GENEID/TRANSCRIPTID/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Alias','Description','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Alias','Description','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
