@@ -123,7 +123,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
             if (in_array($result['mapping_file']['Gene ID 2'],$gene_alias)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
 
-                array_push($gene_alias,$result['mapping_file']['Gene ID 2']);
+                array_push($gene_id,$result['mapping_file']['Gene ID 2']);
             }
             if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!="NA"){
 
