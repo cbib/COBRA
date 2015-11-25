@@ -58,8 +58,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     //Here add code to populate jobs Mongo collection,
     $today = date("F j, Y, g:i a");
-    $document = array("job_owner_firstname" => $_SESSION['firstname'],
-                      "job_owner_lastname" => $_SESSION['lastname'],
+    $document = array("job_owner_firstname" => $_SESSION['lastname'],
+                      "job_owner_lastname" => $_SESSION['firstname'],
                       "date" => $today,
                       "job_data" => $json
                      );
