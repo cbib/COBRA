@@ -112,7 +112,26 @@ mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/solanum_lycopersicum_full.tsv",
+	"data_file":"mappings/solanum_lycopersicum_full_1.tsv",
+	"species":"Solanum lycopersicum",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"SolGenomics",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/TRANSCRIPTID/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Plaza ID','Gene ontology ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/solanum_lycopersicum_full_2.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"full_table",
 	"src":"PROBE_ID",
