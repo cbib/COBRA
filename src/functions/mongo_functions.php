@@ -917,7 +917,7 @@ function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id
     foreach ($sequences_cursor as $result) {
         
         
-        var_dump($result);
+        var_dump($result['mapping_file']);
         array_push($transcript_count, $result["Transcript ID"]);
         //$transcript_count=$result["count"];
     } 
