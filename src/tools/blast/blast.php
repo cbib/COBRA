@@ -76,14 +76,14 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
                 if ($max_hits<10){
-                    echo '<p id="paragraph">   </br> results: '.$value['title'].'</p>';
+                    echo '<p id="paragraph">results: '.$value['title'].'</br></p>';
                 }
                 $max_hits++;
             }
         }
     }
     else{
-        echo '<p id="paragraph">results: </br> No hits found</p>';  
+        echo '<p id="paragraph"> Results: No hits found </br></p>';  
     }
     unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta');
 
