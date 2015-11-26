@@ -293,12 +293,12 @@ echo   '<div id="summary">
                                                     
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
                                                     echo '>'.$values['Transcript ID'].'</br>';
-                                                    for ($i=1;$i<=strlen($values['Transcript Sequence']);$i++){
-                                                        if (($i%60===0) && ($i!==1)){
-                                                            echo $values['Transcript Sequence'][$i].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Transcript Sequence'][$j].'</br>';
                                                         }
                                                         else{
-                                                            echo $values['Transcript Sequence'][$i];
+                                                            echo $values['Transcript Sequence'][$j];
                                                         }
                                                         
                                                     }
