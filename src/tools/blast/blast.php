@@ -76,7 +76,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
                 if ($max_hits<10){
-                    echo '<p id="paragraph">results: </br>  '.$value['title'].'</p>';
+                    echo '<p id="paragraph">   </br> results: '.$value['title'].'</p>';
                 }
                 $max_hits++;
             }
