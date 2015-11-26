@@ -15,7 +15,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
-    error_log('Here is the search id: '.$search_id);
+    //error_log('Here is the search id: '.$search_id);
 
     //$sequence=control_post(htmlspecialchars($_POST['sequence']));
     $db=mongoConnector();
@@ -68,16 +68,22 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     
     $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
+    
     $max_hits=0;
-    foreach ($hits as $result) {
-        foreach ($result['description'] as $value) {
+    if (count($hits)>0){
+        foreach ($hits as $result) {
+            foreach ($result['description'] as $value) {
 
 
-            if ($max_hits<10){
-                echo '<p id="paragraph">results: </br>  '.$value['title'].'</p>';
+                if ($max_hits<10){
+                    echo '<p id="paragraph">results: </br>  '.$value['title'].'</p>';
+                }
+                $max_hits++;
             }
-            $max_hits++;
         }
+    }
+    else{
+        echo '<p id="paragraph">results: </br> No hits found</p>';  
     }
     unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta');
 
