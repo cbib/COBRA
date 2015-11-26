@@ -1130,7 +1130,7 @@ sequence_table={
 	"src":"Gene ID",
 	"src_version":"(Prupe1_0 (2013-03))",
         "tgt":"Gene_Sequence",
-	"url":"",ƒ
+	"url":"",
 	"doi":"none",
 	"key":"GENEID/SEQUENCE",
 	# parser config 
