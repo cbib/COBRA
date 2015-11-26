@@ -352,7 +352,19 @@ echo   '<div id="summary">
                                                 foreach ($value as $values) {
                                                     
                                                     //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
+                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
+                                                    echo '>'.$values['Transcript ID'].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Transcript Sequence'][$j].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Transcript Sequence'][$j];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
                                                 }
                                             }
                                         }
