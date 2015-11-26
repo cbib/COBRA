@@ -288,8 +288,24 @@ echo   '<div id="summary">
                                                 foreach ($value as $values) {
                                                     
                                                     echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
+                                                    
+                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
+                                                    echo '>'.$values['Transcript ID'].'</br>';
+                                                    for ($i=0;$i<strlen($values['Transcript Sequence']);$i++){
+                                                        if ($i%59===0){
+                                                            echo $values['Transcript Sequence'][$i].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Transcript Sequence'][$i];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
+                                                    
+                                                    
+                                                    
                                                     echo  '<button data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '</br>';
                                                     echo '  <center>
