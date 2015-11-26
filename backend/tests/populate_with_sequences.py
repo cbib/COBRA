@@ -1120,6 +1120,416 @@ sequence_table={
 sequences_col.insert(sequence_table)
 
 
+##PRUNUS PERSICA
+
+## Unspliced genes sequences
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_1.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",ƒ
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_2.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_3.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_4.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_5.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_6.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_7.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_8.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_9.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/GENE/gene_sequence_prunus_persica_ensembl_10.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+##CDNA sequence
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_1.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_2.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_3.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_4.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_5.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_6.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_7.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_8.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_9.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_10.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Prunus/sequences/CDNA/cdna_sequence_prunus_persica_ensembl_11.tsv",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"(Prupe1_0 (2013-03))",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTIDSEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+
+
+
+
+
+
 
 
 

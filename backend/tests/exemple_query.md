@@ -224,19 +224,28 @@ for xp in all_xp:
 
 **TODO** Build a measurement collection, collecting all measurements from all experiments in a flat array, indexed with unified gene id, to retrieve specific measurements. Update this table after each insertion. 
 
-**TODO** Add full text indexing by adding a _txt_ field to each document from each collection 
+**TODO** Add full text indexing by adding a _txt_ field to each document from each collection
+ 
 **TODO** Function to quickly get species by text search 
 **TODO** Check whether we need a slug 
 
 
 * Find all documents with a wikipedia link
+
 * Find all documents with a wikipedia link that have not been donwloaded 
+
 * Find all articles 
+
 * Find all articles that have not been indexed 
+
 * Check that all conditions with infections are linked to a virus
+
 * Search using aliases 
+
 * Free text search in all document fields (including linked text such as wikipedia page, article abstract etc.)
+
 * Find all available mapping
+
 * Guess type of ID used in a data file
 * Detect cross links
 * Interactomic
