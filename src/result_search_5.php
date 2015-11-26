@@ -287,10 +287,11 @@ echo   '<div id="summary">
                                             if ($key==="mapping_file"){
                                                 foreach ($value as $values) {
                                                     
-                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
                                                     echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
                                                 
                                                     echo  '<button data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo '</br>';
                                                     echo '  <center>
                                                                 <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
                                                                     
