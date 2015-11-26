@@ -50,6 +50,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $go_grid_id_list=array();
     $gene_alias=array();
     $gene_id=array();
+    $transcript_id=array();
     $gene_symbol=array();
     $descriptions=array();
     $proteins_id=array();
@@ -107,6 +108,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 array_push($descriptions,$result['mapping_file']['Description']);
             }
+//            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
+//
+//                array_push($transcript_id,$result['mapping_file']['Transcript ID']);
+//            }
             if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
 
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
@@ -256,9 +261,9 @@ echo   '<div id="summary">
                     echo '</div>';
                 }
                 //$transcript_count=0;
-                $transcript_count=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
+                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0]);
                 echo '<div>'
-                . ' About this gene: This gene has '.$transcript_count.' transcripts'
+                . ' About this gene: This gene has '.count($transcript_id).' transcripts'
                 . '</div></br>';
                 
                 echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
@@ -275,8 +280,8 @@ echo   '<div id="summary">
                                 
                                 
                                 //with the number of transcript
-                                for ($i=1;$i<=$transcript_count;$i++){
-                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$gene_id[0].'.'.$i),array('mapping_file.$'=>1));
+                                for ($i=0;$i<count($transcript_id);$i++){
+                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
                                     foreach ($sequence_metadata as $data) {
                                         foreach ($data as $key=>$value) {
                                             if ($key==="mapping_file"){
