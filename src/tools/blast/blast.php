@@ -88,6 +88,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     $species_id=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript),array('species'=>1));
                     foreach ($species_id as $value) {
                        $species=$value['species']; 
+                       error_log($species.' for transcript id: '.$transcript);
                     }
                     echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
                 }
