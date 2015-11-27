@@ -29,11 +29,38 @@
     //une table avec tous les jobs.
     
     $jobs=$jobsCollection->find(array("job_owner_firstname"=>$lastname,"job_owner_lastname"=>$firstname),array());
-    foreach ($jobs as $data) {
-        $json_string = json_encode($data);
-        echo $json_string;
-        
+    
+    $json_string = json_encode($data);
+    $table_string.='<table id="blast_jobs" class="table table-hover">';
+    //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+    $table_string.='<thead><tr>';
+
+        //recupere le titre
+        //$table_string.='<th>type</th>';
+        $table_string.='<th>query id</th>';
+        $table_string.='<th>date</th>';
+
+
+
+        //fin du header de la table
+    $table_string.='</tr></thead>';
+
+    //Debut du corps de la table
+    $table_string.='<tbody>';
+    foreach ($jobs as $line) {
+        $table_string.='<tr>';
+            //$table_string.='<td>'.$line['type'].'</td>';
+            $table_string.='<td>'.$line['query_id'].'</td>';
+            $table_string.='<td>'.$line['date'].'</td>';
+
+        $table_string.='</tr>';
+
     }
+    $table_string.='</tbody></table>';
+
+    echo $table_string;
+        
+    
     
 
     
@@ -46,3 +73,35 @@
  
  
  ?>
+
+
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+	$('#blast_jobs').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+</script>
