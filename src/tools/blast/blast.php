@@ -31,6 +31,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>str_replace("__", ".",$search_id)),array('mapping_file.$'=>1));
     foreach ($sequence_metadata as $data) {
         foreach ($data as $key=>$value) {
+            
             if ($key==="mapping_file"){
                 foreach ($value as $values) {
                     
@@ -80,9 +81,12 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 $id_list= explode("|", $value['title']);
                 $gene=$id_list[0];
                 $transcript=$id_list[1];
+                
                     
                 if ($max_hits<10){
-                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">Transcript: '.$transcript.'</a></li>';
+                    $species=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript),array('species'=>1));
+
+                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
                 }
                 $max_hits++;
             }
