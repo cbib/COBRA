@@ -63,7 +63,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     
 
-    $json = json_decode(file_get_contents($file), true);
+    $json = json_decode(file_get_contents($result_file), true);
     
     //Here add code to populate jobs Mongo collection,
     $today = date("F j, Y, g:i a");
