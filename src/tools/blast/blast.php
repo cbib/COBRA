@@ -75,13 +75,13 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
-                error_log('Here is the transcript id: '.$value['title']);
-//                $id_list= explode("|", $value['title']);
-//                $gene=$id_list[0];
-//                $transcript=$id_list[1];
-                        
+                //error_log('Here is the transcript id: '.$value['title']);
+                $id_list= explode("|", $value['title']);
+                $gene=$id_list[0];
+                $transcript=$id_list[1];
+                    
                 if ($max_hits<10){
-                    echo '<li> identifier: '.$value['title'].'</li>';
+                    echo '<li> identifier: '.$transcript.'</li>';
                 }
                 $max_hits++;
             }
