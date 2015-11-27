@@ -31,6 +31,9 @@
     $jobs=$jobsCollection->find(array("job_owner_firstname"=>$lastname,"job_owner_lastname"=>$firstname),array());
     
     $json_string = json_encode($data);
+    
+    
+    echo '<div id="jobs ><h3> Blast Jobs</h3>';
     $table_string.='<table id="blast_jobs" class="table table-hover">';
     //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
     $table_string.='<thead><tr>';
@@ -58,7 +61,7 @@
     }
     $table_string.='</tbody></table>';
 
-    echo $table_string;
+    echo $table_string.'</div>';
         
     
     
