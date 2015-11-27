@@ -160,7 +160,7 @@ mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/arabidopsis_thaliana_full.tsv",
+	"data_file":"mappings/arabidopsis_thaliana_full_1.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"CATMA_ID",
@@ -172,7 +172,27 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Uniprot ID','Description','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+
+mapping_table={
+	"data_file":"mappings/arabidopsis_thaliana_full_2.tsv",
+	"species":"Arabidopsis thaliana",
+	"type":"full_table",
+	"src":"CATMA_ID",
+	"src_version":"CATMA V2.1",
+	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol'],
 		"sheet_index":0,
 	}
 }
