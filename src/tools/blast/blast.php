@@ -55,8 +55,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
     $tmp=substr(str_shuffle(MD5(microtime())), 0, 10);
     //error_log($tmp) ;
-    $query_file='/data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_'.$search_id.'.fasta';
-    $result_file = '/data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_blast_results.txt';
+    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp'_'$search_id'.fasta";
+    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp'_blast_results.txt";
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_blast_results.txt -outfmt 13');
     $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
      //sprintf('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query %s -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out %s -outfmt 13',$query_file,$result_file);
