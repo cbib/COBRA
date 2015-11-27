@@ -64,6 +64,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $document = array("job_owner_firstname" => $_SESSION['lastname'],
                       "job_owner_lastname" => $_SESSION['firstname'],
                       "date" => $today,
+                      "query_id"=> str_replace("__", ".",$search_id),
                       "job_data" => $json
                      );
     $jobsCollection->insert($document);
