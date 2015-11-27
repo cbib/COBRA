@@ -59,9 +59,9 @@
         $table_string.='</tr>';
 
     }
-    $table_string.='</tbody></table>';
+    $table_string.='</tbody></table></div>';
 
-    echo $table_string.'</div>';
+    echo $table_string;
         
     
     
