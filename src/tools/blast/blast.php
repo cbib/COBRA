@@ -23,6 +23,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 	
     $sequencesCollection = new Mongocollection($db, "sequences");
+    $mappingsCollection = new Mongocollection($db, "mappings");
 
     
     $jobsCollection = new Mongocollection($db, "jobs");
