@@ -21,9 +21,16 @@
  	}
  	$db=mongoConnector();
 	$usersCollection = new Mongocollection($db, "users");
+    $jobsCollection = new Mongocollection($db, "jobs");
 	$user=$usersCollection->find(array("firstname"=>$firstname,"lastname"=>$lastname),array());
 
  	make_user_preferences($user,$usersCollection);
+    
+    //une table avec tous les jobs.
+    
+    $jobs=$jobsCollection->find(array("firstname"=>$firstname,"lastname"=>$lastname),array());
+    
+    
 
     
     
