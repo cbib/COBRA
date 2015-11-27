@@ -1,8 +1,35 @@
 <?php
+require '/var/www/html/COBRA/src/session/maintenance-session.php';
+require '/var/www/html/COBRA/src/functions/html_functions.php';
+require '/var/www/html/COBRA/src/functions/php_functions.php';
+require '/var/www/html/COBRA/src/functions/mongo_functions.php';
+require '/var/www/html/COBRA/src/session/control-session.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ 
+	new_cobra_header();
+	new_cobra_body($_SESSION['login'],"Users information details","section_user_details");
+ 	if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
+ 		$id=htmlentities(trim($_GET['id']));;
+        $db=mongoConnector();
+        $jobsCollection = new Mongocollection($db, "jobs");
+        $jobs=$jobsCollection->find(array("_id"=>new MongoId($id)),array());
+    
+        $json_string = json_encode($data);
+        echo $json_string;
+ 	
+ 	}
+ 	else{
+ 		echo '<p>Incorrect id form </p>'."\n";
+ 		exit();
+
+ 	}
+    
+    
+    new_cobra_footer();
+ 	
+ 
+ 
+ ?>
+
+    
 
