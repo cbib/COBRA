@@ -53,7 +53,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     }
     //it works below
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
-    $tmp=substr(str_shuffle(MD5(microtime())), 0, 20);
+    $tmp=substr(str_shuffle(MD5(microtime())), 0, 10);
     //error_log($tmp) ;
     $query_file='/data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_'.$search_id.'.fasta';
     error_log($query_file);
