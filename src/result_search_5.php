@@ -156,13 +156,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
   //    echo '<hr>';
   //    $timestart=microtime(true);
         
-        if ($species==="Solanum lycopersicum"){
-            $new_first_id=$gene_id_bis[0];
-            $gene_id_bis[0]=$gene_id[0];
-            $gene_id[0]=$new_first_id;
-            
-            
-        }
+        
         
         $total_go_biological_process=array();
         $total_go_cellular_component=array();
