@@ -30,7 +30,7 @@
     
     $jobs=$jobsCollection->find(array("job_owner_firstname"=>$lastname,"job_owner_lastname"=>$firstname),array());
     foreach ($jobs as $data) {
-        $json_string = json_encode($data, JSON_PRETTY_PRINT);
+        $json_string = json_encode($data);
         echo $json_string;
         
     }
