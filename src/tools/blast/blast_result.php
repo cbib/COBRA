@@ -7,14 +7,14 @@ require '/var/www/html/COBRA/src/session/control-session.php';
 
  
 	new_cobra_header();
-	new_cobra_body($_SESSION['login'],"Users information details","section_user_details");
+	new_cobra_body($_SESSION['login'],"job information details","section_job_details");
  	if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
  		$id=htmlentities(trim($_GET['id']));;
         $db=mongoConnector();
         $jobsCollection = new Mongocollection($db, "jobs");
         $jobs=$jobsCollection->find(array("_id"=>new MongoId($id)),array());
     
-        $json_string = json_encode($data);
+        $json_string = json_encode($jobs);
         echo $json_string;
  	
  	}
