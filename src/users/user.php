@@ -62,6 +62,8 @@
     $table_string.='</tbody></table></div>';
 
     echo $table_string;
+    
+    echo '</br>';
         
     
     
