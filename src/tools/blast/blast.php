@@ -71,16 +71,22 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     $max_hits=0;
     if (count($hits)>0){
+        echo '<p id="paragraph">results:</br><ul>';
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
-
+                
+                $id_list=  split("|", $value['title']);
+                $gene=$id_list[0];
+                $transcript=$id_list[1];
+                        
                 if ($max_hits<10){
-                    echo '<p id="paragraph">results: '.$value['title'].'</br></p>';
+                    echo '<li> identifier: '.$transcript.'</li>';
                 }
                 $max_hits++;
             }
         }
+        echo '</ul></p>';
     }
     else{
         echo '<p id="paragraph"> Results: No hits found </br></p>';  
