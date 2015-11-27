@@ -40,8 +40,9 @@
 
         //recupere le titre
         //$table_string.='<th>type</th>';
-        $table_string.='<th>query id</th>';
-        $table_string.='<th>date</th>';
+        $table_string.='<th>Query id</th>';
+        $table_string.='<th>Date</th>';
+        $table_string.='<th>Results</th>';
 
 
 
@@ -55,6 +56,7 @@
             //$table_string.='<td>'.$line['type'].'</td>';
             $table_string.='<td>'.$line['query_id'].'</td>';
             $table_string.='<td>'.$line['date'].'</td>';
+            $table_string.='<td><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/tools/blast/blast_result.php?'.$line['_id'].'">View results</td>';
 
         $table_string.='</tr>';
 
