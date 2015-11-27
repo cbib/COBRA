@@ -13,7 +13,7 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         $db=mongoConnector();
         $jobsCollection = new Mongocollection($db, "jobs");
         echo new MongoId($id);
-        $jobs=$jobsCollection->find(array("_id"=>new MongoId($id)),array());
+        $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array());
     
         $json_string = json_encode($jobs);
         echo $json_string;
