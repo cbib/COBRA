@@ -85,9 +85,11 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 
                     
                 if ($max_hits<10){
-                    $species=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript),array('species'=>1));
-
-                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species['species']).'&search='.$gene.'">'.$transcript.'</a></li>';
+                    $species_id=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript),array('species'=>1));
+                    foreach ($species_id as $value) {
+                       $species=$value['species']; 
+                    }
+                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
                 }
                 $max_hits++;
             }
