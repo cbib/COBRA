@@ -16,7 +16,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
     $species=control_post(htmlspecialchars($_POST['species']));
-    error_log('Here is the search id: '.$search_id);
+    //error_log('Here is the search id: '.$search_id);
 
     //$sequence=control_post(htmlspecialchars($_POST['sequence']));
     $db=mongoConnector();
@@ -87,7 +87,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 if ($max_hits<10){
                     $species=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript),array('species'=>1));
 
-                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
+                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species['species']).'&search='.$gene.'">'.$transcript.'</a></li>';
                 }
                 $max_hits++;
             }
