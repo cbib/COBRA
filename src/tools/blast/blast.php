@@ -32,7 +32,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         foreach ($data as $key=>$value) {
             if ($key==="mapping_file"){
                 foreach ($value as $values) {
-                    ;
+                    
 
                     // on place le contenu dans une variable. (exemple hein ^^)
 
