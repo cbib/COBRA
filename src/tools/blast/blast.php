@@ -71,7 +71,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     $max_hits=0;
     if (count($hits)>0){
-        echo '<p id="paragraph">results:</br><ul>';
+        echo '<div id="blast_results">results: </br><ul>';
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
@@ -86,7 +86,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 $max_hits++;
             }
         }
-        echo '</ul></p>';
+        echo '</ul></div>';
     }
     else{
         echo '<p id="paragraph"> Results: No hits found </br></p>';  

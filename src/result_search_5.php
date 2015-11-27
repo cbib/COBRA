@@ -1862,7 +1862,7 @@ new_cobra_footer();
 					success: function (data) {
 						//alert(data);
                         var jqObj = jQuery(data);
-                        var par=jqObj.find("#paragraph");
+                        var par=jqObj.find("#blast_results");
                         
                         $(".content_test_"+clicked_transcript_id ).empty().append(par);
                         
