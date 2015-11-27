@@ -487,7 +487,7 @@ function make_user_preferences($user,Mongocollection $us){
 			        </form>';  
     }
         echo 
-        '</div></div>';
+        '</div>';
         
        
 
