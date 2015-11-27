@@ -87,7 +87,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 if ($max_hits<10){
                     error_log('Search for transcript id: '.$transcript);
                     $species_id=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
-                    if (count($species_id)===0){
+                    if (count($species_id)!==0){
                         foreach ($species_id as $value) {
                            $species=$value['species']; 
                            error_log($species.' for transcript id: '.$transcript);
