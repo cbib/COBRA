@@ -75,7 +75,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
-                
+                error_log('Here is the transcript id: '.$value['title']);
 //                $id_list= explode("|", $value['title']);
 //                $gene=$id_list[0];
 //                $transcript=$id_list[1];
