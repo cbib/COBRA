@@ -15,6 +15,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
 	$search_id=control_post(htmlspecialchars($_POST['search']));
+    $species=control_post(htmlspecialchars($_POST['species']));
     error_log('Here is the search id: '.$search_id);
 
     //$sequence=control_post(htmlspecialchars($_POST['sequence']));
@@ -81,7 +82,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 $transcript=$id_list[1];
                     
                 if ($max_hits<10){
-                    echo '<li> identifier: '.$transcript.'</li>';
+                    echo '<li> <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">Transcript: '.$transcript.'</a></li>';
                 }
                 $max_hits++;
             }
