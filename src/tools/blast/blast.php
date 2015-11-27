@@ -30,6 +30,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     
     $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>str_replace("__", ".",$search_id)),array('mapping_file.$'=>1));
+    $tmp=substr(str_shuffle(MD5(microtime())), 0, 20);
     foreach ($sequence_metadata as $data) {
         foreach ($data as $key=>$value) {
             
@@ -44,7 +45,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
                     // on ouvre le fichier en écriture avec l'option a
                     // il place aussi le pointeur en fin de fichier (il tentera de créer aussi le fichier si non existant)
-                    $h = fopen('/data/applications/ncbi-blast-2.2.31+/tmp/tmp_'.$search_id.'.fasta', "a");
+                    $h = fopen('/data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'.fasta', "a");
                     fwrite($h, $contenu);
                     fclose($h);
                 }
@@ -53,7 +54,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     }
     //it works below
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
-    $tmp=substr(str_shuffle(MD5(microtime())), 0, 20);
+    
     //error_log($tmp) ;
     $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
     $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
