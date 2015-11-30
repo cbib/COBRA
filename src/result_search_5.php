@@ -870,12 +870,12 @@ echo   '<div id="summary">
 
                                             if ($attributes[0]=='src'){
 
-                                                $string_seq.='<li value='.$attributes[1].'> host protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$attributes[1].'> Host protein A: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt') {
                                                  $tgt=$attributes[1];
-                                                $string_seq.='<li value='.$attributes[1].'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
+                                                $string_seq.='<li value='.$attributes[1].'> Host protein B: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
 
                                             }
                                             elseif ($attributes[0]=='method') {
@@ -899,11 +899,11 @@ echo   '<div id="summary">
 
                                             }
                                             elseif ($attributes[0]=='src_name') {
-                                                $string_seq.='<li value='.$attributes[1].'> host name: '.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$attributes[1].'> Host A: '.$attributes[1].'</li>';
 
                                             }
                                             elseif ($attributes[0]=='tgt_name') {
-                                                $string_seq.='<li value='.$attributes[1].'> virus name: '.$attributes[1].'</li>';
+                                                $string_seq.='<li value='.$attributes[1].'> Host B: '.$attributes[1].'</li>';
 
                                             }
 //                                            elseif ($attributes[0]=='host_taxon') {
