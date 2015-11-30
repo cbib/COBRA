@@ -14,10 +14,12 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         $jobsCollection = new Mongocollection($db, "jobs");
         echo new MongoId($id);
         $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array());
-    
-        var_dump($jobs);
-        $json_string = json_encode($jobs);
-        echo $json_string;
+        foreach ($jobs as $value) {
+            echo '<pre>'.json_encode($value).'</pre>';
+        }
+        
+        //$json_string = json_encode($jobs);
+        //echo $json_string;
  	
  	}
  	else{
