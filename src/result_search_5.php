@@ -1883,9 +1883,10 @@ new_cobra_footer();
 //				});
 //        });
 //    }
+    var clicked_transcript_id="";
     function myFunction(element){
         //alert(element.getAttribute('data-id')) ;
-        //var clicked_sequence = button_clicked.getAttribute("data-sequence");
+        clicked_transcript_id = element.getAttribute('data-id');
         
        
         $.ajax({
@@ -1895,7 +1896,7 @@ new_cobra_footer();
             type : 'POST' ,// Le type de la requête HTTP.
 
             //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-            data : 'search=' + element.getAttribute('data-id') + '&species=' + species,
+            data : 'search=' + clicked_transcript_id + '&species=' + species,
 
 
             method: 'post',
@@ -1907,7 +1908,7 @@ new_cobra_footer();
                 var jqObj = jQuery(data);
                 var par=jqObj.find("#blast_results");
 
-                $(".content_test_"+element.getAttribute('data-id') ).empty().append(par);
+                $(".content_test_"+clicked_transcript_id ).empty().append(par);
 
                 //works to load results in element
 //                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
