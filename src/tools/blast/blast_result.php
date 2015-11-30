@@ -17,9 +17,7 @@ require '/var/www/html/COBRA/src/session/control-session.php';
       
         foreach ($jobs as $values) {
             foreach ($values as $key => $value) {
-                echo '<pre>';
-                echo $key.': '.$value.'</br>';
-                echo '</pre>';
+                
                 
                 if ($key==='job_data'){
                     foreach ($value as $blast_results) {
@@ -36,6 +34,13 @@ require '/var/www/html/COBRA/src/session/control-session.php';
                         echo json_encode($blast_results['report']['results'], JSON_PRETTY_PRINT).'</br>';
                         echo '</pre>';
                     }
+                    
+                }
+                else{
+                    
+                    echo '<pre>';
+                    echo $key.': '.$value.'</br>';
+                    echo '</pre>';
                     
                 }
             }
