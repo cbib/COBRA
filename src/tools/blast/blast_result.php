@@ -15,8 +15,11 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         //echo new MongoId($id);
         $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array('_id'=>0));
         echo '<pre>';
-        foreach ($jobs as $value) {
-            echo json_encode($value).'</br>';
+        foreach ($jobs as $values) {
+            foreach ($values as $key => $value) {
+                echo $key.': '.$value.'</br>';
+            }
+            
         }
         echo '</pre>';
         
