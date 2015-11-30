@@ -1841,7 +1841,52 @@ new_cobra_footer();
 	
     
     //$(this).attr('trancript_sequence_fasta').children();
-    function loader(){
+//    function loader(){
+//        $('#blast_button').click(function() {
+//                //alert(clicked_transcript_id);
+//                //var seq= $(this).getAttribute("data-sequence");
+//                var target = $(this).attr('data-id');
+//                alert(target);
+//				$.ajax({
+//                    
+//					 url : './tools/blast/blast.php', // La ressource ciblée
+//
+//                    type : 'POST' ,// Le type de la requête HTTP.
+//
+//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
+//
+//                   
+//                    method: 'post',
+//					cache: false,
+//					async: true,
+//					dataType: "html",
+//					success: function (data) {
+//						//alert(data);
+//                        var jqObj = jQuery(data);
+//                        var par=jqObj.find("#blast_results");
+//                        
+//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
+//                        
+//                        //works to load results in element
+////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+////                            search : genes,
+////
+////                            sequence : sequence
+////                            
+////                        } );
+//                        
+//                        
+//                        
+//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+//						//$('.content_test').empty().html(data);
+//					}
+//				});
+//        });
+//    }
+    
+    $(document).ready(function(){
+        //loader();
         $('#blast_button').click(function() {
                 //alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
@@ -1883,10 +1928,6 @@ new_cobra_footer();
 					}
 				});
         });
-    }
-    
-    $(document).ready(function(){
-        loader();
     });
     
 //    $(document).ready(function() {
