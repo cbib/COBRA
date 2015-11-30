@@ -1832,10 +1832,9 @@ new_cobra_footer();
 //          });
 //    });
         
-    var button_clicked = document.getElementById("blast_button");
+    //var button_clicked = document.getElementById("blast_button");
 //    var button_clicked=document.getElementById('blast_button').onclick();
-    var clicked_sequence = button_clicked.getAttribute("data-sequence");
-    var clicked_transcript_id = button_clicked.getAttribute("data-id"); 
+    
     //alert(clicked_transcript_id);
 
 	
@@ -1885,53 +1884,91 @@ new_cobra_footer();
 //        });
 //    }
     function myFunction(element){
-       alert(element.getAttribute('data-id')) ;
+        //alert(element.getAttribute('data-id')) ;
+        //var clicked_sequence = button_clicked.getAttribute("data-sequence");
         
-    }
-    $(document).ready(function(){
-        //loader();
-        $('#blast_button').click(function() {
-                //alert(clicked_transcript_id);
-                //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this).attr('data-id');
-                //alert(target);
-				$.ajax({
+       
+        $.ajax({
                     
-					 url : './tools/blast/blast.php', // La ressource ciblée
+            url : './tools/blast/blast.php', // La ressource ciblée
 
-                    type : 'POST' ,// Le type de la requête HTTP.
+            type : 'POST' ,// Le type de la requête HTTP.
 
-                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-                    data : 'search=' + clicked_transcript_id + '&species=' + species,
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'search=' + element.getAttribute('data-id') + '&species=' + species,
 
-                   
-                    method: 'post',
-					cache: false,
-					async: true,
-					dataType: "html",
-					success: function (data) {
-						//alert(data);
-                        var jqObj = jQuery(data);
-                        var par=jqObj.find("#blast_results");
-                        
-                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
-                        
-                        //works to load results in element
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            success: function (data) {
+                //alert(data);
+                var jqObj = jQuery(data);
+                var par=jqObj.find("#blast_results");
+
+                $(".content_test_"+element.getAttribute('data-id') ).empty().append(par);
+
+                //works to load results in element
 //                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
 //                            search : genes,
 //
 //                            sequence : sequence
 //                            
 //                        } );
-                        
-                        
-                        
-                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-						//$('.content_test').empty().html(data);
-					}
-				});
+
+
+
+            //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+            //$('.content_test').empty().html(data);
+            }
         });
-    });
+        
+    }
+//    $(document).ready(function(){
+//        //loader();
+//        $('#blast_button').click(function() {
+//                //alert(clicked_transcript_id);
+//                //var seq= $(this).getAttribute("data-sequence");
+//                var target = $(this).attr('data-id');
+//                //alert(target);
+//				$.ajax({
+//                    
+//					 url : './tools/blast/blast.php', // La ressource ciblée
+//
+//                    type : 'POST' ,// Le type de la requête HTTP.
+//
+//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
+//
+//                   
+//                    method: 'post',
+//					cache: false,
+//					async: true,
+//					dataType: "html",
+//					success: function (data) {
+//						//alert(data);
+//                        var jqObj = jQuery(data);
+//                        var par=jqObj.find("#blast_results");
+//                        
+//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
+//                        
+//                        //works to load results in element
+////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+////                            search : genes,
+////
+////                            sequence : sequence
+////                            
+////                        } );
+//                        
+//                        
+//                        
+//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+//						//$('.content_test').empty().html(data);
+//					}
+//				});
+//        });
+//    });
     
 //    $(document).ready(function() {
 //        $('#trancript_sequence_fasta').on('click button', function(event) {
