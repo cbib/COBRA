@@ -1843,9 +1843,10 @@ new_cobra_footer();
     
     function loader(){
         $('#blast_button').click(function() {
-                alert(clicked_transcript_id);
+                //alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
-                //var target = $(this);
+                var target = $(this).attr('id');
+                alert(target);
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
