@@ -1522,6 +1522,371 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 
+##Cucumis melo
+
+## Unspliced genes sequences
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_1.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",ƒ
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_2.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_3.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_4.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_5.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_6.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_7.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_8.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/GENE/melon_v4_unigene_9.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+	"tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+##CDNA sequence
+
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_1.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_2.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_3.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_4.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_5.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_6.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+        "tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_7.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_8.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_9.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Cucumis/sequences/CDNA/cdna_sequence_cucumis_melo_Plaza_10.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"Melon transcripts CM_3.5(3C)",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
 
 
 
