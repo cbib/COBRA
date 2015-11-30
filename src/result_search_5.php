@@ -1840,12 +1840,12 @@ new_cobra_footer();
 
 	
     
-    
+    //$(this).attr('trancript_sequence_fasta').children();
     function loader(){
         $('#blast_button').click(function() {
                 //alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this).attr('id');
+                var target = $(this).attr('sequence');
                 alert(target);
 				$.ajax({
                     
