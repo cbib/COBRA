@@ -14,26 +14,34 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         $jobsCollection = new Mongocollection($db, "jobs");
         //echo new MongoId($id);
         $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array('_id'=>0));
-        echo '<pre>';
+      
         foreach ($jobs as $values) {
             foreach ($values as $key => $value) {
+                echo '<pre>';
                 echo $key.': '.$value.'</br>';
+                echo '</pre>';
+                
                 if ($key==='job_data'){
                     foreach ($value as $blast_results) {
+                        echo '<pre>';
                         echo '"program" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
                         echo '"version": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
                         echo '"reference": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
                         echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus and Melon Proteome”</br>';
+                        echo '</pre>';
+                        echo '<pre>';
                         echo json_encode($blast_results['report']['params'], JSON_PRETTY_PRINT).'</br>';
+                        echo '</pre>';
+                        echo '<pre>';
                         echo json_encode($blast_results['report']['results'], JSON_PRETTY_PRINT).'</br>';
-                        
+                        echo '</pre>';
                     }
                     
                 }
             }
             
         }
-        echo '</pre>';
+        
         
         //$json_string = json_encode($jobs);
         //echo $json_string;
