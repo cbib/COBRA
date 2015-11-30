@@ -300,10 +300,10 @@ echo   '<div id="summary">
                                                     echo '>'.$values['Transcript ID'].'</br>';
                                                     for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
                                                         if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Transcript Sequence'][$j].'</br>';
+                                                            echo $values['Transcript Sequence'][$j-1].'</br>';
                                                         }
                                                         else{
-                                                            echo $values['Transcript Sequence'][$j];
+                                                            echo $values['Transcript Sequence'][$j-1];
                                                         }
                                                         
                                                     }
