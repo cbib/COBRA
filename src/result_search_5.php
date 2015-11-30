@@ -266,7 +266,19 @@ echo   '<div id="summary">
                     echo '</div>';
                 }
                 //$transcript_count=0;
+                
+                
+                
+                
+                
+                echo '</div>';//gene details end region
+                
+                
+                echo'<div id="sequences">';
+                echo '<h3>Sequences</h3>';
                 $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0],$gene_id_bis[0]);
+                
+                
                 echo '<div>'
                 . ' About this gene: This gene has '.count($transcript_id).' transcripts'
                 . '</div></br>';
@@ -379,8 +391,8 @@ echo   '<div id="summary">
                             echo '</div>
 
                         </div>
-                    </div>
-                </div>';          
+                    </div>'; 
+                echo '</div>';
                 
 
                 //Launch shell command in php
@@ -389,9 +401,9 @@ echo   '<div id="summary">
                 
                             
                             
-                    echo'
+                    
                
-                <div id="expression_profile">
+           echo'<div id="expression_profile">
                     <h3>Expression profile</h3>
                     <div class="panel-group" id="accordion_documents_expression">
                         <div class="panel panel-default">
