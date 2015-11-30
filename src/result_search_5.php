@@ -311,7 +311,7 @@ echo   '<div id="summary">
                                                     
                                                     
                                                     
-                                                    echo  '<button data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '</br>';
                                                     echo '  <center>
                                                                 <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
@@ -1884,14 +1884,17 @@ new_cobra_footer();
 //				});
 //        });
 //    }
-    
+    function myFunction(element){
+       alert(element.getAttribute('data-id')) ;
+        
+    }
     $(document).ready(function(){
         //loader();
         $('#blast_button').click(function() {
                 //alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
                 var target = $(this).attr('data-id');
-                alert(target);
+                //alert(target);
 				$.ajax({
                     
 					 url : './tools/blast/blast.php', // La ressource ciblée
