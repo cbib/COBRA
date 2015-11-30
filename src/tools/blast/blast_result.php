@@ -40,7 +40,7 @@ require '/var/www/html/COBRA/src/session/control-session.php';
                     
                 }
                 elseif($key==='date'){
-                    
+                    echo '<h3> Job informations</h3>';
                     echo '<pre>';
                     echo 'Date: '.$value.'</br>';
                     
