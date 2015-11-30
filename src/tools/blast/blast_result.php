@@ -21,26 +21,39 @@ require '/var/www/html/COBRA/src/session/control-session.php';
                 
                 if ($key==='job_data'){
                     foreach ($value as $blast_results) {
+                        echo '<h3> program details</h3>';
                         echo '<pre>';
                         echo '"program" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
                         echo '"version": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
                         echo '"reference": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
                         echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus and Melon Proteome”</br>';
                         echo '</pre>';
+                        echo '<h3> program settings</h3>';
                         echo '<pre>';
                         echo json_encode($blast_results['report']['params'], JSON_PRETTY_PRINT).'</br>';
                         echo '</pre>';
-                        echo '<pre>';
-                        echo json_encode($blast_results['report']['results'], JSON_PRETTY_PRINT).'</br>';
+                        echo '<h3> Results</h3>';
+                        echo '<pre>';                
+                        echo json_encode($blast_results['report']['results']['search'], JSON_PRETTY_PRINT).'</br>';
                         echo '</pre>';
                     }
                     
                 }
-                else{
+                elseif($key==='date'){
                     
                     echo '<pre>';
-                    echo $key.': '.$value.'</br>';
+                    echo 'Date: '.$value.'</br>';
                     echo '</pre>';
+                    
+                }
+                elseif($key==='query_id'){
+                    
+                    echo '<pre>';
+                    echo 'Query: '.$value.'</br>';
+                    echo '</pre>';
+                    
+                }
+                else{
                     
                 }
             }
