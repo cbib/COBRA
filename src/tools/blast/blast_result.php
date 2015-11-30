@@ -43,12 +43,12 @@ require '/var/www/html/COBRA/src/session/control-session.php';
                     
                     echo '<pre>';
                     echo 'Date: '.$value.'</br>';
-                    echo '</pre>';
+                    
                     
                 }
                 elseif($key==='query_id'){
                     
-                    echo '<pre>';
+                  
                     echo 'Query: '.$value.'</br>';
                     echo '</pre>';
                     
