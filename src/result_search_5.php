@@ -1845,7 +1845,7 @@ new_cobra_footer();
         $('#blast_button').click(function() {
                 //alert(clicked_transcript_id);
                 //var seq= $(this).getAttribute("data-sequence");
-                var target = $(this).attr('id');
+                var target = $(this).attr('data-id');
                 alert(target);
 				$.ajax({
                     
