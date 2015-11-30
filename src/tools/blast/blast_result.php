@@ -20,10 +20,10 @@ require '/var/www/html/COBRA/src/session/control-session.php';
                 echo $key.': '.$value.'</br>';
                 if ($key==='job_data'){
                     foreach ($value as $blast_results) {
-                        echo json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
-                        echo json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
-                        echo json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
-                        echo "\"blast db\": \"Arabidopsis, Barley, Tomato, Prunus and Melon Proteome\”</br>";
+                        echo '\"program\" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
+                        echo '\"version\": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
+                        echo '\"reference\": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
+                        echo '\"blast db\": \"Arabidopsis, Barley, Tomato, Prunus and Melon Proteome\”</br>';
                         echo json_encode($blast_results['report']['params'], JSON_PRETTY_PRINT).'</br>';
                         echo json_encode($blast_results['report']['results'], JSON_PRETTY_PRINT).'</br>';
                         
