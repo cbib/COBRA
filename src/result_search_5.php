@@ -274,125 +274,7 @@ echo   '<div id="summary">
                 echo '</div>';//gene details end region
                 
                 
-                echo'<div id="sequences">';
-                echo '<h3>Sequences</h3>';
-                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0],$gene_id_bis[0]);
                 
-                
-                echo '<div>'
-                . ' About this gene: This gene has '.count($transcript_id).' transcripts'
-                . '</div></br>';
-                
-                echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                
-                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
-                                        <strong>Transcripts sequences </strong>
-                                    </a>				
-                           
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
-                                //get the number of transcript for this gene
-                                
-                                
-                                //with the number of transcript
-                                for ($i=0;$i<count($transcript_id);$i++){
-                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
-                                    foreach ($sequence_metadata as $data) {
-                                        foreach ($data as $key=>$value) {
-                                            if ($key==="mapping_file"){
-                                                foreach ($value as $values) {
-                                                    
-                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
-                                                
-                                                    
-                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
-                                                    echo '>'.$values['Transcript ID'].'</br>';
-                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
-                                                        if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Transcript Sequence'][$j-1].'</br>';
-                                                        }
-                                                        else{
-                                                            echo $values['Transcript Sequence'][$j-1];
-                                                        }
-                                                        
-                                                    }
-                                                    echo '</pre></br>';
-                                                    
-                                                    
-                                                    
-                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
-                                                    echo '</br>';
-                                                    echo '  <center>
-                                                                <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
-                                                                    
-                                                                
-                                                                </div>
-                                                            </center>
-                                                        <div class="container animated fadeInDown">
-                                                            <div class="content_test_'.str_replace(".", "__", $values['Transcript ID']).'">
-              
-                                                            </div>
-                                                        </div>';
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                            echo '</div>
-
-                        </div>
-                    </div>';
-                            
-              echo '<div class="panel-group" id="accordion_documents_gene_sequence">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                
-                                    <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
-                                        <strong>Unspliced Genes </strong>
-                                    </a>				
-                           
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
-                                //get the number of transcript for this gene
-                                
-                                
-                                //with the number of transcript
-                                
-                                    $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
-                                    foreach ($sequence_metadata as $data) {
-                                        foreach ($data as $key=>$value) {
-                                            if ($key==="mapping_file"){
-                                                foreach ($value as $values) {
-                                                    
-                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
-                                                    echo '<pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
-                                                    echo '>'.$values['Gene ID'].'</br>';
-                                                    for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
-                                                        if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Gene Sequence'][$j-1].'</br>';
-                                                        }
-                                                        else{
-                                                            echo $values['Gene Sequence'][$j-1];
-                                                        }
-                                                        
-                                                    }
-                                                    echo '</pre></br>';
-                                                }
-                                            }
-                                        }
-                                    }
-                                
-                                
-                            echo '</div>
-
-                        </div>
-                    </div>'; 
-                echo '</div>';
                 
 
                 //Launch shell command in php
@@ -1201,6 +1083,133 @@ echo   '<div id="summary">
                 </div>
                 <div id="shift_line"></div>
             </div>';
+                           
+            echo'<div id="sequences">';
+                echo '<h3>Sequences</h3>';
+                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0],$gene_id_bis[0]);
+                
+                
+                echo '<div>'
+                . ' About this gene: This gene has '.count($transcript_id).' transcripts'
+                . '</div></br>';
+                
+                echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
+                                        <strong>Transcripts sequences </strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript
+                                for ($i=0;$i<count($transcript_id);$i++){
+                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    
+                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
+                                                
+                                                    
+                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
+                                                    echo '>'.$values['Transcript ID'].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Transcript Sequence'][$j-1].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Transcript Sequence'][$j-1];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
+                                                    
+                                                    
+                                                    
+                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo '</br>';
+                                                    echo '  <center>
+                                                                <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
+                                                                    
+                                                                
+                                                                </div>
+                                                            </center>
+                                                        <div class="container animated fadeInDown">
+                                                            <div class="content_test_'.str_replace(".", "__", $values['Transcript ID']).'">
+              
+                                                            </div>
+                                                        </div>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            echo '</div>
+
+                        </div>
+                    </div>';
+                            
+              echo '<div class="panel-group" id="accordion_documents_gene_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
+                                        <strong>Unspliced Genes </strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript
+                                
+                                    $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    
+                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
+                                                    echo '<pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
+                                                    echo '>'.$values['Gene ID'].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Gene Sequence'][$j-1].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Gene Sequence'][$j-1];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                
+                            echo '</div>
+
+                        </div>
+                    </div>'; 
+                echo '</div>';               
+                           
+                           
+                           
+                           
+                           
+                           
+                           
 //                $timeend=microtime(true);
 //                $time=$timeend-$timestart;
 //                //Afficher le temps d'éxecution

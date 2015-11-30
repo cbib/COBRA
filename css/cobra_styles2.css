@@ -275,7 +275,7 @@ table.dataTable tbody tr:hover {
 	//float: right;
 	border: 1px solid #DDD;
   }
-  #summary > #stat-details > #ortholog_section {
+  #summary > #stat-details > #ortholog_section,#sequences {
 	//width: 480px;
         width: 100%;
         //height: 50%;
@@ -286,7 +286,7 @@ table.dataTable tbody tr:hover {
 	border: 1px solid #DDD;
   }
   
-  #summary > #protein-details > #expression_profile,#sequences{
+  #summary > #protein-details > #expression_profile{
 	//width: 480px;
         width: 100%;
         //height: 50%;
