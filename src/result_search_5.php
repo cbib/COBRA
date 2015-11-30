@@ -14,6 +14,10 @@ new_cobra_header();
 
 new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
 
+$db=mongoConnector();
+$speciesCollection = new Mongocollection($db, "species");
+
+make_species_list(find_species_list($speciesCollection));
 if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
 
 
@@ -21,12 +25,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$search=control_post(htmlspecialchars($_GET['search']));
 	//$search=strtoupper($search);
 
-	$db=mongoConnector();
+	
 
 	$grid = $db->getGridFS();
 	//Selection des collections
 	$samplesCollection = new MongoCollection($db, "samples");
-	$speciesCollection = new Mongocollection($db, "species");
+	
 	$mappingsCollection = new Mongocollection($db, "mappings");
 	$measurementsCollection = new Mongocollection($db, "measurements");
 	$virusesCollection = new Mongocollection($db, "viruses");
@@ -41,7 +45,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //if more than one results (often the case when search by gene symbol or keywords
 
     //put the search box again...
-    make_species_list(find_species_list($speciesCollection));
+   // make_species_list(find_species_list($speciesCollection));
     
     
    
