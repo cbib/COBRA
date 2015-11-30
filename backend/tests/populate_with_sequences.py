@@ -1532,7 +1532,7 @@ sequence_table={
 	"src":"Gene ID",
 	"src_version":"unigen v4 icugi",
         "tgt":"Gene_Sequence",
-	"url":"",ƒ
+	"url":"",
 	"doi":"none",
 	"key":"GENEID/SEQUENCE",
 	# parser config 
