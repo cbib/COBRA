@@ -13,9 +13,9 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         $db=mongoConnector();
         $jobsCollection = new Mongocollection($db, "jobs");
         echo new MongoId($id);
-        $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array());
+        $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array('_id'=>0));
         foreach ($jobs as $value) {
-            echo '<pre>'.json_encode($value).'</pre>';
+            echo '<pre>'.json_encode($value).'</br></pre>';
         }
         
         //$json_string = json_encode($jobs);
