@@ -19,7 +19,13 @@ require '/var/www/html/COBRA/src/session/control-session.php';
             foreach ($values as $key => $value) {
                 echo $key.': '.$value.'</br>';
                 if ($key==='job_data'){
-                    echo json_encode($value, JSON_PRETTY_PRINT);
+                    foreach ($value as $blast_results) {
+                        echo json_encode($blast_results['report'], JSON_PRETTY_PRINT);
+                        echo json_encode($blast_results['params'], JSON_PRETTY_PRINT);
+                        echo json_encode($blast_results['results'], JSON_PRETTY_PRINT);
+                        
+                    }
+                    
                 }
             }
             
