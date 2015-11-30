@@ -15,6 +15,7 @@ require '/var/www/html/COBRA/src/session/control-session.php';
         echo new MongoId($id);
         $jobs=$jobsCollection->find(array('_id'=> new MongoId($id)),array());
     
+        var_dump($jobs);
         $json_string = json_encode($jobs);
         echo $json_string;
  	
