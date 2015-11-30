@@ -276,7 +276,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
-                                        <strong>cDNA sequences </strong>
+                                        <strong>Transcripts sequences </strong>
                                     </a>				
                            
                             </div>
@@ -340,7 +340,7 @@ echo   '<div id="summary">
                             <div class="panel-heading">
                                 
                                     <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
-                                        <strong>Unspliced (Gene) </strong>
+                                        <strong>Unspliced Genes </strong>
                                     </a>				
                            
                             </div>
@@ -362,10 +362,10 @@ echo   '<div id="summary">
                                                     echo '>'.$values['Gene ID'].'</br>';
                                                     for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
                                                         if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Gene Sequence'][$j].'</br>';
+                                                            echo $values['Gene Sequence'][$j-1].'</br>';
                                                         }
                                                         else{
-                                                            echo $values['Gene Sequence'][$j];
+                                                            echo $values['Gene Sequence'][$j-1];
                                                         }
                                                         
                                                     }
