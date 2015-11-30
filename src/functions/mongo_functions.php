@@ -1241,10 +1241,10 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
                 //echo $value['Gene ID'];
                     $table_string.="<tr>";
 
-                    $table_string.='<td><a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                    $table_string.='<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
                     //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
                     //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                    $table_string.='<td><a class="nowrap" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
+                    $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
 
                     //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
