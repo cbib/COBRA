@@ -1835,7 +1835,8 @@ new_cobra_footer();
     var button_clicked = document.getElementById("blast_button");
 //    var button_clicked=document.getElementById('blast_button').onclick();
     var clicked_sequence = button_clicked.getAttribute("data-sequence");
-    var clicked_transcript_id = button_clicked.getAttribute("data-id");   
+    var clicked_transcript_id = button_clicked.getAttribute("data-id"); 
+    alert(clicked_transcript_id);
 
 	
     
