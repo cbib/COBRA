@@ -898,7 +898,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
 //    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";
     return $global_interact_array;
 }
-function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id='null'){
+function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id='null',$gene_id_bis='null'){
     $transcript_count=array();
 //    $sequences_cursor=$sequencesCollection->aggregate(array(
 //        array('$match'=> array('tgt'=>'CDNA_Sequence')),
@@ -910,7 +910,7 @@ function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id
     $sequences_cursor=$sequencesCollection->aggregate(array(
         array('$match'=> array('tgt'=>'CDNA_Sequence')),
         array('$unwind'=>'$mapping_file'), 
-        array('$match'=> array('mapping_file.Gene ID'=>$gene_id)),
+        array('$match'=> array('$or'=> array( array('mapping_file.Gene ID'=>$gene_id),array('mapping_file.Gene ID'=>$gene_id_bis)))),
         array('$project'=> array('mapping_file.Transcript ID' => 1,))
     ));
                 
