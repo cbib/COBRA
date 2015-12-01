@@ -641,7 +641,7 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 
                 echo '</div>';//gene details end region 
 }
-function load_gene_ontology_terms(MongoCollection $go_collection, array $go_id_list){
+function load_and_display_gene_ontology_terms(MongoCollection $go_collection, array $go_id_list){
     $total_go_biological_process=array();
     $total_go_cellular_component=array();
     $total_go_molecular_function=array();
@@ -802,6 +802,43 @@ function load_gene_ontology_terms(MongoCollection $go_collection, array $go_id_l
         <div id="shift_line"></div>
     </div>';
 }
+function display_external_references( array $proteins_id,$search='null',$species='null'){
+    echo' 
+    <div id="linkouts">
+        <h3>External Database Linkouts</h3>';
+        /*<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
+        //<!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
+        //| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
+        ';*/
+
+        if ($species == "Arabidopsis thaliana"){
+            echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>';
+        }
+        else if ($species == "Solanum lycopersicum"){
+
+            echo'<a target="_BLANK" href="http://solgenomics.net/search/unigene.pl?unigene_id='.$search.'">Sol genomics</a>';
+        }
+        else if ($species == "Cucumis melo"){
+
+
+        }
+        else if ($species == "Hordeum vulgare"){
+
+
+        }
+        else{
+
+        }
+        for ($i = 0; $i < count($proteins_id); $i++) {                        
+            echo'| <a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">UniprotKB</a>';   
+        } 
+        echo'
+    </div>
+    <div class="bottomSpacer"></div>   
+}
+
+
+
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

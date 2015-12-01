@@ -274,159 +274,16 @@ echo   '<div id="summary">';
                         echo'<div id="shift_line"></div>'                
                   . '</div>';  //end div expression profile
                 
-
-                load_gene_ontology_terms($GOCollection,$go_id_list);
-                //start div goterms
-//                echo'<div id="goTerms">
-//                    <h3>Gene Ontology</h3>
-//                    <div class="goTermsBlock">
-//                        
-//                        <div class="panel-group" id="accordion_documents">
-//                            <div class="panel panel-default">
-//                                <div class="panel-heading">
-//                                    <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
-//                                        <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
-//                                    </a>				
-//                                </div>
-//                                <div class="panel-body panel-collapse collapse" id="go_process">
-//                                ';
-//                                if (count($total_go_biological_process)!=0){
-//                                    echo'
-//                                    <div class="goProcessTerms goTerms">
-//                                    ';
-//                                    foreach ($total_go_biological_process as $go_info){
-//                                    echo'
-//                                        <ul>
-//                                            <span class="goTerm">
-//                                                <li>
-//
-//                                                    <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-//                                                    <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-//                                                    </span>
-//                                            </span>
-//                                        </ul>';
-//                                    }
-//                                    echo'
-//                                    </div>';
-//                                }
-//                                echo'
-//                                </div>
-//                            </div>
-//                        </div>';
-//                        echo'
-//                        <div class="panel-group" id="accordion_documents">
-//                            <div class="panel panel-default">
-//                                <div class="panel-heading">
-//
-//                                    <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
-//                                        <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
-//                                    </a>				
-//
-//                                </div>
-//                                <div class="panel-body panel-collapse collapse" id="go_component">
-//                                ';
-//                                if (count($total_go_cellular_component)!=0){
-//                                    echo'
-//                                    <div class="goProcessTerms goTerms">
-//
-//                                    ';
-//                                    foreach ($total_go_cellular_component as $go_info){
-//                                    echo'
-//                                        <ul>
-//                                            <span class="goTerm">
-//                                                <li>
-//
-//                                                    <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-//                                                    <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-//                                                    </span>
-//                                            </span>
-//                                        </ul>';
-//                                    }
-//                                    echo'
-//                                    </div>';
-//                                }
-//                                echo'
-//                                </div>
-//                            </div>
-//                        </div>    
-//                        <!--<br/>-->';
-//                                echo'
-//                        <div class="panel-group" id="accordion_documents">
-//                            <div class="panel panel-default">
-//                                <div class="panel-heading">
-//
-//                                    <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
-//                                        <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
-//                                    </a>				
-//
-//                                </div>
-//                                <div class="panel-body panel-collapse collapse" id="go_function">
-//                                ';
-//                                if (count($total_go_molecular_function)!=0){
-//                                    echo'
-//                                    <div class="goProcessTerms goTerms">
-//
-//                                    ';
-//                                    foreach ($total_go_molecular_function as $go_info){
-//                                    echo'
-//                                        <ul>
-//                                            <span class="goTerm">
-//                                                <li>
-//
-//                                                    <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-//                                                    <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-//                                                    </span>
-//                                            </span>
-//                                        </ul>';
-//                                    }
-//                                    echo'
-//                                    </div>';
-//                                }
-//                                echo'
-//                                </div>
-//                            </div>
-//                        </div>';                               
-//                        echo'
-//                    </div>
-//                    <div id="shift_line"></div>
-//                </div>';
-//                //end div go_terms
-                echo' <div id="linkouts">
-                    <h3>External Database Linkouts</h3>';
-             		//<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>
-             	  //<!--| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/gene/831917" title="Entrez-Gene 831917 LinkOut">Entrez Gene</a> 
-             	  //| <a target="_BLANK" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=protein&cmd=DetailsSearch&term=NP_195936" title="NCBI RefSeq Sequences">RefSeq</a> -->
-             	  //';
-                    
-                    if ($species == "Arabidopsis thaliana"){
-                        echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>';
-                    }
-                    else if ($species == "Solanum lycopersicum"){
-                        
-                        echo'<a target="_BLANK" href="http://solgenomics.net/search/unigene.pl?unigene_id='.$search.'">Sol genomics</a>';
-                    }
-                    else if ($species == "Cucumis melo"){
-                        
-                        
-                    }
-                    else if ($species == "Hordeum vulgare"){
-                        
-                        
-                    }
-                    else{
-                        
-                    }
-                    for ($i = 0; $i < count($proteins_id); $i++) {                        
-                        echo'| <a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">UniprotKB</a>';   
-                    } 
-                    echo'
-                </div>
-            <div class="bottomSpacer"></div>    
+                //start div goterms                    
+                load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
+                //end div go_terms
+                display_external_references($proteins_id,$search,$species);
+                 
             
-        </div>
+        echo'</div>
          
-            <input type="hidden" id="displayView" value="summary" />
-            <input type="hidden" id="displaySort" value="" />
+        <input type="hidden" id="displayView" value="summary" />
+        <input type="hidden" id="displaySort" value="" />
             
         <div id="stat-details">
             <div id="statsAndFilters">
