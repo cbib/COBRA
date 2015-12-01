@@ -641,50 +641,166 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 
                 echo '</div>';//gene details end region 
 }
-function load_gene_ontology_terms(MongoCollection $go_collection,array $total_go_biological_process, array $total_go_cellular_component, array $total_go_molecular_function, array $go_id_list){
+function load_gene_ontology_terms(MongoCollection $go_collection, array $go_id_list){
+    $total_go_biological_process=array();
+    $total_go_cellular_component=array();
+    $total_go_molecular_function=array();
     if (count($go_id_list)!=0){
 
-            foreach ($go_id_list as $go_info){
+        foreach ($go_id_list as $go_info){
 
-                //$timestart1=microtime(true);
-                $go_term=$go_collection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
-                foreach ($go_term as $term){
-                    foreach ($term as $go){
-                        foreach ($go as $value){
-                           if ($value['namespace']=='molecular_function'){
+            //$timestart1=microtime(true);
+            $go_term=$go_collection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
+            foreach ($go_term as $term){
+                foreach ($term as $go){
+                    foreach ($go as $value){
+                       if ($value['namespace']=='molecular_function'){
 
 
-                                //$go_info['GO_ID']=$value['id'];
-                                $go_info['description']=$value['name'];
-                                $go_info['namespace']=$value['namespace'];
-                                //echo $value['name'];
-                                //$go_info['evidence']=$go_id_list[$i]['evidence'];
-                                array_push($total_go_molecular_function, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-                            }
-                            if ($value['namespace']=='biological_process') {
-                                $go_info['description']=$value['name'];   
-                                $go_info['namespace']=$value['namespace'];
-                                array_push($total_go_biological_process, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-
-                            }
-                            if ($value['namespace']=='cellular_component'){
-                                $go_info['description']=$value['name']; 
-                                $go_info['namespace']=$value['namespace'];
-                                array_push($total_go_cellular_component, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-                            }   
-                           //echo $go['namespace']; 
+                            //$go_info['GO_ID']=$value['id'];
+                            $go_info['description']=$value['name'];
+                            $go_info['namespace']=$value['namespace'];
+                            //echo $value['name'];
+                            //$go_info['evidence']=$go_id_list[$i]['evidence'];
+                            array_push($total_go_molecular_function, $go_info);
+                            //array_push($already_added_go_term,$go_info);
                         }
+                        if ($value['namespace']=='biological_process') {
+                            $go_info['description']=$value['name'];   
+                            $go_info['namespace']=$value['namespace'];
+                            array_push($total_go_biological_process, $go_info);
+                            //array_push($already_added_go_term,$go_info);
 
+                        }
+                        if ($value['namespace']=='cellular_component'){
+                            $go_info['description']=$value['name']; 
+                            $go_info['namespace']=$value['namespace'];
+                            array_push($total_go_cellular_component, $go_info);
+                            //array_push($already_added_go_term,$go_info);
+                        }   
+                       //echo $go['namespace']; 
                     }
 
                 }
 
             }
+
         }
-        return $total_go_biological_process AND $total_go_cellular_component AND $total_go_molecular_function;
+    }
+    //start div goterms
+    echo'<div id="goTerms">
+        <h3>Gene Ontology</h3>
+        <div class="goTermsBlock">
+
+            <div class="panel-group" id="accordion_documents">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
+                            <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
+                        </a>				
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="go_process">
+                    ';
+                    if (count($total_go_biological_process)!=0){
+                        echo'
+                        <div class="goProcessTerms goTerms">
+                        ';
+                        foreach ($total_go_biological_process as $go_info){
+                        echo'
+                            <ul>
+                                <span class="goTerm">
+                                    <li>
+
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
+                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
+                                        </span>
+                                </span>
+                            </ul>';
+                        }
+                        echo'
+                        </div>';
+                    }
+                    echo'
+                    </div>
+                </div>
+            </div>';
+            echo'
+            <div class="panel-group" id="accordion_documents">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
+                            <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
+                        </a>				
+
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="go_component">
+                    ';
+                    if (count($total_go_cellular_component)!=0){
+                        echo'
+                        <div class="goProcessTerms goTerms">
+
+                        ';
+                        foreach ($total_go_cellular_component as $go_info){
+                        echo'
+                            <ul>
+                                <span class="goTerm">
+                                    <li>
+
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
+                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
+                                        </span>
+                                </span>
+                            </ul>';
+                        }
+                        echo'
+                        </div>';
+                    }
+                    echo'
+                    </div>
+                </div>
+            </div>    
+            <!--<br/>-->';
+                    echo'
+            <div class="panel-group" id="accordion_documents">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
+                            <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
+                        </a>				
+
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="go_function">
+                    ';
+                    if (count($total_go_molecular_function)!=0){
+                        echo'
+                        <div class="goProcessTerms goTerms">
+
+                        ';
+                        foreach ($total_go_molecular_function as $go_info){
+                        echo'
+                            <ul>
+                                <span class="goTerm">
+                                    <li>
+
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
+                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
+                                        </span>
+                                </span>
+                            </ul>';
+                        }
+                        echo'
+                        </div>';
+                    }
+                    echo'
+                    </div>
+                </div>
+            </div>';                               
+            echo'
+        </div>
+        <div id="shift_line"></div>
+    </div>';
 }
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
