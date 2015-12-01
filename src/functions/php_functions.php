@@ -834,7 +834,7 @@ function display_external_references( array $proteins_id,$search='null',$species
         } 
         echo'
     </div>
-    <div class="bottomSpacer"></div>   
+    <div class="bottomSpacer"></div>  '; 
 }
 
 
