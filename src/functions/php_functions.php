@@ -641,6 +641,50 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 
                 echo '</div>';//gene details end region 
 }
+function load_gene_ontology_terms(MongoCollection $go,array $total_go_biological_process, array $total_go_cellular_component, array $total_go_molecular_function, array $go_id_list){
+    if (count($go_id_list)!=0){
+
+            foreach ($go_id_list as $go_info){
+
+                //$timestart1=microtime(true);
+                $go_term=$go->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
+                foreach ($go_term as $term){
+                    foreach ($term as $go){
+                        foreach ($go as $value){
+                           if ($value['namespace']=='molecular_function'){
+
+
+                                //$go_info['GO_ID']=$value['id'];
+                                $go_info['description']=$value['name'];
+                                $go_info['namespace']=$value['namespace'];
+                                //echo $value['name'];
+                                //$go_info['evidence']=$go_id_list[$i]['evidence'];
+                                array_push($total_go_molecular_function, $go_info);
+                                //array_push($already_added_go_term,$go_info);
+                            }
+                            if ($value['namespace']=='biological_process') {
+                                $go_info['description']=$value['name'];   
+                                $go_info['namespace']=$value['namespace'];
+                                array_push($total_go_biological_process, $go_info);
+                                //array_push($already_added_go_term,$go_info);
+
+                            }
+                            if ($value['namespace']=='cellular_component'){
+                                $go_info['description']=$value['name']; 
+                                $go_info['namespace']=$value['namespace'];
+                                array_push($total_go_cellular_component, $go_info);
+                                //array_push($already_added_go_term,$go_info);
+                            }   
+                           //echo $go['namespace']; 
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+}
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

@@ -165,48 +165,50 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $total_go_biological_process=array();
         $total_go_cellular_component=array();
         $total_go_molecular_function=array();
-        if (count($go_id_list)!=0){
+        load_gene_ontology_terms($GOCollection,$total_go_biological_process, $total_go_cellular_component, $total_go_molecular_function, $go_id_list);
 
-            foreach ($go_id_list as $go_info){
-
-                //$timestart1=microtime(true);
-                $go_term=$GOCollection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
-                foreach ($go_term as $term){
-                    foreach ($term as $go){
-                        foreach ($go as $value){
-                           if ($value['namespace']=='molecular_function'){
-
-
-                                //$go_info['GO_ID']=$value['id'];
-                                $go_info['description']=$value['name'];
-                                $go_info['namespace']=$value['namespace'];
-                                //echo $value['name'];
-                                //$go_info['evidence']=$go_id_list[$i]['evidence'];
-                                array_push($total_go_molecular_function, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-                            }
-                            if ($value['namespace']=='biological_process') {
-                                $go_info['description']=$value['name'];   
-                                $go_info['namespace']=$value['namespace'];
-                                array_push($total_go_biological_process, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-
-                            }
-                            if ($value['namespace']=='cellular_component'){
-                                $go_info['description']=$value['name']; 
-                                $go_info['namespace']=$value['namespace'];
-                                array_push($total_go_cellular_component, $go_info);
-                                //array_push($already_added_go_term,$go_info);
-                            }   
-                           //echo $go['namespace']; 
-                        }
-
-                    }
-
-                }
-
-            }
-        }
+//        if (count($go_id_list)!=0){
+//
+//            foreach ($go_id_list as $go_info){
+//
+//                //$timestart1=microtime(true);
+//                $go_term=$GOCollection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
+//                foreach ($go_term as $term){
+//                    foreach ($term as $go){
+//                        foreach ($go as $value){
+//                           if ($value['namespace']=='molecular_function'){
+//
+//
+//                                //$go_info['GO_ID']=$value['id'];
+//                                $go_info['description']=$value['name'];
+//                                $go_info['namespace']=$value['namespace'];
+//                                //echo $value['name'];
+//                                //$go_info['evidence']=$go_id_list[$i]['evidence'];
+//                                array_push($total_go_molecular_function, $go_info);
+//                                //array_push($already_added_go_term,$go_info);
+//                            }
+//                            if ($value['namespace']=='biological_process') {
+//                                $go_info['description']=$value['name'];   
+//                                $go_info['namespace']=$value['namespace'];
+//                                array_push($total_go_biological_process, $go_info);
+//                                //array_push($already_added_go_term,$go_info);
+//
+//                            }
+//                            if ($value['namespace']=='cellular_component'){
+//                                $go_info['description']=$value['name']; 
+//                                $go_info['namespace']=$value['namespace'];
+//                                array_push($total_go_cellular_component, $go_info);
+//                                //array_push($already_added_go_term,$go_info);
+//                            }   
+//                           //echo $go['namespace']; 
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
 echo   '<div id="summary">';  
       echo '<div id="protein-details">';
                 
