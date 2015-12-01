@@ -280,13 +280,11 @@ echo   '<div id="summary">';
                 display_external_references($proteins_id,$search,$species);
                  
             
-        echo'</div>
-         
-        <input type="hidden" id="displayView" value="summary" />
-        <input type="hidden" id="displaySort" value="" />
+      echo '</div>';
+  
+      echo '<div id="stat-details">
             
-        <div id="stat-details">
-            <div id="statsAndFilters">
+                <div id="statsAndFilters">
 
 				
 				<h3>Current Interactors</h3>
@@ -349,13 +347,7 @@ echo   '<div id="summary">';
                     }
                     $counter++;
                 }
-                
-                
-                
-                
-                
-                
-                
+
                 $counter=0;
                 $pub_list=array();
                 foreach ($interaction_array as $array){
@@ -721,8 +713,7 @@ echo   '<div id="summary">';
                         </div></div>';
                     }
                     $counter++;
-                }
-                        
+                }                    
 //                $timeend=microtime(true);
 //                $time=$timeend-$timestart;
 //                //Afficher le temps d'éxecution
@@ -730,29 +721,13 @@ echo   '<div id="summary">';
 //                echo "starting script at: ".date("H:i:s", $timestart);
 //                echo "<br>Ending script at: ".date("H:i:s", $timeend);
 //                echo "<br>Script for interaction data executed in " . $page_load_time . " sec";          
-
-                                
-
                echo'<div class="physical-ltp statisticRow">
                         <div class="physical colorFill" style="width: 0%;"></div>
-                        <!--<div class="statDetails">
-                            <div class="left"></div>
-                            <div class="right"></div>
-                                '; 
-                            //$total_plant_virus=$total_protein_litterature+$total_protein_intact;
-                            //$total_plant_plant=$total_protein_biogrid;
-                            //echo $total_plant_virus.' Plant/Virus Interactions <br>';
-                            //echo $total_plant_plant.' Plant/Plant Interactions
-                           
-                        echo '</div>-->
                         <div id="pubStats" class="right">
                             <strong>Publications:</strong>'.count($pub_list).'
                         </div>
                     </div>
-                    <div class="genetic-ltp statisticRow">
-                        <div class="genetic colorFill" style="width: 0%;"></div>
-                        <div class="statDetails"></div>
-                    </div>
+                    
                     <br></br> 
             </div>';
         //$timestart=microtime(true);
