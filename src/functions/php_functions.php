@@ -641,13 +641,6 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 
                 echo '</div>';//gene details end region 
 }
-
-
-
-
-
-
-
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -764,7 +757,6 @@ AT1G03110</textarea>
 
 
 }
-
 function make_species_list($cursor){
 
     
@@ -843,7 +835,6 @@ function make_species_list($cursor){
     	</form>
     </div>';
 }
-
 function make_CrossCompare_list($cursor){
 
     
@@ -1122,7 +1113,6 @@ function get_protein_info($url){
        	}
     }
 }
-
 function recursive_read($array){
 
 
@@ -1203,8 +1193,6 @@ function datatableFromAggregate($cursor){
 	echo'</tbody></table>'; 
 
 }
-
-
 function makeDatatableFromFindByRegex($cursor) {
 
 	$array = iterator_to_array($cursor);
