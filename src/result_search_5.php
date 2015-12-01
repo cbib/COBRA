@@ -395,12 +395,12 @@ new_cobra_footer();
     var clicked_transcript_id="";
     $(function () {
         $('#container_profile').highcharts({
-            //alert ($(this).attr('data-id'));
+            //alert ($(this).attr('data-alias'));
             chart: {
                 type: 'column'
             },
             title: {
-                text: genes_alias + ' differential expression'
+                text: $(this).attr('data-alias') + ' differential expression'
             },
 //            subtitle: {
 //                text: xp_name
