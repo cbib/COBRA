@@ -285,432 +285,7 @@ echo   '<div id="summary">';
       echo '<div id="stat-details">';
                 load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
                 
-//                    echo '<div id="statsAndFilters">
-//                        <h3>Current Interactors</h3>'; 
-//
-//                    //get all interactor for each dataset (biogrid, intact, hipdb, etc..)
-//                    $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
-//                    $counter=0;
-//                    //$timestart=microtime(true);
-//                    foreach ($interaction_array as $array){
-//                        if ($counter===0){
-//                            $total_protein_hpidb=count($array);
-//
-//                        }
-//                        if ($counter===1){
-//
-//                            $total_protein_intact=count($array);
-//
-//                        }
-//                        else if ($counter===2){
-//
-//                            $total_protein_litterature=0;
-//                            foreach ($array as $intact){
-//                                $total_protein_litterature++;
-//                            }
-//                        }
-//                        else{
-//
-//                            $total_protein_biogrid=0;
-//                            $tgt="";
-//                            $tgt_array=array();
-//
-//
-//                            foreach ($array as $biogrid){
-//                                //foreach ($biogrid as $data) {
-//                                foreach ($biogrid as $key=>$value) {
-//                                    if( $key=="tgt"){
-//                                        $tgt=$value; 
-//                                    }
-//
-//    //                                foreach ($data as $key=>$value) {
-//    //                                    if( $key=="tgt"){
-//    //                                       $tgt=$value; 
-//    //                                    }
-//    //                                }
-//    //                                error_log($value[0]);
-//    //                                if ($value[0]=="tgt"){
-//    //                                    $tgt=$value[1];
-//    //                                }                                
-//                                }
-//                                if (in_array($tgt,$tgt_array)===FALSE){
-//                                   array_push($tgt_array, $tgt);
-//                                   $total_protein_biogrid++; 
-//                                }
-//
-//
-//                            }
-//
-//                        }
-//                        $counter++;
-//                    }
-//
-//                    $counter=0;
-//                    $pub_list=array();
-//                    foreach ($interaction_array as $array){
-//
-//
-//                        if ($counter==0){
-//                            //error_log('in counter value: '.$counter);               
-//                            echo'
-//                            <div class="panel-group" id="accordion_documents">
-//                                <div class="panel panel-default">
-//                                    <div class="panel-heading">
-//
-//                                        <a class="accordion-toggle collapsed" href="#hpidb2" data-parent="#accordion_documents" data-toggle="collapse">
-//                                            <strong> Host Pathogen Interaction (hpidb2)</strong> ('. $total_protein_hpidb.')
-//                                        </a>				
-//
-//                                    </div>
-//                                    <div class="panel-body panel-collapse collapse" id="hpidb2">';
-//
-//                                        echo'
-//                                        <div class="goProcessTerms goTerms">';
-//
-//                                        echo'';
-//
-//                                        $total_protein_hpidb=0;
-//                                        foreach ($array as $hpidb){
-//                                            $string_seq='<ul><span class="goTerm">';
-//                                            foreach ($hpidb as $values){
-//                                                foreach ($values as $key=>$value){
-//
-//
-//
-//                                                    //error_log('key: '.$key.'and value: '.$value);
-//                                                    if ($key=='src'){
-//
-//                                                        $string_seq.='<li value='.$value.'> host protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
-//
-//                                                    }
-//                                                    elseif ($key=='tgt') {
-//                                                         $tgt=$value;
-//                                                        $string_seq.='<li value='.$value.'> viral protein: <a href="http://www.uniprot.org/uniprot/'.$value.'">'.$value.'</a></li>';
-//
-//                                                    }
-//                                                    elseif ($key=='method') {
-//                                                         $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
-//
-//                                                    }            
-//                                                    elseif ($key=='pub') {
-//                                                         $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
-//                                                         $found=FALSE;
-//                                                         foreach ($pub_list as $pub) {
-//                                                             if ($value==$pub){
-//                                                                 $found=TRUE;
-//                                                             }
-//                                                         }
-//                                                         if ($found==FALSE){
-//                                                             array_push($pub_list, $value);
-//                                                         }
-//
-//
-//
-//                                                    }
-//                                                    elseif ($key=='src_name') {
-//                                                        $string_seq.='<li value='.$value.'> host name: '.$value.'</li>';
-//
-//                                                    }
-//                                                    elseif ($key=='tgt_name') {
-//                                                        $string_seq.='<li value='.$value.'> virus name: '.$value.'</li>';
-//
-//                                                    }
-//                                                    elseif ($key=='host_taxon') {
-//                                                        $string_seq.='<li value='.$value.'> host taxon: '.$value.'</li>';
-//
-//                                                    }
-//                                                    elseif ($key=='virus_taxon') {
-//                                                        $string_seq.='<li value='.$value.'> virus taxon: '.$value.'</li>';
-//
-//                                                    }
-//                                                    else{
-//
-//                                                    }
-//                                                }
-//
-//
-//                                            }
-//                                            $string_seq.='</ul></span>';
-//                                            add_accordion_panel($string_seq, $tgt, $tgt);
-//                                            $total_protein_hpidb++;
-//
-//                                        }
-//                                        //$counter++;
-//                                        echo'
-//                                        </div>';
-//
-//                                    echo'
-//                                    </div></div></div>';
-//                        }
-//                        elseif ($counter==1){
-//                            echo'
-//                            <div class="panel-group" id="accordion_documents">
-//                                <div class="panel panel-default">
-//                                    <div class="panel-heading">
-//
-//                                        <a class="accordion-toggle collapsed" href="#intact" data-parent="#accordion_documents" data-toggle="collapse">
-//                                            <strong> IntAct plant/plant interaction </strong> ('. $total_protein_intact.')
-//                                        </a>				
-//
-//                                    </div>
-//                                    <div class="panel-body panel-collapse collapse" id="intact">';
-//
-//                                        echo'
-//                                        <div class="goProcessTerms goTerms">';
-//
-//                                        echo'';
-//
-//                                        $total_protein_intact=0;
-//                                        foreach ($array as $intact){
-//                                            $string_seq='<ul><span class="goTerm">';
-//                                            foreach ($intact as $attributes){
-//
-//                                                if ($attributes[0]=='src'){
-//
-//                                                    $string_seq.='<li value='.$attributes[1].'> Host protein A: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
-//
-//                                                }
-//                                                elseif ($attributes[0]=='tgt') {
-//                                                     $tgt=$attributes[1];
-//                                                    $string_seq.='<li value='.$attributes[1].'> Host protein B: <a href="http://www.uniprot.org/uniprot/'.$attributes[1].'">'.$attributes[1].'</a></li>';
-//
-//                                                }
-//                                                elseif ($attributes[0]=='method') {
-//                                                     $string_seq.='<li value='.$attributes[1].'> method: '.$attributes[1].'</li>';
-//
-//                                                }
-//
-//                                                elseif ($attributes[0]=='pub') {
-//                                                     $string_seq.='<li value='.$attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
-//                                                     $found=FALSE;
-//                                                     foreach ($pub_list as $pub) {
-//                                                         if ($attributes[1]==$pub){
-//                                                             $found=TRUE;
-//                                                         }
-//                                                     }
-//                                                     if ($found==FALSE){
-//                                                         array_push($pub_list, $attributes[1]);
-//                                                     }
-//
-//
-//
-//                                                }
-//                                                elseif ($attributes[0]=='src_name') {
-//                                                    $string_seq.='<li value='.$attributes[1].'> Host A: '.$attributes[1].'</li>';
-//
-//                                                }
-//                                                elseif ($attributes[0]=='tgt_name') {
-//                                                    $string_seq.='<li value='.$attributes[1].'> Host B: '.$attributes[1].'</li>';
-//
-//                                                }
-//    //                                            elseif ($attributes[0]=='host_taxon') {
-//    //                                                $string_seq.='<li value='.$ $attributes[1].'> host taxon: '.$attributes[1].'</li>';
-//    //
-//    //                                            }
-//    //                                            elseif ($attributes[0]=='virus_taxon') {
-//    //                                                $string_seq.='<li value='.$ $attributes[1].'> virus taxon: '.$attributes[1].'</li>';
-//    //
-//    //                                            }
-//                                                else{
-//
-//                                                }
-//
-//
-//                                            }
-//                                            $string_seq.='</ul></span>';
-//                                            add_accordion_panel($string_seq, $tgt, $tgt);
-//                                            $total_protein_intact++;
-//
-//                                        }
-//                                        //$counter++;
-//                                        echo'
-//                                        </div>';
-//
-//                                    echo'
-//                                    </div></div></div>';
-//                        }
-//                        elseif ($counter==2){
-//                            echo'
-//
-//
-//                            <div class="panel-group" id="accordion_documents">
-//                                <div class="panel panel-default">
-//                                    <div class="panel-heading">
-//
-//                                        <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents" data-toggle="collapse">
-//                                            <strong> Litterature plant/virus </strong> ('.  $total_protein_litterature.')
-//                                        </a>				
-//
-//                                    </div>
-//                                    <div class="panel-body panel-collapse collapse" id="litterature">
-//                                    ';
-//
-//                                    echo'
-//                                    <div class="goProcessTerms goTerms">
-//
-//                                    ';
-//                                    $total_protein_litterature=0;
-//                                    foreach ($array as $lit){
-//
-//                                        $string_seq='<ul><span class="goTerm">';
-//                                        foreach ($lit as $attributes){
-//
-//
-//                                            if ($attributes[0]=='src'){
-//                                                $string_seq.='<li value='.$attributes[1].'> host protein: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='tgt') {
-//                                                $tgt=$attributes[1];
-//                                                $string_seq.='<li value='.$attributes[1].'> viral protein: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='method') {
-//                                                $string_seq.='<li value='.$attributes[1].'> method: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='pub') {
-//                                                $string_seq.='<li value='.$attributes[1].'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$attributes[1].'">'.$attributes[1].'</a></li>';
-//                                                $found=FALSE;
-//                                                foreach ($pub_list as $pub) {
-//                                                    if ($attributes[1]==$pub){
-//                                                        $found=TRUE;
-//                                                    }
-//                                                }
-//                                                if ($found==FALSE){
-//                                                    array_push($pub_list, $attributes[1]);
-//                                                }
-//                                            }
-//                                            elseif ($attributes[0]=='host_name') {
-//                                                $string_seq.='<li value='.$attributes[1].'> host name: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='virus_name') {
-//                                                $string_seq.='<li value='.$attributes[1].'> viral name: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='Accession_number') {
-//                                                $string_seq.='<li value='.$attributes[1].'> Accession number: '.$attributes[1].'</li>';
-//                                            }
-//                                            elseif ($attributes[0]=='Putative_function') {
-//                                                $string_seq.='<li value='.$attributes[1].'> Putative function: '.$attributes[1].'</li>';
-//                                            }
-//                                            else{
-//
-//                                            }
-//
-//
-//                                        }
-//                                        $string_seq.='</ul></span>';
-//                                        add_accordion_panel($string_seq, $tgt, $tgt);
-//                                        $total_protein_litterature++;
-//
-//                                    }
-//                                    //$counter++;
-//
-//
-//                                    echo'
-//                                    </div>';
-//
-//                                echo'
-//                                </div>
-//                            </div></div>';
-//                        }
-//                        else{
-//                            echo'
-//
-//
-//                            <div class="panel-group" id="accordion_documents">
-//                                <div class="panel panel-default">
-//                                    <div class="panel-heading">
-//
-//                                        <a class="accordion-toggle collapsed" href="#biogrid" data-parent="#accordion_documents" data-toggle="collapse">
-//                                            <strong> Biogrid plant/plant interaction </strong> ('.  $total_protein_biogrid.')
-//                                        </a>				
-//
-//                                    </div>
-//                                    <div class="panel-body panel-collapse collapse" id="biogrid">
-//                                    ';
-//
-//                                    echo'
-//                                    <div class="goProcessTerms goTerms">
-//
-//                                    ';
-//                                    $total_protein_biogrid=0;
-//                                    $tgt="";
-//                                    $tgt_array=array();
-//                                    foreach ($array as $biogrid){
-//                                //foreach ($biogrid as $data) {
-//
-//                                    //foreach ($array as $lit){
-//
-//                                        $string_seq='<ul><span class="goTerm">';
-//
-//                                        //foreach ($lit as $attributes){
-//
-//                                        foreach ($biogrid as $key=>$value) {
-//                                            if ($key=='src'){
-//                                                $string_seq.='<li value='.$value.'> protein A: '.$value.'</li>';
-//                                            }
-//                                            elseif ($key=='tgt') {
-//                                                $tgt=$value;
-//
-//
-//
-//                                                //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
-//                                                //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
-//                                                $string_seq.='<li value='.$value.'> protein B: '.$value.'</li>';
-//                                            }
-//                                            elseif ($key=='method') {
-//                                                $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
-//                                            }
-//                                            elseif ($key=='pub') {
-//                                                $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
-//                                                $found=FALSE;
-//                                                foreach ($pub_list as $pub) {
-//                                                    if ($value==$pub){
-//                                                        $found=TRUE;
-//                                                    }
-//                                                }
-//                                                if ($found==FALSE){
-//                                                    array_push($pub_list, $value);
-//                                                }
-//                                            }
-//                                            elseif ($key=='host A name') {
-//                                                $string_seq.='<li value='.$value.'> host name A: '.$value.'</li>';
-//                                            }
-//                                            elseif ($key=='host B name') {
-//                                                $string_seq.='<li value='.$value.'> host name B: '.$value.'</li>';
-//                                            }
-//                                            elseif ($key=='Accession_number') {
-//                                                $string_seq.='<li value='.$value.'> Authors: '.$value.'</li>';
-//                                            }
-//    //                                        elseif ($attributes[0]=='Putative_function') {
-//    //                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
-//    //                                        }
-//                                            else{
-//
-//                                            }
-//
-//
-//                                        }
-//                                        $string_seq.='</ul></span>';
-//                                        if (in_array($tgt,$tgt_array)===FALSE){
-//                                            array_push($tgt_array, $tgt);
-//                                            add_accordion_panel($string_seq, $tgt, $tgt);
-//                                            $total_protein_biogrid++;
-//                                        }
-//
-//
-//                                    }
-//
-//                                    //$counter++;
-//
-//
-//                                    echo'
-//                                    </div>';
-//
-//                                echo'
-//                                </div>
-//                            </div></div>';
-//                        }
-//                        $counter++;
-//                    }                    
+    //                $timestart=microtime(true);             
     //                $timeend=microtime(true);
     //                $time=$timeend-$timestart;
     //                //Afficher le temps d'éxecution
@@ -718,71 +293,48 @@ echo   '<div id="summary">';
     //                echo "starting script at: ".date("H:i:s", $timestart);
     //                echo "<br>Ending script at: ".date("H:i:s", $timeend);
     //                echo "<br>Script for interaction data executed in " . $page_load_time . " sec";  
-                
-                
-                
-                
-                
-                
-//               echo'<div class="physical-ltp statisticRow">
-//                        <div class="physical colorFill" style="width: 0%;"></div>
-//                        <div id="pubStats" class="right">
-//                            <strong>Publications:</strong>'.count($pub_list).'
-//                        </div>
-//                    </div>
+                load_and_display_orthologs($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+//       echo'<div id="ortholog_section">
+//            <h3>Orthologs</h3>
+//                <div class="panel-group" id="accordion_documents">
+//                    <div class="panel panel-default">
+//                        <div class="panel-heading">
+//                          
+//                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+//                                        <strong>Homologs table</strong>
+//                                </a>				
 //
-//                    </br> 
-//                </div>';
-//                
-//                
-//                
-//                
-//                
-//                
-//                
-//                
-        //$timestart=microtime(true);
-       echo'<div id="ortholog_section">
-            <h3>Orthologs</h3>
-                <div class="panel-group" id="accordion_documents">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                          
-                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Homologs table</strong>
-                                </a>				
-
-                        </div>
-                        <div class="panel-body panel-collapse collapse" id="ortho-table">
-                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
-                                <tr>';
-                                    echo "<th>gene ID</th>";
-                                    echo "<th>protein ID</th>";
-                                    echo "<th>species</th>";
-                                    echo'
-                                </tr>
-                                </thead>
-
-                                <tbody>';
-                                    //$timestart=microtime(true);
-                                    echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
-    //                                        $timeend=microtime(true);
-    //                                        $time=$timeend-$timestart;
-    //
-    //                                        //Afficher le temps d'éxecution
-    //                                        $page_load_time = number_format($time, 3);
-    //                                        echo "Debut du script: ".date("H:i:s", $timestart);
-    //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
-                           echo'</tbody>
-
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-                <div id="shift_line"></div>
-            </div>';
+//                        </div>
+//                        <div class="panel-body panel-collapse collapse" id="ortho-table">
+//                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
+//                                <tr>';
+//                                    echo "<th>gene ID</th>";
+//                                    echo "<th>protein ID</th>";
+//                                    echo "<th>species</th>";
+//                                    echo'
+//                                </tr>
+//                                </thead>
+//
+//                                <tbody>';
+//                                    //$timestart=microtime(true);
+//                                    echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+//    //                                        $timeend=microtime(true);
+//    //                                        $time=$timeend-$timestart;
+//    //
+//    //                                        //Afficher le temps d'éxecution
+//    //                                        $page_load_time = number_format($time, 3);
+//    //                                        echo "Debut du script: ".date("H:i:s", $timestart);
+//    //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//    //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+//                           echo'</tbody>
+//
+//                            </table>
+//                        </div>
+//
+//                    </div>
+//                </div>
+//                <div id="shift_line"></div>
+//            </div>';
                            
             echo'<div id="sequences">';
                 echo '<h3>Sequences</h3>';

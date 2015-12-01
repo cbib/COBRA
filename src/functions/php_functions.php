@@ -1274,8 +1274,49 @@ function load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$
     
     
 }
+function load_and_display_orthologs($mappingsCollection,$orthologsCollection,$organism,$plaza_id){
+    echo'<div id="ortholog_section">
+            <h3>Orthologs</h3>
+                <div class="panel-group" id="accordion_documents">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          
+                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong>Homologs table</strong>
+                                </a>				
 
+                        </div>
+                        <div class="panel-body panel-collapse collapse" id="ortho-table">
+                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                                <tr>';
+                                    echo "<th>gene ID</th>";
+                                    echo "<th>protein ID</th>";
+                                    echo "<th>species</th>";
+                                    echo'
+                                </tr>
+                                </thead>
 
+                                <tbody>';
+                                    //$timestart=microtime(true);
+                                    echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+    //                                        $timeend=microtime(true);
+    //                                        $time=$timeend-$timestart;
+    //
+    //                                        //Afficher le temps d'éxecution
+    //                                        $page_load_time = number_format($time, 3);
+    //                                        echo "Debut du script: ".date("H:i:s", $timestart);
+    //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+                           echo'</tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="shift_line"></div>
+            </div>';
+}
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
