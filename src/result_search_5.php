@@ -212,75 +212,67 @@ echo   '<div id="summary">';
                 
                 display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$proteins_id,$species);
        
-           echo'<div id="expression_profile">
-               
-
-                    <h3>Expression profile</h3>
-                    <div class="panel-group" id="accordion_documents_expression">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                
-                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                        <strong>  Expression data</strong>
-                                    </a>				
-                           
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="expression-chart">
-                                <div id="container" style="min-width: 310px; height: 400px;"></div>
-                            </div>
-
-                        </div>
-                    </div>';
-
                 
-                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
-
-                $counter=1;
                 $series=array();
                 $categories=array();
                 $logfc_array=array();
-                foreach ($cursor as $result) {
-                    $xp_full_name=explode(".", $result['xp']);                   
-                    $experiment_id=$xp_full_name[0];
-                    $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
-                    if (isset($result['day_after_inoculation'])){
-                        if (isset($result['variety'])){
-                           $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                            array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
-                        }
-                        else{
-                            $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
-                            array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
-                        }
-                        
-                    }
-                    else{
-                        if (isset($result['variety'])){
-                           $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                            array_push($categories, $result['species'].'/'.$result['variety']); 
-                        }
-                        else{
-                            $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
-                            array_push($categories, $result['species']);
-                        }
-                    }
-                    array_push($logfc_array, $sample);
-               
-                    $counter++;
-
-                }
-                $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
-                array_push($series, $sample);
+                display_expression_profile($measurementsCollection, $samplesCollection, $series, $categories, $logfc_array);
                 
                 
-                
-                
-                
-                
-
-                echo'<div id="shift_line"></div>'
-                
-                . '</div>';  //end div expression profile
+                //start div expression_profile
+//                echo'<div id="expression_profile">
+//                        <h3>Expression profile</h3>
+//                        <div class="panel-group" id="accordion_documents_expression">
+//                            <div class="panel panel-default">
+//                                <div class="panel-heading">
+//
+//                                        <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+//                                            <strong>  Expression data</strong>
+//                                        </a>				
+//
+//                                </div>
+//                                <div class="panel-body panel-collapse collapse" id="expression-chart">
+//                                    <div id="container" style="min-width: 310px; height: 400px;"></div>
+//                                </div>
+//
+//                            </div>
+//                        </div>';               
+//                        $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+//                        $counter=1;                       
+//                        foreach ($cursor as $result) {
+//                            $xp_full_name=explode(".", $result['xp']);                   
+//                            $experiment_id=$xp_full_name[0];
+//                            $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+//                            if (isset($result['day_after_inoculation'])){
+//                                if (isset($result['variety'])){
+//                                   $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+//                                    array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+//                                }
+//                                else{
+//                                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+//                                    array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+//                                }
+//
+//                            }
+//                            else{
+//                                if (isset($result['variety'])){
+//                                   $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+//                                    array_push($categories, $result['species'].'/'.$result['variety']); 
+//                                }
+//                                else{
+//                                    $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+//                                    array_push($categories, $result['species']);
+//                                }
+//                            }
+//                            array_push($logfc_array, $sample);
+//
+//                            $counter++;
+//
+//                        }
+//                        $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
+//                        array_push($series, $sample);
+//                        echo'<div id="shift_line"></div>'                
+//                  . '</div>';  //end div expression profile
                 
 
 
