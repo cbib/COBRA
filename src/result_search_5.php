@@ -166,7 +166,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $total_go_cellular_component=array();
         $total_go_molecular_function=array();
         load_gene_ontology_terms($GOCollection,$total_go_biological_process, $total_go_cellular_component, $total_go_molecular_function, $go_id_list);
-
+        echo count($total_go_molecular_function);
 //        if (count($go_id_list)!=0){
 //
 //            foreach ($go_id_list as $go_info){
