@@ -684,6 +684,7 @@ function load_gene_ontology_terms(MongoCollection $go_collection,array $total_go
 
             }
         }
+        return $total_go_biological_process AND $total_go_cellular_component AND $total_go_molecular_function;
 }
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
