@@ -492,7 +492,7 @@ function make_user_preferences($user,Mongocollection $us){
        
 
 }
-function is_expression_variables_set(array $categories, array $result){
+function is_expression_variables_set(array $categories, array $result, array $logfc_array){
     if (isset($result['day_after_inoculation'])){
         if (isset($result['variety'])){
            $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
@@ -514,10 +514,11 @@ function is_expression_variables_set(array $categories, array $result){
             array_push($categories, $result['species']);
         }
     }
+    array_push($logfc_array, $sample);
     return $categories;
     
 }
-function display_expression_profile(MongoCollection $measurementsCollection, MongoCollection $samplesCollection, array $series, array $categories, array $logfc_array){
+function display_expression_profile(MongoCollection $measurementsCollection, MongoCollection $samplesCollection, array $series, array $categories, array $logfc_array,array $gene_id, array $gene_id_bis, array $gene_alias){
     echo'<div id="expression_profile">
             <h3>Expression profile</h3>
             <div class="panel-group" id="accordion_documents_expression">
@@ -541,7 +542,7 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
                 $xp_full_name=explode(".", $result['xp']);                   
                 $experiment_id=$xp_full_name[0];
                 $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
-                $categories=is_expression_variables_set($categories);
+                $categories=is_expression_variables_set($categories,$result,$logfc_array);
 //                if (isset($result['day_after_inoculation'])){
 //                    if (isset($result['variety'])){
 //                       $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
@@ -563,7 +564,7 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
 //                        array_push($categories, $result['species']);
 //                    }
 //                }
-                array_push($logfc_array, $sample);
+                //array_push($logfc_array, $sample);
 
                 $counter++;
 
