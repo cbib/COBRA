@@ -216,7 +216,7 @@ echo   '<div id="summary">';
                 $series=array();
                 $categories=array();
                 $logfc_array=array();
-                display_expression_profile($measurementsCollection, $samplesCollection, $series, $categories, $logfc_array);
+                display_expression_profile($measurementsCollection, $samplesCollection, $series, $categories, $logfc_array,$gene_id,$gene_id_bis,$gene_alias);
                 
                 
                 //start div expression_profile
