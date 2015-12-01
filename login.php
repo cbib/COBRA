@@ -172,7 +172,8 @@ else{
 		
 		
 		//header('Location: ./src/search/index.php');  
-		header('Location: index.php'); 
+		//header('Location: index.php'); 
+        header('Location: ./wiki/index.php');
 
 	}
 }

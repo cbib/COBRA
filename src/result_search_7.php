@@ -213,8 +213,6 @@ echo   '<div id="summary">';
                 display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$proteins_id,$species);
        
            echo'<div id="expression_profile">
-               
-
                     <h3>Expression profile</h3>
                     <div class="panel-group" id="accordion_documents_expression">
                         <div class="panel panel-default">
@@ -231,18 +229,47 @@ echo   '<div id="summary">';
 
                         </div>
                     </div>';
-
+//                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+//                $counter=1;
+//                $series=array();
+//                $categories=array();
+//                foreach ($cursor as $result) {
+//                    $sample=array(
+//                        'name'=>'Day post inoc '.$result['day_after_inoculation'],
+//                        //'infection_agent'=>"Tobacco etch virus",
+//                        'data'=>[(float) $result['logFC']]
+//                    );
+//                    array_push($series, $sample);
+//                    array_push($categories, $result['variety']);
+//                    //echo 'experiment full name: '.$result['xp'].'<br>';
+//                    $xp_full_name=explode(".", $result['xp']);                   
+//                    $experiment_id=$xp_full_name[0];
+//                    $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+//                    $counter++;
+//
+//                }
                 
                 $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
 
+                //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
                 $counter=1;
                 $series=array();
                 $categories=array();
                 $logfc_array=array();
                 foreach ($cursor as $result) {
+                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
+                    //echo 'experiment full name: '.$result['xp'].'<br>';
+                    //echo 'variety :'.$result['variety'].'<br>';
+                    
+                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
                     $xp_full_name=explode(".", $result['xp']);                   
                     $experiment_id=$xp_full_name[0];
                     $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+                    //$xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
+                    
+                    
+                    
+                    //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
                     if (isset($result['day_after_inoculation'])){
                         if (isset($result['variety'])){
                            $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
@@ -265,7 +292,12 @@ echo   '<div id="summary">';
                         }
                     }
                     array_push($logfc_array, $sample);
-               
+                    
+                    //array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']);
+                    //array_push($categories, $counter);
+
+                    
+                    
                     $counter++;
 
                 }
@@ -277,13 +309,43 @@ echo   '<div id="summary">';
                 
                 
                 
-
+//                $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+//
+//                //$cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>'AT1G75950'),array('gene'=>'AT1G75950'))),array('_id'=>0));
+//                $counter=1;
+//                $series=array();
+//                $categories=array();
+//                $logfc_array=array();
+//                foreach ($cursor as $result) {
+//                    //echo 'counter'.$counter.' and log FC: '.$result['logFC'].'<br>';
+//                    //echo 'experiment full name: '.$result['xp'].'<br>';
+//                    //echo 'variety :'.$result['variety'].'<br>';
+//                    
+//                    //echo 'Day post inoc '.$result['day_after_inoculation'].'<br>';
+//                    $xp_full_name=explode(".", $result['xp']);                   
+//                    $experiment_id=$xp_full_name[0];
+//                    $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+//                    
+//                    
+//                    
+//                    //$sample=array('name'=>$xp_name,'data'=>array($result['logFC']));
+//                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+//                    //array_push($logfc_array, $sample);
+//                    $samples=array('name'=>$result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation'],'data'=>array($sample));
+//                    //$samples=array('name'=>$xp_name,'color'=> "#987654",'data'=>array($sample));
+//                    array_push($series, $samples);
+//                    
+//                    array_push($categories, $result['variety'].$counter);
+//                    //array_push($categories, $counter);
+//
+//                    
+//                    
+//                    $counter++;
+//
+//                }
                 echo'<div id="shift_line"></div>'
-                
-                . '</div>';  //end div expression profile
-                
-
-
+                //end div expression profile
+                . '</div>';  
                 //start div goterms
                 echo'<div id="goTerms">
                     <h3>Gene Ontology</h3>

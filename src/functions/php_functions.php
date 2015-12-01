@@ -492,6 +492,80 @@ function make_user_preferences($user,Mongocollection $us){
        
 
 }
+function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null'){
+   echo'<div id="section_description">'.$gene_id[0].'
+                    <div id="organism" class="right"><h4>'.$species.'</h4></div>';
+                echo '<h1>';
+                for ($i = 0; $i < count($gene_symbol); $i++) {
+                    if ($i==count($gene_symbol)-1){
+                        echo $gene_symbol[$i];
+                    }
+                    else{
+                        echo $gene_symbol[$i].', ';
+                    }
+                    
+                }
+                if (count($gene_symbol)==0){
+                    echo $gene_alias[0];
+                }
+                echo '</h1> ';
+                if (count($descriptions)>0){
+                    echo'<div id="aliases"> Description : ';
+                    for ($i = 0; $i < count($descriptions); $i++) {
+                        if ($i==count($descriptions)-1){
+                            echo $descriptions[$i];
+                        }
+
+                        else{
+                            echo $descriptions[$i].', ';
+                        }
+                    }
+                    echo '</div>';
+                }
+                
+                if (count($gene_alias)>0){
+                    echo'<div id="aliases"> Alias : ';
+                    for ($i = 0; $i < count($gene_alias); $i++) {
+                        if ($i==count($gene_alias)-1){
+                            echo $gene_alias[$i];
+                        }
+                        else{
+                            echo $gene_alias[$i].', ';
+                        }
+                    }
+
+                    echo '</div>';
+                }
+                if (count($proteins_id)>0){
+                    echo'<div id="protein aliases"> Protein ids : ';
+                    for ($i = 0; $i < count($proteins_id); $i++) {
+                        if ($i==count($proteins_id)-1){
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
+                            //echo $proteins_id[$i];
+                        }
+                        else{
+                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>, ';
+
+                            //echo $proteins_id[$i].', ';
+                        }
+                    }
+                    echo '</div>';
+                }
+                //$transcript_count=0;
+                
+                
+                
+                
+                
+                echo '</div>';//gene details end region 
+}
+
+
+
+
+
+
+
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
