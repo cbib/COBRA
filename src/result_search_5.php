@@ -395,7 +395,7 @@ new_cobra_footer();
     var clicked_transcript_id="";
     $(function () {
         $('#container_profile').highcharts({
-            alert ($(this).attr('data-id'));
+            //alert ($(this).attr('data-id'));
             chart: {
                 type: 'column'
             },
