@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
@@ -7,48 +7,48 @@ include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
 
 
+//define("RDFAPI_INCLUDE_DIR", "/Users/benjamindartigues/COBRA/GIT/COBRA/lib/rdfapi-php/api/");
+//include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 
 
+new_cobra_header($_SESSION['login'], "Result tabs","section_result_tabs");
 
-new_cobra_header();
-
-new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
-
+new_cobra_body($_SESSION['login'],"Multiple results Summary","section_result_tabs");
+//Instanciation de la connexion
 $db=mongoConnector();
+
+
+//Selection des collections
+$samplesCollection = new MongoCollection($db, "samples");
 $speciesCollection = new Mongocollection($db, "species");
+$mappingsCollection = new Mongocollection($db, "mappings");
+$measurementsCollection = new Mongocollection($db, "measurements");
+$virusesCollection = new Mongocollection($db, "viruses");
+$interactionsCollection = new Mongocollection($db, "interactions");
+$orthologsCollection = new Mongocollection($db, "orthologs");
+$GOCollection = new Mongocollection($db, "gene_ontology");
 
+
+
+//$speciesID=control_post(htmlspecialchars($_GET['speciesID']));
+$listID=control_post(htmlspecialchars($_GET['listID']));
+//$textID=control_post(htmlspecialchars($_GET['q']));
+// on remplace le retour charriot par <br>
+$listID = str_replace('\r\n','<br>',$listID);
+//echo $listID;
+$id_details= explode("\r\n", $listID);
 make_species_list(find_species_list($speciesCollection));
-if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
-
-
-	$organism=control_post(htmlspecialchars($_GET['organism']));
-	$search=control_post(htmlspecialchars($_GET['search']));
-	//$search=strtoupper($search);
-
-	
-
-	$grid = $db->getGridFS();
-	//Selection des collections
-	$samplesCollection = new MongoCollection($db, "samples");
-	
-	$mappingsCollection = new Mongocollection($db, "mappings");
-	$measurementsCollection = new Mongocollection($db, "measurements");
-	$virusesCollection = new Mongocollection($db, "viruses");
-	$interactionsCollection = new Mongocollection($db, "interactions");
-    $sequencesCollection = new Mongocollection($db, "sequences");
-	$orthologsCollection = new Mongocollection($db, "orthologs");
-    $GOCollection = new Mongocollection($db, "gene_ontology");
-
-	
-	//get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
-
-    //if more than one results (often the case when search by gene symbol or keywords
-
-    //put the search box again...
-   // make_species_list(find_species_list($speciesCollection));
+echo '<div id="shift_line"></div>';
+for ($c=0;$c<count($id_details);$c++){
     
     
-   
+    
+    $search=$id_details[$c];
+    $organism="All species";
+    
+    
+    if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
+
     $go_id_list=array();
     $go_grid_plaza_id_list=array();
     $go_grid_id_list=array();
@@ -173,8 +173,8 @@ echo   '<div id="summary">';
                                     </a>				
 
                             </div>
-                            <div class="panel-body panel-collapse collapse" id="expression-chart"  >
-                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
+                            <div class="panel-body panel-collapse collapse" id="expression-chart">
+                                <div id="container" style="min-width: 310px; height: 400px;"></div>
                             </div>
 
                         </div>
@@ -376,15 +376,13 @@ echo'<div class="container">
         <h2>you have uncorrectly defined your request</h2>'
   . '</div>';	
 }
+}
+
 
 
 new_cobra_footer();
 
 ?>
-
-
-
-
 
 <script type="text/javascript" class="init">
     
@@ -392,10 +390,8 @@ new_cobra_footer();
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
     var xp_name="<?php echo $xp_name[0]; ?>";
-    var clicked_transcript_id="";
     $(function () {
-        $('#container_profile').highcharts({
-            alert ($(this).attr('data-id'));
+        $('#container').highcharts({
             chart: {
                 type: 'column'
             },
@@ -580,7 +576,7 @@ new_cobra_footer();
 //				});
 //        });
 //    }
-    
+    var clicked_transcript_id="";
     function myFunction(element){
         //alert(element.getAttribute('data-id')) ;
         clicked_transcript_id = element.getAttribute('data-id');
@@ -707,9 +703,3 @@ new_cobra_footer();
 
 
 </script>
-
-
-
-
-
-
