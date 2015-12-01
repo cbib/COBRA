@@ -394,13 +394,14 @@ new_cobra_footer();
     var xp_name="<?php echo $xp_name[0]; ?>";
     var clicked_transcript_id="";
     $(function () {
+        var id= $('#container_profile').attr('data-id');
         $('#container_profile').highcharts({
             //alert ($(this).attr('data-alias'));
             chart: {
                 type: 'column'
             },
             title: {
-                text: $(this).getAttribute('data-id') + ' differential expression'
+                text: id + ' differential expression'
             },
 //            subtitle: {
 //                text: xp_name
