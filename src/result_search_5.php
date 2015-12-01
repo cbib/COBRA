@@ -188,22 +188,27 @@ echo   '<div id="summary">';
                         if (isset($result['day_after_inoculation'])){
                             if (isset($result['variety'])){
                                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                                array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                                $categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
+                                //array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
                             }
                             else{
                                 $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
-                                array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                                $categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
+                                
+                                //array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
                             }
 
                         }
                         else{
                             if (isset($result['variety'])){
                                $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                                array_push($categories, $result['species'].'/'.$result['variety']); 
+                               $categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
+                                //array_push($categories, $result['species'].'/'.$result['variety']); 
                             }
                             else{
                                 $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
-                                array_push($categories, $result['species']);
+                                $categories[$gene_id[0]]=  $result['species'];
+                                //array_push($categories, $result['species']);
                             }
                         }
                         array_push($logfc_array, $sample);
@@ -409,7 +414,7 @@ new_cobra_footer();
             xAxis: {
                 
                 //categories: ['samples']
-                categories: <?php echo json_encode($categories); ?>
+                categories: <?php echo json_encode($categories[id]); ?>
                 
                 //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
                 
