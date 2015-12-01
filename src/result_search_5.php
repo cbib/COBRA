@@ -400,7 +400,7 @@ new_cobra_footer();
                 type: 'column'
             },
             title: {
-                text: $(this).attr('data-id') + ' differential expression'
+                text: $(this).getAttribute('data-id') + ' differential expression'
             },
 //            subtitle: {
 //                text: xp_name
