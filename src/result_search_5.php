@@ -224,6 +224,7 @@ echo   '<div id="summary">';
                 
                 //start div goterms                    
                 load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
+                echo "test git branch dev";
                 //end div go_terms
                 display_external_references($proteins_id,$search,$species);
                  
