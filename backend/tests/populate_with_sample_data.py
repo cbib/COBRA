@@ -527,7 +527,7 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
 		"id_type":"CATMA_ID"
 	},
@@ -604,7 +604,7 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
 		"id_type":"CATMA_ID"
 	},
@@ -668,7 +668,7 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','R','P-VAL','logFC'],
+		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
 		"id_type":"CATMA_ID"
 	},
