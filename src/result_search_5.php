@@ -154,9 +154,7 @@ echo   '<div id="summary">';
                 display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$proteins_id,$species);
 
 
-                $series=array();
-                $categories=array();
-                $logfc_array=array();
+                
                 //display_expression_profile($measurementsCollection, $samplesCollection, $series, $categories, $logfc_array,$gene_id,$gene_id_bis,$gene_alias);
 
 
@@ -178,7 +176,10 @@ echo   '<div id="summary">';
                             </div>
 
                         </div>
-                    </div>';               
+                    </div>'; 
+                    $series=array();
+                    $categories=array();
+                    $logfc_array=array();
                     $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                     $counter=1;                       
                     foreach ($cursor as $result) {
