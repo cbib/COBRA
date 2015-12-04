@@ -186,7 +186,22 @@ echo   '<div id="summary">';
                     echo 'prot_id '.$protein_id[0];
                     echo 'gene_id_bis '.$gene_id_bis[0];
                     echo 'gene_alias '.$gene_alias[0];
-                    $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$protein_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+                    
+                    db.measurements.find(array(
+                    $and=>array(
+                        array($or=> array(
+                            array('gene'=>'PRUPE_ppa007636mg'),
+                            array('gene'=>'XP_007221017'),
+                            array('gene'=>'blabla'),
+                            array('gene'=>'blala')
+                        )),
+                        array('gene'=> array($ne=>''))
+                    )),
+                    array('_id'=>0)
+                    );
+                    
+                    
+                    //$cursor=$measurementsCollection->find(array('$and'=>array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$protein_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('gene'=>$gene_alias[0])),array('_id'=>0));
                     $counter=1;                       
                     foreach ($cursor as $result) {
                         $xp_full_name=explode(".", $result['xp']);                   
