@@ -178,6 +178,7 @@ echo   '<div id="summary">';
 
                         </div>
                     </div>'; 
+                    echo $protein_id[0];
                     $series=array();
                     $categories=array();
                     $logfc_array=array();
