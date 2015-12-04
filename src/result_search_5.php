@@ -187,10 +187,10 @@ echo   '<div id="summary">';
                     $cursor=$measurementsCollection->find(array(
                     '$and'=>array(
                         array('$or'=> array(
-                            array('gene'=>'PRUPE_ppa007636mg'),
-                            array('gene'=>'XP_007221017'),
-                            array('gene'=>'blabla'),
-                            array('gene'=>'blala')
+                            array('gene'=>$gene_id[0]),
+                            array('gene'=>$protein_id[0]),
+                            array('gene'=>$gene_id_bis[0]),
+                            array('gene'=>$gene_alias[0])
                         )),
                         array('gene'=> array('$ne'=>""))
                     )),
