@@ -36,7 +36,7 @@ tomato_samples={
 	},
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
+		"n_rows_to_skip":0,
 		"column_keys":['idx','ITAG_id','locus','Seq Description','FPKM b','FPKM a','logFC','P value','FDR','Significant'],
 		"sheet_index":0,
 		"id_type":"ITAG_id"
