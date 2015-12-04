@@ -15,7 +15,7 @@ from random import *
 import datetime
 if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
-
+samples_col.remove({"state":{"$in":["processed"]}});
 
 tomato_samples={
 	"src_pub":"PMCID: PMC3832472", # Any field from the pub, doi, pmid, first author etc. 
