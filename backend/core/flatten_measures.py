@@ -89,7 +89,7 @@ for a_sample in samples_with_results:
 						#logger.info("Tgid = %s",tgt_id)
 					
 					
-					this_doc['logFC']=measure.get("logFC",None)
+					this_doc['logFC']=int(measure.get("logFC",None))
 					#logger.info("logFC : %4.7f",measure.get("logFC",None))
 					if not this_doc['logFC']:
 						

@@ -116,6 +116,7 @@ for species in species_to_process:
 		print "nothing found"
 
 	results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
+       
 	# annotate results
 	for r in results:
 		r['description']=tgt_description[r['xp']]
