@@ -180,7 +180,7 @@ echo   '<div id="summary">';
                     $series=array();
                     $categories=array();
                     $logfc_array=array();
-                    $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
+                    $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$protein_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                     $counter=1;                       
                     foreach ($cursor as $result) {
                         $xp_full_name=explode(".", $result['xp']);                   
