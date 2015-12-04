@@ -188,14 +188,14 @@ echo   '<div id="summary">';
                     echo 'gene_alias '.$gene_alias[0];
                     
                     $cursor=$measurementsCollection->find(array(
-                    $and=>array(
-                        array($or=> array(
+                    '$and'=>array(
+                        array('$or'=> array(
                             array('gene'=>'PRUPE_ppa007636mg'),
                             array('gene'=>'XP_007221017'),
                             array('gene'=>'blabla'),
                             array('gene'=>'blala')
                         )),
-                        array('gene'=> array($ne=>'""'))
+                        array('gene'=> array('$ne'=>""))
                     )),
                     array('_id'=>0)
                     );
