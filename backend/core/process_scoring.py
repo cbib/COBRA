@@ -22,7 +22,7 @@ if "log" not in globals():
 
 logger.info("Running %s",sys.argv[0])
 
-species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
+#species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 species_to_process=species_col.find({},{"full_name":1})
 
 for species in species_to_process:
@@ -55,7 +55,7 @@ for species in species_to_process:
 
 	for genes in results['result']:
 	
-		logger.info("Result for %s - Number of genes infecte by monosporascus and surexpressed %s",species['full_name'],genes["count"])
+		logger.info("Result for %s - Number of genes infected by monosporascus and surexpressed %s",species['full_name'],genes["count"])
 
 
 	pipeline=[
@@ -88,7 +88,7 @@ for species in species_to_process:
 	#all_cmv_names=aliases_for_species_matching({"_id":find_species_doc("cmv")['_id']})
 	
 				
-	tgt_samples=samples_col.find({"species":{"$in":all_species_names},"experimental_results.conditions.infected":True})
+	tgt_samples=samples_col.find({"species":{"$in":all_species_names},"experimental_results.conditions.infected":true})
 
 	# browse the doc and gather the path of the tgt xp 
 

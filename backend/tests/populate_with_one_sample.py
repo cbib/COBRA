@@ -42,7 +42,6 @@ tomato_samples={
 		"id_type":"ITAG_id"
 	},
 	"experimental_results":[
-		
 		{
 			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/rna-seq/tomato_yellow_leaf_curl_virus/pone.0080816.s002_TMXA48.tsv",
 			"conditions":["non infected",{
@@ -56,7 +55,7 @@ tomato_samples={
 			"type":"contrast",
 			"variety":"TMXA48-4-0 (Susceptible)",
 			"day_after_inoculation":"3, 5 and 7 dpi",
-         "material":"leaf"
+                        "material":"leaf"
 			
 		},
 		{
@@ -72,7 +71,7 @@ tomato_samples={
 			"type":"contrast",
 			"variety":"CLN2777A (Resistant)",
 			"day_after_inoculation":"3, 5 and 7 dpi",
-         "material":"leaf"
+                        "material":"leaf"
 			
 		}
 	]
