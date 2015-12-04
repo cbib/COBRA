@@ -183,16 +183,16 @@ echo   '<div id="summary">';
                     $categories=array();
                     $logfc_array=array();
                     echo 'gene_id '.$gene_id[0];
-                     echo 'prot_id '.$protein_id[0];
-                      echo 'gene_id_bis '.$gene_id_bis[0];
-                       echo 'gene_alias '.$gene_alias[0];
+                    echo 'prot_id '.$protein_id[0];
+                    echo 'gene_id_bis '.$gene_id_bis[0];
+                    echo 'gene_alias '.$gene_alias[0];
                     $cursor=$measurementsCollection->find(array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$protein_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('_id'=>0));
                     $counter=1;                       
                     foreach ($cursor as $result) {
                         $xp_full_name=explode(".", $result['xp']);                   
                         $experiment_id=$xp_full_name[0];
                         $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
-                        //echo $result['logFC'].'</br>';
+                        
                         if (isset($result['day_after_inoculation'])){
                             if (isset($result['variety'])){
                                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
@@ -214,6 +214,7 @@ echo   '<div id="summary">';
                                 array_push($categories, $result['species'].'/'.$result['variety']); 
                             }
                             else{
+                                echo $result['logFC'].'</br>';
                                 $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
                                 //$categories[$gene_id[0]]=  $result['species'];
                                 array_push($categories, $result['species']);
