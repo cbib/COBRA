@@ -98,6 +98,7 @@ for species in species_to_process:
 		for i,xp in enumerate(a_sample['experimental_results']):
 			for j,condition in enumerate(xp['conditions']):
 				if "infection_agent" in condition :
+                                        logger.info("Path %s",this_path)
 					if 'contrast' in xp:
 						this_path=str(a_sample['_id'])+"."+"experimental_results."+str(i)
 						tgt_path.append(this_path)

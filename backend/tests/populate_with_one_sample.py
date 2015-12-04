@@ -18,7 +18,7 @@ if "log" not in globals():
 samples_col.remove({"state":{"$in":["processed"]}});
 
 tomato_samples={
-	"src_pub":"PMCID: PMC3832472", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"PMCID PMC3832472", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
 	"name":"Comparative Transcriptome Profiling of a Resistant vs. Susceptible Tomato (Solanum lycopersicum) Cultivar in Response to Infection by Tomato Yellow Leaf Curl Virus",
 	"state":"processed",
