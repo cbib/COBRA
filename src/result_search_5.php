@@ -187,7 +187,7 @@ echo   '<div id="summary">';
                     echo 'gene_id_bis '.$gene_id_bis[0];
                     echo 'gene_alias '.$gene_alias[0];
                     
-                    db.measurements.find(array(
+                    $cursor=$measurementsCollection->find(array(
                     $and=>array(
                         array($or=> array(
                             array('gene'=>'PRUPE_ppa007636mg'),
