@@ -214,7 +214,7 @@ echo   '<div id="summary">';
                                 array_push($categories, $result['species'].'/'.$result['variety']); 
                             }
                             else{
-                                echo $result['logFC'].'-'.$result['gene'].'</br>';
+                                echo $result['logFC'].'-'.$result['type'].'</br>';
                                 $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
                                 //$categories[$gene_id[0]]=  $result['species'];
                                 array_push($categories, $result['species']);
