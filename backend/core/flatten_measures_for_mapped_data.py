@@ -80,7 +80,7 @@ for a_sample in samples_with_results:
                         this_doc['species']=this_genome['full_name']
 
 
-                        this_doc['logFC']=int(measure.get("logFC",None))
+                        this_doc['logFC']=float(measure.get("logFC",None))
                         if not this_doc['logFC']:
 
                             try:
