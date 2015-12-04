@@ -58,7 +58,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $transcript_id=array();
     $gene_symbol=array();
     $descriptions=array();
-    $proteins_id=array();
+    $uniprot_id=array();
+    $protein_id=array();
     $plaza_ids=array();
     $est_id=array();
     $go_duo_list=array();
@@ -100,12 +101,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 }
 
             }
-            if (in_array($result['mapping_file']['Uniprot ID'],$proteins_id)==FALSE){
-                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
+            if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){
+                array_push($uniprot_id,$result['mapping_file']['Uniprot ID']);
             }
-//            if (in_array($result['mapping_file']['Protein ID'],$proteins_id)==FALSE){
-//                array_push($proteins_id,$result['mapping_file']['Uniprot ID']);
-//            }
+            if (in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE){
+                array_push($protein_id,$result['mapping_file']['Protein ID']);
+            }
             if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
 
                 array_push($descriptions,$result['mapping_file']['Description']);
@@ -151,7 +152,7 @@ echo   '<div id="summary">';
       
       echo '<div id="protein-details">';
                 
-                display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$proteins_id,$species);
+                display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species);
 
 
                 
@@ -226,7 +227,7 @@ echo   '<div id="summary">';
                 //start div goterms                    
                 load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
                 //end div go_terms
-                display_external_references($proteins_id,$search,$species);
+                display_external_references($uniprot_id,$search,$species);
                  
             
       echo '</div>';
@@ -234,7 +235,7 @@ echo   '<div id="summary">';
       // 
       //start right side div
       echo '<div id="stat-details">';
-                load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
+                load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$interactionsCollection);
 
                 load_and_display_orthologs($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
 
