@@ -41,7 +41,7 @@ for a_sample in samples_to_process:
                 src_file= data_dir+a_result['data_file']
                 fileName, fileExtension = os.path.splitext(src_file)
                 if fileExtension!='.xls' and fileExtension!='.xlsx':
-                    parsed_data = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'],parser_config['id_type'])
+                    parsed_data = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['id_type'])
 
                 else:
                     parsed_data = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'],parser_config['id_type'])
