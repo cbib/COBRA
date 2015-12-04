@@ -36,14 +36,14 @@ tomato_samples={
 	},
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":0,
+		"n_rows_to_skip":1,
 		"column_keys":['idx','ITAG_id','locus','Seq Description','FPKM b','FPKM a','logFC','P value','FDR','Significant'],
 		"sheet_index":0,
 		"id_type":"ITAG_id"
 	},
 	"experimental_results":[
 		{
-			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/rna-seq/tomato_yellow_leaf_curl_virus/pone.0080816.s002_TMXA48.tsv",
+			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/rna-seq/tomato_yellow_leaf_curl_virus/pone.0080816.s002_TMXA48.xlsx",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Tomato yellow leaf curl virus",
@@ -59,7 +59,7 @@ tomato_samples={
 			
 		},
 		{
-			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/rna-seq/tomato_yellow_leaf_curl_virus/pone.0080816.s002_CLN2777A.tsv",
+			"data_file":"Solanum/solanum_lycopersicum/transcriptomics/rna-seq/tomato_yellow_leaf_curl_virus/pone.0080816.s002_CLN2777A.xlsx",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Tomato yellow leaf curl virus",
