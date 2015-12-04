@@ -154,7 +154,7 @@ melo_samples={
 			"type":"contrast",
 			"variety":"PS",
 			"day_after_inoculation":1,
-         "material":"undefined"
+                        "material":"undefined"
 		},
 		{
 			"data_file":"Cucumis/cucumis_melo/transcriptomics/micro_array/monosporascus_cannonballus/condition1/1471-2164-13-601-s2.xls",
@@ -764,6 +764,9 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 		"data_file":"Prunus/prunus_domestica/transcriptomics/rna-seq/plum_pox_virus/journal.pone.0100477.s004.xls",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"Prunus jojo",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"ppv","label":"infected with PPV"}
@@ -773,6 +776,9 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 		"data_file":"Prunus/prunus_domestica/transcriptomics/rna-seq/plum_pox_virus/journal.pone.0100477.s005.xls",
 		"description":"Differentially expressed unigenes found in PRGdb",
 		"type":"contrast",
+                "variety":"Prunus jojo",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"ppv","label":"infected with PPV"}
@@ -824,6 +830,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/RNASeq_summary_short.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -851,6 +860,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -878,6 +890,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -905,6 +920,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -932,6 +950,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -960,6 +981,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -988,6 +1012,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1015,6 +1042,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1042,6 +1072,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1069,6 +1102,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1097,6 +1133,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1125,6 +1164,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1153,6 +1195,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
@@ -1180,6 +1225,9 @@ barley_samples={
 		"data_file":"Hordeum/hordeum_vulgare/transcriptomics/rna-seq/barley_yellow_dwarf_virus/Resistenzgene_die_hier.xlsx",
 		"description":"Differentially expressed unigenes",
 		"type":"contrast",
+                "variety":"NA",
+		"day_after_inoculation":"NA",
+                "material":"NA",
 		"conditions":[
 			"non-infected",
 			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}

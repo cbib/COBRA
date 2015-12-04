@@ -207,3 +207,19 @@ sbwmv={
 	
 }
 viruses_col.insert(sbwmv)
+
+tylcv={
+	"full_name":"Tomato yellow leaf curl virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Tomato_yellow_leaf_curl_virus",
+	"aliases":['tylcv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group II",
+		"order":"Unassigned",
+		"family":"Geminiviridae",
+		"genus":"Begomovirus",
+		"species":"Tomato yellow leaf curl virus",
+	}
+	
+}
+viruses_col.insert(tylcv)
