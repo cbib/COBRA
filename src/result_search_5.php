@@ -182,10 +182,7 @@ echo   '<div id="summary">';
                     $series=array();
                     $categories=array();
                     $logfc_array=array();
-                    echo 'gene_id '.$gene_id[0];
-                    echo 'prot_id '.$protein_id[0];
-                    echo 'gene_id_bis '.$gene_id_bis[0];
-                    echo 'gene_alias '.$gene_alias[0];
+                    
                     
                     $cursor=$measurementsCollection->find(array(
                     '$and'=>array(
@@ -229,7 +226,6 @@ echo   '<div id="summary">';
                                 array_push($categories, $result['species'].'/'.$result['variety']); 
                             }
                             else{
-                                echo $result['logFC'].'-'.$result['type'].'</br>';
                                 $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
                                 //$categories[$gene_id[0]]=  $result['species'];
                                 array_push($categories, $result['species']);
