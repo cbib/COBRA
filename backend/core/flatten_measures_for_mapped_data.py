@@ -65,7 +65,6 @@ for a_sample in samples_with_results:
 		for measure in experimental_results['values']:
 			#logger.info("new measure %s",measure[id_col])
 
-                for tgt_id in robust_id_mapping(measure[id_col],this_mapping):
                     this_doc={"xp":this_path}
                     if experimental_results['type']=="contrast":
                         this_doc['type']="contrast"
