@@ -178,7 +178,7 @@ echo   '<div id="summary">';
 
                         </div>
                     </div>'; 
-                    echo $protein_id[0];
+                    
                     $series=array();
                     $categories=array();
                     $logfc_array=array();
@@ -188,6 +188,7 @@ echo   '<div id="summary">';
                         $xp_full_name=explode(".", $result['xp']);                   
                         $experiment_id=$xp_full_name[0];
                         $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+                        echo $xp_name.'and'.$result['logFC'];
                         if (isset($result['day_after_inoculation'])){
                             if (isset($result['variety'])){
                                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
