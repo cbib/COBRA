@@ -66,48 +66,48 @@ for a_sample in samples_with_results:
 			#logger.info("new measure %s",measure[id_col])
 
                 for tgt_id in robust_id_mapping(measure[id_col],this_mapping):
-                        this_doc={"xp":this_path}
-                        if experimental_results['type']=="contrast":
-                                this_doc['type']="contrast"
-                                this_doc['gene']=measure[id_col]
-                                this_doc['infection_agent']=infection_agent
-                                if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
-                                    this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
-                                if experimental_results['variety']!="" and experimental_results['variety']!="NA":
-                                    this_doc['variety']=experimental_results['variety']
-                                if experimental_results['material']!="" and experimental_results['material']!="NA":
-                                    this_doc['material']=experimental_results['material']
+                    this_doc={"xp":this_path}
+                    if experimental_results['type']=="contrast":
+                        this_doc['type']="contrast"
+                        this_doc['gene']=measure[id_col]
+                        this_doc['infection_agent']=infection_agent
+                        if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
+                            this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
+                        if experimental_results['variety']!="" and experimental_results['variety']!="NA":
+                            this_doc['variety']=experimental_results['variety']
+                        if experimental_results['material']!="" and experimental_results['material']!="NA":
+                            this_doc['material']=experimental_results['material']
 
-                                this_doc['species']=this_genome['full_name']
-                                
+                        this_doc['species']=this_genome['full_name']
 
-                                this_doc['logFC']=measure.get("logFC",None)
-                                if not this_doc['logFC']:
 
-                                        try:
-                                                this_doc['logFC']=log(measure.get("fold_change",None),2)
-                                        except TypeError:
-                                                logger.critical("Error calculating logFC")
-                                                continue
-                                elif this_doc['logFC']=="NA":
-                                        logger.critical("Error calculating logFC")
-                                        continue
-                                else:	
+                        this_doc['logFC']=measure.get("logFC",None)
+                        if not this_doc['logFC']:
 
-                                        this_doc['FDR']=measure.get("FDR",None)
-                                this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
-                                measurements_to_insert.insert(this_doc)
-                                n_op+=1
-                        else:
-                                logger.critical("Experiment type %s not handled yet",experimental_results['type'])
+                            try:
+                                this_doc['logFC']=log(measure.get("fold_change",None),2)
+                            except TypeError:
+                                logger.critical("Error calculating logFC")
                                 continue
-                        #measurements_to_insert.insert(this_doc)
-                        #n_op+=1
-                        if n_op>=10000:
-                                res=measurements_to_insert.execute()
-                                logger.info("Inserted %s documents",res)
-                                measurements_to_insert=measurements_col.initialize_unordered_bulk_op()
-                                n_op=0
+                        elif this_doc['logFC']=="NA":
+                            logger.critical("Error calculating logFC")
+                            continue
+                        else:	
+
+                            this_doc['FDR']=measure.get("FDR",None)
+                        this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+                        measurements_to_insert.insert(this_doc)
+                        n_op+=1
+                    else:
+                        logger.critical("Experiment type %s not handled yet",experimental_results['type'])
+                        continue
+                    #measurements_to_insert.insert(this_doc)
+                    #n_op+=1
+                    if n_op>=10000:
+                        res=measurements_to_insert.execute()
+                        logger.info("Inserted %s documents",res)
+                        measurements_to_insert=measurements_col.initialize_unordered_bulk_op()
+                        n_op=0
 if n_op>0:
 	res=measurements_to_insert.execute()
 	logger.info("Inserted %s documents",res)
