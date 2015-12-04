@@ -195,7 +195,7 @@ echo   '<div id="summary">';
                             array('gene'=>'blabla'),
                             array('gene'=>'blala')
                         )),
-                        array('gene'=> array($ne=>''))
+                        array('gene'=> array($ne=>'""'))
                     )),
                     array('_id'=>0)
                     );
