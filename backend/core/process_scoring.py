@@ -88,7 +88,7 @@ for species in species_to_process:
 	#all_cmv_names=aliases_for_species_matching({"_id":find_species_doc("cmv")['_id']})
 	
 				
-	tgt_samples=samples_col.find({"species":{"$in":all_species_names},"experimental_results.conditions.infected":"true"})
+	tgt_samples=samples_col.find({"species":{"$in":all_species_names},"experimental_results.conditions.infected":True})
 
 	# browse the doc and gather the path of the tgt xp 
 
