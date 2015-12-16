@@ -77,7 +77,7 @@ for a_sample in samples_with_results:
 					this_doc['infection_agent']=infection_agent
 					this_doc['gene_original_id']=measure[id_col]
                                         if assay['type']=="micro-array":
-                                        if not 
+                                        
                                             if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
                                                 this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
                                             if experimental_results['variety']!="" and experimental_results['variety']!="NA":
