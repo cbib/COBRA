@@ -87,8 +87,8 @@ for a_sample in samples_with_results:
 
 					this_doc['species']=this_genome['full_name']
 					#logger.info("Tgid = %s",tgt_id)
-					if this_genome['full_name']=='Hordeum vulgare':
-                                                logger.info("Tgid = %s name %s",tgt_id,name)
+					#if this_genome['full_name']=='Hordeum vulgare':
+                                        logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
 					
 					this_doc['logFC']=int(measure.get("logFC",None))
