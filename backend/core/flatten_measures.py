@@ -91,7 +91,7 @@ for a_sample in samples_with_results:
                                         logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
 					if measure.get("logFC",None)!=None and measure.get("logFC",None)!="NA":
-                                            this_doc['logFC']=int(measure.get("logFC",None))
+                                            this_doc['logFC']=float(measure.get("logFC",None))
                                         else:
                                             this_doc['logFC']=measure.get("logFC",None)
 					#logger.info("logFC : %4.7f",measure.get("logFC",None))
