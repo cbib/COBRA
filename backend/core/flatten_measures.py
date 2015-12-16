@@ -90,7 +90,7 @@ for a_sample in samples_with_results:
 					#if this_genome['full_name']=='Hordeum vulgare':
                                         logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
-					if measure.get("logFC",None)!=None:
+					if measure.get("logFC",None)!=None and measure.get("logFC",None)!="NA":
                                             this_doc['logFC']=int(measure.get("logFC",None))
                                         else:
                                             this_doc['logFC']=measure.get("logFC",None)
@@ -99,6 +99,10 @@ for a_sample in samples_with_results:
 						
 						try:
 							this_doc['logFC']=log(measure.get("fold_change",None),2)
+                                                        this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+					
+                                                        measurements_to_insert.insert(this_doc)
+                                                        n_op+=1
 						except TypeError:
 							logger.critical("Error calculating logFC")
 							continue
@@ -108,9 +112,10 @@ for a_sample in samples_with_results:
 					else:	
 						
 						this_doc['FDR']=measure.get("FDR",None)
-					this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
-					measurements_to_insert.insert(this_doc)
-					n_op+=1
+                                                this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+					
+                                                measurements_to_insert.insert(this_doc)
+                                                n_op+=1
 				else:
 					logger.critical("Experiment type %s not handled yet",experimental_results['type'])
 					continue
