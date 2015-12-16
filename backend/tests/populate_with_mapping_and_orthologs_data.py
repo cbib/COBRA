@@ -402,9 +402,33 @@ mapping_table={
 	}
 }
 mappings_col.insert(mapping_table)
-# Est_to_gene - Morex_Contig to protein_id
+
+# Est_to_gene - Morex_Contig to transcript_id
+mapping_table={
+	"data_file":"mappings/Barlex_HC_LC_gene1.tsv",
+	"species":"Hordeum vulgare",
+	"type":"est_to_gene",
+	"src":"Morex_Contig",
+	"src_version":"",
+	"tgt":"transcript id",
+	"tgt_version":"",
+	"description":"none",
+	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
+	"doi":"10.1186/1471-2164-13-601-s7",
+	"key":"morex_contig_id_to_barleyHC_id",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','transcript id','Morex_Contig','FPC','BAC','Cluster ID','MorexChromosome','Morex Contig cM','BAC Contig','Confidence','FunctionalAnnotation'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+# Est_to_gene - Morex_Contig to transcript_id
 #mapping_table={
-#	"data_file":"mappings/barlex_LC_gene.tsv",
+#	"data_file":"mappings/barlex_LC_gene2.tsv",
 #	"species":"Hordeum vulgare",
 #	"type":"est_to_gene",
 #	"confidence level":"LC",
