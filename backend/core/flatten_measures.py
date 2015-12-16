@@ -90,7 +90,7 @@ for a_sample in samples_with_results:
 					#if this_genome['full_name']=='Hordeum vulgare':
                                         logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
-					if measure.get("logFC",None)!="None":
+					if measure.get("logFC",None)!=None:
                                             this_doc['logFC']=int(measure.get("logFC",None))
 					#logger.info("logFC : %4.7f",measure.get("logFC",None))
 					if not this_doc['logFC']:
