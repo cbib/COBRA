@@ -188,6 +188,7 @@ echo   '<div id="summary">';
                     '$and'=>array(
                         array('$or'=> array(
                             array('gene'=>$gene_id[0]),
+                            array('gene'=>$transcript_id[0]),
                             array('gene'=>$protein_id[0]),
                             array('gene'=>$gene_id_bis[0]),
                             array('gene'=>$gene_alias[0])
