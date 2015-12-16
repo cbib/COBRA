@@ -382,7 +382,7 @@ mappings_col.insert(mapping_table)
 
 # Est_to_gene - Morex_Contig to protein_id
 mapping_table={
-	"data_file":"mappings/Barlex_HC_LC_gene.tsv",
+	"data_file":"mappings/Barlex_HC_LC_gene1.tsv",
 	"species":"Hordeum vulgare",
 	"type":"est_to_gene",
 	"src":"Morex_Contig",
@@ -405,7 +405,7 @@ mappings_col.insert(mapping_table)
 
 # Est_to_gene - Morex_Contig to transcript_id
 mapping_table={
-	"data_file":"mappings/Barlex_HC_LC_gene1.tsv",
+	"data_file":"mappings/Barlex_HC_LC_gene2.tsv",
 	"species":"Hordeum vulgare",
 	"type":"est_to_gene",
 	"src":"Morex_Contig",
