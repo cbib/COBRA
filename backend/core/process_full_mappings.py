@@ -66,3 +66,11 @@ for map_doc in mappings_to_process:
 		             #update({"_id":map_doc['_id']},{"$push":{"mapping_file":{"species":species['species'],"file":fp.data_file}}})
 		# Close opened file
 		file.close()	
+
+
+
+
+logger.info("Indexation on field \"mapping_file.Plaza ID\", \"mapping_file.Gene ID\", \"mapping_file.Transcript ID\" from collection \"mappings\"")
+mappings_col.create_index("mapping_file.Plaza ID",sparse=True,background=True)
+mappings_col.create_index("mapping_file.Gene ID",sparse=True,background=True)
+mappings_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)

@@ -65,7 +65,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     
     
-
+    //ini_get('date.timezone');
+    date_default_timezone_set("Europe/Paris");
     $json = json_decode(file_get_contents($result_file.'_1.json'), true);
     
     //Here add code to populate jobs Mongo collection,
