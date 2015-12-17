@@ -24,7 +24,7 @@ logger.info("Running %s",sys.argv[0])
 
 #species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 species_to_process=species_col.find({},{"full_name":1})
-new_results={}
+new_results=[]
 for species in species_to_process:
         mappings_col.update({"type":"full_table","species":"species"},{"$set": {"mapping_file.Score": 0 } })
 
@@ -156,9 +156,11 @@ for species in species_to_process:
         
         #new_results[species]=gene_set
 	#cursor_to_table(gene_set)
-
-
-        for gene in gene_set:
-            print gene
+        tmp_array=[]
+        tmp_array.append(species)
+        tmp_array.append(gene_set)
+        new_results.append(tmp_array)
+        for array in new_results:
+            print array[0]
         #cursor_to_table(results)			
 				
