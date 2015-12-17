@@ -24,7 +24,7 @@ logger.info("Running %s",sys.argv[0])
 
 #species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
 species_to_process=species_col.find({},{"full_name":1})
-
+new_results={}
 for species in species_to_process:
         mappings_col.update({"type":"full_table","species":"species"},{"$set": {"mapping_file.Score": 0 } })
 
@@ -125,6 +125,7 @@ for species in species_to_process:
         # annotate results
         
         gene_set=[]
+        
 	for r in results:
                 
                 #tmp_results=list(
