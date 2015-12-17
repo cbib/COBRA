@@ -26,7 +26,7 @@ logger.info("Running %s",sys.argv[0])
 species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 for species in species_to_process:
-        mappings_col.update({"type":"full_table","species":"species"},{"$set": {"mapping_file.Score": 0 } })
+        
 
 	#logger.info("species %s",species['species'])
 	pipeline= [
@@ -142,13 +142,14 @@ for species in species_to_process:
                 #tmp_results=list(mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$':1}))
                 #cursor_to_table(tmp_results)
                 #logger.info("gene id %s",r['gene'])
-                if species['full_name']== "Hordeum vulgare":
-                    logger.info("gene id %s for species %s",r['gene'],species)
-
-                    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                else:
-                    logger.info("gene id %s for species %s",r['gene'],species)
-                    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                
+                #if species['full_name']== "Hordeum vulgare":
+                #    logger.info("gene id %s for species %s",r['gene'],species)
+                #    mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
+                #    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                #else:
+                #    logger.info("gene id %s for species %s",r['gene'],species)
+                #    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 
                 
                 
@@ -162,5 +163,5 @@ for species in species_to_process:
         #new_results.append(tmp_array)
         #for array in new_results:
         #    print array[0]
-        #cursor_to_table(results)			
+        cursor_to_table(results)			
 				
