@@ -117,8 +117,13 @@ for species in species_to_process:
 
 	results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
        
-	# annotate results
+	
+
+
+        # annotate results
 	for r in results:
+                #mappings_col.update({"type":"full_table","mapping_file.},{"$set":{"mapping_file":sheet_values}})
+                logger.info("gene id %s",r['gene'])
 		r['description']=tgt_description[r['xp']]
-	cursor_to_table(results)			
+	#cursor_to_table(results)			
 				
