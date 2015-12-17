@@ -141,7 +141,7 @@ for species in species_to_process:
                 gene_set.append(r['gene'])
                 #tmp_results=list(mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$':1}))
                 #cursor_to_table(tmp_results)
-                logger.info("gene id %s",r['gene'])
+                #logger.info("gene id %s",r['gene'])
                 #if species== "Hordeum vulgare":
                 #    logger.info("gene id %s for species %s",r['gene'],species)
 
@@ -153,6 +153,8 @@ for species in species_to_process:
                 
                 
 		r['description']=tgt_description[r['xp']]
-        new_results[species]=gene_set
-	cursor_to_table(results)			
+        
+        #new_results[species]=gene_set
+	cursor_to_table(gene_set)
+        #cursor_to_table(results)			
 				
