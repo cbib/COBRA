@@ -155,6 +155,10 @@ for species in species_to_process:
 		r['description']=tgt_description[r['xp']]
         
         #new_results[species]=gene_set
-	cursor_to_table(gene_set)
+	#cursor_to_table(gene_set)
+
+
+        for gene in gene_set:
+            print gene
         #cursor_to_table(results)			
 				
