@@ -138,17 +138,17 @@ for species in species_to_process:
                        #                         )
                         #        )
                 #logger.info("gene id %s",r['gene'])
-                gene_set.append(r['gene'])
+                #gene_set.append(r['gene'])
                 #tmp_results=list(mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$':1}))
                 #cursor_to_table(tmp_results)
                 #logger.info("gene id %s",r['gene'])
-                #if species['full_name']== "Hordeum vulgare":
-                #    logger.info("gene id %s for species %s",r['gene'],species)
+                if species['full_name']== "Hordeum vulgare":
+                    logger.info("gene id %s for species %s",r['gene'],species)
 
-                #    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                #else:
-                #    logger.info("gene id %s for species %s",r['gene'],species)
-                #    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                else:
+                    logger.info("gene id %s for species %s",r['gene'],species)
+                    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 
                 
                 
@@ -156,11 +156,11 @@ for species in species_to_process:
         
         #new_results[species]=gene_set
 	#cursor_to_table(gene_set)
-        tmp_array=[]
-        tmp_array.append(species['full_name'])
-        tmp_array.append(gene_set)
-        new_results.append(tmp_array)
-        for array in new_results:
-            print array[0]
+        #tmp_array=[]
+        #tmp_array.append(species['full_name'])
+        #tmp_array.append(gene_set)
+        #new_results.append(tmp_array)
+        #for array in new_results:
+        #    print array[0]
         #cursor_to_table(results)			
 				
