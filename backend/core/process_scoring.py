@@ -122,8 +122,12 @@ for species in species_to_process:
 
         # annotate results
 	for r in results:
-                #mappings_col.update({"type":"full_table","mapping_file.},{"$set":{"mapping_file":sheet_values}})
-                logger.info("gene id %s",r['gene'])
+                tmp_results=list(mappings_col.find({"type":"full_table",{$or:{{"mapping_file.Gene Id":r['gene']},{"mapping_file.Transcript Id":r['gene']}},{"_id":0}))
+                cursor_to_table(tmp_results)
+                #mappings_col.update({"type":"full_table",{$or:{{"mapping_file.Gene ID:r['gene']},{"mapping_file.Transcript ID:r['gene']}},{"$set":{"mapping_file.score":}})
+
+                #logger.info("gene id %s",r['gene'])
+                
 		r['description']=tgt_description[r['xp']]
 	#cursor_to_table(results)			
 				
