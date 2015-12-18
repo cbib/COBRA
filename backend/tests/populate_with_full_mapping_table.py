@@ -46,7 +46,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }
@@ -71,8 +71,8 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Uniprot ID','Description','Plaza ID','Gene ontology ID'],
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Uniprot ID','Description','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }
@@ -99,7 +99,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene name','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene name','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }
@@ -126,7 +126,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }
@@ -147,7 +147,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID'],
+		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }
@@ -171,8 +171,8 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score'],
 		"sheet_index":0,
 	}
 }
@@ -191,8 +191,8 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol'],
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score'],
 		"sheet_index":0,
 	}
 }
