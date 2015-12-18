@@ -137,7 +137,7 @@ for species in species_to_process:
                       #                          {'_id':0}
                        #                         )
                         #        )
-                #logger.info("gene id %s",r['gene'])
+                logger.info("gene id %s",r['gene'])
                 #gene_set.append(r['gene'])
                 #tmp_results=list(mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$':1}))
                 #cursor_to_table(tmp_results)
