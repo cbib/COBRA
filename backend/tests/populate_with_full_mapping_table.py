@@ -22,8 +22,7 @@ mappings_col.remove({"type":{"$in":["full_table"]}});
 
 #orthologs_col.drop()
 #interactions_col.drop()
-#for grid_out in fs.find({}, timeout=False):
-	
+#for grid_out in fs.find({}, timeout=False):	
 #	fs.delete(grid_out._id)
 
 
