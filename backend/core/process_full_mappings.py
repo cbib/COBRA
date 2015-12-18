@@ -44,7 +44,7 @@ for map_doc in mappings_to_process:
 	
 	fileName, fileExtension = os.path.splitext(src_file)
 	if fileExtension!='.xls' and fileExtension!='.xlsx':
-		sheet_values = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+		sheet_values = parse_full_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
 
 	else:
 		sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
