@@ -22,9 +22,9 @@ mappings_col.remove({"type":{"$in":["full_table"]}});
 
 #orthologs_col.drop()
 #interactions_col.drop()
-for grid_out in fs.find({}, timeout=False):
+#for grid_out in fs.find({}, timeout=False):
 	
-	fs.delete(grid_out._id)
+#	fs.delete(grid_out._id)
 
 
 
@@ -34,7 +34,26 @@ for grid_out in fs.find({}, timeout=False):
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/prunus_full_table.tsv",
+	"data_file":"mappings/prunus_full_table_1.tsv",
+	"species":"Prunus persica",
+	"type":"full_table",
+	"src":"PROBE_ID",
+	"src_version":"NCBI",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINIDALT1/PROTEINIDALT2/UNIPROTID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/prunus_full_table_2.tsv",
 	"species":"Prunus persica",
 	"type":"full_table",
 	"src":"PROBE_ID",
