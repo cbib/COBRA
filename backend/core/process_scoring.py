@@ -27,7 +27,7 @@ species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 for species in species_to_process:
         
-
+        
 	#logger.info("species %s",species['species'])
 	pipeline= [
 		{'$match' : {'species':species['full_name'], }}, 
@@ -141,10 +141,12 @@ for species in species_to_process:
                 if species['full_name']== "Hordeum vulgare":
                 #    logger.info("gene id %s for species %s",r['gene'],species)
                 #    mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
-                    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                    #mappings_col.update({"species":species['full_name']},{"$set": {"mapping_file.Score": 0 } })
+                    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": -2 } })
                 else:
                 #    logger.info("gene id %s for species %s",r['gene'],species)
-                    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
+                    mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
+                    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": -2 } })
                 
                 
                 
