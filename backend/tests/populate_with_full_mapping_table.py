@@ -22,8 +22,8 @@ mappings_col.remove({"type":{"$in":["full_table"]}});
 
 #orthologs_col.drop()
 #interactions_col.drop()
-#for grid_out in fs.find({}, timeout=False):	
-#	fs.delete(grid_out._id)
+for grid_out in fs.find({}, timeout=False):	
+	fs.delete(grid_out._id)
 
 
 
@@ -116,7 +116,7 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
+		"n_rows_to_skip":0,
 		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene name','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
