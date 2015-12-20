@@ -1,5 +1,5 @@
 <?php
-define('PATH', $_SERVER['DOCUMENT_ROOT']);
+
 function new_cobra_header(){
 echo'
 <!DOCTYPE html>
