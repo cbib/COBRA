@@ -60,31 +60,26 @@ for species in species_to_process:
 		logger.info("Result for %s - Number of genes infected by monosporascus and surexpressed %s",species['full_name'],genes["count"])
 
 
-	pipeline=[
-		{'$match' : {'experimental_results.conditions.infected':True,'species':species['full_name']}},     
-		{'$unwind':'$experimental_results'},      
-		{'$project' : {'experimental_results.data_file':1,'experimental_results.values':1,'experimental_results.conditions':1,'_id':0}},     
-		{'$unwind':'$experimental_results.conditions'},        
-		{'$project':{'experimental_results.values.logFC':1,'experimental_results.data_file':1,'infection_agent':'$experimental_results.conditions.infection_agent'}},     
-		{'$unwind':'$experimental_results.values'},     
-		{'$match':{'experimental_results.values.logFC': {'$gt': 0.05}}},     
-		{'$project':{'experimental_results.values.logFC':1,'experimental_results.name':1,'infection_agent':'$experimental_results.conditions.infection_agent'}}
-	]
+	#pipeline=[
+	#	{'$match' : {'experimental_results.conditions.infected':True,'species':species['full_name']}},     
+	#	{'$unwind':'$experimental_results'},      
+	#	{'$project' : {'experimental_results.data_file':1,'experimental_results.values':1,'experimental_results.conditions':1,'_id':0}},     
+	#	{'$unwind':'$experimental_results.conditions'},        
+	#	{'$project':{'experimental_results.values.logFC':1,'experimental_results.data_file':1,'infection_agent':'$experimental_results.conditions.infection_agent'}},     
+	#	{'$unwind':'$experimental_results.values'},     
+	#	{'$match':{'experimental_results.values.logFC': {'$gt': 0.05}}},     
+	#	{'$project':{'experimental_results.values.logFC':1,'experimental_results.name':1,'infection_agent':'$experimental_results.conditions.infection_agent'}}
+	#]
 	
-	results=samples_col.aggregate(pipeline)
-	#cursor_to_table(samples_col.aggregate(pipeline))
+	#results=samples_col.aggregate(pipeline)
+	
+
+        #cursor_to_table(samples_col.aggregate(pipeline))
 	
 	#cursor_to_table(samples_col.find({"species":species['full_name']},{"experimental_results.variety":1}))
 	#cursor_to_table(results)
 	
 	
-	#for key_one in results['result']:
-	#	for key_two in key_one['experimental_results']:
-	#		for key_three in key_two:
-	#			print key_three
-			#logger.info("Result for %s - Number of genes %s",species['full_name'],key_two)
-			#for key_three in key_two:
-			#	logger.info("Result for %s - Number of genes %s",species['full_name'],key_three)
 	
 	all_species_names=aliases_for_species_matching({"_id":find_species_doc(species['full_name'])['_id']})
 	#all_cmv_names=aliases_for_species_matching({"_id":find_species_doc("cmv")['_id']})
