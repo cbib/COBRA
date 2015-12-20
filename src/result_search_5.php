@@ -5,7 +5,7 @@ include './functions/php_functions.php';
 include './functions/mongo_functions.php';
 include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
-define('PATH', $_SERVER['DOCUMENT_ROOT']);
+
 
 
 

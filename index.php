@@ -12,7 +12,7 @@ require('src/functions/php_functions.php');
 require('src/functions/mongo_functions.php');
 require('src/session/control-session.php');
 
-
+define('PATH', $_SERVER['DOCUMENT_ROOT']);
 $_SESSION['maintenance'] = "no"; 
 require('src/session/maintenance-session.php');
 
