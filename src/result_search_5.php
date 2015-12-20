@@ -5,8 +5,7 @@ include './functions/php_functions.php';
 include './functions/mongo_functions.php';
 include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
-
-
+define('PATH', $_SERVER['DOCUMENT_ROOT']);
 
 
 
@@ -16,7 +15,7 @@ new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
-
+echo 'directory: '.PATH;
 make_species_list(find_species_list($speciesCollection));
 if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
 
