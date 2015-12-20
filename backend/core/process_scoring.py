@@ -142,11 +142,11 @@ for species in species_to_process:
                 #    logger.info("gene id %s for species %s",r['gene'],species)
                 #    mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
                     #mappings_col.update({"species":species['full_name']},{"$set": {"mapping_file.Score": 0 } })
-                    mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": -2 } })
+                    #mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 else:
                 #    logger.info("gene id %s for species %s",r['gene'],species)
-                    mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
-                    mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": -2 } })
+                    #mappings_col.update({"species":"species"},{"$set": {"mapping_file.Score": 0 } })
+                    #mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 
                 
                 
@@ -160,5 +160,5 @@ for species in species_to_process:
         #new_results.append(tmp_array)
         #for array in new_results:
         #    print array[0]
-        #cursor_to_table(results)			
+        cursor_to_table(results)			
 				
