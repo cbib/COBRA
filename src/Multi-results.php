@@ -33,6 +33,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	//Selection des collections
 	$samplesCollection = new MongoCollection($db, "samples");
 	$speciesCollection = new Mongocollection($db, "species");
+    $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 	$mappingsCollection = new Mongocollection($db, "mappings");
 	$measurementsCollection = new Mongocollection($db, "measurements");
 	$virusesCollection = new Mongocollection($db, "viruses");
@@ -77,7 +78,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     //Add split funstion for search value in case of double value separated by colon
     //consequently add multiple results page to test any alias when an alias is submitted.
-    $cursor=$mappingsCollection->aggregate(array(
+    $cursor=$full_mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
