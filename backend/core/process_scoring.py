@@ -120,7 +120,22 @@ for species in species_to_process:
         # annotate results
         
         gene_set=[]
-        
+        counter=0
+        for r in results:
+                if species['full_name']== "Hordeum vulgare":
+                #    logger.info("gene id %s for species %s",r['gene'],species) 
+                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
+
+                
+                elif species['full_name']== "Prunus domestica":
+                    full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
+
+
+                else:
+                #    logger.info("gene id %s for species %s",r['gene'],species)
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
+
+                
 	for r in results:
                 
                 #tmp_results=list(
@@ -140,20 +155,17 @@ for species in species_to_process:
                 
                 if species['full_name']== "Hordeum vulgare":
                 #    logger.info("gene id %s for species %s",r['gene'],species) 
-                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
                     #full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": -1 } })
 
                     full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 
                 elif species['full_name']== "Prunus domestica":
-                    full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
                     #full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": -1 } })
 
                     full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
 
                 else:
                 #    logger.info("gene id %s for species %s",r['gene'],species)
-                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
                     #full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": -1 } })
 
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
@@ -161,6 +173,7 @@ for species in species_to_process:
                 
                 
 		r['description']=tgt_description[r['xp']]
+                counter++
         
         #new_results[species]=gene_set
 	#cursor_to_table(gene_set)
