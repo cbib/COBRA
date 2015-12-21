@@ -17,9 +17,9 @@ if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 
 # Clear collections to fill
-#mappings_col.drop({"type":{"$in":["full_table"]}});
+#full_mappings_col.drop();
 #mappings_col.remove({"type":{"$in":["full_table"]}});
-mappings_col.remove({"type":"full_table"});
+#mappings_col.remove({"type":"full_table"});
 
 
 #orthologs_col.drop()
@@ -51,7 +51,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 mapping_table={
 	"data_file":"mappings/prunus_full_table_2.tsv",
@@ -70,7 +70,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 ###################################################################################################################
 ############################################ CUCUMIS MELO #########################################################
@@ -96,7 +96,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 
 ###################################################################################################################
@@ -123,7 +123,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 ###################################################################################################################
 ############################################ SOLANUM LYCOPERSICUM #################################################
@@ -150,7 +150,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 mapping_table={
 	"data_file":"mappings/solanum_lycopersicum_full_2.tsv",
@@ -171,7 +171,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 
 ###################################################################################################################
@@ -196,7 +196,7 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)
 
 
 mapping_table={
@@ -216,4 +216,4 @@ mapping_table={
 		"sheet_index":0,
 	}
 }
-mappings_col.insert(mapping_table)
+full_mappings_col.insert(mapping_table)

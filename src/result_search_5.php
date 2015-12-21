@@ -29,7 +29,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$grid = $db->getGridFS();
 	//Selection des collections
 	$samplesCollection = new MongoCollection($db, "samples");
-	
+	$full_mappingsCollection = new Mongocollection($db, "full_mappings");
 	$mappingsCollection = new Mongocollection($db, "mappings");
 	$measurementsCollection = new Mongocollection($db, "measurements");
 	$virusesCollection = new Mongocollection($db, "viruses");
@@ -77,7 +77,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     //Add split function for search value in case of double value separated by colon
     //consequently add multiple results page to test any alias when an alias is submitted.
-    $cursor=$mappingsCollection->aggregate(array(
+    $cursor=$full_mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
@@ -255,7 +255,7 @@ echo   '<div id="summary">';
       echo '<div id="stat-details">';
                 load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$interactionsCollection);
 
-                load_and_display_orthologs($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
 
                            
            echo'<div id="sequences">';

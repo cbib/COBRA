@@ -1274,7 +1274,7 @@ function load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$
     
     
 }
-function load_and_display_orthologs($mappingsCollection,$orthologsCollection,$organism,$plaza_id){
+function load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id){
     echo'<div id="ortholog_section">
             <h3>Orthologs</h3>
                 <div class="panel-group" id="accordion_documents">
@@ -1298,7 +1298,7 @@ function load_and_display_orthologs($mappingsCollection,$orthologsCollection,$or
 
                                 <tbody>';
                                     //$timestart=microtime(true);
-                                    echo small_table_ortholog_string($mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                                    echo small_table_ortholog_string($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
     //                                        $timeend=microtime(true);
     //                                        $time=$timeend-$timestart;
     //

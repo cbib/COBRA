@@ -1025,8 +1025,8 @@ function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='n
     return $MongoGridFSCursor;
    
 }
-function small_table_ortholog_string(MongoCollection $mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
-    $cursor_array=get_ortholog($mappingsCollection,$orthologsCollection,$species,$plaza_id);
+function small_table_ortholog_string(MongoCollection $full_mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
+    $cursor_array=get_ortholog($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
     return $cursor_array;
 }
 function read_grid_plaza_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
@@ -1182,7 +1182,7 @@ function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsColl
 
 
 }
-function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
+function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
 //	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 //	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 //	echo '</div>';
@@ -1233,7 +1233,7 @@ function get_ortholog(MongoCollection $mappingsCollection, Mongocollection $orth
          //   foreach ($initial_species as $key => $value) {
          //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                     #echo "start line : ".$buffer."\n";
-            $ortholog_data=$mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+            $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
             foreach ($ortholog_data as $data){
                 $species=$data['species'];
                 foreach ($data['mapping_file'] as $value){
