@@ -17,7 +17,7 @@ if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 
 # Clear collections to fill
-#full_mappings_col.drop();
+full_mappings_col.drop();
 #mappings_col.remove({"type":{"$in":["full_table"]}});
 #mappings_col.remove({"type":"full_table"});
 

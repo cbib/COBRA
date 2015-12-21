@@ -26,7 +26,7 @@ if "log" not in globals():
 
 logger.info("Running %s",sys.argv[0])
 #mappings_to_process=mappings_col.find({"mapping_file":{"$exists":False}})
-mappings_to_process=mappings_col.find({"mapping_file":{"$exists":False},"type":{"$in":["full_table"]}})
+mappings_to_process=full_mappings_col.find({"mapping_file":{"$exists":False},"type":{"$in":["full_table"]}})
 
 logger.info("Found %d mappings to process",mappings_to_process.count())
 # map_doc=mappings_to_process[0]
@@ -52,7 +52,7 @@ for map_doc in mappings_to_process:
 		
 	
 	try:
-		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
+		full_mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
 		#break
 	except DocumentTooLarge:
 		print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
@@ -62,7 +62,7 @@ for map_doc in mappings_to_process:
 		## adding fs file to the collection
 		logger.info("Successfully add new file in grid fs mongo system %s",len(sheet_values))
 
-		mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
+		full_mappings_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":{"species":species,"file":fp.data_file}}})
 		             #update({"_id":map_doc['_id']},{"$push":{"mapping_file":{"species":species['species'],"file":fp.data_file}}})
 		# Close opened file
 		file.close()	
@@ -71,8 +71,8 @@ for map_doc in mappings_to_process:
 
 
 logger.info("Indexation on field \"mapping_file.Plaza ID\" from collection \"mappings\"")
-mappings_col.create_index("mapping_file.Plaza ID",sparse=True,background=True)
+full_mappings_col.create_index("mapping_file.Plaza ID",sparse=True,background=True)
 logger.info("Indexation on field \"mapping_file.Gene ID\" from collection \"mappings\"")
-mappings_col.create_index("mapping_file.Gene ID",sparse=True,background=True)
+full_mappings_col.create_index("mapping_file.Gene ID",sparse=True,background=True)
 logger.info("Indexation on field \"mapping_file.Transcript ID\" from collection \"mappings\"")
-mappings_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)
+full_mappings_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)
