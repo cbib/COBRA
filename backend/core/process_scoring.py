@@ -120,7 +120,7 @@ for species in species_to_process:
         # annotate results
         
         gene_set=[]
-        counter=0
+        #counter=0
         for r in results:
                 if species['full_name']== "Hordeum vulgare":
                 #    logger.info("gene id %s for species %s",r['gene'],species) 
@@ -173,7 +173,7 @@ for species in species_to_process:
                 
                 
 		r['description']=tgt_description[r['xp']]
-                counter++
+                #counter++
         
         #new_results[species]=gene_set
 	#cursor_to_table(gene_set)
