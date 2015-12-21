@@ -18,7 +18,9 @@ if "log" not in globals():
 
 # Clear collections to fill
 #mappings_col.drop({"type":{"$in":["full_table"]}});
-mappings_col.remove({"type":{"$in":["full_table"]}});
+#mappings_col.remove({"type":{"$in":["full_table"]}});
+mappings_col.remove({"type":"full_table"});
+
 
 #orthologs_col.drop()
 #interactions_col.drop()
