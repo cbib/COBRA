@@ -1,5 +1,5 @@
 <?php
-session_start(); // ici on continue la session
+//session_start(); // ici on continue la session
 
  
  
