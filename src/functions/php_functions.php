@@ -870,7 +870,7 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
                     foreach ($array as $biogrid){
                         //foreach ($biogrid as $data) {
                         foreach ($biogrid as $key=>$value) {
-                            if( $key=="tgt"){
+                            if( $key=="INTERACTOR B"){
                                 $tgt=$value; 
                             }
 
@@ -1195,48 +1195,64 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
                                 //foreach ($lit as $attributes){
 
                                 foreach ($biogrid as $key=>$value) {
-                                    if ($key=='src'){
-                                        $string_seq.='<li value='.$value.'> protein A: '.$value.'</li>';
-                                    }
-                                    elseif ($key=='tgt') {
-                                        $tgt=$value;
-
-
-
-                                        //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
-                                        //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
-                                        $string_seq.='<li value='.$value.'> protein B: '.$value.'</li>';
-                                    }
-                                    elseif ($key=='method') {
-                                        $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
-                                    }
-                                    elseif ($key=='pub') {
-                                        $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
-                                        $found=FALSE;
-                                        foreach ($pub_list as $pub) {
+                                        if ($key=='publication') {
+                                            $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
+                                            $found=FALSE;
+                                            foreach ($pub_list as $pub) {
                                             if ($value==$pub){
                                                 $found=TRUE;
                                             }
                                         }
-                                        if ($found==FALSE){
+                                            if ($found==FALSE){
                                             array_push($pub_list, $value);
                                         }
-                                    }
-                                    elseif ($key=='host A name') {
-                                        $string_seq.='<li value='.$value.'> host name A: '.$value.'</li>';
-                                    }
-                                    elseif ($key=='host B name') {
-                                        $string_seq.='<li value='.$value.'> host name B: '.$value.'</li>';
-                                    }
-                                    elseif ($key=='Accession_number') {
-                                        $string_seq.='<li value='.$value.'> Authors: '.$value.'</li>';
-                                    }
-//                                        elseif ($attributes[0]=='Putative_function') {
-//                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
-//                                        }
-                                    else{
+                                        }
+                                        else{
+                                            $string_seq.='<li value='.$value.'> '.$key.': '.$value.'</li>';
 
-                                    }
+                                        }
+//                                    if ($key=='src'){
+//                                        $string_seq.='<li value='.$value.'> protein A: '.$value.'</li>';
+//                                    }
+//                                    elseif ($key=='tgt') {
+//                                        $tgt=$value;
+//
+//
+//
+//                                        //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=FKF1;site=ensemblunit                                            if (){
+//                                        //http://plants.ensembl.org/Arabidopsis_thaliana/Search/Results?species=Arabidopsis%20thaliana;idx=;q=CUL1;site=ensemblunit
+//                                        $string_seq.='<li value='.$value.'> protein B: '.$value.'</li>';
+//                                    }
+//                                    elseif ($key=='method') {
+//                                        $string_seq.='<li value='.$value.'> method: '.$value.'</li>';
+//                                    }
+//                                    elseif ($key=='pub') {
+//                                        $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
+//                                        $found=FALSE;
+//                                        foreach ($pub_list as $pub) {
+//                                            if ($value==$pub){
+//                                                $found=TRUE;
+//                                            }
+//                                        }
+//                                        if ($found==FALSE){
+//                                            array_push($pub_list, $value);
+//                                        }
+//                                    }
+//                                    elseif ($key=='host A name') {
+//                                        $string_seq.='<li value='.$value.'> host name A: '.$value.'</li>';
+//                                    }
+//                                    elseif ($key=='host B name') {
+//                                        $string_seq.='<li value='.$value.'> host name B: '.$value.'</li>';
+//                                    }
+//                                    elseif ($key=='Accession_number') {
+//                                        $string_seq.='<li value='.$value.'> Authors: '.$value.'</li>';
+//                                    }
+////                                        elseif ($attributes[0]=='Putative_function') {
+////                                            $string_seq.='<li value='.$ $attributes[1].'> Putative function :'.$attributes[1].'</li>';
+////                                        }
+//                                    else{
+//
+//                                    }
 
 
                                 }

@@ -783,13 +783,13 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     $species=$cursor1['result'][$i]['species'];
                     //echo "result : " . $i . " for species :".$species."<br>";
                     $tmp_array=array();
-                    $tmp_array=array('src'=>$symbol,'tgt'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL_SYSTEM'],'pub'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession_number'=>$mapping_file['SOURCE']);
+                    $tmp_array=array('OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
                     
                     array_push($biogrid_int_array, $tmp_array);				
 
                 }
                 //echo "tmp_array :". count($tmp_array);
-                echo "biogrid_int_array :". count($biogrid_int_array);
+                //echo "biogrid_int_array :". count($biogrid_int_array);
             }
 
 
@@ -861,7 +861,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
             $cursor1=$interactionsCollection->aggregate(array( 
                 array('$unwind'=>'$mapping_file'), 
                 array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol[0]),array('mapping_file.INTERACTOR_A'=>$gene_id[0])))),
-                array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
+                array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
             ));
             $timeend=microtime(true);
             $time=$timeend-$timestart;
@@ -881,7 +881,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     $species=$cursor1['result'][$i]['species'];
                     //echo "result : " . $i . " for species :".$species."<br>";
                     $tmp_array=array();
-                    $tmp_array=array('src'=>$symbol,'tgt'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL_SYSTEM'],'pub'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession_number'=>$mapping_file['SOURCE']);
+                    $tmp_array=array('INTERACTOR A'=>$mapping_file['INTERACTOR_A'],'INTERACTOR B'=>$mapping_file['INTERACTOR_B'],'OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL_SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
                     
                     array_push($biogrid_int_array, $tmp_array);				
 
