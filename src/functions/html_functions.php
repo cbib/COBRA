@@ -1,6 +1,6 @@
 <?php
 define('PATH', $_SERVER['DOCUMENT_ROOT']);
-function new_cobra_header(){
+function new_cobra_header($value='null'){
 echo'
 <!DOCTYPE html>
 <html>
@@ -9,24 +9,24 @@ echo'
 <title>COBRA</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- bootstrap 3.0.2 -->
-<link href="https://services.cbib.u-bordeaux2.fr/cobra/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'"/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
-<link href="https://services.cbib.u-bordeaux2.fr/cobra/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'"/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Ionicons -->
-<link href="https://services.cbib.u-bordeaux2.fr/cobra/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'"/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="https://services.cbib.u-bordeaux2.fr/cobra/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'"/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <!-- Datatable style -->
-<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/Buttons-1.0.3/css/buttons.dataTables.css">
+<link rel="stylesheet" type="text/css" href="'.$value.'"/css/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="'.$value.'"/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
 
 
 <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="https://services.cbib.u-bordeaux2.fr/cobra/css/cobra_styles2.css">	
+<link rel="stylesheet" type="text/css" href="'.$value.'"/css/cobra_styles2.css">	
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->

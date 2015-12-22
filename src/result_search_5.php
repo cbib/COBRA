@@ -9,7 +9,7 @@ require('./session/control-session.php');
 
 
 
-new_cobra_header();
+new_cobra_header("..");
 
 new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
 
