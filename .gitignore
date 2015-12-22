@@ -37,7 +37,7 @@ wiki/*.swp
 
 # User themes
 wiki/themes/*
-wiki/themes/index.html
+!wiki/themes/index.html
 !wiki/themes/default/*
 
 # User config
