@@ -1195,7 +1195,10 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
                                 //foreach ($lit as $attributes){
 
                                 foreach ($biogrid as $key=>$value) {
-                                        if ($key=='publication') {
+                                        if( $key=="INTERACTOR B"){
+                                $tgt=$value; 
+                            }
+                                        elseif ($key=='publication') {
                                             $string_seq.='<li value='.$value.'> publication: <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$value.'">'.$value.'</a></li>';
                                             $found=FALSE;
                                             foreach ($pub_list as $pub) {
