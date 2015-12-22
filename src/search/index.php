@@ -41,7 +41,7 @@ $publicationsCollection = new Mongocollection($db, "publications");
 $interactionsCollection = new Mongocollection($db, "interactions");
 
 
-make_species_list(find_species_list($speciesCollection));
+make_species_list(find_species_list($speciesCollection),"../..");
 
 echo'</hr>';
 echo'

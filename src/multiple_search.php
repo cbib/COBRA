@@ -37,7 +37,7 @@ $listID=control_post(htmlspecialchars($_GET['listID']));
 $listID = str_replace('\r\n','<br>',$listID);
 //echo $listID;
 $id_details= explode("\r\n", $listID);
-make_species_list(find_species_list($speciesCollection));
+make_species_list(find_species_list($speciesCollection),"..");
 echo '<div id="shift_line"></div>';
 for ($c=0;$c<count($id_details);$c++){
     

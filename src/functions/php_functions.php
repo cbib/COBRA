@@ -1456,7 +1456,7 @@ AT1G03110</textarea>
 
 
 }
-function make_species_list($cursor){
+function make_species_list($cursor,$path='null'){
 
     
     /*
@@ -1497,7 +1497,7 @@ function make_species_list($cursor){
     
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/Multi-results.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="'.$path.'/src/Multi-results.php" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
@@ -1523,9 +1523,9 @@ function make_species_list($cursor){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
+    						<a class="nowrap" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
     						or 
-    						<a class="nowrap" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
+    						<a class="nowrap" href="'.$path.'/src/result_search_5.php?organism=Solanum+lycopersicum&search=SGN-U603893">SGN-U603893</a>
     						
     					</p>
     				</div>

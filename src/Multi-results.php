@@ -48,7 +48,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //if more than one results (often the case when search by gene symbol or keywords
 
     //put the search box again...
-    make_species_list(find_species_list($speciesCollection));
+    make_species_list(find_species_list($speciesCollection),"..");
     
     
    
