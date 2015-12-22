@@ -3,7 +3,7 @@ session_start(); // ici on continue la session
 
  
  
-if ((!isset($_SESSION['login'])) || ($_SESSION['login'] == ''))
+if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
 {
     header('Location: ../../login.php'); 
 //    new_cobra_header();

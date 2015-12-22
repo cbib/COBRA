@@ -41,7 +41,7 @@ else{
 		if (!isset($_POST['submit']))
 		{
 			// first time no form submitted
-			new_cobra_body(isset($_SESSION['login']),"Login form","section_login","");
+			new_cobra_body(isset($_SESSION['login']),"Login form","section_login",".");
 			
             
             
@@ -155,6 +155,7 @@ else{
 				else
 				{
 						// Erreur dans le login et / ou dans le mot de passe ...
+                        error_log("error with login or password");
 						new_cobra_body(False);
 						echo '<p>Sorry, you may have made an error in the input identifiers... </p>'."\n";
 						
