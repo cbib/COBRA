@@ -5,7 +5,7 @@ require 'src/functions/html_functions.php';
 require 'src/functions/php_functions.php';
 require 'src/functions/mongo_functions.php';
 
-new_cobra_header("");
+new_cobra_header(".");
 
 $db=mongoConnector();
 $usersCollection = new Mongocollection($db, "users");
@@ -15,7 +15,7 @@ $usersCollection = new Mongocollection($db, "users");
 
 if ((isset($_GET['act'])) && ($_GET['act'] == 'logout'))
 {
-	new_cobra_body(False, "COBRA","section_disconnect","");
+	new_cobra_body(False, "COBRA","section_disconnect",".");
 	if ((isset($_SESSION['login'])) && (!empty($_SESSION['login']))){
 		$_SESSION = array();
 		
