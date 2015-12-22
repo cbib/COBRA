@@ -837,7 +837,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
             $cursor=$interactionsCollection->aggregate(array( 
                 array('$unwind'=>'$mapping_file'), 
                 array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0]),array('mapping_file.INTERACTOR_A'=>$gene_id[0])))),
-                array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
+                array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
             ));
             $timeend=microtime(true);
             $time=$timeend-$timestart;
@@ -852,8 +852,10 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 //var_dump($cursor);
                 //echo '<dl class="dl-horizontal">';
                 for ($i = 0; $i < count($cursor['result']); $i++) {
+                    
                     $mapping_file=$cursor['result'][$i]['mapping_file'];
                     $species=$cursor['result'][$i]['species'];
+                    echo "result : " . $i . " for species :".$species."<br>";
                     $tmp_array=array();
 
 //                    $src_array=array();
