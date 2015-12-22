@@ -893,9 +893,12 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
     //                array_push($virus_taxon_array, $mapping_file['Putative_function']);
     //                array_push($tmp_array, $virus_taxon_array);
                     $tmp_array=array('src'=>$symbol,'tgt'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL_SYSTEM'],'pub'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession_number'=>$mapping_file['SOURCE']);
+                    
                     array_push($biogrid_int_array, $tmp_array);				
 
                 }
+                echo "tmp_array :". count($tmp_array);
+                echo "biogrid_int_array :". count($biogrid_int_array);
             }
        }
     }
