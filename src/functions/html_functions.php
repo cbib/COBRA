@@ -9,24 +9,24 @@ echo'
 <title>COBRA</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- bootstrap 3.0.2 -->
-<link href="'.$value.'"/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
-<link href="'.$value.'"/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Ionicons -->
-<link href="'.$value.'"/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="'.$value.'"/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="'.$value.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <!-- Datatable style -->
-<link rel="stylesheet" type="text/css" href="'.$value.'"/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="'.$value.'"/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
+<link rel="stylesheet" type="text/css" href="'.$value.'/css/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="'.$value.'/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
 
 
 <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="'.$value.'"/css/cobra_styles2.css">	
+<link rel="stylesheet" type="text/css" href="'.$value.'/css/cobra_styles2.css">	
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
