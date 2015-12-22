@@ -1,6 +1,6 @@
 <?php
 define('PATH', $_SERVER['DOCUMENT_ROOT']);
-function new_cobra_header($value='null'){
+function new_cobra_header($path='null'){
 echo'
 <!DOCTYPE html>
 <html>
@@ -9,55 +9,55 @@ echo'
 <title>COBRA</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- bootstrap 3.0.2 -->
-<link href="'.$value.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="'.PATH.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
-<link href="'.$value.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Ionicons -->
-<link href="'.$value.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$path.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="'.$value.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="'.$path.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <!-- Datatable style -->
-<link rel="stylesheet" type="text/css" href="'.$value.'/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="'.$value.'/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
+<link rel="stylesheet" type="text/css" href="'.$path.'/css/dataTables.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
 
 
 <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="'.$value.'/css/cobra_styles2.css">	
+<link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css">	
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
 
 <!-- Include iCheck skin -->
-<link rel="stylesheet" href="https://services.cbib.u-bordeaux2.fr/cobra/css/iCheck/all.css" />
+<link rel="stylesheet" href="'.$path.'/css/iCheck/all.css" />
 
 <!-- jQuery 2.0.2 -->
-<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.min.js"></script>
-<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.js"></script>
+<script src="'.$path.'/js/jquery.min.js"></script>
+<script src="'.$path.'/js/jquery.js"></script>
 
 <!-- Bootstrap -->
-<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/dataTables.bootstrap.js"></script>
+<script src="'.$path.'/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="'.$path.'/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="'.$path.'/js/dataTables.bootstrap.js"></script>
 
 <!--Datatable-->
-<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="'.$value.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
 <!--Require-->
-<script type="text/javascript" src="https://services.cbib.u-bordeaux2.fr/cobra/js/require.js"></script>
+<script type="text/javascript" src="'.$value.'/js/require.js"></script>
 
 <!--highcharts-->
-<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/highcharts.js"></script>
-<!--<script src="https://services.cbib.u-bordeaux2.fr/cobra/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
+<script src="'.$value.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<!--<script src="'.$value.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
 <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
 
 
 
 <!-- AdminLTE App -->
-<script src="https://services.cbib.u-bordeaux2.fr/cobra/js/app.js" type="text/javascript"></script>
+<script src="'.$value.'/js/app.js" type="text/javascript"></script>
 </head>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
@@ -171,7 +171,7 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
 //            </div>    
 //            <br/>';*/
 }
-function new_cobra_body($IsLogged='null', $type='null',$section_id='null'){
+function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path='null'){
 echo'
 
     
@@ -185,47 +185,47 @@ echo'
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                <!-- Sidebar user panel -->
-               <a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/"><div class="cobra-logo">
-               	<img src="https://services.cbib.u-bordeaux2.fr/cobra/images/cobra-icon.png" alt="COBRA logo" />
+               <a href="'.$path.'/wiki/"><div class="cobra-logo">
+               	<img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
                   <p>COBRA</p>
                </div></a>
 
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <li>
-		     <a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">
+		     <a href="'.$path.'/wiki/">
 		        <i class="fa fa-home"></i> 
 				<span>About COBRA</span>
 		     </a>
                	</li>
                   <li>
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/search/">
+                     <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
                         <span>Quick Search</span>
                      </a>
                   </li>
                   <li>
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">
+                     <a href="'.$path.'/src/description/">
                         <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                      </a>
                   </li>
                   <!--<li>
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">
+                     <a href="'.$path.'/wiki/">
                         <i class="fa fa-info"></i> <span>Wiki</span>
                      </a>
                   </li>-->
                   <li >
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/tools/">
+                     <a href="'.$path.'/src/tools/">
                         <i class="fa fa-cogs"></i> <span>Tools</span>
                      </a>
                   </li>
                   <li >
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/docs/">
+                     <a href="'.$path.'/src/docs/">
                         <i class="fa fa-upload"></i> <span>Docs</span>
                      </a>
                   </li>
                  <!-- <li>
-                     <a href="https://services.cbib.u-bordeaux2.fr/cobra/src/info/WebSite/">
+                     <a href="'.$path.'/src/info/WebSite/">
                         <i class="fa fa-question"></i> <span>Help</span>
                      </a>
                   </li>-->
@@ -248,12 +248,12 @@ echo'
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/"><i class="fa fa-dashboard"></i> Home</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">description</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">wiki home</a></li>-->
-                  <li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/search/">Quick search</a></li>
+                  <li><a href="'.$path.'/src/search/">Quick search</a></li>
                   ';if ($IsLogged){echo '
-                  	<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
-                  echo '<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/login.php?act=logout">Logout</a></li>';}
+                  	<li><a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
+                  echo '<li><a href="'.$path.'/login.php?act=logout">Logout</a></li>';}
                   else{
-                  	echo '<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/login.php">Login</a></li>';
+                  	echo '<li><a href="'.$path.'/login.php">Login</a></li>';
                   }
                   echo '
                   
