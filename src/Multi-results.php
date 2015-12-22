@@ -88,7 +88,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
     //var_dump($cursor);
 
-    
+    $table_string="";
     if (count($cursor['result'])>=1) {
         
         $table_string.='<table id="result_list" class="table table-hover">';
@@ -113,7 +113,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
 
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
-                $table_string.='<td><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+                $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
                 $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
                 $table_string.='<td>'.$result['species'].'</td>';
             }
