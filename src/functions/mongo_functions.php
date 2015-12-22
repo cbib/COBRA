@@ -902,7 +902,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
             echo "<br>Script for aggregation function executed in " . $page_load_time . " sec for " .count($cursor1['result']). "result";
             
             if (count($cursor1['result'])!=0){
-                //echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
+                echo '<h2> interactions was found for this gene '.$mapping_file['INTERACTOR_B'].'</h2>';
                 //var_dump($cursor);
                 //echo '<dl class="dl-horizontal">';
                 for ($i = 0; $i < count($cursor1['result']); $i++) {
