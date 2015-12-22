@@ -870,6 +870,7 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
                     foreach ($array as $biogrid){
                         //foreach ($biogrid as $data) {
                         foreach ($biogrid as $key=>$value) {
+                            echo "key: ". $key. " and value: " . $value."<br>";
                             if( $key=="INTERACTOR B"){
                                 $tgt=$value;
                             }
