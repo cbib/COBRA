@@ -18,8 +18,8 @@ if "log" not in globals():
 
 # Clear collections to fill
 #mappings_col.drop({"type":{"$nin":["full_table"]}});
-mappings_col.remove({"type":{"$nin":["full_table"]}});
-#mappings_col.drop()
+#mappings_col.remove({"type":{"$nin":["full_table"]}});
+mappings_col.drop()
 #orthologs_col.drop()
 #interactions_col.drop()
 for grid_out in fs.find({}, timeout=False):
