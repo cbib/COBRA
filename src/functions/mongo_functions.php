@@ -829,6 +829,11 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
 
             }*/
             $timestart=microtime(true);
+            echo "symbol : ".$symbol[0];
+            echo "alias : ".$alias[0];
+            echo "description : ".$description[0];
+            echo "gene : ".$gene;
+            
             $cursor=$interactionsCollection->aggregate(array( 
                 array('$unwind'=>'$mapping_file'), 
                 array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0]),array('mapping_file.INTERACTOR_A'=>$gene_id[0])))),
