@@ -769,6 +769,8 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 //echo' </dl>';
             }
             echo "symbol : ".$symbol."<br>";
+            echo "gene alias : ".$gene_alias[0]."<br>";
+            echo "descriptions : ".$descriptions[0]."<br>";
             if ($gene_alias[0]=="" && $gene_alias[0]=="NA"){
                 if ($descriptions[0]=="" && $descriptions[0]=="NA"){
                     $cursor1=$interactionsCollection->aggregate(array( 
