@@ -35,7 +35,7 @@ for grid_out in fs.find({}, timeout=False):
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/prunus_full_table_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/prunus_full_table_1.tsv",
 	"species":"Prunus persica",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -54,7 +54,7 @@ mapping_table={
 full_mappings_col.insert(mapping_table)
 
 mapping_table={
-	"data_file":"mappings/prunus_full_table_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/prunus_full_table_2.tsv",
 	"species":"Prunus persica",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -78,7 +78,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/cucumis_melo_full.tsv",
+	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full.tsv",
 	"species":"Cucumis melo",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -105,7 +105,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/hordeum_vulgare_full.tsv",
+	"data_file":"mappings/FULL_MAPPING/hordeum_vulgare_full.tsv",
 	"species":"Hordeum vulgare",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -132,7 +132,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/solanum_lycopersicum_full_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_1.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -153,7 +153,7 @@ mapping_table={
 full_mappings_col.insert(mapping_table)
 
 mapping_table={
-	"data_file":"mappings/solanum_lycopersicum_full_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_2.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"full_table",
 	"src":"PROBE_ID",
@@ -180,7 +180,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/arabidopsis_thaliana_full_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_1.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"CATMA_ID",
@@ -200,7 +200,7 @@ full_mappings_col.insert(mapping_table)
 
 
 mapping_table={
-	"data_file":"mappings/arabidopsis_thaliana_full_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_2.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"CATMA_ID",
