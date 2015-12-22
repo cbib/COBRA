@@ -36,9 +36,9 @@ wiki/Thumbs.db
 wiki/*.swp
 
 # User themes
-wiki/themes/*
+wiki/themes/cobra_main/*
 !wiki/themes/cobra_main/index.html
-!wiki/themes/default/*
+!wiki/themes/cobra_main/default/*
 
 # User config
 wiki/config.php
