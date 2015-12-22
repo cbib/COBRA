@@ -3,11 +3,11 @@
 // on teste si le visiteur a soumis le formulaire de connexion
 //if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 //	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
-require '/var/www/html/COBRA/src/session/maintenance-session.php';
-require '/var/www/html/COBRA/src/functions/html_functions.php';
-require '/var/www/html/COBRA/src/functions/php_functions.php';
-require '/var/www/html/COBRA/src/functions/mongo_functions.php';
-require '/var/www/html/COBRA/src/session/control-session.php';
+require '../session/maintenance-session.php';
+require '../functions/html_functions.php';
+require '../functions/php_functions.php';
+require '../functions/mongo_functions.php';
+require '../session/control-session.php';
 
 
 
