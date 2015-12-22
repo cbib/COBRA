@@ -253,7 +253,7 @@ echo   '<div id="summary">';
       // 
       //start right side div
       echo '<div id="stat-details">';
-                load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$interactionsCollection);
+                load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$interactionsCollection);
 
                 load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
 

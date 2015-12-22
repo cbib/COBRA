@@ -493,7 +493,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
 }
 
 ##Get all orthologs src to tgt : 
-function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
+function get_interactor(array $gene_id,array $gene_alias,array $descriptions,array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
 
     //need to have a list of symbol and a list of uniprot id to search in interactions table
     $global_interact_array=array();
@@ -817,7 +817,7 @@ function get_interactor(array $gene_alias,array $descriptions,array $gene_symbol
             //$timestart=microtime(true);
             $cursor=$interactionsCollection->aggregate(array( 
                 array('$unwind'=>'$mapping_file'), 
-                array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
+                array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_id[0])))),
                 array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
             ));
     //        $timeend=microtime(true);

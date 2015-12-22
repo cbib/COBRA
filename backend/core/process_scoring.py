@@ -184,4 +184,4 @@ for species in species_to_process:
         #for array in new_results:
         #    print array[0]
         cursor_to_table(results)			
-				
+        

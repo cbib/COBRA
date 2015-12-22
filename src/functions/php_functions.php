@@ -836,11 +836,11 @@ function display_external_references( array $proteins_id,$search='null',$species
     </div>
     <div class="bottomSpacer"></div> </br> '; 
 }
-function load_and_display_interactions($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
+function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
     //get all interactor for each dataset (biogrid, intact, hipdb, etc..)
     echo '<div id="statsAndFilters">
                 <h3>Current Interactors</h3>';        
-    $interaction_array=get_interactor($gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
+    $interaction_array=get_interactor($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
             $counter=0;
             //$timestart=microtime(true);
             foreach ($interaction_array as $array){
