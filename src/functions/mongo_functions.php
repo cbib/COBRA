@@ -770,7 +770,21 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
             }
 
 
-            //biogrid interaction data
+            
+        }
+//        $timeend=microtime(true);
+//        $time=$timeend-$timestart;
+//        //Afficher le temps d'éxecution
+//        $page_load_time = number_format($time, 3);
+//        echo "Script starting at: ".date("H:i:s", $timestart);
+//        echo "<br>Script ending at: ".date("H:i:s", $timeend);
+//        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
+		
+	}
+    array_push($global_interact_array, $lit_int_array);
+    foreach ($gene_id as $gene){
+       if ($gene != "NA" && $gene !=""){ 
+           //biogrid interaction data
             /*$interaction_data=$interactionsCollection->find(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
             foreach ($interaction_data as $data){
                 $species=$data['species'];
@@ -820,14 +834,14 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0]),array('mapping_file.INTERACTOR_A'=>$gene_id[0])))),
                 array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0)), 
             ));
-    //        $timeend=microtime(true);
+    /*        $timeend=microtime(true);
     //        $time=$timeend-$timestart;
     //        //Afficher le temps d'éxecution
     //        $page_load_time = number_format($time, 3);
     //        echo "Script starting at: ".date("H:i:s", $timestart);
     //        echo "<br>Script ending at: ".date("H:i:s", $timeend);
     //        echo "<br>Script for aggregation function executed in " . $page_load_time . " sec";
-            //$timestart=microtime(true);
+            //$timestart=microtime(true);*/
             if (count($cursor['result'])!=0){
                 //echo '<h2> interactions was found for this gene '.$symbol.'</h2>';
                 //var_dump($cursor);
@@ -875,19 +889,11 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
 
                 }
             }
-        }
-//        $timeend=microtime(true);
-//        $time=$timeend-$timestart;
-//        //Afficher le temps d'éxecution
-//        $page_load_time = number_format($time, 3);
-//        echo "Script starting at: ".date("H:i:s", $timestart);
-//        echo "<br>Script ending at: ".date("H:i:s", $timeend);
-//        echo "<br>Script for building array function executed in " . $page_load_time . " sec";
-		
-	}
+       }
+    }
     //echo '$lit_int_array size: '.count($lit_int_array);
     //echo '$biogrid_int_array size: '.count($lit_int_array);
-    array_push($global_interact_array, $lit_int_array);
+    
     array_push($global_interact_array, $biogrid_int_array);
 //    $timeend=microtime(true);
 //    $time=$timeend-$timestart;
