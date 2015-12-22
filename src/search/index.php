@@ -13,8 +13,8 @@ require '/var/www/html/COBRA/src/session/control-session.php';
 
 
 
-new_cobra_header();
-new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_search");
+new_cobra_header("../..");
+new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_search","../..");
 
 
 

@@ -15,10 +15,10 @@ require ROOT_PATH.'src/functions/html_functions.php';
 include ROOT_PATH.'src/functions/php_functions.php';
 include ROOT_PATH.'src/functions/mongo_functions.php';
 */
-new_cobra_header();
+new_cobra_header("../../..");
 
 
-new_cobra_body($_SESSION['login'], "Help","section_help");
+new_cobra_body($_SESSION['login'], "Help","section_help","../../..");
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");

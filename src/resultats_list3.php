@@ -11,9 +11,9 @@ require('./session/control-session.php');
 //include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
 
 
-new_cobra_header($_SESSION['login'], "Result tabs","section_result_tabs");
+new_cobra_header("..");
 
-new_cobra_body($_SESSION['login'],"Multiple results Summary","section_result_tabs");
+new_cobra_body($_SESSION['login'],"Multiple results Summary","section_result_tabs","..");
 //Instanciation de la connexion
 $db=mongoConnector();
 

@@ -6,8 +6,8 @@ require '/var/www/html/COBRA/src/functions/php_functions.php';
 require '/var/www/html/COBRA/src/functions/mongo_functions.php';
 require '/var/www/html/COBRA/src/session/control-session.php';
 
-new_cobra_header();
-new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools");
+new_cobra_header("../../..");
+new_cobra_body(is_logged($_SESSION['login']),"Tools","section_tools","../../..");
 
 if ((isset($_POST['search'])) && ($_POST['search']!='')){
 

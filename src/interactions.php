@@ -8,7 +8,7 @@ new_cobra_header();
 ?>
 
 <?php
-new_cobra_body($_SESSION['login'], "Interactions","section_interactions");
+new_cobra_body($_SESSION['login'], "Interactions","section_interactions","..");
 
 	//Recuperation des variables de la page main
 	#$requestID=control_post($_POST['requestID']);

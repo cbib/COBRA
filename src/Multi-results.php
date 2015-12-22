@@ -16,9 +16,9 @@ require('./session/control-session.php');
 
 
 
-new_cobra_header();
+new_cobra_header("..");
 
-new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary");
+new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary","..");
 
 if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
 

@@ -3,12 +3,12 @@ include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
 
-new_cobra_header();
+new_cobra_header("../..");
 
 ?>
 
 <?php
-new_cobra_body($_SESSION['login'],"Experiments Details","section_experiments");
+new_cobra_body($_SESSION['login'],"Experiments Details","section_experiments","../..");
 
 
 	//Recuperation des variables de la page main

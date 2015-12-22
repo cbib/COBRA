@@ -17,8 +17,8 @@ $db=mongoConnector();
 //$orthologsCollection = new Mongocollection($db, "orthologs");
 $docsCollection = new Mongocollection($db, "docs");
 
-new_cobra_header();
-new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file");
+new_cobra_header("../..");
+new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file","../..");
 //$docsCollection = $db->createCollection("docs");
 
 

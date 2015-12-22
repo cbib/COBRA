@@ -6,8 +6,8 @@ require '/var/www/html/COBRA/src/functions/mongo_functions.php';
 require '/var/www/html/COBRA/src/session/control-session.php';
 
  
-	new_cobra_header();
-	new_cobra_body($_SESSION['login'],"job information details","section_job_details");
+	new_cobra_header("../../..");
+	new_cobra_body($_SESSION['login'],"job information details","section_job_details","../../..");
  	if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
  		$id=htmlentities(trim($_GET['id']));;
         $db=mongoConnector();

@@ -5,8 +5,8 @@ require '../functions/php_functions.php';
 require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
-new_cobra_header();
-new_cobra_body(is_logged($_SESSION['login']),"differently expressed genes","section_diff_exp_genes");
+new_cobra_header("../..");
+new_cobra_body(is_logged($_SESSION['login']),"differently expressed genes","section_diff_exp_genes","../..");
 
 
 $db=mongoConnector();

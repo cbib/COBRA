@@ -9,7 +9,7 @@ echo'
 <title>COBRA</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- bootstrap 3.0.2 -->
-<link href="'.PATH.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="'.$path.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 <!-- font Awesome -->
 <link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -44,20 +44,20 @@ echo'
 <script type="text/javascript" src="'.$path.'/js/dataTables.bootstrap.js"></script>
 
 <!--Datatable-->
-<script type="text/javascript" src="'.$value.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
 <!--Require-->
-<script type="text/javascript" src="'.$value.'/js/require.js"></script>
+<script type="text/javascript" src="'.$path.'/js/require.js"></script>
 
 <!--highcharts-->
-<script src="'.$value.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
-<!--<script src="'.$value.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
+<script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<!--<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
 <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
 
 
 
 <!-- AdminLTE App -->
-<script src="'.$value.'/js/app.js" type="text/javascript"></script>
+<script src="'.$path.'/js/app.js" type="text/javascript"></script>
 </head>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
