@@ -818,7 +818,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     //echo '<h2> interactions was found for this gene '.$mapping_file['INTERACTOR_B'].'</h2>';
 
                     $tmp_array=array();
-                    $tmp_array=array('OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
+                    $tmp_array=array('INTERACTOR A'=>$mapping_file['INTERACTOR_A'],'INTERACTOR B'=>$mapping_file['INTERACTOR_B'],'OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
                     
                     array_push($biogrid_int_array, $tmp_array);				
 
