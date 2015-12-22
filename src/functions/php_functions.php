@@ -871,7 +871,7 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
                         //foreach ($biogrid as $data) {
                         foreach ($biogrid as $key=>$value) {
                             if( $key=="INTERACTOR B"){
-                                $tgt=$value; 
+                                $tgt=$value;
                             }
 
 //                                foreach ($data as $key=>$value) {
@@ -885,6 +885,7 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
 //                                }                                
                         }
                         if (in_array($tgt,$tgt_array)===FALSE){
+                            echo "interactor to add ".$tgt."<br>";
                            array_push($tgt_array, $tgt);
                            $total_protein_biogrid++; 
                         }
