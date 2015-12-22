@@ -768,19 +768,20 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 }
                 //echo' </dl>';
             }
+            echo "symbol : ".$symbol."<br>";
             if ($gene_alias[0]=="" && $gene_alias[0]=="NA"){
                 if ($descriptions[0]=="" && $descriptions[0]=="NA"){
                     $cursor1=$interactionsCollection->aggregate(array( 
                         array('$unwind'=>'$mapping_file'), 
                         array('$match'=> array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol)),
-                        array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
+                        array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
                     ));
                 }
                 else{
                    $cursor1=$interactionsCollection->aggregate(array( 
                         array('$unwind'=>'$mapping_file'), 
                         array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
-                        array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
+                        array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
                     )); 
                 }    
             }
@@ -789,14 +790,14 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     $cursor1=$interactionsCollection->aggregate(array( 
                     array('$unwind'=>'$mapping_file'), 
                     array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0])))),
-                    array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
+                    array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
                 )); 
                 }
                 else{
                     $cursor1=$interactionsCollection->aggregate(array( 
                     array('$unwind'=>'$mapping_file'), 
                     array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.OFFICIAL_SYMBOL_A'=>$gene_alias[0]),array('mapping_file.OFFICIAL_SYMBOL_A'=>$descriptions[0])))),
-                    array('$project' => array('mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
+                    array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
                 )); 
                 }
                    
@@ -812,6 +813,8 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     $mapping_file=$cursor1['result'][$i]['mapping_file'];
                     $species=$cursor1['result'][$i]['species'];
                     //echo "result : " . $i . " for species :".$species."<br>";
+                    echo '<h2> interactions was found for this gene '.$mapping_file['INTERACTOR_B'].'</h2>';
+
                     $tmp_array=array();
                     $tmp_array=array('OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
                     
