@@ -829,7 +829,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
 
             }*/
             $timestart=microtime(true);
-            echo "symbol : ".$symbol[0]."<br>";
+            echo "symbol : ".$symbol."<br>";
             echo "alias : ".$alias[0]."<br>";
             echo "description : ".$description[0]."<br>";
             echo "gene : ".$gene."<br>";
