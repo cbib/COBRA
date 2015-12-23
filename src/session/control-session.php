@@ -9,18 +9,17 @@ if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
     
     //header('Location: /var/www/html/COBRA/login.php'); 
     
-    $file  = $_SERVER['HTTP_HOST'];
+    $host  = $_SERVER['HTTP_HOST'];
     //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-   
+    $uri="cobra";
     $extra = 'login.php';
     if ($host==="127.0.0.1"){
         //error_log("into control session and in directory ". $host ."/".$extra);
-        header("Location: http://$host/$file"); 
+        header("Location: http://$host/$extra"); 
     }
     else{
-        $dir="cobra";
         //error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
-        header("Location: http://$host/$dir/$file"); 
+        header("Location: http://$host/$uri/$extra"); 
     }
     
     
