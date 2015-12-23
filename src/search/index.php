@@ -14,7 +14,7 @@ require '../session/control-session.php';
 
 $cache = '../cache/search_index.html';
 
-$expire = time() - 60 ; // valable une minute
+$expire = time() - 20 ; // valable une minute
 
  
 
