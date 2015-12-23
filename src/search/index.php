@@ -12,120 +12,121 @@ require '../session/control-session.php';
 
 
 
-
-new_cobra_header("../..");
-new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_search","../..");
-
-
-
-echo '
-<main id="content" class="searchpage">
-	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
-			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
-			by the new candidate genes prior to transfer to crop species</p>
-	</div> 
-	';
-echo '<?php if($current_page == index.php){ echo \'class="active"\'; } ?\>';
-
-//include('connection.php');
+if ((isset($_SESSION['login'])) || ($_SESSION['login'] != '')){
+    new_cobra_header("../..");
+    new_cobra_body(is_logged($_SESSION['login']),"Quick search","section_quick_search","../..");
 
 
 
-$db=mongoConnector();
-$grid = $db->getGridFS();
-$speciesCollection = new Mongocollection($db, "species");
-$sampleCollection = new Mongocollection($db, "samples");
-$virusCollection = new Mongocollection($db, "viruses");
-$measurementsCollection = new Mongocollection($db, "measurements");
-$publicationsCollection = new Mongocollection($db, "publications");
-$interactionsCollection = new Mongocollection($db, "interactions");
+    echo '
+    <main id="content" class="searchpage">
+        <div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
+                provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
+                by the new candidate genes prior to transfer to crop species</p>
+        </div> 
+        ';
+    echo '<?php if($current_page == index.php){ echo \'class="active"\'; } ?\>';
+
+    //include('connection.php');
 
 
-make_species_list(find_species_list($speciesCollection),"../..");
 
-echo'</hr>';
-echo'
-    <div class="col-md-6" id="left_col">';
-
-        make_gene_id_text_list();
-        
-        //make_CrossCompare_list(find_species_list($speciesCollection));
-        //make_viruses_list(find_viruses_list($virusCollection));
-
-        
-     
-    $stat_string="";
-    $stat_string.='<p><h4>Last update : '.getlastmod().'</h4></p> 
-                <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
-                <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
-
-                <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
-
-                $cursor=$speciesCollection->aggregate(array(
-                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                ));
-                $stat_string.='<p> <h4>Species per top_level</h4>';
-                foreach ($cursor['result'] as $doc){
-                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-                }
-                $cursor=$virusCollection->aggregate(array(
-                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                ));
-                $stat_string.='<p><h4> Pathogens per top_level</h4>';
-                foreach ($cursor['result'] as $doc){
-                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
-                }
-    
-    
-    
-    
-    echo' 
-    </div>
-    <div class="col-md-6" id="right_col">';
-    add_accordion_panel($stat_string, "Some statistics", "stat_panel");
-    echo' </div>';
+    $db=mongoConnector();
+    $grid = $db->getGridFS();
+    $speciesCollection = new Mongocollection($db, "species");
+    $sampleCollection = new Mongocollection($db, "samples");
+    $virusCollection = new Mongocollection($db, "viruses");
+    $measurementsCollection = new Mongocollection($db, "measurements");
+    $publicationsCollection = new Mongocollection($db, "publications");
+    $interactionsCollection = new Mongocollection($db, "interactions");
 
 
-//        echo'<div class="col-md-12" >
-//            <div class="column-padding no-right-margin">
-//                <div class="tinted-box no-top-margin" style="border:1px solid grey ">
-//                    <h1 style="text-align:center">	Some statistics...</h1>
-//                </div>
-//                
-//
-//                <p><h4>Last update : '.getlastmod().'</h4></p> 
-//                <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
-//                <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
-//
-//                <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
-//
-//                $cursor=$speciesCollection->aggregate(array(
-//                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-//                ));
-//                echo '<p> <h4>Species per top_level</h4>';
-//                foreach ($cursor['result'] as $doc){
-//                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-//                }
-//                $cursor=$virusCollection->aggregate(array(
-//                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-//                ));
-//                echo '<p><h4> Pathogens per top_level</h4>';
-//                foreach ($cursor['result'] as $doc){
-//                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
-//                }
-//                echo '
-//
-//            </div>
-//        </div>
-//    </div>      
+    make_species_list(find_species_list($speciesCollection),"../..");
+
+    echo'</hr>';
+    echo'
+        <div class="col-md-6" id="left_col">';
+
+            make_gene_id_text_list();
+
+            //make_CrossCompare_list(find_species_list($speciesCollection));
+            //make_viruses_list(find_viruses_list($virusCollection));
+
+
+
+        $stat_string="";
+        $stat_string.='<p><h4>Last update : '.getlastmod().'</h4></p> 
+                    <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
+                    <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
+
+                    <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
+
+                    $cursor=$speciesCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<p> <h4>Species per top_level</h4>';
+                    foreach ($cursor['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                    }
+                    $cursor=$virusCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<p><h4> Pathogens per top_level</h4>';
+                    foreach ($cursor['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
+                    }
 
 
 
 
+        echo' 
+        </div>
+        <div class="col-md-6" id="right_col">';
+        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
+        echo' </div>';
 
 
-echo '</main>';
- new_cobra_footer();	
+    //        echo'<div class="col-md-12" >
+    //            <div class="column-padding no-right-margin">
+    //                <div class="tinted-box no-top-margin" style="border:1px solid grey ">
+    //                    <h1 style="text-align:center">	Some statistics...</h1>
+    //                </div>
+    //                
+    //
+    //                <p><h4>Last update : '.getlastmod().'</h4></p> 
+    //                <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
+    //                <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
+    //
+    //                <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
+    //
+    //                $cursor=$speciesCollection->aggregate(array(
+    //                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+    //                ));
+    //                echo '<p> <h4>Species per top_level</h4>';
+    //                foreach ($cursor['result'] as $doc){
+    //                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+    //                }
+    //                $cursor=$virusCollection->aggregate(array(
+    //                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+    //                ));
+    //                echo '<p><h4> Pathogens per top_level</h4>';
+    //                foreach ($cursor['result'] as $doc){
+    //                        echo '<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p></p>';
+    //                }
+    //                echo '
+    //
+    //            </div>
+    //        </div>
+    //    </div>      
+
+
+
+
+
+
+    echo '</main>';
+     new_cobra_footer();
+}
  
  
  
