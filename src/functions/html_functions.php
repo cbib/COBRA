@@ -173,6 +173,7 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
 }
 function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path='null'){
     $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+    //<li';if($uri == "/src/wiki"){ echo 'class="active"'; } echo '>
     echo'
 
     
@@ -193,7 +194,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
-                  <li';if($uri == "/src/wiki"){ echo 'class="active"'; } echo '>
+                  <li class="active">
                     <a href="'.$path.'/src/wiki/">
                        <i class="fa fa-home"></i> 
                        <span>About COBRA</span>
