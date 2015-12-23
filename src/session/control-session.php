@@ -1,7 +1,8 @@
 <?php
 session_start(); // ici on continue la session
 
-error_log("into control session"); 
+error_log("into control session and in directory".$_SERVER['DOCUMENT_ROOT']);
+
  
 if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
 {
