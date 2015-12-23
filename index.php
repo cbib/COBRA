@@ -6,7 +6,7 @@
 
 #set_include_path('/var/www/html/COBRA/');
 
-
+define('MAINDIR',dirname(__FILE__) . '/');
 require('./src/functions/html_functions.php');
 require('./src/functions/php_functions.php');
 require('./src/functions/mongo_functions.php');
