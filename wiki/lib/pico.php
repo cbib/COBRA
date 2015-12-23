@@ -9,6 +9,7 @@ use \Michelf\MarkdownExtra;
  * @license http://opensource.org/licenses/MIT
  * @version 0.8
  */
+date_default_timezone_set('Europe/Paris');
 class Pico {
 
 	private $plugins;
@@ -259,7 +260,7 @@ class Pico {
 				'url' => $url,
 				'author' => isset($page_meta['author']) ? $page_meta['author'] : '',
 				'date' => isset($page_meta['date']) ? $page_meta['date'] : '',
-				'date_formatted' => isset($page_meta['date']) ? date($config['date_format'], strtotime($page_meta['date'])) : '',
+				//'date_formatted' => isset($page_meta['date']) ? date($config['date_format'], strtotime($page_meta['date'])) : '',
 				'content' => $page_content,
 				'excerpt' => $this->limit_words(strip_tags($page_content), $excerpt_length)
 			);
