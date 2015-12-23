@@ -11,10 +11,10 @@ if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && 
 //	echo '<p>You have to be <a href="/login.php"> logged</a>.</p>'."\n";
 //	new_cobra_footer();
 //    exit();
-    $file  = $_SERVER['HTTP_HOST'];
+    $host  = $_SERVER['HTTP_HOST'];
     //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
    
-    $extra = 'maintenance.php';
+    $file = 'maintenance.php';
     if ($host==="127.0.0.1"){
         //error_log("into control session and in directory ". $host ."/".$extra);
         header("Location: http://$host/$file"); 

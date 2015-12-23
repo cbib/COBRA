@@ -11,15 +11,16 @@ if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
     
     $host  = $_SERVER['HTTP_HOST'];
     //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-    $uri="cobra";
-    $extra = 'login.php';
+   
+    $file = 'login.php';
     if ($host==="127.0.0.1"){
         //error_log("into control session and in directory ". $host ."/".$extra);
-        header("Location: http://$host/$extra"); 
+        header("Location: http://$host/$file"); 
     }
     else{
+         $dir="cobra";
         //error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
-        header("Location: http://$host/$uri/$extra"); 
+        header("Location: http://$host/$dir/$file"); 
     }
     
     
