@@ -46,9 +46,7 @@ else
                 by the new candidate genes prior to transfer to crop species</p>
         </div> 
         ';
-    //echo '<?php if($current_page == index.php){ echo \'class="active"\'; } ?\>';
 
-    //include('connection.php');
 
 
 
