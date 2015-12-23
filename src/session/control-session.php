@@ -13,8 +13,16 @@ if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
     //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
     $uri="cobra";
     $extra = 'login.php';
-    error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
-    header("Location: http://$host/$uri/$extra");
+    if ($host==="127.0.0.1"){
+        error_log("into control session and in directory ". $host ."/".$extra);
+        header("Location: http://$host/$extra"); 
+    }
+    else{
+        error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
+        header("Location: http://$host/$uri/$extra"); 
+    }
+    
+    
     //http://127.0.0.1/Users/benjamindartigues/COBRA/GIT/COBRA/login.php
 //    new_cobra_header();
 //    new_cobra_body(False, "Login form");
