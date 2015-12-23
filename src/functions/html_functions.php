@@ -22,7 +22,7 @@ echo'
 
 <!-- Datatable style -->
 <link rel="stylesheet" type="text/css" href="'.$path.'/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.0.3/css/buttons.dataTables.css">-->
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.0.3/css/buttons.dataTables.css">
 
 
 <!-- Cobra style -->
