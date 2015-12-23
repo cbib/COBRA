@@ -6,8 +6,8 @@
 
 #set_include_path('/var/www/html/COBRA/');
 
-define('MAINDIR',dirname(__FILE__) . '/');
-error_log('main dir' . MAINDIR);
+//define('MAINDIR',dirname(__FILE__) . '/');
+//error_log('main dir' . MAINDIR);
 require('./src/functions/html_functions.php');
 require('./src/functions/php_functions.php');
 require('./src/functions/mongo_functions.php');
