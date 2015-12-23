@@ -13,7 +13,7 @@ require('./src/functions/mongo_functions.php');
 require('src/session/control-session.php');
 
 
-$_SESSION['maintenance'] = "no"; 
+$_SESSION['maintenance'] = "yes"; 
 require('./src/session/maintenance-session.php');
 
 

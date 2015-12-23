@@ -5,7 +5,7 @@
  
 if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && (($_SESSION['firstname'] != 'Dartigues') && ($_SESSION['firstname'] != 'Benaben')))
 {
-    header('Location: ../../maintenance.php'); 
+    header('Location: ./maintenance.php'); 
 //    new_cobra_header();
 //    new_cobra_body(False, "Login form");
 //	echo '<p>You have to be <a href="/login.php"> logged</a>.</p>'."\n";
