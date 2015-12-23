@@ -172,8 +172,7 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
 //            <br/>';*/
 }
 function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path='null'){
-$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-echo $uri;
+
     echo'
 
     
@@ -261,6 +260,9 @@ echo $uri;
             <!-- Main content -->
             <div id="shift_line"></div>
             <section class="container" id="'.$section_id.'">';
+                  $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                echo $uri;
+                  //';if($_SERVER[ == Managerhomepage.php){ echo 'class="active"'; } echo '
 
 }
 
