@@ -17,7 +17,7 @@ include ROOT_PATH.'src/functions/mongo_functions.php';
 new_cobra_header("../..");
 
 
-new_cobra_body($_SESSION['login'],"Datasets and statistics","section_description","../..");
+new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:'',"Datasets and statistics","section_description","../..");
 
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");

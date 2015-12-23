@@ -112,7 +112,7 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
 
 new_cobra_header("../..");
 
-new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file","../..");
+new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
 echo '<div id="doc_pages">';
 echo '<div id="section_upload">';
 //echo '<div id="bar_blank">
