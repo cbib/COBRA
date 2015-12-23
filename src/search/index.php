@@ -31,7 +31,7 @@ if(file_exists($cache))
 else
 
 {
-    array_map('unlink', glob("../cache/*.html"));
+    array_map('unlink', glob("cache/*.html"));
     ob_start();
 
     new_cobra_header("../..");
