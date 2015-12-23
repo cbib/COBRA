@@ -47,3 +47,5 @@ wiki/config.php
 # Users repository
 
 src/docs/COBRA_depot/*
+
+src/cache/*
