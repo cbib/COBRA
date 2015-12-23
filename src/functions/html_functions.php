@@ -193,10 +193,10 @@ echo'
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <li>
-		     <a href="'.$path.'/wiki/">
-		        <i class="fa fa-home"></i> 
-				<span>About COBRA</span>
-		     </a>
+                    <a href="'.$path.'/src/wiki/">
+                       <i class="fa fa-home"></i> 
+                       <span>About COBRA</span>
+                    </a>
                	</li>
                   <li>
                      <a href="'.$path.'/src/search/">
@@ -209,11 +209,6 @@ echo'
                         <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
                      </a>
                   </li>
-                  <!--<li>
-                     <a href="'.$path.'/wiki/">
-                        <i class="fa fa-info"></i> <span>Wiki</span>
-                     </a>
-                  </li>-->
                   <li >
                      <a href="'.$path.'/src/tools/">
                         <i class="fa fa-cogs"></i> <span>Tools</span>
