@@ -116,7 +116,7 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 ///////////////////////////////////////////////////
 $table_string="";
 $table_string.='
-<form id="icheckForm" method="post" class="form-horizontal" action="https://services.cbib.u-bordeaux2.fr/cobra/src/orthology/ortholog_search.php">
+<form id="icheckForm" method="post" class="form-horizontal" action="../orthology/ortholog_search.php">
     
     <div class=col-md-6>
         <div class="form-group">
