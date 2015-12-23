@@ -22,7 +22,7 @@ if ((isset($_GET['act'])) && ($_GET['act'] == 'logout'))
 		session_destroy();
 		echo '<p>You have been disconnected</p>'."\n";
 		echo '<p>New connection ?  <a href="./login.php">Click here</a></p>'."\n";
-		session_start();
+		//session_start();
  	}
  	// else{
 //  		echo '<p>You are not connected</p>'."\n";
