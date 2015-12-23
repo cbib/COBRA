@@ -6,7 +6,7 @@ require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
 new_cobra_header("../..");
-new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Tools","section_tools","../..");
+new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Wiki","section_wiki","../..");
 
 
 echo '<div class="col-md-12" >		
