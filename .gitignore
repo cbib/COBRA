@@ -49,3 +49,4 @@ wiki/config.php
 src/docs/COBRA_depot/*
 
 src/cache/*
+src/search/cache/*
