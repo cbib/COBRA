@@ -14,7 +14,7 @@ require '../session/control-session.php';
 
 
 new_cobra_header("../..");
-new_cobra_body(is_logged(isset($_SESSION['login'])? $_SESSION['login']:''),"Quick search","section_quick_search","../..");
+new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:'',"Quick search","section_quick_search","../..");
 
 
 

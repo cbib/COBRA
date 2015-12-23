@@ -14,11 +14,11 @@ if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
     $uri="cobra";
     $extra = 'login.php';
     if ($host==="127.0.0.1"){
-        error_log("into control session and in directory ". $host ."/".$extra);
+        //error_log("into control session and in directory ". $host ."/".$extra);
         header("Location: http://$host/$extra"); 
     }
     else{
-        error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
+        //error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
         header("Location: http://$host/$uri/$extra"); 
     }
     
