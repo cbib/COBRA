@@ -50,3 +50,4 @@ src/docs/COBRA_depot/*
 
 src/cache/*.html
 src/search/cache/*.html
+src/wiki/cache/*.html
