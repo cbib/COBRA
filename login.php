@@ -134,7 +134,7 @@ else{
 					
 	
  						if (($person['lastname'] != '') && ($person['firstname'] != '')){
- 							session_start();
+ 							//session_start();
 							// On  enregistre ses données dans la session
 							$_SESSION['login'] = $login; // permet de vérifier que l'utilisateur est bien connecté
 							$_SESSION['firstname'] = $person['firstname'];
