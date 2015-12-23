@@ -73,11 +73,11 @@ else
 
 
         $stat_string="";
-        $stat_string.='<p><h4>Last update : '.getlastmod().'</h4></p> 
-                    <p><h4>Number of samples : '.$sampleCollection->count().'</h4></p>
-                    <p><h4>Number of normalized measures : '.$measurementsCollection->count().'</h4></p>
+        $stat_string.='<h4>Last update : '.getlastmod().'</h4>
+                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
+                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
 
-                    <p><h4>Number of species : '.$speciesCollection->count().'</h4></p>';
+                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
 
                     $cursor=$speciesCollection->aggregate(array(
                     array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
