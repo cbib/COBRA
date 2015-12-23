@@ -82,7 +82,7 @@ else
                     $cursor=$speciesCollection->aggregate(array(
                     array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
                     ));
-                    $stat_string.='<p> <h4>Species per top_level</h4>';
+                    $stat_string.='<h4>Species per top_level</h4>';
                     foreach ($cursor['result'] as $doc){
                             $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
                     }
