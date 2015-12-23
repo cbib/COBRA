@@ -768,9 +768,9 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 }
                 //echo' </dl>';
             }
-            echo "symbol : ".$symbol."<br>";
-            echo "gene alias : ".$gene_alias[0]."<br>";
-            echo "descriptions : ".$descriptions[0]."<br>";
+            //echo "symbol : ".$symbol."<br>";
+            //echo "gene alias : ".$gene_alias[0]."<br>";
+            //echo "descriptions : ".$descriptions[0]."<br>";
             if ($gene_alias[0]=="" && $gene_alias[0]=="NA"){
                 if ($descriptions[0]=="" && $descriptions[0]=="NA"){
                     $cursor1=$interactionsCollection->aggregate(array( 
@@ -887,24 +887,24 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                 }
 
             }*/
-            $timestart=microtime(true);
-            echo "symbol : ".$symbol."<br>";
-            echo "alias : ".$alias[0]."<br>";
-            echo "description : ".$description[0]."<br>";
-            echo "gene : ".$gene."<br>";
+            //$timestart=microtime(true);
+            //echo "symbol : ".$symbol."<br>";
+            //echo "alias : ".$alias[0]."<br>";
+            //echo "description : ".$description[0]."<br>";
+            //echo "gene : ".$gene."<br>";
             
             $cursor1=$interactionsCollection->aggregate(array( 
                 array('$unwind'=>'$mapping_file'), 
                 array('$match'=> array('$or'=> array(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol[0]),array('mapping_file.INTERACTOR_A'=>$gene_id[0])))),
                 array('$project' => array('mapping_file.INTERACTOR_A'=>1,'mapping_file.INTERACTOR_B'=>1,'mapping_file.OFFICIAL_SYMBOL_A'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'species'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'_id'=>0))
             ));
-            $timeend=microtime(true);
-            $time=$timeend-$timestart;
+            //$timeend=microtime(true);
+            //$time=$timeend-$timestart;
             //Afficher le temps d'éxecution
-            $page_load_time = number_format($time, 3);
-            echo "Script starting at: ".date("H:i:s", $timestart);
-            echo "<br>Script ending at: ".date("H:i:s", $timeend);
-            echo "<br>Script for aggregation function executed in " . $page_load_time . " sec for " .count($cursor1['result']). "result";
+            //$page_load_time = number_format($time, 3);
+            //echo "Script starting at: ".date("H:i:s", $timestart);
+            //echo "<br>Script ending at: ".date("H:i:s", $timeend);
+            //echo "<br>Script for aggregation function executed in " . $page_load_time . " sec for " .count($cursor1['result']). "result";
             
             if (count($cursor1['result'])!=0){
                
