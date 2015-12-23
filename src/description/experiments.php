@@ -8,7 +8,7 @@ new_cobra_header("../..");
 ?>
 
 <?php
-new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:'',"Experiments Details","section_experiments","../..");
+new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments Details","section_experiments","../..");
 
 
 	//Recuperation des variables de la page main
