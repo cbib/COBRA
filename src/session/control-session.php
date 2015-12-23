@@ -1,7 +1,7 @@
 <?php
 session_start(); // ici on continue la session
 
- 
+error_log("into control session"); 
  
 if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
 {
