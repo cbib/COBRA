@@ -14,7 +14,7 @@ require '../session/control-session.php';
 
 $cache = '../cache/search_index_'.filemtime("./index.php").'.html';
 
-$expire = time() - 84400 ; // valable une minute
+//$expire = time() - 84400 ; // valable une minute
 
 //$timestart=microtime(true);             
 
