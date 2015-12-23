@@ -6,7 +6,7 @@ echo'
 <html>
 <head>
 <meta charset="UTF-8">
-<title>COBRA</title>
+
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- bootstrap 3.0.2 -->
 <link href="'.$path.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -58,6 +58,7 @@ echo'
 
 <!-- AdminLTE App -->
 <script src="'.$path.'/js/app.js" type="text/javascript"></script>
+<title>COBRA</title>
 </head>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
