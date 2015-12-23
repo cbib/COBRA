@@ -12,7 +12,7 @@ require '../session/control-session.php';
 
 /*debut du cache*/
 
-$cache = fopen('../cache/search_index.html','w');
+$cache = '../cache/search_index.html';
 
 $expire = time() - 60 ; // valable une minute
 
