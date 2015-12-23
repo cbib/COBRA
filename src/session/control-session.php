@@ -10,7 +10,8 @@ if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
     //header('Location: /var/www/html/COBRA/login.php'); 
     
     $host  = $_SERVER['HTTP_HOST'];
-    $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+    //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+    $uri="cobra";
     $extra = 'login.php';
     error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
     header("Location: http://$host$uri/$extra");
