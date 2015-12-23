@@ -151,13 +151,13 @@ else
     file_put_contents($cache, $page) ; // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache) 
     echo $page ; // on affiche notre page :D 
 }
-                    $timeend=microtime(true);
-                    $time=$timeend-$timestart;
-                    //Afficher le temps d'éxecution
-                    $page_load_time = number_format($time, 3);
-                    echo "starting script at: ".date("H:i:s", $timestart);
-                    echo "<br>Ending script at: ".date("H:i:s", $timeend);
-                    echo "<br>Script for interaction data executed in " . $page_load_time . " sec"; 
+$timeend=microtime(true);
+$time=$timeend-$timestart;
+//Afficher le temps d'éxecution
+$page_load_time = number_format($time, 3);
+error_log ("starting script at: ".date("H:i:s", $timestart));
+error_log ("<br>Ending script at: ".date("H:i:s", $timeend));
+error_log ("<br>Script for interaction data executed in " . $page_load_time . " sec"); 
  
  
  
