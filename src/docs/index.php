@@ -348,7 +348,7 @@ $(document).ready(function() {
         //alert(full_path);
         table.row('.selected').remove().draw( false );
         
-        window.location.replace("https://services.cbib.u-bordeaux2.fr/cobra/src/docs/index.php?action=Remove&full_path=".concat(full_path.html().trim()));
+        window.location.replace("index.php?action=Remove&full_path=".concat(full_path.html().trim()));
         
     } );
 } );
