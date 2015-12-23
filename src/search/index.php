@@ -16,7 +16,8 @@ $cache = '../cache/search_index.html';
 
 $expire = time() - 20 ; // valable une minute
 
- 
+$timestart=microtime(true);             
+
 
 if(file_exists($cache) && filemtime($cache) > $expire)
 
@@ -150,6 +151,13 @@ else
     file_put_contents($cache, $page) ; // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache) 
     echo $page ; // on affiche notre page :D 
 }
+                    $timeend=microtime(true);
+                    $time=$timeend-$timestart;
+                    //Afficher le temps d'éxecution
+                    $page_load_time = number_format($time, 3);
+                    echo "starting script at: ".date("H:i:s", $timestart);
+                    echo "<br>Ending script at: ".date("H:i:s", $timeend);
+                    echo "<br>Script for interaction data executed in " . $page_load_time . " sec"; 
  
  
  
