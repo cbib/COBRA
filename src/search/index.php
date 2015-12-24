@@ -74,7 +74,10 @@ else
 
 
         $stat_string="";
-        $stat_string.='<h4>Last update : '.getlastmod().'</h4>
+        $today = date("F j, Y, g:i a");
+        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+
+        $stat_string.='<h4>Last update : '.$today.'</h4>
                     <h4>Number of samples : '.$sampleCollection->count().'</h4>
                     <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
 
