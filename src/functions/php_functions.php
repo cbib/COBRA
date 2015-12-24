@@ -580,7 +580,7 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 echo '<h1>';
                 for ($i = 0; $i < count($gene_symbol); $i++) {
                     if ($i==count($gene_symbol)-1){
-                        echo $gene_symbol[$i];
+                        echo $i."and".$gene_symbol[$i];
                     }
                     else{
                         echo $gene_symbol[$i].', ';
