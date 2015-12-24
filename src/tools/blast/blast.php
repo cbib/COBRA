@@ -107,7 +107,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     else{
                         $species="All+species";
                     }
-                    echo '<li> <a href="../../result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
+                    echo '<li> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></li>';
                 }
                 $max_hits++;
             }
