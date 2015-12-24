@@ -118,6 +118,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
             }
+//            for ($i = 0; $i < count($gene_symbol); $i++) {
+//                    if (strstr($gene_symbol,",")){
+//                        $pos=$i;
+//                        $tmp_array=explode(",", $gene_symbol);
+//                        $gene_symbol[$i]=$tmp_array[0];
+//                        array_splice($gene_symbol, $i, 1);
+//                    }
+//                }
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
