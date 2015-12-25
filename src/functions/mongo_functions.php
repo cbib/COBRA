@@ -239,7 +239,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     
     }
     //get the target id for this species of the plza mapping table
-    $plaza_favorite_tgt_id=$ma->find(array('type'=>array('$nin'=>array('gene_to_go')),'src'=>'plaza_gene_id','species'=>$species),array('tgt'=>1));
+    $plaza_favorite_tgt_id=$ma->find(array('type'=>array('$nin'=>array('gene_to_go')),'src'=>'Plaza gene id','species'=>$species),array('tgt'=>1));
     //only one value is possible
     foreach ($plaza_favorite_tgt_id as $value) {
         $intermediary_id=$value['tgt'];
@@ -334,7 +334,7 @@ function get_plaza_id(Mongocollection $ma,Mongocollection $sp,$id='null',$specie
     
     }
     //get the target id for this species in the plaza mapping table
-    $plaza_favourite_tgt_id=$ma->find(array('src'=>'plaza_gene_id','type'=>array('$nin'=>array('gene_to_go')),'species'=>$species),array('tgt'=>1));
+    $plaza_favourite_tgt_id=$ma->find(array('src'=>'Plaza gene id','type'=>array('$nin'=>array('gene_to_go')),'species'=>$species),array('tgt'=>1));
     //only one value is possible
     
     foreach ($plaza_favourite_tgt_id as $value) {
@@ -388,18 +388,18 @@ function convert_with_intermediary_id_into_plaza_id_list(Mongocollection $ma,$ge
     foreach ($gene_list_attributes as $value) {
         //echo $value['search'];
         $plaza_id=$ma->aggregate(array(
-            array('$match' => array('key'=>'PLAZA_conversion','src'=>'plaza_gene_id','species'=>$species)),   
+            array('$match' => array('key'=>'PLAZA_conversion','src'=>'Plaza gene id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.'.$plaza_tgt_id=>$value['tgt'])), 
-            array('$project' => array('mapping_file.plaza_gene_id'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.Plaza gene id'=>1,'_id'=>0))
             ));
         $cpt=0;
         foreach ($plaza_id['result'] as $result) {
             
             if ($cpt<1){
-                //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
-                $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
+                //echo 'result : '.$result['mapping_file']['Plaza gene id']; 
+                $value['plaza_id']=$result['mapping_file']['Plaza gene id'];
                 array_push($cursor,$value);
                 $cpt++;
             }
@@ -415,18 +415,18 @@ function convert_without_intermediary_id_into_plaza_id_list(Mongocollection $ma,
     foreach ($gene_list_attributes as $value) {
         //echo $value['search'];
         $plaza_id=$ma->aggregate(array(
-            array('$match' => array('key'=>'PLAZA_conversion','src'=>'plaza_gene_id','species'=>$species)),   
+            array('$match' => array('key'=>'PLAZA_conversion','src'=>'Plaza gene id','species'=>$species)),   
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.'.$plaza_tgt_id=>$value['search'])), 
-            array('$project' => array('mapping_file.plaza_gene_id'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.Plaza gene id'=>1,'_id'=>0))
             ));
         $cpt=0;
         foreach ($plaza_id['result'] as $result) {
             
             if ($cpt<1){
-                //echo 'result : '.$result['mapping_file']['plaza_gene_id']; 
-                $value['plaza_id']=$result['mapping_file']['plaza_gene_id'];
+                //echo 'result : '.$result['mapping_file']['Plaza gene id']; 
+                $value['plaza_id']=$result['mapping_file']['Plaza gene id'];
                 array_push($cursor,$value);
                 $cpt++;
             }
@@ -1235,7 +1235,7 @@ function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection 
     $table_string="";
     if ($current_plaza_id!=""){
         //$timestart=microtime(true);
-        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
+        $cursors=$orthologsCollection->find(array('mapping_file.Plaza gene id'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
         foreach ($cursors as $cursor){
             foreach ($cursor as $mapping_file){
                 foreach ($mapping_file as $value){
@@ -1248,7 +1248,7 @@ function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection 
 //        $cursors=$orthologsCollection->aggregate(array(
 //            array('$project' => array('mapping_file'=>1,'_id'=>0)),
 //            array('$unwind'=>'$mapping_file'),
-//            array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
+//            array('$match' => array('mapping_file.Plaza gene id'=>$current_plaza_id)),
 //            array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
 //        ));
 
@@ -1350,7 +1350,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
     //echo 'current_plaza_id: '.$current_plaza_id;
     if ($current_plaza_id!=""){
         
-//        $cursors=$orthologsCollection->find(array('mapping_file.plaza_gene_identifier'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
+//        $cursors=$orthologsCollection->find(array('mapping_file.Plaza gene id'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
 //        foreach ($cursors as $cursor){
 //            foreach ($cursor as $mapping_file){
 //                foreach ($mapping_file as $value){
@@ -1365,7 +1365,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
             array('$match'=>array('species'=>$speciesID)),
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
-            array('$match' => array('mapping_file.plaza_gene_identifier'=>$current_plaza_id)),
+            array('$match' => array('mapping_file.Plaza gene id'=>$current_plaza_id)),
             array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
         ));
         //var_dump($cursors);
@@ -1381,7 +1381,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                         $cursor=$mappingsCollection->aggregate(array( 
                             array('$match' => array('key'=>'PLAZA_conversion')),  
                             array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'_id'=>0)),    
-                            array('$match' => array('src'=>"plaza_gene_id")),  
+                            array('$match' => array('src'=>"Plaza gene id")),  
                             array('$unwind'=>'$src_to_tgt'),    
                             array('$match' => array('src_to_tgt.0'=>$ortholog)),  
                             array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'_id'=>0))
@@ -1490,7 +1490,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
     $table_string="";
 	if ($current_plaza_id!=""){
 
-		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'plaza_gene_identifier');
+		$MongoGridFSCursor=get_plaza_orthologs($grid, $orthologsCollection,$speciesID,$current_plaza_id,'Plaza gene id');
 		#$MongoGridFSCursor->skip(3)->limit(8);
 		foreach($MongoGridFSCursor as $MongoGridFSFile) {
 			#error_log($MongoGridFSFile->getBytes(), 0);
@@ -1512,7 +1512,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
                                     $cursor=$mappingsCollection->aggregate(array( 
                                         array('$match' => array('type'=>'gene_to_prot')),  
                                         array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
-                                        array('$match' => array('src'=>"plaza_gene_id")),  
+                                        array('$match' => array('src'=>"Plaza gene id")),  
                                         array('$unwind'=>'$src_to_tgt'),    
                                         array('$match' => array('src_to_tgt.0'=>$ortholog)),  
                                         array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))
@@ -1608,7 +1608,7 @@ function get_all_orthologs(MongoGridFS $grid, MongoCollection $mappingsCollectio
 //							$cursor=$mappingsCollection->aggregate(array( 
 //								array('$match' => array('type'=>'gene_to_prot')),  
 //								array('$project' => array('src_to_tgt'=>1,'species'=>1,'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0)),    
-//								array('$match' => array('src'=>"plaza_gene_id")),  
+//								array('$match' => array('src'=>"Plaza gene id")),  
 //								array('$unwind'=>'$src_to_tgt'),    
 //								array('$match' => array('src_to_tgt.0'=>$ortholog)),  
 //								array('$project' => array('src_to_tgt'=>1,'species'=>1, 'src'=>1, 'src_version'=>1,'tgt'=>1,'tgt_version'=>1,'type'=>1,'_id'=>0))

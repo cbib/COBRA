@@ -40,38 +40,38 @@ src_file= data_dir+'orthologs/integrative_orthology.ORTHO_monocots.tsv'
 
 species_initial=[]
 # Get species keys identifier by searching available mapping file for plaza
-species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
+species_to_process=mappings_col.find({"src":"Plaza gene id",'type':{"$nin":['gene_to_go']}},{"species":1})
 for species in species_to_process:
 	species_initial.append(species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize())
 	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
 
-sheet_values = parse_ortholog_table(src_file,['plaza_gene_identifier','orthologs_list_identifier'],0,species_initial)
+sheet_values = parse_ortholog_table(src_file,['Plaza gene id','orthologs_list_identifier'],0,species_initial)
 # save raw data 
 logger.info("sheet_value %d",len(sheet_values))
 species_initials=[]
-species_to_process=mappings_col.find({"src":"plaza_gene_id",'type':{"$nin":['gene_to_go']}},{"species":1})
+species_to_process=mappings_col.find({"src":"Plaza gene id",'type':{"$nin":['gene_to_go']}},{"species":1})
 for species in species_to_process:
 	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
 
 	species_initials=species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize()
 	tgt_file=data_dir+"orthologs/integrative_orthology.monocots_3.0ORTHO_COBRA"+species_initials+".tsv"
 	# this_doc={"data_file":tgt_file}
-# 	this_doc['src']="plaza_gene_identifier"
+# 	this_doc['src']="Plaza gene id"
 # 	this_doc['tgt']="orthologs_list_identifier"
 # 	this_doc['version']="dicots_3.0"
-# 	this_doc['xls_parsing']={'n_rows_to_skip':0,'column_keys':['plaza_gene_identifier','orthologs_list_identifier'],'sheet_index':0}
+# 	this_doc['xls_parsing']={'n_rows_to_skip':0,'column_keys':['Plaza gene id','orthologs_list_identifier'],'sheet_index':0}
 # 	this_doc_id=orthologs_col.insert_one(this_doc).inserted_id
 	
 	orthologs_table={
 
 		'data_file':tgt_file,
 		'species':species['species'],
-		'src':'plaza_gene_identifier',
+		'src':'Plaza gene id',
 		'tgt':'orthologs_list_identifier',
 		'version':"monocots_3.0",
 		'xls_parsing':{
 			'n_rows_to_skip':0,
-			'column_keys':['idx','plaza_gene_identifier','orthologs_list_identifier'],
+			'column_keys':['idx','Plaza gene id','orthologs_list_identifier'],
 			'sheet_index':0
 		
 		}

@@ -73,7 +73,7 @@ prunus={
 	"aliases":["prunus_domestica","prunus"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
-	"preferred_id":"NCBI_Protein_code",
+	"preferred_id":"NCBI Protein code",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -94,7 +94,7 @@ peach={
 	"aliases":["prunus_persica","peach"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"https://en.wikipedia.org/wiki/Peach",
-	"preferred_id":"NCBI_Protein_code",
+	"preferred_id":"NCBI Protein code",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
