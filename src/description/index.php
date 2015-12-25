@@ -51,7 +51,7 @@ foreach($cursor as $line) {
 }
  //makeDatatableFromFind($cursor);
 $table_string.='</ul>';
-add_accordion_panel($table_string, "Experiments lists","Experiments_lists");
+add_accordion_panel($table_string, "Experiments","Experiments_lists");
 
 echo'<br/>';
 
@@ -108,7 +108,7 @@ $table_string.='</tr>';
 $table_string.='</tbody></table>';
 
 
-add_accordion_panel($table_string, "Mappings Table", "mapping_table");
+add_accordion_panel($table_string, "Mappings", "mapping_table");
 echo'<br/>';
 
 $table_string="";
@@ -172,7 +172,7 @@ $table_string.='</tr>';
 
 }
 $table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Species table", "Species_table");
+add_accordion_panel($table_string, "Species", "Species_table");
 echo'<br/>';
 
 $table_string="";
@@ -239,7 +239,7 @@ $table_string.='</tr>';
 
 }
 $table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Viruses table", "virus_table");
+add_accordion_panel($table_string, "Viruses", "virus_table");
 echo'<br/>';
 
 
