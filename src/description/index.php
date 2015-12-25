@@ -53,7 +53,7 @@ foreach($cursor as $line) {
 $table_string.='</ul>';
 add_accordion_panel($table_string, "Experiments lists","Experiments_lists");
 
-
+echo'<br/>';
 
 /*##MAPPING LIST
 
@@ -109,7 +109,7 @@ $table_string.='</tbody></table>';
 
 
 add_accordion_panel($table_string, "Mappings Table", "mapping_table");
-
+echo'<br/>';
 
 $table_string="";
 
@@ -173,7 +173,7 @@ $table_string.='</tr>';
 }
 $table_string.='</tbody></table>';
 add_accordion_panel($table_string, "Species table", "Species_table");
-
+echo'<br/>';
 
 $table_string="";
 
@@ -240,7 +240,7 @@ $table_string.='</tr>';
 }
 $table_string.='</tbody></table>';
 add_accordion_panel($table_string, "Viruses table", "virus_table");
-
+echo'<br/>';
 
 
 

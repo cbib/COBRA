@@ -583,10 +583,10 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                     
                     if ($i==count($gene_symbol)-1){
                         
-                        echo $i."and".$gene_symbol[$i];
+                        echo $gene_symbol[$i];
                     }
                     else{
-                        echo $i."and".$gene_symbol[$i].', ';
+                        echo $gene_symbol[$i].', ';
                     }
                     
                 }
