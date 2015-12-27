@@ -14,6 +14,7 @@ $grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
 $measurementsCollection = new Mongocollection($db, "measurements");
 $mappingsCollection = new Mongocollection($db, "mappings");
+$full_mappingsCollection = new Mongocollection($db, "full_mappings");
 $orthologsCollection = new Mongocollection($db, "orthologs");
 
 
@@ -132,7 +133,7 @@ foreach ($data as $species){
         foreach ($species_id_type as $species_value) {
             //echo 'full name: '.$species_value['full_name'];
             $timestart=microtime(true);
-            $gene_list_attributes=get_ortholog_list_2($mappingsCollection,$measurementsCollection,$speciesCollection,$species_value['full_name'],$genes,$Topgene);
+            $gene_list_attributes=get_ortholog_list_2($full_mappingsCollection,$measurementsCollection,$speciesCollection,$species_value['full_name'],$genes,$Topgene);
             //$gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$value['full_name'],$genes,$Topgene);
             
             

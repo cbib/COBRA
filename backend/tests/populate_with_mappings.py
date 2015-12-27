@@ -38,9 +38,9 @@ mapping_table={
 	"data_file":"mappings/journal.pone.0100477.s004.tsv",
 	"species":"Prunus domestica",
 	"type":"gene_to_prot",
-	"src":"unigene",
-	"src_version":"",
-	"tgt":"NCBI Protein code",
+	"src":"Est",
+	"src_version":"unigene",
+	"tgt":"Protein",
 	"tgt_version":"NCBI",
 	"description":"Sequence",
 	"url":"",
@@ -50,7 +50,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":2,
-		"column_keys":['idx','unigene', 'Sequence', 'Jojo-W1', 'Jojo-W2', 'Jojo-W+PPV', 'Jojo-M+PPV', 'fold_change', 'logFC', 'logCPM', 'PValue', 'FDR', 'Description', 'AccPrunus', 'DescPrunus', 'AccNCBI', 'DescNCBI', 'AccPlants', 'DescPlants', 'AccPRG', 'DescPRG','NCBI Protein code'],
+		"column_keys":['idx','Est', 'Sequence', 'Jojo-W1', 'Jojo-W2', 'Jojo-W+PPV', 'Jojo-M+PPV', 'fold_change', 'logFC', 'logCPM', 'PValue', 'FDR', 'Description', 'AccPrunus', 'DescPrunus', 'AccNCBI', 'DescNCBI', 'AccPlants', 'DescPlants', 'AccPRG', 'DescPRG','Protein'],
 		"sheet_index":0,
 	}
 }
@@ -58,15 +58,15 @@ mappings_col.insert(mapping_table)
 
 
 
-# Gene_to_prot - plaza to melonomics
+# Gene_to_prot - plaza to prunus persica
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.ppe.xls",
 	"species":"Prunus persica",
-	"type":"gene_to_gene",
+	"type":"PLAZA",
 	"src":"Plaza gene id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"GDR_gene_id",
-	"tgt_version":"",
+	"tgt":"Gene",
+	"tgt_version":"GDR gene id",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ppe.csv.gz",
 	"doi":"not published",
@@ -75,7 +75,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Plaza gene id','GDR_gene_id','GDR_transcript_id','uniprot_id'],
+		"column_keys":['idx','Plaza gene id','Gene','GDR_transcript_id','uniprot_id'],
 		"sheet_index":0,
 	}
 }
@@ -92,10 +92,10 @@ mappings_col.insert(mapping_table)
 mapping_table={
 	"data_file":"mappings/1471-2164-13-601-s7.xls",
 	"species":"Cucumis melo",
-	"type":"est_to_gene",
-	"src":"est_unigen",
+	"type":"Est unigen",
+	"src":"Est",
 	"src_version":"Melogen melo_v1 Array express",
-	"tgt":"icugi_unigene",
+	"tgt":"Gene",
 	"tgt_version":"Icugi unigen v4",
 	"description":"sequence",
 	"url":"http://www.biomedcentral.com/content/supplementary/1471-2164-13-601-s7.xls",
@@ -105,7 +105,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":3,
-		"column_keys":['idx','est_unigen','sequence','icugi_unigene'],
+		"column_keys":['idx','Est','sequence','Gene'],
 		"sheet_index":0,
 	}
 }
@@ -116,10 +116,10 @@ mappings_col.insert(mapping_table)
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.cme.xls",
 	"species":"Cucumis melo",
-	"type":"gene_to_gene",
+	"type":"PLAZA",
 	"src":"Plaza gene id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"Melonomics_gene_id",
+	"tgt":"Gene",
 	"tgt_version":"Melonomics genes v3.5",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.cme.csv.gz",
@@ -129,7 +129,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Plaza gene id','Melonomics_gene_id','Melonomics_transcript_id','uniprot_id'],
+		"column_keys":['idx','Plaza gene id','Gene','Melonomics_transcript_id','uniprot_id'],
 		"sheet_index":0,
 	}
 }
@@ -142,14 +142,14 @@ mappings_col.insert(mapping_table)
 
 
 
-# Gene_to_gene - Plaza to barlex
+# Gene_to_prot - Plaza to barlex
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.hvu.xls",
 	"species":"Hordeum vulgare",
-	"type":"gene_to_prot",
+	"type":"PLAZA",
 	"src":"Plaza gene id",
 	"src_version":"PLAZA 3.0 Monocots",
-	"tgt":"transcript id",
+	"tgt":"Transcript",
 	"tgt_version":"Barlex transcript",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.hvu.csv.gz",
@@ -159,7 +159,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Plaza gene id','gene_id','protein_id', 'id', 'transcript id','uniprot_id'],
+		"column_keys":['idx','Plaza gene id','gene_id','protein_id', 'id', 'Transcript','uniprot_id'],
 		"sheet_index":0,
 	}
 }
@@ -172,10 +172,10 @@ mapping_table={
 	"data_file":"mappings/Barlex_HC_LC_gene1.tsv",
 	"species":"Hordeum vulgare",
 	"type":"est_to_gene",
-	"src":"Morex_Contig",
-	"src_version":"",
-	"tgt":"transcript id",
-	"tgt_version":"Barlex",
+	"src":"Est",
+	"src_version":"Morex_Contigs",
+	"tgt":"Transcript",
+	"tgt_version":"Barlex genes",
 	"description":"Barlex HC/LCgenes part 1",
 	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
 	"doi":"10.1186/1471-2164-13-601-s7",
@@ -184,7 +184,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','transcript id','Morex_Contig','FPC','BAC','Cluster ID','MorexChromosome','Morex Contig cM','BAC Contig','Confidence','FunctionalAnnotation'],
+		"column_keys":['idx','Transcript','Est','FPC','BAC','Cluster ID','MorexChromosome','Morex Contig cM','BAC Contig','Confidence','FunctionalAnnotation'],
 		"sheet_index":0,
 	}
 }
@@ -195,10 +195,10 @@ mapping_table={
 	"data_file":"mappings/Barlex_HC_LC_gene2.tsv",
 	"species":"Hordeum vulgare",
 	"type":"est_to_gene",
-	"src":"Morex_Contig",
-	"src_version":"",
-	"tgt":"transcript id",
-	"tgt_version":"",
+	"src":"Est",
+	"src_version":"Morex_Contigs",
+	"tgt":"Transcript",
+	"tgt_version":"Barlex genes",
 	"description":"Barlex HC/LC genes part 2",
 	"url":"http://apex.ipk-gatersleben.de/apex/f?p=284:27:8729907556936:CSV::::",
 	"doi":"10.1186/1471-2164-13-601-s7",
@@ -207,7 +207,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','transcript id','Morex_Contig','FPC','BAC','Cluster ID','MorexChromosome','Morex Contig cM','BAC Contig','Confidence','FunctionalAnnotation'],
+		"column_keys":['idx','Transcript','Est','FPC','BAC','Cluster ID','MorexChromosome','Morex Contig cM','BAC Contig','Confidence','FunctionalAnnotation'],
 		"sheet_index":0,
 	}
 }
@@ -234,10 +234,10 @@ mapping_table={
 	"data_file":"mappings/TOM1_id_to_tomato200607#2_id.xls",
 	"species":"Solanum lycopersicum",
 	"type":"est_to_gene",
-	"src":"SGN_S",
-	"src_version":"tom1",
-	"tgt":"SGN_U",
-	"tgt_version":"tomato200607#2",
+	"src":"Est",
+	"src_version":"tom1 (SGN_S)",
+	"tgt":"Gene",
+	"tgt_version":"tomato200607#2 (SGN_U)",
 	"description":"NA",
 	"url":"",
 	"doi":"none",
@@ -246,31 +246,23 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','SGN_U'],
+		"column_keys":['idx','Est','Gene'],
 		"sheet_index":0,
 	}
 }
 mappings_col.insert(mapping_table)
 
 
-
-
-
-
-
-
-
-
 # Gene_to_prot - Plaza to ITAG protein
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.sly.xls",
 	"species":"Solanum lycopersicum",
-	"type":"gene_to_prot",
+	"type":"PLAZA",
 	"src":"Plaza gene id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"ITAG_pid",
-	"tgt_version":"2_3",
-	"description":"uniprot_id",
+	"tgt":"Protein",
+	"tgt_version":"ITAG pid 2.3",
+	"description":"",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.sly.csv.gz",
 	"doi":"none",
 	"key":"PLAZA_conversion",
@@ -278,7 +270,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Plaza gene id','ITAG_pid','uniprot_id'],
+		"column_keys":['idx','Plaza gene id','Protein','uniprot_id'],
 		"sheet_index":0,
 	}
 }
@@ -308,10 +300,10 @@ mapping_table={
 	"data_file":"mappings/CATMA_2.3_07122011.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"est_to_gene",
-	"src":"CATMA_ID",
+	"src":"Est",
 	"src_version":"CATMA V2.1",
-	"tgt":"AGI_TAIR",
-	"tgt_version":"2_3",
+	"tgt":"Gene",
+	"tgt_version":"AGI TAIR 2.3",
 	"description":"Description",
 	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
 	"doi":"none",
@@ -320,7 +312,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":4,
-		"column_keys":['idx','CATMA_ID','Probe_type','AGI_TAIR','Gene_type','Description'],
+		"column_keys":['idx','Est','Probe_type','Gene','Gene_type','Description'],
 		"sheet_index":0,
 	}
 }
@@ -332,11 +324,11 @@ mappings_col.insert(mapping_table)
 mapping_table={
 	"data_file":"mappings/plaza_id_conversion.ath.xls",
 	"species":"Arabidopsis thaliana",
-	"type":"gene_to_prot",
+	"type":"PLAZA",
 	"src":"Plaza gene id",
 	"src_version":"PLAZA 3.0 Dicots",
-	"tgt":"uniprot_id",
-	"tgt_version":"",
+	"tgt":"Protein",
+	"tgt_version":"uniprot_id",
 	"description":"none",
 	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_03/IdConversion/id_conversion.ath.csv",
 	"doi":"none",
@@ -345,7 +337,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Plaza gene id','alias','uniprot_id'],
+		"column_keys":['idx','Plaza gene id','alias','Protein'],
 		"sheet_index":0,
 	}
 }

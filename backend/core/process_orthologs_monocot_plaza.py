@@ -40,7 +40,7 @@ src_file= data_dir+'orthologs/integrative_orthology.ORTHO_monocots.tsv'
 
 species_initial=[]
 # Get species keys identifier by searching available mapping file for plaza
-species_to_process=mappings_col.find({"src":"Plaza gene id",'type':{"$nin":['gene_to_go']}},{"species":1})
+species_to_process=mappings_col.find({"src":"Plaza gene id",'type':"PLAZA"},{"species":1})
 for species in species_to_process:
 	species_initial.append(species['species'].split( )[0][0]+species['species'].split( )[1][0].capitalize())
 	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
@@ -49,7 +49,7 @@ sheet_values = parse_ortholog_table(src_file,['Plaza gene id','orthologs_list_id
 # save raw data 
 logger.info("sheet_value %d",len(sheet_values))
 species_initials=[]
-species_to_process=mappings_col.find({"src":"Plaza gene id",'type':{"$nin":['gene_to_go']}},{"species":1})
+species_to_process=mappings_col.find({"src":"Plaza gene id",'type':"PLAZA"},{"species":1})
 for species in species_to_process:
 	logger.info("species first letter : %s, species second letter: %s",species['species'].split( )[0][0],species['species'].split( )[1][0].capitalize())
 

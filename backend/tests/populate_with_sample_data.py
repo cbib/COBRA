@@ -139,9 +139,9 @@ melo_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
 		"n_rows_to_skip":4,
-		"column_keys":['idx','est_unigen','description','fold_change','function'],
+		"column_keys":['idx','Est','description','fold_change','function'],
 		"sheet_index":0,
-		"id_type":"est_unigen"
+		"id_type":"Est"
 	},
     "experimental_results":[
         {
@@ -242,9 +242,9 @@ melo_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
         "n_rows_to_skip":1,
-        "column_keys":['idx','est_unigen','adjP_Val','P_Value','t','B','logFC','SPOT_ID'],
+        "column_keys":['idx','Est','adjP_Val','P_Value','t','B','logFC','SPOT_ID'],
         "sheet_index":0,
-        "id_type":"est_unigen"
+        "id_type":"Est"
     },
     "experimental_results":[
         {
@@ -406,9 +406,9 @@ The material used for the transcriptomic profile analyses came from three differ
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":3,
-		"column_keys":['idx','est_unigen','length','description','fold_change'],
+		"column_keys":['idx','Est','length','description','fold_change'],
 		"sheet_index":0,
-		"id_type":"est_unigen"
+		"id_type":"Est"
 	},
 	"experimental_results":[
 		{
@@ -483,9 +483,9 @@ tomato_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','SGN_S','Block','Column','Row','ID','logFC','A','t','P_Value','B','5_unigen_build_1_2','5_GO_annotation','3_unigen_build_1_2','3_GO_annotation'],
+		"column_keys":['idx','Est','Block','Column','Row','ID','logFC','A','t','P_Value','B','5_unigen_build_1_2','5_GO_annotation','3_unigen_build_1_2','3_GO_annotation'],
 		"sheet_index":0,
-		"id_type":"SGN_S"
+		"id_type":"Est"
 	},
 	"experimental_results":[
 		
@@ -536,9 +536,9 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
+		"column_keys":['idx','Est','Gene','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
-		"id_type":"CATMA_ID"
+		"id_type":"Est"
 	},
 	"experimental_results":[
 		
@@ -613,9 +613,9 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
+		"column_keys":['idx','Est','Gene','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
-		"id_type":"CATMA_ID"
+		"id_type":"Est"
 	},
 	"experimental_results":[
 		
@@ -677,9 +677,9 @@ AT_samples={
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','CATMA_ID','AGI_TAIR','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
+		"column_keys":['idx','Est','Gene','FUNCTION','TYPE_QUAL','PCR_RESULT','I_S1','I_S2','logFC','P-VAL','logFCR'],
 		"sheet_index":0,
-		"id_type":"CATMA_ID"
+		"id_type":"Est"
 	},
 	"experimental_results":[
 		
@@ -766,9 +766,9 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":2,
-		"column_keys":['idx',"unigene", "Sequence", "Jojo-W1", "Jojo-W2", "Jojo-W+PPV", "Jojo-M+PPV", "fold_change", "logFC", "logCPM", "PValue", "FDR", "Description", "AccPrunus", "DescPrunus", "AccNCBI", "DescNCBI", "AccPlants", "DescPlants", "AccPRG", "DescPRG"],
+		"column_keys":['idx',"Est", "Sequence", "Jojo-W1", "Jojo-W2", "Jojo-W+PPV", "Jojo-M+PPV", "fold_change", "logFC", "logCPM", "PValue", "FDR", "Description", "AccPrunus", "DescPrunus", "AccNCBI", "DescNCBI", "AccPlants", "DescPlants", "AccPRG", "DescPRG"],
 		"sheet_index":0,
-		"id_type":"unigene" #**TODO** check ID type for prunus 
+		"id_type":"Est" #**TODO** check ID type for prunus 
 	},
 	"experimental_results":[{
 		"name":"journal.pone.0100477.s004.xls",
@@ -832,9 +832,9 @@ barley_samples={
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx',"Morex_Contig","start","end","value_1","value_2","log2(fold_change)","significant","value_1","value_2","logFC","significant","value_1","value_2","log2(fold_change)","significant","#Polymorphism(55vs56)","assembly info","#significant"],
+		"column_keys":['idx',"Est","start","end","value_1","value_2","log2(fold_change)","significant","value_1","value_2","logFC","significant","value_1","value_2","log2(fold_change)","significant","#Polymorphism(55vs56)","assembly info","#significant"],
 		"sheet_index":0,
-		"id_type":"Morex_Contig" #**TODO** check ID type for prunus 
+		"id_type":"Est" #**TODO** check ID type for prunus 
 	},
 	"experimental_results":[{
 		"name":"RNASeq_summary_short.xls",

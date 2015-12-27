@@ -23,14 +23,17 @@ species_col.remove()
 
 ##### Species 
 
-# Melon 
+###################################################################################################################
+############################################ CUCUMIS MELO #####################################################
+###################################################################################################################
+
 melon={
 	"full_name":"Cucumis melo",
 	"abbrev_name":"C. melo",
 	"aliases":["cucumis_melo","melon"],
 	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Muskmelon",
-	"preferred_id":"icugi_unigene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+	"preferred_id":"Gene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
 
 	"classification":{
 		"top_level":"Eukaryotes",
@@ -45,35 +48,41 @@ melon={
 species_col.insert(melon)
 
 
-# Asiatic Rice 
-rice={
-	"full_name":"Oriza sativa Japonica",
-	"abbrev_name":"O. sativa",
-	"aliases":["oriza_sativa","rice","Japanese rice"],
-	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
-	"wikipedia":"",
-	"preferred_id":"icugi_unigene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+###################################################################################################################
+############################################ ORIZA SATIVA #####################################################
+###################################################################################################################
 
-	"classification":{
-		"top_level":"Eukaryotes",
-		"kingdom":	"Plantae",
-		"unranked": ["Angiosperms","Eudicots","commelinids"],
-		"order":	"Poales",
-		"family":	"Poaceae",
-		"genus":	"Oriza",
-		"species":	"O. sativa",
-	}
-}
-species_col.insert(melon)
+#rice={
+#	"full_name":"Oriza sativa Japonica",
+#	"abbrev_name":"O. sativa",
+#	"aliases":["oriza_sativa","rice","Japanese rice"],
+#	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
+#	"wikipedia":"",
+#	"preferred_id":"", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+#
+#	"classification":{
+#		"top_level":"Eukaryotes",
+#		"kingdom":	"Plantae",
+#		"unranked": ["Angiosperms","Eudicots","commelinids"],
+#		"order":	"Poales",
+#		"family":	"Poaceae",
+#		"genus":	"Oriza",
+#		"species":	"O. sativa",
+#	}
+#}
+#species_col.insert(melon)
 
-# Prunus 
+###################################################################################################################
+############################################ PRUNUS DOMESTICA #####################################################
+###################################################################################################################
+
 prunus={
 	"full_name":"Prunus domestica",
 	"abbrev_name":"P. domestica",
 	"aliases":["prunus_domestica","prunus"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
-	"preferred_id":"NCBI Protein code",
+	"preferred_id":"Protein",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -87,6 +96,9 @@ prunus={
 	}
 }
 species_col.insert(prunus)
+###################################################################################################################
+############################################ PRUNUS PERSICA #####################################################
+###################################################################################################################
 
 peach={
 	"full_name":"Prunus persica",
@@ -94,7 +106,7 @@ peach={
 	"aliases":["prunus_persica","peach"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"https://en.wikipedia.org/wiki/Peach",
-	"preferred_id":"NCBI Protein code",
+	"preferred_id":"Protein",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -110,14 +122,17 @@ peach={
 species_col.insert(peach)
 
 
-# Arabidopsis
+###################################################################################################################
+############################################ ARABIDOPSIS THALIANA #####################################################
+###################################################################################################################
+
 arabidopsis_thaliana={
 	"full_name":"Arabidopsis thaliana",
 	"abbrev_name":"A. Thaliana",
 	"aliases":["thale cress", "mouse-ear cress","arabidopsis"],
 	"taxid":3702, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
 	"wikipedia":"http://en.wikipedia.org/wiki/Arabidopsis_thaliana",
-	"preferred_id":"AGI_TAIR",
+	"preferred_id":"Gene",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -130,14 +145,17 @@ arabidopsis_thaliana={
 }
 species_col.insert(arabidopsis_thaliana)
 
-# Tomato
+###################################################################################################################
+############################################ SOLANUM LYCOPERSICUM #####################################################
+###################################################################################################################
+
 tomato={
 	"full_name":"Solanum lycopersicum",
 	"abbrev_name":"S. Lycopersicum",
 	"aliases":["Lycopersicon lycopersicum","Solanum lycopersicum L.","tomato"],
 	"taxid":4081, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4081
 	"wikipedia":"http://en.wikipedia.org/wiki/Tomato",
-	"preferred_id":"SGN_U",
+	"preferred_id":"Gene",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
@@ -150,14 +168,17 @@ tomato={
 }
 species_col.insert(tomato)
 
-# Barley
+###################################################################################################################
+############################################ HORDEUM VULGARE #####################################################
+###################################################################################################################
+
 barley={
 	"full_name":"Hordeum vulgare",
 	"abbrev_name":"H. vulgare",
 	"aliases":["hordeum_vulgare","barley"],
 	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
 	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
-	"preferred_id":"transcript id",
+	"preferred_id":"Transcript",
 	"classification":{
 		"top_level":"Eukaryotes",
 		"kingdom":	"Plantae",
