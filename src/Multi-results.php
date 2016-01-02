@@ -100,6 +100,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $table_string.='<th>id</th>';
             $table_string.='<th>Protein description</th>';
             $table_string.='<th>species</th>';
+            $table_string.='<th>Score</th>';
             
 
 
@@ -116,6 +117,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
                 $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
                 $table_string.='<td>'.$result['species'].'</td>';
+                $table_string.='<td>'.$result['mapping_file']['Score'].'</td>';
             }
             
             
@@ -157,7 +159,7 @@ new_cobra_footer();
 //        
 // } );
  
- $('#result_list').dataTable( {
+ $('#result_list').DataTable( {
         "scrollX": true,
         "jQueryUI": true,
         "pagingType": "full_numbers",
