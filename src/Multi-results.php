@@ -95,11 +95,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
 
     //var_dump($cursor);
-
+    echo'<div>';
     $table_string="";
     if (count($cursor['result'])>=1) {
         
-        $table_string.='<table id="result_list" class="table table-hover">';
+        $table_string='<table id="result_list" class="table table-hover">';
         //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
         $table_string.='<thead><tr>';
 
@@ -120,7 +120,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $table_string.='<tbody>';
         foreach ($cursor['result'] as $result) {
             $table_string.='<tr>';
-            if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
+            if (in_array($result['mapping_file']['Gene ID'],$gene_id)===FALSE){
 
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
                 $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
@@ -142,6 +142,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         
         $table_string.='</tbody></table>';
         echo $table_string;
+        echo '</div>';
         
     }
     else{

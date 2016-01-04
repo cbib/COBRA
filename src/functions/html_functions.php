@@ -280,24 +280,23 @@ echo'
 
                     </section>
                     <div class="row">
-                        <!-- Left col
-                        <section class="col-lg-12 connectedSortable">-->
+                        
                         <section class="container">
-                            <p class="text-muted" style="text-align: right;">
+                            <p class="text-muted" style="text-align: right">
                                 Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
                             </p>
-                            <p class="text-muted" style="text-align: right;">
+                            <p class="text-muted" style="text-align: right">
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
                             </p>
-                        </section><!-- right col -->
+                        </section>
                     </div>
-                    <!-- /.row (main row) -->
+
                 
-            <!-- /.content -->
+
             </aside>
-            <!-- /.right-side -->
+
         </div>
-<!-- ./wrapper -->
+
     </body>
 </html>
 
