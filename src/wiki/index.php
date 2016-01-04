@@ -11,7 +11,7 @@ $cache = 'cache/wiki_index_'.filemtime("./index.php").'.html';
 //$expire = time() - 84400 ; // valable une minute
 
 //$timestart=microtime(true);             
-echo 'test';
+
 
 //if(file_exists($cache) && filemtime($cache) > $expire)
 if(file_exists($cache))
