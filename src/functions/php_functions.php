@@ -1442,9 +1442,10 @@ echo '
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
-						<textarea name="listID" class="form-control" rows="3">AT5G03160
-                        AT1G06520
-                        AT1G03110
+						<textarea name="listID" class="form-control" rows="3">
+AT5G03160
+AT1G06520
+AT1G03110
                         </textarea>
 		
 				</div>
