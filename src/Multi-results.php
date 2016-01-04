@@ -119,21 +119,22 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         //Debut du corps de la table
         $table_string.='<tbody>';
         foreach ($cursor['result'] as $result) {
-            $table_string.='<tr>';
+            
             if (in_array($result['mapping_file']['Gene ID'],$gene_id)===FALSE){
-
+                $table_string.='<tr>';
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
                 $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
                 $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
                 $table_string.='<td>'.$result['species'].'</td>';
                 $table_string.='<td>'.$result['mapping_file']['Score'].'</td>';
+                $table_string.='</tr>';
             }
             
             
             //$table_string.='<td>'.$line['type'].'</td>';
            
             
-            $table_string.='</tr>';
+           
 
         }
         
