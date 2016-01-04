@@ -171,7 +171,7 @@ new_cobra_footer();
  
  $('#result_list').dataTable( {
         "scrollX": true,
-        "jQueryUI": true,
+        //"jQueryUI": true,
         "pagingType": "full_numbers",
         
         "language": {
