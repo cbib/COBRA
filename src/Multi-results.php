@@ -169,7 +169,7 @@ new_cobra_footer();
 //        
 // } );
  
- $('#result_list').DataTable( {
+ $('#result_list').dataTable( {
         "scrollX": true,
         "jQueryUI": true,
         "pagingType": "full_numbers",
