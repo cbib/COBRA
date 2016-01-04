@@ -1438,7 +1438,7 @@ echo '
     <!--<div class="tinted-box">-->
     <div id="ListSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="'.$path.'/src/resultats_list3.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="'.$path.'/src/multi-search.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
