@@ -1432,19 +1432,20 @@ function make_whats_new(){
 
 
 }
-function make_gene_id_text_list(){
+function make_gene_id_text_list($path='null'){
 
 echo '
     <!--<div class="tinted-box">-->
     <div id="ListSearch" class="js_panel">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/resultats_list3.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="'.$path.'/src/resultats_list3.php" method="get" class="clear search-form homepage-search-form">
     		<fieldset>
     			<div class="form-group">
 						<label for="listids">input list of gene ids</label>
 						<textarea name="listID" class="form-control" rows="3">AT5G03160
-AT1G06520
-AT1G03110</textarea>
+                        AT1G06520
+                        AT1G03110
+                        </textarea>
 		
 				</div>
 				<wbr/>
