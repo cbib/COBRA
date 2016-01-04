@@ -418,11 +418,11 @@ for ($c=0;$c<count($id_details);$c++){
                     //                echo "<br>Ending script at: ".date("H:i:s", $timeend);
                     //                echo "<br>Script for interaction data executed in " . $page_load_time . " sec";  
                     }
-                    else{
-                echo'<div id="summary">
+                else{
+                    echo'<div id="summary">
                          <h2>No Results found for \''.$search.'\'</h2>'
-                  . '</div>';	
-                    }
+                    . '</div>';	
+                }
     
     
            echo'</div>
