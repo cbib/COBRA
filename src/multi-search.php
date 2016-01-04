@@ -194,12 +194,12 @@ for ($c=0;$c<count($id_details);$c++){
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
 
-                                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+                                                    <a class="accordion-toggle collapsed" href="#expression-chart_'.$gene_id[0].'" data-parent="#accordion_documents_expression" data-toggle="collapse">
                                                         <strong>  Expression data</strong>
                                                     </a>				
 
                                             </div>
-                                            <div class="panel-body panel-collapse collapse" id="expression-chart"  >
+                                            <div class="panel-body panel-collapse collapse" id="expression-chart_'.$gene_id[0].'"  >
                                                 <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
                                             </div>
 
@@ -557,82 +557,7 @@ new_cobra_footer();
                         "thousands": "."
             }
     });
-   
 
-    
-//	$(document).ready(function() {
-//        $("#blast_button").click(function(){
-//                $.ajax({
-//                    url : './tools/blast/blast.php', // La ressource ciblée
-//                    type : 'POST' ,// Le type de la requête HTTP.
-//                    data : 'search=' + genes + '&sequence=' + sequence,
-//                    dataType : 'html',
-//                    success:function(myoutput){                   
-//                        $(":hidden").val(myoutput.srno);
-//                        if(myoutput.flag=="1")
-//                        {                                       
-//                            window.location="chat.php";
-//                        }
-//                        else
-//                        {
-//                            $("#msg").html("Invalid Login");
-//                        }
-//                    }
-//                });
-//          });
-//    });
-        
-    //var button_clicked = document.getElementById("blast_button");
-//    var button_clicked=document.getElementById('blast_button').onclick();
-    
-    //alert(clicked_transcript_id);
-
-	
-    
-    //$(this).attr('trancript_sequence_fasta').children();
-//    function loader(){
-//        $('#blast_button').click(function() {
-//                //alert(clicked_transcript_id);
-//                //var seq= $(this).getAttribute("data-sequence");
-//                var target = $(this).attr('data-id');
-//                alert(target);
-//				$.ajax({
-//                    
-//					 url : './tools/blast/blast.php', // La ressource ciblée
-//
-//                    type : 'POST' ,// Le type de la requête HTTP.
-//
-//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
-//
-//                   
-//                    method: 'post',
-//					cache: false,
-//					async: true,
-//					dataType: "html",
-//					success: function (data) {
-//						//alert(data);
-//                        var jqObj = jQuery(data);
-//                        var par=jqObj.find("#blast_results");
-//                        
-//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
-//                        
-//                        //works to load results in element
-////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-////                            search : genes,
-////
-////                            sequence : sequence
-////                            
-////                        } );
-//                        
-//                        
-//                        
-//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-//						//$('.content_test').empty().html(data);
-//					}
-//				});
-//        });
-//    }
     
     function myFunction(element){
         //alert(element.getAttribute('data-id')) ;
@@ -676,60 +601,8 @@ new_cobra_footer();
         });
         
     }
-//    $(document).ready(function(){
-//        //loader();
-//        $('#blast_button').click(function() {
-//                //alert(clicked_transcript_id);
-//                //var seq= $(this).getAttribute("data-sequence");
-//                var target = $(this).attr('data-id');
-//                //alert(target);
-//				$.ajax({
-//                    
-//					 url : './tools/blast/blast.php', // La ressource ciblée
-//
-//                    type : 'POST' ,// Le type de la requête HTTP.
-//
-//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
-//
-//                   
-//                    method: 'post',
-//					cache: false,
-//					async: true,
-//					dataType: "html",
-//					success: function (data) {
-//						//alert(data);
-//                        var jqObj = jQuery(data);
-//                        var par=jqObj.find("#blast_results");
-//                        
-//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
-//                        
-//                        //works to load results in element
-////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-////                            search : genes,
-////
-////                            sequence : sequence
-////                            
-////                        } );
-//                        
-//                        
-//                        
-//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-//						//$('.content_test').empty().html(data);
-//					}
-//				});
-//        });
-//    });
-    
-//    $(document).ready(function() {
-//        $('#trancript_sequence_fasta').on('click button', function(event) {
-//            var $target = $(event.target),
-//                itemId = $target.data('id');
-//                alert(itemId);
-//
-//            //do something with itemId
-//        });
-//    });
+
+
 
     $(document).on({
         ajaxStart: function() { 
