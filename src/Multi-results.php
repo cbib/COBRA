@@ -163,22 +163,9 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
 $('#result_list').DataTable( {
-        responsive: true,
-	
-        
- } );
- 
-// $('#result_list').dataTable( {
-//        "scrollX": true,
-//        //"jQueryUI": true,
-//        //"pagingType": "full_numbers",
-//        
-//        "language": {
-//                        "decimal": ",",
-//                        "thousands": "."
-//            }
-//    });
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-    });
+        responsive: true    
+ });
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
 </script>
