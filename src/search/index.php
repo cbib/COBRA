@@ -37,7 +37,6 @@ else
     new_cobra_header("../..");
     new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Quick search","section_quick_search","../..");
 
-    echo 'test';
 
     echo '
     <main id="content" class="searchpage">
