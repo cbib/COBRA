@@ -73,18 +73,26 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //$searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/xi")));
 	//$cursor = $measurementsCollection->find($searchQuery);
     //var_dump($cursor);
-    
-    
-    
-    //Add split funstion for search value in case of double value separated by colon
-    //consequently add multiple results page to test any alias when an alias is submitted.
-    $cursor=$full_mappingsCollection->aggregate(array(
+    try
+	{
+		$cursor=$full_mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
-    ));
+        ));
+	}
+	catch ( MongoResultException $e )
+	{
+    		echo '<p>aggregation result exceeds maximum document size (16MB), you need to be more precise in your query</p>';
+    		exit();
+	}
+    
+    
+    //Add split funstion for search value in case of double value separated by colon
+    //consequently add multiple results page to test any alias when an alias is submitted.
+    
 
     //var_dump($cursor);
 

@@ -16,6 +16,7 @@ function mongoConnector() {
 	}
 	return $db;	
 }
+
 function mongoPersistantConnector() {
 
 	try
