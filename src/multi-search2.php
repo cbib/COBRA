@@ -53,7 +53,7 @@ for ($c=0;$c<count($id_details);$c++){
                 </div>
                 <div class="panel-body panel-collapse collapse" id="result_'.str_replace(".", "_", $search).'">';
     
-                    include './result_search.php?organism='.$organism.'&search='.$search.'';
+                    include 'result_search.php?organism='.$organism.'&search='.$search.'';
     
     
             echo'</div>
