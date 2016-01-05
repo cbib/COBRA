@@ -577,8 +577,8 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
 function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
    echo'<div id="section_description"><B>'.$gene_id[0].'</B> ';for ($i = 0; $i < $score; $i++) { 
                    echo '<i class="fa fa-star"></i>';
-                };echo'
-                    <div id="organism" class="right"><h4>'.$species.'</h4></div>';
+                };echo'<B class="right">'.$species.'</B>
+                    ';
                 echo '<h1>';
                 
                 for ($i = 0; $i < count($gene_symbol); $i++) {
