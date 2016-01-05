@@ -23,6 +23,9 @@ and open the template in the editor.
 #bar_blank, #hidden_iframe {
   display: none;
 }
+.fa-star {
+  color: green;
+}
 
 //datatable selection
 
