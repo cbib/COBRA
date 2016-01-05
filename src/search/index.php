@@ -104,7 +104,7 @@ else
         </div>
         <div class="col-md-6" id="right_col">';
         add_accordion_panel($stat_string, "Some statistics", "stat_panel");
-        echo 'test';
+
         echo' </div>';
 
 
