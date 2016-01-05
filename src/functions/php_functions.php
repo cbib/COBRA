@@ -575,7 +575,9 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
       . '</div>'; 
 }
 function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
-   echo'<div id="section_description">'.$gene_id[0].'
+   echo'<div id="section_description">'.$gene_id[0];for ($i = 0; $i < $score; $i++) { 
+                   echo '<i class="fa fa-star"></i>';
+                };echo'
                     <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
                 
@@ -594,11 +596,11 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                     echo $gene_alias[0];
                 }
                 echo '</h1> ';
-                echo 'Score: ';
-                for ($i = 0; $i < $score; $i++) { 
-                   echo '<i class="fa fa-star"></i>';
-                }
-                echo '<br>';
+//                echo 'Score: ';
+//                for ($i = 0; $i < $score; $i++) { 
+//                   echo '<i class="fa fa-star"></i>';
+//                }
+//                echo '<br>';
                 
                 if (count($descriptions)>0){
                     echo'<div id="aliases"> Description : ';
