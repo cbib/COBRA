@@ -133,7 +133,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
-                if ((in_array($symbol,$gene_symbol)==FALSE) && ($gene_symbol!='NA')){
+                if ((in_array($symbol,$gene_symbol)==FALSE) && ($symbol!='NA')){
                     array_push($gene_symbol,$symbol);
                 }
                 
