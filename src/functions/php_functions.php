@@ -594,7 +594,7 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                     echo $gene_alias[0];
                 }
                 echo '</h1> ';
-                echo 'Score: '.$score;
+                echo '<i class="fa fa-star"></i>Score: '.$score;
                 if (count($descriptions)>0){
                     echo'<div id="aliases"> Description : ';
                     for ($i = 0; $i < count($descriptions); $i++) {
