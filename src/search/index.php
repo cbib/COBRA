@@ -61,7 +61,7 @@ else
 
     make_species_list(find_species_list($speciesCollection),"../..");
 
-    //echo'</hr>';
+    echo'</hr>';
     echo'
         <div class="col-md-6" id="left_col">';
 
