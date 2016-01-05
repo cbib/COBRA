@@ -823,7 +823,7 @@ function display_external_references( array $proteins_id,$search='null',$species
         ';*/
 
         if ($species == "Arabidopsis thaliana"){
-            echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR AT5G03160 LinkOut">TAIR</a>';
+            echo'<a target="_BLANK" href="http://arabidopsis.org/servlets/TairObject?type=locus&name='.$search.'" title="TAIR '.$search.' LinkOut">TAIR</a>';
         }
         else if ($species == "Solanum lycopersicum"){
 
