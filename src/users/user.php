@@ -86,23 +86,8 @@
 
 $(document).ready(function() {
     $('#blast_jobs').DataTable( {
-        responsive: true
-        
-		
-        
-    } );
-    $('#species').DataTable( {
-        responsive: true
-        
-		
-        
-    } );
-    $('#virus').DataTable( {
-        responsive: true
-        
-		
-        
-    } );
+        responsive: true    
+    });
 
-} );
+});
 </script>
