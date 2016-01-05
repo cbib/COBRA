@@ -560,7 +560,7 @@ new_cobra_footer();
 
     
     function myFunction(element){
-        //alert(element.getAttribute('data-id')) ;
+        alert(element.getAttribute('data-id')) ;
         clicked_transcript_id = element.getAttribute('data-id');
         
        

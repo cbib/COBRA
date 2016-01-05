@@ -86,19 +86,19 @@
 
 $(document).ready(function() {
     $('#blast_jobs').DataTable( {
-        responsive: true,
+        responsive: true
         
 		
         
     } );
     $('#species').DataTable( {
-        responsive: true,
+        responsive: true
         
 		
         
     } );
     $('#virus').DataTable( {
-        responsive: true,
+        responsive: true
         
 		
         
