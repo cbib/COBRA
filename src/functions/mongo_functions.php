@@ -843,7 +843,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
     array_push($global_interact_array, $lit_int_array);
     foreach ($gene_id as $gene){
        
-       if ($gene != "NA" && $gene !=""){ 
+       if (($gene != "NA" && $gene !="") && (isset($symbol[0]))){ 
            //biogrid interaction data
             /*$interaction_data=$interactionsCollection->find(array('mapping_file.OFFICIAL_SYMBOL_A'=>$symbol),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
             foreach ($interaction_data as $data){
@@ -917,7 +917,7 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
                     $species=$cursor1['result'][$i]['species'];
                     //echo "result : " . $i . " for species :".$species."<br>";
                     //echo '<h2> interactions was found for this gene '.$mapping_file['INTERACTOR_B'].'</h2>';
-                    $tmp_array=array();
+                    
                     $tmp_array=array('INTERACTOR A'=>$mapping_file['INTERACTOR_A'],'INTERACTOR B'=>$mapping_file['INTERACTOR_B'],'OFFICIAL SYMBOL A'=>$mapping_file['OFFICIAL_SYMBOL_A'],'OFFICIAL SYMBOL B'=>$mapping_file['OFFICIAL_SYMBOL_B'],'method'=>$mapping_file['EXPERIMENTAL_SYSTEM'],'publication'=>$mapping_file['PUBMED_ID'],'host A name'=>$species,'host B name'=>$species,'Accession number'=>$mapping_file['SOURCE']);
                     
                     array_push($biogrid_int_array, $tmp_array);				
