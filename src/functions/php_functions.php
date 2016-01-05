@@ -607,12 +607,14 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 if (count($descriptions)>0){
                     echo'<div id="description"> <B>Description</B> : ';
                     for ($i = 0; $i < count($descriptions); $i++) {
-                        if ($i==count($descriptions)-1){
-                            echo $descriptions[$i];
-                        }
+                        if ($descriptions[$i]!=''){
+                            if ($i==count($descriptions)-1){
+                                echo $descriptions[$i];
+                            }
 
-                        else{
-                            echo $descriptions[$i].', ';
+                            else{
+                                echo $descriptions[$i].', ';
+                            }
                         }
                     }
                     echo '</div>';
