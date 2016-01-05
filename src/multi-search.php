@@ -299,12 +299,12 @@ for ($c=0;$c<count($id_details);$c++){
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
 
-                                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
+                                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta_'.$gene_id[0].'" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
                                                         <strong>Transcripts sequences </strong>
                                                     </a>				
 
                                             </div>
-                                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
+                                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta_'.$gene_id[0].'">';
                                                 //get the number of transcript for this gene
 
 
