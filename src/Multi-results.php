@@ -108,8 +108,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $table_string.='<th>id</th>';
             $table_string.='<th>Protein description</th>';
             $table_string.='<th>species</th>';
-            #$table_string.='<th>Score</th>';
-            $table_string.='<th><a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><i class="fa fa-help">Score</i></a></th>';
+            $table_string.='<th>Score</th>';
+
 
             
 
@@ -166,7 +166,5 @@ new_cobra_footer();
 $('#result_list').DataTable( {
         responsive: true    
  });
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
-});
+
 </script>
