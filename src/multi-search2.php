@@ -42,7 +42,7 @@ echo '<div id="shift_line"></div>';
 var_dump(realpath(dirname(FILE)));
 for ($c=0;$c<count($id_details);$c++){
     $search=$id_details[$c];
-    $organism="All species";
+    $organism="All+species";
     echo'<div class="panel-group" id="result_accordion_documents_'.str_replace(".", "_", $search).'">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -54,7 +54,7 @@ for ($c=0;$c<count($id_details);$c++){
                 </div>
                 <div class="panel-body panel-collapse collapse" id="result_'.str_replace(".", "_", $search).'">';
     
-                    include("./result_search.php?organism=".$organism."&search=".$search);
+                    include($_SERVER["DOCUMENT_ROOT"]."/src/result_search.php?organism=".$organism."&search=".$search);
     
     
             echo'</div>
