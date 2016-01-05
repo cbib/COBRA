@@ -55,8 +55,8 @@ for a_sample in samples_with_results:
 		this_genome=find_species_doc(a_sample['species'])
 		#logger.info("species = %s",this_genome['full_name'])
 		id_col=parser_config['id_type']
-		this_mapping=get_mapping(id_col,this_genome['preferred_id'])
-		#logger.info("mapping length %d",len(this_mapping))
+		this_mapping=get_mapping(id_col,this_genome['preferred_id'],this_genome['full_name'])
+		logger.info("mapping length %d",len(this_mapping))
 		
 		#if this_genome['full_name']=="Prunus domestica":	
 		#logger.info("10005 = %s",this_mapping.keys())

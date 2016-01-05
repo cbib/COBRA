@@ -167,24 +167,24 @@ for species in species_to_process:
         #cursor_to_table(results)
 
 
-        for r in results:
-            if r['gene'] != 'NA' and r['gene'] != '':
-                logger.info("gene id %s for species %s",r['gene'],species)
+        #for r in results:
+        #    if r['gene'] != 'NA' and r['gene'] != '':
+        #        logger.info("gene id %s for species %s",r['gene'],species)
 
-                if species['full_name']== "Hordeum vulgare":
+        #        if species['full_name']== "Hordeum vulgare":
 
-                    tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Transcript ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
+        #            tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Transcript ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
 
                     #tmp=list(full_mappings_col.find({"mapping_file.Transcript ID":r['gene']},{"mapping_file.$": 1 }))
 
-                elif species['full_name']== "Prunus domestica":
+        #        elif species['full_name']== "Prunus domestica":
 
-                    tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Protein ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
+        #            tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Protein ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
 
                     #tmp=list(full_mappings_col.find({"mapping_file.Protein ID":r['gene']},{"mapping_file.$": 1 }))
 
-                else:
-                    tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Gene ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
+        #        else:
+        #            tmp=full_mappings_col.aggregate([ {'$match': {'species':species['full_name']}}, {'$unwind':'$mapping_file'},  {'$match' : {'mapping_file.Gene ID':r['gene']}},    {'$project' : {'mapping_file.Uniprot ID':1,'_id':0}}])
 
                     #tmp=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 }))
 
@@ -192,4 +192,4 @@ for species in species_to_process:
 
                 #for s in tmp:   
 
-                logger.info("uniprot id %s",tmp['result'][0]['mapping_file']['Uniprot ID'])
+        #        logger.info("uniprot id %s",tmp['result'][0]['mapping_file']['Uniprot ID'])

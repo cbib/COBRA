@@ -385,14 +385,14 @@ def parse_ortholog_excel_table(src_file,column_keys,n_rows_to_skip,sheet_index,i
 
 # normalize xp data into the measurement table 
 
-def get_mapping(src,tgt):
+def get_mapping(src,tgt,species):
 	logger.info( "try to find src : %s for tgt : %s",src,tgt)
 	if src==tgt:
 		logger.info("src=tgt")
 		return {}
 	else:
 		logger.info( "try to find src : %s for tgt : %s",src,tgt)
-		mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt})
+		mapping_doc=mappings_col.find_one({"src":src,"tgt":tgt,"species":species})
 		if len(mapping_doc)<1:
 			logger.critical("cannot map dataset %s using mapping %s -> %s : Mapping not found",this_path,parser_config['id_type'],this_genome['preferred_id'])
 			return None
@@ -402,7 +402,7 @@ def get_mapping(src,tgt):
 		#logger.info( "mapping doc : %d",mapping_doc['src_to_tgt'])
 
 		mapping_dict=dict(mapping_doc['src_to_tgt'])
-		#logger.info( "try to find src : %s",id_to_map,a_map.get(id_to_map,[]))
+		#logger.info( "try to find src : %s for target $s",src,mapping_dict.get(src,[]))
 		return mapping_dict
 
 
