@@ -171,15 +171,15 @@ for species in species_to_process:
             
             if species['full_name']== "Hordeum vulgare":
 
-                tmp=full_mappings_col.find({"mapping_file.Transcript ID":r['gene']},{"mapping_file.Uniprot ID": 1 })
+                tmp=full_mappings_col.find({"mapping_file.Transcript ID":r['gene']},{"mapping_file.$": 1 })
                 
             elif species['full_name']== "Prunus domestica":
 
-                tmp=full_mappings_col.find({"mapping_file.Protein ID":r['gene']},{"mapping_file.Uniprot ID": 1 })
+                tmp=full_mappings_col.find({"mapping_file.Protein ID":r['gene']},{"mapping_file.$": 1 })
 
             else:
 
-                tmp=full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID": 1 })
+                tmp=full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 })
                 
                 
                 
