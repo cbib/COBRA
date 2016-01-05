@@ -1307,12 +1307,12 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                     <div class="panel panel-default">
                         <div class="panel-heading">
                           
-                                <a class="accordion-toggle collapsed" href="#ortho-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                <a class="accordion-toggle collapsed" href="#ortho-table_'.$plaza_id.'" data-parent="#accordion_documents" data-toggle="collapse">
                                         <strong>Homologs table</strong>
                                 </a>				
 
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="ortho-table">
+                        <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">
                             <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                 <tr>';
                                     echo "<th>gene ID</th>";

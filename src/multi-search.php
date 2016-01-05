@@ -200,7 +200,7 @@ for ($c=0;$c<count($id_details);$c++){
 
                                             </div>
                                             <div class="panel-body panel-collapse collapse" id="expression-chart_'.$gene_id[0].'"  >
-                                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
+                                                <div id="container_profile_'.$gene_id[0].'" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
                                             </div>
 
                                         </div>

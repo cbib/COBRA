@@ -949,7 +949,7 @@ function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id
 //        array('$match'=> array('mapping_file.Gene ID'=>$gene_id)),
 //        array('$group'=> array( '_id'=> $gene_id, 'mapping_file.Transcript ID' => 1, 'count'=> array( '$sum'=> 1 )))
 //    ));
-    
+    echo $gene_id;
     $sequences_cursor=$sequencesCollection->aggregate(array(
         array('$match'=> array('tgt'=>'CDNA_Sequence')),
         array('$unwind'=>'$mapping_file'), 
