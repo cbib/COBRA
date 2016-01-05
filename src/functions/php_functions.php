@@ -620,7 +620,7 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 }
                 
                 if (count($gene_alias)>0){
-                    echo'<div id="aliases"> Alias : ';
+                    echo'<div id="aliases"> <B>Alias</B> : ';
                     for ($i = 0; $i < count($gene_alias); $i++) {
                         if ($i==count($gene_alias)-1){
                             echo $gene_alias[$i];
@@ -634,7 +634,7 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 }
                 if (count($proteins_id)>0){
                     if ($proteins_id[0]!='NA'){
-                        echo'<div id="protein aliases"> Protein ids : ';
+                        echo'<div id="protein aliases"> <B>Protein ids</B> : ';
                         for ($i = 0; $i < count($proteins_id); $i++) {
                             if ($i==count($proteins_id)-1){
                                 echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
