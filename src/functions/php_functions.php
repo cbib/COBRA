@@ -630,19 +630,21 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                     echo '</div>';
                 }
                 if (count($proteins_id)>0){
-                    echo'<div id="protein aliases"> Protein ids : ';
-                    for ($i = 0; $i < count($proteins_id); $i++) {
-                        if ($i==count($proteins_id)-1){
-                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
-                            //echo $proteins_id[$i];
-                        }
-                        else{
-                            echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>, ';
+                    if ($proteins_id[0]!='NA'){
+                        echo'<div id="protein aliases"> Protein ids : ';
+                        for ($i = 0; $i < count($proteins_id); $i++) {
+                            if ($i==count($proteins_id)-1){
+                                echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
+                                //echo $proteins_id[$i];
+                            }
+                            else{
+                                echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>, ';
 
-                            //echo $proteins_id[$i].', ';
+                                //echo $proteins_id[$i].', ';
+                            }
                         }
+                        echo '</div>';
                     }
-                    echo '</div>';
                 }
                 //$transcript_count=0;
                 
