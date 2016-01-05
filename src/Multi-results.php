@@ -164,7 +164,7 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
 $('#result_list').DataTable( {
-        responsive: true    
+        responsive: true;  
  });
 
 </script>
