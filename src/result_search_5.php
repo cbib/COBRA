@@ -134,24 +134,29 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //                        array_splice($gene_symbol, $i, 1);
 //                    }
 //                }
-            $symbol_list=explode(",", $result['mapping_file']['Symbol']);
-            foreach ($symbol_list as $symbol) {
-                //echo 'symbol : '.$symbol;
-                if ((in_array($symbol,$gene_symbol)==FALSE) && ($symbol!='NA')){
-                    array_push($gene_symbol,$symbol);
-                }
-                
+            if ((isset($result['mapping_file']['Symbol']))&& ($result['mapping_file']['Symbol']!='')){
 
-                
+                $symbol_list=explode(",", $result['mapping_file']['Symbol']);
+                foreach ($symbol_list as $symbol) {
+                    //echo 'symbol : '.$symbol;
+                    if ((in_array($symbol,$gene_symbol)==FALSE) && ($symbol!='NA')){
+                        array_push($gene_symbol,$symbol);
+                    }
+
+
+
+                }
             }
             if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
 
                 array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
             }
-            
-            if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!="NA"){
+            if ((isset($result['mapping_file']['Alias']))&& ($result['mapping_file']['Alias']!='')){
 
-                array_push($gene_alias,$result['mapping_file']['Alias']);
+                if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!="NA"){
+
+                    array_push($gene_alias,$result['mapping_file']['Alias']);
+                }
             }
             if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
 
