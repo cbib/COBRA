@@ -39,6 +39,7 @@ $listID = str_replace('\r\n','<br>',$listID);
 $id_details= explode("\r\n", $listID);
 make_species_list(find_species_list($speciesCollection),"..");
 echo '<div id="shift_line"></div>';
+var_dump(realpath(dirname(FILE)));
 for ($c=0;$c<count($id_details);$c++){
     $search=$id_details[$c];
     $organism="All species";
@@ -53,7 +54,7 @@ for ($c=0;$c<count($id_details);$c++){
                 </div>
                 <div class="panel-body panel-collapse collapse" id="result_'.str_replace(".", "_", $search).'">';
     
-                    include($_SERVER[DOCUMENT_ROOT]."/src/result_search.php?organism=".$organism."&search=".$search);
+                    include("./result_search.php?organism=".$organism."&search=".$search);
     
     
             echo'</div>
