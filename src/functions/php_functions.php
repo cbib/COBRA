@@ -593,7 +593,9 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                     
                 }
                 if (count($gene_symbol)==0){
-                    echo $gene_alias[0];
+                    if ($gene_alias[0]!='NA'){
+                        echo $gene_alias[0];
+                    }
                 }
                 echo '</h1> ';
 //                echo 'Score: ';
