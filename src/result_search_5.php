@@ -103,10 +103,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){
                 array_push($uniprot_id,$result['mapping_file']['Uniprot ID']);
             }
-            if (in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE){
+            if ((in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE) && ($result['mapping_file']['Protein ID']!='NA')){
                 array_push($protein_id,$result['mapping_file']['Protein ID']);
             }
-            if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
+            if ((in_array($result['mapping_file']['Description'],$descriptions)==FALSE) && ($result['mapping_file']['Description']!='NA')){
 
                 array_push($descriptions,$result['mapping_file']['Description']);
             }
@@ -133,7 +133,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             $symbol_list=explode(",", $result['mapping_file']['Symbol']);
             foreach ($symbol_list as $symbol) {
                 //echo 'symbol : '.$symbol;
-                if (in_array($symbol,$gene_symbol)==FALSE){
+                if ((in_array($symbol,$gene_symbol)==FALSE) && ($gene_symbol!='NA')){
                     array_push($gene_symbol,$symbol);
                 }
                 
