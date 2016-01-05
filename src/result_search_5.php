@@ -106,7 +106,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             if ((in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE) && ($result['mapping_file']['Protein ID']!='NA')){
                 array_push($protein_id,$result['mapping_file']['Protein ID']);
             }
-            if ((in_array($result['mapping_file']['Description'],$descriptions)==FALSE) && ($result['mapping_file']['Description']!='NA')){
+            if ((in_array($result['mapping_file']['Description'],$descriptions)==FALSE) && ($result['mapping_file']['Description']!='NA' || $result['mapping_file']['Description']!='')){
 
                 array_push($descriptions,$result['mapping_file']['Description']);
             }
