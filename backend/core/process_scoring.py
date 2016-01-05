@@ -181,6 +181,6 @@ for species in species_to_process:
 
                 tmp=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 }))
                 
+            for s in tmp:   
                 
-                
-            logger.info("uniprot id %s",tmp['mapping_file.Uniprot ID'])
+                logger.info("uniprot id %s",s['mapping_file.Uniprot ID'])
