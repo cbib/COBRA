@@ -110,6 +110,13 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 array_push($descriptions,$result['mapping_file']['Description']);
             }
+            if (in_array($result['mapping_file']['Score'],$descriptions)==FALSE){
+
+                array_push($descriptions,$result['mapping_file']['Score']);
+            }
+            if (isset($result['mapping_file']['Score'])){
+                $score=$result['mapping_file']['Score'];
+            }
 //            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
 //
 //                array_push($transcript_id,$result['mapping_file']['Transcript ID']);
