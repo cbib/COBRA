@@ -166,7 +166,7 @@ echo   '<div id="summary">';
       
       echo '<div id="protein-details">';
                 
-                display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species);
+                display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score);
 
 
                 

@@ -574,7 +574,7 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
             echo'<div id="shift_line"></div>'                
       . '</div>'; 
 }
-function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null'){
+function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
    echo'<div id="section_description">'.$gene_id[0].'
                     <div id="organism" class="right"><h4>'.$species.'</h4></div>';
                 echo '<h1>';
