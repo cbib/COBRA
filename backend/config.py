@@ -19,5 +19,6 @@ orthologs_col=db.orthologs
 gene_ontology_col=db.gene_ontology
 users_col=db.users
 sequences_col=db.sequences
+variations_col=db.variations
 
 fs = gridfs.GridFS(db)

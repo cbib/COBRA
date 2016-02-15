@@ -240,7 +240,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     
     }
     //get the target id for this species of the plza mapping table
-    $plaza_favorite_tgt_id=$ma->find(array('type'=>array('$nin'=>array('gene_to_go')),'src'=>'Plaza gene id','species'=>$species),array('tgt'=>1));
+    $plaza_favorite_tgt_id=$ma->find(array('type'=>'PLAZA','species'=>$species),array('tgt'=>1));
     //only one value is possible
     foreach ($plaza_favorite_tgt_id as $value) {
         $intermediary_id=$value['tgt'];
