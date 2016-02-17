@@ -79,10 +79,11 @@ wmv={
 }	
 viruses_col.insert(wmv)
 
-ppox={
-	"full_name":"Plum pox",
+
+ppv={
+	"full_name":"Plum pox virus",
 	"wikipedia":"http://en.wikipedia.org/wiki/Plum_pox",
-	"aliases":['sharka','ppv'],
+	"aliases":['sharka','ppv','Plum pox'],
 	"classification":{
 		"top_level":"viruses",
 		"group": "Group IV ((+)ssRNA)",
@@ -92,7 +93,9 @@ ppox={
 	}
 	
 }
-viruses_col.insert(ppox)
+viruses_col.insert(ppv)
+
+
 
 tev={
 	"full_name":"Tobacco etch virus",

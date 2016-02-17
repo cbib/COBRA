@@ -719,7 +719,7 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM INS','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
+		"column_keys":['idx','Exp Gene ID','Gene ID','Locus','FPKM INS','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
 		"sheet_index":0,
 		"id_type":"Gene ID"
 	},
@@ -774,7 +774,7 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM NI','FPKM INS','logFC','Test statistics','p value','q value','Description'],
+		"column_keys":['idx','Exp Gene ID','Gene ID','Locus','FPKM NI','FPKM INS','logFC','Test statistics','p value','q value','Description'],
 		"sheet_index":1,
 		"id_type":"Gene ID"
 	},
@@ -824,7 +824,7 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 	# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM NI','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
+		"column_keys":['idx','Exp Gene ID','Gene ID','Locus','FPKM NI','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
 		"sheet_index":2,
 		"id_type":"Gene ID"
 	},

@@ -31,7 +31,7 @@ for species in species_to_process:
 	#logger.info("species %s",species['species'])
 	pipeline= [
 		{'$match' : {'species':species['full_name'], }}, 
-		{'$group':  {'_id': 'Cucumis melo', 'count' :{'$sum':1}}} 
+		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
 	]
 	results=measurements_col.aggregate(pipeline)
 
@@ -41,7 +41,7 @@ for species in species_to_process:
 
 	pipeline= [
 		{'$match' : {'species':species['full_name'], 'direction':'up'}}, 
-		{'$group':  {'_id': 'Cucumis melo', 'count' :{'$sum':1}}} 
+		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
 	]
 	results=measurements_col.aggregate(pipeline)
 
@@ -51,7 +51,7 @@ for species in species_to_process:
 
 	pipeline= [
 		{'$match' : {"infection_agent" : "monosporascus_cannonballus", 'species':species['full_name'], 'direction':'up'}}, 
-		{'$group':  {'_id': 'Cucumis melo', 'count' :{'$sum':1}}} 
+		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
 	]
 	results=measurements_col.aggregate(pipeline)
 
@@ -59,17 +59,18 @@ for species in species_to_process:
 	
 		logger.info("Result for %s - Number of genes infected by monosporascus and surexpressed %s",species['full_name'],genes["count"])
 
+        pipeline= [
+		{'$match' : {"infection_agent" : "Plum pox virus", 'species':species['full_name'], 'direction':'up'}}, 
+		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
+	]
+	results=measurements_col.aggregate(pipeline)
 
-	#pipeline=[
-	#	{'$match' : {'experimental_results.conditions.infected':True,'species':species['full_name']}},     
-	#	{'$unwind':'$experimental_results'},      
-	#	{'$project' : {'experimental_results.data_file':1,'experimental_results.values':1,'experimental_results.conditions':1,'_id':0}},     
-	#	{'$unwind':'$experimental_results.conditions'},        
-	#	{'$project':{'experimental_results.values.logFC':1,'experimental_results.data_file':1,'infection_agent':'$experimental_results.conditions.infection_agent'}},     
-	#	{'$unwind':'$experimental_results.values'},     
-	#	{'$match':{'experimental_results.values.logFC': {'$gt': 0.05}}},     
-	#	{'$project':{'experimental_results.values.logFC':1,'experimental_results.name':1,'infection_agent':'$experimental_results.conditions.infection_agent'}}
-	#]
+	for genes in results['result']:
+	
+		logger.info("Result for %s - Number of genes infected by PPV and surexpressed %s",species['full_name'],genes["count"])
+
+
+
 	
 	#results=samples_col.aggregate(pipeline)
 	
@@ -112,7 +113,8 @@ for species in species_to_process:
 	if len(tgt_path)<1:
 		print "nothing found"
 
-	results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
+	#results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
+        results=list(measurements_col.find({ "xp":{"$in":tgt_path},"$or": [ { "logFC": { "$gt": 2 } }, { "logFC": { "$lt": -2 } } ] },{"_id":0} ))
        
 	
 
@@ -133,7 +135,7 @@ for species in species_to_process:
 
 
                 else:
-                    #logger.info("gene id %s for species %s",r['gene'],species)
+                    
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
 
                 
@@ -148,12 +150,12 @@ for species in species_to_process:
                     full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
 
                 else:
-
+                    logger.info("gene id %s for species %s",r['gene'],species)
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
                 
                 
                 
-		r['description']=tgt_description[r['xp']]
+                #r['description']=tgt_description[r['xp']]
                 #counter++
         
         #new_results[species]=gene_set

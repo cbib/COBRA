@@ -58,11 +58,13 @@ for a_sample in samples_with_results:
 		for measure in experimental_results['values']:
 			#logger.info("new measure %s",measure[id_col])
 
-                    this_doc={"xp":this_path}
+                    
                     if experimental_results['type']=="contrast":
+                        
+                        #if "," in measure[id_col]:
+                        #    print measure[id_col].split(',')
+                        this_doc={"xp":this_path}
                         this_doc['type']="contrast"
-                        if "," in measure[id_col]:
-                            print measure[id_col].split(',')
                         this_doc['gene']=measure[id_col]
                         this_doc['infection_agent']=infection_agent
                         if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
