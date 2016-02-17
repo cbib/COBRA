@@ -657,6 +657,83 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
                 
                 echo '</div>';//gene details end region 
 }
+
+
+
+
+function load_and_display_variations_result(MongoCollection $variation_collection,$species='null',$gene_id='null'){
+    $var_results=$variation_collection->aggregate(array(
+                    array('$match' => array('species'=> $species)),  
+                    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+                    array('$unwind'=>'$mapping_file'),
+                    array('$match' =>  array('mapping_file.Gene ID'=> $gene_id)), 
+                    array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
+
+                ));
+    
+    echo'<div id="ortholog_section">
+            <h3>Variation and polymorphism</h3>
+                <div class="panel-group" id="accordion_documents">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          
+                                <a class="accordion-toggle collapsed" href="#var-table_'.$gene_id.'" data-parent="#accordion_documents" data-toggle="collapse">
+                                        <strong>Variants table</strong>
+                                </a>				
+
+                        </div>
+                        <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
+                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                                <tr>';
+                                    echo "<th>gene ID</th>";
+                                    echo "<th>variant ID</th>";
+                                    echo "<th>Position</th>";
+                                    echo "<th>Description</th>";
+                                    echo "<th>Variant Alleles</th>";
+                                    echo'
+                                </tr>
+                                </thead>
+
+                                <tbody>';
+                                    foreach ($var_results as $value) {
+                                        foreach( $value as $keys => $data){
+                                           //var_dump($data); 
+//                                            echo $data['mapping_file']['Gene ID'];
+//                                            echo $data['mapping_file']['Variant ID'];
+//                                            echo $data['mapping_file']['Position'];
+//                                            echo $data['mapping_file']['Description'];
+//                                            echo $data['mapping_file']['Alleles'];
+                                            echo "<tr>";
+                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                            echo '<td>'.$data['mapping_file']['Gene ID'].'</td>';
+                                            echo '<td>'.$data['mapping_file']['Variant ID'].'</td>';
+                                            echo '<td>'.$data['mapping_file']['Position'].'</td>';
+                                            echo '<td>'.$data['mapping_file']['Description'].'</td>';
+                                            echo '<td>'.$data['mapping_file']['Alleles'].'</td>';
+                                           
+                                            echo "</tr>";
+                                        }
+        
+        
+                                    }
+                                    
+                           echo'</tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="shift_line"></div>
+            </div>';
+    
+    
+    
+    
+    
+    
+    
+}
 function load_and_display_gene_ontology_terms(MongoCollection $go_collection, array $go_id_list){
     $total_go_biological_process=array();
     $total_go_cellular_component=array();

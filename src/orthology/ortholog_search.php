@@ -229,6 +229,7 @@ foreach ($data as $species){
 
         $gene_list_attributes=get_ortholog_list($mappingsCollection,$measurementsCollection,$speciesCollection,$species,$genes,$Topgene);
 
+        
 
         foreach ($gene_list_attributes as $attributes) {
 

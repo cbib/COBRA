@@ -37,6 +37,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $sequencesCollection = new Mongocollection($db, "sequences");
 	$orthologsCollection = new Mongocollection($db, "orthologs");
     $GOCollection = new Mongocollection($db, "gene_ontology");
+    $variation_collection = new Mongocollection($db, "variations");
 
 	
 	//get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
@@ -266,6 +267,13 @@ echo   '<div id="summary">';
                 //start div goterms                    
                 load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
                 //end div go_terms
+                
+                
+                load_and_display_variations_result($variation_collection,$species,$gene_id[0]);
+                
+                
+                
+                
                 display_external_references($uniprot_id,$search,$species);
                  
             
@@ -462,7 +470,7 @@ new_cobra_footer();
                 //title: {text: 'Samples'}
             },
             yAxis: {
-                min: 0,
+                
                 title: {
                     text: 'Log FC'
                 }

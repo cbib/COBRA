@@ -45,29 +45,24 @@ for a_sample in samples_with_results:
 		else:
 			infection_agent=conditions[1]
 
-		logger.info("conditions %s",infection_agent)
-		# get mapping to apply 
+		#logger.info("conditions %s",infection_agent)
+		
 		parser_config=experimental_results.get('xls_parsing',{})
 		
 		parser_config.update(a_sample.get('xls_parsing',{}))
-		# genome config 
+	
 		this_genome=find_species_doc(a_sample['species'])
-		#logger.info("species = %s",this_genome['full_name'])
-		id_col=parser_config['id_type']
-		#this_mapping=get_mapping(id_col,this_genome['preferred_id'])
-		#logger.info("mapping length %d",len(this_mapping))
 		
-		#if this_genome['full_name']=="Prunus domestica":	
-		#logger.info("10005 = %s",this_mapping.keys())
-		#if this_mapping==None:
-		#	logger.critical("Cannot perform ID conversion")
-		#	continue
+		id_col=parser_config['id_type']
+		
 		for measure in experimental_results['values']:
 			#logger.info("new measure %s",measure[id_col])
 
                     this_doc={"xp":this_path}
                     if experimental_results['type']=="contrast":
                         this_doc['type']="contrast"
+                        if "," in measure[id_col]:
+                            print measure[id_col].split(',')
                         this_doc['gene']=measure[id_col]
                         this_doc['infection_agent']=infection_agent
                         if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
@@ -86,10 +81,10 @@ for a_sample in samples_with_results:
                             try:
                                 this_doc['logFC']=log(measure.get("fold_change",None),2)
                             except TypeError:
-                                logger.critical("Error calculating logFC")
+                                logger.critical("Error calculating logFC, no data")
                                 continue
                         elif this_doc['logFC']=="NA":
-                            logger.critical("Error calculating logFC")
+                            logger.critical("Error calculating logFC equal to NA")
                             continue
                         else:	
 

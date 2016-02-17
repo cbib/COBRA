@@ -86,8 +86,7 @@ for a_sample in samples_with_results:
                                                 this_doc['material']=experimental_results['material']
 
 					this_doc['species']=this_genome['full_name']
-					#logger.info("Tgid = %s",tgt_id)
-					#if this_genome['full_name']=='Hordeum vulgare':
+			
                                             
                                         logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
@@ -95,7 +94,7 @@ for a_sample in samples_with_results:
                                             this_doc['logFC']=float(measure.get("logFC",None))
                                         else:
                                             this_doc['logFC']=measure.get("logFC",None)
-					#logger.info("logFC : %4.7f",measure.get("logFC",None))
+					
 					if not this_doc['logFC']:
 						
 						try:

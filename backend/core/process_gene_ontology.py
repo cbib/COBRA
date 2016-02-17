@@ -26,6 +26,8 @@ logger.info("Running %s",sys.argv[0])
 
 # a_sample=samples_col.find_one({"experimental_results.values":{"$exists":False}})
 
+
+
 GO_to_process=gene_ontology_col.find({"GO_collections":{"$exists":False}})
 logger.info("Found %d gene_ontology to process",GO_to_process.count())
 

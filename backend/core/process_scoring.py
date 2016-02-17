@@ -124,7 +124,7 @@ for species in species_to_process:
         #reset score to 0
         for r in results:
                 if species['full_name']== "Hordeum vulgare":
-                    logger.info("gene id %s for species %s",r['gene'],species) 
+                    #logger.info("gene id %s for species %s",r['gene'],species) 
                     full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
 
                 
@@ -133,7 +133,7 @@ for species in species_to_process:
 
 
                 else:
-                    logger.info("gene id %s for species %s",r['gene'],species)
+                    #logger.info("gene id %s for species %s",r['gene'],species)
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
 
                 

@@ -249,6 +249,9 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     }
     //get the n top genes in the transcriptomics data
     $cursor=get_n_top_diff_expressed_genes($me,$species,$top_value,$type);
+    
+    
+    
     //$cursor=$measurementsCollection->find(array('species'=>'Solanum lycopersicum'),array('logFC'=>1));
     #$cursor=$measurementsCollection->find(array('direction'=>'up','species' => 'Solanum lycopersicum','gene'=>array('$ne'=>'')),array('gene' => 1,'logFC'=>1,'infection_agent'=>1));
     $gene_list=array();
@@ -262,6 +265,13 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
     // At this point we have a list of n top-genes id,
     // we need to check if the species favourite id is equal
     // to the id needed to convert into plaza id
+    foreach ($gene_list as $value) {
+        echo 'gene to found : '.$value['search'].'</br>'.$value['logFC'].'</br>'.$value['infection_agent'].'</br>';
+        
+        
+    }
+    
+    
     
     
     //Same : direct conversion using plaza mapping table
@@ -283,7 +293,7 @@ function get_ortholog_list(Mongocollection $ma,Mongocollection $me,Mongocollecti
 }
 function convert_into_specific_id(Mongocollection $ma,$gene_list,$favourite_id='null',$intermediary_id='null',$species='null'){
    
-    //echo $favourite_id.'----'.$intermediary_id.'</br>';
+    echo $favourite_id.'----'.$intermediary_id.'</br>';
     $query=array('species'=>$species,'src_to_tgt'=>array('$exists'=>true),'src'=>$favourite_id,'tgt'=>$intermediary_id);
     $fields=array('src_to_tgt'=>1);
     $mapping=$ma->find($query, $fields);

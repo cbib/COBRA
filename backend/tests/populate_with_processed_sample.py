@@ -17,6 +17,13 @@ if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 samples_col.remove({"state":{"$in":["processed"]}});
 
+
+###################################################################################################################
+############################################ SOLANUM LYCOPERSICUM #################################################
+###################################################################################################################
+
+
+
 tomato_samples={
 	"src_pub":"PMCID PMC3832472", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
@@ -78,6 +85,197 @@ tomato_samples={
 
 }
 samples_col.insert(tomato_samples)
+
+
+###################################################################################################################
+############################################ PRUNUS ARMENIACA #################################################
+###################################################################################################################
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
+	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
+	"state":"processed",
+        "comments":[
+		{"content":"""RNA-Seq has been applied to analyse the gene expression changes induced by PPV infection in leaves from two full-sib apricot genotypes, “Rojo Pasión” and “Z506-7”, resistant and susceptible to PPV, respectively. Transcriptomic analyses revealed the existence of more than 2,000 genes related to the pathogen response and resistance to PPV in apricot""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Exp_Gene_ID','Gene ID','Gene Name','A thaliana Gene ID','sample_1','sample_2','value_1','value_2','Value2_r1','Value2_r2','logFC','test_stat','p_value','q_value','Gene Description','Scaffold_position'],
+		"sheet_index":0,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_armeniaca/transcriptomics/rna-seq/plum-pox-virus/journal.pone.0144670.s004.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"Rojo Pasion (Resistant)",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
+	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
+	"state":"processed",
+        "comments":[
+		{"content":"""RNA-Seq has been applied to analyse the gene expression changes induced by PPV infection in leaves from two full-sib apricot genotypes, “Rojo Pasión” and “Z506-7”, resistant and susceptible to PPV, respectively. Transcriptomic analyses revealed the existence of more than 2,000 genes related to the pathogen response and resistance to PPV in apricot""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Exp_Gene_ID','Gene ID','Gene Name','A thaliana Gene ID','sample_1','sample_2','value_1','Value1_r1','Value1_r2','value_2','Value2_r1','Value2_r2','logFC','test_stat','p_value','q_value','Gene Description','Scaffold_position'],
+		"sheet_index":2,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_armeniaca/transcriptomics/rna-seq/plum-pox-virus/journal.pone.0144670.s004.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"Z506-7 (Susceptible)",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
+	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
+	"state":"processed",
+        "comments":[
+		{"content":"""RNA-Seq has been applied to analyse the gene expression changes induced by PPV infection in leaves from two full-sib apricot genotypes, “Rojo Pasión” and “Z506-7”, resistant and susceptible to PPV, respectively. Transcriptomic analyses revealed the existence of more than 2,000 genes related to the pathogen response and resistance to PPV in apricot""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Exp_Gene_ID','Gene ID','Gene Name','A thaliana Gene ID','sample_1','sample_2','value_1','value_2','Value2_r1','Value2_r2','logFC','test_stat','p_value','q_value','Gene Description','Scaffold_position'],
+		"sheet_index":4,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_armeniaca/transcriptomics/rna-seq/plum-pox-virus/journal.pone.0144670.s004.xls",
+			"conditions":["Resistant non infected","Susceptible non infected"],
+			"contrast":"Resistant VS Susceptible",
+			"type":"contrast",
+			"variety":"Rojo Pasion Control (Resistant) vs Z506-7 Control (Susceptible)",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
+	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
+	"state":"processed",
+        "comments":[
+		{"content":"""RNA-Seq has been applied to analyse the gene expression changes induced by PPV infection in leaves from two full-sib apricot genotypes, “Rojo Pasión” and “Z506-7”, resistant and susceptible to PPV, respectively. Transcriptomic analyses revealed the existence of more than 2,000 genes related to the pathogen response and resistance to PPV in apricot""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Exp_Gene_ID','Gene ID','Gene Name','A thaliana Gene ID','sample_1','sample_2','value_1','Value1_r1','Value1_r2','value_2','Value2_r1','Value2_r2','logFC','test_stat','p_value','q_value','Gene Description','Scaffold_position'],
+		"sheet_index":6,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_armeniaca/transcriptomics/rna-seq/plum-pox-virus/journal.pone.0144670.s004.xls",
+			"conditions":[{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				},{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+			],
+			"contrast":"resistant infected VS susceptible infected",
+			"type":"contrast",
+			"variety":"Rojo Pasion (Resistant) vs Z506-7 (Susceptible) ",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+
+
 ###################################################################################################################
 ############################################ HORDEUM VULGARE ######################################################
 ###################################################################################################################
@@ -490,3 +688,164 @@ barley_samples={
 	}]
 }
 samples_col.insert(barley_samples)
+
+
+
+###################################################################################################################
+############################################ PRUNUS PERSICA #################################################
+###################################################################################################################
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus persica", # any abbrev name, key or full name, 
+	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
+	"state":"processed",
+        "comments":[
+		{"content":"""These results illustrate
+the dynamic nature of the peach–PPV interaction at the
+transcriptome level and confirm that sharka symptom expression
+is a complex process that can be understood on the basis of
+changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM INS','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
+		"sheet_index":0,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_persica/transcriptomics/rna-seq/plum-pox-virus/mpp12169-sup-0004-tables4.xls",
+			"conditions":[{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV and without symptoms "
+				},{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV and with symptoms "
+				}
+			],
+			"contrast":"infected without symptoms VS infected with symptoms",
+			"type":"contrast",
+			"variety":"GF305",
+			"day_after_inoculation":"NA",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus persica", # any abbrev name, key or full name, 
+	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
+	"state":"processed",
+        "comments":[
+		{"content":"""These results illustrate
+the dynamic nature of the peach–PPV interaction at the
+transcriptome level and confirm that sharka symptom expression
+is a complex process that can be understood on the basis of
+changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM NI','FPKM INS','logFC','Test statistics','p value','q value','Description'],
+		"sheet_index":1,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_persica/transcriptomics/rna-seq/plum-pox-virus/mpp12169-sup-0004-tables4.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+			],
+			"contrast":"infected without symptoms VS healthy",
+			"type":"contrast",
+			"variety":"GF305",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)
+
+Prunus_samples={
+	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Prunus persica", # any abbrev name, key or full name, 
+	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
+	"state":"processed",
+        "comments":[
+		{"content":"""These results illustrate
+the dynamic nature of the peach–PPV interaction at the
+transcriptome level and confirm that sharka symptom expression
+is a complex process that can be understood on the basis of
+changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"RNA-Seq"
+	},
+	"deposited":{
+		"repository":"http://trace.ddbj.nig.ac.jp/DRASearch/study?acc=SRP028618",
+		"sample_description_url":"http://sra.dnanexus.com/studies/SRP028618/samples",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Gene ID','Gene name','Locus','FPKM NI','FPKM IWS','logFC','Test statistics','p value','q value','Description'],
+		"sheet_index":2,
+		"id_type":"Gene ID"
+	},
+	"experimental_results":[
+		{
+			"data_file":"Prunus/prunus_persica/transcriptomics/rna-seq/plum-pox-virus/mpp12169-sup-0004-tables4.xls",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+			],
+			"contrast":"infected with symptoms VS healthy",
+			"type":"contrast",
+			"variety":"GF305",
+			"day_after_inoculation":"",
+                        "material":"leaf"
+			
+		}
+	]
+
+}
+samples_col.insert(Prunus_samples)

@@ -104,7 +104,7 @@ peach={
 	"full_name":"Prunus persica",
 	"abbrev_name":"P. persica",
 	"aliases":["prunus_persica","peach"],
-	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
+	"taxid":3760, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3760
 	"wikipedia":"https://en.wikipedia.org/wiki/Peach",
 	"preferred_id":"Protein",
 	"classification":{
@@ -120,6 +120,30 @@ peach={
 	}
 }
 species_col.insert(peach)
+
+
+###################################################################################################################
+############################################ PRUNUS ARMENIACA #####################################################
+###################################################################################################################
+
+apricot={
+	"full_name":"Prunus armeniaca",
+	"abbrev_name":"P. armeniaca",
+	"aliases":["prunus_armeniaca","apricot"],
+	"taxid":36596, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=36596
+	"wikipedia":"https://en.wikipedia.org/wiki/Apricot",
+	"preferred_id":"Gene",
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked":	["Angiosperms","Eudicots","Rosids"],
+		"order":	"Rosales",
+		"family":	"Rosaceae",
+		"genus":	"Prunus",
+		"species":	"P. armeniaca",
+	}
+}
+species_col.insert(apricot)
 
 
 ###################################################################################################################
