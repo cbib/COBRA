@@ -98,7 +98,7 @@ def aliases_for_species_matching(classification_query):
 		{"$match":classification_query},
 		{"$unwind":"$aliases"},
 		{"$project":{"aliases":1,"full_name":1,"name":1,"abbrev_name":1, "_id":0}}
-	])['result']
+	])
 
 	possible_names=set()
 	for d in possible_aliases_docs:

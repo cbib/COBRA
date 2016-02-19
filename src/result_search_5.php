@@ -34,6 +34,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	$measurementsCollection = new Mongocollection($db, "measurements");
 	$virusesCollection = new Mongocollection($db, "viruses");
 	$interactionsCollection = new Mongocollection($db, "interactions");
+    $pv_interactionsCollection = new Mongocollection($db, "pv_interactions");
+    $pp_interactionsCollection = new Mongocollection($db, "pp_interactions");
     $sequencesCollection = new Mongocollection($db, "sequences");
 	$orthologsCollection = new Mongocollection($db, "orthologs");
     $GOCollection = new Mongocollection($db, "gene_ontology");
@@ -84,7 +86,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
-    
+    echo count($cursor['result']);
     if (count($cursor['result'])>0){
         foreach ($cursor['result'] as $result) {
             //echo $result['mapping_file']['Gene ID 2'];
@@ -117,7 +119,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
             
             if (isset($result['mapping_file']['Score'])){
+                echo $result['mapping_file']['Score'];
                 $score=$result['mapping_file']['Score'];
+                echo $score;
             }
 //            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
 //
@@ -159,6 +163,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     array_push($gene_alias,$result['mapping_file']['Alias']);
                 }
             }
+            if ((isset($result['mapping_file']['Gene Name']))&& ($result['mapping_file']['Gene Name']!='')){
+
+                if (in_array($result['mapping_file']['Gene Name'],$gene_alias)==FALSE && $result['mapping_file']['Gene Name']!="NA"){
+
+                    array_push($gene_alias,$result['mapping_file']['Gene Name']);
+                }
+            }
+            
             if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
 
                 array_push($est_id,$result['mapping_file']['Probe ID']);
@@ -280,9 +292,35 @@ echo   '<div id="summary">';
       echo '</div>';
       // end left side div
       // 
-      //start right side div
+      //start right side div    
       echo '<div id="stat-details">';
-                load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$interactionsCollection);
+                echo '<div id="statsAndFilters">
+                         <h3>Interaction</h3>';
+                
+                            
+                
+                
+                            
+//                            $query=$pv_interactionsCollection->find(array("mapping_file.Uniprot ID"=>"Q38879"),array('mapping_file.database_identifier'=>1));
+//                            foreach ($query as $value) {
+//                                foreach ($value as $field) {
+//                                    foreach ($field as $arr) {
+//                                        echo $arr['database_identifier'];
+//                                    }
+//                                }
+//                                
+//                            }
+                            load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
+                
+                            //load_and_display_ppinteractions($gene_id,$gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$pp_interactionsCollection);
+                    echo'<div class="physical-ltp statisticRow">
+                            <div class="physical colorFill" style="width: 0%;"></div>
+                            <div id="pubStats" class="right">
+                               <strong>Publications:</strong>'.count($pub_list).'
+                            </div>
+                         </div>
+                         </br> 
+                     </div>';
 
                 load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
 

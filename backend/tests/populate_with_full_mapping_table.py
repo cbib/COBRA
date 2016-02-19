@@ -119,7 +119,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene name','Plaza ID','Gene ontology ID','Score'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene Name','Plaza ID','Gene ontology ID','Score'],
 		"sheet_index":0,
 	}
 }

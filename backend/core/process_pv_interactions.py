@@ -18,12 +18,7 @@ if "log" not in globals():
 
 # Script supposed to be run in the background to populate the DB with available datasets 
 
-
-
-
 logger.info("Running %s",sys.argv[0])
-
-
 
 # Get available interactions and process them 
 interactions_to_process=pv_interactions_col.find({"src_to_tgt":{"$exists":False}})

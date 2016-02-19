@@ -75,13 +75,26 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //var_dump($cursor);
     try
 	{
-		$cursor=$full_mappingsCollection->aggregate(array(
-        array('$match' => array('type'=>'full_table')),  
-        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
-        array('$unwind'=>'$mapping_file'),
-        array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
-        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
-        ));
+        if($organism=="All species"){
+            $cursor=$full_mappingsCollection->aggregate(array(
+            array('$match' => array('type'=>'full_table')),  
+            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
+            array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
+            ));
+        }
+        else{
+            
+        
+            $cursor=$full_mappingsCollection->aggregate(array(
+            array('$match' => array('type'=>'full_table','species'=>$organism)),  
+            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
+            array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
+            ));
+        }
 	}
 	catch ( MongoResultException $e )
 	{
@@ -97,6 +110,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //var_dump($cursor);
     echo'<div>';
     $table_string="";
+    
     if (count($cursor['result'])>=1) {
         
         $table_string='<table id="result_list" class="table table-hover">';
@@ -107,6 +121,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             //$table_string.='<th>type</th>';
             $table_string.='<th>id</th>';
             $table_string.='<th>Protein description</th>';
+            $table_string.='<th>Alias</th>';
             $table_string.='<th>species</th>';
             $table_string.='<th>Score</th>';
 
@@ -125,6 +140,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
                 $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
                 $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
+                if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
+                    $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
+                }
+                elseif(isset ($result['mapping_file']['Gene name'])){
+                    $table_string.='<td>'.$result['mapping_file']['Gene name'].'</td>';
+                }
+                else{
+                    $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+
+                }
                 $table_string.='<td>'.$result['species'].'</td>';
                 $table_string.='<td>'.$result['mapping_file']['Score'].'</td>';
                 $table_string.='</tr>';
