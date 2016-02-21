@@ -86,10 +86,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
-    echo count($cursor['result']);
+    //echo count($cursor['result']);
     if (count($cursor['result'])>0){
         foreach ($cursor['result'] as $result) {
-            //echo $result['mapping_file']['Gene ID 2'];
+            //
+            //echo $result['mapping_file']['Gene ID'];
             //echo $result['mapping_file']['Gene ontology ID'];
             $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
             foreach ($go_id_evidence as $duo) {
@@ -119,9 +120,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             }
             
             if (isset($result['mapping_file']['Score'])){
-                echo $result['mapping_file']['Score'];
+                //echo $result['mapping_file']['Score'];
                 $score=$result['mapping_file']['Score'];
-                echo $score;
+                //echo $score;
             }
 //            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
 //
@@ -798,7 +799,35 @@ new_cobra_footer();
 
 
 
-
+$(document).ready(function() {
+		$('#pretty_table').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+    
 </script>
 
 

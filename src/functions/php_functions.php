@@ -938,15 +938,16 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
     
     $result=get_intact_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
     
+    $hits_number_hpidb= count($result['result']);
 
-
-    echo'
+    if ($hits_number_hpidb>0){
+        echo'
             <div class="panel-group" id="accordion_documents_intact">
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
                         <a class="accordion-toggle collapsed" href="#hpidb2" data-parent="#accordion_documents_intact" data-toggle="collapse">
-                            <strong> Plant Virus Interaction (host plant pathogen database (intact))</strong> ('.count($result).')
+                            <strong> Plant Virus Interaction (Host Pathogen Interaction DataBase)</strong> ('.$hits_number_hpidb.')
                         </a>				
 
                     </div>
@@ -954,59 +955,104 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
 
                         echo'
                         <div class="pv_interaction">';
+                            $headers=array('database identifier','gene name','protein alias','Uniprot','Pubmed','author','detection_method');
+                            $values=array();
                             foreach ($result['result'] as $value) {
+                                
+                                
                                 foreach ($value as $data) {
-                                   echo $data['database_identifier']; 
-                                   echo $data['protein_alias_2'];
-                                   echo $data['Virus Uniprot ID'];
-                                   echo $data['pmid'];
-                                   echo $data['author_name'];
-                                   echo $data['detection_method'];
+                                    $split_id=explode(":", $data['database_identifier']);
+                                    
+                                    
+                                    $href_id='<a href="http://www.ebi.ac.uk/intact/interaction/'.$split_id[1].'">'.$split_id[1].'</a>';
+                                    array_push($values, $href_id);
+                                    $aliases=explode("|", $data['protein_alias_2']);
+                                    $counter=0;
+                                    $alias_string="";
+                                    foreach ($aliases as $alias) {
+                                       if($counter===0 ){
+                                           $short=explode(":", $alias);
+                                           $aliases2=explode("(", $short[1]);
+                                           $alias_string.=$aliases2[0].',';
+                                       }
+                                       elseif($counter===count($aliases)-1){
+                                           $short=explode(":", $alias);
+                                           $aliases2=explode("(", $short[1]);
+                                           $alias_string.=$aliases2[0];
+                                           array_push($values, $alias_string);
+                                       }
+                                       else{
+                                          $short=explode(":", $alias);
+                                          $aliases2=explode("(", $short[1]);
+                                          array_push($values, $aliases2[0]); 
+                                       }
+                                       
+                                       $counter++;
+                                       
+                                    }
+                                    
+                                   $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Virus Uniprot ID'].'">'.$data['Virus Uniprot ID'].'</a>';
+                                   array_push($values, $href_uniprot);
+                                   $href_pmid='<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['pmid'].'">'.$data['pmid'].'</a>';
+
+                                   array_push($values, $href_pmid);
+                                   array_push($values, $data['author_name']);
+                                   array_push($values, $data['detection_method']);
+               
+//                                   $split_method=explode(":", $data['detection_method']);
+//                                   foreach ($split_method as $alias) {
+//                                       $short=explode(":", $alias); 
+//                                   }
+                                   //array_push($values, $short[1]);
 
                                 }
 
                             }
+                            pretty_table($headers, $values);
                             
                             
                         echo'</div>';
 
                     echo'
                     </div></div></div>';
-    $result=get_litterature_plant_virus_interactor($gene_id,$interactionsCollection,$species); 
-    echo'
-            <div class="panel-group" id="accordion_documents_litterature">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+    }
+    $result2=get_litterature_plant_virus_interactor($gene_id,$interactionsCollection,$species); 
+    $hits_number_litterature= count($result2['result']);
+    if ($hits_number_litterature>0){
+        echo'
+                <div class="panel-group" id="accordion_documents_litterature">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
 
-                        <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents_litterature" data-toggle="collapse">
-                            <strong> Plant Virus Interaction (litterature)</strong> ('.count($result).')
-                        </a>				
+                            <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents_litterature" data-toggle="collapse">
+                                <strong> Plant Virus Interaction (litterature)</strong> ('.$hits_number_litterature.')
+                            </a>				
 
-                    </div>
-                    <div class="panel-body panel-collapse collapse" id="litterature">';
+                        </div>
+                        <div class="panel-body panel-collapse collapse" id="litterature">';
+
+                            echo'
+                            <div class="pv_interaction">';
+
+
+                                foreach ($result2['result'] as $value) {
+                                    foreach ($value as $data) {
+                                       echo $data['Virus_symbol']; 
+                                       echo $data['method'];
+                                       echo $data['Reference'];
+                                       echo $data['virus'];
+                                       echo $data['host'];
+
+
+                                    }
+
+                                }
+                            echo'</div>';
 
                         echo'
-                        <div class="pv_interaction">';
-                            
-                            
-                            foreach ($result['result'] as $value) {
-                                foreach ($value as $data) {
-                                   echo $data['Virus_symbol']; 
-                                   echo $data['method'];
-                                   echo $data['Reference'];
-                                   echo $data['virus'];
-                                   echo $data['host'];
-
-
-                                }
-
-                            }
-                        echo'</div>';
-
-                    echo'
-                    </div></div></div>';
+                        </div></div></div>';
     
-    
+    }
     
     
 }
@@ -1461,6 +1507,46 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
     
     
     
+}
+function pretty_table(array $headers, array $values){
+
+                            //echo count($headers);
+                            //echo count($values);
+                            echo'<table class="table table-condensed table-hover table-striped" id="pretty_table"> 
+                                    <thead>
+                                    <tr>';
+                                    foreach ($headers as $header) {
+
+                                        echo "<th>".$header."</th>";
+   
+                                    }
+                               echo'</tr>
+                                    </thead>
+                                    <tbody>';
+                            
+                                    //$timestart=microtime(true);
+                                    $counter=0;    
+                                    foreach ($values as $value) {
+                                        //echo 'counter'.$counter.'</br>';
+                                        if ($counter===0 ){
+                                            echo "<tr><td>".$value."</td>";
+                                            $counter++;
+                                        }
+                                        elseif ($counter===count($headers)-1) {
+                                            echo "<td>".$value."</td></tr>";
+                                            $counter=0;
+                                        }
+                                        else{
+                                            echo "<td>".$value."</td>";
+                                            $counter++;
+                                        }
+                                        
+                                    
+   
+                                    }
+                                echo'</tbody>
+
+                                </table>';
 }
 function load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id){
     echo'<div id="ortholog_section">
@@ -2332,3 +2418,34 @@ function makeDatatableFromFind($cursor) {
 
 
 ?>
+<!--<script type="text/javascript">
+$(document).ready(function() {
+		$('#pretty_table').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+    
+</script>-->

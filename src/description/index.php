@@ -81,11 +81,11 @@ $table_string.='<thead><tr>';
 	
 	//recupere le titre
 	//$table_string.='<th>type</th>';
-	$table_string.='<th>src id</th>';
-	$table_string.='<th>src version</th>';
-	$table_string.='<th>tgt id</th>';
-	$table_string.='<th>tgt version</th>';
-	$table_string.='<th>species</th>';
+	$table_string.='<th>Source type</th>';
+	$table_string.='<th>Version</th>';
+	$table_string.='<th>Target Type</th>';
+	$table_string.='<th>Version</th>';
+	$table_string.='<th>Organism</th>';
 
 	
 	//fin du header de la table

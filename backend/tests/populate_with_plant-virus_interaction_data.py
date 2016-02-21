@@ -130,7 +130,7 @@ pv_interactions_col.insert(interactions_table)
 # Host pathogen interaction db
 interactions_table={
 	"data_file":"interactomics/Intact/hpidb2_plant_only.xls",
-	"type":"prot_to_prot_hpidb",
+	"type":"hpidb",
 	"src":"Uniprot ID",
 	"tgt":"Virus Uniprot ID",
 	"src_name":"protein_taxid_1_name",
