@@ -504,7 +504,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
 }
 
 ##Get all interactions from hpidb : 
-function get_intact_plant_virus_interactor(array $protein_id, MongoCollection $pvinteractionsCollection,$species='null'){
+function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pvinteractionsCollection,$species='null'){
 
 
     $cursor=$pvinteractionsCollection->aggregate(array(
@@ -513,18 +513,7 @@ function get_intact_plant_virus_interactor(array $protein_id, MongoCollection $p
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Uniprot ID'=>array('$in'=>$protein_id))),
             array('$project' => array('mapping_file.database_identifier'=>1,'mapping_file.protein_alias_2'=>1,'mapping_file.Virus Uniprot ID'=>1,'mapping_file.pmid'=>1,'mapping_file.author_name'=>1,'mapping_file.detection_method'=>1,'_id'=>0))
-        ));
-//    foreach ($protein_id as $id){
-//
-//        $cursor=$pvinteractionsCollection->aggregate(array(
-//            array('$match'=>array('src'=>"Uniprot ID")),
-//            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-//            array('$unwind'=>'$mapping_file'),
-//            array('$match' => array('mapping_file.Uniprot ID'=>$$protein_id[0])),
-//            array('$project' => array('mapping_file.database_identifier'=>1,'mapping_file.protein_alias_2'=>1,'mapping_file.Virus Uniprot ID'=>1,'mapping_file.pmid'=>1,'mapping_file.author_name'=>1,'mapping_file.detection_method'=>1,'_id'=>0))
-//        ));
-//    }
-    
+        ));  
     return $cursor;    
  
 }
@@ -537,15 +526,33 @@ function get_litterature_plant_virus_interactor(array $gene_id, MongoCollection 
             array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
             array('$project' => array('mapping_file.Virus_symbol'=>1,'mapping_file.method'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.host'=>1,'_id'=>0))
         ));
-//    foreach ($protein_id as $id){
-//
-//        $cursor=$pvinteractionsCollection->aggregate(array(
-//            array('$match'=>array('src'=>"Uniprot ID")),
-//            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-//            array('$unwind'=>'$mapping_file'),
-//            array('$match' => array('mapping_file.Uniprot ID'=>$id)),
-//            array('$project' => array('mapping_file.database_identifier'=>1,'mapping_file.protein_alias_2'=>1,'mapping_file.Virus Uniprot ID'=>1,'mapping_file.pmid'=>1,'mapping_file.author_name'=>1,'mapping_file.detection_method'=>1,'_id'=>0))
-//        ));
+
+
+    return $cursor;    
+ 
+}
+function get_intact_plant_plant_interactor(array $protein_id, MongoCollection $ppinteractionsCollection,$species='null'){
+
+    $cursor=$ppinteractionsCollection->aggregate(array(
+            array('$match'=>array('src_version'=>"uniprot")),
+            array('$project' => array('mapping_file'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('mapping_file.Uniprot ID'=>array('$in'=>$protein_id))),
+            array('$project' => array('mapping_file.protein_EBI_ref_2'=>1,'mapping_file.Uniprot ID 2'=>1,'mapping_file.alternative_identifiers_2'=>1,'mapping_file.detection_method'=>1,'mapping_file.author_name'=>1,'mapping_file.pmid'=>1,'mapping_file.Taxid interactor A'=>1,'mapping_file.Taxid interactor B'=>1,'mapping_file.interaction_type'=>1,'mapping_file.source_database_id'=>1,'mapping_file.interaction_identifier'=>1,'_id'=>0))
+        ));  
+    return $cursor;    
+ 
+}
+function get_biogrid_plant_plant_interactor(array $gene_id, MongoCollection $ppinteractionsCollection,$species='null'){
+
+    $cursor=$ppinteractionsCollection->aggregate(array(
+            array('$match'=>array('src'=>"Gene ID")),
+            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
+            array('$project' => array('species'=>1,'mapping_file.Gene ID 2'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'mapping_file.ALIASES_FOR_B'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'_id'=>0))
+        ));
+
 
     return $cursor;    
  

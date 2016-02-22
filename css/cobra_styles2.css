@@ -276,7 +276,7 @@ table.dataTable tbody tr:hover {
 	
 	border: 1px solid #DDD;*/
   }
-  #summary > #stat-details > #statsAndFilters{
+  #summary > #stat-details > #interaction_section{
 	//width: 480px;
         width: 100%;
         //height: 50%;
@@ -286,7 +286,7 @@ table.dataTable tbody tr:hover {
 	//float: right;
 	border: 1px solid #DDD;
   }
-  #summary > #stat-details > #ortholog_section,#sequences {
+  #summary > #stat-details > #ortholog_section,#sequences_section {
 	//width: 480px;
         width: 100%;
         //height: 50%;
@@ -297,7 +297,7 @@ table.dataTable tbody tr:hover {
 	border: 1px solid #DDD;
   }
   
-  #summary > #protein-details > #expression_profile{
+  #summary > #protein-details > #expression_profile_section{
 	//width: 480px;
         width: 100%;
         //height: 50%;

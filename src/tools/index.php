@@ -59,63 +59,8 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //    	</form>
 //    </div>';*/
 
-
-
-
-
-
-
-//    make_species_list(find_species_list($speciesCollection));
-
-    
-
-//    <input id="topQuery" type="hidden" value=""></input>
-//
-//    <input id="query" class="ui-autocomplete-input" type="search" name="query" accesskey="4" value="" autocomplete="off"></input>
-//
-//    <span class="ui-helper-hidden-accessible" role="status" aria-live="polite"></span>
-//
-//    <a id="advanced-search-toggle" class="caret_grey" href="#">Advanced</a>
-//    <input type="hidden" name="sort" value="score"></input>
-//
-//    <a id="search-button" class="icon icon-functional button" href="" onclick="return false" data-icon="1" title="Search">Search</a>
-//    </main>';
- 
-      
-      
-//    'gene'=>array('$ne'=>'')
-
-        
-//    $species='Arabidopsis thaliana';
-//    //$species='Hordeum vulgare';
-//    $gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species);
-//    foreach ($gene_list_attributes as $attributes) {
-//        foreach ($attributes as $key => $value) {
-//            echo $key."\r\t";
-//            echo $value."\r\n";
-//            echo "</br>";
-//        }      
-//        //echo $attributes['gene'];
-//        //$attributes['gene'];
-//    }
-//
-//    echo "</br>";
-//$gene_list_attributes=array();
-//$species='Hordeum vulgare';
-////$species='Hordeum vulgare';
-//$gene_list_attributes=ben_function($mappingsCollection,$measurementsCollection,$speciesCollection,$species);
-//foreach ($gene_list_attributes as $attributes) {
-//    foreach ($attributes as $key => $value) {
-//        echo $key."\r\t";
-//        echo $value."\r\n";
-//        echo "</br>";
-//    }      
-//        //echo $attributes['gene'];
-//        //$attributes['gene'];
-//}
-///////////////////////////////////////////////////
-$table_string="";
-$table_string.='
+$$ortholog_form_string="";
+$$ortholog_form_string.='
 <form id="icheckForm" method="post" class="form-horizontal" action="../orthology/new_ortholog_search.php">
     
     <div class=col-md-6>
@@ -178,9 +123,13 @@ $table_string.='
 </form>';
 
 
+$CG_form_string="";
 
-add_accordion_panel($table_string, "Perform Orthologs search on differentially expressed genes","ortholog_search"); 
 
+
+add_accordion_panel($ortholog_form_string, "Perform Orthologs search on differentially expressed genes","ortholog_search"); 
+echo '</br>';
+add_accordion_panel($CG_form_string, "Perform Candidates genes using COBRA scoring function","ortholog_search"); 
 
 
 

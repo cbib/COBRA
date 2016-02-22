@@ -29,15 +29,15 @@ pp_interactions_col.drop()
 
 interactions_table={
 	"data_file":"interactomics/biogrid/BIOGRID-ORGANISM-Solanum_lycopersicum-3.4.128.tab.xls",
-	"src":"INTERACTOR_A",
-	"tgt":"INTERACTOR_B",
+	"src":"Gene ID",
+	"tgt":"Gene ID 2",
 	"src_symbol":"OFFICIAL_SYMBOL_A",
 	"tgt_symbol":"OFFICIAL_SYMBOL_B",
 	"type":"symbol_to_symbol",
 	"species":"Solanum lycopersicum",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','INTERACTOR_A','INTERACTOR_B','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
+		"column_keys":['idx','Gene ID','Gene ID 2','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
 		"sheet_index":0,
 		
 	}
@@ -48,15 +48,15 @@ pp_interactions_col.insert(interactions_table)
 
 interactions_table={
 	"data_file":"interactomics/biogrid/BIOGRID-ORGANISM-Arabidopsis_thaliana_Columbia-3.4.128.tab.xls",
-	"src":"INTERACTOR_A",
-	"tgt":"INTERACTOR_B",
+	"src":"Gene ID",
+	"tgt":"Gene ID 2",
 	"src_symbol":"OFFICIAL_SYMBOL_A",
 	"tgt_symbol":"OFFICIAL_SYMBOL_B",
 	"type":"symbol_to_symbol",
 	"species":"Arabidopsis thaliana",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','INTERACTOR_A','INTERACTOR_B','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
+		"column_keys":['idx','Gene ID','Gene ID 2','OFFICIAL_SYMBOL_A','OFFICIAL_SYMBOL_B','ALIASES_FOR_A','ALIASES_FOR_B','EXPERIMENTAL_SYSTEM','SOURCE','PUBMED_ID','ORGANISM_A_ID','ORGANISM_B_ID'],
 		"sheet_index":0,
 		
 	}
@@ -68,10 +68,10 @@ pp_interactions_col.insert(interactions_table)
 #IntAct db
 interactions_table={
 	"data_file":"interactomics/Intact/intact_full.xls",
-	"type":"prot_to_prot_intact",
-	"src":"protein_xref_1",
+	"type":"intact",
+	"src":"Uniprot ID",
 	"src_version":"uniprot",
-	"tgt":"protein_xref_2",
+	"tgt":"Uniprot ID 2",
 	"tgt_version":"uniprot",
 	"src_name":"Taxid interactor A",
 	"tgt_name":"Taxid interactor B",
@@ -79,7 +79,7 @@ interactions_table={
 	"pub":"pmid",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','protein_EBI_ref_1','protein_EBI_ref_2','protein_xref_1','protein_xref_2','alternative_identifiers_1','alternative_identifiers_2','detection_method','author_name','pmid','Taxid interactor A','Taxid interactor B','interaction_type','source_database_id','interaction_identifier','confidence'],
+		"column_keys":['idx','protein_EBI_ref_1','protein_EBI_ref_2','Uniprot ID','Uniprot ID 2','alternative_identifiers_1','alternative_identifiers_2','detection_method','author_name','pmid','Taxid interactor A','Taxid interactor B','interaction_type','source_database_id','interaction_identifier','confidence'],
 		"sheet_index":0,
 		
 	}

@@ -51,7 +51,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     
     
    
-    $go_id_list=array();
+    
     $go_grid_plaza_id_list=array();
     $go_grid_id_list=array();
     $gene_alias=array();
@@ -64,7 +64,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $protein_id=array();
     $plaza_ids=array();
     $est_id=array();
-    $go_duo_list=array();
+    $go_list=array();
     //echo '<hr>';
     
     //$timestart=microtime(true);
@@ -92,15 +92,31 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             //
             //echo $result['mapping_file']['Gene ID'];
             //echo $result['mapping_file']['Gene ontology ID'];
+            $go_id_list=array();
+            $go_used_list=array();
             $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
             foreach ($go_id_evidence as $duo) {
-                if (!in_array($duo, $go_duo_list)){
+ 
+                $duo_id=explode("-", $duo);
+                
+                if (in_array($duo_id[0], $go_used_list)){
+                    for ($i = 0; $i < count($go_id_list); $i++) {
+                        if ($go_id_list[$i][0]===$duo_id[0]){
+                           if (!in_array($duo_id[1], $go_id_list[$i][1])){
+                               array_push($go_id_list[$i][1], $duo_id[1]); 
+                           } 
+                           
+                        }
+                    }
+
+                }
+                else{
+
                     $tmp_array=array();
-                    array_push($go_duo_list, $duo);
-                    $duo_id=explode("-", $duo);
-                    $tmp_array['evidence']=$duo_id[1];
-                    $tmp_array['GO_ID']=$duo_id[0];
+                    $tmp_array[0]=$duo_id[0];
+                    $tmp_array[1]=array($duo_id[1]);
                     array_push($go_id_list,$tmp_array);
+                    array_push($go_used_list,$duo_id[0]);   
                 }
 
             }
@@ -195,7 +211,7 @@ echo   '<div id="summary">';
 
                 //start div expression_profile
 
-           echo'<div id="expression_profile">
+           echo'<div id="expression_profile_section">
                     <h3>Expression profile</h3>
                     <div class="panel-group" id="accordion_documents_expression">
                         <div class="panel panel-default">
@@ -295,38 +311,27 @@ echo   '<div id="summary">';
       // 
       //start right side div    
       echo '<div id="stat-details">';
-                echo '<div id="statsAndFilters">
+                echo '<div id="interaction_section">
                          <h3>Interaction</h3>';
-                
-                            
-                
-                
-                            
-//                            $query=$pv_interactionsCollection->find(array("mapping_file.Uniprot ID"=>"Q38879"),array('mapping_file.database_identifier'=>1));
-//                            foreach ($query as $value) {
-//                                foreach ($value as $field) {
-//                                    foreach ($field as $arr) {
-//                                        echo $arr['database_identifier'];
-//                                    }
-//                                }
-//                                
-//                            }
+
                             load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
                 
-                            //load_and_display_ppinteractions($gene_id,$gene_alias,$descriptions, $gene_symbol,$uniprot_id,$species,$pp_interactionsCollection);
-                    echo'<div class="physical-ltp statisticRow">
-                            <div class="physical colorFill" style="width: 0%;"></div>
-                            <div id="pubStats" class="right">
-                               <strong>Publications:</strong>'.count($pub_list).'
-                            </div>
-                         </div>
-                         </br> 
-                     </div>';
+                            load_and_display_ppinteractions($gene_id,$uniprot_id,$pp_interactionsCollection,$species);
+                    
+                            
+//                       echo'<div class="physical-ltp statisticRow">
+//                                <div class="physical colorFill" style="width: 0%;"></div>
+//                                <div id="pubStats" class="right">
+//                                   <strong>Publications:</strong>'.count($pub_list).'
+//                                </div>
+//                            </div>
+//                            </br> 
+                        echo'</div>';
 
-                load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                        load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
 
                            
-           echo'<div id="sequences">';
+               echo'<div id="sequences_section">';
                 echo '<h3>Sequences</h3>';
                 $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0],$gene_id_bis[0]);
                 

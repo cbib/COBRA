@@ -743,7 +743,7 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
         foreach ($go_id_list as $go_info){
 
             //$timestart1=microtime(true);
-            $go_term=$go_collection->find(array('GO_collections.id'=>$go_info['GO_ID']),array('GO_collections.$'=>1,'_id'=>0));
+            $go_term=$go_collection->find(array('GO_collections.id'=>$go_info[0]),array('GO_collections.$'=>1,'_id'=>0));
             foreach ($go_term as $term){
                 foreach ($term as $go){
                     foreach ($go as $value){
@@ -751,23 +751,23 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
 
 
                             //$go_info['GO_ID']=$value['id'];
-                            $go_info['description']=$value['name'];
-                            $go_info['namespace']=$value['namespace'];
+                            $go_info[2]=$value['name'];
+                            $go_info[3]=$value['namespace'];
                             //echo $value['name'];
                             //$go_info['evidence']=$go_id_list[$i]['evidence'];
                             array_push($total_go_molecular_function, $go_info);
                             //array_push($already_added_go_term,$go_info);
                         }
                         if ($value['namespace']=='biological_process') {
-                            $go_info['description']=$value['name'];   
-                            $go_info['namespace']=$value['namespace'];
+                            $go_info[2]=$value['name'];   
+                            $go_info[3]=$value['namespace'];
                             array_push($total_go_biological_process, $go_info);
                             //array_push($already_added_go_term,$go_info);
 
                         }
                         if ($value['namespace']=='cellular_component'){
-                            $go_info['description']=$value['name']; 
-                            $go_info['namespace']=$value['namespace'];
+                            $go_info[2]=$value['name']; 
+                            $go_info[3]=$value['namespace'];
                             array_push($total_go_cellular_component, $go_info);
                             //array_push($already_added_go_term,$go_info);
                         }   
@@ -785,10 +785,10 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
         <h3>Gene Ontology</h3>
         <div class="goTermsBlock">
 
-            <div class="panel-group" id="accordion_documents">
+            <div class="panel-group" id="accordion_documents_go_process">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents" data-toggle="collapse">
+                        <a class="accordion-toggle collapsed" href="#go_process" data-parent="#accordion_documents_go_process" data-toggle="collapse">
                             <strong>Biological Process </strong> ('.  count($total_go_biological_process).')
                         </a>				
                     </div>
@@ -798,16 +798,23 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
                         echo'
                         <div class="goProcessTerms goTerms">
                         ';
+                       
+                        
+                       
                         foreach ($total_go_biological_process as $go_info){
+                            
                         echo'
                             <ul>
                                 <span class="goTerm">
                                     <li>
 
-                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-                                        </span>
-                                </span>
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[0].'" title="'.$go_info[2].'">'.$go_info[2].'</a>';
+                        
+                        foreach ($go_info[1] as $evidence) {
+                            echo '<span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$evidence.'" title="Go Evidence Code">'.$evidence.'</a>]</span>';
+
+                        }
+                               echo' </span>
                             </ul>';
                         }
                         echo'
@@ -818,11 +825,11 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
                 </div>
             </div>';
             echo'
-            <div class="panel-group" id="accordion_documents">
+            <div class="panel-group" id="accordion_documents_go_component">
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
-                        <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents" data-toggle="collapse">
+                        <a class="accordion-toggle collapsed" href="#go_component" data-parent="#accordion_documents_go_component" data-toggle="collapse">
                             <strong>Cellular Component </strong> ('.  count($total_go_cellular_component).')
                         </a>				
 
@@ -840,10 +847,11 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
                                 <span class="goTerm">
                                     <li>
 
-                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-                                        </span>
-                                </span>
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[0].'" title="'.$go_info[2].'">'.$go_info[3].'</a>';
+                                        foreach ($go_info[1] as $evidence) {
+                                            echo '<span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$evidence.'" title="Go Evidence Code">'.$evidence.'</a>]</span>';
+                                        }
+                                echo '</span>
                             </ul>';
                         }
                         echo'
@@ -855,11 +863,11 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
             </div>    
             <!--<br/>-->';
                     echo'
-            <div class="panel-group" id="accordion_documents">
+            <div class="panel-group" id="accordion_documents_go_function">
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
-                        <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents" data-toggle="collapse">
+                        <a class="accordion-toggle collapsed" href="#go_function" data-parent="#accordion_documents_go_function" data-toggle="collapse">
                             <strong>Molecular Function </strong> ('.  count($total_go_molecular_function).')
                         </a>				
 
@@ -877,10 +885,11 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
                                 <span class="goTerm">
                                     <li>
 
-                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info['GO_ID'].'" title="'.$go_info['description'].'">'.$go_info['description'].'</a>
-                                        <span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$go_info['evidence'].'" title="Go Evidence Code">'.$go_info['evidence'].'</a>]
-                                        </span>
-                                </span>
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[0].'" title="'.$go_info[2].'">'.$go_info[2].'</a>';
+                                        foreach ($go_info[1] as $evidence) {
+                                            echo '<span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$evidence.'" title="Go Evidence Code">'.$evidence.'</a>]</span>';
+                                        }
+                               echo '</span>
                             </ul>';
                         }
                         echo'
@@ -929,24 +938,243 @@ function display_external_references( array $proteins_id,$search='null',$species
     </div>
     <div class="bottomSpacer"></div> </br> '; 
 }
-function load_and_display_ppinteractions($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
-    $interaction_array=get_plant_plant_interactor($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
-    $counter=0;
+function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsCollection,$species){
     
-}
-function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
-    
-    $result=get_intact_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
-    
-    $hits_number_hpidb= count($result['result']);
 
-    if ($hits_number_hpidb>0){
+    
+    $interaction_array=get_intact_plant_plant_interactor($proteins_id,$interactionsCollection,$species);
+    $hits_number_intact= count($interaction_array['result']);
+
+    if ($hits_number_intact>0){
         echo'
             <div class="panel-group" id="accordion_documents_intact">
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
-                        <a class="accordion-toggle collapsed" href="#hpidb2" data-parent="#accordion_documents_intact" data-toggle="collapse">
+                        <a class="accordion-toggle collapsed" href="#intact" data-parent="#accordion_documents_intact" data-toggle="collapse">
+                            <strong> Plant Plant Interaction (Intact)</strong> ('.$hits_number_intact.')
+                        </a>				
+
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="intact">';
+
+                        echo'
+                        <div class="pp_interaction">';
+                            $headers=array('EBI ref','Alias','Uniprot','Pubmed','Author','detection_method','Organism','interaction_type','source_database_id','interaction_identifier');
+                            $values=array();
+                            foreach ($interaction_array['result'] as $value) {
+                                
+                                
+                                foreach ($value as $data) {
+                                    
+                                    
+                                    
+                                    $href_id='<a href="http://www.ebi.ac.uk/intact/interaction/'.$data['protein_EBI_ref_2'].'">'.$data['protein_EBI_ref_2'].'</a>';
+                                    array_push($values, $href_id);
+                                    $aliases=explode("|", $data['alternative_identifiers_2']);
+                                    $counter=0;
+                                    $alias_string="";
+                                    foreach ($aliases as $alias) {
+                                      if($counter===count($aliases)-1){
+                                           //$short=explode(":", $alias);
+                                           //$aliases2=explode("(", $short[1]);
+                                           $alias_string.=$alias;
+                                           array_push($values, $alias_string);
+                                       }
+                                       else{
+                                          $alias_string.=$alias.',';
+                                          //$short=explode(":", $alias);
+                                          //$aliases2=explode("(", $short[1]);
+                                          //array_push($values, $aliases2[0]); 
+                                       }
+                                       
+                                       $counter++;
+                                       
+                                    }
+                                    
+                                   $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Uniprot ID 2'].'">'.$data['Uniprot ID 2'].'</a>';
+                                   array_push($values, $href_uniprot);
+                                   $split_pmid=explode("|", $data['pmid']);
+                                   $href_pmid="";
+                                   foreach ($split_pmid as $pmid) {
+                                        $split_pmid2=explode(":", $pmid);
+                                        if (!strstr($split_pmid2[0],"imex") && !strstr($split_pmid2[0],"MINT")){
+                                            $href_pmid.=' <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$split_pmid2[1].'"> '.$split_pmid2[1].' </a> ';  
+
+                                        }
+                                        
+                                        
+                                   }
+                                   array_push($values, $href_pmid);
+                                   array_push($values, $data['author_name']);
+                                   
+                                   $split_method=explode("|", $data['detection_method']);
+                                   
+                                   $id_string_method="";
+                                   //psi-mi :"MI:0469"(IntAct)
+                                   //    :"MI:0469" (IntAct)
+                                   $already_in=array();
+                                   foreach ($split_method as $method) {
+                                       
+                                      
+                                      $split_method_bis=explode(':"', $method);
+                                      $split_method_ter=explode('"', $split_method_bis[1]);
+                                      $method_name=$split_method_ter[1];
+                                      $id_method=$split_method_ter[0];
+                                      if (!in_array($id_method, $already_in)) {
+                                          array_push($already_in,$id_method);
+                                          $id_string_method.=' <a href="http://www.ebi.ac.uk/ontology-lookup/?termId='.$id_method.'"> '.$id_method.' </a> ';
+                                          $id_string_method.=$method_name;
+                                      }
+ 
+                                   }
+                                   array_push($values, $id_string_method);
+                                   
+                                   //http://www.ebi.ac.uk/ontology-lookup/?termId=MI:0397
+                                   array_push($values, $data['Taxid interactor B']);
+                                   
+                                   
+                                   
+                                   $split_interaction_type=explode("|", $data['interaction_type']);
+                                   $already_in=array();
+                                   $id_string_interaction_type="";
+                                   foreach ($split_interaction_type as $interaction_type) {
+                                       
+                                      
+                                      $split_interaction_type_bis=explode(':"', $interaction_type);
+                                      $split_interaction_type_ter=explode('"', $split_interaction_type_bis[1]);
+                                      $method_name=$split_interaction_type_ter[1];
+                                      $id_method=$split_interaction_type_ter[0];
+                                      if (!in_array($id_method, $already_in)) {
+                                          array_push($already_in,$id_method);
+                                          $id_string_interaction_type.=' <a href="http://www.ebi.ac.uk/ontology-lookup/?termId='.$id_method.'"> '.$id_method.' </a> ';
+                                          $id_string_interaction_type.=$method_name;
+                                      }
+ 
+                                   }
+                                   array_push($values, $id_string_interaction_type);
+                                   array_push($values, $data['source_database_id']);
+                                   
+                                  
+                                   $split_interaction_identifier=explode("|", $data['interaction_identifier']);
+                                   $href_interaction_identifier="";
+                                   if (count($split_interaction_identifier)===0){
+                                        array_push($values, $data['interaction_identifier']);
+                                   }
+                                   else{
+                                        foreach ($split_interaction_identifier as $interaction_identifier) {
+                                            $href_interaction_identifier.=' <a href="http://www.ebi.ac.uk/intact/interaction/'.$interaction_identifier.'"> '.$interaction_identifier.' </a> ';
+
+                                        }
+                                   }
+                                   array_push($values, $href_interaction_identifier);
+               
+//                                   $split_method=explode(":", $data['detection_method']);
+//                                   foreach ($split_method as $alias) {
+//                                       $short=explode(":", $alias); 
+//                                   }
+                                   //array_push($values, $short[1]);
+
+                                }
+
+                            }
+                            pretty_table($headers, $values);
+                            
+                            
+                        echo'</div>';
+
+                    echo'
+                    </div></div></div>';
+    }
+    $biogrid_array=get_biogrid_plant_plant_interactor($gene_id,$interactionsCollection,$species); 
+    $hits_number_biogrid= count($biogrid_array['result']);
+    if ($hits_number_biogrid>0){
+        echo'
+                <div class="panel-group" id="accordion_documents_biogrid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                            <a class="accordion-toggle collapsed" href="#biogrid" data-parent="#accordion_documents_biogrid" data-toggle="collapse">
+                                <strong> Plant Plant Interaction (Biogrid)</strong> ('.$hits_number_biogrid.')
+                            </a>				
+
+                        </div>
+                        <div class="panel-body panel-collapse collapse" id="biogrid">';
+
+                            echo'
+                            <div class="pp_interaction">';
+                            
+                            $headers=array('Gene Id','Official symbol','Aliases','Experimental SYSTEM','Author','Pubmed','Organism');
+                            $values=array();
+                            foreach ($biogrid_array['result'] as $value) {
+                                
+                                $species= $value['species'];
+                                
+                                foreach ($value as $data) {
+                                    if (is_array($data)){
+                                    
+                                    
+                                        array_push($values, $data['Gene ID 2']);
+                                        array_push($values, $data['OFFICIAL_SYMBOL_B']);
+                                        $aliases=explode("|", $data['ALIASES_FOR_B']);
+
+                                        $counter=0;
+                                        $alias_string="";
+                                        foreach ($aliases as $alias) {
+                                          if($counter===count($aliases)-1){
+                                               //$short=explode(":", $alias);
+                                               //$aliases2=explode("(", $short[1]);
+                                               $alias_string.=$alias;
+                                               array_push($values, $alias_string);
+                                           }
+                                           else{
+                                              $alias_string.=$alias.',';
+                                              //$short=explode(":", $alias);
+                                              //$aliases2=explode("(", $short[1]);
+                                              //array_push($values, $aliases2[0]); 
+                                           }
+
+                                           $counter++;
+
+                                        }
+                                        array_push($values, $data['EXPERIMENTAL_SYSTEM']);
+                                        array_push($values, $data['SOURCE']);
+                                        $href_pmid="";
+                                        $href_pmid.=' <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['PUBMED_ID'].'"> '.$data['PUBMED_ID'].' </a> ';  
+                                        array_push($values, $href_pmid);
+
+
+                                        array_push($values, $species);
+                                    }
+
+                                }
+
+                            }
+                            pretty_table($headers, $values);
+
+
+                                
+                            echo'</div>';
+
+                        echo'
+                        </div></div></div>';
+    
+    }
+    
+}
+function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
+    
+    $result=get_hpidb_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
+    
+    $hits_number_hpidb= count($result['result']);
+
+    if ($hits_number_hpidb>0){
+        echo'
+            <div class="panel-group" id="accordion_documents_hpidb">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <a class="accordion-toggle collapsed" href="#hpidb2" data-parent="#accordion_documents_hpidb" data-toggle="collapse">
                             <strong> Plant Virus Interaction (Host Pathogen Interaction DataBase)</strong> ('.$hits_number_hpidb.')
                         </a>				
 
@@ -961,35 +1189,41 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                                 
                                 
                                 foreach ($value as $data) {
-                                    $split_id=explode(":", $data['database_identifier']);
-                                    
+                                    $split_db_id=explode("|", $data['database_identifier']);
+                                    $split_id=explode(":", $split_db_id[0]);
+                                    echo $split_db_id[0];
                                     
                                     $href_id='<a href="http://www.ebi.ac.uk/intact/interaction/'.$split_id[1].'">'.$split_id[1].'</a>';
                                     array_push($values, $href_id);
-                                    $aliases=explode("|", $data['protein_alias_2']);
+                                    if (strstr($data['protein_alias_2'],"|")){
+                                        $aliases=explode("|", $data['protein_alias_2']);
+                                    }
+                                    else{
+                                        
+                                    }
                                     $counter=0;
                                     $alias_string="";
-                                    foreach ($aliases as $alias) {
-                                       if($counter===0 ){
-                                           $short=explode(":", $alias);
-                                           $aliases2=explode("(", $short[1]);
-                                           $alias_string.=$aliases2[0].',';
-                                       }
-                                       elseif($counter===count($aliases)-1){
-                                           $short=explode(":", $alias);
-                                           $aliases2=explode("(", $short[1]);
-                                           $alias_string.=$aliases2[0];
-                                           array_push($values, $alias_string);
-                                       }
-                                       else{
-                                          $short=explode(":", $alias);
-                                          $aliases2=explode("(", $short[1]);
-                                          array_push($values, $aliases2[0]); 
-                                       }
-                                       
-                                       $counter++;
-                                       
-                                    }
+//                                    foreach ($aliases as $alias) {
+//                                       if($counter===0 ){
+//                                           $short=explode(":", $alias);
+//                                           $aliases2=explode("(", $short[1]);
+//                                           $alias_string.=$aliases2[0].',';
+//                                       }
+//                                       elseif($counter===count($aliases)-1){
+//                                           $short=explode(":", $alias);
+//                                           $aliases2=explode("(", $short[1]);
+//                                           $alias_string.=$aliases2[0];
+//                                           array_push($values, $alias_string);
+//                                       }
+//                                       else{
+//                                          $short=explode(":", $alias);
+//                                          $aliases2=explode("(", $short[1]);
+//                                          array_push($values, $aliases2[0]); 
+//                                       }
+//                                       
+//                                       $counter++;
+//                                       
+//                                    }
                                     
                                    $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Virus Uniprot ID'].'">'.$data['Virus Uniprot ID'].'</a>';
                                    array_push($values, $href_uniprot);
@@ -1050,7 +1284,9 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                             echo'</div>';
 
                         echo'
-                        </div></div></div>';
+                        </div>
+                    </div>
+                </div>';
     
     }
     

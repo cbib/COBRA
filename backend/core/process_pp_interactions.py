@@ -41,5 +41,7 @@ for map_doc in interactions_to_process:
 	pp_interactions_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
    
 
-logger.info("Indexation on field \"mapping_file.OFFICIAL_SYMBOL_A\" from collection \"interactions\"")
-pp_interactions_col.create_index("mapping_file.OFFICIAL_SYMBOL_A",sparse=True)
+logger.info("Indexation on field \"mapping_file.Uniprot ID\" from document \"Intact database\" in collection \"plant-plant interactions\"")
+pp_interactions_col.create_index("mapping_file.Uniprot ID",sparse=True)
+logger.info("Indexation on field \"mapping_file.Gene ID\" from document \"Biogrid database\" in collection \"plant-plant interactions\"")
+pp_interactions_col.create_index("mapping_file.Gene ID",sparse=True)
