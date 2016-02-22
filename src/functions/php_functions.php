@@ -1006,7 +1006,15 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
                                         
                                    }
                                    array_push($values, $href_pmid);
-                                   array_push($values, $data['author_name']);
+                                   
+                                   $split_author=explode("|", $data['author_name']);
+                                   $author_string="";
+                                   foreach ($split_author as $author) {
+                                       $author_string.=$author.'</br>';
+                                       
+                                       
+                                   }
+                                   array_push($values, $author_string);
                                    
                                    $split_method=explode("|", $data['detection_method']);
                                    
@@ -1078,7 +1086,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
                                 }
 
                             }
-                            pretty_table($headers, $values);
+                            pretty_table($headers, $values,"pp_intact");
                             
                             
                         echo'</div>';
@@ -1150,7 +1158,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
                                 }
 
                             }
-                            pretty_table($headers, $values);
+                            pretty_table($headers, $values,"pp_biogrid");
 
 
                                 
@@ -1183,66 +1191,86 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
 
                         echo'
                         <div class="pv_interaction">';
-                            $headers=array('database identifier','gene name','protein alias','Uniprot','Pubmed','author','detection_method');
+                            $headers=array('database identifier','protein alias','Uniprot','Pubmed','author','detection_method');
                             $values=array();
                             foreach ($result['result'] as $value) {
                                 
                                 
                                 foreach ($value as $data) {
-                                    $split_db_id=explode("|", $data['database_identifier']);
-                                    $split_id=explode(":", $split_db_id[0]);
-                                    echo $split_db_id[0];
                                     
-                                    $href_id='<a href="http://www.ebi.ac.uk/intact/interaction/'.$split_id[1].'">'.$split_id[1].'</a>';
-                                    array_push($values, $href_id);
-                                    if (strstr($data['protein_alias_2'],"|")){
-                                        $aliases=explode("|", $data['protein_alias_2']);
+                                    //HREF_DB_ID
+                                    $href_db_id="";
+                                    if (strstr($data['database_identifier'],"|")){
+                                        $split_db_id=explode("|", $data['database_identifier']);
+                                        foreach ($split_db_id as $db_id) {
+                                            $split_id=explode(":", $db_id);
+                                            $href_db_id.=' <a href="http://www.ebi.ac.uk/intact/interaction/'.$split_id[1].'">'.$split_id[1].'</a> ';
+                                        }                                        
                                     }
                                     else{
-                                        
-                                    }
-                                    $counter=0;
-                                    $alias_string="";
-//                                    foreach ($aliases as $alias) {
-//                                       if($counter===0 ){
-//                                           $short=explode(":", $alias);
-//                                           $aliases2=explode("(", $short[1]);
-//                                           $alias_string.=$aliases2[0].',';
-//                                       }
-//                                       elseif($counter===count($aliases)-1){
-//                                           $short=explode(":", $alias);
-//                                           $aliases2=explode("(", $short[1]);
-//                                           $alias_string.=$aliases2[0];
-//                                           array_push($values, $alias_string);
-//                                       }
-//                                       else{
-//                                          $short=explode(":", $alias);
-//                                          $aliases2=explode("(", $short[1]);
-//                                          array_push($values, $aliases2[0]); 
-//                                       }
-//                                       
-//                                       $counter++;
-//                                       
-//                                    }
-                                    
-                                   $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Virus Uniprot ID'].'">'.$data['Virus Uniprot ID'].'</a>';
-                                   array_push($values, $href_uniprot);
-                                   $href_pmid='<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['pmid'].'">'.$data['pmid'].'</a>';
+                                        $split_id=explode(":", $data['database_identifier']);
+                                        $href_db_id.=' <a href="http://www.ebi.ac.uk/intact/interaction/'.$split_id[1].'">'.$split_id[1].'</a> ';
 
-                                   array_push($values, $href_pmid);
-                                   array_push($values, $data['author_name']);
-                                   array_push($values, $data['detection_method']);
-               
-//                                   $split_method=explode(":", $data['detection_method']);
-//                                   foreach ($split_method as $alias) {
-//                                       $short=explode(":", $alias); 
-//                                   }
-                                   //array_push($values, $short[1]);
+                                    }
+                                    array_push($values, $href_db_id);
+                                    
+
+                                    //ALIAS
+                                    $alias_string="";
+                                    $already_in=array();
+                                    if (strstr($data['protein_alias_2'],"|")){
+                                        $aliases=explode("|", $data['protein_alias_2']);
+                                        $alias_counter=0;
+                                        foreach ($aliases as $alias) {
+                                           
+                                            $short=explode(":", $alias);
+                                            $name=explode("(", $short[1]);
+                                            if (!in_array($name[0], $already_in)){
+                                                if ($alias_counter===count($aliases)-1){
+                                                    $alias_string.=$name[0];
+                                                }
+                                                else{
+                                                    $alias_string.=$name[0].",";
+                                                }                                   
+                                                array_push($already_in, $name[0]);
+                                            } 
+                                        }
+                                    }
+                                    else{
+                                       $short=explode(":", $data['protein_alias_2']);
+                                       $name=explode("(", $short[1]);
+                                       $alias_string.=$name[0]." ";
+                                    }
+                                    
+                                    
+                                    array_push($values, $alias_string);
+                                    
+                                    //UNIPROT
+                                    $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Virus Uniprot ID'].'">'.$data['Virus Uniprot ID'].'</a>';
+                                    array_push($values, $href_uniprot);
+                                    
+                                    //PUBMED ID
+                                    $href_pmid='<a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['pmid'].'">'.$data['pmid'].'</a>';
+                                    array_push($values, $href_pmid);
+                                    
+                                    //AUTHOR NAME
+                                    array_push($values, $data['author_name']);
+
+                                    //DETECTION METHOD
+                                    $id_string_method="";
+                                    $split_method=explode('psi-mi:', $data['detection_method']);
+                                    $split_method_bis=explode('(', $split_method[1]);
+                                    $split_method_ter=explode(')', $split_method_bis[1]);
+                                    $method_name=$split_method_ter[0];
+                                    $id_method=$split_method_bis[0];
+                                    $id_string_method.=' <a href="http://www.ebi.ac.uk/ontology-lookup/?termId='.$id_method.'"> '.$id_method.' </a> ';
+                                    $id_string_method.= '('.$method_name.')';
+                                    array_push($values, $id_string_method);
 
                                 }
 
                             }
-                            pretty_table($headers, $values);
+                            pretty_table($headers, $values, "pv_hpidb");
                             
                             
                         echo'</div>';
@@ -1268,19 +1296,25 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                             echo'
                             <div class="pv_interaction">';
 
-
+                                $headers=array('Virus_symbol','Method','Reference','Virus','Host');
+                                $values=array();
                                 foreach ($result2['result'] as $value) {
                                     foreach ($value as $data) {
-                                       echo $data['Virus_symbol']; 
-                                       echo $data['method'];
-                                       echo $data['Reference'];
-                                       echo $data['virus'];
-                                       echo $data['host'];
+                                        
+                                        
+                                       
+                                       
+                                       array_push($values, $data['Virus_symbol']); 
+                                       array_push($values, $data['method']);
+                                       array_push($values, $data['Reference']);
+                                       array_push($values, $data['virus']);
+                                       array_push($values, $data['host']);
 
 
                                     }
 
                                 }
+                                pretty_table($headers, $values, "pv_litterature");
                             echo'</div>';
 
                         echo'
@@ -1744,11 +1778,12 @@ function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene
     
     
 }
-function pretty_table(array $headers, array $values){
+function pretty_table(array $headers, array $values, $_id='null'){
 
                             //echo count($headers);
                             //echo count($values);
-                            echo'<table class="table table-condensed table-hover table-striped" id="pretty_table"> 
+                            $id='pretty_table_'.$_id;
+                            echo'<table class="table" id="'.$id.'"> 
                                     <thead>
                                     <tr>';
                                     foreach ($headers as $header) {

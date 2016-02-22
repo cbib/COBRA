@@ -140,7 +140,7 @@ for species in species_to_process:
 
                 
 	for r in results:
-
+                
                 if species['full_name']== "Hordeum vulgare":
 
                     full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
@@ -153,11 +153,33 @@ for species in species_to_process:
                     logger.info("gene id %s for species %s",r['gene'],species)
                     #full_mappings_col.update({'mapping_file.Gene ID':r['gene']},{'$inc': {'mapping_file.$.Score': 1 } }, false,true)
                     db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
-                
+                    uniprot_result=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 } ))
+                    for u in uniprot_result:
+                        logger.info("uniprot id %s for species %s",u['mapping_file'][0]['Uniprot ID'],species) 
+                        pv_interactions_col.find({"$or":{{"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID":u['mapping_file'][0]['Uniprot ID']}}},{})
+                        
                 
                 #r['description']=tgt_description[r['xp']]
                 #counter++
         
+        #for r in results:
+                
+        #        if species['full_name']== "Hordeum vulgare":
+
+        #            uniprot_result=full_mappings_col.find({"mapping_file.Transcript ID":r['gene']},{"mapping_file.Uniprot ID": 1 } )
+                
+        #        elif species['full_name']== "Prunus domestica":
+                    
+        #            uniprot_result=full_mappings_col.find({"mapping_file.Protein ID":r['gene']},{"mapping_file.Uniprot ID": 1 } )
+
+
+        #        else:
+        #            uniprot_result=full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID": 1 } )
+
+        #        cursor_to_table(uniprot_result)
+                #r['description']=tgt_description[r['xp']]
+                #counter++
+                
         #new_results[species]=gene_set
 	#cursor_to_table(gene_set)
         #tmp_array=[]

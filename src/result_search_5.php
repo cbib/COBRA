@@ -805,7 +805,91 @@ new_cobra_footer();
 
 
 $(document).ready(function() {
-		$('#pretty_table').dataTable( {
+		$('#pretty_table_pp_intact').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+$(document).ready(function() {
+		$('#pretty_table_pp_biogrid').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+$(document).ready(function() {
+		$('#pretty_table_pv_litterature').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+$(document).ready(function() {
+		$('#pretty_table_pv_hpidb').dataTable( {
 			"scrollX": true,
 			"jQueryUI": true,
 			"pagingType": "full_numbers",

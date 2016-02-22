@@ -37,6 +37,7 @@ and open the template in the editor.
 }*/
 table.dataTable tbody tr:hover {
   background-color: #ffa;
+  //width:100%;
 }
 /*table.dataTable tbody tr.even.selected {
     background-color: #04B4AE;

@@ -524,7 +524,7 @@ function get_litterature_plant_virus_interactor(array $gene_id, MongoCollection 
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
-            array('$project' => array('mapping_file.Virus_symbol'=>1,'mapping_file.method'=>1,'mapping_file.Reference'=>1,'mapping_file.virus'=>1,'mapping_file.host'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.Virus_symbol'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'mapping_file.Reference'=>1,'mapping_file.host'=>1,'_id'=>0))
         ));
 
 
