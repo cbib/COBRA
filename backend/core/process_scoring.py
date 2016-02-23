@@ -27,48 +27,48 @@ species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 for species in species_to_process:
         
-        
+#########################################       
 	#logger.info("species %s",species['species'])
-	pipeline= [
-		{'$match' : {'species':species['full_name'], }}, 
-		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
-	]
-	results=measurements_col.aggregate(pipeline, useCursor=False)
+	#pipeline= [
+	#	{'$match' : {'species':species['full_name'], }}, 
+	#	{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
+	#]
+	#results=measurements_col.aggregate(pipeline, useCursor=False)
 
-	for genes in results:
+	#for genes in results:
 	
-		logger.info("Result for %s - Number of genes %s",species['full_name'],genes["count"])
+	#	logger.info("Result for %s - Number of genes %s",species['full_name'],genes["count"])
 
-	pipeline= [
-		{'$match' : {'species':species['full_name'], 'direction':'up'}}, 
-		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
-	]
-	results=measurements_col.aggregate(pipeline, useCursor=False)
+	#pipeline= [
+	#	{'$match' : {'species':species['full_name'], 'direction':'up'}}, 
+	#	{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
+	#]
+	#results=measurements_col.aggregate(pipeline, useCursor=False)
 
-	for genes in results:
+	#for genes in results:
 	
-		logger.info("Result for %s - Number of genes surexpressed %s",species['full_name'],genes["count"])
+	#	logger.info("Result for %s - Number of genes surexpressed %s",species['full_name'],genes["count"])
 
-	pipeline= [
-		{'$match' : {"infection_agent" : "monosporascus_cannonballus", 'species':species['full_name'], 'direction':'up'}}, 
-		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
-	]
-	results=measurements_col.aggregate(pipeline, useCursor=False)
+	#pipeline= [
+	#	{'$match' : {"infection_agent" : "monosporascus_cannonballus", 'species':species['full_name'], 'direction':'up'}}, 
+	#	{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
+	#]
+	#results=measurements_col.aggregate(pipeline, useCursor=False)
 
-	for genes in results:
+	#for genes in results:
 	
-		logger.info("Result for %s - Number of genes infected by monosporascus and surexpressed %s",species['full_name'],genes["count"])
+	#	logger.info("Result for %s - Number of genes infected by monosporascus and surexpressed %s",species['full_name'],genes["count"])
 
-        pipeline= [
-		{'$match' : {"infection_agent" : "Plum pox virus", 'species':species['full_name'], 'direction':'up'}}, 
-		{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
-	]
-	results=measurements_col.aggregate(pipeline, useCursor=False)
+        #pipeline= [
+	#	{'$match' : {"infection_agent" : "Plum pox virus", 'species':species['full_name'], 'direction':'up'}}, 
+	#	{'$group':  {'_id': 'total', 'count' :{'$sum':1}}} 
+	#]
+	#results=measurements_col.aggregate(pipeline, useCursor=False)
 
-	for genes in results:
+	#for genes in results:
 	
-		logger.info("Result for %s - Number of genes infected by PPV and surexpressed %s",species['full_name'],genes["count"])
-
+	#	logger.info("Result for %s - Number of genes infected by PPV and surexpressed %s",species['full_name'],genes["count"])
+#########################################
 
 
 	
@@ -99,13 +99,13 @@ for species in species_to_process:
                                         
 					if 'contrast' in xp:
 						this_path=str(a_sample['_id'])+"."+"experimental_results."+str(i)
-                                                logger.info("Path %s",this_path)
+                                                #logger.info("Path %s",this_path)
 						tgt_path.append(this_path)
 						tgt_description[this_path]=xp['contrast']+":"+condition.get('label',"")
 						break
 					else:
 						this_path=str(a_sample['_id'])+"."+"experimental_results."+str(i)                                                    
-                                                logger.info("Path %s",this_path)
+                                                #logger.info("Path %s",this_path)
 						tgt_path.append(this_path)
 						tgt_description[this_path]=condition.get('label',"")
 						break
@@ -122,7 +122,7 @@ for species in species_to_process:
         # annotate results
         
         gene_set=[]
-        
+
         #reset score to 0
         for r in results:
                 if species['full_name']== "Hordeum vulgare":
@@ -134,29 +134,75 @@ for species in species_to_process:
                     full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
 
 
+                elif species['full_name']== "Prunus armeniaca":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
+
+                elif species['full_name']== "Prunus persica":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
+
+                elif species['full_name']== "Cucumis melo":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 1 } })
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
+
+                elif species['full_name']== "Arabidopsis thaliana":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{"$set": {"mapping_file.$.Score": 1 } })
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
+
                 else:
                     
-                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
 
-                
+
+        #increment score field when a gen is found        
 	for r in results:
                 
                 if species['full_name']== "Hordeum vulgare":
 
                     full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Transcript ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
                 
                 elif species['full_name']== "Prunus domestica":
 
                     full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Protein ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
+
+                elif species['full_name']== "Prunus armeniaca":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
+
+                elif species['full_name']== "Prunus persica":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
+
+                elif species['full_name']== "Cucumis melo":
+
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } },multi=True)
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
+
+                elif species['full_name']== "Arabidopsis thaliana":
+                    logger.info("gene id %s for species %s",r['gene'],species)
+
+
+                    full_mappings_col.update({'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
 
                 else:
-                    logger.info("gene id %s for species %s",r['gene'],species)
-                    #full_mappings_col.update({'mapping_file.Gene ID':r['gene']},{'$inc': {'mapping_file.$.Score': 1 } }, false,true)
-                    db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {'$inc': {'mapping_file.$.Score': 1 } })
-                    uniprot_result=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 } ))
-                    for u in uniprot_result:
-                        logger.info("uniprot id %s for species %s",u['mapping_file'][0]['Uniprot ID'],species) 
-                        pv_interactions_col.find({"$or":{{"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID":u['mapping_file'][0]['Uniprot ID']}}},{})
+                    full_mappings_col.update({'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
+                    #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']}, {'$inc': {'mapping_file.$.Score': 1 } })
+                    
+                    #uniprot_result=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 } ))
+                    #for u in uniprot_result:
+                    #    logger.info("uniprot id %s for species %s",u['mapping_file'][0]['Uniprot ID'],species) 
+                    #    pv_interactions_col.find({"$or":{{"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID":u['mapping_file'][0]['Uniprot ID']}}},{})
                         
                 
                 #r['description']=tgt_description[r['xp']]
