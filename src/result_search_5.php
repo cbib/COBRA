@@ -169,9 +169,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 }
             }
-            if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
+            if ((isset($result['mapping_file']['Gene ID 2']))&& ($result['mapping_file']['Gene ID 2']!='')){
 
-                array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
+                if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
+
+                    array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
+                }
             }
             if ((isset($result['mapping_file']['Alias']))&& ($result['mapping_file']['Alias']!='')){
 
@@ -237,11 +240,11 @@ echo   '<div id="summary">';
                     $cursor=$measurementsCollection->find(array(
                     '$and'=>array(
                         array('$or'=> array(
-                            array('gene'=>$gene_id[0]),
-                            array('gene'=>$transcript_id[0]),
-                            array('gene'=>$protein_id[0]),
-                            array('gene'=>$gene_id_bis[0]),
-                            array('gene'=>$gene_alias[0])
+                            array('gene'=>array('$in'=>$gene_id)),
+                            array('gene'=>array('$in'=>$transcript_id)),
+                            array('gene'=>array('$in'=>$protein_id)),
+                            array('gene'=>array('$in'=>$gene_id_bis)),
+                            array('gene'=>array('$in'=>$gene_alias))
                         )),
                         array('gene'=> array('$ne'=>""))
                     )),
@@ -298,7 +301,7 @@ echo   '<div id="summary">';
                 //end div go_terms
                 
                 
-                load_and_display_variations_result($variation_collection,$species,$gene_id[0]);
+                load_and_display_variations_result($variation_collection,$gene_id,$species);
                 
                 
                 
@@ -333,7 +336,7 @@ echo   '<div id="summary">';
                            
                echo'<div id="sequences_section">';
                 echo '<h3>Sequences</h3>';
-                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id[0],$gene_id_bis[0]);
+                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id,$gene_id_bis);
                 
                 
               echo '<div>'

@@ -826,32 +826,18 @@ function get_interactor(array $gene_id,array $gene_alias,array $descriptions,arr
 //    echo "<br>Script for get_interactor function executed in " . $page_load_time . " sec";*/
     return $global_interact_array;
 }
-function count_transcript_for_gene(Mongocollection $sequencesCollection,$gene_id='null',$gene_id_bis='null'){
+function count_transcript_for_gene(Mongocollection $sequencesCollection,array $gene_id, array $gene_id_bis){
+    
     $transcript_count=array();
-//    $sequences_cursor=$sequencesCollection->aggregate(array(
-//        array('$match'=> array('tgt'=>'CDNA_Sequence')),
-//        array('$unwind'=>'$mapping_file'), 
-//        array('$match'=> array('mapping_file.Gene ID'=>$gene_id)),
-//        array('$group'=> array( '_id'=> $gene_id, 'mapping_file.Transcript ID' => 1, 'count'=> array( '$sum'=> 1 )))
-//    ));
-
     $sequences_cursor=$sequencesCollection->aggregate(array(
         array('$match'=> array('tgt'=>'CDNA_Sequence')),
         array('$unwind'=>'$mapping_file'), 
-        array('$match'=> array('$or'=> array( array('mapping_file.Gene ID'=>$gene_id),array('mapping_file.Gene ID'=>$gene_id_bis)))),
-        array('$project'=> array('mapping_file.Transcript ID' => 1,))
+        array('$match'=> array('$or'=> array( array('mapping_file.Gene ID'=>array('$in'=>$gene_id)),array('mapping_file.Gene ID'=>array('$in'=>$gene_id_bis))))),
+        array('$project'=> array('mapping_file.Transcript ID' => 1,'_id'=>0))
     ));
-                
-    foreach ($sequences_cursor as $result) {
-        foreach ($result as $data){
-            
-            //var_dump($data['mapping_file']['Transcript ID']);
-            array_push($transcript_count, $data['mapping_file']['Transcript ID']);
-        }
-        
-//        var_dump($result['mapping_file']);
-//        array_push($transcript_count, $result["Transcript ID"]);
-        //$transcript_count=$result["count"];
+    foreach ($sequences_cursor['result'] as $result) {
+
+            array_push($transcript_count, $result['mapping_file']['Transcript ID']);
     } 
     return $transcript_count;
 }
@@ -1172,16 +1158,23 @@ function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection 
                     $table_string.='<td><a class="nowrap" target = "_blank" href="../src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
                     //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
                     //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                    if (isset($value['Alias']) && $value['Alias']!="NA"){
-                        $table_string.='<td>'.$value['Alias'].'</td>';
-                    }
-                    elseif(isset ($value['Gene name'])){
-                        $table_string.='<td>'.$value['Gene name'].'</td>';
+                    
+                    if (isset($value['mapping_file']['Alias']) && $value['mapping_file']['Alias']!="NA"){
+                        $table_string.='<td>'.$value['mapping_file']['Alias'].'</td>';
                     }
                     else{
-                        $table_string.='<td>'.$value['Gene Name'].'</td>';
+                        if(isset ($value['mapping_file']['Gene Name'])&& $value['mapping_file']['Gene Name']!="NA"){
+                            $table_string.='<td>'.$value['mapping_file']['Gene Name'].'</td>';
+                        }
+                        else{
+                            $table_string.='<td>-</td>';
+
+                        }
 
                     }
+                    
+                    
+                    
                     $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
 
                     //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';

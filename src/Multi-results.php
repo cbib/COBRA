@@ -143,13 +143,17 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
                     $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
                 }
-                elseif(isset ($result['mapping_file']['Gene name'])){
-                    $table_string.='<td>'.$result['mapping_file']['Gene name'].'</td>';
-                }
                 else{
-                    $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+                    if(isset ($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!="NA"){
+                        $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+                    }
+                    else{
+                        $table_string.='<td>-</td>';
+
+                    }
 
                 }
+                
                 $table_string.='<td>'.$result['species'].'</td>';
                 $table_string.='<td>'.$result['mapping_file']['Score'].'</td>';
                 $table_string.='</tr>';

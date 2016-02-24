@@ -127,11 +127,11 @@ for species in species_to_process:
         for r in results:
                 if species['full_name']== "Hordeum vulgare":
                     #logger.info("gene id %s for species %s",r['gene'],species) 
-                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
 
                 
                 elif species['full_name']== "Prunus domestica":
-                    full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+                    full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
 
 
                 elif species['full_name']== "Prunus armeniaca":
@@ -156,7 +156,7 @@ for species in species_to_process:
 
                 else:
                     
-                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
+                    full_mappings_col.update({"$or": {"mapping_file.Gene ID":r['gene']},{"mapping_file.Gene ID 2":r['gene']},"mapping_file.Probe ID":r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } })
                     #db.full_mappings.update_many({'mapping_file.Gene ID':r['gene']}, {"$set": {'mapping_file.$.Score': 0 } })
 
 

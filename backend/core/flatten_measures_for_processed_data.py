@@ -11,6 +11,9 @@ from helpers.db_helpers import *
 
 
 #measurements_col.remove()
+#db.measurements_col.remove({ 'gene_original_id':{ $exist:false}})
+
+measurements_col.remove({"gene_original_id":{ "$exists": False}})
 
 # Script supposed to be run in the background to populate the DB with available datasets 
 if "log" not in globals():
@@ -61,39 +64,73 @@ for a_sample in samples_with_results:
                     
                     if experimental_results['type']=="contrast":
                         
-                        #if "," in measure[id_col]:
-                        #    print measure[id_col].split(',')
-                        this_doc={"xp":this_path}
-                        this_doc['type']="contrast"
-                        this_doc['gene']=measure[id_col]
-                        this_doc['infection_agent']=infection_agent
-                        if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
-                            this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
-                        if experimental_results['variety']!="" and experimental_results['variety']!="NA":
-                            this_doc['variety']=experimental_results['variety']
-                        if experimental_results['material']!="" and experimental_results['material']!="NA":
-                            this_doc['material']=experimental_results['material']
 
-                        this_doc['species']=this_genome['full_name']
+                        if measure[id_col].find(",") != -1:
+                            print "found a comma, preparing to split"
+                            split_list=measure[id_col].split(',')
+                            for id in split_list:
+                                print id
+                                this_doc={"xp":this_path}                       
+                                this_doc['gene']=id
+                                this_doc['type']="contrast"
+
+                                this_doc['infection_agent']=infection_agent
+                                if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
+                                    this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
+                                if experimental_results['variety']!="" and experimental_results['variety']!="NA":
+                                    this_doc['variety']=experimental_results['variety']
+                                if experimental_results['material']!="" and experimental_results['material']!="NA":
+                                    this_doc['material']=experimental_results['material']
+
+                                this_doc['species']=this_genome['full_name']
+                                this_doc['logFC']=measure.get("logFC",None)
+                                if not this_doc['logFC']:
+
+                                    try:
+                                        this_doc['logFC']=log(measure.get("fold_change",None),2)
+                                    except TypeError:
+                                        logger.critical("Error calculating logFC, no data")
+                                        continue
+                                elif this_doc['logFC']=="NA":
+                                    logger.critical("Error calculating logFC equal to NA")
+                                    continue
+                                else:	
+                                    this_doc['FDR']=measure.get("FDR",None)
+                                this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+                                measurements_to_insert.insert(this_doc)
+                                n_op+=1
+                        else:
+                            this_doc={"xp":this_path}                       
+                            this_doc['gene']=measure[id_col]
+                            this_doc['type']="contrast"
+                            this_doc['infection_agent']=infection_agent
+                            if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
+                                this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
+                            if experimental_results['variety']!="" and experimental_results['variety']!="NA":
+                                this_doc['variety']=experimental_results['variety']
+                            if experimental_results['material']!="" and experimental_results['material']!="NA":
+                                this_doc['material']=experimental_results['material']
+
+                            this_doc['species']=this_genome['full_name']
 
 
-                        this_doc['logFC']=measure.get("logFC",None)
-                        if not this_doc['logFC']:
+                            this_doc['logFC']=measure.get("logFC",None)
+                            if not this_doc['logFC']:
 
-                            try:
-                                this_doc['logFC']=log(measure.get("fold_change",None),2)
-                            except TypeError:
-                                logger.critical("Error calculating logFC, no data")
+                                try:
+                                    this_doc['logFC']=log(measure.get("fold_change",None),2)
+                                except TypeError:
+                                    logger.critical("Error calculating logFC, no data")
+                                    continue
+                            elif this_doc['logFC']=="NA":
+                                logger.critical("Error calculating logFC equal to NA")
                                 continue
-                        elif this_doc['logFC']=="NA":
-                            logger.critical("Error calculating logFC equal to NA")
-                            continue
-                        else:	
-
-                            this_doc['FDR']=measure.get("FDR",None)
-                        this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
-                        measurements_to_insert.insert(this_doc)
-                        n_op+=1
+                            else:	
+                                logger.critical("calculating logFC")
+                                this_doc['FDR']=measure.get("FDR",None)
+                            this_doc['direction']="up" if this_doc['logFC']>=0 else "down"
+                            measurements_to_insert.insert(this_doc)
+                            n_op+=1
                     else:
                         logger.critical("Experiment type %s not handled yet",experimental_results['type'])
                         continue

@@ -661,12 +661,12 @@ function display_proteins_details(array $gene_id, array $gene_symbol, array $gen
 
 
 
-function load_and_display_variations_result(MongoCollection $variation_collection,$species='null',$gene_id='null'){
+function load_and_display_variations_result(MongoCollection $variation_collection,array $gene_id,$species='null'){
     $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
                     array('$unwind'=>'$mapping_file'),
-                    array('$match' =>  array('mapping_file.Gene ID'=> $gene_id)), 
+                    array('$match' =>  array('mapping_file.Gene ID'=>array('$in'=>$gene_id))), 
                     array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
 
                 ));
@@ -685,7 +685,7 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                         <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
                             <table class="table table-condensed table-hover table-striped">                                                                <thead>
                                 <tr>';
-                                    echo "<th>gene ID</th>";
+                                    //echo "<th>gene ID</th>";
                                     echo "<th>variant ID</th>";
                                     echo "<th>Position</th>";
                                     echo "<th>Description</th>";
@@ -695,21 +695,16 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                                 </thead>
 
                                 <tbody>';
-                                    foreach ($var_results as $value) {
-                                        foreach( $value as $keys => $data){
-                                           //var_dump($data); 
-//                                            echo $data['mapping_file']['Gene ID'];
-//                                            echo $data['mapping_file']['Variant ID'];
-//                                            echo $data['mapping_file']['Position'];
-//                                            echo $data['mapping_file']['Description'];
-//                                            echo $data['mapping_file']['Alleles'];
-                                            echo "<tr>";
+                                    
+                                    foreach ($var_results['result'] as $value) {
+                                        foreach($value as $data){
+                                           echo "<tr>";
                                             //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                            echo '<td>'.$data['mapping_file']['Gene ID'].'</td>';
-                                            echo '<td>'.$data['mapping_file']['Variant ID'].'</td>';
-                                            echo '<td>'.$data['mapping_file']['Position'].'</td>';
-                                            echo '<td>'.$data['mapping_file']['Description'].'</td>';
-                                            echo '<td>'.$data['mapping_file']['Alleles'].'</td>';
+                                            //echo '<td>'.$data['Gene ID'].'</td>';
+                                            echo '<td>'.$data['Variant ID'].'</td>';
+                                            echo '<td>'.$data['Position'].'</td>';
+                                            echo '<td>'.$data['Description'].'</td>';
+                                            echo '<td>'.$data['Alleles'].'</td>';
                                            
                                             echo "</tr>";
                                         }

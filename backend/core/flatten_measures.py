@@ -76,6 +76,7 @@ for a_sample in samples_with_results:
                                         this_doc['name']=name
 					this_doc['infection_agent']=infection_agent
 					this_doc['gene_original_id']=measure[id_col]
+                                        this_doc['species']=this_genome['full_name']
                                         if assay['type']=="micro-array":
                                         
                                             if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
@@ -85,7 +86,7 @@ for a_sample in samples_with_results:
                                             if experimental_results['material']!="" and experimental_results['material']!="NA":
                                                 this_doc['material']=experimental_results['material']
 
-					this_doc['species']=this_genome['full_name']
+					
 			
                                             
                                         logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
