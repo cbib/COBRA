@@ -38,15 +38,46 @@ for u in results:
                     for gene_id in split_list:
                         logger.info("gene id %s ",gene_id)
                         full_mappings_col.update({'mapping_file.Gene ID':gene_id},{'$inc': {'mapping_file.$.Score': 1 } })
-                        plaza_results=full_mappings_col.find({'mapping_file.Gene ID':gene_id},{'mapping_file.Plaza ID': 1 } )
+                        plaza_results=full_mappings_col.find({'mapping_file.Gene ID':gene_id},{'mapping_file.$': 1 } )
                         for p in plaza_results:
-                            logger.info("plaza id %s",p['mapping_file'][0]['Plaza ID'])
+                            for values in p['mapping_file']:
+                            
+                                logger.info("plaza id %s",values['Plaza ID'])
+                                plaza_id=values['Plaza ID']
+
+                                #orthologs_list_identifier
+                                ortholog_result=orthologs_col.find({'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+                                for ortholog in ortholog_result:
+                                    logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+                                    ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                                    if ortholog_list.find(",") != -1:
+                                        ortholog_split_list=ortholog_list.split(',')
+                                        for ortholog_id in ortholog_split_list:
+                                            full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 1 } })
+                                    else:
+                                        full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 1 } })
+
                 else:
                     logger.info("gene id %s ",r['Gene ID'])
                     full_mappings_col.update({'mapping_file.Gene ID':r['Gene ID']},{'$inc': {'mapping_file.$.Score': 1 } })
-                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['Gene ID']},{'mapping_file.Plaza ID': 1 } )
+                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['Gene ID']},{'mapping_file.$': 1 } )
                     for p in plaza_results:
-                        logger.info("plaza id %s",p['mapping_file'][0]['Plaza ID'])
+                        for values in p['mapping_file']:
+                            
+                            logger.info("plaza id %s",values['Plaza ID'])
+                            plaza_id=values['Plaza ID']
+                            #orthologs_list_identifier
+                            ortholog_result=orthologs_col.find({'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+                            for ortholog in ortholog_result:
+                                logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+                                ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                                if ortholog_list.find(",") != -1:
+                                    ortholog_split_list=ortholog_list.split(',')
+                                    for ortholog_id in ortholog_split_list:
+                                        full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 1 } })
+                                else:
+                                    full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 1 } })
+
 
 
 results=list(pv_interactions_col.find({},{"mapping_file.Uniprot ID":1,"_id":0} ))
@@ -58,4 +89,18 @@ for u in results:
                 full_mappings_col.update({'mapping_file.Uniprot ID':r['Uniprot ID']},{'$inc': {'mapping_file.$.Score': 1 } })
                 plaza_results=full_mappings_col.find({'mapping_file.Uniprot ID':r['Uniprot ID']},{'mapping_file.Plaza ID': 1 } )
                 for p in plaza_results:
-                    logger.info("plaza id %s",p['mapping_file'][0]['Plaza ID'])
+                        for values in p['mapping_file']:
+                            
+                            logger.info("plaza id %s",values['Plaza ID'])
+                            plaza_id=values['Plaza ID']
+                            #orthologs_list_identifier
+                            ortholog_result=orthologs_col.find({'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+                            for ortholog in ortholog_result:
+                                logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+                                ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                                if ortholog_list.find(",") != -1:
+                                    ortholog_split_list=ortholog_list.split(',')
+                                    for ortholog_id in ortholog_split_list:
+                                        full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 1 } })
+                                else:
+                                    full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 1 } })
