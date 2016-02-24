@@ -17,17 +17,19 @@ $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
 //echo 'directory: '.PATH;
 make_species_list(find_species_list($speciesCollection),"..");
-if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['search'])) && ($_GET['search']!=''))){
+if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='NA') && (isset($_GET['search']) && $_GET['search']!='' && $_GET['search']!='NA')){
 
 
 	$organism=control_post(htmlspecialchars($_GET['organism']));
 	$search=control_post(htmlspecialchars($_GET['search']));
 	//$search=strtoupper($search);
 
-	
 
-	$grid = $db->getGridFS();
-	//Selection des collections
+    
+    ////////////////////////////////////
+    //ASSIGN ALL COLLECTIONS and GRIDS//
+    ////////////////////////////////////
+    $grid = $db->getGridFS();
 	$samplesCollection = new MongoCollection($db, "samples");
 	$full_mappingsCollection = new Mongocollection($db, "full_mappings");
 	$mappingsCollection = new Mongocollection($db, "mappings");
@@ -41,17 +43,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $GOCollection = new Mongocollection($db, "gene_ontology");
     $variation_collection = new Mongocollection($db, "variations");
 
-	
-	//get_all_results_from_samples($measurementsCollection,$samplesCollection,$search);
-
-    //if more than one results (often the case when search by gene symbol or keywords
-
-    //put the search box again...
-   // make_species_list(find_species_list($speciesCollection));
-    
-    
-   
-    
+    ///////////////////////////////////
+    //CREATE ALL ARRAYS and VARIABLES//
+    ///////////////////////////////////
     $go_grid_plaza_id_list=array();
     $go_grid_id_list=array();
     $gene_alias=array();
@@ -65,28 +59,49 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $plaza_ids=array();
     $est_id=array();
     $go_list=array();
-    //echo '<hr>';
+    $score=0;
+ 
+    /////////////////////////////////////////////
+    //SEARCH THE CUMULATED SCORE FOR A GIVEN ID//
+    /////////////////////////////////////////////
+    $cursor_score=$full_mappingsCollection->aggregate(array(
+         array('$match' => array('type'=>'full_table')),  
+         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+         array('$unwind'=>'$mapping_file'),
+         array('$match' => array('mapping_file.Gene ID'=>$search)),
+         array(
+           '$group'=>
+             array(
+               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+               'scores'=> array('$addToSet'=> '$mapping_file.Score' )
+             )
+         )
+
+    ));
+   
+    ///////////////////////////////
+    //SUM ALL SCORE FOR THIS GENE//
+    ///////////////////////////////   
+    foreach ($cursor_score['result'] as $value) {
+        foreach ($value['scores'] as $tmp_score) {    
+            $score+=$tmp_score;    
+        }  
+    } 
     
-    //$timestart=microtime(true);
-    //get_everything using full table mapping
-    
-    //$cursor = find_gene_by_regex($measurementsCollection,new MongoRegex("/^$search/m"));
-    
-    //$searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/xi")));
-	//$cursor = $measurementsCollection->find($searchQuery);
-    //var_dump($cursor);
-    
-    
-    
-    //Add split function for search value in case of double value separated by colon
-    //consequently add multiple results page to test any alias when an alias is submitted.
+    ///////////////////////////////////////////////////////
+    //SEARCH ENTRY IN FULL TABLE MAPPING WITH SAME ID//
+    ///////////////////////////////////////////////////////    
     $cursor=$full_mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table')),  
         array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
-        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))));
-    //echo count($cursor['result']);
+        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
+    ));
+
+    //////////////////////////////////////////
+    //PARSE RESULT AND FILL DEDICATED ARRAYS//
+    //////////////////////////////////////////   
     if (count($cursor['result'])>0){
         foreach ($cursor['result'] as $result) {
             //
@@ -94,60 +109,99 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             //echo $result['mapping_file']['Gene ontology ID'];
             $go_id_list=array();
             $go_used_list=array();
-            $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
-            foreach ($go_id_evidence as $duo) {
- 
-                $duo_id=explode("-", $duo);
+            if (isset($result['mapping_file']['Gene ontology ID']) && $result['mapping_file']['Gene ontology ID']!='' && $result['mapping_file']['Gene ontology ID']!='NA'){
+
                 
-                if (in_array($duo_id[0], $go_used_list)){
-                    for ($i = 0; $i < count($go_id_list); $i++) {
-                        if ($go_id_list[$i][0]===$duo_id[0]){
-                           if (!in_array($duo_id[1], $go_id_list[$i][1])){
-                               array_push($go_id_list[$i][1], $duo_id[1]); 
-                           } 
-                           
+                $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
+                foreach ($go_id_evidence as $duo) {
+                    $duo_id=explode("-", $duo);                
+                    if (in_array($duo_id[0], $go_used_list)){
+                        for ($i = 0; $i < count($go_id_list); $i++) {
+                            if ($go_id_list[$i][0]===$duo_id[0]){
+                               if (!in_array($duo_id[1], $go_id_list[$i][1])){
+                                   array_push($go_id_list[$i][1], $duo_id[1]); 
+                               }                           
+                            }
                         }
                     }
-
+                    else{
+                        $tmp_array=array();
+                        $tmp_array[0]=$duo_id[0];
+                        $tmp_array[1]=array($duo_id[1]);
+                        array_push($go_id_list,$tmp_array);
+                        array_push($go_used_list,$duo_id[0]);   
+                    }
                 }
-                else{
-
-                    $tmp_array=array();
-                    $tmp_array[0]=$duo_id[0];
-                    $tmp_array[1]=array($duo_id[1]);
-                    array_push($go_id_list,$tmp_array);
-                    array_push($go_used_list,$duo_id[0]);   
+            }
+            if (isset($result['mapping_file']['Uniprot ID']) && $result['mapping_file']['Uniprot ID']!='' && $result['mapping_file']['Uniprot ID']!='NA'){
+                if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){
+                    array_push($uniprot_id,$result['mapping_file']['Uniprot ID']);
                 }
-
             }
-            if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){
-                array_push($uniprot_id,$result['mapping_file']['Uniprot ID']);
-            }
-            if (isset($result['mapping_file']['Protein ID'])){
-                if ((in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE) && ($result['mapping_file']['Protein ID']!='NA')){
+            if (isset($result['mapping_file']['Protein ID']) && $result['mapping_file']['Protein ID']!='' && $result['mapping_file']['Protein ID']!='NA'){
+                if (in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE){
                     array_push($protein_id,$result['mapping_file']['Protein ID']);
                 }
             }
-            if ((isset($result['mapping_file']['Description']))&& ($result['mapping_file']['Description']!='')){
-                if ((in_array($result['mapping_file']['Description'],$descriptions)==FALSE) && ($result['mapping_file']['Description']!='NA')){
-
+            if (isset($result['mapping_file']['Description'])&& $result['mapping_file']['Description']!='' && $result['mapping_file']['Description']!='NA'){
+                if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
                     array_push($descriptions,$result['mapping_file']['Description']);
                 }
             }
-            
-            if (isset($result['mapping_file']['Score'])){
-                //echo $result['mapping_file']['Score'];
-                $score=$result['mapping_file']['Score'];
-                //echo $score;
+             if (isset($result['mapping_file']['Gene ID'])&& $result['mapping_file']['Gene ID']!='' && $result['mapping_file']['Gene ID']!='NA'){
+                if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
+                    array_push($gene_id,$result['mapping_file']['Gene ID']);
+                }
             }
+            if (isset($result['mapping_file']['Symbol'])&& $result['mapping_file']['Symbol']!='' && $result['mapping_file']['Symbol']!='NA'){
+                $symbol_list=explode(",", $result['mapping_file']['Symbol']);
+                foreach ($symbol_list as $symbol) {
+                    if (in_array($symbol,$gene_symbol)==FALSE && $symbol!='NA'){
+                        array_push($gene_symbol,$symbol);
+                    }
+                }
+            }
+            if (isset($result['mapping_file']['Gene ID 2'])&& $result['mapping_file']['Gene ID 2']!=''&& $result['mapping_file']['Gene ID 2']!="NA"){
+                if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE){
+                    array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
+                }
+            }
+            if (isset($result['mapping_file']['Alias'])&& $result['mapping_file']['Alias']!='' && $result['mapping_file']['Alias']!='NA'){
+                if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE){
+                    array_push($gene_alias,$result['mapping_file']['Alias']);
+                }
+            }
+            if (isset($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!='' && $result['mapping_file']['Gene Name']!='NA'){
+                if (in_array($result['mapping_file']['Gene Name'],$gene_alias)==FALSE){
+                    array_push($gene_alias,$result['mapping_file']['Gene Name']);
+                }
+            }
+            if (isset($result['mapping_file']['Probe ID'])&& $result['mapping_file']['Probe ID']!='' && $result['mapping_file']['Probe ID']!='NA'){
+                if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
+                    array_push($est_id,$result['mapping_file']['Probe ID']);
+                }
+            }
+            if (isset($result['mapping_file']['Plaza ID'])&& $result['mapping_file']['Plaza ID']!='' && $result['mapping_file']['Plaza ID']!='NA'){
+                if (in_array($result['mapping_file']['Plaza ID'],$plaza_ids)==FALSE){
+                    array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
+                }
+                $plaza_id=$result['mapping_file']['Plaza ID'];
+            }   
+            if (isset($result['species'])&& $result['species']!='' && $result['species']!='NA'){
+                $species=$result['species']; 
+            }
+
+/* 
+            //if (isset($result['mapping_file']['Score'])){
+                //echo $result['mapping_file']['Score'];
+            //    $score+=(int)$result['mapping_file']['Score'];
+                //echo $score;
+            //}
 //            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
 //
 //                array_push($transcript_id,$result['mapping_file']['Transcript ID']);
 //            }
-            if (in_array($result['mapping_file']['Gene ID'],$gene_id)==FALSE){
-
-                array_push($gene_id,$result['mapping_file']['Gene ID']);
-            }
+           
 //            for ($i = 0; $i < count($gene_symbol); $i++) {
 //                    if (strstr($gene_symbol,",")){
 //                        $pos=$i;
@@ -156,306 +210,30 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //                        array_splice($gene_symbol, $i, 1);
 //                    }
 //                }
-            if ((isset($result['mapping_file']['Symbol']))&& ($result['mapping_file']['Symbol']!='')){
-
-                $symbol_list=explode(",", $result['mapping_file']['Symbol']);
-                foreach ($symbol_list as $symbol) {
-                    //echo 'symbol : '.$symbol;
-                    if ((in_array($symbol,$gene_symbol)==FALSE) && ($symbol!='NA')){
-                        array_push($gene_symbol,$symbol);
-                    }
-
-
-
-                }
-            }
-            if ((isset($result['mapping_file']['Gene ID 2']))&& ($result['mapping_file']['Gene ID 2']!='')){
-
-                if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE && $result['mapping_file']['Gene ID 2']!="NA"){
-
-                    array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
-                }
-            }
-            if ((isset($result['mapping_file']['Alias']))&& ($result['mapping_file']['Alias']!='')){
-
-                if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE && $result['mapping_file']['Alias']!="NA"){
-
-                    array_push($gene_alias,$result['mapping_file']['Alias']);
-                }
-            }
-            if ((isset($result['mapping_file']['Gene Name']))&& ($result['mapping_file']['Gene Name']!='')){
-
-                if (in_array($result['mapping_file']['Gene Name'],$gene_alias)==FALSE && $result['mapping_file']['Gene Name']!="NA"){
-
-                    array_push($gene_alias,$result['mapping_file']['Gene Name']);
-                }
-            }
             
-            if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
-
-                array_push($est_id,$result['mapping_file']['Probe ID']);
-            }
-            array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
-            $plaza_id=$result['mapping_file']['Plaza ID'];
-            $species=$result['species'];
-
+*/
         }
   
-echo   '<div id="summary">';  
-      
-      echo '<div id="protein-details">';
-                
-                display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score);
+        echo'<div id="summary">';  
 
+            // left side div
+            echo'<div id="protein-details">';               
+                    load_and_display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score);
+                    $expression_data_array=load_and_display_expression_profile($measurementsCollection, $samplesCollection,$gene_id,$transcript_id,$protein_id,$gene_id_bis,$gene_alias);
+                    load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
+                    load_and_display_variations_result($variation_collection,$gene_id,$species);
+                    load_and_display_external_references($uniprot_id,$search,$species);   
+            echo'</div>';
 
-                
-                //display_expression_profile($measurementsCollection, $samplesCollection, $series, $categories, $logfc_array,$gene_id,$gene_id_bis,$gene_alias);
+            //right side div    
+            echo'<div id="stat-details">';
+                    load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
+                    load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                    load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis);
 
+            echo'</div>';
 
-                //start div expression_profile
-
-           echo'<div id="expression_profile_section">
-                    <h3>Expression profile</h3>
-                    <div class="panel-group" id="accordion_documents_expression">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-
-                                    <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                        <strong>  Expression data</strong>
-                                    </a>				
-
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="expression-chart"  >
-                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
-                            </div>
-
-                        </div>
-                    </div>'; 
-                    
-                    $series=array();
-                    $categories=array();
-                    $logfc_array=array();
-                    
-                    
-                    $cursor=$measurementsCollection->find(array(
-                    '$and'=>array(
-                        array('$or'=> array(
-                            array('gene'=>array('$in'=>$gene_id)),
-                            array('gene'=>array('$in'=>$transcript_id)),
-                            array('gene'=>array('$in'=>$protein_id)),
-                            array('gene'=>array('$in'=>$gene_id_bis)),
-                            array('gene'=>array('$in'=>$gene_alias))
-                        )),
-                        array('gene'=> array('$ne'=>""))
-                    )),
-                    array('_id'=>0)
-                    );
-                    
-                    
-                    //$cursor=$measurementsCollection->find(array('$and'=>array('$or'=> array(array('gene'=>$gene_id[0]),array('gene'=>$protein_id[0]),array('gene'=>$gene_id_bis[0]),array('gene'=>$gene_alias[0]))),array('gene'=>$gene_alias[0])),array('_id'=>0));
-                    $counter=1;                       
-                    foreach ($cursor as $result) {
-                        $xp_full_name=explode(".", $result['xp']);                   
-                        $experiment_id=$xp_full_name[0];
-                        $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
-                        
-                        if (isset($result['day_after_inoculation'])){
-                            if (isset($result['variety'])){
-                               $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                                //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
-                                array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
-                            }
-                            else{
-                                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
-                                //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
-                                
-                                array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
-                            }
-
-                        }
-                        else{
-                            if (isset($result['variety'])){
-                               $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
-                               ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
-                                array_push($categories, $result['species'].'/'.$result['variety']); 
-                            }
-                            else{
-                                $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
-                                //$categories[$gene_id[0]]=  $result['species'];
-                                array_push($categories, $result['species']);
-                            }
-                        }
-                        array_push($logfc_array, $sample);
-
-                        $counter++;
-
-                    }
-                    $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
-                    array_push($series, $sample);
-                    echo'<div id="shift_line"></div>'                
-              . '</div>';  
-                //end div expression profile
-                
-                //start div goterms                    
-                load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
-                //end div go_terms
-                
-                
-                load_and_display_variations_result($variation_collection,$gene_id,$species);
-                
-                
-                
-                
-                display_external_references($uniprot_id,$search,$species);
-                 
-            
-      echo '</div>';
-      // end left side div
-      // 
-      //start right side div    
-      echo '<div id="stat-details">';
-                echo '<div id="interaction_section">
-                         <h3>Interaction</h3>';
-
-                            load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
-                
-                            load_and_display_ppinteractions($gene_id,$uniprot_id,$pp_interactionsCollection,$species);
-                    
-                            
-//                       echo'<div class="physical-ltp statisticRow">
-//                                <div class="physical colorFill" style="width: 0%;"></div>
-//                                <div id="pubStats" class="right">
-//                                   <strong>Publications:</strong>'.count($pub_list).'
-//                                </div>
-//                            </div>
-//                            </br> 
-                        echo'</div>';
-
-                        load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
-
-                           
-               echo'<div id="sequences_section">';
-                echo '<h3>Sequences</h3>';
-                $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id,$gene_id_bis);
-                
-                
-              echo '<div>'
-                . ' About this gene: This gene has '.count($transcript_id).' transcripts'
-                . '</div></br>';
-                
-              echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                
-                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
-                                        <strong>Transcripts sequences </strong>
-                                    </a>				
-                           
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
-                                //get the number of transcript for this gene
-                                
-                                
-                                //with the number of transcript
-                                for ($i=0;$i<count($transcript_id);$i++){
-                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
-                                    foreach ($sequence_metadata as $data) {
-                                        foreach ($data as $key=>$value) {
-                                            if ($key==="mapping_file"){
-                                                foreach ($value as $values) {
-                                                    
-                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
-                                                
-                                                    
-                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
-                                                    echo '>'.$values['Transcript ID'].'</br>';
-                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
-                                                        if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Transcript Sequence'][$j-1].'</br>';
-                                                        }
-                                                        else{
-                                                            echo $values['Transcript Sequence'][$j-1];
-                                                        }
-                                                        
-                                                    }
-                                                    echo '</pre></br>';
-                                                    
-                                                    
-                                                    
-                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
-                                                    echo '</br>';
-                                                    echo '  <center>
-                                                                <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
-                                                                    
-                                                                
-                                                                </div>
-                                                            </center>
-                                                        <div class="container animated fadeInDown">
-                                                            <div class="content_test_'.str_replace(".", "__", $values['Transcript ID']).'">
-              
-                                                            </div>
-                                                        </div>';
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                            echo '</div>
-
-                        </div>
-                    </div>';
-                            
-              echo '<div class="panel-group" id="accordion_documents_gene_sequence">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                
-                                    <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
-                                        <strong>Unspliced Genes </strong>
-                                    </a>				
-                           
-                            </div>
-                            <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
-                                //get the number of transcript for this gene
-                                
-                                
-                                //with the number of transcript
-                                
-                                    $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
-                                    foreach ($sequence_metadata as $data) {
-                                        foreach ($data as $key=>$value) {
-                                            if ($key==="mapping_file"){
-                                                foreach ($value as $values) {
-                                                    
-                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
-                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
-                                                    echo '<pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
-                                                    echo '>'.$values['Gene ID'].'</br>';
-                                                    for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
-                                                        if (($j%60===0) && ($j!==1)){
-                                                            echo $values['Gene Sequence'][$j-1].'</br>';
-                                                        }
-                                                        else{
-                                                            echo $values['Gene Sequence'][$j-1];
-                                                        }
-                                                        
-                                                    }
-                                                    echo '</pre></br>';
-                                                }
-                                            }
-                                        }
-                                    }
-                                
-                                
-                            echo '</div>
-
-                        </div>
-                    </div>'; 
-          echo '</div>';                       
-     echo'</div>';
-     // end right side div
-echo'</div>';
+        echo'</div>';
                 
     //                $timestart=microtime(true);             
     //                $timeend=microtime(true);
@@ -467,15 +245,15 @@ echo'</div>';
     //                echo "<br>Script for interaction data executed in " . $page_load_time . " sec";  
     }
     else{
-echo'<div id="summary">
-         <h2>No Results found for \''.$search.'\'</h2>'
-  . '</div>';	
+        echo'<div id="summary">
+                <h2>No Results found for \''.$search.'\'</h2>'
+          . '</div>';	
     }
 }
 else{
-echo'<div class="container">
-        <h2>you have uncorrectly defined your request</h2>'
-  . '</div>';	
+    echo'<div class="container">
+            <h2>you have uncorrectly defined your request</h2>'
+      . '</div>';	
 }
 
 
@@ -492,7 +270,8 @@ new_cobra_footer();
     var species="<?php echo $species; ?>"; 
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
-    var xp_name="<?php echo $xp_name[0]; ?>";
+    //var xp_name=echo $xp_name[0]; ?>;
+    
     var clicked_transcript_id="";
     $(function () {
         var id= $('#container_profile').attr('data-id');
@@ -510,7 +289,7 @@ new_cobra_footer();
             xAxis: {
                 
                 //categories: ['samples']
-                categories: <?php echo json_encode($categories); ?>
+                categories: <?php echo json_encode($expression_data_array[0]); ?>
                 
                 //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
                 
@@ -528,7 +307,7 @@ new_cobra_footer();
 //                title: 'Log FC'
 //            },
             
-            series: <?php echo json_encode($series); ?>,
+            series: <?php echo json_encode($expression_data_array[1]); ?>,
             tooltip: {
                 useHTML: true,
                 formatter: function(genes) {
@@ -893,6 +672,34 @@ $(document).ready(function() {
 	});
 $(document).ready(function() {
 		$('#pretty_table_pv_hpidb').dataTable( {
+			"scrollX": true,
+			"jQueryUI": true,
+			"pagingType": "full_numbers",
+			"oLanguage": { 
+				"sProcessing":   "Processing...",
+				"sLengthMenu":   "display _MENU_ items",
+				"sZeroRecords":  "No item found",
+				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+				"sInfoPostFix":  "",
+				"sSearch":       "Search: ",
+				"sUrl":          "",
+				"oPaginate": {
+					"sFirst":    "First",
+					"sPrevious": "Previous",
+					"sNext":     "Next",
+					"sLast":     "Last"
+				}
+			},
+			"language": {
+							"decimal": ",",
+							"thousands": "."
+				}
+		});
+	});
+    (document).ready(function() {
+		$('#orthologs_table').dataTable( {
 			"scrollX": true,
 			"jQueryUI": true,
 			"pagingType": "full_numbers",

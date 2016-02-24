@@ -939,10 +939,7 @@ function get_grid_file(MongoGridFS $grid,Mongocollection $collection,$species='n
     return $MongoGridFSCursor;
    
 }
-function small_table_ortholog_string(MongoCollection $full_mappingsCollection,Mongocollection $orthologsCollection,$species='null',$plaza_id='null'){
-    $cursor_array=get_ortholog($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
-    return $cursor_array;
-}
+
 function read_grid_plaza_mapping_file(MongoGridFS $grid, MongoCollection $mappingsCollection,$filename='null',$src='null'){
    	echo 'entering read grid plaza file : '.$filename.$src;
     $go_list_term=array();
@@ -1096,7 +1093,7 @@ function read_grid_mapping_file(MongoGridFS $grid, MongoCollection $mappingsColl
 
 
 }
-function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
+function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocollection $orthologsCollection,$speciesID='null',$current_plaza_id='null'){
 //	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 //	echo'<h1 style="text-align:center"> Orthology informations </h1>';
 //	echo '</div>';
@@ -1142,48 +1139,81 @@ function get_ortholog(MongoCollection $full_mappingsCollection, Mongocollection 
 //            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
 //            //echo $ortholog_list_id;
 //            $ortholog_list_id=split('[,]', $ortholog_list_id);
+        $table_string.='<table class="table" id="orthologs_table">'
+                . '<tr>'
+                . '<th>gene ID</th>'
+                . '<th>gene name</th>'
+                . '<th>protein ID</th>'
+                . '<th>species</th>'
+                . '<th>Score</th>'
+                . '</tr>'
+                . '</thead>'
+                . '<tbody>';
         foreach ($ortholog_list_id as $ortholog){
             //echo 'ortholog'.$ortholog;
          //   foreach ($initial_species as $key => $value) {
          //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
                     #echo "start line : ".$buffer."\n";
-            $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
-            foreach ($ortholog_data as $data){
-                $species=$data['species'];
-                foreach ($data['mapping_file'] as $value){
+            if ($ortholog!=$current_plaza_id){
+            /*$cursor_score=$full_mappingsCollection->aggregate(array(
+            array('$match' => array('type'=>'full_table')),  
+            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('mapping_file.Plaza ID'=>$ortholog)),
+            array(
+              '$group'=>
+                array(
+                  '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+                  'scores'=> array('$addToSet'=> '$mapping_file.Score' )
+                )
+            )
+   
+            ));
+            foreach ($cursor_score['result'] as $value) {
+                foreach ($value['scores'] as $tmp_score) {    
+                    $score+=$tmp_score;    
+                }  
+            } */
+                $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
+                foreach ($ortholog_data as $data){
+                    $species=$data['species'];
+                    foreach ($data['mapping_file'] as $value){
 
-                //echo $value['Gene ID'];
-                    $table_string.="<tr>";
+                    //echo $value['Gene ID'];
+                        $table_string.="<tr>";
 
-                    $table_string.='<td><a class="nowrap" target = "_blank" href="../src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                    //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
-                    //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
-                    
-                    if (isset($value['mapping_file']['Alias']) && $value['mapping_file']['Alias']!="NA"){
-                        $table_string.='<td>'.$value['mapping_file']['Alias'].'</td>';
-                    }
-                    else{
-                        if(isset ($value['mapping_file']['Gene Name'])&& $value['mapping_file']['Gene Name']!="NA"){
-                            $table_string.='<td>'.$value['mapping_file']['Gene Name'].'</td>';
+                        $table_string.='<td><a class="nowrap" target = "_blank" href="../src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                        //$table_string.='<td>'.$line['mapping_file']['Gene ID'].'</td>';
+                        //echo '<td>'.$line['src_to_tgt'][1][$i].'</td>';
+
+                        if (isset($value['Alias']) && $value['Alias']!="NA" && $value['Alias']!=""){
+                            $table_string.='<td>'.$value['Alias'].'</td>';
                         }
                         else{
-                            $table_string.='<td>-</td>';
+                            if(isset ($value['Gene Name'])&& $value['Gene Name']!="NA" && $value['Gene Name']!=""){
+                                $table_string.='<td>'.$value['Gene Name'].'</td>';
+                            }
+                            else{
+                                $table_string.='<td>-</td>';
+
+                            }
 
                         }
 
+
+
+                        $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
+
+                        //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
+
+                        $table_string.='<td>'.$data['species'].'</td>';
+                        $table_string.='<td>'.$value['Score'].'</td>';
+                        //echo '<td>'.$line['species'].'</td>';
+                        $table_string.="</tr>";
                     }
-                    
-                    
-                    
-                    $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
-
-                    //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
-
-                    $table_string.='<td>'.$data['species'].'</td>';
-                    //echo '<td>'.$line['species'].'</td>';
-                    $table_string.="</tr>";
                 }
             }
+            
 
 
 /*                $tgt=$mappingsCollection->aggregate(array(

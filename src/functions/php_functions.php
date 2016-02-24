@@ -518,7 +518,7 @@ function is_expression_variables_set(array $categories, array $result, array $lo
     return $categories;
     
 }
-function display_expression_profile(MongoCollection $measurementsCollection, MongoCollection $samplesCollection, array $series, array $categories, array $logfc_array,array $gene_id, array $gene_id_bis, array $gene_alias){
+function display_expression_profile_old(MongoCollection $measurementsCollection, MongoCollection $samplesCollection, array $series, array $categories, array $logfc_array,array $gene_id, array $gene_id_bis, array $gene_alias){
     echo'<div id="expression_profile">
             <h3>Expression profile</h3>
             <div class="panel-group" id="accordion_documents_expression">
@@ -574,7 +574,86 @@ function display_expression_profile(MongoCollection $measurementsCollection, Mon
             echo'<div id="shift_line"></div>'                
       . '</div>'; 
 }
-function display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
+
+function load_and_display_expression_profile(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias){
+    $series=array();
+    $categories=array();
+    $logfc_array=array();
+    $cursor=$measurementsCollection->find(array(
+    '$and'=>array(
+        array('$or'=> array(
+            array('gene'=>array('$in'=>$gene_id)),
+            array('gene'=>array('$in'=>$transcript_id)),
+            array('gene'=>array('$in'=>$protein_id)),
+            array('gene'=>array('$in'=>$gene_id_bis)),
+            array('gene'=>array('$in'=>$gene_alias))
+        )),
+        array('gene'=> array('$ne'=>""))
+    )),
+    array('_id'=>0)
+    );
+    $counter=1;                       
+    foreach ($cursor as $result) {
+        $xp_full_name=explode(".", $result['xp']);                   
+        $experiment_id=$xp_full_name[0];
+        $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));                       
+        if (isset($result['day_after_inoculation'])){
+            if (isset($result['variety'])){
+               $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
+                array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+            }
+            else{
+                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
+
+                array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+            }
+        }
+        else{
+            if (isset($result['variety'])){
+               $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+               ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
+                array_push($categories, $result['species'].'/'.$result['variety']); 
+            }
+            else{
+                $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                //$categories[$gene_id[0]]=  $result['species'];
+                array_push($categories, $result['species']);
+            }
+        }
+        array_push($logfc_array, $sample);
+        $counter++;
+
+    }
+    $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
+    array_push($series, $sample);
+    $global_array=array($categories,$series);
+    echo'<div id="expression_profile_section">
+                    <h3>Expression profile</h3>
+                    <div class="panel-group" id="accordion_documents_expression">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+                                    <strong>  Expression data</strong>
+                                </a>				
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="expression-chart"  >
+                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>'; 
+               echo'<div id="shift_line"></div>'                
+              . '</div>';  
+    return $global_array;
+
+    //$global_array=array($categories,$series);
+}
+
+
+
+
+function load_and_display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
    echo'<div id="section_description"><B>'.$gene_id[0].'</B> ';for ($i = 0; $i < $score; $i++) { 
                    echo '<i class="fa fa-star"></i>';
                 };echo'<B class="right"><i>'.$species.'</i></B>
@@ -899,7 +978,7 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
         <div id="shift_line"></div>
     </div>';
 }
-function display_external_references( array $proteins_id,$search='null',$species='null'){
+function load_and_display_external_references( array $proteins_id,$search='null',$species='null'){
     echo' 
     <div id="linkouts">
         <h3>External Database Linkouts</h3>';
@@ -1321,7 +1400,136 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
     
     
 }
-function load_and_display_interactions($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
+function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis){
+    echo'<div id="sequences_section">
+                    <h3>Sequences</h3>';
+                    $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id,$gene_id_bis);
+              echo '<div>'
+                    . ' About this gene: This gene has '.count($transcript_id).' transcripts'
+                . '</div>'
+                . '</br>';
+                
+              echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#trancript_sequence_fasta" data-parent="#accordion_documents_trancript_sequence" data-toggle="collapse">
+                                        <strong>Transcripts sequences </strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="trancript_sequence_fasta">';
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript
+                                for ($i=0;$i<count($transcript_id);$i++){
+                                    $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    
+                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Transcript ID'].'</br>'.$values['Transcript Sequence'].'</pre></br>';
+                                                
+                                                    
+                                                    echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">';
+                                                    echo '>'.$values['Transcript ID'].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Transcript Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Transcript Sequence'][$j-1].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Transcript Sequence'][$j-1];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
+                                                    
+                                                    
+                                                    
+                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo '</br>';
+                                                    echo '  <center>
+                                                                <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
+                                                                    
+                                                                
+                                                                </div>
+                                                            </center>
+                                                        <div class="container animated fadeInDown">
+                                                            <div class="content_test_'.str_replace(".", "__", $values['Transcript ID']).'">
+              
+                                                            </div>
+                                                        </div>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            echo '</div>
+
+                        </div>
+                    </div>';
+                            
+              echo '<div class="panel-group" id="accordion_documents_gene_sequence">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                
+                                    <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
+                                        <strong>Unspliced Genes </strong>
+                                    </a>				
+                           
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
+                                //get the number of transcript for this gene
+                                
+                                
+                                //with the number of transcript
+                                
+                                    $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
+                                    foreach ($sequence_metadata as $data) {
+                                        foreach ($data as $key=>$value) {
+                                            if ($key==="mapping_file"){
+                                                foreach ($value as $values) {
+                                                    
+                                                    //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
+                                                    //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
+                                                    echo '<pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
+                                                    echo '>'.$values['Gene ID'].'</br>';
+                                                    for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
+                                                        if (($j%60===0) && ($j!==1)){
+                                                            echo $values['Gene Sequence'][$j-1].'</br>';
+                                                        }
+                                                        else{
+                                                            echo $values['Gene Sequence'][$j-1];
+                                                        }
+                                                        
+                                                    }
+                                                    echo '</pre></br>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                
+                            echo '</div>
+
+                        </div>
+                    </div>'; 
+          echo '</div>';
+}
+function load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
+    echo'<div id="interaction_section">
+             <h3>Interaction</h3>';
+    load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
+    load_and_display_ppinteractions($gene_id,$uniprot_id,$pp_interactionsCollection,$species);
+     echo'</div>';
+}
+
+
+function load_and_display_interactions_old($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
     //get all interactor for each dataset (biogrid, intact, hipdb, etc..)
             
     $interaction_array=get_interactor($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection);
@@ -1826,20 +2034,10 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                                 </a>				
 
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">
-                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
-                                <tr>';
-                                    echo "<th>gene ID</th>";
-                                    echo "<th>gene name</th>";
-                                    echo "<th>protein ID</th>";
-                                    echo "<th>species</th>";
-                                    echo'
-                                </tr>
-                                </thead>
-
-                                <tbody>';
+                        <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">';
+                            
                                     //$timestart=microtime(true);
-                                    echo small_table_ortholog_string($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                                    echo get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
     //                                        $timeend=microtime(true);
     //                                        $time=$timeend-$timestart;
     //
