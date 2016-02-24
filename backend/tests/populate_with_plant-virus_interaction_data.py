@@ -111,7 +111,7 @@ interactions_table={
 	"type":"symbol_to_symbol",
 	"virus_class":"tobamovirus",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
+		"n_rows_to_skip":2,
 		"column_keys":['idx','Virus_symbol','Virus_domain','Host_symbol','Host_domain','method','virus','host','Putative_function','Reference','Accession_number','Gene ID'],
 		"sheet_index":0,
 		
@@ -141,7 +141,7 @@ interactions_table={
 	"virus_taxon":"protein_taxid_2_cat",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Uniprot ID','alternative_identifiers_1','protein_alias_1','Virus Uniprot ID','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','protein_xref_1_unique','protein_xref_2_unique','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
+		"column_keys":['idx','x_ref_1','alternative_identifiers_1','protein_alias_1','x_ref_2','alternative_identifiers_2','protein_alias_2','detection_method','author_name','pmid','protein_taxid_1','protein_taxid_2','interaction_type','source_database_id','database_identifier','confidence','Uniprot ID','Virus Uniprot ID','protein_taxid_1_cat','protein_taxid_2_cat','protein_taxid_1_name','protein_taxid_2_name','protein_seq1','protein_seq2','source_database','comment'],
 		"sheet_index":0,
 		
 	}

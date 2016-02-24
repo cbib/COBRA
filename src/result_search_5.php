@@ -213,7 +213,9 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             
 */
         }
-  
+         //////////////////////////////////////////
+        //DISPLAY RESULT HTML//
+        //////////////////////////////////////////  
         echo'<div id="summary">';  
 
             // left side div

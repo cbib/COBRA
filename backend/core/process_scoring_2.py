@@ -76,7 +76,12 @@ for species in species_to_process:
         for r in results:
                 if species['full_name']== "Hordeum vulgare":
                     
-                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } },multi=True)
+
+                    if 'gene_original_id' in r:
+                        full_mappings_col.update({'mapping_file.Transcript ID':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{"$set": {'mapping_file.$.Score': 0 } })
+
+                    else:
+                        full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$set": {'mapping_file.$.Score': 0 } })
 
                 elif species['full_name']== "Prunus domestica":
                     full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
@@ -94,13 +99,21 @@ for species in species_to_process:
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {"mapping_file.$.Score": 0 } })
 
                 elif species['full_name']== "Arabidopsis thaliana":
-                    logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
+                    #logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
 
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } })
 
                 else:
-                    
-                    full_mappings_col.update({"$or": {"mapping_file.Gene ID":r['gene'],"mapping_file.Gene ID 2":r['gene']},"mapping_file.Probe ID":r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } })
+                    if 'gene_original_id' in r:
+                        full_mappings_col.update({'mapping_file.Gene ID 2':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{"$set": {'mapping_file.$.Score': 0 } })
+
+                    else:
+                        full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$set": {'mapping_file.$.Score': 0 } })
+
+
+
+                    #full_mappings_col.update({"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}],"mapping_file.Probe ID":r['gene_original_id']},{"$set": {"mapping_file.$.Score": 0 } })
+
 
 
         #increment score field when a gen is found  
@@ -109,7 +122,15 @@ for species in species_to_process:
 	for r in results:
                 
             if species['full_name']== "Hordeum vulgare":
-               full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })                
+                if 'gene_original_id' in r:
+                    full_mappings_col.update({'mapping_file.Transcript ID':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{"$inc": {'mapping_file.$.Score': 1 } })
+
+                else:
+                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {'mapping_file.$.Score': 1 } })
+                plaza_results=full_mappings_col.find({'mapping_file.Transcript ID':r['gene']},{'mapping_file.Plaza ID': 1 } )
+                for p in plaza_results:
+                    logger.info("plaza id %s",p['mapping_file'][0]['Plaza ID'])
+                    #search ortholog_list
             elif species['full_name']== "Prunus domestica":
                full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
             elif species['full_name']== "Prunus armeniaca":
@@ -119,11 +140,19 @@ for species in species_to_process:
             elif species['full_name']== "Cucumis melo":
                 full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
             elif species['full_name']== "Arabidopsis thaliana":
-                logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
+                #logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
                 full_mappings_col.update({'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
             else:
-                full_mappings_col.update({"$or": {"mapping_file.Gene ID":r['gene'],"mapping_file.Gene ID 2":r['gene']},"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
-                    
+                if 'gene_original_id' in r:
+                    full_mappings_col.update({'mapping_file.Gene ID 2':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
+
+                else:
+                    full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{'$inc': {'mapping_file.$.Score': 1 } })
+
+
+                #full_mappings_col.update({"gene_original_id":{ "$exists": True},"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}],"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
+                #full_mappings_col.update({"gene_original_id":{ "$exists": False},"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}]},{'$inc': {'mapping_file.$.Score': 1 } })
+   
                     #uniprot_result=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 } ))
                     #for u in uniprot_result:
                     #    logger.info("uniprot id %s for species %s",u['mapping_file'][0]['Uniprot ID'],species) 
@@ -131,4 +160,5 @@ for species in species_to_process:
                         
 
         
-       
+            
+            
