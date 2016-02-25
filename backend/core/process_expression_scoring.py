@@ -83,38 +83,42 @@ for species in species_to_process:
                     full_mappings_col.update({'mapping_file.Transcript ID':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{"$inc": {'mapping_file.$.Score': 1 } })
 
                 else:
-                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{"$inc": {'mapping_file.$.Score': 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Transcript ID':r['gene']},{'mapping_file.Plaza ID': 1 } )
+                    full_mappings_col.update({"mapping_file.Transcript ID":r['gene']},{'$inc': {'mapping_file.$.Score': 1 } })
+                plaza_results=full_mappings_col.find({'mapping_file.Transcript ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus domestica":
-                full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Protein ID':r['gene']},{'mapping_file.$': 1 } )
+                full_mappings_col.update({"mapping_file.Protein ID":r['gene']},{'$inc': {"mapping_file.$.Score": 1 } })
+                plaza_results=full_mappings_col.find({'mapping_file.Protein ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus armeniaca":
-                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$': 1 } )
+                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score": 1 } })
+                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus persica":
-                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$': 1 } )
+                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score": 1 } })
+                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Cucumis melo":
-                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{"$inc": {"mapping_file.$.Score": 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$': 1 } )
+                logger.info("gene id %s",r['gene'])
+                full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score": 1 } })
+                logger.info("gene id %s",r['gene'])
+                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
+                logger.info("gene id %s",r['gene'])
+
 
             elif species['full_name']== "Arabidopsis thaliana":
                 #logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
                 full_mappings_col.update({'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
-                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$': 1 } )
+                plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             else:
                 if 'gene_original_id' in r:
                     full_mappings_col.update({'mapping_file.Gene ID 2':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
-                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID 2':r['gene']},{'mapping_file.$': 1 } )
+                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID 2':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
                 else:
                     full_mappings_col.update({"mapping_file.Gene ID":r['gene']},{'$inc': {'mapping_file.$.Score': 1 } })
-                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$': 1 } )
+                    plaza_results=full_mappings_col.find({'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
                 
                 #full_mappings_col.update({"gene_original_id":{ "$exists": True},"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}],"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
@@ -134,14 +138,17 @@ for species in species_to_process:
                     #orthologs_list_identifier
                     ortholog_result=orthologs_col.find({'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
                     for ortholog in ortholog_result:
+
                         logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
                         ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
                         if ortholog_list.find(",") != -1:
                             ortholog_split_list=ortholog_list.split(',')
                             for ortholog_id in ortholog_split_list:
-                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 1 } })
+                                if ortholog_id!=plaza_id:
+                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 1 } })
                         else:
-                            full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 1 } })
+                            if ortholog_list!=plaza_id:
+                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 1 } })
         
             
             

@@ -78,3 +78,5 @@ logger.info("Indexation on field \"mapping_file.Transcript ID\" from collection 
 full_mappings_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)
 logger.info("Indexation on field \"mapping_file.Protein ID\" from collection \"mappings\"")
 full_mappings_col.create_index("mapping_file.Protein ID",sparse=True,background=True)
+#logger.info("Indexation on field \"mapping_file.Score\" from collection \"mappings\"")
+#full_mappings_col.create_index("mapping_file.Score",sparse=True,background=True)

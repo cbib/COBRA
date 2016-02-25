@@ -399,7 +399,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus ","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -419,7 +419,8 @@ barley_samples={
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":6,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
+
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -431,7 +432,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -463,7 +464,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -494,7 +495,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -525,7 +526,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -556,7 +557,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -588,7 +589,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -620,7 +621,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -652,7 +653,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }
@@ -683,7 +684,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow/mild mosaic virus","label":"infected with BYMV"}
 		]
 	}]
 }

@@ -821,6 +821,11 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
 samples_col.insert(prunus_samples)
 
 
+
+###################################################################################################################
+############################################ HORDEUM VULGARE ######################################################
+###################################################################################################################
+
 # Barley
 barley_samples={
 	"src_pub":"not published", # Any field from the pub, doi, pmid, first author etc. 
@@ -856,15 +861,6 @@ samples_col.insert(barley_samples)
 
 
 
-
-
-
-
-
-
-#for key, value in orthologs_table.items():
-	
-#orthologs_col.put(orthologs_table.items())
 
 
 
