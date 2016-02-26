@@ -26,7 +26,9 @@ logger.info("Running %s",sys.argv[0])
 
 
 # Get available interactions and process them 
-interactions_to_process=pp_interactions_col.find({"src_to_tgt":{"$exists":False}})
+#interactions_to_process=pp_interactions_col.find({"src_to_tgt":{"$exists":False}})
+interactions_to_process=pp_interactions_col.find({"mapping_file":{"$exists":False}})
+
 
 logger.info("Found %d interactions to process",interactions_to_process.count())
 # map_doc=mappings_to_process[0]

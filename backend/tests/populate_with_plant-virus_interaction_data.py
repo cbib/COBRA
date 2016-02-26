@@ -54,7 +54,7 @@ interactions_table={
 pv_interactions_col.insert(interactions_table)
 
 interactions_table={
-	"data_file":"interactomics/potyvirus/VPg_Interactor.xls",
+	"data_file":"interactomics/potyvirus/VPg_interactor.xls",
 	"species":"Arabidopsis thaliana",
         "src":"Gene ID",
 	"tgt":"Virus_symbol",
@@ -62,7 +62,7 @@ interactions_table={
 	"virus_class":"potyvirus",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','host'],
+		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','species'],
 		"sheet_index":0,
 		
 	}
@@ -71,7 +71,7 @@ interactions_table={
 pv_interactions_col.insert(interactions_table)
 
 interactions_table={
-	"data_file":"interactomics/potyvirus/Nla_Interactor.xls",
+	"data_file":"interactomics/potyvirus/Nla_interactor.xls",
         "species":"Arabidopsis thaliana",
 	"src":"Gene ID",
 	"tgt":"Virus_symbol",
@@ -79,7 +79,7 @@ interactions_table={
 	"virus_class":"potyvirus",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','host'],
+		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','species'],
 		"sheet_index":0,
 		
 	}
@@ -95,7 +95,7 @@ interactions_table={
 	"virus_class":"potexvirus",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Virus_symbol','Virus_name','Host_symbol','Host_name','method','virus','host','Putative_function','Reference','Gene ID'],
+		"column_keys":['idx','Virus_symbol','Virus_name','Host_symbol','Host_name','method','virus','species','Putative_function','Reference','Gene ID'],
 		"sheet_index":0,
 		
 	}
@@ -112,7 +112,7 @@ interactions_table={
 	"virus_class":"tobamovirus",
 	"xls_parsing":{
 		"n_rows_to_skip":2,
-		"column_keys":['idx','Virus_symbol','Virus_domain','Host_symbol','Host_domain','method','virus','host','Putative_function','Reference','Accession_number','Gene ID'],
+		"column_keys":['idx','Virus_symbol','Virus_domain','Host_symbol','Host_domain','method','virus','species','Putative_function','Reference','Accession_number','Gene ID'],
 		"sheet_index":0,
 		
 	}
