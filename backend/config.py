@@ -22,4 +22,4 @@ users_col=db.users
 sequences_col=db.sequences
 variations_col=db.variations
 
-fs = gridfs.GridFS(db)
+#fs = gridfs.GridFS(db)

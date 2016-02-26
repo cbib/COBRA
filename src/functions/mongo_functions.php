@@ -512,7 +512,7 @@ function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pv
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Uniprot ID'=>array('$in'=>$protein_id))),
-            array('$project' => array('mapping_file.database_identifier'=>1,'mapping_file.protein_alias_2'=>1,'mapping_file.Virus Uniprot ID'=>1,'mapping_file.pmid'=>1,'mapping_file.author_name'=>1,'mapping_file.detection_method'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.database_identifier'=>1,'mapping_file.protein_alias_2'=>1,'mapping_file.Virus Uniprot ID'=>1,'mapping_file.pmid'=>1,'mapping_file.author_name'=>1,'mapping_file.detection_method'=>1,'mapping_file.virus'=>1,'_id'=>0))
         ));  
     return $cursor;    
  
