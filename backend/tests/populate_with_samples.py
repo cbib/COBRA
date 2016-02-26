@@ -212,7 +212,7 @@ samples_col.insert(melo_samples)
 
 melo_samples={
     "src_pub":21970693, # Any field from the pub, doi, pmid, first author etc. 
-    "species":"C. melo", # any abbrev name, key or full name, 
+    "species":"Cucumis melo", # any abbrev name, key or full name, 
     "name":"Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
     "comments":[
         {"content":"""Two melon genotypes have been used to analyse transcriptomic 
@@ -384,7 +384,7 @@ samples_col.insert(melo_samples)
 
 melo_samples={
 	"src_pub":19821986, # Any field from the pub, doi, pmid, first author etc. 
-	"species":"C. melo", # any abbrev name, key or full name, 
+	"species":"Cucumis melo", # any abbrev name, key or full name, 
 	"name":"Transcriptomics of infection of C. melo",
 	"comments":[
 		{"content":"""

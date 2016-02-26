@@ -762,7 +762,7 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
 
                         </div>
                         <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
-                            <table class="table table-condensed table-hover table-striped">                                                                <thead>
+                            <table class="table" id="table_variants">                                                                <thead>
                                 <tr>';
                                     //echo "<th>gene ID</th>";
                                     echo "<th>variant ID</th>";
