@@ -742,7 +742,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 
 function load_and_display_variations_result(MongoCollection $variation_collection,array $gene_id,$species='null'){
     
-    //$timestart=microtime(true);
+    $timestart=microtime(true);
     $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
