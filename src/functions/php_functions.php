@@ -741,6 +741,8 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 
 
 function load_and_display_variations_result(MongoCollection $variation_collection,array $gene_id,$species='null'){
+    
+    //$timestart=microtime(true);
     $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -749,7 +751,11 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                     array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
 
                 ));
-    
+    //Afficher le temps d'éxecution
+    $page_load_time = number_format($time, 3);
+    echo "Debut du script: ".date("H:i:s", $timestart);
+    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
     echo'<div id="ortholog_section">
             <h3>Variation and polymorphism</h3>
                 <div class="panel-group" id="accordion_documents">
