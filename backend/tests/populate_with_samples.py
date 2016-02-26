@@ -112,7 +112,7 @@ publications_col.insert(prunus_pub)
 
 melo_samples={
     "src_pub":23134692, # Any field from the pub, doi, pmid, first author etc. 
-    "species":"C. melo", # any abbrev name, key or full name, 
+    "species":"Cucumis melo", # any abbrev name, key or full name, 
     "name":"Root transcriptional responses of two melon genotypes with contrasting resistance to Monosporascus cannonballus (Pollack et Uecker) infection",
     "comments":[
         {"content":"""Monosporascus cannonballus is the main causal agent of melon vine 

@@ -96,7 +96,7 @@ for species in species_to_process:
 
     #score all genes in hpidb interaction tables !!!
     logger.info("parse hpidb data")
-    results=list(pv_interactions_col.find({},{"mapping_file.Uniprot ID":1,"_id":0} ))
+    results=list(pv_interactions_col.find({'mapping_file.species':species['full_name']},{"mapping_file.Uniprot ID":1,"_id":0} ))
     for u in results:
         for r in u['mapping_file']:
             if 'Uniprot ID' in r:
