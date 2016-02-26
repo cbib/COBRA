@@ -32,7 +32,7 @@ for species in species_to_process:
 	
 				
 	#tgt_samples=samples_col.find({"species":{"$in":all_species_names},"experimental_results.conditions.infected":True})
-	tgt_samples=samples_col.find({"species":species,"experimental_results.conditions.infected":True})
+	tgt_samples=samples_col.find({"species":species['full_name'],"experimental_results.conditions.infected":True})
 
 
 	# browse the doc and gather the path of the tgt xp 
