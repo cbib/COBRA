@@ -258,7 +258,13 @@ for species in species_to_process:
 
                     #tmp=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 }))
 
-
+#full_mappings_col.update({"gene_original_id":{ "$exists": True},"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}],"mapping_file.Probe ID":r['gene_original_id']},{'$inc': {'mapping_file.$.Score': 1 } })
+                #full_mappings_col.update({"gene_original_id":{ "$exists": False},"$or": [{'mapping_file.Gene ID':r['gene']},{"mapping_file.Gene ID 2":r['gene']}]},{'$inc': {'mapping_file.$.Score': 1 } })
+   
+                    #uniprot_result=list(full_mappings_col.find({"mapping_file.Gene ID":r['gene']},{"mapping_file.$": 1 } ))
+                    #for u in uniprot_result:
+                    #    logger.info("uniprot id %s for species %s",u['mapping_file'][0]['Uniprot ID'],species) 
+                    #    pv_interactions_col.find({"$or":{{"mapping_file.Gene ID":r['gene']},{"mapping_file.Uniprot ID":u['mapping_file'][0]['Uniprot ID']}}},{})
 
                 #for s in tmp:   
 
