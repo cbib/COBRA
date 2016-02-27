@@ -59,12 +59,12 @@ for species in species_to_process:
                                                 if ortholog_id!=plaza_id:
                                                     logger.info("ortholog id %s ",ortholog_id)
 
-                                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 0.5 } })
+                                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 1 } })
                                         else:
                                             if ortholog_list!=plaza_id:
                                                 logger.info("ortholog id %s ",ortholog_list)
 
-                                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 0.5 } })
+                                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 1 } })
 
                     else:
                         logger.info("gene id %s ",r['Gene ID'])
@@ -86,12 +86,12 @@ for species in species_to_process:
                                             if ortholog_id!=plaza_id:
                                                 logger.info("ortholog id %s ",ortholog_id)
 
-                                                full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 0.5 } })
+                                                full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 1 } })
                                     else:
                                         if ortholog_list!=plaza_id:
                                             logger.info("ortholog id %s ",ortholog_list)
 
-                                            full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 0.5 } })
+                                            full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 1 } })
 
 
     #score all genes in hpidb interaction tables !!!
@@ -121,8 +121,8 @@ for species in species_to_process:
                                         for ortholog_id in ortholog_split_list:
                                             if ortholog_id!=plaza_id:
                                                 logger.info("ortholog id %s ",ortholog_id)
-                                                full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 0.5 } })
+                                                full_mappings_col.update({'mapping_file.Plaza ID':ortholog_id},{'$inc': {'mapping_file.$.Score': 1 } })
                                     else:
                                         if ortholog_list!=plaza_id:
                                             logger.info("ortholog id %s ",ortholog_list)
-                                            full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 0.5 } })
+                                            full_mappings_col.update({'mapping_file.Plaza ID':ortholog_list},{'$inc': {'mapping_file.$.Score': 1 } })

@@ -157,10 +157,10 @@ for species in species_to_process:
                             ortholog_split_list=ortholog_list.split(',')
                             for ortholog_id in ortholog_split_list:
                                 if ortholog_id!=plaza_id:
-                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 0.5 } })
+                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score': 1 } })
                         else:
                             if ortholog_list!=plaza_id:
-                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 0.5 } })
+                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score': 1 } })
         
             
             
