@@ -181,8 +181,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $score=0;
         $counter=0;
         foreach ($cursor['result'] as $result) {
-            var_dump($result);
-            echo '</br>--------------------------</br>';
+
             if ($counter===0){
                 $previous_id=$result['mapping_file']['Gene ID'];
                 $current_id=$result['mapping_file']['Gene ID'];
