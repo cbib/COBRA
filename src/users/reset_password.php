@@ -20,6 +20,7 @@
 			$pwd=md5($_GET['pwd1']);
 			$usersCollection->update(array('firstname'=>$_SESSION['firstname'],'lastname'=>$_SESSION['lastname']), array('$set' => array('pwd' => $pwd)));
             echo "<p> your new password has been successfully saved";
+            header ('Location: ../search/index.php');
 		}
 		else{
 			//alert("you need to confirm with the same password !!! ");

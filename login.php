@@ -9,6 +9,7 @@ new_cobra_header(".");
 
 $db=mongoConnector();
 $usersCollection = new Mongocollection($db, "users");
+$historyCollection = new Mongocollection($db, "history");
 
 //include('connection.php');
 // Déconnexion
@@ -139,6 +140,12 @@ else{
 							$_SESSION['login'] = $login; // permet de vérifier que l'utilisateur est bien connecté
 							$_SESSION['firstname'] = $person['firstname'];
 							$_SESSION['lastname'] = $person['lastname'];
+                            $today = date("F j, Y, g:i a");
+                            $document = array("firstname" => $_SESSION['firstname'],
+                                "lastname" => $_SESSION['lastname'],
+                                "date" => $today
+                            );
+                            $historyCollection->insert($document);
 							// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
 							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
 							

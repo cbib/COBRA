@@ -466,7 +466,7 @@ function make_user_preferences($user,Mongocollection $us){
                 
                     <h3> Change password</h3>';
 		
-               echo'<form action="https://services.cbib.u-bordeaux2.fr/cobra/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
+               echo'<form action="/src/users/reset_password.php" method="get" class="clear search-form homepage-search-form">
                         <fieldset>
                             <div class="form-field ff-multi">
                                 <div align="center" class="ff-inline ff-right" >';
