@@ -742,7 +742,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 
 function load_and_display_variations_result(MongoCollection $variation_collection,array $gene_id,$species='null'){
     
-    $timestart=microtime(true);
+    
     $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -751,11 +751,9 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                     array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
 
                 ));
-    //Afficher le temps d'éxecution
-    $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+    
+
+
     echo'<div id="ortholog_section">
             <h3>Variation and polymorphism</h3>
                 <div class="panel-group" id="accordion_documents">
@@ -1409,12 +1407,20 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
 function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis){
     echo'<div id="sequences_section">
                     <h3>Sequences</h3>';
+                    //$timestart=microtime(true); 
                     $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id,$gene_id_bis);
+//                    $timeend=microtime(true);
+//                    $time=$timeend-$timestart;
+//                    //Afficher le temps d'éxecution
+//                    $page_load_time = number_format($time, 3);
+//                    echo "Debut du script: ".date("H:i:s", $timestart);
+//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//                    echo "<br>Script for sequences 1  executed in " . $page_load_time . " sec"; 
               echo '<div>'
                     . ' About this gene: This gene has '.count($transcript_id).' transcripts'
                 . '</div>'
                 . '</br>';
-                
+               //$timestart=microtime(true); 
               echo '<div class="panel-group" id="accordion_documents_trancript_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -1478,7 +1484,15 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
 
                         </div>
                     </div>';
-                            
+             
+//                    $timeend=microtime(true);
+//                    $time=$timeend-$timestart;
+//                    //Afficher le temps d'éxecution
+//                    $page_load_time = number_format($time, 3);
+//                    echo "Debut du script: ".date("H:i:s", $timestart);
+//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//                    echo "<br>Script for sequences 2 executed in " . $page_load_time . " sec"; 
+//                    $timestart=microtime(true);
               echo '<div class="panel-group" id="accordion_documents_gene_sequence">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -1523,7 +1537,14 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
                             echo '</div>
 
                         </div>
-                    </div>'; 
+                    </div>';
+//                    $timeend=microtime(true);
+//                    $time=$timeend-$timestart;
+//                    //Afficher le temps d'éxecution
+//                    $page_load_time = number_format($time, 3);
+//                    echo "Debut du script: ".date("H:i:s", $timestart);
+//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
+//                    echo "<br>Script for sequences 3 executed in " . $page_load_time . " sec"; 
           echo '</div>';
 }
 function load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){

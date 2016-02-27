@@ -73,30 +73,40 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     //$searchQuery = array('gene'=>array('$regex'=> new MongoRegex("/^$search/xi")));
 	//$cursor = $measurementsCollection->find($searchQuery);
     //var_dump($cursor);
-    $cursor_score=$full_mappingsCollection->aggregate(array(
-    array('$match' => array('type'=>'full_table')),  
-    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
-    array('$unwind'=>'$mapping_file'),
-    array('$match' => array('mapping_file.Gene ID'=>$search)),
-    array(
-        '$group'=>array(
-           '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
-           'scores'=> array('$addToSet'=> '$mapping_file.Score' )
-        )
-    )
-   
-    ));
-    foreach ($cursor_score['result'] as $value) {
-        foreach ($value['scores'] as $tmp_score) {    
-            $score+=$tmp_score;    
-        }  
-    } 
+    
+//    $timestart1=microtime(true);
+//    $cursor_score=$full_mappingsCollection->aggregate(array(
+//    array('$match' => array('type'=>'full_table')),  
+//    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+//    array('$unwind'=>'$mapping_file'),
+//    array('$match' => array('mapping_file.Gene ID'=>$search)),
+//    array(
+//        '$group'=>array(
+//           '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+//           'scores'=> array('$addToSet'=> '$mapping_file.Score' )
+//        )
+//    )
+//   
+//    ));
+//    foreach ($cursor_score['result'] as $value) {
+//        foreach ($value['scores'] as $tmp_score) {    
+//            $score+=$tmp_score;    
+//        }  
+//    } 
+//     $timeend1=microtime(true);
+//    $time1=$timeend1-$timestart1;
+//    //Afficher le temps d'éxecution
+//    $page_load_time1 = number_format($time1, 3);
+//    echo "Debut du script: ".date("H:i:s", $timestart1);
+//    echo "<br>Fin du script: ".date("H:i:s", $timeend1);
+//    echo "<br>Script for search score executed in " . $page_load_time1 . " sec";
     
     
     
     try
 	{
         if($organism=="All species"){
+            $timestart1=microtime(true);
             $cursor=$full_mappingsCollection->aggregate(array(
             array('$match' => array('type'=>'full_table')),  
             array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -104,10 +114,17 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
             array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
             ));
+             $timeend1=microtime(true);
+            $time1=$timeend1-$timestart1;
+            //Afficher le temps d'éxecution
+            $page_load_time1 = number_format($time1, 3);
+            echo "Debut du script: ".date("H:i:s", $timestart1);
+            echo "<br>Fin du script: ".date("H:i:s", $timeend1);
+            echo "<br>Script for search all species executed in " . $page_load_time1 . " sec";
         }
         else{
             
-        
+            $timestart1=microtime(true);
             $cursor=$full_mappingsCollection->aggregate(array(
             array('$match' => array('type'=>'full_table','species'=>$organism)),  
             array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -115,6 +132,13 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             array('$match' => array('$or'=> array(array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
             array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
             ));
+            $timeend1=microtime(true);
+            $time1=$timeend1-$timestart1;
+            //Afficher le temps d'éxecution
+            $page_load_time1 = number_format($time1, 3);
+            echo "Debut du script: ".date("H:i:s", $timestart1);
+            echo "<br>Fin du script: ".date("H:i:s", $timeend1);
+            echo "<br>Script for given species executed in " . $page_load_time1 . " sec";
         }
 	}
 	catch ( MongoResultException $e )
@@ -133,7 +157,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
     $table_string="";
     
     if (count($cursor['result'])>=1) {
-        
+        //var_dump($cursor['result']);
         $table_string='<table id="result_list" class="table table-hover">';
         //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
         $table_string.='<thead><tr>';
@@ -154,9 +178,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
         //Debut du corps de la table
         $table_string.='<tbody>';
+        $score=0;
+        $counter=0;
         foreach ($cursor['result'] as $result) {
-            
-            if (in_array($result['mapping_file']['Gene ID'],$gene_id)===FALSE){
+
+            if ($counter===0){
+                $previous_id=$result['mapping_file']['Gene ID'];
+                $current_id=$result['mapping_file']['Gene ID'];
+                
                 $table_string.='<tr>';
                 array_push($gene_id,$result['mapping_file']['Gene ID']);
                 $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
@@ -176,9 +205,89 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 }
                 
                 $table_string.='<td>'.$result['species'].'</td>';
-                $table_string.='<td>'.$score.'</td>';
-                $table_string.='</tr>';
+                $score+=intval($result['mapping_file']['Score']);
+                //echo $score;
+                
             }
+            else{
+                $current_id=$result['mapping_file']['Gene ID'];
+
+                if ($current_id!=$previous_id){
+                    $table_string.='<td>'.$score.'</td>';
+                    $table_string.='</tr>';
+                    $score=0;
+                    $previous_id=$result['mapping_file']['Gene ID'];
+                    $current_id=$result['mapping_file']['Gene ID'];
+
+                    $table_string.='<tr>';
+                    array_push($gene_id,$result['mapping_file']['Gene ID']);
+                    $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+                    $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
+                    if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
+                        $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
+                    }
+                    else{
+                        if(isset ($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!="NA"){
+                            $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+                        }
+                        else{
+                            $table_string.='<td>-</td>';
+
+                        }
+
+                    }
+
+                    $table_string.='<td>'.$result['species'].'</td>';
+                    $score+=intval($result['mapping_file']['Score']); 
+                    //echo $score;
+
+                }
+                else{
+                    $score+=intval($result['mapping_file']['Score']);
+                    if ($counter===count($cursor['result'])-1){
+                        $table_string.='<td>'.$score.'</td>';
+                        $table_string.='</tr>';
+                    }
+                    //echo $score;
+                }
+            }
+            $counter++;
+//            $previous_id=$result['mapping_file']['Gene ID'];
+//            $current_id=$result['mapping_file']['Gene ID'];
+//            
+//            
+//            if (in_array($result['mapping_file']['Gene ID'],$gene_id)===FALSE){
+//                $table_string.='<tr>';
+//                array_push($gene_id,$result['mapping_file']['Gene ID']);
+//                $table_string.='<td><a href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+//                $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
+//                if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
+//                    $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
+//                }
+//                else{
+//                    if(isset ($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!="NA"){
+//                        $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+//                    }
+//                    else{
+//                        $table_string.='<td>-</td>';
+//
+//                    }
+//
+//                }
+//                
+//                $table_string.='<td>'.$result['species'].'</td>';
+//                $score=$result['mapping_file']['Score'];
+//                $table_string.='<td>'.$score.'</td>';
+//                $table_string.='</tr>';
+//
+//                
+//            }
+//            else{
+//                $score+=(int)$result['$mapping_file']['Score'];
+//                $table_string.='<td>'.$score.'</td>';
+//                $table_string.='</tr>';
+//            }
+            
             
             
             //$table_string.='<td>'.$line['type'].'</td>';
@@ -187,6 +296,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
            
 
         }
+        $table_string.='<td>'.$score.'</td>';
+        $table_string.='</tr>';
         
         
 
