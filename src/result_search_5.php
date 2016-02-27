@@ -20,7 +20,7 @@ make_species_list(find_species_list($speciesCollection),"..");
 if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='NA') && (isset($_GET['search']) && $_GET['search']!='' && $_GET['search']!='NA')){
 
 
-	$organism=control_post(htmlspecialchars($_GET['organism']));
+	$species=control_post(htmlspecialchars($_GET['organism']));
 	$search=control_post(htmlspecialchars($_GET['search']));
 	//$search=strtoupper($search);
 
@@ -66,7 +66,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     /////////////////////////////////////////////
     //$timestart1=microtime(true);
     $cursor_score=$full_mappingsCollection->aggregate(array(
-         array('$match' => array('type'=>'full_table','species'=>$organism)),  
+         array('$match' => array('type'=>'full_table','species'=>$species)),  
          array('$project' => array('mapping_file'=>1,'_id'=>0)),
          array('$unwind'=>'$mapping_file'),
          array('$match' => array('mapping_file.Gene ID'=>$search)),
@@ -101,7 +101,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     ///////////////////////////////////////////////////////  
     //$timestart2=microtime(true);
     $cursor=$full_mappingsCollection->aggregate(array(
-        array('$match' => array('type'=>'full_table','species'=>$organism)),  
+        array('$match' => array('type'=>'full_table','species'=>$species)),  
         array('$project' => array('mapping_file'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(
@@ -217,9 +217,9 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 }
                 $plaza_id=$result['mapping_file']['Plaza ID'];
             }   
-            if (isset($result['species'])&& $result['species']!='' && $result['species']!='NA'){
-                $species=$result['species']; 
-            }
+            //if (isset($result['species'])&& $result['species']!='' && $result['species']!='NA'){
+              //  $species=$result['species']; 
+            //}
 
 /* 
             //if (isset($result['mapping_file']['Score'])){
@@ -326,7 +326,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 //                    echo "<br>Script for interactions executed in " . $page_load_time . " sec";
                     
                     //$timestart=microtime(true);
-                    load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                    load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
 //                    //Afficher le temps d'éxecution
