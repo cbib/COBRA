@@ -811,7 +811,9 @@ $(document).ready(function() {
 				}
 		});
 	});
-    
+    $('#orthologs_table').DataTable( {
+        responsive: true
+    });
     (document).ready(function() {
 		$('#orthologs_table').dataTable( {
 			"scrollX": true,

@@ -1158,7 +1158,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
 //            //echo $ortholog_list_id;
 //            $ortholog_list_id=split('[,]', $ortholog_list_id);
-        $table_string.='<table class="table" id="orthologs_table">'
+        $table_string.='<table class="table table-hover" id="orthologs_table">'
                 . '<tr>'
                 . '<th>gene ID</th>'
                 . '<th>gene name</th>'

@@ -181,7 +181,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $score=0;
         $counter=0;
         foreach ($cursor['result'] as $result) {
-
+            var_dump($result);
+            echo '</br>--------------------------</br>';
             if ($counter===0){
                 $previous_id=$result['mapping_file']['Gene ID'];
                 $current_id=$result['mapping_file']['Gene ID'];
@@ -239,6 +240,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                     $table_string.='<td>'.$result['species'].'</td>';
                     $score+=intval($result['mapping_file']['Score']); 
+                    if ($counter===count($cursor['result'])-1){
+                        $table_string.='<td>'.$score.'</td>';
+                        $table_string.='</tr>';
+                    }
+
                     //echo $score;
 
                 }
@@ -247,7 +253,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     if ($counter===count($cursor['result'])-1){
                         $table_string.='<td>'.$score.'</td>';
                         $table_string.='</tr>';
+
+                        
                     }
+                    
                     //echo $score;
                 }
             }
@@ -296,8 +305,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
            
 
         }
-        $table_string.='<td>'.$score.'</td>';
-        $table_string.='</tr>';
+        
         
         
 
