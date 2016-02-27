@@ -925,7 +925,7 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
                                 <span class="goTerm">
                                     <li>
 
-                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[0].'" title="'.$go_info[2].'">'.$go_info[3].'</a>';
+                                        <a target="_blank" href="http://amigo.geneontology.org/amigo/term/'.$go_info[0].'" title="'.$go_info[2].'">'.$go_info[2].'</a>';
                                         foreach ($go_info[1] as $evidence) {
                                             echo '<span class="goEvidence">[<a href="http://www.geneontology.org/GO.evidence.shtml#'.$evidence.'" title="Go Evidence Code">'.$evidence.'</a>]</span>';
                                         }
