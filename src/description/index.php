@@ -35,7 +35,7 @@ $virusesCollection = new Mongocollection($db, "viruses");
 ###EXPERIMENT REQUEST
 
 make_species_list(find_species_list($speciesCollection),"../..");
-
+echo '<br/>';
 $cursor=find_all_xp_name($samplesCollection);
 $table_string="";
 

@@ -186,13 +186,14 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
         	<aside class="left-side sidebar-offcanvas">     
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-               <!-- Sidebar user panel -->
-               <a href="'.$path.'/src/wiki/"><div class="cobra-logo">
-               	<img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
-                  <p>COBRA</p>
-               </div></a>
+                <!-- Sidebar user panel -->
+                <a href="'.$path.'/src/wiki/">
+                <div class="cobra-logo">
+                    <img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
+                    <p>COBRA</p>
+                </div></a>
 
-               <!-- sidebar menu: : style can be found in sidebar.less -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
                   <!--<li';if($uri == "/src/wiki"){ echo ' class="active"'; } echo '>
                     <a href="'.$path.'/src/wiki/">
@@ -200,7 +201,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                        <span>About COBRA</span>
                     </a>
                	</li>-->
-                  <li';if($uri == "/src/search"){ echo ' class="active"'; } echo '>
+                  <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
                      <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
                         <span>Home Page</span>

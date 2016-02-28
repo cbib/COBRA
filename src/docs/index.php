@@ -114,146 +114,146 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
 new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
-    make_species_list(find_species_list($speciesCollection),"../..");
+make_species_list(find_species_list($speciesCollection),"../..");
+
 
 echo '<div id="doc_pages">';
 
 
 
-echo '<div id="section_documents">';
-$db=mongoConnector();
-//$docsCollection = new Mongocollection($db, "docs");
-$nb_files = 0;
-$table_string="";
-###Document TABLE
-echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-trash-o"></i>delete selected items</button>';
-$table_string.='<table id="documents" class="table dataTable">';
-//$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
-$table_string.='<thead><tr>';
-	
-	//recupere le titre
-	//$table_string.='<th>type</th>';
-	$table_string.='<th>File name</th>';
-	$table_string.='<th>Uploaded by</th>';
-    $table_string.='<th>Actions</th>';
-    
-	
+    echo '<div id="section_documents">';
+    $db=mongoConnector();
+    //$docsCollection = new Mongocollection($db, "docs");
+    $nb_files = 0;
+    $table_string="";
+    ###Document TABLE
+    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-trash-o"></i>delete selected items</button>';
+    $table_string.='<table id="documents" class="table dataTable">';
+    //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+    $table_string.='<thead><tr>';
 
-	
-	//fin du header de la table
-$table_string.='</tr></thead>';
-$table_string.='<tbody>';
+        //recupere le titre
+        //$table_string.='<th>type</th>';
+        $table_string.='<th>File name</th>';
+        $table_string.='<th>Uploaded by</th>';
+        $table_string.='<th>Actions</th>';
 
 
 
-//$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
-$docs = $docsCollection->find();
-foreach ($docs as $key) {
-    $nb_files++;
-    $fichier="";
-    $table_string.='<tr>';
-    foreach ($key as $id=>$value) {
-        //echo $id.': '.$value;
 
-        if ($id=="full_file_name"){
-            
-            $cobra_repository = explode("/", $value);
-            $fichier=$cobra_repository[1];
-            $table_string.='<td>'.$fichier.'</td>';
+        //fin du header de la table
+    $table_string.='</tr></thead>';
+    $table_string.='<tbody>';
+
+
+
+    //$docs = $docsCollection->find(array('full_file_name'=>'COBRA_depot/a-FRIM02-Stade-Dev-Metabo.txt'),array());
+    $docs = $docsCollection->find();
+    foreach ($docs as $key) {
+        $nb_files++;
+        $fichier="";
+        $table_string.='<tr>';
+        foreach ($key as $id=>$value) {
+            //echo $id.': '.$value;
+
+            if ($id=="full_file_name"){
+
+                $cobra_repository = explode("/", $value);
+                $fichier=$cobra_repository[1];
+                $table_string.='<td>'.$fichier.'</td>';
+            }
+            if ($id=="author"){
+                $table_string.='<td>'.$value.'</td>';
+            }
+            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
+
         }
-        if ($id=="author"){
-            $table_string.='<td>'.$value.'</td>';
-        }
-        //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
-        
+        $table_string.='<td><div class="btn-group">
+                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
+
+
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="caret"></span>
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+
+                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
+                      <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
+                      <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
+
+
+                      <!--<li><a href="#">Remove</a></li>-->
+                      <!--<li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>-->
+                    </ul>
+                  </div></td>';
+
+        $table_string.='</tr>';
+
     }
-    $table_string.='<td><div class="btn-group">
-                <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
-                
+    $table_string.='</tbody></table>';
 
-                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="caret"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
+    echo $table_string;
+    //var_dump($docs);
+    //$docs = $docsCollection->find();
 
-                  <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
-                  <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
-                  <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
+    //var_dump($docs);
 
 
-                  <!--<li><a href="#">Remove</a></li>-->
-                  <!--<li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>-->
-                </ul>
-              </div></td>';
-        
-    $table_string.='</tr>';
-    
-}
-$table_string.='</tbody></table>';
-
-echo $table_string;
-//var_dump($docs);
-//$docs = $docsCollection->find();
-
-//var_dump($docs);
-
-
-/*if($dossier = opendir('./COBRA_depot/'))
-//{
-//    while(false !== ($fichier = readdir($dossier)))
-//    {
-//        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
-//            $nb_files++; // On incrémente le compteur de 1
-//            $table_string.='<tr>';
-//            $table_string.='<td>'.$fichier.'</td>';
-//            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
-//            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
-//            $table_string.='<td><div class="btn-group">
-//                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
-//                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//                      <span class="caret"></span>
-//                      <span class="sr-only">Toggle Dropdown</span>
-//                    </button>
-//                    <ul class="dropdown-menu">
-//                      
-//                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
-//                      <li><a href="#">Remove</a></li>
-//                      <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
-//                      
-//                      <!--<li role="separator" class="divider"></li>
-//                      <li><a href="#">Separated link</a></li>-->
-//                    </ul>
-//                  </div></td>';
-//            $table_string.='</tr>';
-//        }
-//       
-//    }
-//    $table_string.='</tbody></table>';
-//    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete seletcted items</button>';
-//
-//    echo $table_string;
-//    
-//}
-//
-//else{
-//     echo 'Le dossier n\' a pas pu être ouvert';
-//}*/
+    /*if($dossier = opendir('./COBRA_depot/'))
+    //{
+    //    while(false !== ($fichier = readdir($dossier)))
+    //    {
+    //        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
+    //            $nb_files++; // On incrémente le compteur de 1
+    //            $table_string.='<tr>';
+    //            $table_string.='<td>'.$fichier.'</td>';
+    //            $table_string.='<td>'.$_SESSION['firstname'].$_SESSION['lastname'].'</td>';
+    //            //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
+    //            $table_string.='<td><div class="btn-group">
+    //                    <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
+    //                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    //                      <span class="caret"></span>
+    //                      <span class="sr-only">Toggle Dropdown</span>
+    //                    </button>
+    //                    <ul class="dropdown-menu">
+    //                      
+    //                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
+    //                      <li><a href="#">Remove</a></li>
+    //                      <li><a href="#" id="myHrefbuttonremove">Remove file</a></li>
+    //                      
+    //                      <!--<li role="separator" class="divider"></li>
+    //                      <li><a href="#">Separated link</a></li>-->
+    //                    </ul>
+    //                  </div></td>';
+    //            $table_string.='</tr>';
+    //        }
+    //       
+    //    }
+    //    $table_string.='</tbody></table>';
+    //    echo '<button type="button" id="button" class="btn btn-info"><i class="fa fa-pencil"></i>delete seletcted items</button>';
+    //
+    //    echo $table_string;
+    //    
+    //}
+    //
+    //else{
+    //     echo 'Le dossier n\' a pas pu être ouvert';
+    //}*/
 
 
-echo'</div>';
-echo '<div id="section_upload">';
-echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
-         
-        <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
+    echo'</div>';
+    echo '<div id="section_upload">';
+        echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
 
-        Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
-    
-        <input type="submit" value="Upload File" name="submit">
-      </form>
-       <!--<iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>-->
-  </div>';
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
+
+                Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
+
+                <input type="submit" value="Upload File" name="submit">
+              </form>
+          </div>';
 echo '</div>';
 //phpinfo();
 
@@ -265,29 +265,7 @@ new_cobra_footer();
 
 
 
-//$("#myHrefbuttonremove").on('click', function() {
-//   alert ("inside onclick");
-//   
-//});
-//ANother way to loop into the table
-//var table = document.getElementById('documents');
-//
-//var rowLength = table.rows.length;
-////loops through rows
-//
-//for (i = 0; i < rowLength; i++){
-//    var oCells = table.rows.item(i).cells;
-//    
-//
-//    var cellLength = oCells.length;
-//   //loops through each cell in current row
-//    for(var j = 0; j < cellLength; j++){
-//          // get your cell info here
-//          var cellVal = oCells.item(j).innerHTML;
-//          //alert(cellVal);
-//    }
-//}
-//db = db.getSiblingDB('<cobra_db>');
+
 
 $(document).ready(function() {
     var table = $('#documents').DataTable();
@@ -349,87 +327,6 @@ $(document).ready(function() {
         
     } );
 } );
-
-//
-//function toggleBarVisibility() {
-//    var e = document.getElementById("bar_blank");
-//    e.style.display = (e.style.display === "block") ? "none" : "block";
-//}
-//
-//function createRequestObject() {
-//    var http;
-//    if (navigator.appName === "Microsoft Internet Explorer") {
-//        http = new ActiveXObject("Microsoft.XMLHTTP");
-//    }
-//    else {
-//        http = new XMLHttpRequest();
-//    }
-//    return http;
-//}
-//
-//function sendRequest() {
-//    var http = createRequestObject();
-//    http.open("GET", "progress.php");
-//    http.onreadystatechange = function () { handleResponse(http); };
-//    http.send(null);
-//}
-//
-//function handleResponse(http) {
-//    var response;
-//    if (http.readyState === 4) {
-//        response = http.responseText;
-//        document.getElementById("bar_color").style.width = response + "%";
-//        document.getElementById("status").innerHTML = response + "%";
-//
-//        if (response < 100) {
-//            setTimeout("sendRequest()", 1000);
-//        }
-//        else {
-//            toggleBarVisibility();
-//            document.getElementById("status").innerHTML = "Done.";
-//        }
-//    }
-//}
-//
-//function startUpload() {
-//    toggleBarVisibility();
-//    setTimeout("sendRequest()", 1000);
-//}
-//
-//(function () {
-//    document.getElementById("myForm").onsubmit = startUpload;
-//})();
-
-
-//var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
-//$(document).ready(function() {
-//		$('#documents').dataTable( {
-//			"scrollX": true,
-//			"jQueryUI": true,
-//			"pagingType": "full_numbers",
-//			"oLanguage": { 
-//				"sProcessing":   "Processing...",
-//				"sLengthMenu":   "display _MENU_ items",
-//				"sZeroRecords":  "No item found",
-//				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-//				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-//				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-//				"sInfoPostFix":  "",
-//				"sSearch":       "Search: ",
-//				"sUrl":          "",
-//				"oPaginate": {
-//					"sFirst":    "First",
-//					"sPrevious": "Previous",
-//					"sNext":     "Next",
-//					"sLast":     "Last"
-//				}
-//			},
-//			"language": {
-//							"decimal": ",",
-//							"thousands": "."
-//				}
-//		});
-//	});
 
 
 </script>
