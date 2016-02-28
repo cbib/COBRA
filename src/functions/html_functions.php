@@ -200,7 +200,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                        <span>About COBRA</span>
                     </a>
                	</li>-->
-                  <li>
+                  <li';if($uri == "/src/search"){ echo ' class="active"'; } echo '>
                      <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
                         <span>Home Page</span>
@@ -218,14 +218,9 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                   </li>
                   <li >
                      <a href="'.$path.'/src/docs/">
-                        <i class="fa fa-upload"></i> <span>Docs</span>
+                        <i class="fa fa-upload"></i> <span>Admin</span>
                      </a>
                   </li>
-                 <!-- <li>
-                     <a href="'.$path.'/src/info/WebSite/">
-                        <i class="fa fa-question"></i> <span>Help</span>
-                     </a>
-                  </li>-->
                </ul>
             </section>
             <!-- /.sidebar -->

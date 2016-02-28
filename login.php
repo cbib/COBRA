@@ -181,7 +181,7 @@ else{
 		
 		//header('Location: ./src/search/index.php');  
 		//header('Location: index.php'); 
-        header('Location: ./src/wiki/index.php');
+        header('Location: ./src/search/index.php');
 
 	}
 }

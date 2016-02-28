@@ -20,6 +20,7 @@ require('../session/control-session.php');
 //$docsCollection = $db->createCollection("docs");
 $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
+$speciesCollection = new Mongocollection($db, "species");
 
 $dossier = 'COBRA_depot/';
 
@@ -113,25 +114,10 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
 new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
+    make_species_list(find_species_list($speciesCollection),"../..");
+
 echo '<div id="doc_pages">';
-echo '<div id="section_upload">';
-//echo '<div id="bar_blank">
-//   <div id="bar_color"></div>
-//  </div>';
 
-//<!--<input type="hidden" value="myForm" name="-->'
-        //.ini_get("session.upload_progress.name")
-        //.'">
-echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
-         
-        <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
-
-        Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
-    
-        <input type="submit" value="Upload File" name="submit">
-      </form>
-       <!--<iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>-->
-  </div>';
 
 
 echo '<div id="section_documents">';
@@ -256,8 +242,19 @@ echo $table_string;
 //}*/
 
 
-echo'</div>'
-. '</div>';
+echo'</div>';
+echo '<div id="section_upload">';
+echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
+         
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
+
+        Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
+    
+        <input type="submit" value="Upload File" name="submit">
+      </form>
+       <!--<iframe id="hidden_iframe" name="hidden_iframe" src="about:blank"></iframe>-->
+  </div>';
+echo '</div>';
 //phpinfo();
 
 new_cobra_footer(); 

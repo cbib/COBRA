@@ -58,6 +58,7 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //    		</fieldset>
 //    	</form>
 //    </div>';*/
+make_species_list(find_species_list($speciesCollection),"../..");
 
 $$ortholog_form_string="";
 $$ortholog_form_string.='
