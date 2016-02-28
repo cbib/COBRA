@@ -122,15 +122,15 @@ echo'</hr>';
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src=".images/cgfb_w186.jpg" height="85"/>
+                    <img class="displayed" id="partner_logo" src="./images/cgfb_w186.jpg" height="85"/>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src=".images/abiopep3_w186.jpg" height="85" />
+                    <img class="displayed" id="partner_logo" src="./images/abiopep3_w186.jpg" height="85" />
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src=".images/logo_csic_w186.jpg" />
+                    <img class="displayed" id="partner_logo" src="./images/logo_csic_w186.jpg" />
                 </div>
 
             </div>
