@@ -104,33 +104,33 @@ echo'</hr>';
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=0.5>
-                    <img class="displayed" id="partner_logo" src="../../images/logo-inra_w186.jpg"/>
+                    <img class="displayed" id="partner_logo" src="./images/logo-inra_w186.jpg"/>
                 </div>
                 <div id="image_container">
                     <hr  size=0.5>                           
-                    <img class="displayed" id="partner_logo" src="../../images/noordsat_w186.jpg" />
+                    <img class="displayed" id="partner_logo" src="./images/noordsat_w186.jpg" />
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/jki_w186.gif"  />
+                    <img class="displayed" id="partner_logo" src="./images/jki_w186.gif"  />
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/ipk.png"  />
+                    <img class="displayed" id="partner_logo" src="./images/ipk.png"  />
                 </div>
             </div>
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/cgfb_w186.jpg" height="85"/>
+                    <img class="displayed" id="partner_logo" src=".images/cgfb_w186.jpg" height="85"/>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/abiopep3_w186.jpg" height="85" />
+                    <img class="displayed" id="partner_logo" src=".images/abiopep3_w186.jpg" height="85" />
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" />
+                    <img class="displayed" id="partner_logo" src=".images/logo_csic_w186.jpg" />
                 </div>
 
             </div>
