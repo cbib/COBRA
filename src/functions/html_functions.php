@@ -194,21 +194,21 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
                <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
-                  <li';if($uri == "/src/wiki"){ echo ' class="active"'; } echo '>
+                  <!--<li';if($uri == "/src/wiki"){ echo ' class="active"'; } echo '>
                     <a href="'.$path.'/src/wiki/">
                        <i class="fa fa-home"></i> 
                        <span>About COBRA</span>
                     </a>
-               	</li>
+               	</li>-->
                   <li>
                      <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
-                        <span>Quick Search</span>
+                        <span>Home Page</span>
                      </a>
                   </li>
                   <li>
                      <a href="'.$path.'/src/description/">
-                        <i class="fa fa-leaf"></i> <span>Dataset and Statistics</span>
+                        <i class="fa fa-leaf"></i> <span>Stats</span>
                      </a>
                   </li>
                   <li >
@@ -245,7 +245,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/"><i class="fa fa-dashboard"></i> Home</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">description</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">wiki home</a></li>-->
-                  <li><a href="'.$path.'/src/search/">Quick search</a></li>
+                  <li><a href="'.$path.'/src/search/">Home page</a></li>
                   ';if ($IsLogged){echo '
                   	<li><a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
                   echo '<li><a href="'.$path.'/login.php?act=logout">Logout</a></li>';}

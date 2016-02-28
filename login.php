@@ -150,7 +150,7 @@ else{
 							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
 							
 							//header('Location: index.php'); 
-							header('Location: ./src/wiki/index.php'); 
+							header('Location: ./src/search/index.php'); 
 
 						} 
 						else{
