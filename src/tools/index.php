@@ -60,8 +60,8 @@ $orthologsCollection = new Mongocollection($db, "orthologs");
 //    </div>';*/
 make_species_list(find_species_list($speciesCollection),"../..");
 
-$$ortholog_form_string="";
-$$ortholog_form_string.='
+$ortholog_form_string="";
+$ortholog_form_string.='
 <form id="icheckForm" method="post" class="form-horizontal" action="../orthology/new_ortholog_search.php">
     
     <div class=col-md-6>
