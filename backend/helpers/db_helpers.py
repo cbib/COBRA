@@ -191,7 +191,7 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
                                         this_dict['Score_orthologs']=float(this_dict['Score_orthologs'])    
 				if isinstance(this_dict['Score_QTL'],basestring) :
                                         this_dict['Score_QTL']=float(this_dict['Score_QTL'])    
-				if isinstance(this_dict['Score_orthologs'],basestring) :
+				if isinstance(this_dict['Score_SNP'],basestring) :
                                         this_dict['Score_SNP']=float(this_dict['Score_SNP'])    
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
