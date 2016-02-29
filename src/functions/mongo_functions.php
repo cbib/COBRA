@@ -1193,36 +1193,36 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                     $score+=$tmp_score;    
                 }  
             } */
-                $score=0.0;
-                $cursor_score=$full_mappingsCollection->aggregate(array(
-                    array('$match' => array('type'=>'full_table','species'=>$speciesID)),  
-                    array('$project' => array('mapping_file'=>1,'_id'=>0)),
-                    array('$unwind'=>'$mapping_file'),
-                    array('$match' => array('mapping_file.Plaza ID'=>$ortholog)),
-                    array(
-                      '$group'=>
-                        array(
-                          '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
-                          //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
-
-                          'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
-                        )
-                    )
-
-               ));
-   
-                ///////////////////////////////
-                //SUM ALL SCORE FOR THIS GENE//
-                ///////////////////////////////   
-                foreach ($cursor_score['result'] as $value) {
-                    foreach ($value['scores'] as $tmp_score) {    
-                        $score+=$tmp_score['exp'];
-                        $score+=$tmp_score['int'];  
-                        $score+=$tmp_score['ort'];  
-                        $score+=$tmp_score['qtl'];  
-                        $score+=$tmp_score['snp'];  
-                    }  
-                } 
+//                $score=0.0;
+//                $cursor_score=$full_mappingsCollection->aggregate(array(
+//                    array('$match' => array('type'=>'full_table','species'=>$speciesID)),  
+//                    array('$project' => array('mapping_file'=>1,'_id'=>0)),
+//                    array('$unwind'=>'$mapping_file'),
+//                    array('$match' => array('mapping_file.Plaza ID'=>$ortholog)),
+//                    array(
+//                      '$group'=>
+//                        array(
+//                          '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+//                          //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
+//
+//                          'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
+//                        )
+//                    )
+//
+//               ));
+//   
+//                ///////////////////////////////
+//                //SUM ALL SCORE FOR THIS GENE//
+//                ///////////////////////////////   
+//                foreach ($cursor_score['result'] as $value) {
+//                    foreach ($value['scores'] as $tmp_score) {    
+//                        $score+=$tmp_score['exp'];
+//                        $score+=$tmp_score['int'];  
+//                        $score+=$tmp_score['ort'];  
+//                        $score+=$tmp_score['qtl'];  
+//                        $score+=$tmp_score['snp'];  
+//                    }  
+//                } 
                 $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
                     $species=$data['species'];
@@ -1256,8 +1256,8 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                         //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
                         $table_string.='<td>'.$data['species'].'</td>';
-                        //$table_string.='<td>'.$value['Score'].'</td>';
-                        $table_string.='<td>'.$score.'</td>';
+                        $table_string.='<td>'.$value['Score_exp']+$value['Score_int']+$value['Score_orthologs']+$value['Score_QTL']+$value['Score_SNP'].'</td>';
+                        //$table_string.='<td>'.$score.'</td>';
 
                         //echo '<td>'.$line['species'].'</td>';
                         $table_string.="</tr>";
