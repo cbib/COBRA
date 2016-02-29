@@ -23,6 +23,12 @@ variations_col.drop()
 
 ##CDNA sequence
 
+
+
+###################################################################################################################
+############################################ ARABIDOPSIS THALIANA ###############################################################
+###################################################################################################################
+
 variation_table={
 	"data_file":"Arabidopsis/SNP/ensembl_variant_arabidopsis1_1.tsv",
 	"species":"Arabidopsis thaliana",
@@ -124,7 +130,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":2,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -143,7 +149,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":2,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -162,7 +168,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":2,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -181,7 +187,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":3,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -200,7 +206,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":3,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -219,7 +225,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":3,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -238,7 +244,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":3,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -257,7 +263,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":4,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -276,7 +282,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":4,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -295,7 +301,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":4,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -314,7 +320,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":4,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -334,7 +340,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -353,7 +359,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -372,7 +378,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -391,7 +397,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -411,7 +417,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -430,7 +436,7 @@ variation_table={
 	"src":"Gene ID",
 	"src_version":"2010-09-TAIR10",
         "tgt":"Variant ID",
-        "chrom":1,
+        "chrom":5,
 	"url":"",
 	"doi":"none",
 	"key":"VARIANTID/POSITION/DESCRIPTION/GENEID/ALLELES",
@@ -439,6 +445,34 @@ variation_table={
 	"xls_parsing":{
 		"n_rows_to_skip":0,
 		"column_keys":['idx','Variant ID','Position','Description','Gene ID','Alleles'],
+		"sheet_index":0,
+	}
+}
+variations_col.insert(variation_table)
+
+
+
+
+###################################################################################################################
+############################################ PRUNUS ###############################################################
+###################################################################################################################
+
+variation_table={
+	"data_file":"PRUNUS/prunus_persica/SNP/IRSC_9K_peach_SNP_array_working_version.xls",
+	"species":"Prunus persica",
+	"src":"Gene ID",
+	"src_version":"International Rosaceae SNP Consortium (IRSC)",
+        "tgt":"Variant ID",
+        "description":"""This file contains the SNPs selected for inclusion on the International Rosaceae SNP Consortium (IRSC) Peach  SNP Infinium Array that is currently in production. For more information on array design  contact Dorrie Main (dorrie@wsu.edu)""",
+        "chrom":"all",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":3,
+		"column_keys":['idx','Variant ID','Alleles','Scaffold','Position',],
 		"sheet_index":0,
 	}
 }

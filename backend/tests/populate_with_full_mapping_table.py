@@ -30,7 +30,7 @@ full_mappings_col.drop();
 
 
 ###################################################################################################################
-############################################ PRUNUS DOMESTICA #####################################################
+############################################ PRUNUS ###############################################################
 ###################################################################################################################
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
@@ -47,7 +47,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }
@@ -66,7 +66,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }
@@ -92,7 +92,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Uniprot ID','Description','Plaza ID','Gene ontology ID','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }
@@ -119,7 +119,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene Name','Plaza ID','Gene ontology ID','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Uniprot ID','Description','Gene Name','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }
@@ -146,7 +146,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score','Chromosome','Gene Start','Gene End'],
+		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Chromosome','Gene Start','Gene End'],
 		"sheet_index":0,
 	}
 }
@@ -167,7 +167,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score','Chromosome','Gene Start','Gene End'],
+		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Chromosome','Gene Start','Gene End'],
 		"sheet_index":0,
 	}
 }
@@ -180,7 +180,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_1.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"CATMA_ID",
@@ -192,7 +192,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }
@@ -200,7 +200,7 @@ full_mappings_col.insert(mapping_table)
 
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_2.tsv",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"CATMA_ID",
@@ -212,7 +212,26 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score','Gene Start','Gene End','Chromosome'],
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
+		"sheet_index":0,
+	}
+}
+full_mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_3.tsv",
+	"species":"Arabidopsis thaliana",
+	"type":"full_table",
+	"src":"CATMA_ID",
+	"src_version":"CATMA V2.1",
+	"url":"ftp://urgv.evry.inra.fr/CATdb/array_design/CATMA_2.3_07122011.txt",
+	"doi":"none",
+	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Gene Start','Gene End','Chromosome'],
 		"sheet_index":0,
 	}
 }

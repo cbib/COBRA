@@ -181,9 +181,10 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 					logger.info("value length :%d",len(values))
 					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
 				this_dict=dict(zip(column_keys,values))
-                                #enforce score integer
-                                if isinstance(this_dict['Score'],basestring):
-                                        this_dict['Score']=int(this_dict['Score'])    
+                                #enforce score double
+                                #'Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP'
+                                #if isinstance(this_dict['Score_exp'],basestring) :
+                                #        this_dict['Score_exp']=float(this_dict['Score_exp'])    
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))
