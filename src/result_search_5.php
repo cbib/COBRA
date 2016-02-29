@@ -74,7 +74,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
            '$group'=>
              array(
                '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
-               'scores'=> array('$addToSet'=> '$mapping_file.Score' )
+               'scores'=> array('$addToSet'=> array('$mapping_file.Score_exp','$mapping_file.Score_int','$mapping_file.Score_orthologs','$mapping_file.Score_QTL','$mapping_file.Score_SNP') )
              )
          )
 

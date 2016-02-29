@@ -178,7 +178,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
         //Debut du corps de la table
         $table_string.='<tbody>';
-        $score=0;
+        $score=0.0;
         $counter=0;
         foreach ($cursor['result'] as $result) {
 
@@ -205,7 +205,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 }
                 
                 $table_string.='<td>'.$result['species'].'</td>';
-                $score+=intval($result['mapping_file']['Score']);
+                //$score+=intval($result['mapping_file']['Score']);
+                $score+=(float)$result['mapping_file']['Score_exp'];
+                $score+=(float)$result['mapping_file']['Score_int']; 
+                $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                $score+=(float)$result['mapping_file']['Score_QTL']; 
+                $score+=(float)$result['mapping_file']['Score_SNP'];
                 //echo $score;
                 
             }
@@ -215,7 +220,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 if ($current_id!=$previous_id){
                     $table_string.='<td>'.$score.'</td>';
                     $table_string.='</tr>';
-                    $score=0;
+                    $score=0.0;
                     $previous_id=$result['mapping_file']['Gene ID'];
                     $current_id=$result['mapping_file']['Gene ID'];
 
@@ -238,7 +243,11 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                     }
 
                     $table_string.='<td>'.$result['species'].'</td>';
-                    $score+=intval($result['mapping_file']['Score']); 
+                    $score+=(float)$result['mapping_file']['Score_exp'];
+                    $score+=(float)$result['mapping_file']['Score_int']; 
+                    $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                    $score+=(float)$result['mapping_file']['Score_QTL']; 
+                    $score+=(float)$result['mapping_file']['Score_SNP']; 
                     if ($counter===count($cursor['result'])-1){
                         $table_string.='<td>'.$score.'</td>';
                         $table_string.='</tr>';
@@ -248,7 +257,12 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
                 }
                 else{
-                    $score+=intval($result['mapping_file']['Score']);
+                    //$score+=intval($result['mapping_file']['Score']);
+                    $score+=(float)$result['mapping_file']['Score_exp'];
+                    $score+=(float)$result['mapping_file']['Score_int']; 
+                    $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                    $score+=(float)$result['mapping_file']['Score_QTL']; 
+                    $score+=(float)$result['mapping_file']['Score_SNP'];
                     if ($counter===count($cursor['result'])-1){
                         $table_string.='<td>'.$score.'</td>';
                         $table_string.='</tr>';
