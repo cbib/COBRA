@@ -183,8 +183,16 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 				this_dict=dict(zip(column_keys,values))
                                 #enforce score double
                                 #'Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP'
-                                #if isinstance(this_dict['Score_exp'],basestring) :
-                                #        this_dict['Score_exp']=float(this_dict['Score_exp'])    
+                                if isinstance(this_dict['Score_exp'],basestring) :
+                                        this_dict['Score_exp']=float(this_dict['Score_exp'])   
+                                if isinstance(this_dict['Score_int'],basestring) :
+                                        this_dict['Score_int']=float(this_dict['Score_int'])    
+                                if isinstance(this_dict['Score_orthologs'],basestring) :
+                                        this_dict['Score_orthologs']=float(this_dict['Score_orthologs'])    
+				if isinstance(this_dict['Score_QTL'],basestring) :
+                                        this_dict['Score_QTL']=float(this_dict['Score_QTL'])    
+				if isinstance(this_dict['Score_orthologs'],basestring) :
+                                        this_dict['Score_SNP']=float(this_dict['Score_SNP'])    
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))
