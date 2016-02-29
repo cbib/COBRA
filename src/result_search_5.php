@@ -87,7 +87,11 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     ///////////////////////////////   
     foreach ($cursor_score['result'] as $value) {
         foreach ($value['scores'] as $tmp_score) {    
-            $score+=$tmp_score;    
+            $score+=$tmp_score['exp'];
+            $score+=$tmp_score['int'];  
+            $score+=$tmp_score['ort'];  
+            $score+=$tmp_score['qtl'];  
+            $score+=$tmp_score['snp'];  
         }  
     } 
 //    $timeend1=microtime(true);
