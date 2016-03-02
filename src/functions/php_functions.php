@@ -756,11 +756,11 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
 
     echo'<div id="ortholog_section">
             <h3>Variation and polymorphism</h3>
-                <div class="panel-group" id="accordion_documents">
+                <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                           
-                                <a class="accordion-toggle collapsed" href="#var-table_'.$gene_id.'" data-parent="#accordion_documents" data-toggle="collapse">
+                                <a class="accordion-toggle collapsed" href="#var-table_'.$gene_id.'" data-parent="#accordion_documents_var__'.$gene_id.'" data-toggle="collapse">
                                         <strong>Variants table</strong>
                                 </a>				
 
