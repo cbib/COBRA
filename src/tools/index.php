@@ -130,7 +130,7 @@ $CG_form_string="";
 
 add_accordion_panel($ortholog_form_string, "Perform Orthologs search on differentially expressed genes","ortholog_search"); 
 echo '</br>';
-add_accordion_panel($CG_form_string, "Perform Candidates genes using COBRA scoring function","ortholog_search"); 
+//add_accordion_panel($CG_form_string, "Search high confidence susceptibility genes using COBRA scoring function","ortholog_search"); 
 
 
 
