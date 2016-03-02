@@ -39,7 +39,7 @@ interactions_table={
 	"species":"Solanum lycopersicum",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Transcript ID','Transcript ID 2',combined Score'],
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
 		"sheet_index":0,
 		
 	}
