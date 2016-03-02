@@ -24,25 +24,7 @@ pp_interactions_col.drop()
 # 	fs.delete(grid_out._id)
 
 
-#String database
 
-interactions_table={
-	"data_file":"interactomics/STRING/3702.protein.links.v10_aa",
-	"src":"Transcript ID",
-	"tgt":"Transcript ID 2",
-	"src_symbol":"String",
-	"tgt_symbol":"String",
-	"type":"prot_to_prot",
-	"species":"Arabidopsis thaliana",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','Transcript ID','Transcript ID 2'],
-		"sheet_index":0,
-		
-	}
-
-}
-pp_interactions_col.insert(interactions_table)
 
 
 #BIOGRID Plant-plant interactions
@@ -53,6 +35,7 @@ interactions_table={
 	"tgt":"Gene ID 2",
 	"src_symbol":"OFFICIAL_SYMBOL_A",
 	"tgt_symbol":"OFFICIAL_SYMBOL_B",
+        "origin":"BIOGRID",
 	"type":"symbol_to_symbol",
 	"species":"Solanum lycopersicum",
 	"xls_parsing":{
@@ -72,6 +55,7 @@ interactions_table={
 	"tgt":"Gene ID 2",
 	"src_symbol":"OFFICIAL_SYMBOL_A",
 	"tgt_symbol":"OFFICIAL_SYMBOL_B",
+        "origin":"BIOGRID",
 	"type":"symbol_to_symbol",
 	"species":"Arabidopsis thaliana",
 	"xls_parsing":{
@@ -95,6 +79,7 @@ interactions_table={
 	"tgt_version":"uniprot",
 	"src_name":"Taxid interactor A",
 	"tgt_name":"Taxid interactor B",
+        "origin":"INTACT",
 	"method":"detection_method",
 	"pub":"pmid",
 	"xls_parsing":{

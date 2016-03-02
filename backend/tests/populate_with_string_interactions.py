@@ -18,9 +18,9 @@ if "log" not in globals():
 
 # Clear collections to fill
 
-pp_interactions_col.remove({"type":"String Database"})
+pp_interactions_col.remove({"origin":"STRING"})
 
-pp_interactions_col.drop()
+
 # for grid_out in fs.find({}, timeout=False):
 # 	
 # 	fs.delete(grid_out._id)
@@ -29,13 +29,14 @@ pp_interactions_col.drop()
 #String database
 
 interactions_table={
-	"data_file":"interactomics/STRING/3702.protein.links.v10_aa.tsv",
+	"data_file":"interactomics/STRING/tomato/tomato_aa.tsv",
 	"src":"Transcript ID",
-	"tgt":"Transcript ID 2",
+	"tgt":"Transcript ID list",
 	"src_symbol":"String",
 	"tgt_symbol":"String",
-	"type":"String Database",
-	"species":"Arabidopsis thaliana",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
 		"column_keys":['idx','Transcript ID','Transcript ID 2',combined Score'],
@@ -45,3 +46,4 @@ interactions_table={
 
 }
 pp_interactions_col.insert(interactions_table)
+
