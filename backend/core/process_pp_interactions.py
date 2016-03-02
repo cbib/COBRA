@@ -37,13 +37,22 @@ for map_doc in interactions_to_process:
 	src_file= data_dir+map_doc['data_file']
 	# on recup la config du parser xls 
 	parser_config=map_doc['xls_parsing']
-	sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])	
+        fileName, fileExtension = os.path.splitext(src_file)
+        if fileExtension!='.xls' and fileExtension!='.xlsx':
+		sheet_values = parse_tsv_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+
+	else:
+		sheet_values = parse_excel_table(src_file,parser_config['column_keys'],parser_config['n_rows_to_skip'],parser_config['sheet_index'])
+
+		
 	#here we extract info about plant and virus
 	# save raw data 
 	pp_interactions_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
    
 
 logger.info("Indexation on field \"mapping_file.Uniprot ID\" from document \"Intact database\" in collection \"plant-plant interactions\"")
-pp_interactions_col.create_index("mapping_file.Uniprot ID",sparse=True)
+pp_interactions_col.create_index("mapping_file.Uniprot ID",sparse=True,background=True)
 logger.info("Indexation on field \"mapping_file.Gene ID\" from document \"Biogrid database\" in collection \"plant-plant interactions\"")
-pp_interactions_col.create_index("mapping_file.Gene ID",sparse=True)
+pp_interactions_col.create_index("mapping_file.Gene ID",sparse=True,background=True)
+logger.info("Indexation on field \"mapping_file.Transcript ID\" from document \"String database\" in collection \"plant-plant interactions\"")
+pp_interactions_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)

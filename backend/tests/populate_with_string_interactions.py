@@ -29,7 +29,259 @@ pp_interactions_col.remove({"origin":"STRING"})
 #String database
 
 interactions_table={
-	"data_file":"interactomics/STRING/tomato/tomato_aa.tsv",
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_1.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_2.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_3.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_4.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_5.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_6.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_7.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_8.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_9.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_10.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_11.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_12.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_13.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_14.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_15.tsv",
 	"src":"Transcript ID",
 	"tgt":"Transcript ID list",
 	"src_symbol":"String",
@@ -47,3 +299,59 @@ interactions_table={
 }
 pp_interactions_col.insert(interactions_table)
 
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_16.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_17.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
+
+interactions_table={
+	"data_file":"interactomics/STRING/tomato/tomato_protein_links_v10_18.tsv",
+	"src":"Transcript ID",
+	"tgt":"Transcript ID list",
+	"src_symbol":"String",
+	"tgt_symbol":"String",
+        "origin":"STRING",
+        "type":"prot_to_prot",
+	"species":"Solanum lycopersicum",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Transcript ID','Transcript ID 2'],
+		"sheet_index":0,
+		
+	}
+
+}
+pp_interactions_col.insert(interactions_table)
