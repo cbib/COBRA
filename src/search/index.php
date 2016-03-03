@@ -181,7 +181,7 @@ require '../session/control-session.php';
                     
         echo' 
         </div>
-        <div class="col-md-6" id="right_col">';
+        <div class="col-md-12" id="right_col">';
         add_accordion_panel($stat_string, "Some statistics", "stat_panel");
 
         echo' </div>';
