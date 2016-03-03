@@ -141,8 +141,7 @@ require '../session/control-session.php';
             </div>
         </div>
     </div>';
-    echo'
-        <div class="col-md-6" id="left_col">';
+    
 
         //make_gene_id_text_list("../..");
 
@@ -180,8 +179,8 @@ require '../session/control-session.php';
 
                     
         echo' 
-        </div>
-        <div class="col-md-12" id="right_col">';
+
+        <div class="col-md-12">';
         add_accordion_panel($stat_string, "Some statistics", "stat_panel");
 
         echo' </div>';
