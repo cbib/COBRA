@@ -38,7 +38,7 @@ else{
 	
 	
 	if ((!isset($_SESSION['login'])) || ($_SESSION['login'] == '')){
-		
+		session_destroy();
 		if (!isset($_POST['submit']))
 		{
 			// first time no form submitted
