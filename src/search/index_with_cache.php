@@ -12,7 +12,7 @@ require '../session/control-session.php';
 
 /*debut du cache*/
 
-
+$cache = './cache/search_index_'.filemtime("./index.php").'.html';
 
 //$expire = time() - 84400 ; // valable une minute
 
@@ -21,9 +21,19 @@ require '../session/control-session.php';
 
 //if(file_exists($cache) && filemtime($cache) > $expire)
 
+if(file_exists($cache))
 
+{
+        
+        readfile($cache);
 
-    
+}
+
+else
+
+{
+    array_map('unlink', glob("cache/*.html"));
+    ob_start();
 
     new_cobra_header("../..");
     new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Quick search","section_quick_search","../..");
@@ -227,8 +237,12 @@ require '../session/control-session.php';
 
     echo '</main>';
     new_cobra_footer();
+    $page = ob_get_contents(); // copie du contenu du tampon dans une chaîne
 
-
+    ob_end_clean();
+    file_put_contents($cache, $page) ; // on écrit la chaîne précédemment récupérée ($page) dans un fichier ($cache) 
+    echo $page ; // on affiche notre page :D 
+}
 //$timeend=microtime(true);
 //$time=$timeend-$timestart;
 ////Afficher le temps d'éxecution
@@ -320,11 +334,3 @@ require '../session/control-session.php';
 
 
 ?>
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
