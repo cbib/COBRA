@@ -144,7 +144,7 @@ require '../session/control-session.php';
     echo'
         <div class="col-md-6" id="left_col">';
 
-        make_gene_id_text_list("../..");
+        //make_gene_id_text_list("../..");
 
             //make_CrossCompare_list(find_species_list($speciesCollection));
             //make_viruses_list(find_viruses_list($virusCollection));
