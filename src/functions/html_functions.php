@@ -65,7 +65,11 @@ echo'
 <!--  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script> -->
 <!--[endif]-->
 <title>COBRA</title>
-</head>';
+
+';
+include($path."/src/functions/piwik.php");
+
+echo '</head>';
 }
 
 function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'){
