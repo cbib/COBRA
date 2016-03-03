@@ -322,7 +322,10 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             //right side div    
             echo'<div id="stat-details">';
                     //$timestart=microtime(true);
+                    echo'<div id="interaction_section">
+                        <h3>Interaction</h3>';
                     load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
+                    echo'</div>';
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
 //                    //Afficher le temps d'éxecution

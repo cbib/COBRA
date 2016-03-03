@@ -204,12 +204,12 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                   <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
                      <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
-                        <span>Home Page</span>
+                        <span>Home</span>
                      </a>
                   </li>
                   <li>
                      <a href="'.$path.'/src/description/">
-                        <i class="fa fa-leaf"></i> <span>Stats</span>
+                        <i class="fa fa-leaf"></i> <span>Data</span>
                      </a>
                   </li>
                   <li >

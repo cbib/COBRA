@@ -753,57 +753,58 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                 ));
     
 
+    if (count($var_results['result'])>0){
+        echo'<div id="ortholog_section">
+                <h3>Variation and polymorphism</h3>
+                    <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
 
-    echo'<div id="ortholog_section">
-            <h3>Variation and polymorphism</h3>
-                <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                          
-                                <a class="accordion-toggle collapsed" href="#var-table_'.$gene_id.'" data-parent="#accordion_documents_var__'.$gene_id.'" data-toggle="collapse">
-                                        <strong>Variants table</strong>
-                                </a>				
+                                    <a class="accordion-toggle collapsed" href="#var-table_'.$gene_id.'" data-parent="#accordion_documents_var__'.$gene_id.'" data-toggle="collapse">
+                                            <strong>Variants table</strong>
+                                    </a>				
 
-                        </div>
-                        <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
-                            <table class="table" id="table_variants">                                                                <thead>
-                                <tr>';
-                                    //echo "<th>gene ID</th>";
-                                    echo "<th>variant ID</th>";
-                                    echo "<th>Position</th>";
-                                    echo "<th>Description</th>";
-                                    echo "<th>Variant Alleles</th>";
-                                    echo'
-                                </tr>
-                                </thead>
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
+                                <table class="table" id="table_variants">                                                                <thead>
+                                    <tr>';
+                                        //echo "<th>gene ID</th>";
+                                        echo "<th>variant ID</th>";
+                                        echo "<th>Position</th>";
+                                        echo "<th>Description</th>";
+                                        echo "<th>Variant Alleles</th>";
+                                        echo'
+                                    </tr>
+                                    </thead>
 
-                                <tbody>';
-                                    
-                                    foreach ($var_results['result'] as $value) {
-                                        foreach($value as $data){
-                                           echo "<tr>";
-                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                            //echo '<td>'.$data['Gene ID'].'</td>';
-                                            echo '<td>'.$data['Variant ID'].'</td>';
-                                            echo '<td>'.$data['Position'].'</td>';
-                                            echo '<td>'.$data['Description'].'</td>';
-                                            echo '<td>'.$data['Alleles'].'</td>';
-                                           
-                                            echo "</tr>";
+                                    <tbody>';
+
+                                        foreach ($var_results['result'] as $value) {
+                                            foreach($value as $data){
+                                               echo "<tr>";
+                                                //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                //echo '<td>'.$data['Gene ID'].'</td>';
+                                                echo '<td>'.$data['Variant ID'].'</td>';
+                                                echo '<td>'.$data['Position'].'</td>';
+                                                echo '<td>'.$data['Description'].'</td>';
+                                                echo '<td>'.$data['Alleles'].'</td>';
+
+                                                echo "</tr>";
+                                            }
+
+
                                         }
-        
-        
-                                    }
-                                    
-                           echo'</tbody>
 
-                            </table>
+                               echo'</tbody>
+
+                                </table>
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
-                <div id="shift_line"></div>
-            </div>';
+                    <div id="shift_line"></div>
+                </div>';
+    }
     
     
     
@@ -1170,8 +1171,9 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
                         echo'</div>';
 
                     echo'
-                    </div></div></div>';
+                    </div></div></div> ';
     }
+   
     $biogrid_array=get_biogrid_plant_plant_interactor($gene_id,$interactionsCollection,$species); 
     $hits_number_biogrid= count($biogrid_array['result']);
     if ($hits_number_biogrid>0){
@@ -1247,13 +1249,14 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
     
     }
     
+    
 }
 function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
     
     $result=get_hpidb_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
     
     $hits_number_hpidb= count($result['result']);
-
+    
     if ($hits_number_hpidb>0){
         echo'
             <div class="panel-group" id="accordion_documents_hpidb">
@@ -1548,11 +1551,10 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
           echo '</div>';
 }
 function load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
-    echo'<div id="interaction_section">
-             <h3>Interaction</h3>';
+    
     load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
     load_and_display_ppinteractions($gene_id,$uniprot_id,$pp_interactionsCollection,$species);
-     echo'</div>';
+    
 }
 
 
@@ -2050,38 +2052,40 @@ function pretty_table(array $headers, array $values, $_id='null'){
                                 </table>';
 }
 function load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id){
-    echo'<div id="ortholog_section">
-            <h3>Orthologs</h3>
-                <div class="panel-group" id="accordion_documents">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                          
-                                <a class="accordion-toggle collapsed" href="#ortho-table_'.$plaza_id.'" data-parent="#accordion_documents" data-toggle="collapse">
-                                        <strong>Homologs table</strong>
-                                </a>				
+    if (count($var_results['result'])>0){
+        echo'<div id="ortholog_section">
+                <h3>Orthologs</h3>
+                    <div class="panel-group" id="accordion_documents">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#ortho-table_'.$plaza_id.'" data-parent="#accordion_documents" data-toggle="collapse">
+                                            <strong>Homologs table</strong>
+                                    </a>				
+
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">';
+
+                                        //$timestart=microtime(true);
+                                        echo get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+        //                                        $timeend=microtime(true);
+        //                                        $time=$timeend-$timestart;
+        //
+        //                                        //Afficher le temps d'éxecution
+        //                                        $page_load_time = number_format($time, 3);
+        //                                        echo "Debut du script: ".date("H:i:s", $timestart);
+        //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
+        //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
+                               echo'</tbody>
+
+                                </table>
+                            </div>
 
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">';
-                            
-                                    //$timestart=microtime(true);
-                                    echo get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
-    //                                        $timeend=microtime(true);
-    //                                        $time=$timeend-$timestart;
-    //
-    //                                        //Afficher le temps d'éxecution
-    //                                        $page_load_time = number_format($time, 3);
-    //                                        echo "Debut du script: ".date("H:i:s", $timestart);
-    //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
-                           echo'</tbody>
-
-                            </table>
-                        </div>
-
                     </div>
-                </div>
-                <div id="shift_line"></div>
-            </div>';
+                    <div id="shift_line"></div>
+                </div>';
+    }
 }
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
