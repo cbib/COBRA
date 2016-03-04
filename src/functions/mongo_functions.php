@@ -558,17 +558,17 @@ function get_biogrid_plant_plant_interactor(array $gene_id, MongoCollection $ppi
  
 }
 
-function get_string_plant_plant_interactor(array $gene_id, MongoCollection $ppinteractionsCollection,$species='null'){
+function get_string_plant_plant_interactor(array $transcript_id, MongoCollection $ppinteractionsCollection,$species='null'){
 
     $cursor=$ppinteractionsCollection->aggregate(array(
-            array('$match'=>array('src'=>"Transcript ID")),
-            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$match'=>array('src'=>"Transcript ID",'species'=>$species)),
+            array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
-            array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
-            array('$project' => array('species'=>1,'mapping_file.Gene ID 2'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'mapping_file.ALIASES_FOR_B'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'_id'=>0))
+            array('$match' => array('mapping_file.Transcript ID'=>array('$in'=>$transcript_id))),
+            array('$project' => array('mapping_file.Gene ID list'=>1,'origin'=>1,'_id'=>0))
         ));
 
-
+    var_dump($cursor);
     return $cursor;    
  
 }

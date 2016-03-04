@@ -3,7 +3,7 @@
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
-include '../wiki/vendor/autoload.php';
+//include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
 
 
@@ -222,33 +222,44 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
                 }
                 $plaza_id=$result['mapping_file']['Plaza ID'];
-            }   
+            } 
+            if (isset($result['mapping_file']['Transcript ID'])&& $result['mapping_file']['Transcript ID']!='' && $result['mapping_file']['Transcript ID']!='NA'){
+                if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
+                    array_push($transcript_id,$result['mapping_file']['Transcript ID']);
+                }
+                
+            } 
+            
             //if (isset($result['species'])&& $result['species']!='' && $result['species']!='NA'){
               //  $species=$result['species']; 
             //}
 
-/* 
-            //if (isset($result['mapping_file']['Score'])){
-                //echo $result['mapping_file']['Score'];
-            //    $score+=(int)$result['mapping_file']['Score'];
-                //echo $score;
-            //}
-//            if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
-//
-//                array_push($transcript_id,$result['mapping_file']['Transcript ID']);
-//            }
-           
-//            for ($i = 0; $i < count($gene_symbol); $i++) {
-//                    if (strstr($gene_symbol,",")){
-//                        $pos=$i;
-//                        $tmp_array=explode(",", $gene_symbol);
-//                        $gene_symbol[$i]=$tmp_array[0];
-//                        array_splice($gene_symbol, $i, 1);
-//                    }
-//                }
-            
-*/
+
         }
+        
+        
+        
+/* 
+            if (isset($result['mapping_file']['Score'])){
+                echo $result['mapping_file']['Score'];
+                $score+=(int)$result['mapping_file']['Score'];
+                echo $score;
+            }
+          if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
+
+               array_push($transcript_id,$result['mapping_file']['Transcript ID']);
+           }
+           
+           for ($i = 0; $i < count($gene_symbol); $i++) {
+                   if (strstr($gene_symbol,",")){
+                       $pos=$i;
+                       $tmp_array=explode(",", $gene_symbol);
+                      $gene_symbol[$i]=$tmp_array[0];
+                      array_splice($gene_symbol, $i, 1);
+                   }
+               }
+            
+*/        
 //        $timeend=microtime(true);
 //        $time=$timeend-$timestart;
 //        //Afficher le temps d'éxecution
@@ -321,10 +332,15 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 
             //right side div    
             echo'<div id="stat-details">';
+                    
+                   
+            
+            
+                    
                     //$timestart=microtime(true);
                     echo'<div id="interaction_section">
                         <h3>Interaction</h3>';
-                    load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
+                    load_and_display_interactions($gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
                     echo'</div>';
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;

@@ -1017,7 +1017,7 @@ function load_and_display_external_references( array $proteins_id,$search='null'
     </div>
     <div class="bottomSpacer"></div> </br> '; 
 }
-function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsCollection,$species){
+function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$interactionsCollection,$species){
     
 
     
@@ -1250,7 +1250,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$interactionsColl
     }
     
     
-    $string_array=get_biogrid_plant_plant_interactor($gene_id,$interactionsCollection,$species); 
+    $string_array=get_string_plant_plant_interactor($transcript_id,$interactionsCollection,$species); 
     $hits_number_string= count($string_array['result']);
     if ($hits_number_string>0){
         echo'
@@ -1628,12 +1628,12 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
 //                    echo "<br>Script for sequences 3 executed in " . $page_load_time . " sec"; 
           echo '</div>';
 }
-function load_and_display_interactions($gene_id,$uniprot_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
+function load_and_display_interactions($gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
     
   
     
     load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
-    load_and_display_ppinteractions($gene_id,$uniprot_id,$pp_interactionsCollection,$species);
+    load_and_display_ppinteractions($gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
     
 }
 
