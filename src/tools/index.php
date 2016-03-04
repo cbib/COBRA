@@ -65,7 +65,7 @@ make_species_list(find_species_list($speciesCollection),"../..");
     echo '<br/>';
     echo '<br/>';
     echo '<br/>';
-    echo '<br/>';
+
 $ortholog_form_string="";
 $ortholog_form_string.='
 <form id="icheckForm" method="post" class="form-horizontal" action="../orthology/new_ortholog_search.php">

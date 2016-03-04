@@ -121,7 +121,7 @@ make_species_list(find_species_list($speciesCollection),"../..");
     echo '<br/>';
     echo '<br/>';
     echo '<br/>';
-    echo '<br/>';
+
 
 
 echo '<div id="doc_pages">';

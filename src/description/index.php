@@ -41,7 +41,7 @@ echo '<br/>';
 echo '<br/>';
 echo '<br/>';
 echo '<br/>';
-echo '<br/>';
+
 
 
 $cursor=find_all_xp_name($samplesCollection);
