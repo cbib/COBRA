@@ -51,38 +51,17 @@ require '../session/control-session.php';
 
 
     make_species_list(find_species_list($speciesCollection),"../..");
-    echo'<br/>';
-    echo' 
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
 
-        <div class="col-md-12">';
-        $stat_string="";
-        $today = date("F j, Y, g:i a");
-        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+    
 
-        $stat_string.='<h4>Last update : '.$today.'</h4>
-                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
-                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
-
-                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
-
-                    $cursor=$speciesCollection->aggregate(array(
-                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                    ));
-                    $stat_string.='<h4>Species per top_level</h4>';
-                    foreach ($cursor['result'] as $doc){
-                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-                    }
-                    $cursor=$virusCollection->aggregate(array(
-                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                    ));
-                    $stat_string.='<h4> Pathogens per top_level</h4>';
-                    foreach ($cursor['result'] as $doc){
-                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-                    }
-        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
-
-    echo' </div>';
-    echo'<br/>';
+   
     echo '<div class="col-md-12" >		
         <div class="col-md-6" >
                 <div class="column-padding no-right-margin">
@@ -225,10 +204,38 @@ require '../session/control-session.php';
     //        </div>
     //    </div>      
 
+    echo' 
+
+        <div class="container">';
+        $stat_string="";
+        $today = date("F j, Y, g:i a");
+        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+
+        $stat_string.='<h4>Last update : '.$today.'</h4>
+                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
+                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
+
+                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
+
+                    $cursor=$speciesCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<h4>Species per top_level</h4>';
+                    foreach ($cursor['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                    }
+                    $cursor=$virusCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<h4> Pathogens per top_level</h4>';
+                    foreach ($cursor['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                    }
+        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
 
 
-
-
+    echo' </div>';
+    echo'<br/>';
 
     echo '</main>';
     new_cobra_footer();

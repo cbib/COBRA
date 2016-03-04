@@ -191,7 +191,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <a href="'.$path.'/src/wiki/">
+                <a href="'.$path.'/src/search/">
                 <div class="cobra-logo">
                     <img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
                     <p>COBRA</p>

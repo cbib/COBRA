@@ -115,6 +115,13 @@ new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
 make_species_list(find_species_list($speciesCollection),"../..");
+ echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
 
 
 echo '<div id="doc_pages">';
