@@ -1278,7 +1278,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
         }
 
     }
-    $hits_number_string= count($values);
+    $hits_number_string= count($values)/3;
     if ($hits_number_string>0){
         echo'
                 <div class="panel-group" id="accordion_documents_string">
