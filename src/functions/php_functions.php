@@ -1251,7 +1251,34 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
     
     
     $string_array=get_string_plant_plant_interactor($transcript_id,$interactionsCollection,$species); 
-    $hits_number_string= count($string_array['result']);
+    
+    $headers=array('Transcript Id','Combined score','Organism');
+    $values=array();
+    foreach ($string_array['result'] as $value) {
+
+        //$species= $value['species'];
+
+        foreach ($value as $data) {
+            if (is_array($data)){
+                $transcript_list = explode("_", $data['Transcript ID list']);
+                foreach ($transcript_list as $transcript) {
+                    $combined_score = explode("-",  $transcript);
+
+                    array_push($values, $combined_score[0]);
+                    array_push($values, $combined_score[1]);
+                    array_push($values, $species);
+
+
+                }
+
+
+
+            }
+
+        }
+
+    }
+    $hits_number_string= count($values);
     if ($hits_number_string>0){
         echo'
                 <div class="panel-group" id="accordion_documents_string">
@@ -1268,32 +1295,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                             echo'
                             <div class="pp_interaction">';
                             
-                            $headers=array('Transcript Id','Combined score','Organism');
-                            $values=array();
-                            foreach ($string_array['result'] as $value) {
-                                
-                                //$species= $value['species'];
-                                
-                                foreach ($value as $data) {
-                                    if (is_array($data)){
-                                        $transcript_list = explode("_", $data['Transcript ID list']);
-                                        foreach ($transcript_list as $transcript) {
-                                            $combined_score = explode("-",  $transcript);
-                                            
-                                            array_push($values, $combined_score[0]);
-                                            array_push($values, $combined_score[1]);
-                                            array_push($values, $species);
-                                            
-                                            
-                                        }
-                                       
-                                        
-                                        
-                                    }
-
-                                }
-
-                            }
+                            
                             pretty_table($headers, $values,"pp_string");
 
 
