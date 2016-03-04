@@ -568,7 +568,7 @@ function get_string_plant_plant_interactor(array $transcript_id, MongoCollection
             array('$project' => array('mapping_file.Transcript ID list'=>1,'origin'=>1,'_id'=>0))
         ));
     
-    var_dump($cursor);
+    //var_dump($cursor);
     return $cursor;    
  
 }

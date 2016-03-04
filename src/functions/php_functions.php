@@ -1259,7 +1259,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                         <div class="panel-heading">
 
                             <a class="accordion-toggle collapsed" href="#biogrid" data-parent="#accordion_documents_biogrid" data-toggle="collapse">
-                                <strong> Plant Plant Interaction (Biogrid)</strong> ('.$hits_number_string.')
+                                <strong> Plant Plant Interaction (String)</strong> ('.$hits_number_string.')
                             </a>				
 
                         </div>
@@ -1268,47 +1268,17 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                             echo'
                             <div class="pp_interaction">';
                             
-                            $headers=array('Transcript Id','Official symbol','Aliases','Experimental SYSTEM','Author','Pubmed','Organism');
+                            $headers=array('Transcript Id','Combined score','Organism');
                             $values=array();
-                            foreach ($biogrid_string['result'] as $value) {
+                            foreach ($string_array['result'] as $value) {
                                 
                                 $species= $value['species'];
                                 
                                 foreach ($value as $data) {
                                     if (is_array($data)){
-                                    
-                                    
-                                        array_push($values, $data['Gene ID 2']);
-                                        array_push($values, $data['OFFICIAL_SYMBOL_B']);
-                                        $aliases=explode("|", $data['ALIASES_FOR_B']);
-
-                                        $counter=0;
-                                        $alias_string="";
-                                        foreach ($aliases as $alias) {
-                                          if($counter===count($aliases)-1){
-                                               //$short=explode(":", $alias);
-                                               //$aliases2=explode("(", $short[1]);
-                                               $alias_string.=$alias;
-                                               array_push($values, $alias_string);
-                                           }
-                                           else{
-                                              $alias_string.=$alias.',';
-                                              //$short=explode(":", $alias);
-                                              //$aliases2=explode("(", $short[1]);
-                                              //array_push($values, $aliases2[0]); 
-                                           }
-
-                                           $counter++;
-
-                                        }
-                                        array_push($values, $data['EXPERIMENTAL_SYSTEM']);
-                                        array_push($values, $data['SOURCE']);
-                                        $href_pmid="";
-                                        $href_pmid.=' <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['PUBMED_ID'].'"> '.$data['PUBMED_ID'].' </a> ';  
-                                        array_push($values, $href_pmid);
-
-
-                                        array_push($values, $species);
+                                        echo $data['Transcript ID list'];
+                                        
+                                        
                                     }
 
                                 }
