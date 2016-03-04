@@ -1272,7 +1272,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                             $values=array();
                             foreach ($string_array['result'] as $value) {
                                 
-                                $species= $value['species'];
+                                //$species= $value['species'];
                                 
                                 foreach ($value as $data) {
                                     if (is_array($data)){
