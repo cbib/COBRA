@@ -2132,7 +2132,8 @@ function pretty_table(array $headers, array $values, $_id='null'){
                                 </table>';
 }
 function load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id){
-    if (count($var_results['result'])>0){
+    
+   // if (count($var_results['result'])>0){
         echo'<div id="ortholog_section">
                 <h3>Orthologs</h3>
                     <div class="panel-group" id="accordion_documents">
@@ -2166,7 +2167,7 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                     <div id="shift_line"></div>
                 </div>';
     }
-}
+//}
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

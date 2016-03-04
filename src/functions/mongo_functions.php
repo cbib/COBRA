@@ -565,9 +565,9 @@ function get_string_plant_plant_interactor(array $transcript_id, MongoCollection
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Transcript ID'=>array('$in'=>$transcript_id))),
-            array('$project' => array('mapping_file.Gene ID list'=>1,'origin'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.Transcript ID list'=>1,'origin'=>1,'_id'=>0))
         ));
-
+    
     var_dump($cursor);
     return $cursor;    
  
