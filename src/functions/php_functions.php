@@ -1260,10 +1260,22 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
 
         foreach ($value as $data) {
             if (is_array($data)){
-                $transcript_list = explode("_", $data['Transcript ID list']);
+//                if ($species==="Hordeum vulgare"){
+//                    $transcript_list = explode("_MLOC", $data['Transcript ID list']);
+//                }
+//                else{
+                    $transcript_list = explode("_", $data['Transcript ID list']);
+                //}
+                
                 foreach ($transcript_list as $transcript) {
                     $combined_score = explode("-",  $transcript);
 
+                    if ($species==="Hordeum vulgare"){
+                        array_push($values, "MLOC_".$combined_score[0]);
+                    }
+                    else{
+                        array_push($values, $combined_score[0]); 
+                    }
                     array_push($values, $combined_score[0]);
                     array_push($values, $combined_score[1]);
                     array_push($values, $species);
