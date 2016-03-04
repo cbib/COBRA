@@ -228,9 +228,9 @@ $(function() {
             $(this).removeClass("open")
         }
     });
-
-    $("body").append(demo);
-    $("body").append(demo_settings);
+    change_skin("skin-black");
+    //$("body").append(demo);
+    //$("body").append(demo_settings);
 });
 function fix_sidebar() {
     //Make sure the body tag has the .fixed class
