@@ -557,6 +557,21 @@ function get_biogrid_plant_plant_interactor(array $gene_id, MongoCollection $ppi
     return $cursor;    
  
 }
+
+function get_string_plant_plant_interactor(array $gene_id, MongoCollection $ppinteractionsCollection,$species='null'){
+
+    $cursor=$ppinteractionsCollection->aggregate(array(
+            array('$match'=>array('src'=>"Transcript ID")),
+            array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
+            array('$project' => array('species'=>1,'mapping_file.Gene ID 2'=>1,'mapping_file.OFFICIAL_SYMBOL_B'=>1,'mapping_file.ALIASES_FOR_B'=>1,'mapping_file.EXPERIMENTAL_SYSTEM'=>1,'mapping_file.SOURCE'=>1,'mapping_file.PUBMED_ID'=>1,'_id'=>0))
+        ));
+
+
+    return $cursor;    
+ 
+}
 function get_best_Scored_genes_for_all_species(MongoCollection $full_mappingsCollection, $limit_result='null'){
    $cursor=$full_mappingsCollection->aggregate(
    array(

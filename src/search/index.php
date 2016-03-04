@@ -139,33 +139,33 @@ require '../session/control-session.php';
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=0.5>
-                    <img class="displayed" id="partner_logo" src="../../images/logo-inra_w186.jpg"/>
+                    <a href="http://www.inra.fr/"><img class="displayed" id="partner_logo" src="../../images/logo-inra_w186.jpg"/></a>
                 </div>
                 <div id="image_container">
                     <hr  size=0.5>                           
-                    <img class="displayed" id="partner_logo" src="../../images/noordsat_w186.jpg" />
+                    <a href="http://www.nordsaat.de/"><img class="displayed" id="partner_logo" src="../../images/noordsat_w186.jpg" /></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/jki_w186.gif"  />
+                    <a href="http://www.jki.bund.de/en/startseite/home.html"><img class="displayed" id="partner_logo" src="../../images/jki_w186.gif"  /></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/ipk.png"  />
+                    <a href="http://www.ipk-gatersleben.de/"><img class="displayed" id="partner_logo" src="../../images/ipk.png"  /></a>
                 </div>
             </div>
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/cgfb_w186.jpg" height="85"/>
+                    <a href="http://www.cgfb.u-bordeaux2.fr/"><img class="displayed" id="partner_logo" src="../../images/cgfb_w186.jpg" height="85"/></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/abiopep3_w186.jpg" height="85" />
+                    <a href="http://www.abiopep.com/en"><img class="displayed" id="partner_logo" src="../../images/abiopep3_w186.jpg" height="85" /></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" />
+                    <a href="http://www.csic.es/home"><img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" /></a>
                 </div>
 
             </div>
