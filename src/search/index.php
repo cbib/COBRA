@@ -165,7 +165,11 @@ require '../session/control-session.php';
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <a href="http://www.csic.es/home"><img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" /></a>
+                    <a href="http://www.cebas.csic.es/"><img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" height="85" width="165"/></a>
+                </div>
+                 <div id="image_container">
+                    <hr  size=1>
+                    <a href="http://www.cnb.csic.es/index.php/en/"><img class="displayed" id="partner_logo" src="../../images/cnb.jpg" height="85"/></a>
                 </div>
 
             </div>
