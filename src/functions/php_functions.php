@@ -1276,7 +1276,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                     else{
                         array_push($values, $combined_score[0]); 
                     }
-                    array_push($values, $combined_score[0]);
+                    //array_push($values, $combined_score[0]);
                     array_push($values, $combined_score[1]);
                     array_push($values, $species);
 
