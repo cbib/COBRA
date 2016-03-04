@@ -2338,7 +2338,7 @@ function make_species_list($cursor,$path='null'){
                             </span>
                             <wbr/>
                             <span class="inp-group">
-                                    <input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" />
+                                    <input value="" name="search" class="_string input inactive query optional ftext" id="search" type="text" size="30" required/>
                                     <i class="fa fa-search"></i> <span><input value="Search" class="fbutton" type="submit" /></span>
                             </span>
                             <wbr/>
