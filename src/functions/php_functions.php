@@ -1254,16 +1254,16 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
     $hits_number_string= count($string_array['result']);
     if ($hits_number_string>0){
         echo'
-                <div class="panel-group" id="accordion_documents_biogrid">
+                <div class="panel-group" id="accordion_documents_string">
                     <div class="panel panel-default">
                         <div class="panel-heading">
 
-                            <a class="accordion-toggle collapsed" href="#biogrid" data-parent="#accordion_documents_biogrid" data-toggle="collapse">
+                            <a class="accordion-toggle collapsed" href="#string" data-parent="#accordion_documents_string" data-toggle="collapse">
                                 <strong> Plant Plant Interaction (String)</strong> ('.$hits_number_string.')
                             </a>				
 
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="biogrid">';
+                        <div class="panel-body panel-collapse collapse" id="string">';
 
                             echo'
                             <div class="pp_interaction">';
