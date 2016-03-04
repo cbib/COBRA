@@ -279,9 +279,9 @@ function new_cobra_footer(){
 echo'
 
                     </section>
-                    <div class="row">
+                    <!--<div class="row">-->
                         
-                        <section class="container">
+                        <section class="col-md-12" id="footer">
                             <p class="text-muted" style="text-align: right">
                                 Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
                             </p>
@@ -289,7 +289,7 @@ echo'
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
                             </p>
                         </section>
-                    </div>
+                    <!--</div>-->
 
                 
 
