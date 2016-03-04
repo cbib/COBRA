@@ -754,7 +754,7 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
     
 
     if (count($var_results['result'])>0){
-        echo'<div id="ortholog_section">
+        echo'<div id="variation_section">
                 <h3>Variation and polymorphism</h3>
                     <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
                         <div class="panel panel-default">
