@@ -113,11 +113,14 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
         array('$match' => array('$or'=> array(
 //            array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),
 //            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
-//            array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
-//            array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
-//            array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
+
+
 //            array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),
 //            array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),
             //array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi")),
