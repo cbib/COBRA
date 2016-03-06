@@ -199,8 +199,8 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
-                  <li';if($uri == "/src/"){ echo ' class="active"'; } echo '>
-                    <a href="'.$path.'/src/">
+                  <li';if($uri == "/"){ echo ' class="active"'; } echo '>
+                    <a href="'.$path.'/">
                        <i class="fa fa-home"></i> 
                        <span>Home</span>
                     </a>
