@@ -155,19 +155,13 @@ table.dataTable tbody tr:hover {
 
   }
   
-  
-  #SpeciesSearch{
-     //width:970px;
-     width:100%;
-     background-color: #FFF;
-     margin-left: 0px;
-     border-radius: 10px;
-     padding: 10px 10px 0px;
-     float: left;
-     border: 1px solid #DDD; 
-  }
+  #SpeciesSearch,
+  #BlastJobsTable,
+  #search_history,
+  #user_pref,
+  #data_description,
   #mission-objectives{
-     //width:970px;
+
      width:100%;
      background-color: #FFF;
      margin-left: 0px;
@@ -176,6 +170,7 @@ table.dataTable tbody tr:hover {
      float: left;
      border: 1px solid #DDD; 
   }
+  
   #left_col{
      width:50%;
      background-color: #FFF;
@@ -364,7 +359,7 @@ table.dataTable tbody tr:hover {
  #section_user_details,
  #section_result_tabs,
  #section_result_summary,
- section_job_details,
+ #section_job_details,
  #section_upload_file,
  #section_maintenance,
  #section_upload_file,

@@ -1,9 +1,9 @@
 <?php
-require '/var/www/html/COBRA/src/session/maintenance-session.php';
-require '/var/www/html/COBRA/src/functions/html_functions.php';
-require '/var/www/html/COBRA/src/functions/php_functions.php';
-require '/var/www/html/COBRA/src/functions/mongo_functions.php';
-require '/var/www/html/COBRA/src/session/control-session.php';
+require '../../session/maintenance-session.php';
+require '../../functions/html_functions.php';
+require '../../functions/php_functions.php';
+require '../../functions/mongo_functions.php';
+require '../../session/control-session.php';
 
  
 	new_cobra_header("../../..");

@@ -15,11 +15,25 @@ new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary",".."
 //$global_timestart=microtime(true);
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
+$historyCollection = new Mongocollection($db, "history");
 //echo 'directory: '.PATH;
 make_species_list(find_species_list($speciesCollection),"..");
 if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='NA') && (isset($_GET['search']) && $_GET['search']!='' && $_GET['search']!='NA')){
 
-
+    array_push($_SESSION['historic'],$_GET['search']);
+    //foreach ($_SESSION['historic'] as $value) {
+    //    echo $value;
+    //}
+    $today = date("F j, Y, g:i a");
+    $document = array("firstname" => $_SESSION['firstname'],
+                      "lastname" => $_SESSION['lastname'],
+                      "search id" => $_GET['search'],
+                      "type" => "search",
+                      "date" => $today
+    );
+    $historyCollection->insert($document);
+    
+    
 	$species=control_post(htmlspecialchars($_GET['organism']));
 	$search=control_post(htmlspecialchars($_GET['search']));
 	//$search=strtoupper($search);

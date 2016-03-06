@@ -137,20 +137,23 @@ else{
  						if (($person['lastname'] != '') && ($person['firstname'] != '')){
  							//session_start();
 							// On  enregistre ses données dans la session
+                            $historic=array();
+                            $_SESSION['historic']=$historic;
 							$_SESSION['login'] = $login; // permet de vérifier que l'utilisateur est bien connecté
 							$_SESSION['firstname'] = $person['firstname'];
 							$_SESSION['lastname'] = $person['lastname'];
                             $today = date("F j, Y, g:i a");
                             $document = array("firstname" => $_SESSION['firstname'],
                                 "lastname" => $_SESSION['lastname'],
+                                "type" => "connection",
                                 "date" => $today
                             );
                             $historyCollection->insert($document);
-							// Maintenant que tout est enregistré dans la session, on redirige vers la page des photos
-							echo '<p>Vous êtes correctement identifié(e), <a href="./src/search/index.php">cliquez ici</a></p>'."\n";
+							// Maintenant que tout est enregistré dans la session, on redirige vers la page Home
+							echo '<p>You ara correectly identified, <a href="./index.php">cliquez ici</a></p>'."\n";
 							
 							//header('Location: index.php'); 
-							header('Location: ./src/search/index.php'); 
+							header('Location: ./index.php'); 
 
 						} 
 						else{
@@ -181,7 +184,7 @@ else{
 		
 		//header('Location: ./src/search/index.php');  
 		//header('Location: index.php'); 
-        header('Location: ./src/search/index.php');
+        header('Location: ./index.php');
 
 	}
 }

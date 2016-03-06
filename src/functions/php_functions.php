@@ -450,19 +450,19 @@ function display_sample_table($cursor,$samplesCollection){
     echo'</tbody></table>'; 
 }
 function make_user_preferences($user,Mongocollection $us){
-
-	echo '<h2> User preferences</h2>
-    		<div id="user_pref">
+    echo '<div id="user_pref">';
+        echo '<h2> User preferences</h2>';
+    		echo '<div id="log_details">
     			<h3> login details</h3>';
-    foreach ( $user as $person ) { 
-		if (($person['login'] != '') && ($person['pwd'] != '')){
-			echo 'You are currently logged in as '.$person['login'].'.';
+                foreach ( $user as $person ) { 
+                    if (($person['login'] != '') && ($person['pwd'] != '')){
+                        echo 'You are currently logged in as '.$person['login'].'.';
 	
-		}
-        echo '</div>'
-        . '</br>';	
+                    }
+            echo '</div>'
+                 . '</br>';	
 		
-        echo '<div id="change_password">
+            echo '<div id="change_password">
                 
                     <h3> Change password</h3>';
 		
@@ -486,10 +486,9 @@ function make_user_preferences($user,Mongocollection $us){
 				        </fieldset>
 			        </form>';  
     }
-        echo 
-        '</div>';
+            echo '</div>';
         
-       
+    echo '</div>';  
 
 }
 function is_expression_variables_set(array $categories, array $result, array $logfc_array){
@@ -2319,7 +2318,7 @@ function make_species_list($cursor,$path='null'){
     
     <div id="SpeciesSearch">
     	<input type="hidden" class="panel_type" value="SearchBox" />
-    	<form action="'.$path.'/src/Multi-results.php" method="get" class="clear search-form homepage-search-form">
+    	<form action="'.$path.'/src/Multi-results.php" target="_blank" method="get" class="clear search-form homepage-search-form">
             <fieldset>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >

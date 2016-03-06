@@ -41,7 +41,7 @@ echo '<br/>';
 echo '<br/>';
 echo '<br/>';
 echo '<br/>';
-
+echo '<div id="data_description">';
 
 
 $cursor=find_all_xp_name($samplesCollection);
@@ -252,7 +252,7 @@ add_accordion_panel($table_string, "Viruses", "virus_table");
 echo'<br/>';
 
 
-
+echo'</div>';
 
 
 

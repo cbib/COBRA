@@ -182,7 +182,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
     
 
-    <body class="skin-blue">
+    <body class="skin-black">
     <!-- header logo: style can be found in header.less -->
 
     	<div class="wrapper row-offcanvas row-offcanvas-left">
@@ -245,7 +245,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/"><i class="fa fa-dashboard"></i> Home</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">description</a></li>-->
                   <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">wiki home</a></li>-->
-                  <li><a href="'.$path.'/src/search/">Home page</a></li>
+                  <li><a href="'.$path.'/">Home page</a></li>
                   ';if ($IsLogged){echo '
                   	<li><a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
                   echo '<li><a href="'.$path.'/login.php?act=logout">Logout</a></li>';}
