@@ -837,11 +837,13 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
             foreach ($gene_position_cursor as $value) {
                 $gene_start =$value['mapping_file'][0]['Gene Start'];
                 $gene_end =$value['mapping_file'][0]['Gene End'];
+                $scaffold =$value['mapping_file'][0]['Chromosome'];
 
             }
             
         }
-        
+
+        //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
 
         $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
@@ -849,7 +851,8 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
                     array('$unwind'=>'$mapping_file'),
                     array('$match' => array('$and'=> array(
                                                     array('mapping_file.Position'=>array('$gt'=> (int)$gene_start )),
-                                                    array('mapping_file.Position'=>array('$lt'=> (int)$gene_end ))
+                                                    array('mapping_file.Position'=>array('$lt'=> (int)$gene_end )),
+                                                    array('mapping_file.Scaffold'=> $scaffold )
                                                     )
                                             )
                          ),
