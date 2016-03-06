@@ -211,6 +211,10 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 $score+=(float)$result['mapping_file']['Score_orthologs']; 
                 $score+=(float)$result['mapping_file']['Score_QTL']; 
                 $score+=(float)$result['mapping_file']['Score_SNP'];
+                if ($counter===count($cursor['result'])-1){
+                    $table_string.='<td>'.$score.'</td>';
+                    $table_string.='</tr>';
+                }
                 //echo $score;
                 
             }
