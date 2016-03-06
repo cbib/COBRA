@@ -465,8 +465,8 @@ function display_statistics(){
         //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
 
         $stat_string.='<h4>Last update : '.$today.'</h4>
-                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
-                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>';
+                    <h4>Samples : '.$sampleCollection->count().'</h4>
+                    <h4>Normalized measures : '.$measurementsCollection->count().'</h4>';
                     
                     $pv_fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
                     $cursor_pvi=$pv_interactionsCollection->aggregate($pv_fields);
@@ -478,7 +478,7 @@ function display_statistics(){
                         }
 
                     }
-                    $stat_string.= '<h4>Number of plant virus interactions: '.$total_pvi.'</h4>';
+                    $stat_string.= '<h4>Plant Virus interactions: '.$total_pvi.'</h4>';
                     
                     $pp_biogrid_fields=array(array('$match' => array('origin'=>'BIOGRID')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
                     $cursor_ppi_biogrid=$pp_interactionsCollection->aggregate($pp_biogrid_fields);
@@ -490,7 +490,7 @@ function display_statistics(){
 
                     }
                     
-                    $stat_string.= '<h4>Number of Biogrid plant plant interactions: '.$total_ppi_biogrid.'</h4>';
+                    $stat_string.= '<h4>Biogrid Plant Plant interactions: '.$total_ppi_biogrid.'</h4>';
                     $pp_intact_fields=array(array('$match' => array('origin'=>'INTACT')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
                     $cursor_ppi_intact=$pp_interactionsCollection->aggregate($pp_intact_fields);
                     $total_ppi_intact=0;
@@ -501,8 +501,8 @@ function display_statistics(){
 
                     }
                     
-                    $stat_string.= '<h4>Number of Intact plant plant interactions: '.$total_ppi_intact.'</h4>';
-                    $stat_string.= '<h4>Number of species : '.$speciesCollection->count().'</h4>';
+                    $stat_string.= '<h4>Intact Plant Plant interactions: '.$total_ppi_intact.'</h4>';
+                    $stat_string.= '<h4>Species : '.$speciesCollection->count().'</h4>';
 
                     $cursor_species=$speciesCollection->aggregate(array(
                     array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
@@ -511,6 +511,7 @@ function display_statistics(){
                     foreach ($cursor_species['result'] as $doc){
                             $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
                     }
+                    $stat_string.= '<h4>Viruses : '.$virusCollection->count().'</h4>';
                     $cursor_virus=$virusCollection->aggregate(array(
                     array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
                     ));

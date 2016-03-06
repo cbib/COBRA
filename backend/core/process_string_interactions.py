@@ -27,7 +27,7 @@ logger.info("Running %s",sys.argv[0])
 
 # Get available interactions and process them 
 #interactions_to_process=pp_interactions_col.find({"src_to_tgt":{"$exists":False}})
-interactions_to_process=pp_interactions_col.find({"mapping_file":{"$exists":False},"$or": [{"origin":"BIOGRID"},{"origin":"INTACT"}]})
+interactions_to_process=pp_interactions_col.find({"mapping_file":{"$exists":False},"origin":"STRING"})
 
 
 logger.info("Found %d interactions to process",interactions_to_process.count())
@@ -50,7 +50,5 @@ for map_doc in interactions_to_process:
 	pp_interactions_col.update({"_id":map_doc['_id']},{"$set":{"mapping_file":sheet_values}})
    
 
-logger.info("Indexation on field \"mapping_file.Uniprot ID\" from document \"Intact database\" in collection \"plant-plant interactions\"")
-pp_interactions_col.create_index("mapping_file.Uniprot ID",sparse=True,background=True)
-logger.info("Indexation on field \"mapping_file.Gene ID\" from document \"Biogrid database\" in collection \"plant-plant interactions\"")
-pp_interactions_col.create_index("mapping_file.Gene ID",sparse=True,background=True)
+logger.info("Indexation on field \"mapping_file.Transcript ID\" from document \"String database\" in collection \"plant-plant interactions\"")
+pp_interactions_col.create_index("mapping_file.Transcript ID",sparse=True,background=True)

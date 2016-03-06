@@ -121,36 +121,52 @@ require '../session/control-session.php';
                     <hr  size=0.5>
                     <a href="http://www.inra.fr/"><img class="displayed" id="partner_logo" src="../../images/logo-inra_w186.jpg"/></a>
                 </div>
+                </br>
+                </br>
                 <div id="image_container">
                     <hr  size=0.5>                           
                     <a href="http://www.nordsaat.de/"><img class="displayed" id="partner_logo" src="../../images/noordsat_w186.jpg" /></a>
                 </div>
+                </br>
+                </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.jki.bund.de/en/startseite/home.html"><img class="displayed" id="partner_logo" src="../../images/jki_w186.gif"  /></a>
                 </div>
+                </br>
+                </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.ipk-gatersleben.de/"><img class="displayed" id="partner_logo" src="../../images/ipk.png"  /></a>
                 </div>
+                </br>
+                </br>
             </div>
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.cgfb.u-bordeaux2.fr/"><img class="displayed" id="partner_logo" src="../../images/cgfb_w186.jpg" height="85"/></a>
                 </div>
+                </br>
+                </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.abiopep.com/en"><img class="displayed" id="partner_logo" src="../../images/abiopep3_w186.jpg" height="85" /></a>
                 </div>
+                </br>
+                </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.cebas.csic.es/"><img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" height="85" width="165"/></a>
                 </div>
+                </br>
+                </br>
                  <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.cnb.csic.es/index.php/en/"><img class="displayed" id="partner_logo" src="../../images/cnb.jpg" height="85"/></a>
                 </div>
+                </br>
+                </br>
 
             </div>
         </div>
