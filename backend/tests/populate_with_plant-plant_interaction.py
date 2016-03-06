@@ -23,9 +23,9 @@ if "log" not in globals():
 # 	
 # 	fs.delete(grid_out._id)
 
-pp_interactions_col.remove({"origin":"BIOGRID","species":"Solanum lycopersicum"})
-pp_interactions_col.remove({"origin":"INTACT"})
-pp_interactions_col.remove({"origin":"BIOGRID","species":"Arabidopsis thaliana"})
+pp_interactions_col.remove({"src":"Gene ID","species":"Solanum lycopersicum"})
+pp_interactions_col.remove({"src":"Uniprot ID"})
+pp_interactions_col.remove({"src":"Gene ID","species":"Arabidopsis thaliana"})
 
 
 
