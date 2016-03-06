@@ -24,14 +24,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     //foreach ($_SESSION['historic'] as $value) {
     //    echo $value;
     //}
-    $today = date("F j, Y, g:i a");
-    $document = array("firstname" => $_SESSION['firstname'],
-                      "lastname" => $_SESSION['lastname'],
-                      "search id" => $_GET['search'],
-                      "type" => "search",
-                      "date" => $today
-    );
-    $historyCollection->insert($document);
+   
     
     
 	$species=control_post(htmlspecialchars($_GET['organism']));
@@ -108,6 +101,15 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             $score+=$tmp_score['snp'];  
         }  
     } 
+    $today = date("F j, Y, g:i a");
+    $document = array("firstname" => $_SESSION['firstname'],
+                      "lastname" => $_SESSION['lastname'],
+                      "search id" => $_GET['search'],
+                      "type" => "search",
+                      "score" =>$score,
+                      "date" => $today
+    );
+    $historyCollection->insert($document);
 //    $timeend1=microtime(true);
 //    $time1=$timeend1-$timestart1;
 //    //Afficher le temps d'éxecution

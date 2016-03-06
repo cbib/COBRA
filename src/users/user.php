@@ -89,6 +89,7 @@
         //$table_string.='<th>type</th>';
         $table_string.='<th>Query id</th>';
         $table_string.='<th>Date</th>';
+        $table_string.='<th>Score</th>';
         
 
 
@@ -103,6 +104,12 @@
             //$table_string.='<td>'.$line['type'].'</td>';
             $table_string.='<td>'.$line['search id'].'</td>';
             $table_string.='<td>'.$line['date'].'</td>';
+            if(isset($line['score'])){
+                $table_string.='<td>'.$line['score'].'</td>';
+            }
+            else{
+                $table_string.='<td>-</td>';
+            }
 
         $table_string.='</tr>';
 
