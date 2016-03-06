@@ -655,6 +655,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
     $series=array();
     $categories=array();
     $logfc_array=array();
+    $xp_name=array();
     $cursor=$measurementsCollection->find(array(
     '$and'=>array(
         array('$or'=> array(
@@ -748,8 +749,17 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
                     
                 }
                 if (count($gene_symbol)==0){
-                    if ($gene_alias[0]!='NA'){
-                        echo $gene_alias[0];
+                    for ($i = 0; $i < count($gene_alias); $i++) {
+
+                        if ($gene_alias[$i]!='NA'){
+                            if ($i==count($gene_alias)-1){
+                        
+                                echo $gene_alias[$i];
+                            }
+                            else{
+                                echo $gene_alias[$i].', ';
+                            }
+                        }
                     }
                 }
                 echo '</h1> ';
@@ -819,20 +829,37 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 function load_and_display_variations_result(MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null'){
     
     
-    
+    $gene_start=0;
+    $gene_end=0;
     if ($species==="Prunus persica"){
         foreach ($gene_id as $gene) {
-            $gene_position_cursor=$full_mappings_collection->find(array('mapping_file.Gene ID'=>$gene),array('mapping_file.Gene Start'=>1,'mapping_file.Gene End'=>1));
-            var_dump($gene_position_cursor);
+            $gene_position_cursor=$full_mappings_collection->find(array('mapping_file.Gene ID'=>$gene),array('mapping_file.$'=>1));
+            foreach ($gene_position_cursor as $value) {
+                $gene_start =$value['mapping_file'][0]['Gene Start'];
+                $gene_end =$value['mapping_file'][0]['Gene End'];
+
+            }
+            
         }
-//        $var_results=$variation_collection->aggregate(array(
-//                    array('$match' => array('species'=> $species)),  
-//                    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
-//                    array('$unwind'=>'$mapping_file'),
-//                    array('$match' =>  array('mapping_file.Gene ID'=>array('$in'=>$gene_id))), 
-//                    array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
-//
-//                ));
+        
+
+        $var_results=$variation_collection->aggregate(array(
+                    array('$match' => array('species'=> $species)),  
+                    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+                    array('$unwind'=>'$mapping_file'),
+                    array('$match' => array('$and'=> array(
+                                                    array('mapping_file.Position'=>array('$gt'=> (int)$gene_start )),
+                                                    array('mapping_file.Position'=>array('$lt'=> (int)$gene_end ))
+                                                    )
+                                            )
+                         ),
+                    array('$project'=>  array('mapping_file.Variant ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Alleles'=>1))
+
+                ));
+        //foreach ($var_results as $value) {
+        //     echo $value['mapping_file'];       
+        //}
+        
     }
     else{
         $var_results=$variation_collection->aggregate(array(
@@ -846,7 +873,8 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
     }
     
     
-
+//https://www.rosaceae.org/gb/gbrowse/prunus_persica/?name=
+//http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v=ENSVATH00000001;vdb=variation;vf=1
     if (count($var_results['result'])>0){
         echo'<div id="variation_section">
                 <h3>Variation and polymorphism</h3>
@@ -860,12 +888,16 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
 
                             </div>
                             <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
-                                <table class="table" id="table_variants">                                                                <thead>
+                                <table class="table" id="table_variants">  
+                                <thead>
                                     <tr>';
                                         //echo "<th>gene ID</th>";
                                         echo "<th>variant ID</th>";
                                         echo "<th>Position</th>";
-                                        echo "<th>Description</th>";
+                                        if ($species!="Prunus persica"){
+                                            echo "<th>Description</th>";
+                                        }
+                                        
                                         echo "<th>Variant Alleles</th>";
                                         echo'
                                     </tr>
@@ -878,10 +910,21 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
                                                echo "<tr>";
                                                 //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
                                                 //echo '<td>'.$data['Gene ID'].'</td>';
-                                                echo '<td>'.$data['Variant ID'].'</td>';
-                                                echo '<td>'.$data['Position'].'</td>';
-                                                echo '<td>'.$data['Description'].'</td>';
-                                                echo '<td>'.$data['Alleles'].'</td>';
+                                               if ($species==="Prunus persica"){
+                                                    
+                                                    echo '<td><a target = "_blank" href="https://www.rosaceae.org/gb/gbrowse/prunus_persica/?name='.$data['Variant ID'].'">'.$data['Variant ID'].'</a></td>';
+                                                    echo '<td>'.$data['Position'].'</td>';
+                                                    echo '<td>'.$data['Alleles'].'</td>';
+                                                }
+                                                else{
+                                                    echo '<td><a target = "_blank" href="http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v='.$data['Variant ID'].';vdb=variation;vf=1">'.$data['Variant ID'].'</a></td>';
+                                                    echo '<td>'.$data['Position'].'</td>';
+                                                    echo '<td>'.$data['Description'].'</td>';
+                                                    echo '<td>'.$data['Alleles'].'</td>';
+                                                }
+                                           
+                                                //echo '<td>'.$data['Variant ID'].'</td>';
+                                                
 
                                                 echo "</tr>";
                                             }
