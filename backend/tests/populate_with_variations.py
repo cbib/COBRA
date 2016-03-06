@@ -458,7 +458,7 @@ variations_col.insert(variation_table)
 ###################################################################################################################
 
 variation_table={
-	"data_file":"PRUNUS/prunus_persica/SNP/IRSC_9K_peach_SNP_array_working_version.xls",
+	"data_file":"PRUNUS/prunus_persica/SNP/IRSC_9K_peach_SNP_array_work_version.xls",
 	"species":"Prunus persica",
 	"src":"Gene ID",
 	"src_version":"International Rosaceae SNP Consortium (IRSC)",

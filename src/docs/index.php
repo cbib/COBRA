@@ -127,7 +127,16 @@ make_species_list(find_species_list($speciesCollection),"../..");
 echo '<div id="doc_pages">';
 
 
+    echo '<div id="section_upload">';
+        echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
 
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
+
+                Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
+
+                <input type="submit" value="Upload File" name="submit">
+              </form>
+          </div>';
     echo '<div id="section_documents">';
     $db=mongoConnector();
     //$docsCollection = new Mongocollection($db, "docs");
@@ -251,16 +260,7 @@ echo '<div id="doc_pages">';
 
 
     echo'</div>';
-    echo '<div id="section_upload">';
-        echo '<form action="#" id="myForm" method="post" enctype="multipart/form-data">
-
-                <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
-
-                Select file to upload: <input type="file" name="fileToUpload" id="fileToUpload">
-
-                <input type="submit" value="Upload File" name="submit">
-              </form>
-          </div>';
+    
 echo '</div>';
 //phpinfo();
 

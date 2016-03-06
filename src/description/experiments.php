@@ -65,6 +65,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  		
  	}
  	##http://www.ncbi.nlm.nih.gov/pubmed/19821986
+    #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
  	##EXPERIMENT DETAILS
  	echo'<div class="container" background-color="blue">';
  	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
@@ -160,7 +161,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   		<dt>design</dt>
   		<dd>'.$assay_info['design'].'</dd>
   		<dt>Dataset repository</dt>';
-  		echo '<dd><a href=\"'.$deposit_info['repository'].'\">'.$deposit_info['repository'].'</a></dd>
+  		echo '<dd><a href="'.$deposit_info['repository'].'">'.$deposit_info['repository'].'</a></dd>
   		<dt>Sample description</dt>
   		<dd>'.$deposit_info['sample_description_url'].'</dd>
 	</dl>';

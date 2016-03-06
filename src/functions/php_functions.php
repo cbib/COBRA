@@ -478,7 +478,7 @@ function display_statistics(){
                         }
 
                     }
-                    $stat_string.= '<h4>Plant Virus interactions: '.$total_pvi.'</h4>';
+                    $stat_string.= '<h4>Plant-Virus [HPIDB + Literature] interactions: '.$total_pvi.'</h4>';
                     
                     $pp_biogrid_fields=array(array('$match' => array('origin'=>'BIOGRID')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
                     $cursor_ppi_biogrid=$pp_interactionsCollection->aggregate($pp_biogrid_fields);
@@ -490,7 +490,7 @@ function display_statistics(){
 
                     }
                     
-                    $stat_string.= '<h4>Biogrid Plant Plant interactions: '.$total_ppi_biogrid.'</h4>';
+                    $stat_string.= '<h4>Biogrid Plant-Plant interactions: '.$total_ppi_biogrid.'</h4>';
                     $pp_intact_fields=array(array('$match' => array('origin'=>'INTACT')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
                     $cursor_ppi_intact=$pp_interactionsCollection->aggregate($pp_intact_fields);
                     $total_ppi_intact=0;
@@ -501,7 +501,9 @@ function display_statistics(){
 
                     }
                     
-                    $stat_string.= '<h4>Intact Plant Plant interactions: '.$total_ppi_intact.'</h4>';
+                    $stat_string.= '<h4>Intact Plant-Plant interactions: '.$total_ppi_intact.'</h4>';
+                    $stat_string.= '<h4>String Plant-Plant interactions: 25382632</h4>';
+
                     $stat_string.= '<h4>Species : '.$speciesCollection->count().'</h4>';
 
                     $cursor_species=$speciesCollection->aggregate(array(
@@ -814,10 +816,26 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 
 
 
-function load_and_display_variations_result(MongoCollection $variation_collection,array $gene_id,$species='null'){
+function load_and_display_variations_result(MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null'){
     
     
-    $var_results=$variation_collection->aggregate(array(
+    
+    if ($species==="Prunus persica"){
+        foreach ($gene_id as $gene) {
+            $gene_position_cursor=$full_mappings_collection->find(array('mapping_file.Gene ID'=>$gene),array('mapping_file.Gene Start'=>1,'mapping_file.Gene End'=>1));
+            var_dump($gene_position_cursor);
+        }
+//        $var_results=$variation_collection->aggregate(array(
+//                    array('$match' => array('species'=> $species)),  
+//                    array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+//                    array('$unwind'=>'$mapping_file'),
+//                    array('$match' =>  array('mapping_file.Gene ID'=>array('$in'=>$gene_id))), 
+//                    array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
+//
+//                ));
+    }
+    else{
+        $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
                     array('$unwind'=>'$mapping_file'),
@@ -825,6 +843,8 @@ function load_and_display_variations_result(MongoCollection $variation_collectio
                     array('$project'=>  array('mapping_file.Variant ID'=> 1,'mapping_file.Gene ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Description'=>1, 'mapping_file.Alleles'=>1))
 
                 ));
+    }
+    
     
 
     if (count($var_results['result'])>0){
