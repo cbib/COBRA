@@ -214,6 +214,15 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     }
                 }
             }
+            if (isset($result['mapping_file']['Gene Start'])&& $result['mapping_file']['Gene Start']!='' && $result['mapping_file']['Gene Start']!='NA'){
+                $gene_start=(int)$result['mapping_file']['Gene Start'];
+            }
+            if (isset($result['mapping_file']['Gene End'])&& $result['mapping_file']['Gene End']!='' && $result['mapping_file']['Gene End']!='NA'){
+                $gene_end=(int)$result['mapping_file']['Gene End'];
+            }
+            if (isset($result['mapping_file']['Chromosome'])&& $result['mapping_file']['Chromosome']!='' && $result['mapping_file']['Chromosome']!='NA'){
+                $chromosome=$result['mapping_file']['Chromosome'];
+            }
             if (isset($result['mapping_file']['Gene ID 2'])&& $result['mapping_file']['Gene ID 2']!=''&& $result['mapping_file']['Gene ID 2']!="NA"){
                 if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE){
                     array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
@@ -292,7 +301,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             // left side div
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
-                    load_and_display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score);
+                    load_and_display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score,$gene_start,$gene_end,$chromosome);
                     //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;

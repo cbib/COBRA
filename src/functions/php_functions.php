@@ -730,7 +730,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
 
 
 
-function load_and_display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null'){
+function load_and_display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
    echo'<div id="section_description"><B>'.$gene_id[0].'</B> ';for ($i = 0; $i < $score; $i++) { 
                    echo '<i class="fa fa-star"></i>';
                 };echo'<B class="right"><i>'.$species.'</i></B>
@@ -814,6 +814,9 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
                         echo '</div>';
                     }
                 }
+                echo'<div id="sequence_info"> <B>Location</B> : ';
+                echo $chromosome.':'.$gene_start.'-'.$gene_end;
+                echo '</div>';
                 //$transcript_count=0;
                 
                 
