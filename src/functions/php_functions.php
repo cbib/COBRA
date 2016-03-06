@@ -1487,7 +1487,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
 
                         echo'
                         <div class="pv_interaction">';
-                            $headers=array('database identifier','protein alias','Uniprot','Pubmed','author','virus','detection_method');
+                            $headers=array('Database identifier','Protein alias','Uniprot','Pubmed','Author','Pathogen','Detection_method');
                             $values=array();
                             foreach ($result['result'] as $value) {
                                 
