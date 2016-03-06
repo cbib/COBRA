@@ -199,16 +199,16 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
-                  <!--<li';if($uri == "/src/wiki"){ echo ' class="active"'; } echo '>
-                    <a href="'.$path.'/src/wiki/">
+                  <li';if($uri == "/src/"){ echo ' class="active"'; } echo '>
+                    <a href="'.$path.'/src/">
                        <i class="fa fa-home"></i> 
-                       <span>About COBRA</span>
+                       <span>Home</span>
                     </a>
-               	</li>-->
+               	</li>
                   <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
                      <a href="'.$path.'/src/search/">
                         <i class="fa fa-search"></i> 
-                        <span>Home</span>
+                        <span>Search</span>
                      </a>
                   </li>
                   <li>
@@ -223,7 +223,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                   </li>
                   <li >
                      <a href="'.$path.'/src/docs/">
-                        <i class="fa fa-upload"></i> <span>Admin</span>
+                        <i class="fa fa-upload"></i> <span>Uploads</span>
                      </a>
                   </li>
                </ul>
