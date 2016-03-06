@@ -21,20 +21,24 @@ require('src/session/maintenance-session.php');
 
 
 
-define('CONTENT_EXT', '.md');
-//define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
-//define('CONTENT_DIR', ROOT_DIR .'wiki/content/');
 //define('CONTENT_EXT', '.md');
-//define('LIB_DIR', ROOT_DIR .'wiki/lib/');
-//define('PLUGINS_DIR', ROOT_DIR .'wiki/plugins/');
-//define('THEMES_DIR', ROOT_DIR .'wiki/themes/');
-//define('CACHE_DIR', LIB_DIR .'wiki/cache/');
+
 
 new_cobra_header(".");
 new_cobra_body(is_logged($_SESSION['login']), "Home","section_home",".");
 $db=mongoConnector();
 $grid = $db->getGridFS();
 $speciesCollection = new Mongocollection($db, "species");
+$samplesCollection = new MongoCollection($db, "samples");
+$full_mappingsCollection = new Mongocollection($db, "full_mappings");
+$mappingsCollection = new Mongocollection($db, "mappings");
+$measurementsCollection = new Mongocollection($db, "measurements");
+$virusesCollection = new Mongocollection($db, "viruses");
+$interactionsCollection = new Mongocollection($db, "interactions");
+$sequencesCollection = new Mongocollection($db, "sequences");
+$orthologsCollection = new Mongocollection($db, "orthologs");
+$GOCollection = new Mongocollection($db, "gene_ontology");
+
 //echo '
 //<main id="content" class="homepage">
 //    <br>
@@ -152,40 +156,40 @@ echo'</hr>';
 
 
 
-        $stat_string="";
-        $today = date("F j, Y, g:i a");
-        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
-
-        $stat_string.='<h4>Last update : '.$today.'</h4>
-                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
-                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
-
-                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
-
-                    $cursor=$speciesCollection->aggregate(array(
-                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                    ));
-                    $stat_string.='<h4>Species per top_level</h4>';
-                    foreach ($cursor['result'] as $doc){
-                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-                    }
-                    $cursor=$virusCollection->aggregate(array(
-                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
-                    ));
-                    $stat_string.='<h4> Pathogens per top_level</h4>';
-                    foreach ($cursor['result'] as $doc){
-                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
-                    }
-
-
-
-                    
-        echo' 
-        </div>
-        <div class="col-md-6" id="right_col">';
-        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
-
-        echo' </div>';
+//        $stat_string="";
+//        $today = date("F j, Y, g:i a");
+//        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+//
+//        $stat_string.='<h4>Last update : '.$today.'</h4>
+//                    <h4>Number of samples : '.$samplesCollection->count().'</h4>
+//                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>
+//
+//                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
+//
+//                    $cursor=$speciesCollection->aggregate(array(
+//                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+//                    ));
+//                    $stat_string.='<h4>Species per top_level</h4>';
+//                    foreach ($cursor['result'] as $doc){
+//                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+//                    }
+//                    $cursor=$virusesCollection->aggregate(array(
+//                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+//                    ));
+//                    $stat_string.='<h4> Pathogens per top_level</h4>';
+//                    foreach ($cursor['result'] as $doc){
+//                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+//                    }
+//
+//
+//
+//                    
+//        echo' 
+//        </div>
+//        <div class="col-md-6" id="right_col">';
+//        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
+//
+//        echo' </div>';
 
 
     //        echo'<div class="col-md-12" >

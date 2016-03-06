@@ -80,14 +80,14 @@ else{
                 <div class="form-group">
                   <label for="login" class="col-sm-2 control-label">Username </label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="login" name="login" placeholder="Username">
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Username" required>
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label for="pwd" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Password">
+                    <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Password" required>
                   </div>
                 </div>
                 
@@ -102,7 +102,7 @@ else{
                 </div>-->
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="submit"  value="Connexion" class="btn btn-default">Sign in</button>
+                    <button type="submit" name="submit"  value="Connexion" class="btn btn-default" >Sign in</button>
                   </div>
                 </div>
 		</fieldset>
@@ -166,7 +166,7 @@ else{
 				{
 						// Erreur dans le login et / ou dans le mot de passe ...
                         error_log("error with login or password");
-						new_cobra_body(False);
+						new_cobra_body(False,"wrong login form","section_wrong_login",".");
 						echo '<p>Sorry, you may have made an error in the input identifiers... </p>'."\n";
 						
 				}
@@ -175,7 +175,8 @@ else{
 			else
 			{
 				// il n'y a personne qui répond à ces 2 identifiants
-				echo '<p>Sorry, you may have made an error with the input identifiers </p>'."\n";
+                new_cobra_body(False,"empty login form","section_empty_login",".");
+				echo '<p>Sorry, you have submitted empty identifiers </p>'."\n";
 			};
 		} // end of (isset($_POST['submit']))
 	}

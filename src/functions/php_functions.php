@@ -449,6 +449,58 @@ function display_sample_table($cursor,$samplesCollection){
     }
     echo'</tbody></table>'; 
 }
+function display_statistics(){
+    $db=mongoConnector();
+    $speciesCollection = new Mongocollection($db, "species");
+    $sampleCollection = new Mongocollection($db, "samples");
+    $virusCollection = new Mongocollection($db, "viruses");
+    $measurementsCollection = new Mongocollection($db, "measurements");
+    //$publicationsCollection = new Mongocollection($db, "publications");
+    $pp_interactionsCollection = new Mongocollection($db, "pp_interactions");
+    $pv_interactionsCollection = new Mongocollection($db, "pv_interactions");
+    
+    echo'<div class="container">';
+        $stat_string="";
+        $today = date("F j, Y, g:i a");
+        //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+
+        $stat_string.='<h4>Last update : '.$today.'</h4>
+                    <h4>Number of samples : '.$sampleCollection->count().'</h4>
+                    <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>';
+                    
+                    $fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                    $cursor_ppi=$pv_interactionsCollection->aggregate($fields);
+                    var_dump($cursor_ppi);
+//                    foreach ($cursor_ppi as $value) {
+//                        foreach ($value as $mapping_file) {
+//                            $stat_string.= '<h4>Number of plant plant interactions: '.$mapping_file->count().'</h4>';
+// 
+//                        }
+//
+//                    }
+                    $stat_string.= '<h4>Number of plant virus interactions: '.$pv_interactionsCollection->count().'</h4>
+
+                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
+
+                    $cursor_species=$speciesCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<h4>Species per top_level</h4>';
+                    foreach ($cursor_species['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                    }
+                    $cursor_virus=$virusCollection->aggregate(array(
+                    array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                    ));
+                    $stat_string.='<h4> Pathogens per top_level</h4>';
+                    foreach ($cursor_virus['result'] as $doc){
+                            $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                    }
+        add_accordion_panel($stat_string, "Some statistics", "stat_panel");
+
+
+    echo' </div>';
+}
 function make_user_preferences($user,Mongocollection $us){
     echo '<div id="user_pref">';
         echo '<h2> User preferences</h2>';

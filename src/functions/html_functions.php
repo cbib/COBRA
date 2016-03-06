@@ -183,15 +183,85 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
     
 
     <body class="skin-black">
-    <!-- header logo: style can be found in header.less -->
-
-    	<div class="wrapper row-offcanvas row-offcanvas-left">
-        <!-- Left side column. contains the logo and sidebar -->
+        <!-- header logo: style can be found in header.less -->
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
         	<aside class="left-side sidebar-offcanvas">     
             <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <a href="'.$path.'/src/search/">
+                <section class="sidebar">
+                <!-- Sidebar user panel -->';
+    if ($IsLogged){
+    
+                echo'<a href="'.$path.'/src/search/">
+                         <div class="cobra-logo">
+                             <img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
+                             <p>COBRA</p>
+                         </div>
+                      </a>
+
+                     <!-- sidebar menu: : style can be found in sidebar.less -->
+                     <ul class="sidebar-menu">
+                         <li';if($uri == "/" || $uri == "/index.php"){ echo ' class="active"'; } echo '>
+                             <a href="'.$path.'/">
+                                <i class="fa fa-home"></i> 
+                                <span>Home</span>
+                             </a>
+                         </li>
+                         <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
+                             <a href="'.$path.'/src/search/">
+                                <i class="fa fa-search"></i> 
+                                <span>Search</span>
+                             </a>
+                         </li>
+                         <li>
+                             <a href="'.$path.'/src/description/">
+                                 <i class="fa fa-leaf"></i> <span>Data</span>
+                             </a>
+                         </li>
+                         <li >
+                             <a href="'.$path.'/src/tools/">
+                                 <i class="fa fa-cogs"></i> <span>Tools</span>
+                             </a>
+                         </li>
+                         <li >
+                             <a href="'.$path.'/src/docs/">
+                                <i class="fa fa-upload"></i> <span>Uploads</span>
+                             </a>
+                         </li>
+                     </ul>
+                </section>
+            <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">     
+                <!-- Content Header (Page header) -->
+                <section class="content-header">';
+            	
+            	
+                echo '<h1>'.$type.'<small>COBRA a plant virus interaction database</small></h1>';
+            	
+            	
+            	
+            	echo '<ol class="breadcrumb">
+                        <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/"><i class="fa fa-dashboard"></i> Home</a></li>-->
+                        <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">description</a></li>-->
+                        <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">wiki home</a></li>-->
+                        <li><a href="'.$path.'/">Home page</a></li>
+                        <li><a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>
+                        <li><a href="'.$path.'/login.php?act=logout">Logout</a></li>
+                        </ol>';
+                
+                echo '
+                  
+               	</section>
+
+                <!-- Main content -->
+                <div id="shift_line"></div>
+                <section class="container" id="'.$section_id.'">';
+    }
+    else{
+        echo'    <a href="'.$path.'/src/search/">
                 <div class="cobra-logo">
                     <img src="'.$path.'/images/cobra-icon.png" alt="COBRA logo" />
                     <p>COBRA</p>
@@ -199,33 +269,13 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
             	<ul class="sidebar-menu">
-                  <li';if($uri == "/"){ echo ' class="active"'; } echo '>
-                    <a href="'.$path.'/">
+                  <li';if($uri == "/login.php"){ echo ' class="active"'; } echo '>
+                    <a href="'.$path.'/login.php">
                        <i class="fa fa-home"></i> 
-                       <span>Home</span>
+                       <span>Login</span>
                     </a>
                	</li>
-                  <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
-                     <a href="'.$path.'/src/search/">
-                        <i class="fa fa-search"></i> 
-                        <span>Search</span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="'.$path.'/src/description/">
-                        <i class="fa fa-leaf"></i> <span>Data</span>
-                     </a>
-                  </li>
-                  <li >
-                     <a href="'.$path.'/src/tools/">
-                        <i class="fa fa-cogs"></i> <span>Tools</span>
-                     </a>
-                  </li>
-                  <li >
-                     <a href="'.$path.'/src/docs/">
-                        <i class="fa fa-upload"></i> <span>Uploads</span>
-                     </a>
-                  </li>
+                  
                </ul>
             </section>
             <!-- /.sidebar -->
@@ -237,30 +287,17 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
             <section class="content-header">';
             	
             	
-               echo '<h1>'.$type.'<small>COBRA a plant virus interaction database</small></h1>';
-            	
-            	
-            	
-            	echo '<ol class="breadcrumb">
-                  <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/"><i class="fa fa-dashboard"></i> Home</a></li>-->
-                  <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/src/description/">description</a></li>-->
-                  <!--<li><a href="https://services.cbib.u-bordeaux2.fr/cobra/wiki/">wiki home</a></li>-->
-                  <li><a href="'.$path.'/">Home page</a></li>
-                  ';if ($IsLogged){echo '
-                  	<li><a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">'.$_SESSION['firstname'].' '.$_SESSION['lastname'].'</a></li>';
-                  echo '<li><a href="'.$path.'/login.php?act=logout">Logout</a></li>';}
-                  else{
-                  	echo '<li><a href="'.$path.'/login.php">Login</a></li>';
-                  }
-                  echo '
-                  
-               	
-               </ol>
+            echo '<h1>'.$type.'<small>COBRA a plant virus interaction database</small></h1>';
+            echo '<ol class="breadcrumb">';
+                echo '<li><a href="'.$path.'/login.php">Login</a></li>
+
+                  </ol>
             </section>
 
             <!-- Main content -->
             <div id="shift_line"></div>
             <section class="container" id="'.$section_id.'">';
+    }
                   //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
                 //echo $uri;
                   //';if($uri == "/src/wiki"){ echo 'class="active"'; } echo '
@@ -282,7 +319,8 @@ echo'
                     <!--<div class="row">-->
                         
                         <section class="col-md-12" id="footer">
-                             <p class="text-muted" style="text-align: right">
+                             <p class="text-muted" style="text-align: left">
+                                <br/>
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
                             </p>
                             <p class="text-muted" style="text-align: right">
