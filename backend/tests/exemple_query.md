@@ -267,3 +267,14 @@ for xp in all_xp:
 	* for [C. melo infection](#Transcriptomics of infection of C. melo), the values are "fold change" or "log(fold change)?"
 
 
+$pp_intact_fields=array(array('$match' => array('origin'=>'BIOGRID')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                    $cursor_ppi_intact=$pp_interactionsCollection->aggregate($pp_intact_fields);
+                    $total_ppi_intact=0;
+                    foreach ($cursor_ppi_intact['result'] as $value) {
+                        foreach ($value['mapping_file'] as $mapping_file) {
+                            $total_ppi_intact++;
+                        }
+
+                    }
+                    
+                    $stat_string.= '<h4>Number of Intact plant plant interactions: '.$total_ppi_intact.'</h4>';

@@ -44,23 +44,23 @@ echo '<br/>';
 echo '<div id="data_description">';
 
 
-$cursor=find_all_xp_name($samplesCollection);
-$table_string="";
+$experiment_cursor=find_all_xp_name($samplesCollection);
+$experiment_table_string="";
 
 ###DISPLAY EXPERIMENT LIST
 
 //$table_string.='<h1>COBRA Datasets</h1>';
  
-$table_string.='<ul>';
+$experiment_table_string.='<ul>';
  //$table_string.='<a href=experiments.php>test</a>';
-foreach($cursor as $line) {
+foreach($experiment_cursor as $line) {
  	$title=$line['name'];
  	//echo str_replace(' ','\s',$title);
-	$table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
+	$experiment_table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
 }
  //makeDatatableFromFind($cursor);
-$table_string.='</ul>';
-add_accordion_panel($table_string, "Experiments","Experiments_lists");
+$experiment_table_string.='</ul>';
+add_accordion_panel($experiment_table_string, "Experiments","Experiments_lists");
 
 echo'<br/>';
 
@@ -76,119 +76,119 @@ $table_string.='<h2> Mapping lists</h2> <div class="container"><ul>';
  //makeDatatableFromFind($cursor);
 $table_string.='</div>';
 */
-$table_string="";
+$mapping_table_string="";
 ###MAPPING REQUEST
 
-$cursor=find_all_mappings($mappingsCollection);
+$mapping_cursor=find_all_mappings($mappingsCollection);
 
 
 ###MAPPING TABLE
 
-$table_string.='<table id="mapping" class="table table-hover">';
+$mapping_table_string.='<table id="mapping" class="table table-hover">';
 //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
-$table_string.='<thead><tr>';
+$mapping_table_string.='<thead><tr>';
 	
 	//recupere le titre
 	//$table_string.='<th>type</th>';
-	$table_string.='<th>Source type</th>';
-	$table_string.='<th>Version</th>';
-	$table_string.='<th>Target Type</th>';
-	$table_string.='<th>Version</th>';
-	$table_string.='<th>Organism</th>';
+	$mapping_table_string.='<th>Source type</th>';
+	$mapping_table_string.='<th>Version</th>';
+	$mapping_table_string.='<th>Target Type</th>';
+	$mapping_table_string.='<th>Version</th>';
+	$mapping_table_string.='<th>Organism</th>';
 
 	
 	//fin du header de la table
-$table_string.='</tr></thead>';
+$mapping_table_string.='</tr></thead>';
 	
 //Debut du corps de la table
-$table_string.='<tbody>';
+$mapping_table_string.='<tbody>';
 
-foreach($cursor as $line) {
-$table_string.='<tr>';
+foreach($mapping_cursor as $line) {
+$mapping_table_string.='<tr>';
 	//$table_string.='<td>'.$line['type'].'</td>';
-	$table_string.='<td>'.$line['src'].'</td>';
-	$table_string.='<td>'.$line['src_version'].'</td>';
-	$table_string.='<td>'.$line['tgt'].'</td>';
-	$table_string.='<td>'.$line['tgt_version'].'</td>';
-	$table_string.='<td>'.$line['species'].'</td>';
-$table_string.='</tr>';
+	$mapping_table_string.='<td>'.$line['src'].'</td>';
+	$mapping_table_string.='<td>'.$line['src_version'].'</td>';
+	$mapping_table_string.='<td>'.$line['tgt'].'</td>';
+	$mapping_table_string.='<td>'.$line['tgt_version'].'</td>';
+	$mapping_table_string.='<td>'.$line['species'].'</td>';
+$mapping_table_string.='</tr>';
 
 }
-$table_string.='</tbody></table>';
+$mapping_table_string.='</tbody></table>';
 
 
-add_accordion_panel($table_string, "Mappings", "mapping_table");
+add_accordion_panel($mapping_table_string, "Mappings", "mapping_table");
 echo'<br/>';
 
-$table_string="";
+$species_table_string="";
 
 ###SPECIES REQUEST
 
-$cursor=find_all_species($speciesCollection);
+$species_cursor=find_all_species($speciesCollection);
 
 
 ###SPECIES TABLE
 
 
 
-$table_string.='<table id="species" class="table table-hover">';
-$table_string.='<thead><tr>';
+$species_table_string.='<table id="species" class="table table-hover">';
+$species_table_string.='<thead><tr>';
 	
 	//recupere le titre
-	$table_string.='<th>Full name</th>';
-	$table_string.='<th>Species</th>';
-	$table_string.='<th>Aliases</th>';
-	$table_string.='<th>Top level</th>';
+	$species_table_string.='<th>Full name</th>';
+	$species_table_string.='<th>Species</th>';
+	$species_table_string.='<th>Aliases</th>';
+	$species_table_string.='<th>Top level</th>';
 	//$table_string.='<th>tgt</th>';
 	//$table_string.='<th>tgt_version</th>';
 	//$table_string.='<th>species</th>';
 
 	
 	//fin du header de la table
-$table_string.='</tr></thead>';
+$species_table_string.='</tr></thead>';
 	
 //Debut du corps de la table
-$table_string.='<tbody>';
+$species_table_string.='<tbody>';
 
-foreach($cursor['result'] as $line) {
-$table_string.='<tr>';
-	$table_string.='<td>'.$line['full_name'].'</td>';
-	$table_string.='<td>'.$line['species'].'</td>';
+foreach($species_cursor['result'] as $line) {
+$species_table_string.='<tr>';
+	$species_table_string.='<td>'.$line['full_name'].'</td>';
+	$species_table_string.='<td>'.$line['species'].'</td>';
 	if (is_array($line['aliases'])){
-		$table_string.='<td>';
+		$species_table_string.='<td>';
 		for ($i=0;$i<count($line['aliases']);$i++){
 		//foreach ($line['aliases'] as $alias){
 			if ($i==count($line['aliases'])-1){
-				$table_string.=$line['aliases'][$i];
+				$species_table_string.=$line['aliases'][$i];
 			}
 			else{
-				$table_string.=$line['aliases'][$i].', ';
+				$species_table_string.=$line['aliases'][$i].', ';
 			}
 			
 			//echo $alias.' ';
 		}
-		$table_string.='</td>';
+		$species_table_string.='</td>';
 		
 	}
 	else{
-		$table_string.='<td>'.$line['aliases'].'</td>';
+		$species_table_string.='<td>'.$line['aliases'].'</td>';
 		}
-	$table_string.='<td>'.$line['top'].'</td>';
+	$species_table_string.='<td>'.$line['top'].'</td>';
 	//$table_string.='<td>'.$line['tgt'].'</td>';
 	//$table_string.='<td>'.$line['tgt_version'].'</td>';
 	//$table_string.='<td>'.$line['species'].'</td>';
-$table_string.='</tr>';
+$species_table_string.='</tr>';
 
 }
-$table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Species", "Species_table");
+$species_table_string.='</tbody></table>';
+add_accordion_panel($species_table_string, "Species", "Species_table");
 echo'<br/>';
 
-$table_string="";
+$virus_table_string="";
 
 ###VIRUSES REQUEST
 
-$cursor=find_all_viruses($virusesCollection);
+$virus_cursor=find_all_viruses($virusesCollection);
 
 
 
@@ -196,59 +196,59 @@ $cursor=find_all_viruses($virusesCollection);
 
 
 
-$table_string.='<table id="virus" class="table table-hover">';
+$virus_table_string.='<table id="virus" class="table table-hover">';
 
 //$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
-$table_string.='<thead><tr>';
+$virus_table_string.='<thead><tr>';
 	
 	//recupere le titre
-	$table_string.='<th>full name</th>';
-	$table_string.='<th>species</th>';
-	$table_string.='<th>Aliases</th>';
-	$table_string.='<th>top level</th>';
+	$virus_table_string.='<th>full name</th>';
+	$virus_table_string.='<th>species</th>';
+	$virus_table_string.='<th>Aliases</th>';
+	$virus_table_string.='<th>top level</th>';
 	//$table_string.='<th>tgt</th>';
 	//$table_string.='<th>tgt_version</th>';
 	//$table_string.='<th>species</th>';
 
 	
 	//fin du header de la table
-$table_string.='</tr></thead>';
+$virus_table_string.='</tr></thead>';
 	
 //Debut du corps de la table
-$table_string.='<tbody>';
+$virus_table_string.='<tbody>';
 
-foreach($cursor['result'] as $line) {
-$table_string.='<tr>';
-	$table_string.='<td>'.$line['full_name'].'</td>';
-	$table_string.='<td>'.$line['species'].'</td>';
+foreach($virus_cursor['result'] as $line) {
+$virus_table_string.='<tr>';
+	$virus_table_string.='<td>'.$line['full_name'].'</td>';
+	$virus_table_string.='<td>'.$line['species'].'</td>';
 	if (is_array($line['aliases'])){
-		$table_string.='<td>';
+		$virus_table_string.='<td>';
 		for ($i=0;$i<count($line['aliases']);$i++){
 		//foreach ($line['aliases'] as $alias){
 			if ($i==count($line['aliases'])-1){
-				$table_string.=$line['aliases'][$i];
+				$virus_table_string.=$line['aliases'][$i];
 			}
 			else{
-				$table_string.=$line['aliases'][$i].', ';
+				$virus_table_string.=$line['aliases'][$i].', ';
 			}
 			
 			//echo $alias.' ';
 		}
-		$table_string.='</td>';
+		$virus_table_string.='</td>';
 		
 	}
 	else{
-		$table_string.='<td>'.$line['aliases'].'</td>';
+		$virus_table_string.='<td>'.$line['aliases'].'</td>';
 		}
-	$table_string.='<td>'.$line['top'].'</td>';
+	$virus_table_string.='<td>'.$line['top'].'</td>';
 	//$table_string.='<td>'.$line['tgt'].'</td>';
 	//$table_string.='<td>'.$line['tgt_version'].'</td>';
 	//$table_string.='<td>'.$line['species'].'</td>';
-$table_string.='</tr>';
+$virus_table_string.='</tr>';
 
 }
-$table_string.='</tbody></table>';
-add_accordion_panel($table_string, "Viruses", "virus_table");
+$virus_table_string.='</tbody></table>';
+add_accordion_panel($virus_table_string, "Viruses", "virus_table");
 echo'<br/>';
 
 

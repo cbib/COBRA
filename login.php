@@ -165,8 +165,8 @@ else{
 				else
 				{
 						// Erreur dans le login et / ou dans le mot de passe ...
-                        error_log("error with login or password");
-						new_cobra_body(False,"wrong login form","section_wrong_login",".");
+                        //error_log("error with login or password");
+						new_cobra_body(False,"Wrong login form","section_wrong_login",".");
 						echo '<p>Sorry, you may have made an error with login or password... </p>'."\n";
 						
 				}
@@ -175,7 +175,7 @@ else{
 			else
 			{
 				// il n'y a personne qui répond à ces 2 identifiants
-                new_cobra_body(False,"empty login form","section_empty_login",".");
+                new_cobra_body(False,"Empty login form","section_empty_login",".");
 				echo '<p>Sorry, you have submitted empty identifiers </p>'."\n";
 			};
 		} // end of (isset($_POST['submit']))

@@ -128,6 +128,10 @@ $(document).ready(function() {
     $('#blast_jobs').DataTable( {
         responsive: true    
     });
+    $('#history').DataTable( {
+        responsive: true    
+    });
 
 });
+
 </script>

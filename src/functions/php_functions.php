@@ -468,19 +468,41 @@ function display_statistics(){
                     <h4>Number of samples : '.$sampleCollection->count().'</h4>
                     <h4>Number of normalized measures : '.$measurementsCollection->count().'</h4>';
                     
-                    $fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
-                    $cursor_ppi=$pv_interactionsCollection->aggregate($fields);
-                    var_dump($cursor_ppi);
-//                    foreach ($cursor_ppi as $value) {
-//                        foreach ($value as $mapping_file) {
-//                            $stat_string.= '<h4>Number of plant plant interactions: '.$mapping_file->count().'</h4>';
-// 
-//                        }
-//
-//                    }
-                    $stat_string.= '<h4>Number of plant virus interactions: '.$pv_interactionsCollection->count().'</h4>
+                    $pv_fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                    $cursor_pvi=$pv_interactionsCollection->aggregate($pv_fields);
+                    //var_dump($cursor_ppi);
+                    $total_pvi=0;
+                    foreach ($cursor_pvi['result'] as $value) {
+                        foreach ($value['mapping_file'] as $mapping_file) {
+                            $total_pvi++;
+                        }
 
-                    <h4>Number of species : '.$speciesCollection->count().'</h4>';
+                    }
+                    $stat_string.= '<h4>Number of plant virus interactions: '.$total_pvi.'</h4>';
+                    
+                    $pp_biogrid_fields=array(array('$match' => array('origin'=>'BIOGRID')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                    $cursor_ppi_biogrid=$pp_interactionsCollection->aggregate($pp_biogrid_fields);
+                    $total_ppi_biogrid=0;
+                    foreach ($cursor_ppi_biogrid['result'] as $value) {
+                        foreach ($value['mapping_file'] as $mapping_file) {
+                            $total_ppi_biogrid++;
+                        }
+
+                    }
+                    
+                    $stat_string.= '<h4>Number of Biogrid plant plant interactions: '.$total_ppi_biogrid.'</h4>';
+                    $pp_intact_fields=array(array('$match' => array('origin'=>'INTACT')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                    $cursor_ppi_intact=$pp_interactionsCollection->aggregate($pp_intact_fields);
+                    $total_ppi_intact=0;
+                    foreach ($cursor_ppi_intact['result'] as $value) {
+                        foreach ($value['mapping_file'] as $mapping_file) {
+                            $total_ppi_intact++;
+                        }
+
+                    }
+                    
+                    $stat_string.= '<h4>Number of Intact plant plant interactions: '.$total_ppi_intact.'</h4>';
+                    $stat_string.= '<h4>Number of species : '.$speciesCollection->count().'</h4>';
 
                     $cursor_species=$speciesCollection->aggregate(array(
                     array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
