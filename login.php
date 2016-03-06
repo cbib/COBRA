@@ -167,7 +167,7 @@ else{
 						// Erreur dans le login et / ou dans le mot de passe ...
                         error_log("error with login or password");
 						new_cobra_body(False,"wrong login form","section_wrong_login",".");
-						echo '<p>Sorry, you may have made an error in the input identifiers... </p>'."\n";
+						echo '<p>Sorry, you may have made an error with login or password... </p>'."\n";
 						
 				}
 				
