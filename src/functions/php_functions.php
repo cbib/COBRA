@@ -1487,7 +1487,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
 
                         echo'
                         <div class="pv_interaction">';
-                            $headers=array('database identifier','protein alias','Uniprot','Pubmed','author','detection_method');
+                            $headers=array('database identifier','protein alias','Uniprot','Pubmed','author','virus','detection_method');
                             $values=array();
                             foreach ($result['result'] as $value) {
                                 
@@ -1551,6 +1551,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                                     
                                     //AUTHOR NAME
                                     array_push($values, $data['author_name']);
+                                    array_push($values, $data['virus']);
 
                                     //DETECTION METHOD
                                     $id_string_method="";
