@@ -30,7 +30,7 @@ logger.info("Running %s",sys.argv[0])
 # Get available variations and process them 
 genetic_markers_to_process=genetic_markers_col.find({"mapping_file":{"$exists":False}})
 
-logger.info("Found %d genetic marker tables to process",maps_to_process.count())
+logger.info("Found %d genetic marker tables to process",genetic_markers_to_process.count())
 
 for map_doc in genetic_markers_to_process:
 	# on recup le chemin du fichier
@@ -65,5 +65,5 @@ for map_doc in genetic_markers_to_process:
 
 	
 
-logger.info("Indexation on field \"mapping_file.Map ID\" from collection \"genetic maps\"")
-variations_col.create_index("mapping_file.Map ID",sparse=True)
+logger.info("Indexation on field \"mapping_file.Marker ID\" from collection \"genetic maps\"")
+variations_col.create_index("mapping_file.Marker ID",sparse=True, background=True)
