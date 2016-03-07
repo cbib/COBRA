@@ -21,5 +21,9 @@ gene_ontology_col=db.gene_ontology
 users_col=db.users
 sequences_col=db.sequences
 variations_col=db.variations
+genetic_maps_col=db.genetic_maps
+genetic_markers_col=db.genetic_markers
+qtls_col=db.qtls
+
 
 #fs = gridfs.GridFS(db)
