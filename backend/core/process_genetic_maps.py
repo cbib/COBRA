@@ -30,7 +30,7 @@ logger.info("Running %s",sys.argv[0])
 # Get available variations and process them 
 genetic_maps_to_process=genetic_maps_col.find({"mapping_file":{"$exists":False}})
 
-logger.info("Found %d genetic map tables to process",maps_to_process.count())
+logger.info("Found %d genetic map tables to process",genetic_maps_to_process.count())
 
 for map_doc in genetic_maps_to_process:
 	# on recup le chemin du fichier
