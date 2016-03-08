@@ -2475,7 +2475,9 @@ function make_species_list($cursor,$path='null'){
                                         <option disabled="disabled" value="">---</option>';   
                                 //Parcours de chaque ligne du curseur
                             foreach($cursor as $line) {
-                                    echo '<option value="'.$line.'">'.$line.'</option>';
+                                    if ($line!="Prunus armeniaca" && $line!="Prunus domestica"){
+                                        echo '<option value="'.$line.'">'.$line.'</option>';
+                                    }
                             }
                             echo '</select>
                                     <label for="search">for</label>

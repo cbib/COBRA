@@ -43,7 +43,7 @@ marker_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Chromosome','Position','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
 		"sheet_index":0,
 	}
 }
