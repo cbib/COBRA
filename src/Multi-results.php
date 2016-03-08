@@ -138,7 +138,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //            $page_load_time1 = number_format($time1, 3);
 //            echo "Debut du script: ".date("H:i:s", $timestart1);
 //            echo "<br>Fin du script: ".date("H:i:s", $timeend1);
-            echo "<br>Script for given species executed in " . $page_load_time1 . " sec";
+            //echo "<br>Script for given species executed in " . $page_load_time1 . " sec";
         }
 	}
 	catch ( MongoResultException $e )
