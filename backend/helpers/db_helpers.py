@@ -137,10 +137,12 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 					logger.info("value length :%d",len(values))
 					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
 				this_dict=dict(zip(column_keys,values))
-                                if isinstance(this_dict['Gene Start'],String):
-                                    this_dict['Gene Start']=int(this_dict['Gene Start'])
-                                if isinstance(this_dict['Gene End'],String):
-                                    this_dict['Gene Start']=int(this_dict['Gene End'])
+                                if 'Gene Start' in this_dict:
+                                    if isinstance(this_dict['Gene Start'],String):
+                                        this_dict['Gene Start']=int(this_dict['Gene Start'])
+                                if 'Gene End' in this_dict:
+                                    if isinstance(this_dict['Gene End'],String):
+                                        this_dict['Gene Start']=int(this_dict['Gene End'])
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))
