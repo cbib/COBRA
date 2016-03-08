@@ -216,11 +216,11 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     }
                 }
             }
-            if (isset($result['mapping_file']['Gene Start'])&& $result['mapping_file']['Gene Start']!='' && $result['mapping_file']['Gene Start']!='NA'){
-                $gene_start=(int)$result['mapping_file']['Gene Start'];
+            if (isset($result['mapping_file']['Start'])&& $result['mapping_file']['Start']!='' && $result['mapping_file']['Start']!='NA'){
+                $gene_start=(int)$result['mapping_file']['Start'];
             }
-            if (isset($result['mapping_file']['Gene End'])&& $result['mapping_file']['Gene End']!='' && $result['mapping_file']['Gene End']!='NA'){
-                $gene_end=(int)$result['mapping_file']['Gene End'];
+            if (isset($result['mapping_file']['End'])&& $result['mapping_file']['End']!='' && $result['mapping_file']['End']!='NA'){
+                $gene_end=(int)$result['mapping_file']['End'];
             }
             if (isset($result['mapping_file']['Chromosome'])&& $result['mapping_file']['Chromosome']!='' && $result['mapping_file']['Chromosome']!='NA'){
                 $chromosome=$result['mapping_file']['Chromosome'];
