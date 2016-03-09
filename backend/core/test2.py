@@ -30,6 +30,8 @@ logger.info("Running %s",sys.argv[0])
 species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 counter=0
+full_mappings_col.update({'species':'Prunus persica','mapping_file.Score_QTL':{ "$gt": 0 }},{"$set": {'mapping_file.$.Score_QTL': 0 } })
+
 for species in species_to_process:
 
    # need to rebuid the markers file by type:
@@ -46,11 +48,12 @@ for species in species_to_process:
     markers_to_process=list(genetic_markers_col.aggregate([
                             {'$project' : {'mapping_file':1,'_id':0}},
                             {'$unwind':'$mapping_file'},
-                            {'$match' :  {'mapping_file.Species':species['full_name'],'mapping_file.Position': {'$ne':""}}}, 
+                            {'$match' :  {'mapping_file.Species':species['full_name'],'mapping_file.Start': {'$ne':""}}}, 
                             {
                               '$project':
                                  {
-                                   'mapping_file.Position':1,
+                                   'mapping_file.Start':1,
+                                   'mapping_file.End':1,
                                    'mapping_file.Marker ID':1,
                                    'mapping_file.Map ID':1,
                                    'mapping_file.Chromosome':1,
@@ -72,7 +75,6 @@ for species in species_to_process:
     #                    counter+=1
     #                    logger.info("count: %d species : %s ",counter, species['full_name'])                   
     #logger.info("count: %d species : %s ",counter, species['full_name'])
-
     counter=0
     
     available_first_level_keys=[]
@@ -117,12 +119,12 @@ for species in species_to_process:
                 if len(qtl_to_process)>0 :
                     #print m['Marker ID']
                     
-
+                    gene_list=[]
                     genes_to_process=list(full_mappings_col.aggregate([
                         {'$match' : {'type':'full_table', 'species': species['full_name']}},  
                         {'$project' : {'mapping_file':1,'_id':0}},
                         {'$unwind':'$mapping_file'},
-                        {'$match' :  {'mapping_file.Chromosome': m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Position'] } }, { "mapping_file.Start": { "$lt": m['Position'] } } ]}}, 
+                        {'$match' :  {'mapping_file.Chromosome': m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['End'] } } ]}}, 
                         {
                           '$project':
                             {
@@ -137,10 +139,51 @@ for species in species_to_process:
                         }
                     ]
                     , useCursor=False))
-                    
+                    for s in genes_to_process:
+                        for l in s.keys():
+                            q=s.get('mapping_file',"NA")
+                            #print q['Gene ID']
+                            if q['Gene ID'] not in gene_list:
+				gene_list.append(q['Gene ID'])
+                   
                     if len(genes_to_process)>0:
-                        logger.info("count: %d marker : %s ",counter, m['Marker ID'])
+                        
+                        logger.info("count: %d marker : %s gene number %d",counter, m['Marker ID'],len(gene_list))
                         cursor_to_table(qtl_to_process)
-                        cursor_to_table(genes_to_process)
+                        cursor_to_table(genes_to_process)   
+                        for gene in gene_list:
+                            for s in qtl_to_process:
+                                for l in s.keys():
+                                    q=s.get('mapping_file',"NA")
+                                    #if q['Trait Name'].contains "resistance" +3
+                                    if "resistance" in q['Trait Name'] or "Resistance" in q['Trait Name']:
+                                        logger.info("resistance--- %s",q['Trait Name'])
+                                        full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 3 } })
+
+                                    else:
+                                        logger.info("other--- %s",q['Trait Name'])
+                                        full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 2 } })
+                                    plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Gene ID':gene},{'mapping_file.$.Plaza ID': 1 } )
+                                    for p in plaza_results:
+                                        for values in p['mapping_file']:
+
+                                            plaza_id=values['Plaza ID']
+
+                                            ortholog_result=orthologs_col.find({'species':species["full_name"],'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+                                            for ortholog in ortholog_result:
+
+                                                ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                                                if ortholog_list.find(",") != -1:
+                                                    ortholog_split_list=ortholog_list.split(',')
+                                                    for ortholog_id in ortholog_split_list:
+                                                        if ortholog_id!=plaza_id:
+                                                            full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                else:
+                                                    if ortholog_list!=plaza_id:
+                                                        full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+        
+
+
+                                
             #logger.info("keys %s",[r.get(k,"NA") for k in available_first_level_keys])
     logger.info("count: %d species : %s ",counter, species['full_name'])

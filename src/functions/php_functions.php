@@ -1056,42 +1056,51 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                     echo "<th>QTL ID</th>";
                                                     echo "<th>Trait Name</th>";
                                                     echo "<th>Trait Alias</th>";
-                                                    echo "<th>Study</th>";  
+                                                    echo "<th>Study</th>";
+                                                    echo "<th>Species</th>"; 
                                                     echo "<th>Marker</th>";
                                                     echo'
                                                 </tr>
                                                 </thead>
 
                                                 <tbody>';
+                                                $marker_list=array();
                                                 foreach ($genetic_markers_result['result'] as $value) {
                                                         foreach($value as $data){
                                                             $marker_id=$data['Marker ID'];
-                                                            $genetic_qtls_result=$qtl_collection->aggregate(array(  
-                                                                array('$project' => array('mapping_file'=>1,'_id'=>0)),
-                                                                array('$unwind'=>'$mapping_file'),
-                                                                array('$match' => array('$or'=> array(
-                                                                                                array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
-                                                                                                array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
-                                                                                                )
-                                                                                        )
-                                                                     ),
-                                                                array('$project'=>  array('mapping_file.QTL ID'=> 1,'mapping_file.Trait Name'=> 1,'mapping_file.HREF_QTL'=> 1, 'mapping_file.Trait Alias'=> 1,'mapping_file.Study'=>1,'_id'=> 0))
+                                                            
+                                                            if (!in_array($marker_id, $marker_list)){
+                                                                $genetic_qtls_result=$qtl_collection->aggregate(array(  
+                                                                    array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                                                                    array('$unwind'=>'$mapping_file'),
+                                                                    array('$match' => array('$or'=> array(
+                                                                                                    //array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
+                                                                                                    array('mapping_file.Colocalizing marker'=>$marker_id),
+                                                                                                    //array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
+                                                                                                    array('mapping_file.Marker ID'=>$marker_id)
+                                                                                                    )
+                                                                                            )
+                                                                         ),
+                                                                    array('$project'=>  array('mapping_file.QTL ID'=> 1,'mapping_file.Trait Name'=> 1,'mapping_file.Species'=> 1,'mapping_file.HREF_QTL'=> 1, 'mapping_file.Trait Alias'=> 1,'mapping_file.Study'=>1,'_id'=> 0))
 
-                                                            ));
-                                                            foreach ($genetic_qtls_result['result'] as $value_qtl) {
-                                                                foreach($value_qtl as $data_qtl){
-                                                                    echo "<tr>";
-                                                                    //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                                                    //echo '<td>'.$data['Gene ID'].'</td>';
-                                                                    echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
-                                                                    echo '<td>'.$data_qtl['Trait Name'].'</td>';
-                                                                    echo '<td>'.$data_qtl['Trait Alias'].'</td>';
-                                                                    echo '<td>'.$data_qtl['Study'].'</td>';
-                                                                    echo '<td>'.$marker_id.'</td>';
-                                                                    
+                                                                ));
+                                                                foreach ($genetic_qtls_result['result'] as $value_qtl) {
+                                                                    foreach($value_qtl as $data_qtl){
+                                                                        echo "<tr>";
+                                                                        //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                                        //echo '<td>'.$data['Gene ID'].'</td>';
+                                                                        echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
+                                                                        echo '<td>'.$data_qtl['Trait Name'].'</td>';
+                                                                        echo '<td>'.$data_qtl['Trait Alias'].'</td>';
+                                                                        echo '<td>'.$data_qtl['Study'].'</td>';
+                                                                        echo '<td>'.$data_qtl['Species'].'</td>';
+                                                                        echo '<td>'.$marker_id.'</td>';
 
-                                                                    echo "</tr>";
+
+                                                                        echo "</tr>";
+                                                                    }
                                                                 }
+                                                                array_push($marker_list, $marker_id);
                                                             }
                                                         }   
 
