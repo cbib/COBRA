@@ -982,7 +982,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                             echo '<td>'.$data['Start'].'</td>';
                                                             echo '<td>'.$data['End'].'</td>';
                                                             echo '<td>'.$data['Chromosome'].'</td>';
-                                                            echo '<td>'.$data['Linkage Group'].'</td>';
+                                                            $lg=explode(".",$data['Linkage Group']);
+                                                            echo '<td>'.$lg[1].'</td>';
                                                             echo '<td>'.$data['StartcM'].'</td>';
                                                             echo '<td>'.$data['Map ID'].'</td>';
                                                             echo '<td>'.$data['Type'].'</td>';
