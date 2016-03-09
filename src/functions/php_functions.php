@@ -2357,9 +2357,7 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
         //                                        echo "Debut du script: ".date("H:i:s", $timestart);
         //                                        echo "<br>Fin du script: ".date("H:i:s", $timeend);
         //                                        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
-                               echo'</tbody>
-
-                                </table>
+                               echo'
                             </div>
 
                         </div>

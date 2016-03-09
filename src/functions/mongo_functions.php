@@ -1148,32 +1148,8 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
             }
         }
 
-//        $cursors=$orthologsCollection->aggregate(array(
-//            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-//            array('$unwind'=>'$mapping_file'),
-//            array('$match' => array('mapping_file.Plaza gene id'=>$current_plaza_id)),
-//            array('$project' => array('mapping_file.orthologs_list_identifier'=>1,'_id'=>0))
-//        ));
 
-                
-//        $timeend=microtime(true);
-//        $time=$timeend-$timestart;
-//
-//        //Afficher le temps d'éxecution
-//        $page_load_time = number_format($time, 3);
-//        echo "Debut du script: ".date("H:i:s", $timestart);
-//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//        echo "<br>Script aggregate and var dump execute en " . $page_load_time . " sec";
-          //var_dump($cursors);
-        
-        
-        
-        //$timestart=microtime(true);
-//        foreach ($cursors['result'] as $values) {
-//            $ortholog_list_id=$values['mapping_file']['orthologs_list_identifier'];
-//            //echo $ortholog_list_id;
-//            $ortholog_list_id=split('[,]', $ortholog_list_id);
-        $table_string.='<table class="table table-hover" id="orthologs_table">'
+        $table_string.='<table class="table" id="orthologs_table">'
                 . '<tr>'
                 . '<th>gene ID</th>'
                 . '<th>gene name</th>'
@@ -1184,10 +1160,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 . '</thead>'
                 . '<tbody>';
         foreach ($ortholog_list_id as $ortholog){
-            //echo 'ortholog'.$ortholog;
-         //   foreach ($initial_species as $key => $value) {
-         //       if ($value==$ortholog[0].$ortholog[1] && $ortholog[2]!='R'){
-                    #echo "start line : ".$buffer."\n";
+
             if ($ortholog!=$current_plaza_id){
             /*$cursor_score=$full_mappingsCollection->aggregate(array(
             array('$match' => array('type'=>'full_table')),  
@@ -1208,7 +1181,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                     $score+=$tmp_score;    
                 }  
             } */
-//                $score=0.0;
+/*                $score=0.0;
 //                $cursor_score=$full_mappingsCollection->aggregate(array(
 //                    array('$match' => array('type'=>'full_table','species'=>$speciesID)),  
 //                    array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -1237,7 +1210,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //                        $score+=$tmp_score['qtl'];  
 //                        $score+=$tmp_score['snp'];  
 //                    }  
-//                } 
+                } */
                 $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
                     $species=$data['species'];
@@ -1320,6 +1293,8 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //        echo "<br>Fin du script: ".date("H:i:s", $timeend);
 //        echo "<br>Script  execute en " . $page_load_time . " sec";*/
         }
+        $table_string.='</tbody>';
+        $table_string.='</table>';
     }
     return $table_string; 
     

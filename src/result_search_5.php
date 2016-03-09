@@ -921,9 +921,7 @@ new_cobra_footer();
 				}
 		});
 	});
-    $('#orthologs_table').DataTable( {
-        responsive: true
-    });
+    
     (document).ready(function() {
 		$('#orthologs_table').dataTable( {
 			"scrollX": true,
