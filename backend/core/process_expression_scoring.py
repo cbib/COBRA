@@ -63,23 +63,13 @@ for species in species_to_process:
 	#results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
         results=list(measurements_col.find({ "xp":{"$in":tgt_path},"$or": [ { "logFC": { "$gt": 2 } }, { "logFC": { "$lt": -2 } } ] },{"_id":0} ))
        
-	
-
-
-        # annotate results
-        
-        gene_set=[]
 
         #reset score to 0
-        logger.info("species %s",species["full_name"])
-        logger.info("preparing score reset")
         #full_mappings_col.update({'species':species["full_name"],'mapping_file.Score':{ "$gt": 0 }},{"$set": {'mapping_file.$.Score': 0 } })
         #full_mappings_col.update({'species':species["full_name"],'mapping_file.Score':{ "$gt": 0 }},{"$set": {'mapping_file.$.Score': 0 } })
 
-
-        #increment score field when a gen is found  
-        logger.info("Scores have been reset")
-        logger.info("preparing new scoring step")
+        logger.info("preparing new scoring step for species %s",species["full_name"])
+        counter=0
 	for r in results:
                 
             if species['full_name']== "Hordeum vulgare":
@@ -112,7 +102,7 @@ for species in species_to_process:
                 plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Cucumis melo":
-                logger.info("gene id %s",r['gene'])
+                #logger.info("gene id %s",r['gene'])
                 #full_mappings_col.update({'species':"Cucumis melo","mapping_file.Gene ID":r['gene']},{'$set': {"mapping_file.$.Score": 0 } })
                 full_mappings_col.update({'species':"Cucumis melo","mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1 } })
 
