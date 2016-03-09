@@ -959,7 +959,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                     
                                 }
                                 else{
-                                    echo '<p> No result found</p>';
+                                    echo '<p> No results found</p>';
                                 }
                                     
                            echo'</div>
@@ -1029,7 +1029,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                         
                                 }
                                 else{
-                                    echo '<p> No result found</p>';
+                                    echo '<p> No results found</p>';
                                 }
                                     
                            echo'</div>
@@ -1102,7 +1102,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                         
                                 }
                                 else{
-                                    echo '<p> No result found</p>';
+                                    echo '<p> No results found</p>';
                                 }
                                     
                            echo'</div>
