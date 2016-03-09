@@ -137,12 +137,7 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 					logger.info("value length :%d",len(values))
 					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
 				this_dict=dict(zip(column_keys,values))
-                                if 'Start' in this_dict:
-                                    if isinstance(this_dict['Start'],basestring):
-                                        this_dict['Start']=int(this_dict['Start'])
-                                if 'End' in this_dict:
-                                    if isinstance(this_dict['End'],basestring):
-                                        this_dict['End']=int(this_dict['End'])
+                                
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))
@@ -189,16 +184,18 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 				this_dict=dict(zip(column_keys,values))
                                 #enforce score double
                                 #'Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP'
-                                if isinstance(this_dict['Score_exp'],basestring) :
-                                        this_dict['Score_exp']=float(this_dict['Score_exp'])   
-                                if isinstance(this_dict['Score_int'],basestring) :
-                                        this_dict['Score_int']=float(this_dict['Score_int'])    
-                                if isinstance(this_dict['Score_orthologs'],basestring) :
-                                        this_dict['Score_orthologs']=float(this_dict['Score_orthologs'])    
-				if isinstance(this_dict['Score_QTL'],basestring) :
-                                        this_dict['Score_QTL']=float(this_dict['Score_QTL'])    
-				if isinstance(this_dict['Score_SNP'],basestring) :
-                                        this_dict['Score_SNP']=float(this_dict['Score_SNP'])    
+                                this_dict['Score_exp']=float(str(this_dict['Score_exp'])) 
+                                #logger.info("columns keys length:%.1f",this_dict['Score_exp'])  
+                                this_dict['Score_int']=float(this_dict['Score_int'])    
+                                this_dict['Score_orthologs']=float(this_dict['Score_orthologs'])    
+				this_dict['Score_QTL']=float(this_dict['Score_QTL'])    
+				this_dict['Score_SNP']=float(this_dict['Score_SNP']) 
+                                if isinstance(this_dict['Start'],basestring):
+                                        if this_dict['Start']!="NA":
+                                            this_dict['Start']=int(this_dict['Start'])
+                                if isinstance(this_dict['End'],basestring):
+                                        if this_dict['End']!="NA":
+                                            this_dict['End']=int(this_dict['End'])
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))

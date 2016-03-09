@@ -20,6 +20,7 @@ if "log" not in globals():
 
 
 genetic_markers_col=db.genetic_markers
+genetic_markers_col.drop()
 
 
 
@@ -30,32 +31,52 @@ genetic_markers_col=db.genetic_markers
 ############################################ PRUNUS PERSICA #######################################################
 ###################################################################################################################
 
-marker_table={
-	"data_file":"Prunus/prunus_persica/genetic_markers/persica_markers_final.tsv",
-	"species":"Prunus persica",
-	"src":"Marker ID",
-	"src_version":"",
-        "tgt":"Map ID",
-	"url":"",
-	"doi":"none",
-	"key":"",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Chromosome','Position','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
-		"sheet_index":0,
-	}
-}
-genetic_markers_col.insert(marker_table)
+#marker_table={
+#	"data_file":"Prunus/prunus_persica/genetic_markers/persica_markers_final.tsv",
+#	"species":"Prunus persica",
+#	"src":"Marker ID",
+#	"src_version":"",
+#        "tgt":"Map ID",
+#	"url":"",
+#	"doi":"none",
+#	"key":"",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Chromosome','Position','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
+#		"sheet_index":0,
+#	}
+#}
+#genetic_markers_col.insert(marker_table)
 
 ###################################################################################################################
 ############################################ PRUNUS ARMENIACA #####################################################
 ###################################################################################################################
 
+#marker_table={
+#	"data_file":"Prunus/prunus_armeniaca/genetic_markers/armeniaca_markers_final.tsv",
+#	"species":"Prunus armeniaca",
+#	"src":"Marker ID",
+#	"src_version":"",
+#       "tgt":"Map ID",
+#	"url":"",
+#	"doi":"none",
+#	"key":"",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
+#		"sheet_index":0,
+#	}
+#}
+#genetic_markers_col.insert(marker_table)
+
+
+
 marker_table={
-	"data_file":"Prunus/prunus_armeniaca/genetic_markers/armeniaca_markers_final.tsv",
-	"species":"Prunus armeniaca",
+	"data_file":"Prunus/genetic_markers/prunus_species_genetics_markers.tsv",
 	"src":"Marker ID",
 	"src_version":"",
         "tgt":"Map ID",
@@ -66,7 +87,7 @@ marker_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','Species','Map ID','Linkage Group','Start','Stop','Location','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence'],
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','Start','Stop','Chromosome','Position','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
 		"sheet_index":0,
 	}
 }
