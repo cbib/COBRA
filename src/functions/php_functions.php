@@ -971,7 +971,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                                                 <tbody>';
 
-                                                    foreach ($genetic_markers_collection['result'] as $value) {
+                                                    foreach ($genetic_markers_result['result'] as $value) {
                                                         foreach($value as $data){
                                                             echo "<tr>";
                                                             //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
