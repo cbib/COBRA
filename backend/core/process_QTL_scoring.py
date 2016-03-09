@@ -36,6 +36,7 @@ for species in species_to_process:
         #SNP pos
    # markers_to_process=genetic_markers_col.find({"species":species['full_name']}{})
     markers_to_process=list(genetic_markers_col.find({'mapping_file.Species':species['full_name']},{"mapping_file.Position":1,"mapping_file.Marker ID":1,"mapping_file.Map ID":1,"mapping_file.Chromosome":1,"_id":0} ))
+    
     for markers in markers_to_process:
         for m in markers['mapping_file']:
             if 'Position' in m and 'Chromosome' in m:
@@ -61,13 +62,10 @@ for species in species_to_process:
                             }
                         ]
                         , useCursor=False))
+                        
+                        
                         cursor_to_table(qtl_to_process)
-                        #if isinstance(m['Position'],basestring):
-                        m['Position']=int(m['Position'])
-                        #logger.info("pos is string %s ",m['Position'])
-                        #gene_to_process=list(full_mappings_col.find({"species":species['full_name'],"$and": [ { "mapping_file.End": { "$gt": m['Position'] } }, { "mapping_file.Start": { "$lt": m['Position'] } } ]},{"mapping_file.$":1}))
-                        #gene_to_process=list(full_mappings_col.find({"species":species['full_name'],'mapping_file.Chromosome': m['Chromosome'] },{"mapping_file.$":1}))
-
+                        
                         
                         gene_to_process=list(full_mappings_col.aggregate(
                             [

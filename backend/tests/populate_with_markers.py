@@ -19,7 +19,7 @@ if "log" not in globals():
 # Clear collections to fill
 
 
-genetic_markers_col=db.genetic_markers
+
 genetic_markers_col.drop()
 
 
@@ -87,7 +87,7 @@ marker_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','Start','Stop','Chromosome','Position','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','StartcM','StopcM','Chromosome','Start','End','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
 		"sheet_index":0,
 	}
 }
