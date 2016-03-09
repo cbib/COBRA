@@ -829,7 +829,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_symbol, a
 
 
 
-function load_and_display_variations_result(MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null'){
+function load_and_display_variations_result(MongoCollection $genetic_markers_collection,MongoCollection $qtl_collection,MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null'){
     
     
     $gene_start=0;
@@ -838,14 +838,27 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
         foreach ($gene_id as $gene) {
             $gene_position_cursor=$full_mappings_collection->find(array('mapping_file.Gene ID'=>$gene),array('mapping_file.$'=>1));
             foreach ($gene_position_cursor as $value) {
-                $gene_start =$value['mapping_file'][0]['Gene Start'];
-                $gene_end =$value['mapping_file'][0]['Gene End'];
+                $gene_start =$value['mapping_file'][0]['Start'];
+                $gene_end =$value['mapping_file'][0]['End'];
                 $scaffold =$value['mapping_file'][0]['Chromosome'];
 
             }
             
         }
+        
+        $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
+            array('$project' => array('mapping_file'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('$and'=> array(
+                                            array('mapping_file.Position'=>array('$gt'=> (int)$gene_start )),
+                                            array('mapping_file.Position'=>array('$lt'=> (int)$gene_end )),
+                                            array('mapping_file.Chromosome'=> $scaffold )
+                                            )
+                                    )
+                 ),
+            array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'_id'=> 0))
 
+        ));
         //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
 
         $var_results=$variation_collection->aggregate(array(
@@ -881,7 +894,7 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
     
 //https://www.rosaceae.org/gb/gbrowse/prunus_persica/?name=
 //http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v=ENSVATH00000001;vdb=variation;vf=1
-    if (count($var_results['result'])>0){
+    
         echo'<div id="variation_section">
                 <h3>Variation and polymorphism</h3>
                     <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
@@ -893,61 +906,106 @@ function load_and_display_variations_result(MongoCollection $full_mappings_colle
                                     </a>				
 
                             </div>
-                            <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">
-                                <table class="table" id="table_variants">  
-                                <thead>
-                                    <tr>';
-                                        //echo "<th>gene ID</th>";
-                                        echo "<th>variant ID</th>";
-                                        echo "<th>Position</th>";
-                                        if ($species!="Prunus persica"){
-                                            echo "<th>Description</th>";
-                                        }
-                                        
-                                        echo "<th>Variant Alleles</th>";
-                                        echo'
-                                    </tr>
-                                    </thead>
+                            <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">';
+                                if (count($var_results['result'])>0 || count ($genetic_markers_result['result'])>0){
+                                    if (count($var_results['result'])>0){
+                                        echo'<table class="table" id="table_variants">  
+                                                <thead>
+                                                <tr>';
+                                                //echo "<th>gene ID</th>";
+                                                    echo "<th>variant ID</th>";
+                                                    echo "<th>Position</th>";
+                                                    if ($species!="Prunus persica"){
+                                                        echo "<th>Description</th>";
+                                                    }
 
-                                    <tbody>';
+                                                    echo "<th>Variant Alleles</th>";
+                                                    echo'
+                                                </tr>
+                                                </thead>
 
-                                        foreach ($var_results['result'] as $value) {
-                                            foreach($value as $data){
-                                               echo "<tr>";
-                                                //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                                //echo '<td>'.$data['Gene ID'].'</td>';
-                                               if ($species==="Prunus persica"){
-                                                    
-                                                    echo '<td><a target = "_blank" href="https://www.rosaceae.org/gb/gbrowse/prunus_persica/?name='.$data['Variant ID'].'">'.$data['Variant ID'].'</a></td>';
-                                                    echo '<td>'.$data['Position'].'</td>';
-                                                    echo '<td>'.$data['Alleles'].'</td>';
-                                                }
-                                                else{
-                                                    echo '<td><a target = "_blank" href="http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v='.$data['Variant ID'].';vdb=variation;vf=1">'.$data['Variant ID'].'</a></td>';
-                                                    echo '<td>'.$data['Position'].'</td>';
-                                                    echo '<td>'.$data['Description'].'</td>';
-                                                    echo '<td>'.$data['Alleles'].'</td>';
-                                                }
-                                           
-                                                //echo '<td>'.$data['Variant ID'].'</td>';
-                                                
+                                                <tbody>';
 
-                                                echo "</tr>";
-                                            }
+                                                    foreach ($var_results['result'] as $value) {
+                                                        foreach($value as $data){
+                                                            echo "<tr>";
+                                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                            //echo '<td>'.$data['Gene ID'].'</td>';
+                                                            if ($species==="Prunus persica"){
+
+                                                                echo '<td><a target = "_blank" href="https://www.rosaceae.org/gb/gbrowse/prunus_persica/?name='.$data['Variant ID'].'">'.$data['Variant ID'].'</a></td>';
+                                                                echo '<td>'.$data['Position'].'</td>';
+                                                                echo '<td>'.$data['Alleles'].'</td>';
+                                                            }
+                                                            else{
+                                                                echo '<td><a target = "_blank" href="http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v='.$data['Variant ID'].';vdb=variation;vf=1">'.$data['Variant ID'].'</a></td>';
+                                                                echo '<td>'.$data['Position'].'</td>';
+                                                                echo '<td>'.$data['Description'].'</td>';
+                                                                echo '<td>'.$data['Alleles'].'</td>';
+                                                            }
+                                                            echo "</tr>";
+                                                        }
 
 
-                                        }
+                                                    }
 
-                               echo'</tbody>
 
-                                </table>
-                            </div>
+                                                echo'</tbody>
+
+                                            </table>';
+                                    }
+                                    else{
+                                        echo'<table class="table" id="table_markers">  
+                                                <thead>
+                                                <tr>';
+                                                //echo "<th>gene ID</th>";
+                                                    echo "<th>Marker ID</th>";
+                                                    echo "<th>Start</th>";
+                                                    echo "<th>End</th>";
+                                                    echo "<th>Chromosome</th>";
+                                                    echo "<th>Map ID</th>";
+                                                    echo "<th>Type</th>";
+                                                    echo'
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>';
+
+                                                    foreach ($genetic_markers_collection['result'] as $value) {
+                                                        foreach($value as $data){
+                                                            echo "<tr>";
+                                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                            //echo '<td>'.$data['Gene ID'].'</td>';
+                                                            echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data['HREF_markers'].'/'.$data['Marker ID'].'">'.$data['Marker ID'].'</a></td>';
+                                                            echo '<td>'.$data['Start'].'</td>';
+                                                            echo '<td>'.$data['End'].'</td>';
+                                                            echo '<td>'.$data['Chromosome'].'</td>';
+                                                            echo '<td>'.$data['Map ID'].'</td>';
+                                                            echo '<td>'.$data['Type'].'</td>';
+                                                            
+                                                            echo "</tr>";
+                                                        }
+
+
+                                                    }
+
+
+                                                echo'</tbody>
+
+                                            </table>';
+                                    }
+                                }
+                                else{
+                                    echo '<p> No result found</p>';
+                                }
+                                    
+                           echo'</div>
 
                         </div>
                     </div>
                     <div id="shift_line"></div>
                 </div>';
-    }
+    
     
     
     

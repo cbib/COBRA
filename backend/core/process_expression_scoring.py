@@ -133,14 +133,14 @@ for species in species_to_process:
             for p in plaza_results:
                 for values in p['mapping_file']:
 
-                    logger.info("plaza id %s",values['Plaza ID'])
+                    #logger.info("plaza id %s",values['Plaza ID'])
                     plaza_id=values['Plaza ID']
 
                     #orthologs_list_identifier
                     ortholog_result=orthologs_col.find({'species':species["full_name"],'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
                     for ortholog in ortholog_result:
 
-                        logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+                        #logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
                         ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
                         if ortholog_list.find(",") != -1:
                             ortholog_split_list=ortholog_list.split(',')

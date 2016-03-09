@@ -49,7 +49,8 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 	$orthologsCollection = new Mongocollection($db, "orthologs");
     $GOCollection = new Mongocollection($db, "gene_ontology");
     $variation_collection = new Mongocollection($db, "variations");
-
+    $genetic_markers_collection=new Mongocollection($db, "genetic_markers");
+    $qtl_collection=new Mongocollection($db, "qtls");
     ///////////////////////////////////
     //CREATE ALL ARRAYS and VARIABLES//
     ///////////////////////////////////
@@ -336,7 +337,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 //                    echo "<br>Script for GO executed in " . $page_load_time . " sec";
                     
                     //$timestart=microtime(true);
-                    load_and_display_variations_result($full_mappingsCollection,$variation_collection,$gene_id,$species);
+                    load_and_display_variations_result($genetic_markers_collection,$qtl_collection,$full_mappingsCollection,$variation_collection,$gene_id,$species);
                     //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
