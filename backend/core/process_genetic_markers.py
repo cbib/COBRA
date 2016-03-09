@@ -66,4 +66,4 @@ for map_doc in genetic_markers_to_process:
 	
 
 logger.info("Indexation on field \"mapping_file.Marker ID\" from collection \"genetic maps\"")
-variations_col.create_index("mapping_file.Marker ID",sparse=True, background=True)
+genetic_markers_col.create_index("mapping_file.Marker ID",sparse=True, background=True)
