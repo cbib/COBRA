@@ -850,8 +850,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('$and'=> array(
-                                            array('mapping_file.Start'=>array('$gt'=> (int)$gene_start )),
-                                            array('mapping_file.Start'=>array('$lt'=> (int)$gene_end )),
+                                            array('mapping_file.Start'=>array('$gt'=> $gene_start )),
+                                            array('mapping_file.Start'=>array('$lt'=> $gene_end )),
                                             array('mapping_file.Chromosome'=> $scaffold )
                                             )
                                     )
