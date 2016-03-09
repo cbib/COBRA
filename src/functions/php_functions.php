@@ -856,7 +856,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                             )
                                     )
                  ),
-            array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'_id'=> 0))
+            array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
 
         ));
         //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
@@ -963,6 +963,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                     echo "<th>Start</th>";
                                                     echo "<th>End</th>";
                                                     echo "<th>Chromosome</th>";
+                                                    echo "<th>Linkage group</th>";
+                                                    echo "<th>Position (cM)</th>";
                                                     echo "<th>Map ID</th>";
                                                     echo "<th>Type</th>";
                                                     echo'
@@ -980,6 +982,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                             echo '<td>'.$data['Start'].'</td>';
                                                             echo '<td>'.$data['End'].'</td>';
                                                             echo '<td>'.$data['Chromosome'].'</td>';
+                                                            echo '<td>'.$data['Linkage Group'].'</td>';
+                                                            echo '<td>'.$data['StartcM'].'</td>';
                                                             echo '<td>'.$data['Map ID'].'</td>';
                                                             echo '<td>'.$data['Type'].'</td>';
                                                             
