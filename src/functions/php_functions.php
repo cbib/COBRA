@@ -859,6 +859,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
             array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
 
         ));
+        
+        
         //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
 
         $var_results=$variation_collection->aggregate(array(
@@ -907,8 +909,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                             </div>
                             <div class="panel-body panel-collapse collapse" id="var-table_'.$gene_id.'">';
-                                if (count($var_results['result'])>0 || count ($genetic_markers_result['result'])>0){
-                                    if (count($var_results['result'])>0){
+                                if (count($var_results['result'])>0 ){
+                                    
                                         echo'<table class="table" id="table_variants">  
                                                 <thead>
                                                 <tr>';
@@ -953,8 +955,32 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                 echo'</tbody>
 
                                             </table>';
-                                    }
-                                    else{
+                                    
+                                    
+                                }
+                                else{
+                                    echo '<p> No result found</p>';
+                                }
+                                    
+                           echo'</div>
+
+                        </div>
+                    </div>
+                    <div id="shift_line"></div>
+                    
+
+                    <div class="panel-group" id="accordion_documents_mark_'.$gene_id.'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#mark-table_'.$gene_id.'" data-parent="#accordion_documents_mark_'.$gene_id.'" data-toggle="collapse">
+                                            <strong>Genetic markers</strong>
+                                    </a>				
+
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id.'">';
+                                if (count ($genetic_markers_result['result'])>0){
+                                    
                                         echo'<table class="table" id="table_markers">  
                                                 <thead>
                                                 <tr>';
@@ -998,7 +1024,9 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                 echo'</tbody>
 
                                             </table>';
-                                    }
+                                            
+                                            
+                                        
                                 }
                                 else{
                                     echo '<p> No result found</p>';
@@ -1009,6 +1037,88 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                         </div>
                     </div>
                     <div id="shift_line"></div>
+                    <div class="panel-group" id="accordion_documents_qtl_'.$gene_id.'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+
+                                    <a class="accordion-toggle collapsed" href="#qtl-table_'.$gene_id.'" data-parent="#accordion_documents_qtl_'.$gene_id.'" data-toggle="collapse">
+                                            <strong>QTLs</strong>
+                                    </a>				
+
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="qtl-table_'.$gene_id.'">';
+                                if (count ($genetic_markers_result['result'])>0 ){
+
+                                            echo'<table class="table" id="table_qtls">  
+                                                <thead>
+                                                <tr>';
+                                                //echo "<th>gene ID</th>";
+                                                    echo "<th>QTL ID</th>";
+                                                    echo "<th>Trait Name</th>";
+                                                    echo "<th>Trait Alias</th>";
+                                                    echo "<th>Study</th>";  
+                                                    echo "<th>Marker</th>";
+                                                    echo'
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>';
+                                                foreach ($genetic_markers_result['result'] as $value) {
+                                                        foreach($value as $data){
+                                                            $marker_id=$data['Marker ID'];
+                                                            $genetic_qtls_result=$qtl_collection->aggregate(array(  
+                                                                array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                                                                array('$unwind'=>'$mapping_file'),
+                                                                array('$match' => array('$or'=> array(
+                                                                                                array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
+                                                                                                array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
+                                                                                                )
+                                                                                        )
+                                                                     ),
+                                                                array('$project'=>  array('mapping_file.QTL ID'=> 1,'mapping_file.Trait Name'=> 1,'mapping_file.HREF_QTL'=> 1, 'mapping_file.Trait Alias'=> 1,'mapping_file.Study'=>1,'_id'=> 0))
+
+                                                            ));
+                                                            foreach ($genetic_qtls_result['result'] as $value_qtl) {
+                                                                foreach($value_qtl as $data_qtl){
+                                                                    echo "<tr>";
+                                                                    //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                                    //echo '<td>'.$data['Gene ID'].'</td>';
+                                                                    echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
+                                                                    echo '<td>'.$data_qtl['Trait Name'].'</td>';
+                                                                    echo '<td>'.$data_qtl['Trait Alias'].'</td>';
+                                                                    echo '<td>'.$data_qtl['Study'].'</td>';
+                                                                    echo '<td>'.$marker_id.'</td>';
+                                                                    
+
+                                                                    echo "</tr>";
+                                                                }
+                                                            }
+                                                        }   
+
+                                                }
+                                                echo'</tbody>
+
+                                                    </table>';
+                                        
+                                }
+                                else{
+                                    echo '<p> No result found</p>';
+                                }
+                                    
+                           echo'</div>
+
+                        </div>
+                    </div>
+                    
+
+
+
+
+
+
+
+
+
                 </div>';
     
     
