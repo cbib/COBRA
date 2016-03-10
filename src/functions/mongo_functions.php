@@ -502,6 +502,50 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
     }
     return $value_array;
 }
+function get_global_score($full_mappingsCollection,$search='null',$species='null'){
+    $cursor_score=$full_mappingsCollection->aggregate(array(
+         array('$match' => array('type'=>'full_table','species'=>$species)),  
+         array('$project' => array('mapping_file'=>1,'_id'=>0)),
+         array('$unwind'=>'$mapping_file'),
+         array('$match' => array('$or'=> array(
+            array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),
+            array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi"))))),
+         array(
+           '$group'=>
+             array(
+               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
+
+               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
+             )
+         )
+
+    ));
+   
+    ///////////////////////////////
+    //SUM ALL SCORE FOR THIS GENE//
+    ///////////////////////////////   
+    foreach ($cursor_score['result'] as $value) {
+        foreach ($value['scores'] as $tmp_score) {    
+            $score+=$tmp_score['exp'];
+            $score+=$tmp_score['int'];  
+            $score+=$tmp_score['ort'];  
+            $score+=$tmp_score['qtl'];  
+            $score+=$tmp_score['snp'];  
+        }  
+    } 
+    return $score;
+    
+}
 
 ##Get all interactions from hpidb : 
 function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pvinteractionsCollection,$species='null'){

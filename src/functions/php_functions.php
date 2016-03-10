@@ -1353,7 +1353,7 @@ function load_and_display_external_references( array $proteins_id,$search='null'
     </div>
     <div class="bottomSpacer"></div> </br> '; 
 }
-function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$interactionsCollection,$species){
+function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$proteins_id,$transcript_id,$interactionsCollection,$species){
     
 
     
@@ -1588,7 +1588,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
     
     
     $string_array=get_string_plant_plant_interactor($transcript_id,$interactionsCollection,$species); 
-    $string_headers=array('Transcript Id','Combined score','Organism');
+    $string_headers=array('Transcript Id','Combined score','Organism','Gene Score');
     $string_values=array();
     
     foreach ($string_array['result'] as $value) {
@@ -1606,16 +1606,19 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                 
                 foreach ($transcript_list as $transcript) {
                     $combined_score = explode("-",  $transcript);
-
+                    $score=0.0;
                     if ($species==="Hordeum vulgare"){
                         array_push($string_values, "MLOC_".$combined_score[0]);
+                        $score=get_global_score($full_mappingsCollection,"MLOC_".$combined_score[0],$species);
                     }
                     else{
-                        array_push($string_values, $combined_score[0]); 
+                        array_push($string_values, $combined_score[0]);
+                        $score=get_global_score($full_mappingsCollection,$combined_score[0],$species);
                     }
                     //array_push($values, $combined_score[0]);
                     array_push($string_values, $combined_score[1]);
                     array_push($string_values, $species);
+                    array_push($string_values, $score);
 
 
                 }
@@ -1963,12 +1966,12 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
 //                    echo "<br>Script for sequences 3 executed in " . $page_load_time . " sec"; 
           echo '</div>';
 }
-function load_and_display_interactions($gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
+function load_and_display_interactions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
     
   
     
     load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
-    load_and_display_ppinteractions($gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
+    load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
     
 }
 
