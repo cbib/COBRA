@@ -1375,8 +1375,8 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
 
                         echo'
                         <div class="pp_interaction">';
-                            $headers=array('EBI ref','Alias','Uniprot','Pubmed','Author','detection_method','Organism','interaction_type','source_database_id','interaction_identifier');
-                            $values=array();
+                            $intact_headers=array('EBI ref','Alias','Uniprot','Pubmed','Author','detection_method','Organism','interaction_type','source_database_id','interaction_identifier');
+                            $intact_values=array();
                             foreach ($interaction_array['result'] as $value) {
                                 
                                 
@@ -1385,7 +1385,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                     
                                     
                                     $href_id='<a href="http://www.ebi.ac.uk/intact/interaction/'.$data['protein_EBI_ref_2'].'">'.$data['protein_EBI_ref_2'].'</a>';
-                                    array_push($values, $href_id);
+                                    array_push($intact_values, $href_id);
                                     $aliases=explode("|", $data['alternative_identifiers_2']);
                                     $counter=0;
                                     $alias_string="";
@@ -1394,7 +1394,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                            //$short=explode(":", $alias);
                                            //$aliases2=explode("(", $short[1]);
                                            $alias_string.=$alias;
-                                           array_push($values, $alias_string);
+                                           array_push($intact_values, $alias_string);
                                        }
                                        else{
                                           $alias_string.=$alias.',';
@@ -1408,7 +1408,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                     }
                                     
                                    $href_uniprot='<a href="http://www.uniprot.org/uniprot/'.$data['Uniprot ID 2'].'">'.$data['Uniprot ID 2'].'</a>';
-                                   array_push($values, $href_uniprot);
+                                   array_push($intact_values, $href_uniprot);
                                    $split_pmid=explode("|", $data['pmid']);
                                    $href_pmid="";
                                    foreach ($split_pmid as $pmid) {
@@ -1420,7 +1420,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                         
                                         
                                    }
-                                   array_push($values, $href_pmid);
+                                   array_push($intact_values, $href_pmid);
                                    
                                    $split_author=explode("|", $data['author_name']);
                                    $author_string="";
@@ -1429,7 +1429,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                        
                                        
                                    }
-                                   array_push($values, $author_string);
+                                   array_push($intact_values, $author_string);
                                    
                                    $split_method=explode("|", $data['detection_method']);
                                    
@@ -1451,10 +1451,10 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                       }
  
                                    }
-                                   array_push($values, $id_string_method);
+                                   array_push($intact_values, $id_string_method);
                                    
                                    //http://www.ebi.ac.uk/ontology-lookup/?termId=MI:0397
-                                   array_push($values, $data['Taxid interactor B']);
+                                   array_push($intact_values, $data['Taxid interactor B']);
                                    
                                    
                                    
@@ -1475,14 +1475,14 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                       }
  
                                    }
-                                   array_push($values, $id_string_interaction_type);
-                                   array_push($values, $data['source_database_id']);
+                                   array_push($intact_values, $id_string_interaction_type);
+                                   array_push($intact_values, $data['source_database_id']);
                                    
                                   
                                    $split_interaction_identifier=explode("|", $data['interaction_identifier']);
                                    $href_interaction_identifier="";
                                    if (count($split_interaction_identifier)===0){
-                                        array_push($values, $data['interaction_identifier']);
+                                        array_push($intact_values, $data['interaction_identifier']);
                                    }
                                    else{
                                         foreach ($split_interaction_identifier as $interaction_identifier) {
@@ -1490,7 +1490,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
 
                                         }
                                    }
-                                   array_push($values, $href_interaction_identifier);
+                                   array_push($intact_values, $href_interaction_identifier);
                
 //                                   $split_method=explode(":", $data['detection_method']);
 //                                   foreach ($split_method as $alias) {
@@ -1501,7 +1501,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                 }
 
                             }
-                            pretty_table($headers, $values,"pp_intact");
+                            pretty_table($intact_headers, $intact_values,"pp_intact");
                             
                             
                         echo'</div>';
@@ -1512,6 +1512,8 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
    
     $biogrid_array=get_biogrid_plant_plant_interactor($gene_id,$interactionsCollection,$species); 
     $hits_number_biogrid= count($biogrid_array['result']);
+    $biogrid_headers=array('Gene Id','Official symbol','Aliases','Experimental SYSTEM','Author','Pubmed','Organism');
+    $biogrid_values=array();
     if ($hits_number_biogrid>0){
         echo'
                 <div class="panel-group" id="accordion_documents_biogrid">
@@ -1528,8 +1530,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                             echo'
                             <div class="pp_interaction">';
                             
-                            $headers=array('Gene Id','Official symbol','Aliases','Experimental SYSTEM','Author','Pubmed','Organism');
-                            $values=array();
+                            
                             foreach ($biogrid_array['result'] as $value) {
                                 
                                 $species= $value['species'];
@@ -1538,8 +1539,8 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                     if (is_array($data)){
                                     
                                     
-                                        array_push($values, $data['Gene ID 2']);
-                                        array_push($values, $data['OFFICIAL_SYMBOL_B']);
+                                        array_push($biogrid_values, $data['Gene ID 2']);
+                                        array_push($biogrid_values, $data['OFFICIAL_SYMBOL_B']);
                                         $aliases=explode("|", $data['ALIASES_FOR_B']);
 
                                         $counter=0;
@@ -1549,7 +1550,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                                //$short=explode(":", $alias);
                                                //$aliases2=explode("(", $short[1]);
                                                $alias_string.=$alias;
-                                               array_push($values, $alias_string);
+                                               array_push($biogrid_values, $alias_string);
                                            }
                                            else{
                                               $alias_string.=$alias.',';
@@ -1561,20 +1562,20 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                                            $counter++;
 
                                         }
-                                        array_push($values, $data['EXPERIMENTAL_SYSTEM']);
-                                        array_push($values, $data['SOURCE']);
+                                        array_push($biogrid_values, $data['EXPERIMENTAL_SYSTEM']);
+                                        array_push($biogrid_values, $data['SOURCE']);
                                         $href_pmid="";
                                         $href_pmid.=' <a href="http://www.ncbi.nlm.nih.gov/pubmed/'.$data['PUBMED_ID'].'"> '.$data['PUBMED_ID'].' </a> ';  
-                                        array_push($values, $href_pmid);
+                                        array_push($biogrid_values, $href_pmid);
 
 
-                                        array_push($values, $species);
+                                        array_push($biogrid_values, $species);
                                     }
 
                                 }
 
                             }
-                            pretty_table($headers, $values,"pp_biogrid");
+                            pretty_table($biogrid_headers, $biogrid_values,"pp_biogrid");
 
 
                                 
@@ -1587,9 +1588,9 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
     
     
     $string_array=get_string_plant_plant_interactor($transcript_id,$interactionsCollection,$species); 
+    $string_headers=array('Transcript Id','Combined score','Organism');
+    $string_values=array();
     
-    $headers=array('Transcript Id','Combined score','Organism');
-    $values=array();
     foreach ($string_array['result'] as $value) {
 
         //$species= $value['species'];
@@ -1607,14 +1608,14 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                     $combined_score = explode("-",  $transcript);
 
                     if ($species==="Hordeum vulgare"){
-                        array_push($values, "MLOC_".$combined_score[0]);
+                        array_push($string_values, "MLOC_".$combined_score[0]);
                     }
                     else{
-                        array_push($values, $combined_score[0]); 
+                        array_push($string_values, $combined_score[0]); 
                     }
                     //array_push($values, $combined_score[0]);
-                    array_push($values, $combined_score[1]);
-                    array_push($values, $species);
+                    array_push($string_values, $combined_score[1]);
+                    array_push($string_values, $species);
 
 
                 }
@@ -1626,7 +1627,9 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
         }
 
     }
-    $hits_number_string= count($values)/3;
+    
+    $hits_number_string= count($string_values)/3;
+    
     if ($hits_number_string>0){
         echo'
                 <div class="panel-group" id="accordion_documents_string">
@@ -1644,7 +1647,7 @@ function load_and_display_ppinteractions($gene_id,$proteins_id,$transcript_id,$i
                             <div class="pp_interaction">';
                             
                             
-                            pretty_table($headers, $values,"pp_string");
+                            pretty_table($string_headers, $string_values,"pp_string");
 
 
                                 
