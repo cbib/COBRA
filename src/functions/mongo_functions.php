@@ -503,6 +503,7 @@ function get_target_from_source($src_to_tgt,$value_array,$value='null',$favourit
     return $value_array;
 }
 function get_global_score($full_mappingsCollection,$search='null',$species='null'){
+    $score=0.0;
     $cursor_score=$full_mappingsCollection->aggregate(array(
          array('$match' => array('type'=>'full_table','species'=>$species)),  
          array('$project' => array('mapping_file'=>1,'_id'=>0)),

@@ -834,6 +834,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
     
     $gene_start=0;
     $gene_end=0;
+    $genetic_markers_result=array();
     if ($species==="Prunus persica"){
         foreach ($gene_id as $gene) {
             $gene_position_cursor=$full_mappings_collection->find(array('mapping_file.Gene ID'=>$gene),array('mapping_file.$'=>1));
@@ -985,7 +986,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                             </div>
                             <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id.'">';
-                                if (count ($genetic_markers_result['result'])>0){
+                                if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0){
                                         //echo count ($genetic_markers_result['result']);
                                         echo'<table class="table" id="table_markers">  
                                                 <thead>
@@ -1057,7 +1058,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                             </div>
                             <div class="panel-body panel-collapse collapse" id="qtl-table_'.$gene_id.'">';
-                                if (count ($genetic_markers_result['result'])>0 ){
+                                if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0 ){
 
                                             echo'<table class="table" id="table_qtls">  
                                                 <thead>
@@ -1588,7 +1589,7 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
     
     
     $string_array=get_string_plant_plant_interactor($transcript_id,$interactionsCollection,$species); 
-    $string_headers=array('Transcript Id','Combined score','Organism','Gene Score');
+    $string_headers=array('Transcript Id','Combined score','Organism');
     $string_values=array();
     
     foreach ($string_array['result'] as $value) {
@@ -1609,16 +1610,16 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
                     $score=0.0;
                     if ($species==="Hordeum vulgare"){
                         array_push($string_values, "MLOC_".$combined_score[0]);
-                        $score=get_global_score($full_mappingsCollection,"MLOC_".$combined_score[0],$species);
+                        //$score=get_global_score($full_mappingsCollection,"MLOC_".$combined_score[0],$species);
                     }
                     else{
                         array_push($string_values, $combined_score[0]);
-                        $score=get_global_score($full_mappingsCollection,$combined_score[0],$species);
+                        //$score=get_global_score($full_mappingsCollection,$combined_score[0],$species);
                     }
                     //array_push($values, $combined_score[0]);
                     array_push($string_values, $combined_score[1]);
                     array_push($string_values, $species);
-                    array_push($string_values, $score);
+                    //array_push($string_values, $score);
 
 
                 }
