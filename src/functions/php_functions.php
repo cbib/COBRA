@@ -1874,7 +1874,7 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
                                                     
                                                     
                                                     
-                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'" data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo  '<button onclick="myFunction(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'"  data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '</br>';
                                                     echo '  <center>
                                                                 <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">

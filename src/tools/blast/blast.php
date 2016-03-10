@@ -24,6 +24,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 	
     $sequencesCollection = new Mongocollection($db, "sequences");
     $mappingsCollection = new Mongocollection($db, "mappings");
+    $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 
     
     $jobsCollection = new Mongocollection($db, "jobs");
@@ -97,9 +98,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     
                 if ($max_hits<10){
                     //error_log('Search for transcript id: '.$transcript);
-                    $species_id=$mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
+                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
                     if (count($species_id)!==0){
                         foreach ($species_id as $value) {
+                           
                            $species=$value['species']; 
                            //error_log($species.' for transcript id: '.$transcript);
                         }
