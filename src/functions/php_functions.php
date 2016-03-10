@@ -849,16 +849,22 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
         $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
-            array('$match' => array('$and'=> array(
+            array('$match' => array('$or'=>array(array('$and'=> array(
                                             array('mapping_file.Start'=>array('$gt'=> $gene_start )),
                                             array('mapping_file.Start'=>array('$lt'=> $gene_end )),
-                                            array('mapping_file.Chromosome'=> $scaffold )
+                                            array('mapping_file.Chromosome'=> $scaffold )))
+                                            ,
+                                            array('$and'=> array(
+                                            array('mapping_file.End'=>array('$gt'=> $gene_start )),
+                                            array('mapping_file.End'=>array('$lt'=> $gene_end )),
+                                            array('mapping_file.Chromosome'=> $scaffold )))
                                             )
-                                    )
-                 ),
-            array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
+                                        )
+                                    ),
+            array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.HREF_species'=> 1,'mapping_file.Species'=>1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
 
         ));
+        
         
         
         //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
@@ -980,19 +986,21 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                             </div>
                             <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id.'">';
                                 if (count ($genetic_markers_result['result'])>0){
-                                    
+                                        //echo count ($genetic_markers_result['result']);
                                         echo'<table class="table" id="table_markers">  
                                                 <thead>
                                                 <tr>';
                                                 //echo "<th>gene ID</th>";
                                                     echo "<th>Marker ID</th>";
+                                                    echo "<th>Type</th>";
                                                     echo "<th>Start</th>";
                                                     echo "<th>End</th>";
                                                     echo "<th>Chromosome</th>";
                                                     echo "<th>Linkage group</th>";
                                                     echo "<th>Position (cM)</th>";
                                                     echo "<th>Map ID</th>";
-                                                    echo "<th>Type</th>";
+                                                    echo "<th>Species</th>";
+                                                    
                                                     echo'
                                                 </tr>
                                                 </thead>
@@ -1005,6 +1013,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                             //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
                                                             //echo '<td>'.$data['Gene ID'].'</td>';
                                                             echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data['HREF_markers'].'/'.$data['Marker ID'].'">'.$data['Marker ID'].'</a></td>';
+                                                            echo '<td>'.$data['Type'].'</td>';
                                                             echo '<td>'.$data['Start'].'</td>';
                                                             echo '<td>'.$data['End'].'</td>';
                                                             echo '<td>'.$data['Chromosome'].'</td>';
@@ -1012,7 +1021,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                             echo '<td>'.$lg[1].'</td>';
                                                             echo '<td>'.$data['StartcM'].'</td>';
                                                             echo '<td>'.$data['Map ID'].'</td>';
-                                                            echo '<td>'.$data['Type'].'</td>';
+                                                            echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data['HREF_species'].'/'.$data['Species'].'">'.$data['Species'].'</a></td>';
+
                                                             
                                                             echo "</tr>";
                                                         }
@@ -1067,6 +1077,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                 $marker_list=array();
                                                 foreach ($genetic_markers_result['result'] as $value) {
                                                         foreach($value as $data){
+                                                            $href_marker=$data['HREF_markers'];
                                                             $marker_id=$data['Marker ID'];
                                                             
                                                             if (!in_array($marker_id, $marker_list)){
@@ -1094,7 +1105,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                                                         echo '<td>'.$data_qtl['Trait Alias'].'</td>';
                                                                         echo '<td>'.$data_qtl['Study'].'</td>';
                                                                         echo '<td>'.$data_qtl['Species'].'</td>';
-                                                                        echo '<td>'.$marker_id.'</td>';
+                                                                        echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$href_marker.'/'.$marker_id.'">'.$marker_id.'</a></td>';
 
 
                                                                         echo "</tr>";
@@ -1733,6 +1744,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                                     
                                     //AUTHOR NAME
                                     array_push($values, $data['author_name']);
+                                    //VIRUS NAME
                                     array_push($values, $data['virus']);
 
                                     //DETECTION METHOD
