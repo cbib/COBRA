@@ -207,6 +207,40 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                                 <span>Home</span>
                              </a>
                          </li>
+                          <!--<li id="dropdown">
+                            <a data-toggle="collapse" href="#dropdown-lvl1">
+                                <span class="glyphicon glyphicon-user"></span> Search history <span class="caret"></span>
+                            </a>
+
+                            
+                            <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                       
+                                        <li class="panel panel-default" id="dropdown">
+                                            <a data-toggle="collapse" href="#dropdown-lvl2">
+                                                <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
+                                            </a>
+                                            <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <ul class="nav navbar-nav">
+                                                        <li><a href="#">Link</a></li>
+                                                        <li><a href="#">Link</a></li>
+                                                        <li><a href="#">Link</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
                          <li';if($uri == "/src/search" || $uri == "/"){ echo ' class="active"'; } echo '>
                              <a href="'.$path.'/src/search/">
                                 <i class="fa fa-search"></i> 
@@ -216,6 +250,11 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                          <li>
                              <a href="'.$path.'/src/description/">
                                  <i class="fa fa-leaf"></i> <span>Data</span>
+                             </a>
+                         </li>
+                         <li>
+                             <a href="'.$path.'/src/users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'">
+                                 <i class="glyphicon glyphicon-user"></i> <span>User</span>
                              </a>
                          </li>
                          <li >

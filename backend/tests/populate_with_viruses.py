@@ -226,3 +226,18 @@ tylcv={
 	
 }
 viruses_col.insert(tylcv)
+
+lmv={
+	"full_name":"Lettuce mosaic virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Lettuce_mosaic_virus",
+	"aliases":['lmv'],
+	"classification":{
+		"top_level":"viruses",
+		"group": "Group IV ((+)ssRNA)",
+		"family": "Potyviridae",
+		"genus": "Potyvirus",
+		"species": "Lettuce mosaic virus"
+	}
+	
+}
+viruses_col.insert(lmv)

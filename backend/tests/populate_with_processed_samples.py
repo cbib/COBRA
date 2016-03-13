@@ -850,3 +850,339 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 
 }
 samples_col.insert(Prunus_samples)
+
+
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 1",
+        "state":"processed",
+	"comments":[
+		{"content":"""Arabidopsis thaliana ecotype Ler was inoculated with three different Potyviruses. About 4 weeks after sowing, the 6 expanded leaves plants were inoculated with the different viruses or were mock-inoculated. Seven days after inoculation, inoculated leaves were collected, RNA was extracted and virus infection controlled. Three biological repeats have been done and two dye-swaps.""","author":"Valerie Schurdi-Levraud,Jean-Pierre Renou,Veronique Brunaud,Marie-Laure Martin-Magniette","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA v2.2"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE10707",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=206",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":8,
+		"column_keys":['idx','Est','Gene','I_S1','I_S2','logFC','P-VAL'],
+		"sheet_index":0,
+		"id_type":"Gene"
+	},
+	"experimental_results":[
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerTEV1-LerMock1_exp206.xlsx",
+			"conditions":[
+                                "non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				}
+			
+			],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerTEV2-LerMock2_exp206.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Tobacco etch virus",
+				"type":"inoculated",
+				"label":"Infected with TEV"
+				}
+                        ],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerPPV1-LerPPVMock1_exp206.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+                        ],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		}
+                
+	]
+
+}
+samples_col.insert(AT_samples)
+
+
+
+
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 1",
+        "state":"processed",
+	"comments":[
+		{"content":"""Arabidopsis thaliana ecotype Ler was inoculated with three different Potyviruses. About 4 weeks after sowing, the 6 expanded leaves plants were inoculated with the different viruses or were mock-inoculated. Seven days after inoculation, inoculated leaves were collected, RNA was extracted and virus infection controlled. Three biological repeats have been done and two dye-swaps.""","author":"Valerie Schurdi-Levraud,Jean-Pierre Renou,Veronique Brunaud,Marie-Laure Martin-Magniette","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA v2.2"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE10707",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=206",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":8,
+		"column_keys":['idx','Est','Gene','I_S1','I_S2','logFC','P-VAL'],
+		"sheet_index":0,
+		"id_type":"Gene"
+	},
+	"experimental_results":[
+		
+		
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerPPV2-LerPPVMock2_exp206.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Plum pox virus",
+				"type":"inoculated",
+				"label":"Infected with PPV"
+				}
+                        ],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerLMV1-LerMock1_exp206.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+                        ],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-LerLMV2-LerMock2_exp206.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+                        ],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"landsberg erecta",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		}
+	]
+
+}
+samples_col.insert(AT_samples)
+
+
+
+
+
+
+
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 3",
+        "state":"processed",
+	"comments":[
+		{"content":"""Four different Arabidopsis ecotypes were inoculated with one Potyviruse. About 4 weeks after sowing, the 6 expanded leaves plants were inoculated with the different viruses or were mock-inoculated. Seven days after inoculation, inoculated leaves were collected, RNA was extracted and virus infection controlled. RNA fron infected plants was then used for microarrays hybridization. Three biological repeat have been done and two dye-swap.""","author":"Valerie Schurdi-Levraud,Jean-Pierre Renou,Frederique Bitton,Marie-Laure Martin-Magniette","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA v2.2"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE10711",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=207",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":8,
+		"column_keys":['idx','Est','Gene','I_S1','I_S2','logFC','P-VAL'],
+		"sheet_index":0,
+		"id_type":"Gene"
+	},
+	"experimental_results":[
+		
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-ColLMV1-ColMock1_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+			
+			],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"col-0",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+		{
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-ColLMV2-ColMock2_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+		],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"col-0",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-Bl1LMV1-Bl1Mock1_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+		],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"bologna-1",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		}
+	]
+
+}
+samples_col.insert(AT_samples)
+
+AT_samples={
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
+	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
+	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 4",
+        "state":"processed",
+	"comments":[
+		{"content":"""Four different Arabidopsis ecotypes were inoculated with one Potyviruse. About 4 weeks after sowing, the 6 expanded leaves plants were inoculated with the different viruses or were mock-inoculated. Seven days after inoculation, inoculated leaves were collected, RNA was extracted and virus infection controlled. RNA fron infected plants was then used for microarrays hybridization. Three biological repeat have been done and two dye-swap.""","author":"Valerie Schurdi-Levraud,Jean-Pierre Renou,Frederique Bitton,Marie-Laure Martin-Magniette","date":datetime.datetime.now()}
+	],
+	"assay":{
+		"type":"micro-array",
+		"design":"CATMA v2.2"
+	},
+	"deposited":{
+		"repository":"http://www.ncbi.nlm.nih.gov/projects/geo/query/acc.cgi?acc=GSE10711",
+		"sample_description_url":"http://urgv.evry.inra.fr/cgi-bin/projects/CATdb/consult_expce.pl?experiment_id=207",
+		"experimental_meta_data":"not deposited yet"
+
+	},
+	# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":8,
+		"column_keys":['idx','Est','Gene','I_S1','I_S2','logFC','P-VAL'],
+		"sheet_index":0,
+		"id_type":"Gene"
+	},
+	"experimental_results":[
+		
+		
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-Bl1LMV2-Bl1Mock2_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+		],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"bologna-1",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-CvlLMV1-CvlMock1_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+		],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"cape verde islands",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		},
+                {
+			"data_file":"Arabidopsis/arabidopsis_thaliana/transcriptomics/microarray/tobacco_etch_viruses/4/RA06-05_Potyvirus-CvlLMV2-CvlMock2_exp207.xlsx",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Lettuce mosaic virus",
+				"type":"inoculated",
+				"label":"Infected with LMV"
+				}
+		],
+			"contrast":"infected VS non infected",
+			"type":"contrast",
+			"variety":"cape verde islands",
+			"day_after_inoculation":7,
+                        "material":"rosette"
+			
+		}
+	]
+
+}
+samples_col.insert(AT_samples)

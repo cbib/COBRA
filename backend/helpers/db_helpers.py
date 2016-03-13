@@ -191,7 +191,8 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 				this_dict=dict(zip(column_keys,values))
                                 #enforce score double
                                 #'Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP'
-                                this_dict['Score_exp']=float(str(this_dict['Score_exp'])) 
+                                this_dict['Score_exp']=float(this_dict['Score_exp'])
+                                this_dict['Global_Score']=float(this_dict['Global_Score']) 
                                 #logger.info("columns keys length:%.1f",this_dict['Score_exp'])  
                                 this_dict['Score_int']=float(this_dict['Score_int'])    
                                 this_dict['Score_orthologs']=float(this_dict['Score_orthologs'])    
@@ -203,6 +204,14 @@ def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
                                 if isinstance(this_dict['End'],basestring):
                                         if this_dict['End']!="NA":
                                             this_dict['End']=int(this_dict['End'])
+                                if 'Transcript start' in this_dict:
+                                    if isinstance(this_dict['Transcript start'],basestring):
+                                            if this_dict['Transcript start']!="NA":
+                                                this_dict['Transcript start']=int(this_dict['Transcript start'])
+                                if 'Transcript end' in this_dict:
+                                    if isinstance(this_dict['Transcript end'],basestring):
+                                            if this_dict['Transcript end']!="NA":
+                                                this_dict['Transcript end']=int(this_dict['Transcript end'])
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))

@@ -9,6 +9,7 @@ from helpers.basics import load_config
 from helpers.logger import Logger
 from helpers.db_helpers import * 
 from helpers.path import data_dir
+from pymongo.errors import DocumentTooLarge,OperationFailure
 
 # Script supposed to be run in the background to populate the DB with available datasets 
 ## Setup
@@ -50,9 +51,14 @@ for a_sample in samples_to_process:
 		# perform the mapping 
 
 		### TODO
-
+                try:
+                    diagnostic=samples_col.update({"_id":a_sample['_id'],"experimental_results.data_file":a_result['data_file']},{"$set":{"experimental_results.$.values":parsed_data}})
+                    logger.info("Performed insertion:%s",diagnostic)
+                #break
+                except DocumentTooLarge:
+                    print "Oops! Document too large to insert as bson object. Use grid fs to store file..."
 		# update DB 
-		diagnostic=samples_col.update({"_id":a_sample['_id'],"experimental_results.data_file":a_result['data_file']},{"$set":{"experimental_results.$.values":parsed_data}})
-		logger.info("Performed insertion:%s",diagnostic)
+                #diagnostic=samples_col.update({"_id":a_sample['_id'],"experimental_results.data_file":a_result['data_file']},{"$set":{"experimental_results.$.values":parsed_data}})
+		
 
 

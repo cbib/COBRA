@@ -92,3 +92,81 @@ marker_table={
 	}
 }
 genetic_markers_col.insert(marker_table)
+
+marker_table={
+	"data_file":"Cucumis/genetic_markers/physical_and_genetic_maps.xlsx",
+	"src":"Marker ID",
+	"src_version":"",
+        "tgt":"Map ID",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Marker name','Marker type','Chrom','Pseudomolecule coordinates','cM Garcia-Mas et al. (2012)','cM Argyris et al. (2015)','LG_ICuGI','cM_ICuGI','Scaffold v3.5.1','Scaffold coordinates','Original map','position in original map','Comment on discrepancy'],
+		"sheet_index":0,
+	}
+}
+genetic_markers_col.insert(marker_table)
+
+
+
+
+
+marker_table={
+	"data_file":"Arabidopsis/genetic_markers/TAIR_genetic_markers.tsv",
+	"src":"Marker ID",
+	"src_version":"",
+        "tgt":"Map ID",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','StartcM','StopcM','Chromosome','Start','End','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
+		"sheet_index":0,
+	}
+}
+genetic_markers_col.insert(marker_table)
+
+
+marker_table={
+	"data_file":"Hordeum/genetic_markers/TAIR_genetic_markers.tsv",
+	"src":"Marker ID",
+	"src_version":"",
+        "tgt":"Map ID",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','StartcM','StopcM','Chromosome','Start','End','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
+		"sheet_index":0,
+	}
+}
+genetic_markers_col.insert(marker_table)
+
+marker_table={
+	"data_file":"Solanum/genetic_markers/TAIR_genetic_markers.tsv",
+	"src":"Marker ID",
+	"src_version":"",
+        "tgt":"Map ID",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','HREF_markers','Marker ID','Alias','Type','HREF_species','Species','Map ID','Linkage Group','StartcM','StopcM','Chromosome','Start','End','Citation','Primer1 name','Primer1 sequence','Primer2 name','Primer2 sequence','Primer3 name','Primer3 sequence','Primer4 name','Primer4 sequence'],
+		"sheet_index":0,
+	}
+}
+genetic_markers_col.insert(marker_table)
+
