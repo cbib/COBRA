@@ -134,10 +134,10 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 
 //            array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),
 //            array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),
-            array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
-            array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
-            array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
-            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),
             //array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi")),
@@ -337,7 +337,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 //                    echo "<br>Script for GO executed in " . $page_load_time . " sec";
                     
                     //$timestart=microtime(true);
-                    load_and_display_variations_result($genetic_markers_collection,$qtl_collection,$full_mappingsCollection,$variation_collection,$gene_id,$species);
+                    load_and_display_variations_result($genetic_markers_collection,$qtl_collection,$full_mappingsCollection,$variation_collection,$gene_id,$species,$gene_start,$gene_end,$chromosome);
                     //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;

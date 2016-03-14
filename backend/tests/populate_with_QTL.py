@@ -91,41 +91,41 @@ qtl_table={
 qtls_col.insert(qtl_table)
 
 
-qtl_table={
-	"data_file":"Solanum/QTL/QTL_sol_pgdbj.tsv",
-	"src":"QTL ID",
-	"src_version":"",
-        "tgt":"Marker ID",
-	"url":"http://pgdbj.jp/markerdb2/",
-	"doi":"none",
-	"key":"",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Species','Family','QTL','Trait Name','Chr or LG','Significant Marker','Lod','Lod peak (cm)','Location','Trait Type','DOI or PMID'],
-		"sheet_index":0,
-	}
-}
-qtls_col.insert(qtl_table)
+#qtl_table={
+#	"data_file":"Solanum/QTL/QTL_sol_pgdbj.tsv",
+#	"src":"QTL ID",
+#	"src_version":"",
+#       "tgt":"Marker ID",
+#	"url":"http://pgdbj.jp/markerdb2/",
+#	"doi":"none",
+#	"key":"",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','Species','Family','QTL','Trait Name','Chr or LG','Significant Marker','Lod','Lod peak (cm)','Location','Trait Type','DOI or PMID'],
+#		"sheet_index":0,
+#	}
+#}
+#qtls_col.insert(qtl_table)
 
-qtl_table={
-	"data_file":"Cucumis/QTL/QTL_cuc_pgdbj.tsv",
-	"src":"QTL ID",
-	"src_version":"PGDBJ",
-        "tgt":"Marker ID",
-	"url":"",
-	"doi":"none",
-	"key":"",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Species','Family','QTL','Trait Name','Chr or LG','Marker ID','Lod','Lod peak (cm)','Location','Trait Type','DOI or PMID'],
-		"sheet_index":0,
-	}
-}
-qtls_col.insert(qtl_table)
+#qtl_table={
+#	"data_file":"Cucumis/QTL/QTL_cuc_pgdbj.tsv",
+#	"src":"QTL ID",
+#	"src_version":"PGDBJ",
+#       "tgt":"Marker ID",
+#	"url":"",
+#	"doi":"none",
+#	"key":"",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','Species','Family','QTL','Trait Name','Chr or LG','Marker ID','Lod','Lod peak (cm)','Location','Trait Type','DOI or PMID'],
+#		"sheet_index":0,
+#	}
+#}
+#qtls_col.insert(qtl_table)
 
 
 qtl_table={
@@ -139,8 +139,8 @@ qtl_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Alias','letter','QTL ID','Chromosome','Marker ID','Marker2','Position-1','Position-2'],
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Alias','QTL Name','letter_exp','QTL ID','Chromosome','Map ID','Marker ID','Marker ID 2','Start','End'],
 		"sheet_index":0,
 	}
 }

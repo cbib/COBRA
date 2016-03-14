@@ -187,8 +187,16 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
                 $current_id=$result['mapping_file']['Gene ID'];
                 
                 $table_string.='<tr>';
-                array_push($gene_id,$result['mapping_file']['Gene ID']);
-                $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+                if (isset($result['mapping_file']['Gene ID']) && $result['mapping_file']['Gene ID']!="NA"){ 
+                    array_push($gene_id,$result['mapping_file']['Gene ID']);
+                    $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+
+                }
+                else{
+                    array_push($gene_id,$result['mapping_file']['Gene ID 2']);
+                    $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID 2'].'">'.$result['mapping_file']['Gene ID 2'].'</a></td>';
+
+                }
                 $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
                 if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
                     $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
