@@ -3324,7 +3324,58 @@ function find_all_species(MongoCollection $sp){
 }
 
 
+function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
+   try
+   {
+    $best_scored_genes=$full_mappings_collection->aggregate(
+    array(
+        array('$match' => array('type'=>'full_table')),  
+        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+        array('$unwind'=>'$mapping_file'),
+        array(
+          '$group'=>
+            array(
+              '_id'=> array( 'score'=> '$mapping_file.Global_Score' ),
+              'genes'=> array( '$addToSet'=> array('gene_id'=>'$mapping_file.Gene ID','species'=>'$species' ))
+                
+              
+            )
+        ),
+        array('$sort'=>array('_id.score'=>-1))
+       
+   )
+   );
+    
+//    $best_scored_genes=$full_mappings_collection->aggregate(
+//    array(
+//        array('$match' => array('type'=>'full_table')),  
+//        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
+//        array('$unwind'=>'$mapping_file'),
+//        array(
+//          '$group'=>
+//            array(
+//              '_id'=> array( 'score'=> '$mapping_file.Global_Score' ),
+//              'genes'=> array( '$addToSet'=> '$mapping_file.Gene ID')
+//                
+//              
+//            )
+//        ),
+//        array('$sort'=>array('_id.score'=>-1))
+//       
+//   )
+//   );
+   
+   }
+    catch ( MongoConnectionException $e )
+    {
+            echo '<p>Couldn\'t get any scoring values, Do you have data processed?</p>';
+            echo $e->getMessage();
+        exit();
+    }
+    return $best_scored_genes;
 
+ 
+}
 ###viruses table request
 
 function find_all_viruses(MongoCollection $vi){

@@ -23,6 +23,7 @@ $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
 $samplesCollection = new Mongocollection($db, "samples");
 $mappingsCollection = new Mongocollection($db, "mappings");
+$full_mappingsCollection = new Mongocollection($db, "full_mappings");
 $measurementsCollection = new Mongocollection($db, "measurements");
 $publicationsCollection = new Mongocollection($db, "publications");
 $interactionsCollection = new Mongocollection($db, "interactions");
@@ -249,6 +250,57 @@ $virus_table_string.='</tr>';
 }
 $virus_table_string.='</tbody></table>';
 add_accordion_panel($virus_table_string, "Viruses", "virus_table");
+echo'<br/>';
+
+$best_scored_genes=find_top_ranking_S_genes($full_mappingsCollection);
+//$best_scored_genes->sort(array('_id.score'=>1));
+
+
+
+$CG_form_string="";
+$CG_form_string.='<table id="S-genes" class="table table-hover">';
+
+//$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
+$CG_form_string.='<thead><tr>';
+	
+	//recupere le titre
+	$CG_form_string.='<th>Gene</th>';
+	$CG_form_string.='<th>species</th>';
+	$CG_form_string.='<th>Score</th>';
+	
+	//$table_string.='<th>tgt</th>';
+	//$table_string.='<th>tgt_version</th>';
+	//$table_string.='<th>species</th>';
+
+	
+	//fin du header de la table
+$CG_form_string.='</tr></thead>';
+//Debut du corps de la table
+$CG_form_string.='<tbody>';
+
+foreach ($best_scored_genes['result'] as $value) {
+    //var_dump($value['_id']['score']);
+    //echo $value['_id']['score'].'<br/>';
+    
+        $score=$value['_id']['score'];
+        if ( $score > 10){
+            foreach ($value['genes'] as $gene) {
+                $CG_form_string.='<tr>';
+                //$CG_form_string.='<td>'.$gene['gene_id'].'</td>';
+                $CG_form_string.='<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$gene['species'].'&search='.$gene['gene_id'].'">'.$gene['gene_id'].'</a></td>';
+
+                $CG_form_string.='<td>'.$gene['species'].'</td>';
+                $CG_form_string.='<td>'.$score.'</td>';
+                $CG_form_string.='</tr>';
+                //echo $gene;
+            }
+        }
+}
+$CG_form_string.='</tbody></table>';
+
+
+add_accordion_panel($CG_form_string, "Top Ranking susceptibility genes using COBRA scoring function","Top-Ranking-Sgenes"); 
+
 echo'<br/>';
 
 

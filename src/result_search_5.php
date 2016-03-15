@@ -304,7 +304,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             // left side div
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
-                    load_and_display_proteins_details($gene_id,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score,$gene_start,$gene_end,$chromosome);
+                    load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score,$gene_start,$gene_end,$chromosome);
                     //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;

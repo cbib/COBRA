@@ -730,8 +730,8 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
 
 
 
-function load_and_display_proteins_details(array $gene_id, array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
-   echo'<div id="section_description"><B>'.$gene_id[0].'</B> ';for ($i = 0; $i < $score; $i++) { 
+function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
+   echo'<div id="section_description"><B>';if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';for ($i = 0; $i < $score; $i++) { 
                    echo '<i class="fa fa-star"></i>';
                 };echo'<B class="right"><i>'.$species.'</i></B>
                     ';
@@ -894,7 +894,6 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
     else if ($species==="Cucumis melo"){
         
         $scaffold_number=  explode('chr', $scaffold);
-        echo $gene_start.'-'.$gene_end.':'.$scaffold_number[1];
         $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
