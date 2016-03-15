@@ -423,6 +423,12 @@ $(document).ready(function() {
 		
         
     } );
+    $('#S-genes').DataTable( {
+        responsive: true,
+        
+		
+        
+    } );
 
 } );
 
