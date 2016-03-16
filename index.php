@@ -57,8 +57,8 @@ echo'</hr>';
                 <div class="column-padding no-right-margin">
                         <div class="plain-box"><h2 id="features">A COmbination of systems Biology and experimental high-throughput approaches to engIneer durable Resistance against plAnt viruses in crops</h2>
                         </div>
-                                <p>(PLANT-KBBE) 2013 										Projet COBRA</p>
-                                <p>COBRA plant virus interaction database is developed in coordination with other plant genomics and 										bioinformatics groups via the  consortium. The Plant KBBE project is funded by the 										European Commission within its 7th Framework Programme, under the thematic area 						</p>
+                                <p>(PLANT-KBBE) 2013 Projet COBRA</p>
+                                <p>COBRA plant virus interaction database is developed in coordination with other plant genomics and bioinformatics groups via the  consortium. The Plant KBBE project is funded by the European Commission within its 7th Framework Programme, under the thematic area.</p>
                                 <p>ANR Programme: <a href="http://www.agence-nationale-recherche.fr/en/funded-projects/?tx_lwmsuivibilan_pi1[Programme]=843">Food & Feed: crop yields and nutrition security in the context of climate change (PLANT-KBBE) 2013</a></p>
 
                                 <p>Project ID: <a href="http://www.agence-nationale-recherche.fr/?Project=ANR-13-KBBE-0006" >ANR-13-KBBE-0006</a></p>
@@ -128,11 +128,11 @@ echo'</hr>';
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
-                    <a href="http://www.cgfb.u-bordeaux2.fr/"><img class="displayed" id="partner_logo" src="./images/cgfb_w186.jpg" height="85"/></a>
+                    <a href="http://www.cbib.u-bordeaux2.fr/en"><img class="displayed" id="partner_logo" src="./images/cgfb_w186.jpg" height="85"/></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>
-                    <a href="http://www.abiopep.com/en"><img class="displayed" id="partner_logo" src="./images/abiopep3_w186.jpg" height="85" /></a>
+                    <a href="http://www.abiopep.com/"><img class="displayed" id="partner_logo" src="./images/abiopep3_w186.jpg" height="85" /></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>

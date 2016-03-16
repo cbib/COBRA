@@ -669,11 +669,17 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
     )),
     array('_id'=>0)
     );
-    $counter=1;                       
+    $counter=1;
     foreach ($cursor as $result) {
-        $xp_full_name=explode(".", $result['xp']);                   
+        $xp_full_name=explode(".", $result['xp']);  
+        
         $experiment_id=$xp_full_name[0];
-        $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));                       
+        $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+        
+      
+
+        
+
         if (isset($result['day_after_inoculation'])){
             if (isset($result['variety'])){
                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
@@ -701,6 +707,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
         }
         array_push($logfc_array, $sample);
         $counter++;
+        
 
     }
     $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
@@ -721,7 +728,179 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
                         </div>
                     </div>'; 
                echo'<div id="shift_line"></div>'                
-              . '</div>';  
+              . '</div>'; 
+    //var_dump($global_array);
+    return $global_array;
+
+    //$global_array=array($categories,$series);
+}
+
+function load_and_display_expression_profile_bis(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias){
+    $series=array();
+    $categories=array();
+    $global_categories=array();
+    $global_series=array();
+    $logfc_array=array();
+    $xp_name=array();
+    $cursor=$measurementsCollection->find(array(
+    '$and'=>array(
+        array('$or'=> array(
+            array('gene'=>array('$in'=>$gene_id)),
+            array('gene'=>array('$in'=>$transcript_id)),
+            array('gene'=>array('$in'=>$protein_id)),
+            array('gene'=>array('$in'=>$gene_id_bis)),
+            array('gene'=>array('$in'=>$gene_alias))
+        )),
+        array('gene'=> array('$ne'=>""))
+    )),
+    array('_id'=>0)
+    );
+    $counter=1;
+    $xp_current_name="";
+    $xp_previous_name="";
+    foreach ($cursor as $result) {
+        $xp_full_name=explode(".", $result['xp']);  
+        
+        $experiment_id=$xp_full_name[0];
+        $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
+        if ($counter===1){
+            $xp_current_name=$xp_name[0];
+            $xp_previous_name=$xp_name[0];
+            
+            if (isset($result['day_after_inoculation'])){
+                if (isset($result['variety'])){
+                   $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                    //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
+                    array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                }
+                else{
+                    $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                    //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
+
+                    array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                }
+            }
+            else{
+                if (isset($result['variety'])){
+                   $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                   ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
+                    array_push($categories, $result['species'].'/'.$result['variety']); 
+                }
+                else{
+                    $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                    //$categories[$gene_id[0]]=  $result['species'];
+                    array_push($categories, $result['species']);
+                }
+            }
+            array_push($logfc_array, $sample);
+            
+            
+            
+        }
+        else{
+            
+            $xp_current_name=$xp_name[0];
+            
+            if ($xp_current_name===$xp_previous_name){
+                
+
+                //echo $xp_name[0].'</br>';
+                if (isset($result['day_after_inoculation'])){
+                    if (isset($result['variety'])){
+                       $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
+                        array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                    }
+                    else{
+                        $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
+
+                        array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                    }
+                }
+                else{
+                    if (isset($result['variety'])){
+                       $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                       ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
+                        array_push($categories, $result['species'].'/'.$result['variety']); 
+                    }
+                    else{
+                        $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]=  $result['species'];
+                        array_push($categories, $result['species']);
+                    }
+                }
+                array_push($logfc_array, $sample);
+                $counter++;
+                $xp_previous_name=$xp_current_name;
+            }
+            else{
+                $series=array('name'=>$xp_current_name,'data'=>$logfc_array);
+                array_push($global_series, $series);
+                array_push($global_categories,$categories);
+                $categories=array();
+                $logfc_array=array();
+                
+                if (isset($result['day_after_inoculation'])){
+                    if (isset($result['variety'])){
+                       $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
+                        array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                    }
+                    else{
+                        $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
+
+                        array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                    }
+                }
+                else{
+                    if (isset($result['variety'])){
+                       $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+                       ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
+                        array_push($categories, $result['species'].'/'.$result['variety']); 
+                    }
+                    else{
+                        $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                        //$categories[$gene_id[0]]=  $result['species'];
+                        array_push($categories, $result['species']);
+                    }
+                }
+                array_push($logfc_array, $sample);
+                $xp_current_name=$xp_name[0];
+                $xp_previous_name=$xp_name[0];
+                
+                
+                
+            }
+            
+        }
+        $counter++;
+
+    }
+    $series=array('name'=>$xp_current_name,'data'=>$logfc_array);
+    array_push($global_series, $series);
+    array_push($global_categories,$categories);
+    //$sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
+    //array_push($series, $sample);
+    $global_array=array($global_categories,$global_series);
+    echo'<div id="expression_profile_section">
+                    <h3>Expression profile</h3>
+                    <div class="panel-group" id="accordion_documents_expression">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+                                    <strong>  Expression data</strong>
+                                </a>				
+                            </div>
+                            <div class="panel-body panel-collapse collapse" id="expression-chart"  >
+                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>'; 
+               echo'<div id="shift_line"></div>'                
+              . '</div>'; 
+    var_dump($global_array);
     return $global_array;
 
     //$global_array=array($categories,$series);
@@ -729,12 +908,24 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
 
 
 
-
-function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
-   echo'<div id="section_description"><B>';if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';for ($i = 0; $i < $score; $i++) { 
-                   echo '<i class="fa fa-star"></i>';
-                };echo'<B class="right"><i>'.$species.'</i></B>
-                    ';
+function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score_exp='null',$score_int='null',$score_ort='null',$score_QTL='null',$score_SNP='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
+   echo'<div id="section_description"><B>';if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';
+                for ($i = 0; $i < $score_exp; $i++) { 
+                   echo '<i class="fa fa-star" id="score_exp"></i>';
+                }
+                for ($i = 0; $i < $score_int; $i++) { 
+                   echo '<i class="fa fa-star" id="score_int"></i>';
+                }
+                for ($i = 0; $i < $score_ort; $i++) { 
+                   echo '<i class="fa fa-star" id="score_ort"></i>';
+                }
+                for ($i = 0; $i < $score_QTL; $i++) { 
+                   echo '<i class="fa fa-star" id="score_QTL"></i>';
+                }
+                for ($i = 0; $i < $score_SNP; $i++) { 
+                   echo '<i class="fa fa-star" id="score_SNP"></i>';
+                }
+                echo'<B class="right"><i>'.$species.'</i></B>';
                 echo '<h1>';
                 
                 for ($i = 0; $i < count($gene_symbol); $i++) {
@@ -1942,7 +2133,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                                        array_push($values, $data['method']);
                                        array_push($values, $data['Reference']);
                                        array_push($values, $data['virus']);
-                                       array_push($values, $data['host']);
+                                       array_push($values, $data['species']);
 
 
                                     }
@@ -2623,7 +2814,13 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                             <div class="panel-body panel-collapse collapse" id="ortho-table_'.$plaza_id.'">';
 
                                         //$timestart=microtime(true);
-                                        echo get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+                                        if (get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id)===""){
+                                            echo 'No results found';
+                                        }
+                                        else{
+                                            echo get_ortholog_table($full_mappingsCollection,$orthologsCollection,$organism,$plaza_id);
+
+                                        }
         //                                        $timeend=microtime(true);
         //                                        $time=$timeend-$timestart;
         //

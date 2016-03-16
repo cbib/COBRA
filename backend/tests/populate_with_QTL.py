@@ -72,6 +72,9 @@ qtls_col.drop()
 #qtls_col.insert(qtl_table)
 
 
+###################################################################################################################
+############################################ PRUNUS ###############################################################
+###################################################################################################################
 qtl_table={
 	"data_file":"Prunus/QTL/prunus_species_qtl.tsv",
 	"src":"QTL ID",
@@ -128,6 +131,9 @@ qtls_col.insert(qtl_table)
 #qtls_col.insert(qtl_table)
 
 
+###################################################################################################################
+############################################ CUCUMIS MELO #########################################################
+###################################################################################################################
 qtl_table={
 	"data_file":"Cucumis/QTL/QTL_physical_positions.tsv",
 	"src":"QTL ID",
@@ -141,6 +147,29 @@ qtl_table={
 	"xls_parsing":{
 		"n_rows_to_skip":0,
 		"column_keys":['idx','Alias','QTL Name','letter_exp','QTL ID','Chromosome','Map ID','Marker ID','Marker ID 2','Start','End'],
+		"sheet_index":0,
+	}
+}
+qtls_col.insert(qtl_table)
+
+
+
+###################################################################################################################
+############################################ Hordeum Vulgare #########################################################
+###################################################################################################################
+qtl_table={
+	"data_file":"Cucumis/QTL/QTL_physical_positions.tsv",
+	"src":"QTL ID",
+	"src_version":"Melonomics",
+        "tgt":"Marker ID",
+	"url":"",
+	"doi":"none",
+	"key":"",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Alias','QTL Name','QTL ID','Chromosome','Map ID','Marker ID','Marker ID 2','Start','End'],
 		"sheet_index":0,
 	}
 }

@@ -23,8 +23,23 @@ and open the template in the editor.
 #bar_blank, #hidden_iframe {
   display: none;
 }
-.fa-star {
+//.fa-star{
+//  color: green;
+//}
+#score_exp {
   color: green;
+}
+#score_int {
+  color: blue;
+}
+#score_ort {
+  color: red;
+}
+#score_QTL {
+  color: yellowgreen;
+}
+#score_SNP {
+  color: darkorchid;
 }
 
 //datatable selection

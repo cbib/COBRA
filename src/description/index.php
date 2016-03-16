@@ -207,6 +207,7 @@ $virus_table_string.='<thead><tr>';
 	$virus_table_string.='<th>species</th>';
 	$virus_table_string.='<th>Aliases</th>';
 	$virus_table_string.='<th>top level</th>';
+    $virus_table_string.='<th>Genus</th>';
 	//$table_string.='<th>tgt</th>';
 	//$table_string.='<th>tgt_version</th>';
 	//$table_string.='<th>species</th>';
@@ -242,6 +243,7 @@ $virus_table_string.='<tr>';
 		$virus_table_string.='<td>'.$line['aliases'].'</td>';
 		}
 	$virus_table_string.='<td>'.$line['top'].'</td>';
+    $virus_table_string.='<td>'.$line['genus'].'</td>';
 	//$table_string.='<td>'.$line['tgt'].'</td>';
 	//$table_string.='<td>'.$line['tgt_version'].'</td>';
 	//$table_string.='<td>'.$line['species'].'</td>';

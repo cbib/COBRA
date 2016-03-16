@@ -73,44 +73,52 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     //SEARCH THE CUMULATED SCORE FOR A GIVEN ID//
     /////////////////////////////////////////////
     //$timestart1=microtime(true);
-    $cursor_score=$full_mappingsCollection->aggregate(array(
-         array('$match' => array('type'=>'full_table','species'=>$species)),  
-         array('$project' => array('mapping_file'=>1,'_id'=>0)),
-         array('$unwind'=>'$mapping_file'),
-         array('$match' => array('mapping_file.Gene ID'=>$search)),
-         array(
-           '$group'=>
-             array(
-               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
-               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
-
-               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
-             )
-         )
-
-    ));
+//    $cursor_score=$full_mappingsCollection->aggregate(array(
+//         array('$match' => array('type'=>'full_table','species'=>$species)),  
+//         array('$project' => array('mapping_file'=>1,'_id'=>0)),
+//         array('$unwind'=>'$mapping_file'),
+//         array('$match' => array('mapping_file.Gene ID'=>$search)),
+//         array(
+//           '$group'=>
+//             array(
+//               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+//               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
+//
+//               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
+//             )
+//         )
+//
+//    ));
    
     ///////////////////////////////
     //SUM ALL SCORE FOR THIS GENE//
     ///////////////////////////////   
-    foreach ($cursor_score['result'] as $value) {
-        foreach ($value['scores'] as $tmp_score) {    
-            $score+=$tmp_score['exp'];
-            $score+=$tmp_score['int'];  
-            $score+=$tmp_score['ort'];  
-            $score+=$tmp_score['qtl'];  
-            $score+=$tmp_score['snp'];  
-        }  
-    } 
-    $today = date("F j, Y, g:i a");
-    $document = array("firstname" => $_SESSION['firstname'],
-                      "lastname" => $_SESSION['lastname'],
-                      "search id" => $_GET['search'],
-                      "type" => "search",
-                      "score" =>$score,
-                      "date" => $today
-    );
-    $historyCollection->insert($document);
+//    foreach ($cursor_score['result'] as $value) {
+//        foreach ($value['scores'] as $tmp_score) {    
+//            $score+=$tmp_score['exp'];
+//            $score+=$tmp_score['int'];  
+//            $score+=$tmp_score['ort'];  
+//            $score+=$tmp_score['qtl'];  
+//            $score+=$tmp_score['snp'];  
+//        }  
+//    } 
+//    $today = date("F j, Y, g:i a");
+//    $document = array("firstname" => $_SESSION['firstname'],
+//                      "lastname" => $_SESSION['lastname'],
+//                      "search id" => $_GET['search'],
+//                      "type" => "search",
+//                      "score" =>$score,
+//                      "date" => $today
+//    );
+//    $historyCollection->insert($document);
+    
+    
+    
+    
+    
+    
+    
+    
 //    $timeend1=microtime(true);
 //    $time1=$timeend1-$timestart1;
 //    //Afficher le temps d'éxecution
@@ -217,6 +225,33 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     }
                 }
             }
+            if (isset($result['mapping_file']['Score_exp'])&& $result['mapping_file']['Score_exp']!='' && $result['mapping_file']['Score_exp']!='NA'){
+                $score_exp=(int)$result['mapping_file']['Score_exp'];
+            }
+            if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
+                $score_int=(int)$result['mapping_file']['Score_int'];
+            }
+            if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
+                $score_ort=(int)$result['mapping_file']['Score_orthologs'];
+            }
+            if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
+                $score_QTL=(int)$result['mapping_file']['Score_QTL'];
+            }
+            if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
+                $score_SNP=(int)$result['mapping_file']['Score_SNP'];
+            }
+            if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
+                $score=(int)$result['mapping_file']['Global_Score'];
+                $today = date("F j, Y, g:i a");
+                $document = array("firstname" => $_SESSION['firstname'],
+                      "lastname" => $_SESSION['lastname'],
+                      "search id" => $_GET['search'],
+                      "type" => "search",
+                      "score" =>$score,
+                      "date" => $today
+                );
+                $historyCollection->insert($document);
+            }
             if (isset($result['mapping_file']['Start'])&& $result['mapping_file']['Start']!='' && $result['mapping_file']['Start']!='NA'){
                 $gene_start=(int)$result['mapping_file']['Start'];
             }
@@ -304,7 +339,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             // left side div
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
-                    load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score,$gene_start,$gene_end,$chromosome);
+                    load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;

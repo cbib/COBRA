@@ -565,11 +565,11 @@ function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pv
 function get_litterature_plant_virus_interactor(array $gene_id, MongoCollection $pvinteractionsCollection,$species='null'){
 
     $cursor=$pvinteractionsCollection->aggregate(array(
-            array('$match'=>array('src'=>"Gene ID")),
+            array('$match'=>array('src'=>"Gene ID",'species'=>$species)),
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
-            array('$project' => array('mapping_file.Virus_symbol'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'mapping_file.Reference'=>1,'mapping_file.host'=>1,'_id'=>0))
+            array('$project' => array('mapping_file.Virus_symbol'=>1,'mapping_file.virus'=>1,'mapping_file.method'=>1,'mapping_file.Reference'=>1,'mapping_file.species'=>1,'_id'=>0))
         ));
 
 
@@ -3389,6 +3389,7 @@ function find_all_viruses(MongoCollection $vi){
 								'species' => '$classification.species',
 								'aliases' => 1,
 								'top' => '$classification.top_level',
+                                'genus'=> '$classification.genus',
 								'_id'=>0
 								)
 					)
