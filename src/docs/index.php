@@ -52,6 +52,8 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
         //testing if file has been moved
+        error_log($fichier);
+
         if(move_uploaded_file($_FILES['fileToUpload']['name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
              //echo 'Your file '.$fichier.' was upload successfully !';
