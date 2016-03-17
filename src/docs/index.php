@@ -89,7 +89,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
         }
         else //Sinon (la fonction renvoie FALSE).
         {
-             //echo 'Upload failed, please check repertory permission!';
+             error_log('Upload failed, please check repertory permission!');
         }
     }
     else
