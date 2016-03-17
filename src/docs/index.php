@@ -54,7 +54,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
         //testing if file has been moved
         error_log($fichier);
 
-        if(move_uploaded_file($_FILES['fileToUpload']['name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
              //echo 'Your file '.$fichier.' was upload successfully !';
              $full_path=$dossier.$fichier;
@@ -115,7 +115,7 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
        }
     }  
 }
-
+$db=mongoConnector();
 new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
@@ -143,7 +143,7 @@ echo '<div id="doc_pages">';
               </form>
           </div>';
     echo '<div id="section_documents">';
-    $db=mongoConnector();
+    
     //$docsCollection = new Mongocollection($db, "docs");
     $nb_files = 0;
     $table_string="";
