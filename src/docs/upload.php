@@ -87,6 +87,7 @@ if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
 else
 {
      echo "<div>".$erreur."</div>";
+     error_log($erreur);
 }
 
 
