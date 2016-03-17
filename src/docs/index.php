@@ -29,7 +29,7 @@ $dossier = 'COBRA_depot/';
 if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
     $fichier = basename($_FILES['fileToUpload']['name']);
     $max_size = 100000000;
-    $size = filesize($_FILES['fileToUpload']['name']);
+    $size = filesize($_FILES['fileToUpload']['tmp_name']);
     error_log($size);
     $extensions = array('.doc','.docx','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx','.ppt','.pptx');
     $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
