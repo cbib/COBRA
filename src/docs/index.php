@@ -34,7 +34,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
     $extensions = array('.doc','.docx','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx','.ppt','.pptx');
     $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
     //Début des vérifications de sécurité...
-    //echo $extension;
+    error_log($extension);
     if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
     {
          $erreur = 'Upload valid only for type png, gif, jpg, jpeg, txt or doc...';
