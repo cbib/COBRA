@@ -2,7 +2,7 @@
 include '../functions/html_functions.php';
 include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
-include '../../wiki/vendor/autoload.php';
+//include '../../wiki/vendor/autoload.php';
 require('../session/control-session.php');
 $db=mongoConnector();
 
@@ -24,6 +24,7 @@ new_cobra_body($_SESSION['login'],"Upload files Page","section_upload_file","../
 
 $dossier = 'COBRA_depot/';
 $fichier = basename($_FILES['fileToUpload']['name']);
+
 $max_size = 100000000;
 $size = filesize($_FILES['fileToUpload']['tmp_name']);
 $extensions = array('.doc','.docx','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx','ppt','pptx');

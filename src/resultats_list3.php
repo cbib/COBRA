@@ -3,7 +3,7 @@ session_start();
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
-include '../wiki/vendor/autoload.php';
+//include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
 
 

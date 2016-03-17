@@ -1,5 +1,5 @@
 <?php
-require_once '../../wiki/vendor/autoload.php';
+//require_once '../../wiki/vendor/autoload.php';
 
 
 
