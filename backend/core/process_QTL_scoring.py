@@ -39,8 +39,9 @@ for species in species_to_process:
     print species['full_name']
     if species['full_name'] == "Prunus persica" or species['full_name']== "Prunus armeniaca":
         markers_to_process=list(genetic_markers_col.find({'mapping_file.Species':species['full_name']},{"mapping_file.Start":1,"mapping_file.Marker ID":1,"mapping_file.Map ID":1,"mapping_file.Chromosome":1,"_id":0} ))
-
+        counter=0
         for markers in markers_to_process:
+            counter+=1
             for m in markers['mapping_file']:
                 if 'Start' in m and 'Chromosome' in m:
                     if m['Start']!="Location":
