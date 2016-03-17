@@ -89,7 +89,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
     }
     else
     {
-         echo $erreur;
+        error_log($erreur);
     }
 }
 
