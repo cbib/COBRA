@@ -69,7 +69,7 @@ for species in species_to_process:
 
                             cursor_to_table(qtl_to_process)
 
-
+                            gene_list=[]
                             gene_to_process=list(full_mappings_col.aggregate(
                                 [
                                   {'$match' : {'type':'full_table', 'species': species['full_name']}},  
