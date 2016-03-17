@@ -87,18 +87,18 @@ for species in species_to_process:
                                   }
                                 ]
                              , useCursor=False))
-                            for s in genes_to_process:
+                            for s in gene_to_process:
                                 for l in s.keys():
                                     q=s.get('mapping_file',"NA")
                                     #print q['Gene ID']
                                     if q['Gene ID'] not in gene_list:
                                         gene_list.append(q['Gene ID'])
                    
-                            if len(genes_to_process)>0:
+                            if len(gene_to_process)>0:
 
                                 logger.info("count: %d marker : %s gene number %d",counter, m['Marker ID'],len(gene_list))
                                 cursor_to_table(qtl_to_process)
-                                cursor_to_table(genes_to_process)   
+                                cursor_to_table(gene_to_process)   
                                 for gene in gene_list:
                                     for s in qtl_to_process:
                                         for l in s.keys():
