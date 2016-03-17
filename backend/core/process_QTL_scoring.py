@@ -87,7 +87,49 @@ for species in species_to_process:
                                   }
                                 ]
                              , useCursor=False))
-                            cursor_to_table(gene_to_process)
+                            for s in genes_to_process:
+                                for l in s.keys():
+                                    q=s.get('mapping_file',"NA")
+                                    #print q['Gene ID']
+                                    if q['Gene ID'] not in gene_list:
+                                        gene_list.append(q['Gene ID'])
+                   
+                            if len(genes_to_process)>0:
+
+                                logger.info("count: %d marker : %s gene number %d",counter, m['Marker ID'],len(gene_list))
+                                cursor_to_table(qtl_to_process)
+                                cursor_to_table(genes_to_process)   
+                                for gene in gene_list:
+                                    for s in qtl_to_process:
+                                        for l in s.keys():
+                                            q=s.get('mapping_file',"NA")
+                                            #if q['Trait Name'].contains "resistance" +3
+                                            if "resistance" in q['Trait Name'] or "Resistance" in q['Trait Name']:
+                                                logger.info("resistance--- %s",q['Trait Name'])
+                                                full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 2 } })
+
+                                            else:
+                                                logger.info("other--- %s",q['Trait Name'])
+                                                full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 1 } })
+                                            plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Gene ID':gene},{'mapping_file.$.Plaza ID': 1 } )
+                                            for p in plaza_results:
+                                                for values in p['mapping_file']:
+
+                                                    plaza_id=values['Plaza ID']
+
+                                                    ortholog_result=orthologs_col.find({'species':species["full_name"],'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+                                                    for ortholog in ortholog_result:
+
+                                                        ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                                                        if ortholog_list.find(",") != -1:
+                                                            ortholog_split_list=ortholog_list.split(',')
+                                                            for ortholog_id in ortholog_split_list:
+                                                                if ortholog_id!=plaza_id:
+                                                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                        else:
+                                                            if ortholog_list!=plaza_id:
+                                                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                        #cursor_to_table(gene_to_process)
 
 
 
@@ -96,13 +138,13 @@ for species in species_to_process:
                             #    for pos in features['mapping_file']:
                             #        logger.info("gene: %s",pos['Gene ID'])
                                     #logger.info("gene: %s start: %s end: %s",pos[0],pos[1],pos[2])
-    elif species['full_name']=="Cucumis melo":
-          markers_to_process=list(genetic_markers_col.find({'species':species['full_name']},{"mapping_file.Start":1,"mapping_file.Marker ID":1,"mapping_file.Chromosome":1,"_id":0} ))
-          for markers in markers_to_process:
-            for m in markers['mapping_file']:
-                if 'Start' in m and 'Chromosome' in m:
-                    if m['Start']!="" and m['Chromosome']!="":
-                        logger.info("markers position %s chrom %s id %s",m['Start'],m['Chromosome'],m['Marker ID'])
+    #elif species['full_name']=="Cucumis melo":
+    #      markers_to_process=list(genetic_markers_col.find({'species':species['full_name']},{"mapping_file.Start":1,"mapping_file.Marker ID":1,"mapping_file.Chromosome":1,"_id":0} ))
+    #      for markers in markers_to_process:
+    #        for m in markers['mapping_file']:
+    #            if 'Start' in m and 'Chromosome' in m:
+    #                if m['Start']!="" and m['Chromosome']!="":
+    #                    logger.info("markers position %s chrom %s id %s",m['Start'],m['Chromosome'],m['Marker ID'])
                         
                         #qtl_to_process=list(qtls_col.aggregate([
                         #    {'$project' : {'mapping_file':1,'_id':0}},
@@ -131,26 +173,26 @@ for species in species_to_process:
 
 
                         
-                        gene_to_process=list(full_mappings_col.aggregate(
-                            [
-                              {'$match' : {'type':'full_table', 'species': species['full_name']}},  
-                              {'$project' : {'mapping_file':1,'_id':0}},
-                              {'$unwind':'$mapping_file'},
-                              {'$match' :  {'mapping_file.Chromosome': m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['Start'] } } ]}}, 
-                              {
-                                '$project':
-                                   {
-                                     'mapping_file.Gene ID':1,
-                                     'mapping_file.Start':1,
-                                     'mapping_file.End':1,
-                                     '_id': 0
-                                   }
-                              }
-                            ]
-                         , useCursor=False))
-                        cursor_to_table(gene_to_process)
-    else:
-        print "this species QTL is not described"
+    #                    gene_to_process=list(full_mappings_col.aggregate(
+    #                        [
+    #                          {'$match' : {'type':'full_table', 'species': species['full_name']}},  
+    #                          {'$project' : {'mapping_file':1,'_id':0}},
+    #                          {'$unwind':'$mapping_file'},
+    #                          {'$match' :  {'mapping_file.Chromosome': m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['Start'] } } ]}}, 
+    #                          {
+    #                            '$project':
+    #                               {
+    #                                 'mapping_file.Gene ID':1,
+    #                                 'mapping_file.Start':1,
+    #                                 'mapping_file.End':1,
+    #                                 '_id': 0
+    #                               }
+    #                          }
+    #                        ]
+    #                     , useCursor=False))
+    #                    cursor_to_table(gene_to_process)
+    #else:
+    #    print "this species QTL is not described"
         
                         
    
