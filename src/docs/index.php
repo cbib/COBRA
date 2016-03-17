@@ -29,7 +29,7 @@ $dossier = 'COBRA_depot/';
 if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
     $fichier = basename($_FILES['fileToUpload']['name']);
     $max_size = 100000000;
-    $size = filesize($_FILES['fileToUpload']['tmp_name']);
+    $size = filesize($_FILES['fileToUpload']['name']);
     error_log($size);
     $extensions = array('.doc','.docx','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx','.ppt','.pptx');
     $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
@@ -52,7 +52,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
         //testing if file has been moved
-        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+        if(move_uploaded_file($_FILES['fileToUpload']['name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
              //echo 'Your file '.$fichier.' was upload successfully !';
              $full_path=$dossier.$fichier;
