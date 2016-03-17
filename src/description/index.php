@@ -289,7 +289,7 @@ foreach ($best_scored_genes['result'] as $value) {
             foreach ($value['genes'] as $gene) {
                 $CG_form_string.='<tr>';
                 //$CG_form_string.='<td>'.$gene['gene_id'].'</td>';
-                $CG_form_string.='<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$gene['species'].'&search='.$gene['gene_id'].'">'.$gene['gene_id'].'</a></td>';
+                $CG_form_string.='<td><a class="nowrap" target = "_blank" href="../../src/result_search_5.php?organism='.$gene['species'].'&search='.$gene['gene_id'].'">'.$gene['gene_id'].'</a></td>';
 
                 $CG_form_string.='<td>'.$gene['species'].'</td>';
                 $CG_form_string.='<td>'.$score.'</td>';
