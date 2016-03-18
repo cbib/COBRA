@@ -16,7 +16,7 @@ from bson.son import SON
 
 from numbers import Number
 import collections
-from math import log
+from math import logc
 if "log" not in globals():
   logger = Logger.init_logger('DATA_PROCESSOR_%s'%(cfg.language_code), load_config())
 
