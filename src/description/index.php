@@ -285,7 +285,7 @@ foreach ($best_scored_genes['result'] as $value) {
     //echo $value['_id']['score'].'<br/>';
     
         $score=$value['_id']['score'];
-        if ( $score > 50){
+        if ( $score > 10){
             foreach ($value['genes'] as $gene) {
                 $CG_form_string.='<tr>';
                 //$CG_form_string.='<td>'.$gene['gene_id'].'</td>';
