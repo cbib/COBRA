@@ -107,11 +107,11 @@ for species in species_to_process:
                                             #if q['Trait Name'].contains "resistance" +3
                                             if "resistance" in q['Trait Name'] or "Resistance" in q['Trait Name']:
                                                 logger.info("resistance--- %s",q['Trait Name'])
-                                                full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 2 } })
+                                                #full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 2 } })
 
                                             else:
                                                 logger.info("other--- %s",q['Trait Name'])
-                                                full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 1 } })
+                                                #full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 1 } })
                                             plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Gene ID':gene},{'mapping_file.$.Plaza ID': 1 } )
                                             for p in plaza_results:
                                                 for values in p['mapping_file']:
@@ -126,10 +126,10 @@ for species in species_to_process:
                                                             ortholog_split_list=ortholog_list.split(',')
                                                             for ortholog_id in ortholog_split_list:
                                                                 if ortholog_id!=plaza_id:
-                                                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                                    #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
                                                         else:
                                                             if ortholog_list!=plaza_id:
-                                                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                                #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
                         #cursor_to_table(gene_to_process)
 
 

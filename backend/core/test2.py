@@ -30,7 +30,7 @@ logger.info("Running %s",sys.argv[0])
 species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 counter=0
-full_mappings_col.update({'species':'Prunus persica','mapping_file.Score_QTL':{ "$gt": 0 }},{"$set": {'mapping_file.$.Score_QTL': 0 } })
+#full_mappings_col.update({'species':'Prunus persica','mapping_file.Score_QTL':{ "$gt": 0 }},{"$set": {'mapping_file.$.Score_QTL': 0 } })
 
 for species in species_to_process:
 
@@ -155,7 +155,8 @@ for species in species_to_process:
                             for s in qtl_to_process:
                                 for l in s.keys():
                                     q=s.get('mapping_file',"NA")
-                                    #if q['Trait Name'].contains "resistance" +3
+                                    logger.info("count: %d marker : %s gene number %d",counter, m['Marker ID'],len(s.keys()))
+
                                     if "resistance" in q['Trait Name'] or "Resistance" in q['Trait Name']:
                                         logger.info("resistance--- %s",q['Trait Name'])
                                         full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":gene},{'$inc': {'mapping_file.$.Score_QTL': 3 } })
