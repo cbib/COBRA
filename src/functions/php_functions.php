@@ -3023,9 +3023,9 @@ function make_species_list($cursor,$path='null'){
     				</div>
     				<div class="ff-notes">
     					<p class="search-example " style="padding : 6px">e.g. 
-    						<a class="nowrap" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
+    						<a class="nowrap" target="_blank" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
     						or 
-    						<a class="nowrap" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=ATCG01100">ATCG01100</a>
+    						<a class="nowrap" target="_blank" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=ATCG01100">ATCG01100</a>
     						
     					</p>
     				</div>
