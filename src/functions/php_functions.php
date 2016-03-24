@@ -1118,8 +1118,8 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 //http://plants.ensembl.org/Arabidopsis_thaliana/Variation/Explore?r=1:1-841;v=ENSVATH00000001;vdb=variation;vf=1
     
         echo'<div id="variation_section">
-                <h3>Variation and polymorphism</h3>
-                    <div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
+                <h3>Variation and polymorphism</h3>';
+                    /*echo'<div class="panel-group" id="accordion_documents_var_'.$gene_id.'">
                         <div class="panel panel-default">
                             <div class="panel-heading">
 
@@ -1186,7 +1186,9 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                     * 
+                     */
+                    echo '<div id="shift_line"></div>
                     
 
                     <div class="panel-group" id="accordion_documents_mark_'.$gene_id.'">
