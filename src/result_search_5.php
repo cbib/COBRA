@@ -227,18 +227,38 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             }
             if (isset($result['mapping_file']['Score_exp'])&& $result['mapping_file']['Score_exp']!='' && $result['mapping_file']['Score_exp']!='NA'){
                 $score_exp=(int)$result['mapping_file']['Score_exp'];
+                echo 'score_exp: '.$result['mapping_file']['Score_exp'];
+                echo $score.'<br/>';
+                $percent=(float)(($score_exp/$score)* 100);
+                echo $percent.'<br/>';
             }
             if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
                 $score_int=(int)$result['mapping_file']['Score_int'];
+                echo 'score_int: '.$result['mapping_file']['Score_int'];
+                echo $score.'<br/>';
+                $percent=(float)(($score_int/$score)* 100);
+                echo $percent.'<br/>';
             }
             if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
                 $score_ort=(int)$result['mapping_file']['Score_orthologs'];
+                echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
+                echo $score.'<br/>';
+                $percent=(float)(($score_ort/$score)* 100);
+                echo $percent.'<br/>';
             }
             if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
                 $score_QTL=(int)$result['mapping_file']['Score_QTL'];
+                echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
+                echo $score.'<br/>';
+                $percent=(float)(($score_QTL/$score)* 100);
+                echo $percent.'<br/>';
             }
             if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
                 $score_SNP=(int)$result['mapping_file']['Score_SNP'];
+                echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
+                echo $score.'<br/>';
+                $percent=(float)(($score_SNP/$score)* 100);
+                echo $percent.'<br/>';
             }
             if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
                 $score=(int)$result['mapping_file']['Global_Score'];
@@ -340,7 +360,10 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
-                    //Afficher le temps d'éxecution
+                    
+                    //echo $score;
+                    echo '<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>';
+//Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
 //                    //Afficher le temps d'éxecution
@@ -473,8 +496,85 @@ new_cobra_footer();
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
     //var xp_name=echo $xp_name[0]; ?>;
+    var exp_score=<?php echo ($score_exp/$score) * 100; ?>";
+    var int_score=<?php echo ($score_int/$score) * 100; ?>";
+    var QTL_score=<?php echo ($score_QTL/$score) * 100; ?>";
+    var SNP_score=<?php echo ($score_SNP/$score) * 100; ?>";
+    var ort_score=<?php echo ($score_ort/$score) * 100; ?>";
+    var global_score=<?php echo $score; ?>";
+    $score_exp
     
     var clicked_transcript_id="";
+    $(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Score assignment'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Omics Score',
+                colorByPoint: true,
+                data: [{
+                    name: 'Expression Score',
+                    //y: 56.33
+                    y: exp_score
+                }, {
+                    name: 'Interaction Score',
+                    //y: 24.03,
+                    y: int_score,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Orthology Score',
+                    y: ort_score
+                    //y: 10.38
+                }, {
+                    name: 'QTL Score',
+                    y: QTL_score
+                    //y: 4.77
+                }, {
+                    name: 'Genetic Markers Score',
+                    y: SNP_score
+                    //y: 0.91
+                }
+                //, 
+                //{
+                   // name: 'Proprietary or Undetectable',
+                    //y: 0.2
+                //}]
+            }]
+        });
+    });
+});
+    
+    
+    
+    
+    
+    
+    
     $(function () {
         var id= $('#container_profile').attr('data-id');
         $('#container_profile').highcharts({
@@ -1041,6 +1141,7 @@ new_cobra_footer();
 				}
 		});
 	});
+    
     
 </script>
 
