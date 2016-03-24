@@ -78,7 +78,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_full_full.tsv",
+	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_full_full.xls",
 	"species":"Cucumis melo",
 	"type":"full_table",
 	"src":"Gene ID",
@@ -92,14 +92,12 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-                
-                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Transcript ID','Gene ID 2','Probe ID','Score_exp','Score_int','Score_ort','Score_QTL','Score_SNP','Score','Description','Uniprot ID','Plaza ID'],
-
-		#"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Transcript start','Transcript end','Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome','Strand'],
+                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Transcript ID','Gene ID 2','Probe ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Description','Uniprot ID','Plaza ID'],
 		"sheet_index":0,
 	}
 }
 full_mappings_col.insert(mapping_table)
+#"column_keys":['idx','Probe ID','Gene ID','Gene ID 2','Transcript ID','Transcript start','Transcript end','Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome','Strand'],
 
 #mapping_table={
 #	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_2.tsv",
@@ -205,7 +203,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_unique_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_unique_1.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"Gene ID",
@@ -216,8 +214,7 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":0,
-                #Gene ID	Gene start (bp)	Gene end (bp)	Strand	Gene description	Gene name	WikiGene description	NA	Plaza ID	Probe ID	Transcript ID	GO term accession	GO term evidence code	exp	int	ort	QTL	SNP	score
+		"n_rows_to_skip":1,
                 "column_keys":['idx','Gene ID','Start','End','Strand','Description', 'Gene Name','Description 2','Uniprot ID','Plaza ID','Probe ID','Transcript ID','Gene ontology ID','GO Evidence','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score'],
 
 		#"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
@@ -228,7 +225,7 @@ full_mappings_col.insert(mapping_table)
 
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_unique_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/arabidopsis_thaliana_full_unique_2.xls",
 	"species":"Arabidopsis thaliana",
 	"type":"full_table",
 	"src":"Gene ID",
