@@ -526,22 +526,45 @@ new_cobra_footer();
     
     var clicked_transcript_id="";
     
-    
-    
     $(function () {
 
-    //$(document).ready(function () {
-        //alert(exp_score);
-        // Build the chart
-       // var exp_score= $('#container_pie').attr('data-exp');
-        var exp_score = <?php echo(json_encode($percent_exp)); ?>;
-        //alert(exp_score);
-        var int_score= $('#container_pie').attr('data-int');
-        //alert(int_score);
-        var ort_score= $('#container_pie').attr('data-ort');
-        //alert(ort_score);
-        var QTL_score= $('#container_pie').attr('data-QTL');
-        var SNP_score= $('#container_pie').attr('data-SNP');
+        $('#container_pyramid').highcharts({
+            chart: {
+                type: 'pyramid',
+                marginRight: 100
+            },
+            title: {
+                text: 'Sales pyramid',
+                x: -50
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b> ({point.y:,.0f})',
+                        color: 'black',
+                        softConnector: true
+                    }
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: 'Unique users',
+                data: [
+                    ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
+                    ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
+                    ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
+                    ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
+                    ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
+                ]
+            }]
+        });
+    });
+    
+    $(function () {
+        
         $('#container_pie').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -570,11 +593,11 @@ new_cobra_footer();
                 colorByPoint: true,
                 data: [{
                     name: 'Expression Score',
-                    //y: 36
+                    
                     y: <?php echo(json_encode($percent_exp)); ?>
                 }, {
                     name: 'Interaction Score',
-                    //y: 24,
+                    
                     y: <?php echo(json_encode($percent_int)); ?>,
                     
                     sliced: true,
@@ -582,21 +605,17 @@ new_cobra_footer();
                 }, {
                     name: 'Orthology Score',
                     y: <?php echo(json_encode($percent_ort)); ?>
-                    //y: 12
+                    
                 }, {
                     name: 'QTL Score',
                     y: <?php echo(json_encode($percent_QTL)); ?>
-                    //y: 20
+                    
                 }, {
                     name: 'Genetic Markers Score',
                     y: <?php echo(json_encode($percent_SNP)); ?>
-                    //y: 8
+            
                 }]
-                //, 
-                //{
-                   // name: 'Proprietary or Undetectable',
-                    //y: 0.2
-                //}]
+
             }]
         });
     });

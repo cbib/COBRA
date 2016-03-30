@@ -51,6 +51,8 @@ echo'
 
 <!--highcharts-->
 <script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js"></script>
+<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
 <!--<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>-->
 <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
 

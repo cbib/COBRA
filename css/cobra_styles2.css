@@ -229,6 +229,9 @@ table.dataTable tbody tr:hover {
         //height: 100%;
         //border: 1px solid #DDD;
   }
+  .modal-dialog{
+      width: 800px;
+  }
   #summary > #protein-details > #section_description{
 	//width: 480px;
         width: 100%;

@@ -972,7 +972,12 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                                 <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
                               </div>
                               <div class="modal-body">
+                              <div class= col-md-6>
                                 <div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                              </div>
+                              <div class= col-md-6>
+                                <div id="container_pyramid" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                              </div>
                                 <p> The score is computed using every resources of COBRA database following this scheme</p> 
                               </div>
                               <div class="modal-footer">
