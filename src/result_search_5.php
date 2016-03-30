@@ -517,12 +517,12 @@ new_cobra_footer();
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
     //var xp_name=echo $xp_name[0]; ?>;
-    var exp_score=<?php echo $percent_exp; ?>";
-    var int_score=<?php echo $percent_int; ?>";
-    var QTL_score=<?php echo $percent_QTL; ?>";
-    var SNP_score=<?php echo $percent_SNP; ?>";
-    var ort_score=<?php echo $percent_ort; ?>";
-    var global_score=<?php echo $score; ?>";
+    var exp_score="<?php echo $percent_exp; ?>";
+    var int_score="<?php echo $percent_int; ?>";
+    var QTL_score="<?php echo $percent_QTL; ?>";
+    var SNP_score="<?php echo $percent_SNP; ?>";
+    var ort_score="<?php echo $percent_ort; ?>";
+    var global_score="<?php echo $score; ?>";
     $score_exp
     
     var clicked_transcript_id="";
