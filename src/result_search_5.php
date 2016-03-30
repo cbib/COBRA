@@ -225,41 +225,6 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     }
                 }
             }
-            if (isset($result['mapping_file']['Score_exp'])&& $result['mapping_file']['Score_exp']!='' && $result['mapping_file']['Score_exp']!='NA'){
-                $score_exp=(int)$result['mapping_file']['Score_exp'];
-                echo 'score_exp: '.$result['mapping_file']['Score_exp'];
-                echo $score.'<br/>';
-                $percent=(float)(($score_exp/$score)* 100);
-                echo $percent.'<br/>';
-            }
-            if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
-                $score_int=(int)$result['mapping_file']['Score_int'];
-                echo 'score_int: '.$result['mapping_file']['Score_int'];
-                echo $score.'<br/>';
-                $percent=(float)(($score_int/$score)* 100);
-                echo $percent.'<br/>';
-            }
-            if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
-                $score_ort=(int)$result['mapping_file']['Score_orthologs'];
-                echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
-                echo $score.'<br/>';
-                $percent=(float)(($score_ort/$score)* 100);
-                echo $percent.'<br/>';
-            }
-            if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
-                $score_QTL=(int)$result['mapping_file']['Score_QTL'];
-                echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
-                echo $score.'<br/>';
-                $percent=(float)(($score_QTL/$score)* 100);
-                echo $percent.'<br/>';
-            }
-            if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
-                $score_SNP=(int)$result['mapping_file']['Score_SNP'];
-                echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
-                echo $score.'<br/>';
-                $percent=(float)(($score_SNP/$score)* 100);
-                echo $percent.'<br/>';
-            }
             if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
                 $score=(int)$result['mapping_file']['Global_Score'];
                 $today = date("F j, Y, g:i a");
@@ -272,6 +237,62 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 );
                 $historyCollection->insert($document);
             }
+            if (isset($result['mapping_file']['Score_exp'])&& $result['mapping_file']['Score_exp']!='' && $result['mapping_file']['Score_exp']!='NA'){
+                $score_exp=(int)$result['mapping_file']['Score_exp'];
+                //echo 'score_exp: '.$result['mapping_file']['Score_exp'];
+                //echo 'global score: '.$score.'<br/>';
+                $percent_exp=(float)(($score_exp/$score)* 100);
+                //echo 'percentage: '.$percent_exp.' %<br/>';
+            }
+            else{
+                $score_exp=0.0;
+                $percent_exp=0.0;
+            }
+            if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
+                $score_int=(int)$result['mapping_file']['Score_int'];
+                //echo 'score_int: '.$result['mapping_file']['Score_int'];
+                //echo $score.'<br/>';
+                $percent_int=(float)(($score_int/$score)* 100);
+                //echo $percent.'<br/>';
+            }
+            else{
+                $score_int=0.0;
+                $percent_int=0.0;
+            }
+            if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
+                $score_ort=(int)$result['mapping_file']['Score_orthologs'];
+                //echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
+                //echo $score.'<br/>';
+                $percent_ort=(float)(($score_ort/$score)* 100);
+                //echo $percent.'<br/>';
+            }
+            else{
+                $score_ort=0.0;
+                $percent_ort=0.0;
+            }
+            if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
+                $score_QTL=(int)$result['mapping_file']['Score_QTL'];
+                //echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
+                //echo $score.'<br/>';
+                $percent_QTL=(float)(($score_QTL/$score)* 100);
+                //echo $percent.'<br/>';
+            }
+            else{
+                $score_QTL=0.0;
+                $percent_QTL=0.0;
+            }
+            if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
+                $score_SNP=(int)$result['mapping_file']['Score_SNP'];
+                //echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
+                //echo $score.'<br/>';
+                $percent_SNP=(float)(($score_SNP/$score)* 100);
+                //echo $percent.'<br/>';
+            }
+            else{
+                $score_SNP=0.0;
+                $percent_SNP=0.0;
+            }
+            
             if (isset($result['mapping_file']['Start'])&& $result['mapping_file']['Start']!='' && $result['mapping_file']['Start']!='NA'){
                 $gene_start=(int)$result['mapping_file']['Start'];
             }
@@ -496,11 +517,11 @@ new_cobra_footer();
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
     //var xp_name=echo $xp_name[0]; ?>;
-    var exp_score=<?php echo ($score_exp/$score) * 100; ?>";
-    var int_score=<?php echo ($score_int/$score) * 100; ?>";
-    var QTL_score=<?php echo ($score_QTL/$score) * 100; ?>";
-    var SNP_score=<?php echo ($score_SNP/$score) * 100; ?>";
-    var ort_score=<?php echo ($score_ort/$score) * 100; ?>";
+    var exp_score=<?php echo $percent_exp; ?>";
+    var int_score=<?php echo $percent_int; ?>";
+    var QTL_score=<?php echo $percent_QTL; ?>";
+    var SNP_score=<?php echo $percent_SNP; ?>";
+    var ort_score=<?php echo $percent_ort; ?>";
     var global_score=<?php echo $score; ?>";
     $score_exp
     
@@ -558,13 +579,13 @@ new_cobra_footer();
                     name: 'Genetic Markers Score',
                     y: SNP_score
                     //y: 0.91
-                }
+                }]
                 //, 
                 //{
                    // name: 'Proprietary or Undetectable',
                     //y: 0.2
                 //}]
-            }]
+                }]
         });
     });
 });
