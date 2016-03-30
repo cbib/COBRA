@@ -681,17 +681,17 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
         $xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
         
       
-
+        $species=$result['species'];
         
 
         if (isset($result['day_after_inoculation'])){
             if (isset($result['variety'])){
-               $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+               $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name[0]));
                 //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
                 array_push($categories, $result['variety'].'/Day '.$result['day_after_inoculation']); 
             }
             else{
-                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
+                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name[0]));
                 //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
 
                 array_push($categories, '/Day '.$result['day_after_inoculation']);
@@ -699,16 +699,18 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
         }
         else{
             if (isset($result['variety'])){
-               $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
+               $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name[0]));
                ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
                 array_push($categories, $result['variety']); 
             }
             else{
-                $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
+                $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name[0]));
                 //$categories[$gene_id[0]]=  $result['species'];
                 array_push($categories, $result['species']);
             }
         }
+        //description/experiments.php?xp=
+        
         array_push($logfc_array, $sample);
         $counter++;
         
@@ -727,7 +729,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
                                 </a>				
                             </div>
                             <div class="panel-body panel-collapse collapse" id="expression-chart"  >
-                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" style="min-width: 310px; height: 400px;"></div>
+                                <div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" data-species="'.$species.'" style="min-width: 310px; height: 400px;"></div>
                             </div>
                         </div>
                     </div>'; 

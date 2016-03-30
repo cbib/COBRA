@@ -626,13 +626,14 @@ new_cobra_footer();
     
     $(function () {
         var id= $('#container_profile').attr('data-id');
+        var species=$('#container_profile').attr('data-species');
         $('#container_profile').highcharts({
             //alert ($(this).attr('data-alias'));
             chart: {
                 type: 'column'
             },
             title: {
-                text: id + ' differential expression'
+                text: id + ' differential expression ('+species+')' 
             },
 //            subtitle: {
 //                text: xp_name
@@ -668,8 +669,9 @@ new_cobra_footer();
                     
                     var g=genes;
                     //window.alert(genes);
-                
-                    s += '<ul><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
+                    //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
+                    http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
+                    s += '<ul><li><a target="_blank" href="./description/experiments.php?xp='+ this.point.xp_name +'">'+this.point.xp_name+'</a></li><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
