@@ -30,15 +30,15 @@ full_mappings_col.drop();
 
 
 ###################################################################################################################
-############################################ PRUNUS ###############################################################
+############################################ PRUNUS UPDATED###############################################################
 ###################################################################################################################
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/prunus_full_table_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/prunus_full_table_new1.tsv",
 	"species":"Prunus persica",
 	"type":"full_table",
-	"src":"PROBE_ID",
+	"src":"Gene ID",
 	"src_version":"NCBI",
 	"url":"",
 	"doi":"none",
@@ -47,17 +47,20 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
+
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Gene ontology ID','Evidence code','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','SwissProt ID','UniProt ID','Refseq ID','Alias','Description'],
+
+		#"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
 	}
 }
 full_mappings_col.insert(mapping_table)
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/prunus_full_table_2.tsv",
+	"data_file":"mappings/FULL_MAPPING/prunus_full_table_new2.tsv",
 	"species":"Prunus persica",
 	"type":"full_table",
-	"src":"PROBE_ID",
+	"src":"Gene ID",
 	"src_version":"NCBI",
 	"url":"",
 	"doi":"none",
@@ -66,11 +69,36 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
+
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Gene ontology ID','Evidence code','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','SwissProt ID','UniProt ID','Refseq ID','Alias','Description'],
+
+		#"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
 	}
 }
 full_mappings_col.insert(mapping_table)
+
+
+
+#mapping_table={
+#	"data_file":"mappings/FULL_MAPPING/prunus_full_table_2.tsv",
+#	"species":"Prunus persica",
+#	"type":"full_table",
+#	"src":"PROBE_ID",
+#	"src_version":"NCBI",
+#	"url":"",
+#	"doi":"none",
+#	"key":"PROBEID/GENEID/GENEIDBIS/PROTEINIDALT1/PROTEINIDALT2/UNIPROTID/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":0,
+#		"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
+#
+#		"sheet_index":0,
+#	}
+#}
+#full_mappings_col.insert(mapping_table)
 
 ###################################################################################################################
 ############################################ CUCUMIS MELO #########################################################
@@ -78,7 +106,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_full_full.xls",
+	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_full_full2.tsv",
 	"species":"Cucumis melo",
 	"type":"full_table",
 	"src":"Gene ID",
@@ -91,8 +119,8 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Transcript ID','Gene ID 2','Probe ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Description','Uniprot ID','Plaza ID'],
+		"n_rows_to_skip":0,
+                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Transcript ID','Gene ID 2','Probe ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Description','Uniprot ID','Plaza ID','Gene ontology ID'],
 		"sheet_index":0,
 	}
 }
@@ -155,11 +183,11 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_1.tsv",
+	"data_file":"mappings/FULL_MAPPING/NEW_SOLANUM_FULL.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"full_table",
-	"src":"PROBE_ID",
-	"src_version":"SolGenomics first part",
+	"src":"Gene ID",
+	"src_version":"ITAG 2.3",
         "tgt":"Multiple",
         "tgt_version":"Multiple target",
 	"url":"",
@@ -168,37 +196,39 @@ mapping_table={
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
+		"n_rows_to_skip":1,
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','UniProt ID','Probe ID','Gene ID 2','Description','Description 2','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Alias'],
+
+		#"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
 		"sheet_index":0,
 	}
 }
 full_mappings_col.insert(mapping_table)
 
-mapping_table={
-	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_2.tsv",
-	"species":"Solanum lycopersicum",
-	"type":"full_table",
-	"src":"PROBE_ID",
-	"src_version":"SolGenomics second part",
-        "tgt":"Multiple",
-        "tgt_version":"Multiple target",
-	"url":"",
-	"doi":"none",
-	"key":"PROBEID/GENEID/TRANSCRIPTID/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
-	# parser config 
-		# xls parser configuration, are propagated to all entries in  "experimental_results",
-	"xls_parsing":{
-		"n_rows_to_skip":0,
-		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
-		"sheet_index":0,
-	}
-}
-full_mappings_col.insert(mapping_table)
+#mapping_table={
+#	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_2.tsv",
+#	"species":"Solanum lycopersicum",
+#	"type":"full_table",
+#	"src":"PROBE_ID",
+#	"src_version":"SolGenomics second part",
+#       "tgt":"Multiple",
+#        "tgt_version":"Multiple target",
+#	"url":"",
+#	"doi":"none",
+#	"key":"PROBEID/GENEID/TRANSCRIPTID/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+#	# parser config 
+#		# xls parser configuration, are propagated to all entries in  "experimental_results",
+#	"xls_parsing":{
+#		"n_rows_to_skip":0,
+#		"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
+#		"sheet_index":0,
+#	}
+#}
+#full_mappings_col.insert(mapping_table)
 
 
 ###################################################################################################################
-############################################ ARABIDOPSIS THALIANA #################################################
+############################################ ARABIDOPSIS THALIANA UPDATED#################################################
 ###################################################################################################################
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
