@@ -119,10 +119,10 @@ for species in species_to_process:
                 if "scaffold_" in m['Chromosome']:
                     
                     
-                    chrom=m['Chromosome']
-                    chrom.replace("scaffold_", "")
+                    #chrom=m['Chromosome']
+                    #chrom.replace("scaffold_", "")
                     #logger.info("scaffold found %s",chrom)
-                    print m['Chromosome'].strip( 'scaffold_' )
+                    chrom= m['Chromosome'].strip( 'scaffold_' )
 
                 if len(qtl_to_process)>0 :
                     #print m['Marker ID']
