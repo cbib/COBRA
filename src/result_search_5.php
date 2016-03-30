@@ -383,7 +383,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     
                     //echo $score;
-                   // echo '<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>';
+                    echo '<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>';
 //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
@@ -529,7 +529,69 @@ new_cobra_footer();
     
     
     
-    
+    $(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Score assignment'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Omics Score',
+                colorByPoint: true,
+                data: [{
+                    name: 'Expression Score',
+                    //y: 56.33
+                    y: exp_score
+                }, {
+                    name: 'Interaction Score',
+                    //y: 24.03,
+                    y: int_score,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Orthology Score',
+                    y: ort_score
+                    //y: 10.38
+                }, {
+                    name: 'QTL Score',
+                    y: QTL_score
+                    //y: 4.77
+                }, {
+                    name: 'Genetic Markers Score',
+                    y: SNP_score
+                    //y: 0.91
+                }]
+                //, 
+                //{
+                   // name: 'Proprietary or Undetectable',
+                    //y: 0.2
+                //}]
+                }]
+        });
+    });
+});
     
     
     
