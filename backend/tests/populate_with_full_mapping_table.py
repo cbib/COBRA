@@ -197,7 +197,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','UniProt ID','Probe ID','Gene ID 2','Description','Description 2','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Alias'],
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','UniProt ID','Probe ID','Gene ID 2','Description','Description 2','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Alias','Gene ontology ID','Evidence Code'],
 
 		#"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
 		"sheet_index":0,
