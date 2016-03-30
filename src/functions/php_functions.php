@@ -906,10 +906,39 @@ function load_and_display_expression_profile_bis(MongoCollection $measurementsCo
     //$global_array=array($categories,$series);
 }
 
+function load_and_display_score_pie(){
+    echo'<div id="section_score">';
+    echo '<!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+                          View score details
+                        </button>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                                <p> The score is computed using every resources of COBRA database following this scheme</p> 
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>';
+    echo '</div>';
+    
+}
 
 function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score_exp='null',$score_int='null',$score_ort='null',$score_QTL='null',$score_SNP='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
-   echo'<div id="section_description"><B>';if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';
+   echo'<div id="section_description"><B>';
+        if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';
                 for ($i = 0; $i < $score_exp; $i++) { 
                    echo '<i class="fa fa-star" id="score_exp"></i>';
                 }
@@ -925,6 +954,40 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                 for ($i = 0; $i < $score_SNP; $i++) { 
                    echo '<i class="fa fa-star" id="score_SNP"></i>';
                 }
+                
+                
+                
+                
+                echo '<!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+                          View score details
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                                <p> The score is computed using every resources of COBRA database following this scheme</p> 
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>';
+                
+                
+                
+                
+                
+                
                 echo'<B class="right"><i>'.$species.'</i></B>';
                 echo '<h1>';
                 

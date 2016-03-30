@@ -383,7 +383,8 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     
                     //echo $score;
-                    echo '<div id="container_pie" data-exp="'.$percent_exp.'" data-int="'.$percent_int.'" data-ort="'.$percent_ort.'" data-QTL="'.$percent_QTL.'" data-SNP="'.$percent_SNP.'" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>';
+                    //load_and_display_score_pie();
+                    //echo '<div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>';
                     //echo '<div id="container_pie" data-exp="'.$percent_exp.'" data-int="'.$percent_int.'" data-ort="'.$percent_ort.'" data-QTL="'.$percent_QTL.'" data-SNP="'.$percent_SNP.'" style="min-width: 310px; height: 400px;"></div>';
 
 //Afficher le temps d'éxecution
@@ -532,10 +533,13 @@ new_cobra_footer();
     //$(document).ready(function () {
         //alert(exp_score);
         // Build the chart
-        var exp_score= $('#container_pie').attr('data-exp');
-        alert(exp_score);
+       // var exp_score= $('#container_pie').attr('data-exp');
+        var exp_score = <?php echo(json_encode($percent_exp)); ?>;
+        //alert(exp_score);
         var int_score= $('#container_pie').attr('data-int');
+        //alert(int_score);
         var ort_score= $('#container_pie').attr('data-ort');
+        //alert(ort_score);
         var QTL_score= $('#container_pie').attr('data-QTL');
         var SNP_score= $('#container_pie').attr('data-SNP');
         $('#container_pie').highcharts({
@@ -566,27 +570,27 @@ new_cobra_footer();
                 colorByPoint: true,
                 data: [{
                     name: 'Expression Score',
-                    //y: 100
-                    y: exp_score
+                    //y: 36
+                    y: <?php echo(json_encode($percent_exp)); ?>
                 }, {
                     name: 'Interaction Score',
-                    //y: 0,
-                    y: int_score,
+                    //y: 24,
+                    y: <?php echo(json_encode($percent_int)); ?>,
                     
                     sliced: true,
                     selected: true
                 }, {
                     name: 'Orthology Score',
-                    y: ort_score
-                    //y: 0
+                    y: <?php echo(json_encode($percent_ort)); ?>
+                    //y: 12
                 }, {
                     name: 'QTL Score',
-                    y: QTL_score
-                    //y: 0
+                    y: <?php echo(json_encode($percent_QTL)); ?>
+                    //y: 20
                 }, {
                     name: 'Genetic Markers Score',
-                    y: SNP_score
-                    //y: 0
+                    y: <?php echo(json_encode($percent_SNP)); ?>
+                    //y: 8
                 }]
                 //, 
                 //{
