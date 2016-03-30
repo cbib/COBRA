@@ -67,7 +67,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     $plaza_ids=array();
     $est_id=array();
     $go_list=array();
-    $score=0;
+    $score=0.0;
  
     /////////////////////////////////////////////
     //SEARCH THE CUMULATED SCORE FOR A GIVEN ID//
@@ -241,7 +241,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_exp=(int)$result['mapping_file']['Score_exp'];
                 //echo 'score_exp: '.$result['mapping_file']['Score_exp'];
                 //echo 'global score: '.$score.'<br/>';
-                $percent_exp=(float)(($score_exp/$score)* 100);
+                $percent_exp=(float)(($score_exp/$score)* 100.0);
                 //echo 'percentage: '.$percent_exp.' %<br/>';
             }
             else{
@@ -252,7 +252,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_int=(int)$result['mapping_file']['Score_int'];
                 //echo 'score_int: '.$result['mapping_file']['Score_int'];
                 //echo $score.'<br/>';
-                $percent_int=(float)(($score_int/$score)* 100);
+                $percent_int=(float)(($score_int/$score)* 100.0);
                 //echo $percent.'<br/>';
             }
             else{
@@ -263,7 +263,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_ort=(int)$result['mapping_file']['Score_orthologs'];
                 //echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
                 //echo $score.'<br/>';
-                $percent_ort=(float)(($score_ort/$score)* 100);
+                $percent_ort=(float)(($score_ort/$score)* 100.0);
                 //echo $percent.'<br/>';
             }
             else{
@@ -274,7 +274,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_QTL=(int)$result['mapping_file']['Score_QTL'];
                 //echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
                 //echo $score.'<br/>';
-                $percent_QTL=(float)(($score_QTL/$score)* 100);
+                $percent_QTL=(float)(($score_QTL/$score)* 100.0);
                 //echo $percent.'<br/>';
             }
             else{
@@ -285,7 +285,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_SNP=(int)$result['mapping_file']['Score_SNP'];
                 //echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
                 //echo $score.'<br/>';
-                $percent_SNP=(float)(($score_SNP/$score)* 100);
+                $percent_SNP=(float)(($score_SNP/$score)* 100.0);
                 //echo $percent.'<br/>';
             }
             else{
@@ -383,7 +383,9 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     
                     //echo $score;
-                    echo '<div id="container_pie" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>';
+                    echo '<div id="container_pie" data-exp="'.$percent_exp.'" data-int="'.$percent_int.'" data-ort="'.$percent_ort.'" data-QTL="'.$percent_QTL.'" data-SNP="'.$percent_SNP.'" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>';
+                    //echo '<div id="container_pie" data-exp="'.$percent_exp.'" data-int="'.$percent_int.'" data-ort="'.$percent_ort.'" data-QTL="'.$percent_QTL.'" data-SNP="'.$percent_SNP.'" style="min-width: 310px; height: 400px;"></div>';
+
 //Afficher le temps d'éxecution
 //                    $timeend=microtime(true);
 //                    $time=$timeend-$timestart;
@@ -517,11 +519,7 @@ new_cobra_footer();
     var genes="<?php echo $gene_id[0]; ?>"; 
     var genes_alias="<?php echo $gene_alias[0]; ?>";
     //var xp_name=echo $xp_name[0]; ?>;
-    var exp_score="<?php echo $percent_exp; ?>";
-    var int_score="<?php echo $percent_int; ?>";
-    var QTL_score="<?php echo $percent_QTL; ?>";
-    var SNP_score="<?php echo $percent_SNP; ?>";
-    var ort_score="<?php echo $percent_ort; ?>";
+   
     var global_score="<?php echo $score; ?>";
 
     
@@ -532,8 +530,14 @@ new_cobra_footer();
     $(function () {
 
     //$(document).ready(function () {
-
+        //alert(exp_score);
         // Build the chart
+        var exp_score= $('#container_pie').attr('data-exp');
+        alert(exp_score);
+        var int_score= $('#container_pie').attr('data-int');
+        var ort_score= $('#container_pie').attr('data-ort');
+        var QTL_score= $('#container_pie').attr('data-QTL');
+        var SNP_score= $('#container_pie').attr('data-SNP');
         $('#container_pie').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -562,36 +566,37 @@ new_cobra_footer();
                 colorByPoint: true,
                 data: [{
                     name: 'Expression Score',
-                    //y: 56.33
+                    //y: 100
                     y: exp_score
                 }, {
                     name: 'Interaction Score',
-                    //y: 24.03,
+                    //y: 0,
                     y: int_score,
+                    
                     sliced: true,
                     selected: true
                 }, {
                     name: 'Orthology Score',
                     y: ort_score
-                    //y: 10.38
+                    //y: 0
                 }, {
                     name: 'QTL Score',
                     y: QTL_score
-                    //y: 4.77
+                    //y: 0
                 }, {
                     name: 'Genetic Markers Score',
                     y: SNP_score
-                    //y: 0.91
+                    //y: 0
                 }]
                 //, 
                 //{
                    // name: 'Proprietary or Undetectable',
                     //y: 0.2
                 //}]
-                }]
+            }]
         });
-    //});
-});
+    });
+
     
     
     

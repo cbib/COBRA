@@ -270,7 +270,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":1,
-                "column_keys":['idx','Gene ID','Start','End','Strand','Description', 'Gene Name','Description 2','Uniprot ID','Plaza ID','Probe ID','Transcript ID','Gene ontology ID','GO Evidence','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score'],
+                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Description', 'Gene Name','Description 2','Uniprot ID','Plaza ID','Probe ID','Transcript ID','Gene ontology ID','GO Evidence','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score'],
 
 		#"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
@@ -292,7 +292,7 @@ mapping_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-                "column_keys":['idx','Gene ID','Start','End','Strand','Description', 'Gene Name','Description 2','Uniprot ID','Plaza ID','Probe ID','Transcript ID','Gene ontology ID','GO Evidence','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score'],
+                "column_keys":['idx','Gene ID','Chromosome','Start','End','Strand','Description', 'Gene Name','Description 2','Uniprot ID','Plaza ID','Probe ID','Transcript ID','Gene ontology ID','GO Evidence','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score'],
 
 		#"column_keys":['idx','Probe ID','Gene ID','Transcript ID','Gene Name','Description', 'Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
