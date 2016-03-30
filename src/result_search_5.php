@@ -523,7 +523,7 @@ new_cobra_footer();
     var SNP_score="<?php echo $percent_SNP; ?>";
     var ort_score="<?php echo $percent_ort; ?>";
     var global_score="<?php echo $score; ?>";
-    $score_exp
+
     
     var clicked_transcript_id="";
     
