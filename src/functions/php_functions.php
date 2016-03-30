@@ -1191,16 +1191,16 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                     echo '<div id="shift_line"></div>
                     
 
-                    <div class="panel-group" id="accordion_documents_mark_'.$gene_id.'">
+                    <div class="panel-group" id="accordion_documents_mark_'.$gene_id[0].'">
                         <div class="panel panel-default">
                             <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#mark-table_'.$gene_id.'" data-parent="#accordion_documents_mark_'.$gene_id.'" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#mark-table_'.$gene_id[0].'" data-parent="#accordion_documents_mark_'.$gene_id[0].'" data-toggle="collapse">
                                             <strong>Genetic markers</strong>
                                     </a>				
 
                             </div>
-                            <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id.'">';
+                            <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id[0].'">';
                                 if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0){
                                         //echo count ($genetic_markers_result['result']);
                                         echo'<table class="table" id="table_markers">  
@@ -1305,16 +1305,16 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                         </div>
                     </div>
                     <div id="shift_line"></div>
-                    <div class="panel-group" id="accordion_documents_qtl_'.$gene_id.'">
+                    <div class="panel-group" id="accordion_documents_qtl_'.$gene_id[0].'">
                         <div class="panel panel-default">
                             <div class="panel-heading">
 
-                                    <a class="accordion-toggle collapsed" href="#qtl-table_'.$gene_id.'" data-parent="#accordion_documents_qtl_'.$gene_id.'" data-toggle="collapse">
+                                    <a class="accordion-toggle collapsed" href="#qtl-table_'.$gene_id[0].'" data-parent="#accordion_documents_qtl_'.$gene_id[0].'" data-toggle="collapse">
                                             <strong>QTLs</strong>
                                     </a>				
 
                             </div>
-                            <div class="panel-body panel-collapse collapse" id="qtl-table_'.$gene_id.'">';
+                            <div class="panel-body panel-collapse collapse" id="qtl-table_'.$gene_id[0].'">';
                                 if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0 ){
 
                                             
