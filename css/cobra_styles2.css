@@ -230,7 +230,7 @@ table.dataTable tbody tr:hover {
         //border: 1px solid #DDD;
   }
   .modal-dialog{
-      width: 800px;
+      width: 1000px;
   }
   #summary > #protein-details > #section_description{
 	//width: 480px;

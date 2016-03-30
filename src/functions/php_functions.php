@@ -670,6 +670,10 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
     array('_id'=>0)
     );
     $counter=1;
+    if (count($cursor)===0){
+        
+        echo count($cursor);
+    }
     foreach ($cursor as $result) {
         $xp_full_name=explode(".", $result['xp']);  
         
@@ -684,20 +688,20 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
             if (isset($result['variety'])){
                $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
                 //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
-                array_push($categories, $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']); 
+                array_push($categories, $result['variety'].'/Day '.$result['day_after_inoculation']); 
             }
             else{
                 $sample=array('y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC']);
                 //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
 
-                array_push($categories, $result['species'].'/Day '.$result['day_after_inoculation']);
+                array_push($categories, '/Day '.$result['day_after_inoculation']);
             }
         }
         else{
             if (isset($result['variety'])){
                $sample=array('y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC']);
                ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
-                array_push($categories, $result['species'].'/'.$result['variety']); 
+                array_push($categories, $result['variety']); 
             }
             else{
                 $sample=array('y'=>$result['logFC'],'logFC'=>$result['logFC']);
@@ -973,10 +977,10 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                               </div>
                               <div class="modal-body">
                               <div class= col-md-6>
-                                <div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                                <div id="container_pie" style="min-width: 350px; height: 400px; max-width: 450px; margin: 0 auto"></div>
                               </div>
                               <div class= col-md-6>
-                                <div id="container_pyramid" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>
+                                <div id="container_pyramid" style="min-width: 350px; height: 400px; max-width: 450px; margin: 0 auto"></div>
                               </div>
                                 <p> The score is computed using every resources of COBRA database following this scheme</p> 
                               </div>
