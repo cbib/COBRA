@@ -115,7 +115,11 @@ for species in species_to_process:
                     }
                 ]
                 , useCursor=False))
-                amorce="scaffold_"
+                
+                if "scaffold_" in m['Chromosome']:
+                    
+                    logger.info("scaffold found")
+
                 if len(qtl_to_process)>0 :
                     #print m['Marker ID']
                     
@@ -124,7 +128,7 @@ for species in species_to_process:
                         {'$match' : {'type':'full_table', 'species': species['full_name']}},  
                         {'$project' : {'mapping_file':1,'_id':0}},
                         {'$unwind':'$mapping_file'},
-                        {'$match' :  {'mapping_file.Chromosome': amorce+m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['End'] } } ]}}, 
+                        {'$match' :  {'mapping_file.Chromosome': m['Chromosome'],"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['End'] } } ]}}, 
                         {
                           '$project':
                             {
