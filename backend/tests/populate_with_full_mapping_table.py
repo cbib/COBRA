@@ -183,7 +183,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/NEW_SOLANUM_FULL.tsv",
+	"data_file":"mappings/FULL_MAPPING/NEW_SOLANUM_FULL1.tsv",
 	"species":"Solanum lycopersicum",
 	"type":"full_table",
 	"src":"Gene ID",
@@ -204,6 +204,31 @@ mapping_table={
 	}
 }
 full_mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/FULL_MAPPING/NEW_SOLANUM_FULL2.tsv",
+	"species":"Solanum lycopersicum",
+	"type":"full_table",
+	"src":"Gene ID",
+	"src_version":"ITAG 2.3",
+        "tgt":"Multiple",
+        "tgt_version":"Multiple target",
+	"url":"",
+	"doi":"none",
+	"key":"PROBEID/GENEID/TRANSCRIPTID/PROTEINID/ALIAS/DESCRIPTION/PLAZAID/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','UniProt ID','Probe ID','Gene ID 2','Description','Description 2','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Alias','Gene ontology ID','Evidence Code'],
+
+		#"column_keys":['idx','Probe ID','Gene ID', 'Gene ID 2', 'Transcript ID','Uniprot ID','Alias','Description','Description 2','Domain','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chromosome','Start','End'],
+		"sheet_index":0,
+	}
+}
+full_mappings_col.insert(mapping_table)
+
+
 
 #mapping_table={
 #	"data_file":"mappings/FULL_MAPPING/solanum_lycopersicum_full_2.tsv",
