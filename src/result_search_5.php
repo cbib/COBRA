@@ -526,69 +526,7 @@ new_cobra_footer();
     $score_exp
     
     var clicked_transcript_id="";
-    $(function () {
-
-    $(document).ready(function () {
-
-        // Build the chart
-        $('#container').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Score assignment'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Omics Score',
-                colorByPoint: true,
-                data: [{
-                    name: 'Expression Score',
-                    //y: 56.33
-                    y: exp_score
-                }, {
-                    name: 'Interaction Score',
-                    //y: 24.03,
-                    y: int_score,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Orthology Score',
-                    y: ort_score
-                    //y: 10.38
-                }, {
-                    name: 'QTL Score',
-                    y: QTL_score
-                    //y: 4.77
-                }, {
-                    name: 'Genetic Markers Score',
-                    y: SNP_score
-                    //y: 0.91
-                }]
-                //, 
-                //{
-                   // name: 'Proprietary or Undetectable',
-                    //y: 0.2
-                //}]
-                }]
-        });
-    });
-});
+    
     
     
     
