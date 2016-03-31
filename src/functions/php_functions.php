@@ -1118,7 +1118,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 //            
 //        }
         
-        $scaffold='scaffold_'.$scaffold
+        $scaffold='scaffold_'.$scaffold;
         $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
