@@ -67,6 +67,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     $plaza_ids=array();
     $est_id=array();
     $go_list=array();
+    $percent_array=array();
     $score=0.0;
  
     /////////////////////////////////////////////
@@ -175,25 +176,31 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             $go_used_list=array();
             if (isset($result['mapping_file']['Gene ontology ID']) && $result['mapping_file']['Gene ontology ID']!='' && $result['mapping_file']['Gene ontology ID']!='NA'){
 
+                if ((isset($result['mapping_file']['Evidence code'])|| isset($result['mapping_file']['GO Evidence']))&& ($result['mapping_file']['Evidence code']!='' || $result['mapping_file']['GO Evidence']!='')&&( $result['mapping_file']['Evidence code']!='NA'||$result['mapping_file']['GO Evidence']!='NA')){
                 
-                $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
-                foreach ($go_id_evidence as $duo) {
-                    $duo_id=explode("-", $duo);                
-                    if (in_array($duo_id[0], $go_used_list)){
-                        for ($i = 0; $i < count($go_id_list); $i++) {
-                            if ($go_id_list[$i][0]===$duo_id[0]){
-                               if (!in_array($duo_id[1], $go_id_list[$i][1])){
-                                   array_push($go_id_list[$i][1], $duo_id[1]); 
-                               }                           
+                    
+                    
+                }
+                else{
+                    $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
+                    foreach ($go_id_evidence as $duo) {
+                        $duo_id=explode("-", $duo);                
+                        if (in_array($duo_id[0], $go_used_list)){
+                            for ($i = 0; $i < count($go_id_list); $i++) {
+                                if ($go_id_list[$i][0]===$duo_id[0]){
+                                   if (!in_array($duo_id[1], $go_id_list[$i][1])){
+                                       array_push($go_id_list[$i][1], $duo_id[1]); 
+                                   }                           
+                                }
                             }
                         }
-                    }
-                    else{
-                        $tmp_array=array();
-                        $tmp_array[0]=$duo_id[0];
-                        $tmp_array[1]=array($duo_id[1]);
-                        array_push($go_id_list,$tmp_array);
-                        array_push($go_used_list,$duo_id[0]);   
+                        else{
+                            $tmp_array=array();
+                            $tmp_array[0]=$duo_id[0];
+                            $tmp_array[1]=array($duo_id[1]);
+                            array_push($go_id_list,$tmp_array);
+                            array_push($go_used_list,$duo_id[0]);   
+                        }
                     }
                 }
             }
@@ -248,6 +255,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_exp=0.0;
                 $percent_exp=0.0;
             }
+            array_push($percent_array, $percent_exp);
             if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
                 $score_int=(int)$result['mapping_file']['Score_int'];
                 //echo 'score_int: '.$result['mapping_file']['Score_int'];
@@ -259,6 +267,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_int=0.0;
                 $percent_int=0.0;
             }
+            array_push($percent_array, $percent_int);
             if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
                 $score_ort=(int)$result['mapping_file']['Score_orthologs'];
                 //echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
@@ -270,6 +279,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_ort=0.0;
                 $percent_ort=0.0;
             }
+            array_push($percent_array, $percent_ort);
             if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
                 $score_QTL=(int)$result['mapping_file']['Score_QTL'];
                 //echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
@@ -281,6 +291,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_QTL=0.0;
                 $percent_QTL=0.0;
             }
+            array_push($percent_array, $percent_QTL);
             if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
                 $score_SNP=(int)$result['mapping_file']['Score_SNP'];
                 //echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
@@ -292,6 +303,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $score_SNP=0.0;
                 $percent_SNP=0.0;
             }
+            array_push($percent_array, $percent_SNP);
             
             if (isset($result['mapping_file']['Start'])&& $result['mapping_file']['Start']!='' && $result['mapping_file']['Start']!='NA'){
                 $gene_start=(int)$result['mapping_file']['Start'];
@@ -589,7 +601,7 @@ new_cobra_footer();
                 }
             },
             series: [{
-                name: 'Omics Score',
+                name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
                 colorByPoint: true,
                 data: [{
                     name: 'Expression Score',
