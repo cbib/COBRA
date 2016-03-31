@@ -176,33 +176,29 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             $go_used_list=array();
             if (isset($result['mapping_file']['Gene ontology ID']) && $result['mapping_file']['Gene ontology ID']!='' && $result['mapping_file']['Gene ontology ID']!='NA'){
 
-                if ((isset($result['mapping_file']['Evidence code'])|| isset($result['mapping_file']['GO Evidence']))&& ($result['mapping_file']['Evidence code']!='' || $result['mapping_file']['GO Evidence']!='')&&( $result['mapping_file']['Evidence code']!='NA'||$result['mapping_file']['GO Evidence']!='NA')){
                 
-                    
-                    
-                }
-                else{
-                    $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
-                    foreach ($go_id_evidence as $duo) {
-                        $duo_id=explode("-", $duo);                
-                        if (in_array($duo_id[0], $go_used_list)){
-                            for ($i = 0; $i < count($go_id_list); $i++) {
-                                if ($go_id_list[$i][0]===$duo_id[0]){
-                                   if (!in_array($duo_id[1], $go_id_list[$i][1])){
-                                       array_push($go_id_list[$i][1], $duo_id[1]); 
-                                   }                           
-                                }
+                $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
+                foreach ($go_id_evidence as $duo) {
+                    $duo_id=explode("-", $duo);                
+                    if (in_array($duo_id[0], $go_used_list)){
+                        for ($i = 0; $i < count($go_id_list); $i++) {
+                            if ($go_id_list[$i][0]===$duo_id[0]){
+                               if (!in_array($duo_id[1], $go_id_list[$i][1])){
+                                   array_push($go_id_list[$i][1], $duo_id[1]); 
+                               }                           
                             }
                         }
-                        else{
-                            $tmp_array=array();
-                            $tmp_array[0]=$duo_id[0];
-                            $tmp_array[1]=array($duo_id[1]);
-                            array_push($go_id_list,$tmp_array);
-                            array_push($go_used_list,$duo_id[0]);   
-                        }
+                    }
+                    else{
+                        $tmp_array=array();
+                        $tmp_array[0]=$duo_id[0];
+                        $tmp_array[1]=array($duo_id[1]);
+                        array_push($go_id_list,$tmp_array);
+                        array_push($go_used_list,$duo_id[0]);   
                     }
                 }
+                
+                
             }
             if (isset($result['mapping_file']['Uniprot ID']) && $result['mapping_file']['Uniprot ID']!='' && $result['mapping_file']['Uniprot ID']!='NA'){
                 if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){

@@ -989,7 +989,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                               <div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel">Score details</h4>
                                     <p> The score is computed using every resources of COBRA database following this scheme</p> 
-                                    <img src="../images/COBRA_18032016.jpg" width="100%"></img>
+                                    <!--<img src="../images/COBRA_18032016.jpg" width="100%"></img>-->
                                 </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
