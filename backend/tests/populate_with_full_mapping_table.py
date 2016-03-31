@@ -48,7 +48,7 @@ mapping_table={
 	"xls_parsing":{
 		"n_rows_to_skip":0,
 
-                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','SwissProt ID','UniProt ID','Refseq ID','Alias','Description','Gene ontology ID'],
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Description','Alias','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','UniProt ID','Refseq ID','Gene ontology ID','Plaza ID'],
 
 		#"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
@@ -70,7 +70,7 @@ mapping_table={
 	"xls_parsing":{
 		"n_rows_to_skip":0,
 
-                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Plaza ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','SwissProt ID','UniProt ID','Refseq ID','Alias','Description','Gene ontology ID'],
+                "column_keys":['idx','Gene ID','Transcript ID','Chromosome','Start','End','Strand','Description','Alias','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','UniProt ID','Refseq ID','Gene ontology ID','Plaza ID'],
 
 		#"column_keys":['idx','Gene ID','Alias', 'Protein ID', 'Transcript ID', 'Uniprot ID','Description','Plaza ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
 		"sheet_index":0,
