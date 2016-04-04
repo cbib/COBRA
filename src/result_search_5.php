@@ -677,9 +677,12 @@ new_cobra_footer();
                     
                     var g=genes;
                     //window.alert(genes);
+                    
+                    var x_name=this.point.xp_name;
+                    var clean_xp_name=x_name.replace("\s", " "); 
                     //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
-                    http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
-                    s += '<ul><li><a target="_blank" href="./description/experiments.php?xp='+ this.point.xp_name +'">'+this.point.xp_name+'</a></li><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
+                    //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
+                    s += '<ul><li><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
