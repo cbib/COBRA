@@ -978,8 +978,11 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                                 <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
                               </div>
                               <div class="modal-body">
-                                <!--<div class= col-md-6>-->
-                                    <div id="container_chart" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>
+                                <!--<div class= col-md-6>
+                                    <div id="container_chart" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>-->
+                                    <div id="container_pie" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>
+
+                           
                                 <!--</div>-->
                                 <!--<div class= col-md-6>-->
                                 <!--    <div id="container_pyramid" style="min-width: 350px; height: 400px; max-width: 450px; margin: 0 auto"></div>-->
