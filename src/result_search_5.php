@@ -629,7 +629,49 @@ new_cobra_footer();
     });
 
     
-    
+    $(function () {
+    $('#container_chart').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Stacked bar chart'
+        },
+        xAxis: {
+            categories: ['Global Score']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Score'
+            }
+        },
+        legend: {
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: 'Transcriptomics',
+            data: [<?php echo(json_encode($score_exp)); ?>]
+        }, {
+            name: 'Interactomics',
+            data: [<?php echo(json_encode($score_int)); ?>]
+        },{
+            name: 'orthology',
+            data: [<?php echo(json_encode($score_ort)); ?>]
+        },{
+            name: 'genetics',
+            data: [<?php echo(json_encode($score_QTL)); ?>]
+        }, {
+            name: 'Polymorphism',
+            data: [<?php echo(json_encode($score_SNP)); ?>]
+        }]
+    });
+});
     
     
     $(function () {
