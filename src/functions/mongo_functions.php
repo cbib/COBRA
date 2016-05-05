@@ -1283,9 +1283,14 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                         }
 
 
+                        if (isset($value['Uniprot ID']) && $value['Uniprot ID']!="NA" && $value['Uniprot ID']!=""){
 
-                        $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
+                            $table_string.='<td><a class="nowrap" target = "_blank" href="http://www.uniprot.org/uniprot/'.$value['Uniprot ID'].'">'.$value['Uniprot ID'].'</a></td>';
+                        }
+                        else{
+                            $table_string.='<td>-</td>';
 
+                        }
                         //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
                         $table_string.='<td>'.$data['species'].'</td>';
