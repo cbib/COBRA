@@ -24,7 +24,9 @@ logger.info("Running %s",sys.argv[0])
 
 logger.info("Flattening and normalizing experimental results")
 already_existing_xp=measurements_col.distinct("xp")
-samples_with_results=samples_col.find({"experimental_results":{"$elemMatch":{"values":{"$exists":True}}}})
+#add "state":"processed" exist false requirements
+#samples_with_results=samples_col.find({"experimental_results":{"$elemMatch":{"values":{"$exists":True}}}})
+samples_with_results=samples_col.find({'$and': [{"state":{"$exists":false}},{"experimental_results":{"$elemMatch":{"values":{"$exists":true}}}}]})
 # a_sample=samples_with_results[0]
 n_op=0
 measurements_to_insert=measurements_col.initialize_unordered_bulk_op()
