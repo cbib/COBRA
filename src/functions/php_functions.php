@@ -687,7 +687,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
       
         $species=$result['species'];
         
-        echo test
+        echo test;
         if (isset($result['day_after_inoculation'])){
             if (isset($result['variety'])){
                $sample=array('first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
