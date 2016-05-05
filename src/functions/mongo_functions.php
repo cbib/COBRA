@@ -565,7 +565,7 @@ function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pv
 function get_litterature_plant_virus_interactor(array $gene_id, MongoCollection $pvinteractionsCollection,$species='null'){
 
     $cursor=$pvinteractionsCollection->aggregate(array(
-            array('$match'=>array('src'=>"Gene ID",'species'=>$species)),
+            array('$match'=>array('src'=>"Gene ID")),#,'species'=>$species)),
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
             array('$match' => array('mapping_file.Gene ID'=>array('$in'=>$gene_id))),
