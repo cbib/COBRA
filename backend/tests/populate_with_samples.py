@@ -780,7 +780,7 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"ppv","label":"infected with PPV"}
+			{"infected":True,"type":"undefined","infection_agent":"ppv","label":"infected with PPV"}
 		]
 	}, {
 		"name":"journal.pone.0100477.s005.xls",
@@ -792,7 +792,7 @@ doi:10.1371/journal.pone.0100477.s007. Not included.
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"ppv","label":"infected with PPV"}
+			{"infected":True,"type":"undefined","infection_agent":"ppv","label":"infected with PPV"}
 		]
 	}
 	# , {
@@ -851,7 +851,7 @@ barley_samples={
                 "material":"NA",
 		"conditions":[
 			"non-infected",
-			{"infected":True,"infection_agent":"Barley yellow dwarf virus","label":"infected with BYDV"}
+			{"infected":True,"infection_agent":"Barley yellow dwarf virus","type":"undefined","label":"infected with BYDV"}
 		]
 	}]
 }

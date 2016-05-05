@@ -41,10 +41,28 @@ for a_sample in samples_with_results:
 		
 		
 		conditions=experimental_results.get('conditions',{})
+                
+                
+                
 		if(not isinstance(conditions[1], (str, unicode))):
 			infection_agent=conditions[1].get('infection_agent',{})
 		else:
 			infection_agent=conditions[1]
+                        
+                        
+                if isinstance(conditions[0], dict):
+                    first_condition_type=conditions[0].get('type',{})
+
+                else:
+                    first_condition_type=conditions[0]
+                if isinstance(conditions[1], dict):
+                    second_condition_type=conditions[1].get('type',{})
+                else:
+                    second_condition_type=conditions[1]
+
+
+
+                
 
 		logger.info("conditions %s",infection_agent)
 		# get mapping to apply 
@@ -75,6 +93,8 @@ for a_sample in samples_with_results:
 					this_doc['gene']=tgt_id
                                         this_doc['name']=name
 					this_doc['infection_agent']=infection_agent
+                                        this_doc['first_condition']=first_condition_type
+                                        this_doc['second_condition']=second_condition_type
 					this_doc['gene_original_id']=measure[id_col]
                                         this_doc['species']=this_genome['full_name']
                                         if assay['type']=="micro-array":
