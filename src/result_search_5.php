@@ -16,6 +16,7 @@ new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary",".."
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
 $historyCollection = new Mongocollection($db, "history");
+date_default_timezone_set('Europe/Paris');
 //echo 'directory: '.PATH;
 make_species_list(find_species_list($speciesCollection),"..");
 if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='NA') && (isset($_GET['search']) && $_GET['search']!='' && $_GET['search']!='NA')){
@@ -230,7 +231,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             }
             if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
                 $score=(int)$result['mapping_file']['Global_Score'];
-                date_default_timezone_set('Europe/Paris');
+                
                 $today = date("F j, Y, g:i a");
                 $document = array("firstname" => $_SESSION['firstname'],
                       "lastname" => $_SESSION['lastname'],
