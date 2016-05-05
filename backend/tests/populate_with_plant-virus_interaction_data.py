@@ -53,8 +53,9 @@ interactions_table={
 }
 pv_interactions_col.insert(interactions_table)
 
+
 interactions_table={
-	"data_file":"interactomics/potyvirus/VPg_interactor.xls",
+	"data_file":"interactomics/potyvirus/.xls",
 	"species":"Arabidopsis thaliana",
         "src":"Gene ID",
 	"tgt":"Virus_symbol",
@@ -69,6 +70,8 @@ interactions_table={
 
 }
 pv_interactions_col.insert(interactions_table)
+
+
 
 interactions_table={
 	"data_file":"interactomics/potyvirus/Nla_interactor.xls",
