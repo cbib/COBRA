@@ -230,6 +230,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             }
             if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
                 $score=(int)$result['mapping_file']['Global_Score'];
+                date_default_timezone_set('Europe/Paris');
                 $today = date("F j, Y, g:i a");
                 $document = array("firstname" => $_SESSION['firstname'],
                       "lastname" => $_SESSION['lastname'],
