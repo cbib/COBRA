@@ -47,7 +47,15 @@ for a_sample in samples_with_results:
 			infection_agent=conditions[1].get('infection_agent',{})
 		else:
 			infection_agent=conditions[1]
+                if isinstance(conditions[0], dict):
+                    first_condition_type=conditions[0].get('type',{})
 
+                else:
+                    first_condition_type=conditions[0]
+                if isinstance(conditions[1], dict):
+                    second_condition_type=conditions[1].get('type',{})
+                else:
+                    second_condition_type=conditions[1]
 		#logger.info("conditions %s",infection_agent)
 		
 		parser_config=experimental_results.get('xls_parsing',{})
@@ -73,6 +81,8 @@ for a_sample in samples_with_results:
                                 this_doc={"xp":this_path}                       
                                 this_doc['gene']=id
                                 this_doc['type']="contrast"
+                                this_doc['first_condition']=first_condition_type
+                                this_doc['second_condition']=second_condition_type
 
                                 this_doc['infection_agent']=infection_agent
                                 if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
