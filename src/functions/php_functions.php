@@ -678,7 +678,6 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
         $xp_full_name=explode(".", $result['xp']);  
         
         $experiment_id=$xp_full_name[0];
-        print get_experiment_name_with_id($samplesCollection,$experiment_id);
         #$xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));
         $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
 

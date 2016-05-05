@@ -20,7 +20,6 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	//$textID=control_post(htmlspecialchars($_POST['q']));
 	
 	$xpName=str_replace('\s',' ',control_post(htmlspecialchars($_GET['xp'])));
-    print $xpName;
 	//$prot_ID=$_GET['protID'];
 	//$logFCInput=control_post(htmlspecialchars($_POST['logFCInput']));
 
