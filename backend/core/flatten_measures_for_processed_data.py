@@ -114,6 +114,8 @@ for a_sample in samples_with_results:
                             this_doc['gene']=measure[id_col]
                             this_doc['type']="contrast"
                             this_doc['infection_agent']=infection_agent
+                            this_doc['first_condition']=first_condition_type
+                            this_doc['second_condition']=second_condition_type
                             if experimental_results['day_after_inoculation']!="" and experimental_results['day_after_inoculation']!="NA":
                                 this_doc['day_after_inoculation']=experimental_results['day_after_inoculation']
                             if experimental_results['variety']!="" and experimental_results['variety']!="NA":

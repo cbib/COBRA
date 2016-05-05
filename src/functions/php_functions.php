@@ -676,8 +676,8 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
     }
     foreach ($cursor as $result) {
         $xp_full_name=explode(".", $result['xp']);
-        $first_condition=$result['first_condition'];
-        $second_condition=$result['second_condition'];
+        #$first_condition=$result['first_condition'];
+        #$second_condition=$result['second_condition'];
         
         $experiment_id=$xp_full_name[0];
         #$xp_name=explode(".", get_experiment_name_with_id($samplesCollection,$experiment_id));

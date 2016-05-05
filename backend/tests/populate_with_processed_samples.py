@@ -46,7 +46,7 @@ tomato_samples={
 		"n_rows_to_skip":1,
 		"column_keys":['idx','Gene ID','locus','Seq Description','FPKM b','FPKM a','logFC','P value','FDR','Significant'],
 		"sheet_index":0,
-		"id_type":"ITAG_id"
+		"id_type":"Gene ID"
 	},
 	"experimental_results":[
 		{
