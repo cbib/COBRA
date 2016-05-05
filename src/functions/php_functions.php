@@ -690,12 +690,12 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
 
         if (isset($result['day_after_inoculation'])){
             if (isset($result['variety'])){
-               $sample=array('first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
+               $sample=array('infection_agent'=>$result['infection_agent'],'first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
                 //$categories[$gene_id[0]]= $result['species'].'/'.$result['variety'].'/Day '.$result['day_after_inoculation']; 
                 array_push($categories, $result['variety'].'/Day '.$result['day_after_inoculation']); 
             }
             else{
-                $sample=array('first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
+                $sample=array('infection_agent'=>$result['infection_agent'],'first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
                 //$categories[$gene_id[0]]= $result['species'].'/Day '.$result['day_after_inoculation'];
 
                 array_push($categories, '/Day '.$result['day_after_inoculation']);
@@ -703,12 +703,12 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
         }
         else{
             if (isset($result['variety'])){
-               $sample=array('first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
+               $sample=array('infection_agent'=>$result['infection_agent'],'first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
                ///$categories[$gene_id[0]]=  $result['species'].'/'.$result['variety'];
                 array_push($categories, $result['variety']); 
             }
             else{
-                $sample=array('first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
+                $sample=array('infection_agent'=>$result['infection_agent'],'first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
                 //$categories[$gene_id[0]]=  $result['species'];
                 array_push($categories, $result['species']);
             }
