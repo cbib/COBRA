@@ -46,6 +46,17 @@ echo '<div id="data_description">';
 
 
 $experiment_cursor=find_all_xp_name($samplesCollection);
+
+$experiment_cursor2=get_xp_name_by_species($samplesCollection);
+
+
+foreach ($experiment_cursor2['result'] as $doc){
+        echo $doc['_id'];
+        echo $doc['name'];
+               
+}
+
+
 $experiment_table_string="";
 
 ###DISPLAY EXPERIMENT LIST
@@ -56,6 +67,7 @@ $experiment_table_string.='<ul>';
  //$table_string.='<a href=experiments.php>test</a>';
 foreach($experiment_cursor as $line) {
  	$title=$line['name'];
+    $species=$line['species'];
  	//echo str_replace(' ','\s',$title);
 	$experiment_table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
 }

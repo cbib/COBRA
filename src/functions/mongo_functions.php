@@ -3409,10 +3409,16 @@ function find_all_viruses(MongoCollection $vi){
     return $cursor;
 }
 
+function get_xp_name_by_species(Mongocollection $sa){
 ### sample table requests
+$cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$species' ),'names'=> array( $addToSet=> '$name' )))));
+
+return $cursor;
+
+}
 
 function find_all_xp_name(Mongocollection $sa){
-	$cursor=$sa->find(array(),array('name'=>1));
+	$cursor=$sa->find(array(),array('name'=>1,'species'=>1));
     
 	return $cursor;
 }
