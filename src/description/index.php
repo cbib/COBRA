@@ -52,8 +52,8 @@ $experiment_cursor2=get_xp_name_by_species($samplesCollection);
 
 foreach ($experiment_cursor2['result'] as $doc){
         echo $doc['_id'];
-        echo $doc['name'];
-        foreach ($doc['name'] as $name){
+        echo $doc['names'];
+        foreach ($doc['names'] as $name){
             print $name;
         }
                
