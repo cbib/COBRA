@@ -3411,7 +3411,7 @@ function find_all_viruses(MongoCollection $vi){
 
 function get_xp_name_by_species(Mongocollection $sa){
 ### sample table requests
-$cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$species' ),'names'=> array( $addToSet=> '$name' )))));
+$cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$species' ),'names'=> array( '$addToSet'=> '$name' )))));
 
 return $cursor;
 
