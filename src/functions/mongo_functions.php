@@ -3414,7 +3414,7 @@ function get_xp_name_by_species(Mongocollection $sa){
 $cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> 'species' ),'names'=> array( '$addToSet'=> 'name' )))));
 
 
-array(
+//array(
 //           '$group'=>
 //             array(
 //               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
