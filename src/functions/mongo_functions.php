@@ -3411,7 +3411,19 @@ function find_all_viruses(MongoCollection $vi){
 
 function get_xp_name_by_species(Mongocollection $sa){
 ### sample table requests
-$cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$species' ),'names'=> array( '$addToSet'=> '$name' )))));
+$cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> 'species' ),'names'=> array( '$addToSet'=> 'name' )))));
+
+
+array(
+//           '$group'=>
+//             array(
+//               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+//               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
+//
+//               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
+//             )
+//         )
+
 
 return $cursor;
 
