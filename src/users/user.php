@@ -137,7 +137,7 @@
     
     echo '</br>';
  
-    
+    $table_string='';
     
     echo '<div id="logins_history"><h3> Login History</h3>';
     $table_string.='<table id="login_history" class="table table-hover">';
