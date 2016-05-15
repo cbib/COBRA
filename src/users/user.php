@@ -77,8 +77,12 @@
         
     $table_string='';
     
-    $searches=$historyCollection->find(array("lastname"=>$lastname,"firstname"=>$firstname,"type" => "search"),array());
-
+    if ($lastname==="Benjamin" && $firstname==="Dartigues"){
+        $searches=$historyCollection->find(array("type" => "search"),array());
+    }
+    else{
+        $searches=$historyCollection->find(array("lastname"=>$lastname,"firstname"=>$firstname,"type" => "search"),array());
+    }
     
     echo '<div id="search_history"><h3> History</h3>';
     $table_string.='<table id="history" class="table table-hover">';
