@@ -174,8 +174,7 @@ table.dataTable tbody tr:hover {
   #BlastJobsTable,
   #log_history,
   #search_history,
-  #user_pref,
-  #data_description{
+  #user_pref{
 
      width:100%;
      background-color: #FFF;
@@ -185,7 +184,8 @@ table.dataTable tbody tr:hover {
      float: left;
      border: 1px solid #DDD; 
   }
-  #mission-objectives{
+  #mission-objectives,
+  #data_description{
 
      width:100%;
      background-color: #FFF;
