@@ -181,7 +181,7 @@ table.dataTable tbody tr:hover {
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
-     padding: 10px 10px 0px;
+     padding: 0px 10px 0px;
      float: left;
      border: 1px solid #DDD; 
   }
@@ -250,7 +250,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -261,7 +261,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -272,7 +272,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -283,7 +283,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -294,7 +294,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -305,7 +305,7 @@ table.dataTable tbody tr:hover {
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
-        padding: 10px 10px 0px;
+        padding: 0px 10px 0px;
         //float: left;
         border: 1px solid #DDD;
   }
@@ -331,7 +331,7 @@ table.dataTable tbody tr:hover {
         //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
-	padding: 10px 10px 0px;
+	padding: 0px 10px 0px;
 	//float: right;
 	border: 1px solid #DDD;
   }
@@ -341,7 +341,7 @@ table.dataTable tbody tr:hover {
         //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
-	padding: 10px 10px 0px;
+	padding: 0px 10px 0px;
 	//float: right;
 	border: 1px solid #DDD;
   }
@@ -352,7 +352,7 @@ table.dataTable tbody tr:hover {
         //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
-	padding: 10px 10px 0px;
+	padding: 0px 10px 0px;
 	//float: right;
 	border: 1px solid #DDD;
   }
@@ -363,7 +363,7 @@ table.dataTable tbody tr:hover {
         //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
-	padding: 10px 10px 0px;
+	padding: 0px 10px 0px;
 	//float: right;
 	border: 1px solid #DDD;
   }
@@ -412,7 +412,7 @@ table.dataTable tbody tr:hover {
      //background-color: #FFF;
      margin-left: 0px;
      //border-radius: 10px;
-     padding: 10px 10px 0px;
+     padding: 0px 10px 0px;
      float: left;
      //border: 1px solid #DDD; 
   }
