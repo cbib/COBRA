@@ -527,8 +527,8 @@ function display_statistics(){
     echo' </div>';
 }
 function make_user_preferences($user,Mongocollection $us){
-    echo '<div id="user_pref">';
-        echo '<h2> User preferences</h2>';
+    #echo '<div id="user_pref">';
+
     		echo '<div id="log_details">
     			<h3> login details</h3>';
                 foreach ( $user as $person ) { 
@@ -565,7 +565,7 @@ function make_user_preferences($user,Mongocollection $us){
     }
             echo '</div>';
         
-    echo '</div>';  
+    #echo '</div>';  
 
 }
 function is_expression_variables_set(array $categories, array $result, array $logfc_array){
