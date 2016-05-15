@@ -77,8 +77,8 @@
         
     $table_string='';
     
-    if ($lastname==="Benjamin" && $firstname==="Dartigues"){
-        $searches=$historyCollection->find(array("type" => "search"),array());
+    if ($firstname==="Dartigues"){
+        $searches=$historyCollection->find(array(),array());
     }
     else{
         $searches=$historyCollection->find(array("lastname"=>$lastname,"firstname"=>$firstname,"type" => "search"),array());
@@ -94,6 +94,9 @@
         $table_string.='<th>Query id</th>';
         $table_string.='<th>Date</th>';
         $table_string.='<th>Score</th>';
+        if ($firstname==="Dartigues"){
+            $table_string.='<th>User</th>';
+        }
         
 
 
@@ -114,6 +117,9 @@
             else{
                 $table_string.='<td>-</td>';
             }
+            if ($firstname==="Dartigues"){
+            $table_string.='<td>'.$line['firstname'].'</td>';
+        }
 
         $table_string.='</tr>';
 
