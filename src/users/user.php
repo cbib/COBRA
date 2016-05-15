@@ -96,6 +96,7 @@
         $table_string.='<th>Score</th>';
         if ($firstname==="Dartigues"){
             $table_string.='<th>User</th>';
+
         }
         
 
@@ -108,18 +109,21 @@
     $table_string.='<tbody>';
     foreach ($searches as $line) {
         $table_string.='<tr>';
-            //$table_string.='<td>'.$line['type'].'</td>';
-            $table_string.='<td>'.$line['search id'].'</td>';
-            $table_string.='<td>'.$line['date'].'</td>';
-            if(isset($line['score'])){
-                $table_string.='<td>'.$line['score'].'</td>';
-            }
-            else{
-                $table_string.='<td>-</td>';
-            }
-            if ($firstname==="Dartigues"){
-            $table_string.='<td>'.$line['firstname'].'</td>';
+        //$table_string.='<td>'.$line['type'].'</td>';
+        $table_string.='<td>'.$line['search id'].'</td>';
+        $table_string.='<td>'.$line['date'].'</td>';
+        if(isset($line['score'])){
+            $table_string.='<td>'.$line['score'].'</td>';
         }
+        else{
+            $table_string.='<td>-</td>';
+        }
+        if ($firstname==="Dartigues"){
+            $table_string.='<td>'.$line['firstname'].'</td>';
+        } 
+
+            
+            
 
         $table_string.='</tr>';
 
@@ -128,9 +132,53 @@
 
     echo $table_string;
     
-    echo '</br>';
-
     
+    
+    
+    echo '</br>';
+    
+    
+    
+    echo '<div id="logins_history"><h3> Login History</h3>';
+    $table_string.='<table id="login_history" class="table table-hover">';
+    //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+    $table_string.='<thead><tr>';
+
+        //recupere le titre
+        //$table_string.='<th>type</th>';
+
+        $table_string.='<th>Date</th>';
+        $table_string.='<th>User</th>';
+
+
+        //fin du header de la table
+    $table_string.='</tr></thead>';
+
+    //Debut du corps de la table
+    $table_string.='<tbody>';
+    foreach ($searches as $line) {
+        $table_string.='<tr>';
+        //$table_string.='<td>'.$line['type'].'</td>';
+
+        $table_string.='<td>'.$line['date'].'</td>';
+
+        $table_string.='<td>'.$line['firstname'].'</td>';
+        $table_string.='<td>'.$line['type'].'</td>';
+         
+
+            
+            
+
+        $table_string.='</tr>';
+
+    }
+    $table_string.='</tbody></table></div>';
+
+    if ($firstname==="Dartigues"){
+        echo $table_string;
+    }
+
+    echo '</br>';
     
  	new_cobra_footer();
  	
