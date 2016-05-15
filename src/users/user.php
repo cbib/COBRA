@@ -141,7 +141,7 @@
  
     $table_string='';
     
-    echo '<div id="logins_history"><h3> Login History</h3>';
+    echo '<div id="log_history"><h3> Login History</h3>';
     $table_string.='<table id="login_history" class="table table-hover">';
     //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
     $table_string.='<thead><tr>';
