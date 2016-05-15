@@ -78,7 +78,7 @@
     $table_string='';
     
     if ($firstname==="Dartigues"){
-        $searches=$historyCollection->find(array(),array());
+        $searches=$historyCollection->find(array("type" => "search"),array());
     }
     else{
         $searches=$historyCollection->find(array("lastname"=>$lastname,"firstname"=>$firstname,"type" => "search"),array());
