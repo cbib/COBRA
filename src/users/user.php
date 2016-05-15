@@ -151,6 +151,7 @@
         $table_string.='<th>User</th>';
 
 
+
         //fin du header de la table
     $table_string.='</tr></thead>';
 
@@ -164,11 +165,6 @@
             $table_string.='<td>'.$line['date'].'</td>';
 
             $table_string.='<td>'.$line['firstname'].'</td>';
-            $table_string.='<td>'.$line['type'].'</td>';
-
-
-
-
 
             $table_string.='</tr>';
         }
