@@ -198,6 +198,9 @@ $(document).ready(function() {
     $('#history').DataTable( {
         responsive: true    
     });
+    $('#login_history').DataTable( {
+        responsive: true    
+    });
 
 });
 
