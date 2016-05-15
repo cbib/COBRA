@@ -175,14 +175,23 @@ table.dataTable tbody tr:hover {
   #log_history,
   #search_history,
   #user_pref,
-  #data_description,
-  #mission-objectives{
+  #data_description{
 
      width:100%;
      background-color: #FFF;
      margin-left: 0px;
      border-radius: 10px;
      padding: 0px 10px 0px;
+     float: left;
+     border: 1px solid #DDD; 
+  }
+  #mission-objectives{
+
+     width:100%;
+     background-color: #FFF;
+     margin-left: 0px;
+     border-radius: 10px;
+     padding: 10px 10px 0px;
      float: left;
      border: 1px solid #DDD; 
   }
