@@ -78,7 +78,7 @@
     $table_string='';
     
     if ($firstname==="Dartigues"){
-        $searches=$historyCollection->find(array("type" => "search"),array());
+        $searches=$historyCollection->find(array(),array());
     }
     else{
         $searches=$historyCollection->find(array("lastname"=>$lastname,"firstname"=>$firstname,"type" => "search"),array());
@@ -108,19 +108,21 @@
     //Debut du corps de la table
     $table_string.='<tbody>';
     foreach ($searches as $line) {
-        $table_string.='<tr>';
-        //$table_string.='<td>'.$line['type'].'</td>';
-        $table_string.='<td>'.$line['search id'].'</td>';
-        $table_string.='<td>'.$line['date'].'</td>';
-        if(isset($line['score'])){
-            $table_string.='<td>'.$line['score'].'</td>';
+        if ($line['type']==="search"){
+            $table_string.='<tr>';
+            //$table_string.='<td>'.$line['type'].'</td>';
+            $table_string.='<td>'.$line['search id'].'</td>';
+            $table_string.='<td>'.$line['date'].'</td>';
+            if(isset($line['score'])){
+                $table_string.='<td>'.$line['score'].'</td>';
+            }
+            else{
+                $table_string.='<td>-</td>';
+            }
+            if ($firstname==="Dartigues"){
+                $table_string.='<td>'.$line['firstname'].'</td>';
+            } 
         }
-        else{
-            $table_string.='<td>-</td>';
-        }
-        if ($firstname==="Dartigues"){
-            $table_string.='<td>'.$line['firstname'].'</td>';
-        } 
 
             
             
