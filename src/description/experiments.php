@@ -79,11 +79,16 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   		<dd>'.$species.'</dd>
   		<dt>type of assay</dt>
   		<dd>'.$assay_info['type'].'</dd>
-  		<dt>pub med link</dt>
-  		<dd><a href=http://www.ncbi.nlm.nih.gov/pubmed/'.$source_pub.'>'.$source_pub.'</a></dd>
+  		<dt>pub med link</dt>';
+        
+    if ($source_pub != "not published"){
+  		echo '<dd><a href=http://www.ncbi.nlm.nih.gov/pubmed/'.$source_pub.'>'.$source_pub.'</a></dd>';
+  	}
+    else{
+        echo '<dd>Not published</dd>';
+    }
   		
-  		
-	</dl>';
+	echo '</dl>';
 	echo'</div>';
  	
  	$cursor = $speciesCollection->findOne(array(
