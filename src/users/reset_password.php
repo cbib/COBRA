@@ -18,7 +18,8 @@
 		if ($_GET['pwd1']==$_GET['pwd2']){
             if (check_password($_GET['pwd1'])!=""){
                 $error=check_password($_GET['pwd1']);
-                echo "Password validation failure(your choise is weak): $error";
+                $error_message="Password validation failure(your choise is weak): $error";
+                echo "<script>alert($error_message);</script>"; 
                 //header ('Location: ../search/index.php');
             }
             else{
