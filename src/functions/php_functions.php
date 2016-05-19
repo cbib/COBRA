@@ -570,6 +570,7 @@ function make_user_preferences($user,Mongocollection $us){
 }
 function check_password($pwd){
     
+    $error="";
     if( strlen($pwd) < 8 ) {
 	$error .= "Password too short! ";
     }

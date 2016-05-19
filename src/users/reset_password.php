@@ -16,9 +16,10 @@
 		
 		//here update new password using md5 command
 		if ($_GET['pwd1']==$_GET['pwd2']){
-            if (check_password($_GET['pwd1'])){
-                echo "Password validation failure(your choise is weak):"; check_password($_GET['pwd1']);
-                header ('Location: ../search/index.php');
+            if (check_password($_GET['pwd1'])!=""){
+                $error=check_password($_GET['pwd1']);
+                echo "Password validation failure(your choise is weak): $error";
+                //header ('Location: ../search/index.php');
             }
             else{
                 new_cobra_body($_SESSION['login'],"Password Details","section_reset_password","../..");
