@@ -568,6 +568,41 @@ function make_user_preferences($user,Mongocollection $us){
     #echo '</div>';  
 
 }
+function check_password($pwd){
+    
+    if( strlen($pwd) < 8 ) {
+	$error .= "Password too short! ";
+    }
+
+    if( strlen($pwd) > 20 ) {
+        $error .= "Password too long! ";
+    }
+
+    if( strlen($pwd) < 8 ) {
+        $error .= "Password too short! ";
+    }
+
+    if( !preg_match("#[0-9]+#", $pwd) ) {
+        $error .= "Password must include at least one number! ";
+    }
+
+    if( !preg_match("#[a-z]+#", $pwd) ) {
+        $error .= "Password must include at least one letter! ";
+    }
+
+    if( !preg_match("#[A-Z]+#", $pwd) ) {
+        $error .= "Password must include at least one CAPS! ";
+    }
+
+    if( !preg_match("#\W+#", $pwd) ) {
+        $error .= "Password must include at least one symbol! ";
+    }
+    
+    
+    
+    return $error;
+    
+}
 function is_expression_variables_set(array $categories, array $result, array $logfc_array){
     if (isset($result['day_after_inoculation'])){
         if (isset($result['variety'])){

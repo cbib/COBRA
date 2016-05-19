@@ -16,11 +16,21 @@
 		
 		//here update new password using md5 command
 		if ($_GET['pwd1']==$_GET['pwd2']){
-			new_cobra_body($_SESSION['login'],"Password Details","section_reset_password","../..");
-			$pwd=md5($_GET['pwd1']);
-			$usersCollection->update(array('firstname'=>$_SESSION['firstname'],'lastname'=>$_SESSION['lastname']), array('$set' => array('pwd' => $pwd)));
-            echo "<p> your new password has been successfully saved";
-            header ('Location: ../search/index.php');
+            if (check_password($_GET['pwd1'])){
+                echo "Password validation failure(your choise is weak):"; check_password($_GET['pwd1']);
+                header ('Location: ../search/index.php');
+            }
+            else{
+                new_cobra_body($_SESSION['login'],"Password Details","section_reset_password","../..");
+                $pwd=md5($_GET['pwd1']);
+                $usersCollection->update(array('firstname'=>$_SESSION['firstname'],'lastname'=>$_SESSION['lastname']), array('$set' => array('pwd' => $pwd)));
+                echo "<p> your new password has been successfully saved";
+                header ('Location: ../search/index.php');
+                
+            }
+            
+            
+			
 		}
 		else{
 			//alert("you need to confirm with the same password !!! ");
