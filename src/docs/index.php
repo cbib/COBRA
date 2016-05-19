@@ -103,7 +103,9 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
     if ($_GET['action']=="Remove"){
-       $criteria=array('full_file_name'=>$dossier.$_GET['full_path']);
+       $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
+       $criteria=array('full_file_name'=>$dossier.$_GET['full_path'],'author'=>$author_full_name );
+       
        $doc = $docsCollection->findOne($criteria);
        if(!empty($doc) ){
             
