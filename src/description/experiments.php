@@ -132,6 +132,11 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 			
 			//}
 		}
+        else if ($key==='wikipedia'){
+            echo '<dt>Wikipedia</dt>';
+            $values=split('/', $value);
+					echo '<dd><a href='.$value.'>'.$values[count($values)-1].'</a></dd>';
+        }
 		else{
 			echo '<dt>'.$key.'</dt>
 					<dd>'.$value.'</dd>';
