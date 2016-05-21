@@ -116,7 +116,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
         $cursor_array=array();
         if($organism=="All species"){
             //$timestart1=microtime(true);
-            foreach ($search as $list_search) {
+            foreach ($list_search as $search) {
                 $cursor=$full_mappingsCollection->aggregate(array(
                 array('$match' => array('type'=>'full_table')),  
                 array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
