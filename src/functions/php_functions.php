@@ -3080,6 +3080,132 @@ AT1G03110</textarea>
 
 
 }
+function display_multi_results_table(MongoCursor $cursor){
+    
+    echo'<div>';
+        //var_dump($cursor['result']);
+        $table_string='<table id="result_list" class="table table-hover">';
+        //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+        $table_string.='<thead><tr>';
+            $table_string.='<th>id</th>';
+            $table_string.='<th>Protein description</th>';
+            $table_string.='<th>Alias</th>';
+            $table_string.='<th>species</th>';
+            $table_string.='<th>Score</th>';
+            //fin du header de la table
+        $table_string.='</tr></thead>';
+
+        //Debut du corps de la table
+        $table_string.='<tbody>';
+        $score=0.0;
+        $counter=0;
+        foreach ($cursor['result'] as $result) {
+
+            if ($counter===0){
+                $previous_id=$result['mapping_file']['Gene ID'];
+                $current_id=$result['mapping_file']['Gene ID'];
+                
+                $table_string.='<tr>';
+                if (isset($result['mapping_file']['Gene ID']) && $result['mapping_file']['Gene ID']!="NA"){ 
+                    array_push($gene_id,$result['mapping_file']['Gene ID']);
+                    $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+
+                }
+                else{
+                    array_push($gene_id,$result['mapping_file']['Gene ID 2']);
+                    $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID 2'].'">'.$result['mapping_file']['Gene ID 2'].'</a></td>';
+
+                }
+                $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
+                if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
+                    $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
+                }
+                else{
+                    if(isset ($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!="NA"){
+                        $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+                    }
+                    else{
+                        $table_string.='<td>-</td>';
+
+                    }
+
+                }
+                
+                $table_string.='<td>'.$result['species'].'</td>';
+                //$score+=intval($result['mapping_file']['Score']);
+                $score+=(float)$result['mapping_file']['Score_exp'];
+                $score+=(float)$result['mapping_file']['Score_int']; 
+                $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                $score+=(float)$result['mapping_file']['Score_QTL']; 
+                $score+=(float)$result['mapping_file']['Score_SNP'];
+                if ($counter===count($cursor['result'])-1){
+                    $table_string.='<td>'.$score.'</td>';
+                    $table_string.='</tr>';
+                }
+                //echo $score;
+                
+            }
+            else{
+                $current_id=$result['mapping_file']['Gene ID'];
+
+                if ($current_id!=$previous_id){
+                    $table_string.='<td>'.$score.'</td>';
+                    $table_string.='</tr>';
+                    $score=0.0;
+                    $previous_id=$result['mapping_file']['Gene ID'];
+                    $current_id=$result['mapping_file']['Gene ID'];
+
+                    $table_string.='<tr>';
+                    array_push($gene_id,$result['mapping_file']['Gene ID']);
+                    $table_string.='<td><a target="_blank" href="./result_search_5.php?organism='.str_replace(" ", "+", $result['species']).'&search='.$result['mapping_file']['Gene ID'].'">'.$result['mapping_file']['Gene ID'].'</a></td>';
+                    $table_string.='<td>'.$result['mapping_file']['Description'].'</td>';
+                    if (isset($result['mapping_file']['Alias']) && $result['mapping_file']['Alias']!="NA"){
+                        $table_string.='<td>'.$result['mapping_file']['Alias'].'</td>';
+                    }
+                    else{
+                        if(isset ($result['mapping_file']['Gene Name'])&& $result['mapping_file']['Gene Name']!="NA"){
+                            $table_string.='<td>'.$result['mapping_file']['Gene Name'].'</td>';
+                        }
+                        else{
+                            $table_string.='<td>-</td>';
+
+                        }
+
+                    }
+
+                    $table_string.='<td>'.$result['species'].'</td>';
+                    $score+=(float)$result['mapping_file']['Score_exp'];
+                    $score+=(float)$result['mapping_file']['Score_int']; 
+                    $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                    $score+=(float)$result['mapping_file']['Score_QTL']; 
+                    $score+=(float)$result['mapping_file']['Score_SNP']; 
+                    if ($counter===count($cursor['result'])-1){
+                        $table_string.='<td>'.$score.'</td>';
+                        $table_string.='</tr>';
+                    }
+                }
+                else{
+                    $score+=(float)$result['mapping_file']['Score_exp'];
+                    $score+=(float)$result['mapping_file']['Score_int']; 
+                    $score+=(float)$result['mapping_file']['Score_orthologs']; 
+                    $score+=(float)$result['mapping_file']['Score_QTL']; 
+                    $score+=(float)$result['mapping_file']['Score_SNP'];
+                    if ($counter===count($cursor['result'])-1){
+                        $table_string.='<td>'.$score.'</td>';
+                        $table_string.='</tr>';
+
+                        
+                    }
+                }
+            }
+            $counter++;
+        }
+        $table_string.='</tbody></table>';
+        echo $table_string;
+        echo '</div>';
+    
+    
+}
 function make_species_list($cursor,$path='null'){
 
     
