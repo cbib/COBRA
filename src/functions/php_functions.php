@@ -3097,10 +3097,11 @@ function display_multi_results_table(array $cursor_array){
 
         //Debut du corps de la table
         $table_string.='<tbody>';
-        $score=0.0;
-        $counter=0;
+        
+        echo count($cursor_array);
         foreach ($cursor_array as $cursor) {
-            
+            $score=0.0;
+            $counter=0;
             if (count($cursor['result'])>=1){
                 foreach ($cursor['result'] as $result) {
 
