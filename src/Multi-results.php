@@ -28,8 +28,9 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 	//$search=strtoupper($search);
 
     $list_search=array();
-    if (count(split(",", $search))>1){
-        $list_search=split(",", $search);
+    $keywords = preg_split("/[\s,]+/", $search);
+    if (count($keywords)>1){
+        $list_search=$keywords;
     }
     else{
         array_push($list_search, $search);
