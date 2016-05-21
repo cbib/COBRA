@@ -3080,7 +3080,7 @@ AT1G03110</textarea>
 
 
 }
-function display_multi_results_table(MongoCursor $cursor){
+function display_multi_results_table(array $cursor){
     
     echo'<div>';
         //var_dump($cursor['result']);
