@@ -110,9 +110,9 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 
 
 
-
-if ((isset($_GET['action'])) && ($_GET['action']!='')){
-    if ($_GET['action']=="Remove"){
+$action=$_GET['action'];
+if ((isset($action)) && ($action!='')){
+    if ($action=="Remove"){
        $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
        $criteria=array('full_file_name'=>$dir.$_GET['full_path'],'author'=>$author_full_name );
        
@@ -127,7 +127,8 @@ if ((isset($_GET['action'])) && ($_GET['action']!='')){
        }
     }  
 }
-$db=mongoConnector();
+
+#$db=mongoConnector();
 new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Upload files Page","section_upload_file","../..");
@@ -201,6 +202,7 @@ echo '<div id="doc_pages">';
             //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
 
         }
+        error_log($dir.$fichier);
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 
