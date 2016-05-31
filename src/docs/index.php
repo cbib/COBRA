@@ -22,7 +22,7 @@ $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $speciesCollection = new Mongocollection($db, "species");
 
-$dossier = 'COBRA_depot/';
+$dossier = '../../../../../../../data/COBRA_depot/';
 
 
 

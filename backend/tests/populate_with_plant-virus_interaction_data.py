@@ -54,22 +54,22 @@ interactions_table={
 pv_interactions_col.insert(interactions_table)
 
 
-interactions_table={
-	"data_file":"interactomics/potyvirus/.xls",
-	"species":"Arabidopsis thaliana",
-        "src":"Gene ID",
-	"tgt":"Virus_symbol",
-	"type":"gene_to_symbol",
-	"virus_class":"potyvirus",
-	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','species'],
-		"sheet_index":0,
-		
-	}
-
-}
-pv_interactions_col.insert(interactions_table)
+#interactions_table={
+#	"data_file":"interactomics/potyvirus/.xls",
+#	"species":"Arabidopsis thaliana",
+#        "src":"Gene ID",
+#	"tgt":"Virus_symbol",
+#	"type":"gene_to_symbol",
+#	"virus_class":"potyvirus",
+#	"xls_parsing":{
+#		"n_rows_to_skip":1,
+#		"column_keys":['idx','Gene ID','Host_symbol','Virus_symbol','method','Reference','virus','species'],
+#		"sheet_index":0,
+#		
+#	}
+#
+#}
+#pv_interactions_col.insert(interactions_table)
 
 
 
