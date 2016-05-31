@@ -22,7 +22,17 @@ $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $speciesCollection = new Mongocollection($db, "species");
 
+#$dossier = '../../../../../../../data/COBRA_depot/';
+
 $dossier = '../../../../../../../data/COBRA_depot/';
+
+ // create new directory with 744 permissions if it does not exist yet
+ // owner will be the user/group the PHP script is run under
+ if ( !file_exists($dossier) ) {
+     $oldmask = umask(0);  // helpful when used in linux server  
+     mkdir ($dossier, 0744);
+ }
+
 
 
 
