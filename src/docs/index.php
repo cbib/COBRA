@@ -192,7 +192,7 @@ echo '<div id="doc_pages">';
             if ($id=="full_file_name"){
 
                 $cobra_repository = explode("/", $value);
-                $fichier=$cobra_repository[1];
+                $fichier=$cobra_repository[count($cobra_repository)-1];
                 $table_string.='<td>'.$fichier.'</td>';
             }
             if ($id=="author"){
