@@ -22,15 +22,15 @@ $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $speciesCollection = new Mongocollection($db, "species");
 
-#$dossier = '../../../../../../../data/COBRA_depot/';
+#$dir = '../../../../../../../data/COBRA_depot/';
 
-$dossier = '../../../../../../../data/COBRA_depot/';
+$dir = '../../../../../../../data/COBRA_depot/';
 
  // create new directory with 744 permissions if it does not exist yet
  // owner will be the user/group the PHP script is run under
- if ( !file_exists($dossier) ) {
+ if ( !file_exists($dir) ) {
      $oldmask = umask(0);  // helpful when used in linux server  
-     mkdir ($dossier, 0744);
+     mkdir ($dir, 0744);
  }
 
 
@@ -64,10 +64,10 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
         //testing if file has been moved
         error_log($fichier);
 
-        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+        if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dir . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
              //echo 'Your file '.$fichier.' was upload successfully !';
-             $full_path=$dossier.$fichier;
+             $full_path=$dir.$fichier;
              $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
 
              //tester l'existence du document
@@ -114,13 +114,13 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
 if ((isset($_GET['action'])) && ($_GET['action']!='')){
     if ($_GET['action']=="Remove"){
        $author_full_name=$_SESSION['firstname'].' '.$_SESSION['lastname'];
-       $criteria=array('full_file_name'=>$dossier.$_GET['full_path'],'author'=>$author_full_name );
+       $criteria=array('full_file_name'=>$dir.$_GET['full_path'],'author'=>$author_full_name );
        
        $doc = $docsCollection->findOne($criteria);
        if(!empty($doc) ){
             
             $docsCollection->remove($criteria);
-            unlink('./'.$dossier.$_GET['full_path']);
+            unlink('./'.$dir.$_GET['full_path']);
        }
        else{
            //echo 'document doesnt exist';
@@ -211,7 +211,7 @@ echo '<div id="doc_pages">';
                     </button>
                     <ul class="dropdown-menu">
 
-                      <li><a href="./COBRA_depot/'.$fichier.'" download>Download file</a></li>
+                      <li><a href="'.$dir.$fichier.'" download>Download file</a></li>
                       <li><a href="./COBRA_depot/'.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
 
@@ -234,9 +234,9 @@ echo '<div id="doc_pages">';
     //var_dump($docs);
 
 
-    /*if($dossier = opendir('./COBRA_depot/'))
+    /*if($dir = opendir('./COBRA_depot/'))
     //{
-    //    while(false !== ($fichier = readdir($dossier)))
+    //    while(false !== ($fichier = readdir($dir)))
     //    {
     //        if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
     //            $nb_files++; // On incrémente le compteur de 1
