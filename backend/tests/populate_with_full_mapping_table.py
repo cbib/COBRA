@@ -318,3 +318,25 @@ full_mappings_col.insert(mapping_table)
 #	}
 #}
 #full_mappings_col.insert(mapping_table)
+
+
+
+
+mapping_table={
+	"data_file":"mappings/FULL_MAPPING/",
+	"species":"Oriza Sativa ssp. Japonica",
+	"type":"full_table",
+	"src":"",
+	"src_version":"",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PROTEINID/DESCRIPTION/PROBEID/PLAZAID/ALIAS/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Gene ID','Transcript ID','Gene Name','Description', 'Probe ID','Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
+		"sheet_index":0,
+	}
+}
+full_mappings_col.insert(mapping_table)

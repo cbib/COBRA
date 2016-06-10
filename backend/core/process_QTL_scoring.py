@@ -43,8 +43,11 @@ for species in species_to_process:
         for markers in markers_to_process:
             counter+=1
             for m in markers['mapping_file']:
+                #check if column exists
                 if 'Start' in m and 'Chromosome' in m:
+                    #skip the first line
                     if m['Start']!="Location":
+                        #test if value is set
                         if m['Start']!="" and m['Chromosome']!="":
                             logger.info("markers position %s chrom %s id %s map id %s",m['Start'],m['Chromosome'],m['Marker ID'],m['Map ID'])
                             #pos=int(m['Position'])
@@ -126,10 +129,10 @@ for species in species_to_process:
                                                             ortholog_split_list=ortholog_list.split(',')
                                                             for ortholog_id in ortholog_split_list:
                                                                 if ortholog_id!=plaza_id:
-                                                                    #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
                                                         else:
                                                             if ortholog_list!=plaza_id:
-                                                                #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
+                                                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 } })
                         #cursor_to_table(gene_to_process)
 
 

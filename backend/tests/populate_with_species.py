@@ -52,25 +52,25 @@ species_col.insert(melon)
 ############################################ ORIZA SATIVA #####################################################
 ###################################################################################################################
 
-#rice={
-#	"full_name":"Oriza sativa Japonica",
-#	"abbrev_name":"O. sativa",
-#	"aliases":["oriza_sativa","rice","Japanese rice"],
-#	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
-#	"wikipedia":"",
-#	"preferred_id":"", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
-#
-#	"classification":{
-#		"top_level":"Eukaryotes",
-#		"kingdom":	"Plantae",
-#		"unranked": ["Angiosperms","Eudicots","commelinids"],
-#		"order":	"Poales",
-#		"family":	"Poaceae",
-#		"genus":	"Oriza",
-#		"species":	"O. sativa",
-#	}
-#}
-#species_col.insert(melon)
+rice={
+	"full_name":"Oriza sativa Japonica",
+	"abbrev_name":"O. sativa",
+	"aliases":["oriza_sativa","rice","Japanese rice"],
+	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
+	"wikipedia":"",
+	"preferred_id":"", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+
+	"classification":{
+		"top_level":"Eukaryotes",
+		"kingdom":	"Plantae",
+		"unranked": ["Angiosperms","Eudicots","commelinids"],
+		"order":	"Poales",
+		"family":	"Poaceae",
+		"genus":	"Oriza",
+		"species":	"O. sativa",
+	}
+}
+species_col.insert(rice)
 
 ###################################################################################################################
 ############################################ PRUNUS DOMESTICA #####################################################

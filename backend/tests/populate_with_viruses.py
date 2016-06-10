@@ -166,7 +166,7 @@ viruses_col.insert(bydv)
 bymv={
 	"full_name":"Barley yellow mosaic virus",
 	"wikipedia":"",
-	"aliases":['bydv'],
+	"aliases":['bymv'],
 	"classification":{
 		"top_level":"viruses",
 		"group":"Group IV ((+)ssRNA)",
