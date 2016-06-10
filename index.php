@@ -50,7 +50,7 @@ $GOCollection = new Mongocollection($db, "gene_ontology");
 //
 //echo '</main>';
 
-
+//echo 'blabla'
 echo'</hr>';
     echo '<div class="col-md-12" >		
         <div class="col-md-6" >
