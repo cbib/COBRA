@@ -56,7 +56,7 @@ rice_japonica_samples={
 	},
     "experimental_results":[
         {
-			"data_file":"Oriza/transcriptomics/micro-array/RGSV/DEG_riceRGSV.txt",
+			"data_file":"Oriza/transcriptomics/micro-array/RGSV/DEG_riceRGSV.tsv",
 			"conditions":["non infected",{
 				"infected":True,
 				"infection_agent":"Rice grassy stunt virus",
