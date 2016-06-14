@@ -1184,8 +1184,9 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
     if ($current_plaza_id!=""){
         //$timestart=microtime(true);
         $cursors=$orthologsCollection->find(array('mapping_file.Plaza gene id'=>$current_plaza_id),array('mapping_file.$'=>1,'_id'=>0));
-        var_dump($cursors);
+       
         foreach ($cursors as $cursor){
+             var_dump($cursor);
             foreach ($cursor as $mapping_file){
                 foreach ($mapping_file as $value){
                     //$ortholog_list_id=$value['orthologs_list_identifier'];
