@@ -1191,11 +1191,12 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 #var_dump($mapping_file);
                 foreach ($mapping_file as $value){
                     //$ortholog_list_id=$value['orthologs_list_identifier'];
-                    echo $value['orthologs_list_identifier'];
+                    
                     $ortholog_list_id=split(',', $value['orthologs_list_identifier']);
                 }
             }
         }
+        echo $ortholog_list_id;
 
 
         $table_string.='<table class="table" id="orthologs_table">'
