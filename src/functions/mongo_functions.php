@@ -1256,6 +1256,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //                        $score+=$tmp_score['snp'];  
 //                    }  
                 } */
+                echo $ortholog;
                 $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
                     $species=$data['species'];
