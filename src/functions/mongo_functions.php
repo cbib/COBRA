@@ -1178,7 +1178,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //	echo '</div>';
    
 	#$current_plaza_id="AT1G01060";
-    echo "test plaza id ".$current_plaza_id;
+    #echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL','Prunus persica' => 'PP');
     $table_string="";
     if ($current_plaza_id!=""){
