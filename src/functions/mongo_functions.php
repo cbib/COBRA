@@ -1193,15 +1193,15 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 foreach ($mapping_file as $value){
                     //$ortholog_list_id=$value['orthologs_list_identifier'];
                     foreach (split(',', $value['orthologs_list_identifier']) as $ort){
-                        echo $ort.'</br>';
+                        #echo $ort.'</br>';
                         array_push($ortholog_list_id, $ort);
                     }
                     #$ortholog_list_id=split(',', $value['orthologs_list_identifier']);
                 }
             }
         }
-        echo $ortholog_list_id[0];
-        echo $ortholog_list_id[1];
+        #echo $ortholog_list_id[0];
+        #echo $ortholog_list_id[1];
 
 
         $table_string.='<table class="table" id="orthologs_table">'
@@ -1215,7 +1215,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 . '</thead>'
                 . '<tbody>';
         foreach ($ortholog_list_id as $ortholog){
-            echo $ortholog;
+            #echo $ortholog;
             if ($ortholog!=$current_plaza_id){
             /*$cursor_score=$full_mappingsCollection->aggregate(array(
             array('$match' => array('type'=>'full_table')),  
