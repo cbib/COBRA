@@ -22,9 +22,9 @@ if "log" not in globals():
 mappings_col.drop()
 #orthologs_col.drop()
 #interactions_col.drop()
-for grid_out in fs.find({}, timeout=False):
-	
-	fs.delete(grid_out._id)
+#for grid_out in fs.find({}, timeout=False):
+#	
+#	fs.delete(grid_out._id)
 
 
 
@@ -348,7 +348,7 @@ mappings_col.insert(mapping_table)
 ###################################################################################################################
 # Gene_to_prot - Plaza to uniprot
 mapping_table={
-	"data_file":"mappings/plaza_id_conversion.Osa.xls",
+	"data_file":"mappings/plaza_id_conversion.osa.xls",
 	"species":"Oriza sativa ssp japonica",
 	"type":"PLAZA",
 	"src":"Plaza gene id",

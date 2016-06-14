@@ -50,7 +50,7 @@ rice_japonica_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
 		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Locus','Annotation','expressed/not expressed','Average Log2 RGSV-inoculated plants','Average Log2  in mock-inoculated plants','LogFC','Expression of genes significantly induced (""u"") or suppressed (""d"")'],
+		"column_keys":['idx','Gene ID','Locus','Annotation','expressed/not expressed','Average Log2 RGSV-inoculated plants','Average Log2 in mock-inoculated plants','LogFC','Expression of genes significantly induced (""u"") or suppressed (""d"")'],
 		"sheet_index":0,
 		"id_type":"Gene ID"
 	},
