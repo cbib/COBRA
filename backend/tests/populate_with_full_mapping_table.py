@@ -326,7 +326,7 @@ full_mappings_col.insert(mapping_table)
 
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/current/Oriza/full_oriza_sativa_final1.tsv",
+	"data_file":"mappings/FULL_MAPPING/full_oriza_sativa_final1.tsv",
 	"species":"Oriza Sativa ssp. Japonica",
 	"type":"full_table",
 	"src":"Gene ID",
@@ -346,7 +346,7 @@ mapping_table={
 full_mappings_col.insert(mapping_table)
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/current/Oriza/full_oriza_sativa_final2.tsv",
+	"data_file":"mappings/FULL_MAPPING/full_oriza_sativa_final2.tsv",
 	"species":"Oriza Sativa ssp. Japonica",
 	"type":"full_table",
 	"src":"Gene ID",
