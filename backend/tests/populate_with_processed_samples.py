@@ -23,7 +23,7 @@ samples_col.remove({"state":{"$in":["processed"]}});
 ############################################ ORIZA Sativa Japonica #################################################
 ###################################################################################################################
 rice_japonica_samples={
-    "src_pub":PMC3798811, # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"PMC3798811", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"Relationship between gene responses and symptoms induced by Rice grassy stunt virus",
     "comments":[
