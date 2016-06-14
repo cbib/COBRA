@@ -337,7 +337,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-		echo'<h1 style="text-align:center"> Samples Details </h1>';
+		echo'<h1 style="text-align:center"> Expression profile heatmap </h1>';
 		echo '</div>';
         echo '<div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>';
 echo '</div>';	
