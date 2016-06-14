@@ -58,7 +58,7 @@ rice={
 	"aliases":["oriza_sativa","rice","Japanese rice"],
 	"taxid":39947, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
 	"wikipedia":"https://en.wikipedia.org/wiki/Oryza_sativa",
-	"preferred_id":"", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
+	"preferred_id":"Gene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
 
 	"classification":{
 		"top_level":"Eukaryotes",
