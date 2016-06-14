@@ -320,22 +320,46 @@ full_mappings_col.insert(mapping_table)
 #full_mappings_col.insert(mapping_table)
 
 
+###################################################################################################################
+############################################ ARABIDOPSIS THALIANA UPDATED#################################################
+###################################################################################################################
 
 
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/",
+	"data_file":"mappings/FULL_MAPPING/current/Oriza/full_oriza_sativa_final1.tsv",
 	"species":"Oriza Sativa ssp. Japonica",
 	"type":"full_table",
-	"src":"",
-	"src_version":"",
+	"src":"Gene ID",
+	"src_version":"IRGSP-1.0",
 	"url":"",
 	"doi":"none",
 	"key":"GENEID/TRANSCRIPTID/PROTEINID/DESCRIPTION/PROBEID/PLAZAID/ALIAS/GENEONTOLOGYID",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
-		"n_rows_to_skip":1,
-		"column_keys":['idx','Gene ID','Transcript ID','Gene Name','Description', 'Probe ID','Uniprot ID','Description 2','Plaza ID','Alias','Gene ontology ID','Symbol','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Start','End','Chromosome'],
+		"n_rows_to_skip":0,
+
+		"column_keys":['idx','Gene ID','Transcript ID','Probe ID','Gene Name','Description','Uniprot ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chrom','Start','End','Chromosome','Gene ID 2','Plaza ID'],
+		"sheet_index":0,
+	}
+}
+full_mappings_col.insert(mapping_table)
+
+mapping_table={
+	"data_file":"mappings/FULL_MAPPING/current/Oriza/full_oriza_sativa_final2.tsv",
+	"species":"Oriza Sativa ssp. Japonica",
+	"type":"full_table",
+	"src":"Gene ID",
+	"src_version":"IRGSP-1.0",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PROTEINID/DESCRIPTION/PROBEID/PLAZAID/ALIAS/GENEONTOLOGYID",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+
+		"column_keys":['idx','Gene ID','Transcript ID','Probe ID','Gene Name','Description','Uniprot ID','Gene ontology ID','Score_exp','Score_int','Score_orthologs','Score_QTL','Score_SNP','Global_Score','Chrom','Start','End','Chromosome','Gene ID 2','Plaza ID'],
 		"sheet_index":0,
 	}
 }

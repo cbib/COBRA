@@ -48,6 +48,23 @@ m_canon={
 }
 viruses_col.insert(m_canon)
 
+rgsv={
+	"full_name":"Rice grassy stunt virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Rice_grassy_stunt_virus",
+	"aliases":['rgsv','rice rosette Philippines virus'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group V ((-)ssRNA)",
+		"genus":"Tenuivirus",
+		"species":"Rice grassy stunt virus",
+	}
+	
+}
+viruses_col.insert(rgsv)
+
+
+
+
 cmv={
 	"full_name":"Cucumber mosaic virus",
 	"wikipedia":"http://en.wikipedia.org/wiki/Cucumber_mosaic_virus",

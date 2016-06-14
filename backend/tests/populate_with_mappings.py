@@ -343,4 +343,28 @@ mapping_table={
 }
 mappings_col.insert(mapping_table)
 
-
+###################################################################################################################
+############################################ ORIZA Sativa #################################################
+###################################################################################################################
+# Gene_to_prot - Plaza to uniprot
+mapping_table={
+	"data_file":"mappings/plaza_id_conversion.Osa.xls",
+	"species":"Oriza sativa ssp japonica",
+	"type":"PLAZA",
+	"src":"Plaza gene id",
+	"src_version":"PLAZA 3.0 Dicots",
+	"tgt":"Gene ID",
+	"tgt_version":"IRGSP-1.0",
+	"description":"none",
+	"url":"ftp://ftp.psb.ugent.be/pub/plaza/plaza_public_monocots_03/IdConversion/id_conversion.osa.csv.gz",
+	"doi":"none",
+	"key":"PLAZA_conversion",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Plaza gene id','Gene ID'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)

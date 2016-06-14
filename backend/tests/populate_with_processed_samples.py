@@ -18,6 +18,67 @@ if "log" not in globals():
 samples_col.remove({"state":{"$in":["processed"]}});
 
 
+
+###################################################################################################################
+############################################ ORIZA Sativa Japonica #################################################
+###################################################################################################################
+rice_japonica_samples={
+    "src_pub":PMC3798811, # Any field from the pub, doi, pmid, first author etc. 
+    "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
+    "name":"Relationship between gene responses and symptoms induced by Rice grassy stunt virus",
+    "comments":[
+        {"content":"""Rice grassy stunt virus (RGSV) is a serious threat to rice production in Southeast Asia. 
+            RGSV is a member of the genus Tenuivirus, and it induces leaf yellowing, stunting, 
+            and excess tillering on rice plants. Here we examined gene responses of rice to RGSV 
+            infection to gain insight into the gene responses which might be associated with the disease symptoms. 
+            The results indicated that (1) many genes related to cell wall synthesis and chlorophyll synthesis were predominantly suppressed by RGSV infection; 
+            (2) RGSV infection induced genes associated with tillering process; (3) RGSV activated genes involved in inactivation of gibberellic acid and 
+            indole-3-acetic acid; and (4) the genes for strigolactone signaling were suppressed by RGSV. 
+            These results suggest that these gene responses to RGSV infection account for the excess tillering specific 
+            to RGSV infection as well as other symptoms by RGSV, such as stunting and leaf chlorosis."""}
+    ],
+    "assay":{
+        "type":"micro-array",
+        "design":"http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3798811/bin/DataSheet1.ZIP"
+    },
+    "deposited":{
+        "repository":"",
+        "sample_description_url":"",
+        "experimental_meta_data":""
+
+    },
+    # xls parser configuration, are propagated to all entries in  "experimental_results",
+    "xls_parsing":{
+		"n_rows_to_skip":1,
+		"column_keys":['idx','Gene ID','Locus','Annotation','expressed/not expressed','Average Log2 RGSV-inoculated plants','Average Log2  in mock-inoculated plants','LogFC','Expression of genes significantly induced (""u"") or suppressed (""d"")'],
+		"sheet_index":0,
+		"id_type":"Gene ID"
+	},
+    "experimental_results":[
+        {
+			"data_file":"Oriza/transcriptomics/micro-array/RGSV/DEG_riceRGSV.txt",
+			"conditions":["non infected",{
+				"infected":True,
+				"infection_agent":"Rice grassy stunt virus",
+				"type":"inoculated",
+				"label":"Infected with RGSV"
+				}
+			],
+			"contrast":"infected VS healthy",
+			"type":"contrast",
+			"variety":"Oryza sativa cv. Nipponbare",
+			"day_after_inoculation":28,
+                        "material":"leaf"
+		
+                
+        }
+    ]
+
+}
+samples_col.insert(rice_japonica_samples)
+
+
+
 ###################################################################################################################
 ############################################ SOLANUM LYCOPERSICUM #################################################
 ###################################################################################################################

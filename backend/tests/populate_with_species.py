@@ -56,8 +56,8 @@ rice={
 	"full_name":"Oriza sativa Japonica",
 	"abbrev_name":"O. sativa",
 	"aliases":["oriza_sativa","rice","Japanese rice"],
-	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
-	"wikipedia":"",
+	"taxid":39947, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
+	"wikipedia":"https://en.wikipedia.org/wiki/Oryza_sativa",
 	"preferred_id":"", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
 
 	"classification":{
