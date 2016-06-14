@@ -1196,7 +1196,8 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 }
             }
         }
-        echo $ortholog_list_id;
+        echo $ortholog_list_id[0];
+        echo $ortholog_list_id[1];
 
 
         $table_string.='<table class="table" id="orthologs_table">'
