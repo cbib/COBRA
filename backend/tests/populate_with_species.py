@@ -53,7 +53,7 @@ species_col.insert(melon)
 ###################################################################################################################
 
 rice={
-	"full_name":"Oriza sativa Japonica",
+	"full_name":"Oriza sativa ssp japonica",
 	"abbrev_name":"O. sativa",
 	"aliases":["oriza_sativa","rice","Japanese rice"],
 	"taxid":39947, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
