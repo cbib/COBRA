@@ -26,6 +26,7 @@ rice_japonica_samples={
     "src_pub":"PMC3798811", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"Relationship between gene responses and symptoms induced by Rice grassy stunt virus",
+    "state":"processed",
     "comments":[
         {"content":"""Rice grassy stunt virus (RGSV) is a serious threat to rice production in Southeast Asia. 
             RGSV is a member of the genus Tenuivirus, and it induces leaf yellowing, stunting, 
@@ -49,7 +50,7 @@ rice_japonica_samples={
     },
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
-		"n_rows_to_skip":1,
+		"n_rows_to_skip":0,
 		"column_keys":['idx','Gene ID','Locus','Annotation','expressed/not expressed','Average Log2 RGSV-inoculated plants','Average Log2 in mock-inoculated plants','LogFC','Expression of genes significantly induced (""u"") or suppressed (""d"")'],
 		"sheet_index":0,
 		"id_type":"Gene ID"
