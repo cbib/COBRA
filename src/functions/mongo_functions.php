@@ -1180,6 +1180,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 	#$current_plaza_id="AT1G01060";
     #echo "test plaza id ".$current_plaza_id;
     //$initial_species=array('Arabidopsis thaliana' => 'AT','Cucumis melo' => 'CM','Hordeum vulgare' => 'HV','Solanum lycopersicum' => 'SL','Prunus persica' => 'PP');
+    $ortholog_list_id=array();
     $table_string="";
     if ($current_plaza_id!=""){
         //$timestart=microtime(true);
@@ -1192,7 +1193,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 foreach ($mapping_file as $value){
                     //$ortholog_list_id=$value['orthologs_list_identifier'];
                     foreach (split(',', $value['orthologs_list_identifier']) as $ort){
-                        echo $ort;
+                        echo $ort.'</br>';
                         array_push($ortholog_list_id, $ort);
                     }
                     #$ortholog_list_id=split(',', $value['orthologs_list_identifier']);
