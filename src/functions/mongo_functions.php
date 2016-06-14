@@ -1196,8 +1196,8 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 }
             }
         }
-        echo $ortholog_list_id[0];
-        echo $ortholog_list_id[1];
+        #echo $ortholog_list_id[0];
+        #echo $ortholog_list_id[1];
 
 
         $table_string.='<table class="table" id="orthologs_table">'
@@ -1211,7 +1211,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                 . '</thead>'
                 . '<tbody>';
         foreach ($ortholog_list_id as $ortholog){
-
+            echo $ortholog;
             if ($ortholog!=$current_plaza_id){
             /*$cursor_score=$full_mappingsCollection->aggregate(array(
             array('$match' => array('type'=>'full_table')),  
@@ -1262,7 +1262,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 //                        $score+=$tmp_score['snp'];  
 //                    }  
                 } */
-                echo $ortholog;
+                
                 $ortholog_data=$full_mappingsCollection->find(array('mapping_file.Plaza ID'=>$ortholog),array('mapping_file.$'=>1,'species'=>1,'_id'=>0));
                 foreach ($ortholog_data as $data){
                     $species=$data['species'];
