@@ -67,7 +67,7 @@ for a_sample in samples_with_results:
 		id_col=parser_config['id_type']
 		
 		for measure in experimental_results['values']:
-			#logger.info("new measure %s",measure[id_col])
+                    logger.info("new measure %s",measure[id_col])
 
                     
                     if experimental_results['type']=="contrast":
