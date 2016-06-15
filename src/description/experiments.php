@@ -334,7 +334,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	}	
 	echo '<hr></div>';
 
-
+#build the data array for logfc values
 echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Expression profile heatmap </h1>';
