@@ -9104,6 +9104,17 @@ echo '<pre id="csv" style="display: none">Date,Time,Temperature
 2013-12-31,21,2.2
 2013-12-31,22,1.8
 2013-12-31,23,1.6</pre>';
+
+
+echo '<pre id="csv2" style="display: none">Date,Time,Temperature
+Name1,A,3077
+Name2,B,5486
+Name3,A,377
+Name4,B,546
+Name5,A,77
+Name6,B,46</pre>';
+
+
 echo '</div>';	
 	
 	
@@ -9403,7 +9414,7 @@ $(function () {
     $('#container').highcharts({
 
         data: {
-            csv: document.getElementById('csv').innerHTML,
+            csv: document.getElementById('csv2').innerHTML,
             parsed: function () {
                 start = +new Date();
             }
