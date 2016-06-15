@@ -149,7 +149,7 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
                                 if 'logFC' in this_dict:
                                     if this_dict['logFC']!='':
                                         if isinstance(this_dict['logFC'],basestring):
-                                            this_dict['logFC']=int(this_dict['logFC'])
+                                            this_dict['logFC']=float(this_dict['logFC'])
 				if id_col: #enforce id col type
 					if isinstance(this_dict[id_col],Number):
 						this_dict[id_col]=str(int(this_dict[id_col]))
