@@ -109,6 +109,16 @@ for species in species_to_process:
                     full_mappings_col.update({'species':"Arabidopsis thaliana",'mapping_file.Gene ID':r['gene']},{'$inc': {'mapping_file.$.Score_exp': 1,'mapping_file.$.Global_Score': 1 } })
                   
                 plaza_results=full_mappings_col.find({'species':"Arabidopsis thaliana",'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
+                
+            elif species['full_name']== "Arabidopsis thaliana":
+                #logger.info("gene id %s for probe id %s",r['gene'],r['gene_original_id'])
+                if 'gene_original_id' in r:
+
+                    full_mappings_col.update({'species':"Oriza sativa ssp japonica",'mapping_file.Gene ID':r['gene'],'mapping_file.Probe ID':r['gene_original_id']},{'$inc': {'mapping_file.$.Score_exp': 1,'mapping_file.$.Global_Score': 1 } })
+                else:
+                    full_mappings_col.update({'species':"Oriza sativa ssp japonica",'mapping_file.Gene ID':r['gene']},{'$inc': {'mapping_file.$.Score_exp': 1,'mapping_file.$.Global_Score': 1 } })
+                  
+                plaza_results=full_mappings_col.find({'species':"Oriza sativa ssp japonica",'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             else:
                 if 'gene_original_id' in r:
