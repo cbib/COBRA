@@ -110,7 +110,7 @@ publications_col.insert(prunus_pub)
 rice_samples={
     "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
-    "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus",
+    "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-O Part",
     "comments":[
         {"content":"""Expression levels of the NAC gene family were studied in rice infected with Rice dwarf virus (RDV), 
         Rice black-streaked dwarf virus (RBSDV), Rice grassy stunt virus (RGSV), Rice ragged stunt virus (RRSV), 
@@ -179,36 +179,69 @@ rice_samples={
                 "day_after_inoculation":21,
                 "material":"shoot"
         },
-#        {
-#                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
-#                "conditions":["non infected",{
-#                        "infected":True,
-#                        "infection_agent":"Rice dwarf virus",
-#                        "type":"inoculated",
-#                        "label":"Infected with RDV (Strain O)"
-#                        }
-#                ],
-#                "contrast":"infected VS healthy",
-#                "type":"contrast",
-#                "variety":"Nipponbare",
-#                "day_after_inoculation":21,
-#                "material":"shoot"
-#        },
-#        {
-#                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
-#                "conditions":["non infected",{
-#                        "infected":True,
-#                        "infection_agent":"Rice dwarf virus",
-#                        "type":"inoculated",
-#                        "label":"Infected with RDV (Strain O)"
-#                        }
-#                ],
-#                "contrast":"infected VS healthy",
-#                "type":"contrast",
-#                "variety":"Nipponbare",
-#                "day_after_inoculation":21,
-#                "material":"shoot"
-#        },
+        {
+                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989.tsv",
+                "conditions":["non infected",{
+                        "infected":True,
+                        "infection_agent":"Rice dwarf virus",
+                        "type":"inoculated",
+                        "label":"Infected with RDV (Strain O)"
+                        }
+                ],
+                "contrast":"infected VS healthy",
+                "type":"contrast",
+                "variety":"Nipponbare",
+                "day_after_inoculation":21,
+                "material":"shoot"
+        }
+    ]
+
+}
+samples_col.insert(rice_samples)
+
+rice_samples={
+    "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
+    "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-84 part",
+    "comments":[
+        {"content":"""Expression levels of the NAC gene family were studied in rice infected with Rice dwarf virus (RDV), 
+        Rice black-streaked dwarf virus (RBSDV), Rice grassy stunt virus (RGSV), Rice ragged stunt virus (RRSV), 
+        and Rice transitory yellowing virus (RTYV). Microarray analysis showed that 75 (68%) OsNAC genes were differentially 
+        regulated during infection with RDV, RBSDV, RGSV, and RRSV compared with the control. 
+        The number of OsNAC genes up-regulated was highest during RGSV infection, while the lowest number was found during RTYV infection. 
+        These phenomena correlate with the severity of the syndromes induced 
+        by the virus infections. Most of the genes in the NAC subgroups NAC22, SND, ONAC2, ANAC34, and ONAC3 were down-regulated 
+        for all virus infections. These OsNAC genes might be related to the health stage maintenance of the host plants. 
+        Interestingly, most of the genes in the subgroups TIP and SNAC were more highly expressed during RBSDV and RGSV infections. 
+        These results suggested that OsNAC genes might be related to the responses induced by the virus infection. 
+        All of the genes assigned to the TIP subgroups were highly expressed during RGSV infection when compared with the control. 
+        For RDV infection, the number of activated genes was greatest during infection with the S-strain, 
+        followed by the D84-strain and the O-strain, with seven OsNAC genes up-regulated during infection by all three strains. 
+        The Os12g03050 and Os11g05614 genes showed higher expression during infection with four of the five viruses, 
+        and Os11g03310, Os11g03370, and Os07g37920 genes showed high expression during at least three viral infections. 
+        We identified some duplicate genes that are classified as neofunctional and subfunctional according to their 
+        expression levels in different viral infections. A number of putative cis-elements were identified, 
+        which may help to clarify the function of these key genes in network pathways. """}
+    ],
+    "assay":{
+        "type":"micro-array",
+        "design":"https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-7252/A-GEOD-7252.adf.txt"
+    },
+    "deposited":{
+        "repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE24937",
+        "sample_description_url":"",
+        "experimental_meta_data":""
+
+    },
+    # xls parser configuration, are propagated to all entries in  "experimental_results",
+    "xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Est','Gene ID 2','gDyeNormSignal','rDyeNormSignal','fold_change'],
+		"sheet_index":0,
+		"id_type":"Est"
+	},
+    "experimental_results":[
+        
         {
                 "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612990.tsv",
                 "conditions":["non infected",{
@@ -253,7 +286,57 @@ rice_samples={
                 "variety":"Nipponbare",
                 "day_after_inoculation":21,
                 "material":"shoot"
-        },
+        }
+    ]
+
+}
+samples_col.insert(rice_samples)
+
+
+
+rice_samples={
+    "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
+    "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-S Part",
+    "comments":[
+        {"content":"""Expression levels of the NAC gene family were studied in rice infected with Rice dwarf virus (RDV), 
+        Rice black-streaked dwarf virus (RBSDV), Rice grassy stunt virus (RGSV), Rice ragged stunt virus (RRSV), 
+        and Rice transitory yellowing virus (RTYV). Microarray analysis showed that 75 (68%) OsNAC genes were differentially 
+        regulated during infection with RDV, RBSDV, RGSV, and RRSV compared with the control. 
+        The number of OsNAC genes up-regulated was highest during RGSV infection, while the lowest number was found during RTYV infection. 
+        These phenomena correlate with the severity of the syndromes induced 
+        by the virus infections. Most of the genes in the NAC subgroups NAC22, SND, ONAC2, ANAC34, and ONAC3 were down-regulated 
+        for all virus infections. These OsNAC genes might be related to the health stage maintenance of the host plants. 
+        Interestingly, most of the genes in the subgroups TIP and SNAC were more highly expressed during RBSDV and RGSV infections. 
+        These results suggested that OsNAC genes might be related to the responses induced by the virus infection. 
+        All of the genes assigned to the TIP subgroups were highly expressed during RGSV infection when compared with the control. 
+        For RDV infection, the number of activated genes was greatest during infection with the S-strain, 
+        followed by the D84-strain and the O-strain, with seven OsNAC genes up-regulated during infection by all three strains. 
+        The Os12g03050 and Os11g05614 genes showed higher expression during infection with four of the five viruses, 
+        and Os11g03310, Os11g03370, and Os07g37920 genes showed high expression during at least three viral infections. 
+        We identified some duplicate genes that are classified as neofunctional and subfunctional according to their 
+        expression levels in different viral infections. A number of putative cis-elements were identified, 
+        which may help to clarify the function of these key genes in network pathways. """}
+    ],
+    "assay":{
+        "type":"micro-array",
+        "design":"https://www.ebi.ac.uk/arrayexpress/files/A-GEOD-7252/A-GEOD-7252.adf.txt"
+    },
+    "deposited":{
+        "repository":"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE24937",
+        "sample_description_url":"",
+        "experimental_meta_data":""
+
+    },
+    # xls parser configuration, are propagated to all entries in  "experimental_results",
+    "xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Est','Gene ID 2','gDyeNormSignal','rDyeNormSignal','fold_change'],
+		"sheet_index":0,
+		"id_type":"Est"
+	},
+    "experimental_results":[
+        
         {
                 "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612993.tsv",
                 "conditions":["non infected",{
@@ -303,6 +386,9 @@ rice_samples={
 
 }
 samples_col.insert(rice_samples)
+
+
+
 
 
 
