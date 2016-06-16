@@ -179,36 +179,36 @@ rice_samples={
                 "day_after_inoculation":21,
                 "material":"shoot"
         },
-        {
-                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
-                "conditions":["non infected",{
-                        "infected":True,
-                        "infection_agent":"Rice dwarf virus",
-                        "type":"inoculated",
-                        "label":"Infected with RDV (Strain O)"
-                        }
-                ],
-                "contrast":"infected VS healthy",
-                "type":"contrast",
-                "variety":"Nipponbare",
-                "day_after_inoculation":21,
-                "material":"shoot"
-        },
-        {
-                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
-                "conditions":["non infected",{
-                        "infected":True,
-                        "infection_agent":"Rice dwarf virus",
-                        "type":"inoculated",
-                        "label":"Infected with RDV (Strain O)"
-                        }
-                ],
-                "contrast":"infected VS healthy",
-                "type":"contrast",
-                "variety":"Nipponbare",
-                "day_after_inoculation":21,
-                "material":"shoot"
-        },
+#        {
+#                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
+#                "conditions":["non infected",{
+#                        "infected":True,
+#                        "infection_agent":"Rice dwarf virus",
+#                        "type":"inoculated",
+#                        "label":"Infected with RDV (Strain O)"
+#                        }
+#                ],
+#                "contrast":"infected VS healthy",
+#                "type":"contrast",
+#                "variety":"Nipponbare",
+#                "day_after_inoculation":21,
+#                "material":"shoot"
+#        },
+#        {
+#                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
+#                "conditions":["non infected",{
+#                        "infected":True,
+#                        "infection_agent":"Rice dwarf virus",
+#                        "type":"inoculated",
+#                        "label":"Infected with RDV (Strain O)"
+#                        }
+#                ],
+#                "contrast":"infected VS healthy",
+#                "type":"contrast",
+#                "variety":"Nipponbare",
+#                "day_after_inoculation":21,
+#                "material":"shoot"
+#        },
         {
                 "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612990.tsv",
                 "conditions":["non infected",{
