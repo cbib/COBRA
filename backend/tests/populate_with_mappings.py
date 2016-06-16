@@ -36,16 +36,13 @@ mappings_col.drop()
 mapping_table={
 	"data_file":"mappings/map_A-GEOD-7252_to_LocusID.tsv",
 	"species":"Oriza sativa ssp japonica",
-	"type":"Est to Gene",
+	"type":"Probe to Gene",
 	"src":"Est",
 	"src_version":"Custom GER rice oligoarray",
         "src_ref":"A-GEOD-7252",
 	"tgt":"Gene",
 	"tgt_version":"Ensembl",
-	"description":"Sequence",
-	"url":"",
-	"doi":"",
-	"key":"unigene_2_ncbi_protein",
+	"key":"probe_to_gene",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
