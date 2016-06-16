@@ -180,7 +180,22 @@ rice_samples={
                 "material":"shoot"
         },
         {
-                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989.tsv",
+                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
+                "conditions":["non infected",{
+                        "infected":True,
+                        "infection_agent":"Rice dwarf virus",
+                        "type":"inoculated",
+                        "label":"Infected with RDV (Strain O)"
+                        }
+                ],
+                "contrast":"infected VS healthy",
+                "type":"contrast",
+                "variety":"Nipponbare",
+                "day_after_inoculation":21,
+                "material":"shoot"
+        },
+        {
+                "data_file":"Oriza/transcriptomics/micro-array/GSE24937_RAW/GSM612989_1.tsv",
                 "conditions":["non infected",{
                         "infected":True,
                         "infection_agent":"Rice dwarf virus",
@@ -2041,7 +2056,7 @@ samples_col.insert(AT_samples)
 AT_samples={
 	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Arabidopsis thaliana", # any abbrev name, key or full name, 
-	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 1",
+	"name":"Transcriptionnal response to potyviruses infection in Arabidopsis Part 2",
         "state":"processed",
 	"comments":[
 		{"content":"""Arabidopsis thaliana ecotype Ler was inoculated with three different Potyviruses. About 4 weeks after sowing, the 6 expanded leaves plants were inoculated with the different viruses or were mock-inoculated. Seven days after inoculation, inoculated leaves were collected, RNA was extracted and virus infection controlled. Three biological repeats have been done and two dye-swaps.""","author":"Valerie Schurdi-Levraud,Jean-Pierre Renou,Veronique Brunaud,Marie-Laure Martin-Magniette","date":datetime.datetime.now()}
