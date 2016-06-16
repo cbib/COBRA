@@ -34,6 +34,7 @@ measurements_to_insert=measurements_col.initialize_unordered_bulk_op()
 for a_sample in samples_with_results:
 	# i,experimental_results=enumerate(a_sample['experimental_results']).next()
         assay=a_sample['assay']
+        name=a_sample['name']
 	for i,experimental_results in enumerate(a_sample['experimental_results']):
 		this_path=str(a_sample['_id'])+".experimental_results."+str(i)
 		if this_path in already_existing_xp:
@@ -80,6 +81,7 @@ for a_sample in samples_with_results:
                                 print id
                                 this_doc={"xp":this_path}                       
                                 this_doc['gene']=id
+                                this_doc['name']=name
                                 this_doc['type']="contrast"
                                 this_doc['first_condition']=first_condition_type
                                 this_doc['second_condition']=second_condition_type
@@ -112,6 +114,7 @@ for a_sample in samples_with_results:
                         else:
                             this_doc={"xp":this_path}                       
                             this_doc['gene']=measure[id_col]
+                            this_doc['name']=name
                             this_doc['type']="contrast"
                             this_doc['infection_agent']=infection_agent
                             this_doc['first_condition']=first_condition_type

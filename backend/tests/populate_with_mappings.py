@@ -29,6 +29,34 @@ mappings_col.drop()
 
 
 ###################################################################################################################
+############################################ ORIZA SATIVA SSP JAPONICA #####################################################
+###################################################################################################################
+
+# Gene_to_prot - unigene to NCBI_Protein_code
+mapping_table={
+	"data_file":"mappings/map_A-GEOD-7252_to_LocusID.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"type":"Est to Gene",
+	"src":"Est",
+	"src_version":"Custom GER rice oligoarray",
+        "src_ref":"A-GEOD-7252",
+	"tgt":"Gene",
+	"tgt_version":"Ensembl",
+	"description":"Sequence",
+	"url":"",
+	"doi":"",
+	"key":"unigene_2_ncbi_protein",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene', 'Est','Gene ID 2'],
+		"sheet_index":0,
+	}
+}
+mappings_col.insert(mapping_table)
+
+###################################################################################################################
 ############################################ PRUNUS DOMESTICA #####################################################
 ###################################################################################################################
 
