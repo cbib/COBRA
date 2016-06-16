@@ -144,7 +144,7 @@ rice_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Est','Gene ID 2','gDyeNormSignal','rDyeNormSignal','fold_change'],
+		"column_keys":['idx','Est','logFC'],
 		"sheet_index":0,
 		"id_type":"Est"
 	},
@@ -236,7 +236,7 @@ rice_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Est','Gene ID 2','gDyeNormSignal','rDyeNormSignal','fold_change'],
+		"column_keys":['idx','Est','logFC'],
 		"sheet_index":0,
 		"id_type":"Est"
 	},
@@ -331,7 +331,7 @@ rice_samples={
     # xls parser configuration, are propagated to all entries in  "experimental_results",
     "xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Est','Gene ID 2','gDyeNormSignal','rDyeNormSignal','fold_change'],
+		"column_keys":['idx','Est','logFC'],
 		"sheet_index":0,
 		"id_type":"Est"
 	},
