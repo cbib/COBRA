@@ -63,7 +63,41 @@ rgsv={
 viruses_col.insert(rgsv)
 
 
+rdv={
+	"full_name":"Rice dwarf virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Rice_dwarf_virus",
+	"aliases":['rdv'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group III (dsRNA)",
+		"order":"Unassigned",
+		"family":"Reoviridae",
+		"genus":"Phytoreovirus",
+		"species":"Rice dwarf virus",
+	}
+	
+}
 
+viruses_col.insert(rdv)
+
+scmv={
+	"full_name":"Sugarcane mosaic virus",
+	"wikipedia":"https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus",
+	"aliases":['scmv','grass mosaic virus'
+,'maize dwarf mosaic virus strain B',
+'sorghum red stripe virus'],
+	"classification":{
+		"top_level":"viruses",
+		"group":"Group IV ((+)ssRNA)",
+		"order":"Unassigned",
+		"family":"Potyviridae",
+		"genus":"Potyvirus",
+		"species":"Sugarcane mosaic virus",
+	}
+	
+}
+
+viruses_col.insert(scmv)
 
 cmv={
 	"full_name":"Cucumber mosaic virus",
@@ -166,7 +200,7 @@ tmv={
 viruses_col.insert(tmv)
 bydv={
 	"full_name":"Barley yellow dwarf virus",
-	"wikipedia":"",
+	"wikipedia":"https://en.wikipedia.org/wiki/Barley_yellow_dwarf",
 	"aliases":['bydv'],
 	"classification":{
 		"top_level":"viruses",
@@ -182,7 +216,7 @@ viruses_col.insert(bydv)
 
 bymv={
 	"full_name":"Barley yellow mosaic virus",
-	"wikipedia":"",
+	"wikipedia":"https://en.wikipedia.org/wiki/Barley_yellow_mosaic_virus",
 	"aliases":['bymv'],
 	"classification":{
 		"top_level":"viruses",
