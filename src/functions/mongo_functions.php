@@ -1205,6 +1205,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
 
 
         $table_string.='<table class="table" id="orthologs_table">'
+                . '<thead>'
                 . '<tr>'
                 . '<th>gene ID</th>'
                 . '<th>gene name</th>'
