@@ -2961,6 +2961,7 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                         </div>
                     </div>
                     <div id="shift_line"></div>
+                </div>
                 </div>';
     }
 //}
