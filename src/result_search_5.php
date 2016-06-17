@@ -727,7 +727,7 @@ new_cobra_footer();
                     
                     //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
                     //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
-                    s += '<ul><li><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>infection agent : '+ this.point.infection_agent +'</li><li>infection type 1 : '+ this.point.first_condition +'</li><li>infection type 2 : '+ this.point.second_condition +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
+                    s += '<ul><li style="font-size:50px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li>Variety : '+ this.point.variety +'</li><li>infection agent : '+ this.point.infection_agent +'</li><li>infection type 1 : '+ this.point.first_condition +'</li><li>infection type 2 : '+ this.point.second_condition +'</li><li>logFC : '+ this.point.logFC +'</li></br>'
                          '</ul>';
                    
                     return s;
