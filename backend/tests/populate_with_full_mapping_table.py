@@ -327,7 +327,7 @@ full_mappings_col.insert(mapping_table)
 
 mapping_table={
 	"data_file":"mappings/FULL_MAPPING/full_oriza_sativa_final1.tsv",
-	"species":"Oriza Sativa ssp. Japonica",
+	"species":"Oriza sativa ssp japonica",
 	"type":"full_table",
 	"src":"Gene ID",
 	"src_version":"IRGSP-1.0",
