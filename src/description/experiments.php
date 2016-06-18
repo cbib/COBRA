@@ -359,10 +359,13 @@ $data_gene_to_keep=$measurementsCollection->aggregate(
 //var_dump($data_gene_to_keep);
 foreach ($data_gene_to_keep['result'] as $value) {
     echo $value['_id']['gene'];echo '</br>';
-    echo count($value['logs']['xp']);
+    //echo count($value['logs']['xp']);
+    $mini_counter=0;
     foreach ($value['logs'] as $values) {
         echo $values['xp'];echo '</br>';
+        $mini_counter++;
     }
+    echo $mini_counter;
     
     
 }
