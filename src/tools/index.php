@@ -73,32 +73,44 @@ $ortholog_form_string.='
     <div class=col-md-6>
         <div class="form-group">
             <label class="col-xs-3 control-label"> Favourites Species</label>
-            <div class="col-xs-6">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="species[]" value="Arabidopsis thaliana" /> Arabidopsis thaliana
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="species[]" value="Cucumis melo" /> Cucumis melo
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="species[]" value="Hordeum vulgare" /> Hordeum vulgare
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="species[]" value="Prunus species" />Prunus species</label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Solanum lycopersicum
-                    </label>
-                </div>
-            </div>
+            <div class="col-xs-6">';
+                $species_cursor=find_species_list($speciesCollection);
+                foreach($species_cursor as $specie) {
+                    if ($specie!="Prunus armeniaca" && $specie!="Prunus domestica"){
+                        $ortholog_form_string.='<div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="species[]" value="'.$specie.'" />'.$specie.'
+                                </label>
+                              </div>';
+                    }
+                }
+                
+//                echo '<div class="checkbox">
+//                    <label>
+//                        <input type="checkbox" name="species[]" value="Arabidopsis thaliana" /> Arabidopsis thaliana
+//                    </label>
+//                </div>
+//                <div class="checkbox">
+//                    <label>
+//                        <input type="checkbox" name="species[]" value="Cucumis melo" /> Cucumis melo
+//                    </label>
+//                </div>
+//                <div class="checkbox">
+//                    <label>
+//                        <input type="checkbox" name="species[]" value="Hordeum vulgare" /> Hordeum vulgare
+//                    </label>
+//                </div>
+//                <div class="checkbox">
+//                    <label>
+//                        <input type="checkbox" name="species[]" value="Prunus species" />Prunus species</label>
+//                </div>
+//                <div class="checkbox">
+//                    <label>
+//                        <input type="checkbox" name="species[]" value="Solanum lycopersicum" /> Solanum lycopersicum
+//                    </label>
+//                </div>';
+                
+            $ortholog_form_string.='</div>
         </div>
         <div class="form-group">
             <div class="col-xs-5 col-xs-offset-3">
