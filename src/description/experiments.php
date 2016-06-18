@@ -356,7 +356,14 @@ $data_gene_to_keep=$measurementsCollection->aggregate(
                   )
               )
 ));
-var_dump($data_gene_to_keep);
+//var_dump($data_gene_to_keep);
+foreach ($data_gene_to_keep as $value) {
+    foreach ($value['logs'] as $values) {
+        echo $values['xp'];
+    }
+    
+    
+}
 
 #build the data array for logfc values
 #search for distinct dpi for given species
