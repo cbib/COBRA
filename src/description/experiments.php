@@ -382,7 +382,7 @@ foreach ($data_gene_to_keep['result'] as $value) {
     $y_categories=array();
     $data=$measurementsCollection->aggregate(
             array(
-              array('$match' => array('species'=>'Arabidopsis thaliana','$or'=>array(array('logFC'=>array('$gt'=>2)),array('logFC'=>array('$lt'=>-2))))),  
+              array('$match' => array('species'=>'Arabidopsis thaliana','$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
               array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
               array(
                 '$group'=>
