@@ -78,10 +78,13 @@ echo '</head>';
 
 function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'){
     
-    echo'<div class="panel-group" id="accordion_documents">
+    
+
+    
+    echo'<div class="panel-group" id="accordion_documents'.$unique_id.'" style="border-radius: 10px;display: table;margin: auto auto;vertical-align:middle;display:inline-block;width:100%;">
                 <div class="panel panel-default">
                     <div class="panel-heading">  
-                            <a class="accordion-toggle collapsed" href="#'.$unique_id.'" data-parent="#accordion_documents" data-toggle="collapse">
+                            <a class="accordion-toggle collapsed" href="#'.$unique_id.'" data-parent="#accordion_documents'.$unique_id.'" data-toggle="collapse">
                                 '.$panel_title.'
                             </a>				
                     </div>

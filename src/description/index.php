@@ -49,17 +49,65 @@ $experiment_cursor=find_all_xp_name($samplesCollection);
 
 $experiment_cursor2=get_xp_name_by_species($samplesCollection);
 
+$experiment_cursor3=find_xp_name_group_by_species($samplesCollection);
 
-foreach ($experiment_cursor2['result'] as $doc){
-    #print $doc['specie'];
-        foreach ($doc['_id'] as $specie){
-            #print $specie;
-        }
-        foreach ($doc['names'] as $name){
-            #print $name;
-        }
-               
-}
+
+
+echo'<div class="panel-group" id="accordion_documents">
+                <div class="panel panel-default">
+                    <div class="panel-heading">  
+                            <a class="accordion-toggle collapsed" href="#Experiments_lists" data-parent="#accordion_documents" data-toggle="collapse">
+                                Experiments
+                            </a>				
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="Experiments_lists">
+                        
+                            
+                           ';
+                            foreach ($experiment_cursor3['result'] as $value) {
+                                foreach ($value['_id'] as $species) {
+                                    $experiment_table_string="";
+                                    $experiment_table_string.='<ul>';
+                                    foreach ($value['xps'] as $xpName) {
+
+                                        #echo $xpName;
+                                        $experiment_table_string.='<li value='.$xpName.'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName).'>'.$xpName.'</a></li>';
+
+                                    }
+                                    $experiment_table_string.='</ul>';
+                                    add_accordion_panel($experiment_table_string, $species.' Experiments',str_replace(' ','_',$species));
+                                    echo'<br/>';
+
+                                }
+                            }
+                            echo'
+                        
+                    </div>
+                    
+                </div>
+            </div>    
+     <br/>';
+     echo '<br/>';
+
+
+
+
+
+
+
+
+
+
+//foreach ($experiment_cursor2['result'] as $doc){
+//    #print $doc['specie'];
+//        foreach ($doc['_id'] as $specie){
+//            #print $specie;
+//        }
+//        foreach ($doc['names'] as $name){
+//            #print $name;
+//        }
+//               
+//}
 
 
 $experiment_table_string="";
@@ -68,19 +116,19 @@ $experiment_table_string="";
 
 //$table_string.='<h1>COBRA Datasets</h1>';
  
-$experiment_table_string.='<ul>';
- //$table_string.='<a href=experiments.php>test</a>';
-foreach($experiment_cursor as $line) {
- 	$title=$line['name'];
-    $species=$line['species'];
- 	//echo str_replace(' ','\s',$title);
-	$experiment_table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
-}
- //makeDatatableFromFind($cursor);
-$experiment_table_string.='</ul>';
-add_accordion_panel($experiment_table_string, "Experiments","Experiments_lists");
-
-echo'<br/>';
+//$experiment_table_string.='<ul>';
+// //$table_string.='<a href=experiments.php>test</a>';
+//foreach($experiment_cursor as $line) {
+// 	$title=$line['name'];
+//    $species=$line['species'];
+// 	//echo str_replace(' ','\s',$title);
+//	$experiment_table_string.='<li value='.$title.'><a href=experiments.php?xp='.str_replace(' ','\s',$title).'>'.$title.'</a></li>';
+//}
+// //makeDatatableFromFind($cursor);
+//$experiment_table_string.='</ul>';
+//add_accordion_panel($experiment_table_string, "Experiments","Experiments_lists");
+//
+//echo'<br/>';
 
 /*##MAPPING LIST
 

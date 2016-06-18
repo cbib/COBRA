@@ -3441,6 +3441,30 @@ return $cursor;
 
 }
 
+
+//           '$group'=>
+//             array(
+//               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
+//               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
+//
+//               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
+//             )
+//         )
+
+function find_xp_name_group_by_species(Mongocollection $sa){
+    $cursor=$sa->aggregate(array(
+            array('$project' => array('species'=>1,'name'=>1,'_id'=>0)),
+            array(
+                '$group'=>
+                array(
+                    '_id'=> array( 'species'=> '$species' ),
+                    'xps'=> array( '$addToSet'=> '$name' )
+                )
+            )
+        )        
+    );
+    return $cursor;
+}
 function find_all_xp_name(Mongocollection $sa){
 	$cursor=$sa->find(array(),array('name'=>1,'species'=>1));
     
