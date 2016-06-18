@@ -1114,7 +1114,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                 }
                 if (count($proteins_id)>0){
                     if ($proteins_id[0]!='NA'){
-                        echo'<div id="protein aliases"> <B>Protein ids</B> : ';
+                        echo'<div id="protein_aliases"> <B>Protein ids</B> : ';
                         for ($i = 0; $i < count($proteins_id); $i++) {
                             if ($i==count($proteins_id)-1){
                                 echo'<a target="_BLANK" href="http://www.uniprot.org/uniprot/'.$proteins_id[$i].'" title="UniprotKB Swissprot and Trembl Sequences">'.$proteins_id[$i].'</a>';
@@ -2962,7 +2962,7 @@ function load_and_display_orthologs($full_mappingsCollection,$orthologsCollectio
                     </div>
                     <div id="shift_line"></div>
                 </div>
-                </div>';
+        ';
     }
 //}
 function generateRandomString($length = 15) {
