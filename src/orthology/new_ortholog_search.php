@@ -129,7 +129,7 @@ foreach ($data as $species){
         foreach ($cursor as $value) {
 
             //array_push($gene_list,array('search'=>$value['gene'],'logFC'=>$value['logFC'],'infection_agent'=>$value['infection_agent']));
-            echo '<div style="cursor: pointer;" onclick="window.open(\'../result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$value['gene'].'\');" class="resultsbox" id="results">
+            echo '<div style="cursor: pointer;" onclick="window.open(\'../Multi-results.php?organism='.str_replace(" ", "+", $species).'&search='.$value['gene'].'\');" class="resultsbox" id="results">
                     <div class="results-right">
                         <div class="organism"> Organism:'.$species.'</div>
                         <div class="infection agent"> Infection agent: '.$value['infection_agent'].'</div>
