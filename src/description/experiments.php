@@ -346,7 +346,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
     echo $xpName;
 $data_gene_to_keep=$measurementsCollection->aggregate(
             array(
-              array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>2)),array('logFC'=>array('$lt'=>-2))))),  
+              array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>1)),array('logFC'=>array('$lt'=>-1))))),  
               array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
               array(
                 '$group'=>
