@@ -345,16 +345,16 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	echo '<hr></div>';
     echo $xpName;
 $data_gene_to_keep=$measurementsCollection->aggregate(
-            array(
-              array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>1)),array('logFC'=>array('$lt'=>-1))))),  
-              array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-              array(
-                '$group'=>
-                  array(
-                    '_id'=> array('gene'=> '$gene'),
-                    'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
-                  )
-              )
+    array(
+      array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
+      array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+      array(
+        '$group'=>
+          array(
+            '_id'=> array('gene'=> '$gene'),
+            'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
+          )
+      )
 ));
 //var_dump($data_gene_to_keep);
 foreach ($data_gene_to_keep['result'] as $value) {
