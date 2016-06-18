@@ -621,6 +621,9 @@ $(function () {
 
         xAxis: {
             categories: <?php echo json_encode($x_categories); ?>,
+            labels: {
+                enabled: false
+            },
 
 //            categories: ['ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
@@ -644,7 +647,7 @@ $(function () {
         colorAxis: {
             stops: [
                 [0, '#3060cf'],
-                [0.5, '#fffbbc'],
+                [0.2, '#fffbbc'],
                 [0.8, '#c4463a'],
                 [1, '#c4463a']
             ],
@@ -653,7 +656,16 @@ $(function () {
             minColor: '#FFFFFF',
             maxColor: Highcharts.getOptions().colors[0]
         },
-
+        plotOptions: {
+            series: {
+                events: {
+                    click: function (event) {
+                        alert(event.point.series.xAxis.categories[event.point.x] );
+                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                    }
+                }
+            }
+        },
         legend: {
             align: 'right',
             layout: 'vertical',
@@ -671,7 +683,7 @@ $(function () {
         },
 
         series: [{
-            name: 'Sales per employee',
+            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
             borderWidth: 1,
             data: <?php echo json_encode($y_categories); ?>,
 
