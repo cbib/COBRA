@@ -660,7 +660,7 @@ $(function () {
             series: {
                 events: {
                     click: function (event) {
-                        alert(event.point.series.xAxis.categories[event.point.x] );
+                        //alert(event.point.series.xAxis.categories[event.point.x] );
                         window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
                     }
                 }
