@@ -642,6 +642,12 @@ $(function () {
         },
 
         colorAxis: {
+            stops: [
+                [0, '#3060cf'],
+                [0.4, '#fffbbc'],
+                [0.6, '#c4463a'],
+                [1, '#c4463a']
+            ],
             min: -5,
             max:5,
             minColor: '#FFFFFF',
