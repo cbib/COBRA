@@ -338,6 +338,41 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	echo '<hr></div>';
 
 #build the data array for logfc values
+#search for distinct dpi for given species
+  
+#search and group logFCand dpi by gene to build x and y axis categories arrays 
+#mongodb command below   
+$data=$measurementsCollection->aggregate(
+   array(
+     array('$match' => array( 'species'=> 'Arabidopsis thaliana','logFC'=>array('$gt'=>2))),  
+     array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+     array(
+       '$group'=>
+         array(
+           '_id'=> array('gene'=> '$gene'),
+           'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
+         )
+     )
+   )
+);
+$x_categories=array();
+foreach ($data['result'] as $result) {
+//    var_dump($result);echo '</br>';
+    foreach ($result as $data) {
+        echo $data['gene'].'</br>';
+        echo $data['logs'].'</br>';
+        array_push($x_categories, $data['gene']);
+        foreach ($data['logs'] as $value) {
+            echo $value['log'];
+            echo $value['dpi'];
+            
+        }
+    }
+}
+echo count($x_categories);
+    
+    
+
 echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Expression profile heatmap </h1>';

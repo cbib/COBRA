@@ -108,7 +108,8 @@ publications_col.insert(prunus_pub)
 
 
 rice_samples={
-    "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "ncbi_id":"PMC4563162",
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-O Part",
     "comments":[
