@@ -304,7 +304,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 //              )
             )
          );
-         var_dump($data['result']);echo '</br>';
+         //var_dump($data['result']);echo '</br>';
 
          
          $counter_gene=0;
