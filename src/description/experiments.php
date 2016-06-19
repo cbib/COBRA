@@ -243,27 +243,27 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         
 		
-		echo '<dl class="dl-horizontal">
- 	 	<dt>type of contrast</dt>
-  		<dd>'.$contrast.'</dd>
-  		<dt>total genes </dt>
-  		<dd>'.$gene_count.'</dd>
-  		<dt>up regulated</dt>
-  		<dd>'.$gene_up_count.'</dd>
-  		<dt>down regulated</dt>
-  		<dd>'.$gene_down_count.'</dd>
-  		<dt>Plant variety</dt>
-  		<dd>'.$variety.'</dd>
-  		<dt>Material</dt>
-  		<dd>'.$material.'</dd>';
-  		echo'<dt>day after inoculation</dt>
-  		<dd>'.$dpi.'</dd>';
-  		for ($i = 1	; $i <= count($conditions); $i++) {
+        echo '<dl class="dl-horizontal">
+                <dt>type of contrast</dt>
+                <dd>'.$contrast.'</dd>
+                <dt>total genes </dt>
+                <dd>'.$gene_count.'</dd>
+                <dt>up regulated</dt>
+                <dd>'.$gene_up_count.'</dd>
+                <dt>down regulated</dt>
+                <dd>'.$gene_down_count.'</dd>
+                <dt>Plant variety</dt>
+                <dd>'.$variety.'</dd>
+                <dt>Material</dt>
+                <dd>'.$material.'</dd>
+                <dt>day after inoculation</dt>
+                <dd>'.$dpi.'</dd>';
+        for ($i = 1	; $i <= count($conditions); $i++) {
   			if (is_array($conditions[$i-1])){
 				if ($conditions[$i-1]['infected']==True){
 					
 					//echo'<h3>Condition '.$i.' : infected</h3><ul>';
-					echo'<dt>Condition'.$i.' : infected</dt>
+					echo'<dt>Condition '.$i.' : infected</dt>
   					<dd>infected</dd>';
   					echo'<dt>infection agent</dt>
   					<dd>'.$conditions[$i-1]['infection_agent'].'</dd>';
@@ -275,18 +275,44 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 				}
 				else{
 					//echo'<h3>Condition '.$i.' :'.$conditions[$i-1].' </h3></ul>';
-					echo'<dt>Condition'.$i.' : infected</dt>
+					echo'<dt>Condition '.$i.' : infected</dt>
   					<dd>'.$conditions[$i-1].'</dd>';
 				}
 			}
 			else{
 				//echo'<h3>Condition '.$i.' :'.$conditions[$i-1].'</h3>';
-				echo'<dt>Condition'.$i.' : infected</dt>
+				echo'<dt>Condition '.$i.' : infected</dt>
   					<dd>'.$conditions[$i-1].'</dd>';
 				//echo $conditions[$i-1];
 			}
   		
   		}
+        $data_gene_to_keep=$measurementsCollection->aggregate(
+            array(
+              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
+              array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+              array(
+                '$group'=>
+                  array(
+                    '_id'=> array('gene'=> '$gene'),
+                    'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
+                  )
+              )
+        ));
+        //var_dump($data_gene_to_keep);
+        foreach ($data_gene_to_keep['result'] as $value) {
+            if (count($value['logs'])===3){
+                echo $value['_id']['gene'];echo '</br>';
+                foreach ($value['logs'] as $values) {
+                    echo $values['xp'];echo '</br>';
+                }
+            }
+
+
+        }
+        echo '<dt>Show heatmap</dt>
+                <dd><a href="#" onclick="myFunction(this)" data-title="hello world"></a></dd>';
+       
         
         
         
@@ -294,7 +320,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         
         
-	echo '</dl>';
+        echo '</dl>';
 		$file_counter++;
 		/*
 		
@@ -343,30 +369,30 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 	}	
 	echo '<hr></div>';
-    echo $xpName;
-$data_gene_to_keep=$measurementsCollection->aggregate(
-    array(
-      array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
-      array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-      array(
-        '$group'=>
-          array(
-            '_id'=> array('gene'=> '$gene'),
-            'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
-          )
-      )
-));
-//var_dump($data_gene_to_keep);
-foreach ($data_gene_to_keep['result'] as $value) {
-    if (count($value['logs'])===3){
-        echo $value['_id']['gene'];echo '</br>';
-        foreach ($value['logs'] as $values) {
-            echo $values['xp'];echo '</br>';
-        }
-    }
-    
-    
-}
+//$data_gene_to_keep=$measurementsCollection->aggregate(
+//    array(
+//      array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
+//      array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+//      array(
+//        '$group'=>
+//          array(
+//            '_id'=> array('gene'=> '$gene'),
+//            'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
+//          )
+//      )
+//));
+////var_dump($data_gene_to_keep);
+//foreach ($data_gene_to_keep['result'] as $value) {
+//    if (count($value['logs'])===3){
+//        echo $value['_id']['gene'];echo '</br>';
+//        foreach ($value['logs'] as $values) {
+//            echo $values['xp'];echo '</br>';
+//        }
+//    }
+//
+//
+//}
+
 
 #build the data array for logfc values
 #search for distinct dpi for given species
@@ -575,7 +601,8 @@ echo '</div>';
 ?>
 
 <script type="text/javascript" class="init">
-$(document).ready(function() {
+$(document).ready(
+function() {
 	$('#example').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
@@ -600,9 +627,17 @@ $(document).ready(function() {
 		"language": {
             		"decimal": ",",
             		"thousands": "."
-        	}
+        }
 	});
 });
+
+function myFunction(element){
+    var title = element.getAttribute('data-title');
+    alert(title);
+    
+}
+
+
 $(function () {
 
     $('#container').highcharts({
@@ -686,7 +721,10 @@ $(function () {
             name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
             borderWidth: 1,
             data: <?php echo json_encode($y_categories); ?>,
+        }]
 
+    });
+});
 //            data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], 
 //[1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48], 
 //[2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], 
@@ -792,10 +830,7 @@ $(function () {
 //                //enabled: true,
 //                color: '#000000'
 //            }
-        }]
 
-    });
-});
 
 
 

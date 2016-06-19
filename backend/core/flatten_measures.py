@@ -91,6 +91,18 @@ for a_sample in samples_with_results:
 				#logger.info("Tgid = %s",tgt_id)
 				this_doc={"xp":this_path}
 				if experimental_results['type']=="contrast":
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        #here we need to add checkfelimiter condition
+#                                        if measure[id_col].find(",") != -1:
+#                                            print "found a comma, preparing to split"
+#                                            split_list=measure[id_col].split(',')
+#                                            for id in split_list:
 					this_doc['type']="contrast"
 					this_doc['gene']=tgt_id
                                         this_doc['name']=name

@@ -535,7 +535,7 @@ new_cobra_footer();
 
     
     var clicked_transcript_id="";
-    
+    //pyramid container
     $(function () {
 
         $('#container_pyramid').highcharts({
@@ -572,7 +572,7 @@ new_cobra_footer();
             }]
         });
     });
-    
+    //pie container
     $(function () {
         
         $('#container_pie').highcharts({
@@ -629,8 +629,7 @@ new_cobra_footer();
             }]
         });
     });
-
-    
+    //chart container
     $(function () {
     $('#container_chart').highcharts({
         chart: {
@@ -674,7 +673,6 @@ new_cobra_footer();
         }]
     });
 });
-    
     
     $(function () {
         var id= $('#container_profile').attr('data-id');
@@ -740,6 +738,7 @@ new_cobra_footer();
 
         });
     });
+    //example datatable
 	$(document).ready(function() {
 		$('#example').dataTable( {
 			"scrollX": true,
@@ -768,6 +767,7 @@ new_cobra_footer();
 				}
 		});
 	});
+    //table markers
     $(document).ready(function() {
 		$('#table_markers').dataTable( {
 			"scrollX": true,
@@ -796,6 +796,7 @@ new_cobra_footer();
 				}
 		});
 	});
+    //table qtls
     $(document).ready(function() {
 		$('#table_qtls').dataTable( {
 			"scrollX": true,
@@ -824,6 +825,7 @@ new_cobra_footer();
 				}
 		});
 	});
+    //table samples
     $('#samplestable').dataTable( {
         "scrollX": true,
         "jQueryUI": true,
