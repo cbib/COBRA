@@ -207,22 +207,22 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Samples Details </h1>';
-		echo '</div>
-        <div class="col-sm-6 col-md-3">
+	echo '</div>
+<!--<div class="col-sm-6 col-md-3">
         <div class="chart-wrapper">
             <div class="chart-title">
                 Cell Title
             </div>
             <div class="chart-stage">
                 <div id="grid-1-1">
-                    <!-- chart goes here! -->
+                     chart goes here!
                 </div>
             </div>
             <div class="chart-notes">
                 Notes about this chart
             </div>
         </div>
-  </div>';
+    </div>-->';
 	$conditions=array();
 	$file_counter=0;
 
@@ -287,40 +287,96 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 			}
   		
   		}
-        $data_gene_to_keep=$measurementsCollection->aggregate(
+        
+        $x_categories=array();
+        $y_categories=array();
+        $data=$measurementsCollection->aggregate(
             array(
-              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
-              array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
+              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
               array(
                 '$group'=>
                   array(
                     '_id'=> array('gene'=> '$gene'),
-                    'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
+                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
                   )
               )
-        ));
-        //var_dump($data_gene_to_keep);
-        foreach ($data_gene_to_keep['result'] as $value) {
-            if (count($value['logs'])===3){
-                echo $value['_id']['gene'];echo '</br>';
-                foreach ($value['logs'] as $values) {
-                    echo $values['xp'];echo '</br>';
+            )
+         );
+
+         
+         $counter_gene=0;
+         foreach ($data['result'] as $result) {
+         //    var_dump($result);echo '</br>';
+             //echo $result['_id']['gene'];echo '</br>';
+             if ($result['_id']['gene'] != ""){
+                array_push($x_categories, $result['_id']['gene']);
+                $y_sub_categories=array();
+
+                $tmp_value=0.0;
+                $counter_measures=0;
+                foreach ($result['logs'] as $values) {
+                    $tmp_value+=$values['log'];
+                    //echo $values['log'];echo '</br>';
+                    //echo $values['dpi'];echo '</br>';
+                    $counter_measures++;
+
                 }
-            }
+                $mean_value=$tmp_value/$counter_measures;
+                array_push($y_sub_categories, $counter_gene);
+                array_push($y_sub_categories, 0);
+                array_push($y_sub_categories, $mean_value);
+                $counter_gene++;
 
+                array_push($y_categories, $y_sub_categories);
+             }
 
-        }
-        echo '<dt>Show heatmap</dt>
-                <dd><a href="#" onclick="myFunction(this)" data-title="hello world"></a></dd>';
-       
+         }
+
+/*        $data_gene_to_keep=$measurementsCollection->aggregate(
+//            array(
+//              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
+//              array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+//              array(
+//                '$group'=>
+//                  array(
+//                    '_id'=> array('gene'=> '$gene'),
+//                    'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
+//                  )
+//              )
+//        ));
+//        //var_dump($data_gene_to_keep);
+//        $new_x_categories=array();
+//        foreach ($data_gene_to_keep['result'] as $value) {
+//            //if (count($value['logs'])===3){
+//            //echo $value['_id']['gene'];echo '</br>';
+//            array_push($new_x_categories, $value['_id']['gene']);
+//
+////                foreach ($value['logs'] as $values) {
+////                    echo $values['xp'];echo '</br>';
+////                }
+//            //}
+//
+//
+//        }*/
         
+        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
+        $y_categories=json_encode($y_categories);
+        //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
+        //echo $test;
         
+        //$test = json_encode(array( 'row' => 1, 'col' => 6, 'color' => 'pink' ));
+        //echo $test;
         
-        
-        
-        
+        echo '<dt>Show heatmap</dt>';
+             //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
+        echo '<dd><button onclick="show_heatmap(this)" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
+              //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
+
         
         echo '</dl>';
+        echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';  
+
 		$file_counter++;
 		/*
 		
@@ -369,7 +425,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 	}	
 	echo '<hr></div>';
-//$data_gene_to_keep=$measurementsCollection->aggregate(
+/*$data_gene_to_keep=$measurementsCollection->aggregate(
 //    array(
 //      array('$match' => array('name'=>$xpName,'$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
 //      array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
@@ -404,77 +460,72 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 //var_dump($y_categories);
     #'xp'=>$Measurement_FK,
-        $x_categories=array();
-    $y_categories=array();
-    $data=$measurementsCollection->aggregate(
-            array(
-              array('$match' => array('species'=>'Arabidopsis thaliana','$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
-              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-              array(
-                '$group'=>
-                  array(
-                    '_id'=> array('gene'=> '$gene'),
-                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
-                  )
-              )
-            )
-         );
-
-         
-         $counter_gene=0;
-         foreach ($data['result'] as $result) {
-         //    var_dump($result);echo '</br>';
-             //echo $result['_id']['gene'];echo '</br>';
-             array_push($x_categories, $result['_id']['gene']);
-             $y_sub_categories=array();
-
-             $tmp_value=0.0;
-             $counter_measures=0;
-             foreach ($result['logs'] as $values) {
-                 $tmp_value+=$values['log'];
-                 //echo $values['log'];echo '</br>';
-                 //echo $values['dpi'];echo '</br>';
-                 $counter_measures++;
-
-             }
-             $mean_value=$tmp_value/$counter_measures;
-             array_push($y_sub_categories, $counter_gene);
-             array_push($y_sub_categories, 0);
-             array_push($y_sub_categories, $mean_value);
-             $counter_gene++;
-
-             array_push($y_categories, $y_sub_categories);
-         //    foreach ($result['_id'] as $values) {
-         //        var_dump($values);echo '</br>';
-         //        
-         //        array_push($x_categories, $values);
-         ////        foreach ($values['logs'] as $value) {
-         ////            echo $value['log'];
-         ////            echo $value['dpi'];
-         ////            
-         ////        }
-         //    }
-         }
-echo count($x_categories);
-echo count($y_categories);
+//    $x_categories=array();
+//    $y_categories=array();
+//    $data=$measurementsCollection->aggregate(
+//            array(
+//              array('$match' => array('species'=>'Arabidopsis thaliana','$or'=>array(array('logFC'=>array('$gt'=>3)),array('logFC'=>array('$lt'=>-3))))),  
+//              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+//              array(
+//                '$group'=>
+//                  array(
+//                    '_id'=> array('gene'=> '$gene'),
+//                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
+//                  )
+//              )
+//            )
+//         );
+//
+//         
+//         $counter_gene=0;
+//         foreach ($data['result'] as $result) {
+//         //    var_dump($result);echo '</br>';
+//             //echo $result['_id']['gene'];echo '</br>';
+//             array_push($x_categories, $result['_id']['gene']);
+//             $y_sub_categories=array();
+//
+//             $tmp_value=0.0;
+//             $counter_measures=0;
+//             foreach ($result['logs'] as $values) {
+//                 $tmp_value+=$values['log'];
+//                 //echo $values['log'];echo '</br>';
+//                 //echo $values['dpi'];echo '</br>';
+//                 $counter_measures++;
+//
+//             }
+//             $mean_value=$tmp_value/$counter_measures;
+//             array_push($y_sub_categories, $counter_gene);
+//             array_push($y_sub_categories, 0);
+//             array_push($y_sub_categories, $mean_value);
+//             $counter_gene++;
+//
+//             array_push($y_categories, $y_sub_categories);
+//         //    foreach ($result['_id'] as $values) {
+//         //        var_dump($values);echo '</br>';
+//         //        
+//         //        array_push($x_categories, $values);
+//         ////        foreach ($values['logs'] as $value) {
+//         ////            echo $value['log'];
+//         ////            echo $value['dpi'];
+//         ////            
+//         ////        }
+//         //    }
+//         }
+//echo count($x_categories);
+//echo count($y_categories);
     
     
 
-echo'<div class="container">';
-	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-		echo'<h1 style="text-align:center"> Expression profile heatmap </h1>';
-		echo '</div>';
-        echo '<div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>';
+//echo'<div class="container">';
+//	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+//		echo'<h1 style="text-align:center"> Expression profile heatmap </h1>';
+//		
+//    echo '</div>';
+//    echo '<div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>';
+//
+//echo '</div>';*/	
 
-echo '</div>';	
-	
-	
-	
-	
-	
-	//echo'<h2>Study type :</h2>';
-	
-	/*
+/*
 	//Find all species 
 	//$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1,'taxid'=>1,'abbrev_name'=>1,'aliases'=>1,'classification.top_level' =>1,'classification.kingdom'=>1,'classification.order'=>1));
 	//makeDatatableFromFind($cursor);
@@ -631,12 +682,88 @@ function() {
 	});
 });
 
-function myFunction(element){
-    var title = element.getAttribute('data-title');
-    alert(title);
-    
-}
+function show_heatmap(element){
+    var clicked_id = element.getAttribute('data-id');
+    var x_array = element.getAttribute('data-x');
+    var series_array = element.getAttribute('data-series');
+    day = new Array(series_array);
 
+    $('#test_'+clicked_id).highcharts({
+
+        chart: {
+            type: 'heatmap',
+            marginTop: 40,
+            marginBottom: 80,
+            plotBorderWidth: 1
+        },
+
+
+        title: {
+            text: 'Differentially expressed genes'
+        },
+
+        xAxis: {
+            categories: JSON.parse(x_array),
+            labels: {
+                enabled: false
+            }
+
+        },
+        
+
+        yAxis: {
+            categories: ['7dpi'],
+            title: null
+        },
+
+        colorAxis: {
+            stops: [
+                [0, '#3060cf'],
+                [0.2, '#fffbbc'],
+                [0.8, '#c4463a'],
+                [1, '#c4463a']
+            ],
+            min: -2,
+            max:2,
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+        plotOptions: {
+            series: {
+                events: {
+                    click: function (event) {
+                        //alert(event.point.series.xAxis.categories[event.point.x] );
+                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                    }
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            layout: 'vertical',
+            margin: 0,
+            verticalAlign: 'top',
+            y: 25,
+            symbolHeight: 280
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> log fold change equals to <br><b>' +
+                    this.point.value + '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+            }
+        },
+
+        series: [{
+            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
+            borderWidth: 1,
+            data: JSON.parse(day)
+            
+        }]
+
+    });
+
+}
 
 $(function () {
 
@@ -660,7 +787,7 @@ $(function () {
                 enabled: false
             },
 
-//            categories: ['ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
+/*            categories: ['ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
@@ -669,7 +796,7 @@ $(function () {
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
 //'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100'],
+//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100'],*/
 
         },
         
