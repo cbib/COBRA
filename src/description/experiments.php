@@ -310,6 +310,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
          //    var_dump($result);echo '</br>';
              //echo $result['_id']['gene'];echo '</br>';
              if ($result['_id']['gene'] != ""){
+              
                 array_push($x_categories, $result['_id']['gene']);
                 $y_sub_categories=array();
 
@@ -370,7 +371,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         echo '<dt>Show heatmap</dt>';
              //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
-        echo '<dd><button onclick="show_heatmap(this)" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
+        echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
               //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
 
         
@@ -686,6 +687,7 @@ function show_heatmap(element){
     var clicked_id = element.getAttribute('data-id');
     var x_array = element.getAttribute('data-x');
     var series_array = element.getAttribute('data-series');
+    var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
 
     $('#test_'+clicked_id).highcharts({
@@ -712,7 +714,7 @@ function show_heatmap(element){
         
 
         yAxis: {
-            categories: ['7dpi'],
+            categories: [dpi+' dpi'],
             title: null
         },
 
