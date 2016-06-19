@@ -294,39 +294,41 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
             array(
               array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
               array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-              array(
-                '$group'=>
-                  array(
-                    '_id'=> array('gene'=> '$gene'),
-                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
-                  )
-              )
+
+//              array(
+//                '$group'=>
+//                  array(
+//                    '_id'=> array('gene'=> '$gene'),
+//                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
+//                  )
+//              )
             )
          );
+         var_dump($data['result']);echo '</br>';
 
          
          $counter_gene=0;
          foreach ($data['result'] as $result) {
          //    var_dump($result);echo '</br>';
              //echo $result['_id']['gene'];echo '</br>';
-             if ($result['_id']['gene'] != ""){
+             if ($result['gene'] != ""){
               
-                array_push($x_categories, $result['_id']['gene']);
+                array_push($x_categories, $result['gene']);
                 $y_sub_categories=array();
 
-                $tmp_value=0.0;
-                $counter_measures=0;
-                foreach ($result['logs'] as $values) {
-                    $tmp_value+=$values['log'];
-                    //echo $values['log'];echo '</br>';
-                    //echo $values['dpi'];echo '</br>';
-                    $counter_measures++;
-
-                }
-                $mean_value=$tmp_value/$counter_measures;
+//                $tmp_value=0.0;
+//                $counter_measures=0;
+//                foreach ($result['logs'] as $values) {
+//                    $tmp_value+=$values['log'];
+//                    //echo $values['log'];echo '</br>';
+//                    //echo $values['dpi'];echo '</br>';
+//                    $counter_measures++;
+//
+//                }
+                //$mean_value=$tmp_value/$counter_measures;
                 array_push($y_sub_categories, $counter_gene);
                 array_push($y_sub_categories, 0);
-                array_push($y_sub_categories, $mean_value);
+                array_push($y_sub_categories, $result['logFC']);
                 $counter_gene++;
 
                 array_push($y_categories, $y_sub_categories);
