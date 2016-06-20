@@ -5,7 +5,8 @@ require '../functions/php_functions.php';
 require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
-
+new_cobra_header("../..");
+new_cobra_body(is_logged($_SESSION['login']),"Tools","section_load_profile","../..");
 
 if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
@@ -90,7 +91,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
     $y_categories=json_encode($y_categories);
-    error_log($x_categories);
+    //error_log($x_categories);
     //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
     echo '<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>';  
@@ -98,4 +99,5 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     
 }
+new_cobra_footer();	
 

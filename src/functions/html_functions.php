@@ -362,7 +362,6 @@ function new_cobra_footer(){
 echo'
 
                     </section>
-                    <!--<div class="row">-->
                         
                         <section class="col-md-12" id="footer">
                              <p class="text-muted" style="text-align: left">
@@ -374,7 +373,6 @@ echo'
                             </p>
                             
                         </section>
-                    <!--</div>-->
 
                 
 

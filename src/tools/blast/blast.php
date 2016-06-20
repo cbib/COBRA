@@ -208,4 +208,3 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 new_cobra_footer();	
 
-?>

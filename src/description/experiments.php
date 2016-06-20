@@ -207,22 +207,8 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Samples Details </h1>';
-	echo '</div>
-<!--<div class="col-sm-6 col-md-3">
-        <div class="chart-wrapper">
-            <div class="chart-title">
-                Cell Title
-            </div>
-            <div class="chart-stage">
-                <div id="grid-1-1">
-                     chart goes here!
-                </div>
-            </div>
-            <div class="chart-notes">
-                Notes about this chart
-            </div>
-        </div>
-    </div>-->';
+	echo '</div>';
+
 	$conditions=array();
 	$file_counter=0;
 
@@ -385,17 +371,12 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "__",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "__",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
-        echo '  <center>
-                    <div id="loading_'.str_replace(".", "__", $Measurement_FK).'" style="display: none">
-
-
-                    </div>
-                </center>
+        echo   '<div id="loading_'.str_replace(".", "__", $Measurement_FK).'" style="display: none"></div>
                 <div class="container animated fadeInDown">
                     <div id="test_'.str_replace(".", "__",$Measurement_FK).'"> </div>
 
-                    </div>
-                </div>';
+                </div>
+        </div>';
         
         
         
@@ -674,39 +655,11 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 	*/
 	
-
+new_cobra_footer();
 ?>
 
 <script type="text/javascript" class="init">
-$(document).ready(
-function() {
-	$('#example').dataTable( {
-		"scrollX": true,
-		"jQueryUI": true,
-		"pagingType": "full_numbers",
-		"oLanguage": { 
-			"sProcessing":   "Processing...",
-			"sLengthMenu":   "display _MENU_ items",
-			"sZeroRecords":  "No item found",
-			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-			"sInfoFiltered": "(filtered from _MAX_ items in total)",
-			"sInfoPostFix":  "",
-			"sSearch":       "Search: ",
-			"sUrl":          "",
-			"oPaginate": {
-				"sFirst":    "First",
-				"sPrevious": "Previous",
-				"sNext":     "Next",
-				"sLast":     "Last"
-			}
-		},
-		"language": {
-            		"decimal": ",",
-            		"thousands": "."
-        }
-	});
-});
+
 
 function show_heatmap(element){
     var clicked_id = element.getAttribute('data-id');
@@ -798,7 +751,7 @@ function show_heatmap2(element,clicked_id){
     var series_array = element.getAttribute('data-series');
     //var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
-    alert(clicked_id);
+    //alert(clicked_id);
     $('#heatmap_'+clicked_id).highcharts({
 
         chart: {
@@ -889,11 +842,13 @@ function run_profiles_query(element){
         async: true,
         dataType: "html",
         success: function (data) {
-            //alert(data);
+            alert(data);
             var jqObj = jQuery(data);
             var par=jqObj.find("#heatmap_"+clicked_id);
-
+            alert(par)
+            //alert(clicked_id);
             $("#test_"+clicked_id ).empty().append(par);
+            //alert("div has been append");
             show_heatmap2(par,clicked_id);
         }
     });
@@ -930,102 +885,6 @@ $(document).on({
 
 
 
-$(function () {
-
-    $('#container').highcharts({
-
-        chart: {
-            type: 'heatmap',
-            marginTop: 40,
-            marginBottom: 80,
-            plotBorderWidth: 1
-        },
-
-
-        title: {
-            text: 'Differentially expressed genes'
-        },
-
-        xAxis: {
-            categories: <?php echo json_encode($x_categories); ?>,
-            labels: {
-                enabled: false
-            },
-
-/*            categories: ['ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100',
-//'ATCG01100', 'ATCG02100', 'ATCG01300', 'ATCG01103', 'ATCG01600', 'ATCG01700', 'ATCG01800', 'ATCG21100', 'ATCG31100', 'ATCG61100'],*/
-
-        },
-        
-
-        yAxis: {
-            categories: ['21dpi'],
-            title: null
-        },
-
-        colorAxis: {
-            stops: [
-                [0, '#3060cf'],
-                [0.2, '#fffbbc'],
-                [0.8, '#c4463a'],
-                [1, '#c4463a']
-            ],
-            min: -5,
-            max:5,
-            minColor: '#FFFFFF',
-            maxColor: Highcharts.getOptions().colors[0]
-        },
-        plotOptions: {
-            series: {
-                events: {
-                    click: function (event) {
-                        //alert(event.point.series.xAxis.categories[event.point.x] );
-                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
-                    }
-                }
-            }
-        },
-        legend: {
-            align: 'right',
-            layout: 'vertical',
-            margin: 0,
-            verticalAlign: 'top',
-            y: 25,
-            symbolHeight: 280
-        },
-
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> log fold change equals to <br><b>' +
-                    this.point.value + '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
-            }
-        },
-
-        series: [{
-            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
-            borderWidth: 1,
-            data: <?php echo json_encode($y_categories); ?>,
-        }]
-
-    });
-});
-
-            
-//            dataLabels: {
-//                //enabled: true,
-//                color: '#000000'
-//            }
-
-
-
 
 
 
@@ -1033,6 +892,3 @@ $(function () {
 
 </script>
 
-<?php
-new_cobra_footer();
-?>
