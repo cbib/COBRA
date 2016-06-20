@@ -11,7 +11,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     $db=mongoConnector();
     $measurementsCollection = new Mongocollection($db, "measurements");
-    $clicked_id=$_POST['search'];
+    $clicked_id=str_replace("__", ".",$_POST['search']);
     $x_categories=array();
     $y_categories=array();
     error_log($clicked_id);
