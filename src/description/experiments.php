@@ -371,10 +371,11 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         //$test = json_encode(array( 'row' => 1, 'col' => 6, 'color' => 'pink' ));
         //echo $test;
         
-        echo '<dt>Show heatmap</dt>';
-             //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
-        echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
-              //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
+        //echo '<dt>Show heatmap</dt>';
+        //echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
+
+        //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
+        //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
 
         
         echo '</dl>';
@@ -704,83 +705,11 @@ function() {
 	});
 });
 
-
-function run_profiles_query(element){
-    //alert(element.getAttribute('data-id')) ;
-    //clicked_transcript_id = element.getAttribute('data-id');
-    clicked_id = element.getAttribute('data-id');
-    var x_array = element.getAttribute('data-x');
-    var series_array = element.getAttribute('data-series');
-    var dpi=element.getAttribute('data-dpi');
-
-
-    $.ajax({
-
-        url : './load_profile.php', // La ressource ciblée
-
-        type : 'POST' ,// Le type de la requête HTTP.
-
-        //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-        data : 'search=' + clicked_id,
-
-
-        method: 'post',
-        cache: false,
-        async: true,
-        dataType: "html",
-        success: function (data) {
-            //alert(data);
-            var jqObj = jQuery(data);
-            var par=jqObj.find("#heatmap_"+clicked_id);
-
-            $("#test_"+clicked_id ).empty().append(par);
-
-            //works to load results in element
-//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-//                            search : genes,
-//
-//                            sequence : sequence
-//                            
-//                        } );
-
-
-
-        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-        //$('.content_test').empty().html(data);
-        }
-    });
-
-}
-$(document).on({
-    ajaxStart: function() { 
-                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
-                $("#test_"+clicked_id).hide();
-                $('#loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
-
-                $("#loading_"+clicked_id).show();
-
-    },
-//        ajaxStop: function() {
-//                    setTimeout(function() { 
-//                    $(".loading").fadeOut("slow");
-//                    $(".content_test").show("slow");
-//                    
-//                  }, 5000);                                        
-//        }, 
-    ajaxComplete: function() {
-
-                $("#loading_"+clicked_id).fadeOut("slow");
-                $("#test_"+clicked_id).show("slow");
-
-    }    
-});
-
-
 function show_heatmap(element){
     var clicked_id = element.getAttribute('data-id');
     var x_array = element.getAttribute('data-x');
     var series_array = element.getAttribute('data-series');
-    var dpi=element.getAttribute('data-dpi');
+    //var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
 
     $('#test_'+clicked_id).highcharts({
@@ -807,7 +736,7 @@ function show_heatmap(element){
         
 
         yAxis: {
-            categories: [dpi+' dpi'],
+            categories: ['dpi'],
             title: null
         },
 
@@ -859,6 +788,83 @@ function show_heatmap(element){
     });
 
 }
+
+function run_profiles_query(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    var x_array = element.getAttribute('data-x');
+    var series_array = element.getAttribute('data-series');
+    var dpi=element.getAttribute('data-dpi');
+
+
+    $.ajax({
+
+        url : './load_profile.php', // La ressource ciblée
+
+        type : 'POST' ,// Le type de la requête HTTP.
+
+        //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+        data : 'search=' + clicked_id,
+
+
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            var par=jqObj.find("#heatmap_"+clicked_id);
+
+            $("#test_"+clicked_id ).empty().append(par);
+
+            //works to load results in element
+//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+//                            search : genes,
+//
+//                            sequence : sequence
+//                            
+//                        } );
+
+
+
+        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+        //$('.content_test').empty().html(data);
+        }
+    });
+
+}
+
+
+
+$(document).on({
+    ajaxStart: function() { 
+                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
+                $("#test_"+clicked_id).hide();
+                $('#loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $("#loading_"+clicked_id).show();
+
+    },
+//        ajaxStop: function() {
+//                    setTimeout(function() { 
+//                    $(".loading").fadeOut("slow");
+//                    $(".content_test").show("slow");
+//                    
+//                  }, 5000);                                        
+//        }, 
+    ajaxComplete: function() {
+
+                $("#loading_"+clicked_id).fadeOut("slow");
+                $("#test_"+clicked_id).show("slow");
+                show_heatmap($("#test_"+clicked_id));
+
+    }    
+});
+
+
+
 
 $(function () {
 
