@@ -4,10 +4,6 @@ include '../functions/php_functions.php';
 include '../functions/mongo_functions.php';
 require('../session/control-session.php');
 new_cobra_header("../..");
-
-?>
-
-<?php
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments Details","section_experiments","../..");
 
 
@@ -375,8 +371,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                 <div class="container animated fadeInDown">
                     <div id="test_'.str_replace(".", "__",$Measurement_FK).'"> </div>
 
-                </div>
-        </div>';
+                </div>';
         
         
         
