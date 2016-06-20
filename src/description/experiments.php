@@ -711,7 +711,7 @@ function show_heatmap(element){
     var series_array = element.getAttribute('data-series');
     //var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
-
+    alert(clicked_id);
     $('#test_'+clicked_id).highcharts({
 
         chart: {
