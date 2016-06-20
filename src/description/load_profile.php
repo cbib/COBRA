@@ -14,6 +14,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $clicked_id=$_POST['search'];
     $x_categories=array();
     $y_categories=array();
+    error_log($clicked_id);
     $data=$measurementsCollection->aggregate(
         array(
           array('$match' => array('xp'=>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
@@ -89,6 +90,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
     $y_categories=json_encode($y_categories);
+    error_log($y_categories);
     //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
     echo '<div id="heatmap_'.str_replace(".", "_",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>';  
