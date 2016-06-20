@@ -93,7 +93,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     error_log($x_categories);
     //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
-    echo '<div id="heatmap_'.$clicked_id.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>';  
+    echo '<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>';  
         
     
     
