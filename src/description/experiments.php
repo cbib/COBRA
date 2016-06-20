@@ -723,8 +723,8 @@ function show_heatmap(element){
         colorAxis: {
             stops: [
                 [0, '#3060cf'],
-                [0.2, '#fffbbc'],
-                [0.8, '#c4463a'],
+                [0.3, '#fffbbc'],
+                [0.7, '#c4463a'],
                 [1, '#c4463a']
             ],
             min: -4,
