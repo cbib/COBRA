@@ -364,14 +364,14 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
         
         echo '</dl>';
-        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
-
-        
-        echo   '<div id="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
-                <div class="container animated fadeInDown">
-                    <div class="test_'.str_replace(".", "-",$Measurement_FK).'"> </div>
-
-                </div>';
+//        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+//
+//        
+//        echo   '<div id="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
+//                <div class="container animated fadeInDown">
+//                    <div class="test_'.str_replace(".", "-",$Measurement_FK).'"> </div>
+//
+//                </div>';
         
         
         
