@@ -288,54 +288,58 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   		
   		}
         
-        $x_categories=array();
-        $y_categories=array();
-        $data=$measurementsCollection->aggregate(
-            array(
-              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
-              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-
-//              array(
-//                '$group'=>
-//                  array(
-//                    '_id'=> array('gene'=> '$gene'),
-//                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
-//                  )
-//              )
-            )
-         );
-         //var_dump($data['result']);echo '</br>';
-
-         
-         $counter_gene=0;
-         foreach ($data['result'] as $result) {
-         //    var_dump($result);echo '</br>';
-             //echo $result['_id']['gene'];echo '</br>';
-             if ($result['gene'] != ""){
-              
-                array_push($x_categories, $result['gene']);
-                $y_sub_categories=array();
-
-//                $tmp_value=0.0;
-//                $counter_measures=0;
-//                foreach ($result['logs'] as $values) {
-//                    $tmp_value+=$values['log'];
-//                    //echo $values['log'];echo '</br>';
-//                    //echo $values['dpi'];echo '</br>';
-//                    $counter_measures++;
+//        $x_categories=array();
+//        $y_categories=array();
+//        $data=$measurementsCollection->aggregate(
+//            array(
+//              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
+//              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
 //
-//                }
-                //$mean_value=$tmp_value/$counter_measures;
-                array_push($y_sub_categories, $counter_gene);
-                array_push($y_sub_categories, 0);
-                array_push($y_sub_categories, $result['logFC']);
-                $counter_gene++;
-
-                array_push($y_categories, $y_sub_categories);
-             }
-
-         }
-
+////              array(
+////                '$group'=>
+////                  array(
+////                    '_id'=> array('gene'=> '$gene'),
+////                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
+////                  )
+////              )
+//            )
+//        );
+//        //var_dump($data['result']);echo '</br>';
+//
+//         
+//        $counter_gene=0;
+//        foreach ($data['result'] as $result) {
+//         //    var_dump($result);echo '</br>';
+//             //echo $result['_id']['gene'];echo '</br>';
+//            if ($result['gene'] != ""){
+//              
+//                array_push($x_categories, $result['gene']);
+//                $y_sub_categories=array();
+//
+////                $tmp_value=0.0;
+////                $counter_measures=0;
+////                foreach ($result['logs'] as $values) {
+////                    $tmp_value+=$values['log'];
+////                    //echo $values['log'];echo '</br>';
+////                    //echo $values['dpi'];echo '</br>';
+////                    $counter_measures++;
+////
+////                }
+//                //$mean_value=$tmp_value/$counter_measures;
+//                array_push($y_sub_categories, $counter_gene);
+//                array_push($y_sub_categories, 0);
+//                array_push($y_sub_categories, $result['logFC']);
+//                $counter_gene++;
+//
+//                array_push($y_categories, $y_sub_categories);
+//            }
+//
+//        }
+//        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
+//        $y_categories=json_encode($y_categories);
+        
+        
+        
 /*        $data_gene_to_keep=$measurementsCollection->aggregate(
 //            array(
 //              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
@@ -363,8 +367,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 //
 //        }*/
         
-        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
-        $y_categories=json_encode($y_categories);
+        
         //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
         //echo $test;
         
