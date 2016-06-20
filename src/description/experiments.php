@@ -378,7 +378,26 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
         
         echo '</dl>';
-        echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';  
+        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button>';
+
+        
+        echo '  <center>
+                    <div id="loading_'.str_replace(".", "_", $Measurement_FK).'" style="display: none">
+
+
+                    </div>
+                </center>
+                <div class="container animated fadeInDown">
+                    <div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>
+
+                    </div>
+                </div>';
+        
+        
+        
+        
+        
+        
 
 		$file_counter++;
 		/*
@@ -684,6 +703,78 @@ function() {
         }
 	});
 });
+
+
+function run_profiles_query(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    var x_array = element.getAttribute('data-x');
+    var series_array = element.getAttribute('data-series');
+    var dpi=element.getAttribute('data-dpi');
+
+
+    $.ajax({
+
+        url : './load_profile.php', // La ressource ciblée
+
+        type : 'POST' ,// Le type de la requête HTTP.
+
+        //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+        data : 'search=' + clicked_id,
+
+
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            var par=jqObj.find("#heatmap_"+clicked_id);
+
+            $("#test_"+clicked_id ).empty().append(par);
+
+            //works to load results in element
+//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
+//                            search : genes,
+//
+//                            sequence : sequence
+//                            
+//                        } );
+
+
+
+        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+        //$('.content_test').empty().html(data);
+        }
+    });
+
+}
+$(document).on({
+    ajaxStart: function() { 
+                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
+                $("#test_"+clicked_id).hide();
+                $('#loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $("#loading_"+clicked_id).show();
+
+    },
+//        ajaxStop: function() {
+//                    setTimeout(function() { 
+//                    $(".loading").fadeOut("slow");
+//                    $(".content_test").show("slow");
+//                    
+//                  }, 5000);                                        
+//        }, 
+    ajaxComplete: function() {
+
+                $("#loading_"+clicked_id).fadeOut("slow");
+                $("#test_"+clicked_id).show("slow");
+
+    }    
+});
+
 
 function show_heatmap(element){
     var clicked_id = element.getAttribute('data-id');
