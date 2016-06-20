@@ -7,7 +7,7 @@ require '../session/control-session.php';
 
 new_cobra_header("../..");
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_load_profile","../..");
-echo 'balbla';
+
 if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     $db=mongoConnector();
@@ -15,7 +15,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $clicked_id=str_replace("-", ".",$_POST['search']);
     $x_categories=array();
     $y_categories=array();
-    echo $clicked_id;
+    
     $data=$measurementsCollection->aggregate(
         array(
           array('$match' => array('xp'=>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
@@ -94,7 +94,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     error_log(str_replace(".", "-",$clicked_id));
     //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
-    echo '<div id="heatmap_'.str_replace(".", "-",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
+    echo '<div class="heatmap_'.str_replace(".", "-",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
         
     //error_log('<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>');
     

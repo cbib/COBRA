@@ -270,55 +270,55 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   		
   		}
         
-        $x_categories=array();
-        $y_categories=array();
-        $data=$measurementsCollection->aggregate(
-            array(
-              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
-              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-
-//              array(
-//                '$group'=>
-//                  array(
-//                    '_id'=> array('gene'=> '$gene'),
-//                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
-//                  )
-//              )
-            )
-        );
-        //var_dump($data['result']);echo '</br>';
-
-         
-        $counter_gene=0;
-        foreach ($data['result'] as $result) {
-         //    var_dump($result);echo '</br>';
-             //echo $result['_id']['gene'];echo '</br>';
-            if ($result['gene'] != ""){
-              
-                array_push($x_categories, $result['gene']);
-                $y_sub_categories=array();
-
-//                $tmp_value=0.0;
-//                $counter_measures=0;
-//                foreach ($result['logs'] as $values) {
-//                    $tmp_value+=$values['log'];
-//                    //echo $values['log'];echo '</br>';
-//                    //echo $values['dpi'];echo '</br>';
-//                    $counter_measures++;
+//        $x_categories=array();
+//        $y_categories=array();
+//        $data=$measurementsCollection->aggregate(
+//            array(
+//              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
+//              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
 //
-//                }
-                //$mean_value=$tmp_value/$counter_measures;
-                array_push($y_sub_categories, $counter_gene);
-                array_push($y_sub_categories, 0);
-                array_push($y_sub_categories, $result['logFC']);
-                $counter_gene++;
-
-                array_push($y_categories, $y_sub_categories);
-            }
-
-        }
-        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
-        $y_categories=json_encode($y_categories);
+////              array(
+////                '$group'=>
+////                  array(
+////                    '_id'=> array('gene'=> '$gene'),
+////                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
+////                  )
+////              )
+//            )
+//        );
+//        //var_dump($data['result']);echo '</br>';
+//
+//         
+//        $counter_gene=0;
+//        foreach ($data['result'] as $result) {
+//         //    var_dump($result);echo '</br>';
+//             //echo $result['_id']['gene'];echo '</br>';
+//            if ($result['gene'] != ""){
+//              
+//                array_push($x_categories, $result['gene']);
+//                $y_sub_categories=array();
+//
+////                $tmp_value=0.0;
+////                $counter_measures=0;
+////                foreach ($result['logs'] as $values) {
+////                    $tmp_value+=$values['log'];
+////                    //echo $values['log'];echo '</br>';
+////                    //echo $values['dpi'];echo '</br>';
+////                    $counter_measures++;
+////
+////                }
+//                //$mean_value=$tmp_value/$counter_measures;
+//                array_push($y_sub_categories, $counter_gene);
+//                array_push($y_sub_categories, 0);
+//                array_push($y_sub_categories, $result['logFC']);
+//                $counter_gene++;
+//
+//                array_push($y_categories, $y_sub_categories);
+//            }
+//
+//        }
+//        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
+//        $y_categories=json_encode($y_categories);
         
         
         
@@ -356,23 +356,29 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         //$test = json_encode(array( 'row' => 1, 'col' => 6, 'color' => 'pink' ));
         //echo $test;
         
-        echo '<dt>Show heatmap</dt>';
-        echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
-        //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
+        //echo '<dt>Show heatmap</dt>';
+       //echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
+        
+        //
+        //
+        ////echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
         //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
 
         
         echo '</dl>';
         echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
 
-//        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
-//
-//        
-//        echo   '<div id="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
-//                <div class="container animated fadeInDown">
-//                    <div class="test_'.str_replace(".", "-",$Measurement_FK).'"> </div>
-//
-//                </div>';
+        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+
+        
+        echo   '<div class="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
+                <div class="container animated fadeInDown">
+                    <div class="test_'.str_replace(".", "-",$Measurement_FK).'"> 
+                    
+                        <!--here come the heatmap div-->
+                    </div>
+
+                </div>';
         
         
         
@@ -743,12 +749,14 @@ function show_heatmap(element){
 
 function show_heatmap2(element,clicked_id){
     //var clicked_id = element.getAttribute('data-id');
-    var x_array = element.getAttribute('data-x');
-    var series_array = element.getAttribute('data-series');
+    //var x_array = element.getAttribute('data-x');
+    var x_array=element.attr('data-x');
+    var series_array = element.attr('data-series');
+    //var series_array = element.getAttribute('data-series');
     //var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
     //alert(clicked_id);
-    $('#heatmap_'+clicked_id).highcharts({
+    $('.heatmap_'+clicked_id).highcharts({
 
         chart: {
             type: 'heatmap',
@@ -840,12 +848,14 @@ function run_profiles_query(element){
         success: function (data) {
             //alert(data);
             var jqObj = jQuery(data);
-            var par=jqObj.find("#heatmap_"+clicked_id);
-            //alert(par)
             //alert(clicked_id);
-            $(".test_"+clicked_id ).empty().append(par);
+            var par=jqObj.find(".heatmap_"+clicked_id);
+            //alert(par)
+            
+            
+            $(".test_"+clicked_id).empty().append(par);
             //alert("div has been append");
-            //show_heatmap2(par,clicked_id);
+            show_heatmap2(par,clicked_id);
         }
     });
 
@@ -857,9 +867,9 @@ $(document).on({
     ajaxStart: function() { 
                 //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
                 $(".test_"+clicked_id).hide();
-                $('#loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
 
-                $("#loading_"+clicked_id).show();
+                $(".loading_"+clicked_id).show();
 
     },
 //        ajaxStop: function() {
@@ -871,7 +881,7 @@ $(document).on({
 //        }, 
     ajaxComplete: function() {
 
-                $("#loading_"+clicked_id).fadeOut("slow");
+                $(".loading_"+clicked_id).fadeOut("slow");
                 $(".test_"+clicked_id).show("slow");
                 
 
