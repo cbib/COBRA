@@ -1,9 +1,9 @@
 <?php
-require '../../session/maintenance-session.php';
-require '../../functions/html_functions.php';
-require '../../functions/php_functions.php';
-require '../../functions/mongo_functions.php';
-require '../../session/control-session.php';
+require '../session/maintenance-session.php';
+require '../functions/html_functions.php';
+require '../functions/php_functions.php';
+require '../functions/mongo_functions.php';
+require '../session/control-session.php';
 
 
 
