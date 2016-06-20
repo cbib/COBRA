@@ -7,15 +7,15 @@ require '../session/control-session.php';
 
 new_cobra_header("../..");
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_load_profile","../..");
-
+echo 'balbla';
 if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     $db=mongoConnector();
     $measurementsCollection = new Mongocollection($db, "measurements");
-    $clicked_id=str_replace("__", ".",$_POST['search']);
+    $clicked_id=str_replace("-", ".",$_POST['search']);
     $x_categories=array();
     $y_categories=array();
-    error_log($clicked_id);
+    echo $clicked_id;
     $data=$measurementsCollection->aggregate(
         array(
           array('$match' => array('xp'=>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
@@ -36,7 +36,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
      $counter_gene=0;
      foreach ($data['result'] as $result) {
      //    var_dump($result);echo '</br>';
-         error_log($result['_id']['gene'].'</br>');//echo '</br>';
+         //error_log($result['gene'].'</br>');//echo '</br>';
          if ($result['gene'] != ""){
 
             array_push($x_categories, $result['gene']);
@@ -91,12 +91,12 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
     $y_categories=json_encode($y_categories);
-    //error_log($x_categories);
+    error_log(str_replace(".", "-",$clicked_id));
     //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
-    echo '<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>';  
+    echo '<div id="heatmap_'.str_replace(".", "-",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
         
-    
+    //error_log('<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>');
     
 }
 new_cobra_footer();	
