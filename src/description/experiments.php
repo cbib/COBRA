@@ -371,7 +371,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
-        echo   '<div class="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
+        echo   '<center><div class="loading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div></center>
                 <div class="container animated fadeInDown">
                     <div class="test_'.str_replace(".", "-",$Measurement_FK).'"> 
                     
@@ -757,11 +757,13 @@ function show_heatmap2(element,clicked_id){
     day = new Array(series_array);
     //alert(clicked_id);
     $('.heatmap_'+clicked_id).highcharts({
+        
 
         chart: {
             type: 'heatmap',
             marginTop: 40,
             marginBottom: 80,
+            zoomType: 'x',
             plotBorderWidth: 1
         },
 
@@ -801,7 +803,9 @@ function show_heatmap2(element,clicked_id){
                 events: {
                     click: function (event) {
                         //alert(event.point.series.xAxis.categories[event.point.x] );
-                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                        //window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                        window.open("../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x]);
+
                     }
                 }
             }
