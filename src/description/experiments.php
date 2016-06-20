@@ -818,19 +818,9 @@ function run_profiles_query(element){
             var par=jqObj.find("#heatmap_"+clicked_id);
 
             $("#test_"+clicked_id ).empty().append(par);
-
-            //works to load results in element
-//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-//                            search : genes,
-//
-//                            sequence : sequence
-//                            
-//                        } );
+            show_heatmap($("#test_"+clicked_id));
 
 
-
-        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-        //$('.content_test').empty().html(data);
         }
     });
 
@@ -858,7 +848,7 @@ $(document).on({
 
                 $("#loading_"+clicked_id).fadeOut("slow");
                 $("#test_"+clicked_id).show("slow");
-                show_heatmap($("#test_"+clicked_id));
+                
 
     }    
 });
