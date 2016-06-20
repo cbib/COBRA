@@ -660,7 +660,7 @@ function show_heatmap(element){
     var clicked_id = element.getAttribute('data-id');
     var x_array = element.getAttribute('data-x');
     var series_array = element.getAttribute('data-series');
-    //var dpi=element.getAttribute('data-dpi');
+    var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
     alert(clicked_id);
     $('#test_'+clicked_id).highcharts({
@@ -687,7 +687,7 @@ function show_heatmap(element){
         
 
         yAxis: {
-            categories: ['dpi'],
+            categories: ['21 dpi'],
             title: null
         },
 
