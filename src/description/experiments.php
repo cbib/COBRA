@@ -358,12 +358,13 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         echo '<dt>Show heatmap</dt>';
         echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
-        echo '<div id="test_'.str_replace(".", "-",$Measurement_FK).'"> </div>';
         //echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
         //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
 
         
         echo '</dl>';
+        echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
+
 //        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 //
 //        
@@ -657,12 +658,12 @@ new_cobra_footer();
 
 
 function show_heatmap(element){
-    var clicked_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
     var x_array = element.getAttribute('data-x');
     var series_array = element.getAttribute('data-series');
-    var dpi=element.getAttribute('data-dpi');
+    //var dpi=element.getAttribute('data-dpi');
     day = new Array(series_array);
-    alert(clicked_id);
+    //alert(clicked_id);
     $('#test_'+clicked_id).highcharts({
 
         chart: {
