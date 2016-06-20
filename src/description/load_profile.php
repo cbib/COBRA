@@ -35,7 +35,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
      $counter_gene=0;
      foreach ($data['result'] as $result) {
      //    var_dump($result);echo '</br>';
-         //echo $result['_id']['gene'];echo '</br>';
+         error_log($result['_id']['gene'].'</br>');//echo '</br>';
          if ($result['gene'] != ""){
 
             array_push($x_categories, $result['gene']);
