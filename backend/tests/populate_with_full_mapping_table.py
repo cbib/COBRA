@@ -106,7 +106,7 @@ full_mappings_col.insert(mapping_table)
 
 # full mapping table - PROBEID/GENEID/PROTEINID/DESCRIPTION/PLAZAID/ALIAS/GENEONTOLOGYID
 mapping_table={
-	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_full_full2.tsv",
+	"data_file":"mappings/FULL_MAPPING/cucumis_melo_full_final.tsv",
 	"species":"Cucumis melo",
 	"type":"full_table",
 	"src":"Gene ID",
