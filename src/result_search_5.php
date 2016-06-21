@@ -147,10 +147,10 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             //array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
             //array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
             //array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
-            //array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),
-            //array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi")),
+            array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi"))))),
         array('$project' => array("mapping_file"=>1,'_id'=>0))
     ));
@@ -202,15 +202,23 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 
             }
             if (isset($result['mapping_file']['Uniprot ID']) && $result['mapping_file']['Uniprot ID']!='' && $result['mapping_file']['Uniprot ID']!='NA'){
-                if (in_array($result['mapping_file']['Uniprot ID'],$uniprot_id)==FALSE){
-                    array_push($uniprot_id,$result['mapping_file']['Uniprot ID']);
+                
+                
+                $uniprot_ids = preg_split("/[\s,]+/",$result['mapping_file']['Uniprot ID']);
+                //print_r($uniprot_ids);
+                foreach ($uniprot_ids as $id) {
+                    if (in_array($id,$uniprot_id)==FALSE){
+                        array_push($uniprot_id,$id);
+                    }
                 }
+                
+                
             }
-            if (isset($result['mapping_file']['Protein ID']) && $result['mapping_file']['Protein ID']!='' && $result['mapping_file']['Protein ID']!='NA'){
-                if (in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE){
-                    array_push($protein_id,$result['mapping_file']['Protein ID']);
-                }
-            }
+//            if (isset($result['mapping_file']['Protein ID']) && $result['mapping_file']['Protein ID']!='' && $result['mapping_file']['Protein ID']!='NA'){
+//                if (in_array($result['mapping_file']['Protein ID'],$protein_id)==FALSE){
+//                    array_push($protein_id,$result['mapping_file']['Protein ID']);
+//                }
+//            }
             if (isset($result['mapping_file']['Description'])&& $result['mapping_file']['Description']!='' && $result['mapping_file']['Description']!='NA'){
                 if (in_array($result['mapping_file']['Description'],$descriptions)==FALSE){
                     array_push($descriptions,$result['mapping_file']['Description']);
@@ -313,9 +321,18 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $chromosome=$result['mapping_file']['Chromosome'];
             }
             if (isset($result['mapping_file']['Gene ID 2'])&& $result['mapping_file']['Gene ID 2']!=''&& $result['mapping_file']['Gene ID 2']!="NA"){
-                if (in_array($result['mapping_file']['Gene ID 2'],$gene_id_bis)==FALSE){
-                    array_push($gene_id_bis,$result['mapping_file']['Gene ID 2']);
+                
+                
+                $gene_ids_bis = preg_split("/[\s,]+/",$result['mapping_file']['Gene ID 2']);
+                //print_r($uniprot_ids);
+                foreach ($gene_ids_bis as $id) {
+                    if (in_array($id,$gene_id_bis)==FALSE){
+                        array_push($gene_id_bis,$id);
+                    }
                 }
+                
+                
+                
             }
             if (isset($result['mapping_file']['Alias'])&& $result['mapping_file']['Alias']!='' && $result['mapping_file']['Alias']!='NA'){
                 if (in_array($result['mapping_file']['Alias'],$gene_alias)==FALSE){
@@ -328,8 +345,14 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 }
             }
             if (isset($result['mapping_file']['Probe ID'])&& $result['mapping_file']['Probe ID']!='' && $result['mapping_file']['Probe ID']!='NA'){
-                if (in_array($result['mapping_file']['Probe ID'],$est_id)==FALSE){
-                    array_push($est_id,$result['mapping_file']['Probe ID']);
+                
+                
+                $est_ids = preg_split("/[\s,]+/",$result['mapping_file']['Probe ID']);
+                //print_r($uniprot_ids);
+                foreach ($est_ids as $id) {
+                    if (in_array($id,$est_id)==FALSE){
+                        array_push($est_id,$id);
+                    }
                 }
             }
             if (isset($result['mapping_file']['Plaza ID'])&& $result['mapping_file']['Plaza ID']!='' && $result['mapping_file']['Plaza ID']!='NA'){
@@ -339,9 +362,15 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 $plaza_id=$result['mapping_file']['Plaza ID'];
             } 
             if (isset($result['mapping_file']['Transcript ID'])&& $result['mapping_file']['Transcript ID']!='' && $result['mapping_file']['Transcript ID']!='NA'){
-                if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
-                    array_push($transcript_id,$result['mapping_file']['Transcript ID']);
+                
+                $transcript_ids = preg_split("/[\s,]+/",$result['mapping_file']['Transcript ID']);
+                //print_r($uniprot_ids);
+                foreach ($transcript_ids as $id) {
+                    if (in_array($id,$transcript_id)==FALSE){
+                        array_push($transcript_id,$id);
+                    }
                 }
+
                 
             } 
             
