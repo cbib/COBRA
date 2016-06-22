@@ -106,6 +106,7 @@ for a_sample in samples_with_results:
 					this_doc['type']="contrast"
 					this_doc['gene']=tgt_id
                                         this_doc['name']=name
+                                        this_doc['assay_type']=assay['type']
 					this_doc['infection_agent']=infection_agent
                                         this_doc['first_condition']=first_condition_type
                                         this_doc['second_condition']=second_condition_type

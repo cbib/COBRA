@@ -82,6 +82,7 @@ for a_sample in samples_with_results:
                                 this_doc={"xp":this_path}                       
                                 this_doc['gene']=id
                                 this_doc['name']=name
+                                this_doc['assay_type']=assay['type']
                                 this_doc['type']="contrast"
                                 this_doc['first_condition']=first_condition_type
                                 this_doc['second_condition']=second_condition_type
