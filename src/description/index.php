@@ -71,7 +71,7 @@ echo'<div class="panel-group" id="accordion_documents">
                                     foreach ($value['xps'] as $xpName) {
 
                                         #echo $xpName;
-                                        $experiment_table_string.='<li value='.$xpName.'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName).'>'.$xpName.'</a></li>';
+                                        $experiment_table_string.='<li value='.$xpName['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName['name']).'>'.$xpName['name'].'</a> ('.$xpName['type'].')</li>';
 
                                     }
                                     $experiment_table_string.='</ul>';

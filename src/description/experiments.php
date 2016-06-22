@@ -291,7 +291,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         //$minlogFCthreshold=-1.5;
         //$gene_significant_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>$maxlogFCthreshold)),array('logFC'=>array('$lt'=>$minlogFCthreshold)))))->count();
 
-        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-1.5 data-max=1.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
         echo '<center>'
@@ -305,7 +305,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
               </div>';
         echo '<div id="shift_line"></div>';
-        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-1.5 data-max=1.5  class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5  class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>
@@ -606,91 +606,7 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
 
-function show_heatmap(element){
-    clicked_id = element.getAttribute('data-id');
-    var x_array = element.getAttribute('data-x');
-    var series_array = element.getAttribute('data-series');
-    //var dpi=element.getAttribute('data-dpi');
-    day = new Array(series_array);
-    //alert(clicked_id);
-    $('#test_'+clicked_id).highcharts({
-
-        chart: {
-            type: 'heatmap',
-            marginTop: 40,
-            marginBottom: 80,
-            plotBorderWidth: 1
-        },
-
-
-        title: {
-            text: 'Differentially expressed genes'
-        },
-
-        xAxis: {
-            categories: JSON.parse(x_array),
-            labels: {
-                enabled: false
-            }
-
-        },
-        
-
-        yAxis: {
-            categories: ['21 dpi'],
-            title: null
-        },
-
-        colorAxis: {
-            stops: [
-                [0, '#3060cf'],
-                [0.3, '#fffbbc'],
-                [0.7, '#c4463a'],
-                [1, '#c4463a']
-            ],
-            min: -4,
-            max:4,
-            minColor: '#FFFFFF',
-            maxColor: Highcharts.getOptions().colors[0]
-        },
-        plotOptions: {
-            series: {
-                events: {
-                    click: function (event) {
-                        //alert(event.point.series.xAxis.categories[event.point.x] );
-                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
-                    }
-                }
-            }
-        },
-        legend: {
-            align: 'right',
-            layout: 'vertical',
-            margin: 0,
-            verticalAlign: 'top',
-            y: 25,
-            symbolHeight: 280
-        },
-
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> log fold change equals to <br><b>' +
-                    this.point.value + '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
-            }
-        },
-
-        series: [{
-            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
-            borderWidth: 1,
-            data: JSON.parse(day)
-            
-        }]
-
-    });
-
-}
-
-function show_heatmap2(element,clicked_id){
+function show_heatmap2(element,clicked_id,min, max){
     //var clicked_id = element.getAttribute('data-id');
     //var x_array = element.getAttribute('data-x');
     var x_array=element.attr('data-x');
@@ -714,7 +630,7 @@ function show_heatmap2(element,clicked_id){
             plotBorderWidth: 1,
             events: {
                     load: function () {
-                        var label = this.renderer.label("GO terms of the set of differentially expressed genes (n= "+total_diff_gene+", blue bars) is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
+                        var label = this.renderer.label("GO terms of the set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+", blue bars) is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
                         .css({
                             width: '850px',
                             color: '#222',
@@ -985,7 +901,7 @@ function run_profiles_query(element){
             
             $(".test_"+clicked_id).empty().append(par);
             //alert("div has been append");
-            show_heatmap2(par,clicked_id);
+            show_heatmap2(par,clicked_id,logFCmin,logFCmax);
         },
         complete:function(){  
             //   alert("stop");

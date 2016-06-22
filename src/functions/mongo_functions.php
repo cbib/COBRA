@@ -3452,13 +3452,19 @@ return $cursor;
 //         )
 
 function find_xp_name_group_by_species(Mongocollection $sa){
+    
+    //array('name'=>'$name','int'=>'$assay.type')
+    
+    
     $cursor=$sa->aggregate(array(
-            array('$project' => array('species'=>1,'name'=>1,'_id'=>0)),
+            array('$project' => array('assay'=>1,'species'=>1,'name'=>1,'_id'=>0)),
             array(
                 '$group'=>
                 array(
                     '_id'=> array( 'species'=> '$species' ),
-                    'xps'=> array( '$addToSet'=> '$name' )
+                    'xps'=> array('$addToSet'=> array('name'=>'$name','type'=>'$assay.type'))
+
+                    //'xps'=> array( '$addToSet'=> '$name' )
                 )
             )
         )        

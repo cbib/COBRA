@@ -205,6 +205,91 @@ $(document).on({
 
     }    
 });
+
+
+function show_heatmap(element){
+    clicked_id = element.getAttribute('data-id');
+    var x_array = element.getAttribute('data-x');
+    var series_array = element.getAttribute('data-series');
+    //var dpi=element.getAttribute('data-dpi');
+    day = new Array(series_array);
+    //alert(clicked_id);
+    $('#test_'+clicked_id).highcharts({
+
+        chart: {
+            type: 'heatmap',
+            marginTop: 40,
+            marginBottom: 80,
+            plotBorderWidth: 1
+        },
+
+
+        title: {
+            text: 'Differentially expressed genes'
+        },
+
+        xAxis: {
+            categories: JSON.parse(x_array),
+            labels: {
+                enabled: false
+            }
+
+        },
+        
+
+        yAxis: {
+            categories: ['21 dpi'],
+            title: null
+        },
+
+        colorAxis: {
+            stops: [
+                [0, '#3060cf'],
+                [0.3, '#fffbbc'],
+                [0.7, '#c4463a'],
+                [1, '#c4463a']
+            ],
+            min: -4,
+            max:4,
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+        plotOptions: {
+            series: {
+                events: {
+                    click: function (event) {
+                        //alert(event.point.series.xAxis.categories[event.point.x] );
+                        window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                    }
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            layout: 'vertical',
+            margin: 0,
+            verticalAlign: 'top',
+            y: 25,
+            symbolHeight: 280
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> log fold change equals to <br><b>' +
+                    this.point.value + '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+            }
+        },
+
+        series: [{
+            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
+            borderWidth: 1,
+            data: JSON.parse(day)
+            
+        }]
+
+    });
+
+}
 //            dataLabels: {
 //                //enabled: true,
 //                color: '#000000'
