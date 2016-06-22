@@ -24,8 +24,9 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         
         $data=$measurementsCollection->aggregate(
             array(
-              array('$match' => array('xp'=>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>(float)$maxlogFCthreshold)),array('logFC'=>array('$lt'=>(float)$minlogFCthreshold))))),  
-              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+              array('$match'   => array('xp'    =>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>(float)$maxlogFCthreshold)),array('logFC'=>array('$lt'=>(float)$minlogFCthreshold))))),  
+              array('$project' => array('gene'  =>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
+              array('$sort'    => array('logFC' => 1 ))
 
     //              array(
     //                '$group'=>
@@ -36,6 +37,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     //              )
             )
          );
+       
          //var_dump($data['result']);echo '</br>';
 
 
@@ -43,8 +45,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
          foreach ($data['result'] as $result) {
          //    var_dump($result);echo '</br>';
              //error_log($result['gene'].'</br>');//echo '</br>';
-             if ($result['gene'] != ""){
-
+             if ($result['gene'] != "" && $result['gene'] != "NA"){
+                $dpi=$result['day_after_inoculation'];
                 array_push($x_categories, $result['gene']);
                 $y_sub_categories=array();
 
@@ -100,7 +102,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         //error_log(str_replace(".", "-",$clicked_id));
         //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
-        echo '<div class="heatmap_'.str_replace(".", "-",$clicked_id).'" data-total="'.$total_genes.'" data-total-diff="'.$counter_gene.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
+        echo '<div class="heatmap_'.str_replace(".", "-",$clicked_id).'" data-dpi="'.$dpi.'"data-total="'.$total_genes.'" data-total-diff="'.$counter_gene.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
     }
         
     //error_log('<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>');

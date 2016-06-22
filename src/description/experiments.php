@@ -616,7 +616,7 @@ function show_heatmap2(element,clicked_id,min, max){
     
     var series_array = element.attr('data-series');
     //var series_array = element.getAttribute('data-series');
-    //var dpi=element.getAttribute('data-dpi');
+    dpi=element.attr('data-dpi');
     day = new Array(series_array);
     //alert(clicked_id);
     $('.heatmap_'+clicked_id).highcharts({
@@ -670,16 +670,16 @@ function show_heatmap2(element,clicked_id,min, max){
         
 
         yAxis: {
-            categories: ['dpi'],
+            categories: [dpi+' dpi'],
             title: null
         },
 
         colorAxis: {
             stops: [
                 [0, '#3060cf'],
-                [0.25, '#fffbbc'],
+                [0.35, '#A9E2F3'],
                 [0.5, '#fffbbc'],
-                [0.75, '#fffbbc'],
+                [0.65, '#FE9A2E'],
                 //[0.75, '#c4463a'],
                 [1, '#c4463a']
             ],
@@ -711,8 +711,8 @@ function show_heatmap2(element,clicked_id,min, max){
 
         tooltip: {
             formatter: function () {
-                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> log fold change equals to <br><b>' +
-                    this.point.value + '</b> on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b><br>Log fold change: <b>' +
+                    this.point.value + '</b><br>Day post inoculation: <b>' + this.series.yAxis.categories[this.point.y] + '</b>';
             }
         },
 
@@ -726,7 +726,50 @@ function show_heatmap2(element,clicked_id,min, max){
     });
 
 }
+function run_profiles_query(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+    
+    $.ajax({
 
+        url : './load_profile.php', // La ressource ciblée
+        type : 'POST' ,// Le type de la requête HTTP.
+        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
+
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".test_"+clicked_id).hide();
+                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".loading_"+clicked_id).show();
+			},
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            //alert(clicked_id);
+            var par=jqObj.find(".heatmap_"+clicked_id);
+            //alert(par)
+            
+            
+            $(".test_"+clicked_id).empty().append(par);
+            //alert("div has been append");
+            show_heatmap2(par,clicked_id,logFCmin,logFCmax);
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".loading_"+clicked_id).fadeOut("slow");
+            $(".test_"+clicked_id).show("slow");
+		}
+    });
+
+}
 function show_GO_enrichment(element,clicked_id){
     var x_array=element.attr('data-x');
     var series_array = element.attr('data-series');
@@ -867,50 +910,7 @@ function run_GO_enrichment_query(element){
 
 
 
-function run_profiles_query(element){
-    //alert(element.getAttribute('data-id')) ;
-    //clicked_transcript_id = element.getAttribute('data-id');
-    clicked_id = element.getAttribute('data-id');
-    logFCmin = element.getAttribute('data-min');
-    logFCmax = element.getAttribute('data-max');
-    
-    $.ajax({
 
-        url : './load_profile.php', // La ressource ciblée
-        type : 'POST' ,// Le type de la requête HTTP.
-        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
-
-        method: 'post',
-        cache: false,
-        async: true,
-        dataType: "html",
-        beforeSend: function() { 
-           	    //  alert("start");
-				$(".test_"+clicked_id).hide();
-                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
-
-                $(".loading_"+clicked_id).show();
-			},
-        success: function (data) {
-            //alert(data);
-            var jqObj = jQuery(data);
-            //alert(clicked_id);
-            var par=jqObj.find(".heatmap_"+clicked_id);
-            //alert(par)
-            
-            
-            $(".test_"+clicked_id).empty().append(par);
-            //alert("div has been append");
-            show_heatmap2(par,clicked_id,logFCmin,logFCmax);
-        },
-        complete:function(){  
-            //   alert("stop");
-			$(".loading_"+clicked_id).fadeOut("slow");
-            $(".test_"+clicked_id).show("slow");
-		}
-    });
-
-}
 
 
 
