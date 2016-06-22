@@ -171,21 +171,21 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	</dl>';
 	echo'</div>';
 	
-	echo'<div class="container">';
-	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-		echo'<h1 style="text-align:center"> Samples Files </h1>';
-		echo '</div>';
-		$file_counter=0;
-	foreach($experimental_results as $details) {
-		$file_counter++;
-	}
- 	echo '<dl class="dl-horizontal">
- 	 	<dt>number of samples files</dt>
-  		<dd>'.$file_counter.'</dd>
-  		
-	</dl>';
-	
-	echo'</div>';
+//	echo'<div class="container">';
+//	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
+//		echo'<h1 style="text-align:center"> Samples Files </h1>';
+//		echo '</div>';
+//		$file_counter=0;
+//	foreach($experimental_results as $details) {
+//		$file_counter++;
+//	}
+// 	echo '<dl class="dl-horizontal">
+// 	 	<dt>number of samples files</dt>
+//  		<dd>'.$file_counter.'</dd>
+//  		
+//	</dl>';
+//	
+//	echo'</div>';
 	
 // <dt>aliases</dt>
 //   		<dd>'.$species.'</dd>
@@ -202,9 +202,9 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-		echo'<h1 style="text-align:center"> Samples Details </h1>';
+		echo'<h1 style="text-align:center"> Sample files details </h1>';
 	echo '</div>';
-
+    
 	$conditions=array();
 	$file_counter=0;
 
@@ -222,8 +222,8 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 		$dpi=$details['day_after_inoculation'];
 		$material=$details['material'];
         
-        
-        
+        echo'<div id="sample-details">';
+        echo '<div id="shift_line"></div>';
 		
         echo '<dl class="dl-horizontal">
                 <dt>type of contrast</dt>
@@ -269,109 +269,29 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 			}
   		
   		}
-        echo $Measurement_FK;
-//        $x_categories=array();
-//        $y_categories=array();
-//        $data=$measurementsCollection->aggregate(
-//            array(
-//              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
-//              array('$project' => array('gene'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-//
-////              array(
-////                '$group'=>
-////                  array(
-////                    '_id'=> array('gene'=> '$gene'),
-////                    'logs'=> array('$addToSet'=> array('log'=>'$logFC','dpi'=>'$day_after_inoculation'))
-////                  )
-////              )
-//            )
-//        );
-//        //var_dump($data['result']);echo '</br>';
-//
-//         
-//        $counter_gene=0;
-//        foreach ($data['result'] as $result) {
-//         //    var_dump($result);echo '</br>';
-//             //echo $result['_id']['gene'];echo '</br>';
-//            if ($result['gene'] != ""){
-//              
-//                array_push($x_categories, $result['gene']);
-//                $y_sub_categories=array();
-//
-////                $tmp_value=0.0;
-////                $counter_measures=0;
-////                foreach ($result['logs'] as $values) {
-////                    $tmp_value+=$values['log'];
-////                    //echo $values['log'];echo '</br>';
-////                    //echo $values['dpi'];echo '</br>';
-////                    $counter_measures++;
-////
-////                }
-//                //$mean_value=$tmp_value/$counter_measures;
-//                array_push($y_sub_categories, $counter_gene);
-//                array_push($y_sub_categories, 0);
-//                array_push($y_sub_categories, $result['logFC']);
-//                $counter_gene++;
-//
-//                array_push($y_categories, $y_sub_categories);
-//            }
-//
-//        }
-//        $x_categories = htmlspecialchars( json_encode($x_categories), ENT_QUOTES );
-//        $y_categories=json_encode($y_categories);
-        
-        
-        
-/*        $data_gene_to_keep=$measurementsCollection->aggregate(
-//            array(
-//              array('$match' => array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>1.5)),array('logFC'=>array('$lt'=>-1.5))))),  
-//              array('$project' => array('gene'=>1,'xp'=>1,'logFC'=>1,'day_after_inoculation'=>1,'name'=>1,'_id'=>0)),
-//              array(
-//                '$group'=>
-//                  array(
-//                    '_id'=> array('gene'=> '$gene'),
-//                    'logs'=> array('$addToSet'=> array('xp'=>'$xp'))
-//                  )
-//              )
-//        ));
-//        //var_dump($data_gene_to_keep);
-//        $new_x_categories=array();
-//        foreach ($data_gene_to_keep['result'] as $value) {
-//            //if (count($value['logs'])===3){
-//            //echo $value['_id']['gene'];echo '</br>';
-//            array_push($new_x_categories, $value['_id']['gene']);
-//
-////                foreach ($value['logs'] as $values) {
-////                    echo $values['xp'];echo '</br>';
-////                }
-//            //}
-//
-//
-//        }*/
-        
-        
-        //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
-        //echo $test;
-        
-        //$test = json_encode(array( 'row' => 1, 'col' => 6, 'color' => 'pink' ));
-        //echo $test;
-        
-        //echo '<dt>Show heatmap</dt>';
-       //echo '<dd><button onclick="show_heatmap(this)" data-dpi="'.$dpi.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'" data-id="'.str_replace(".", "_",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "_",$Measurement_FK).'" type="button">Show heatmap</button></dd>';
-        
-        //
-        //
-        ////echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
-        //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
-
+        echo '<dt>min logFC threshold</dt>';
+        echo ' <dd><select onchange="change_min_logFC(this)" data-id="'.str_replace(".", "-",$Measurement_FK).'" name="min_log_fc" class="minlogFC_'.str_replace(".", "-",$Measurement_FK).'">';
+        for ($i = -0.5; $i >= -10; $i-=0.1) :
+            echo '<option value="'.$i.'">'.$i.'</option>';
+        endfor; 
+        echo '</select></dd>';
+        echo '<dt>max logFC threshold</dt>';
+        echo ' <dd><select onchange="change_max_logFC(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'" name="max_log_fc" class="maxlogFC_'.str_replace(".", "-",$Measurement_FK).'">';
+        for ($i = 0.5; $i <= 10; $i+=0.1) :
+            echo '<option value="'.$i.'">'.$i.'</option>';
+        endfor; 
+        echo '</select></dd>';
+               
         
         echo '</dl>';
+        
+        
         //echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
-        $maxlogFCthreshold=2;
-        $minlogFCthreshold=-2;
-        $gene_significant_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>$maxlogFCthreshold)),array('logFC'=>array('$lt'=>$minlogFCthreshold)))))->count();
+        //$maxlogFCthreshold=1.5;
+        //$minlogFCthreshold=-1.5;
+        //$gene_significant_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>$maxlogFCthreshold)),array('logFC'=>array('$lt'=>$minlogFCthreshold)))))->count();
 
-        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min="'.$minlogFCthreshold.'" data-max="'.$maxlogFCthreshold.'" id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-1.5 data-max=1.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
         echo '<center>'
@@ -384,23 +304,26 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                 </div>
 
               </div>';
-        
-        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min="'.$minlogFCthreshold.'" data-max="'.$maxlogFCthreshold.'"  id="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        echo '<div id="shift_line"></div>';
+        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-1.5 data-max=1.5  class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>
               <div class="container animated fadeInDown">
-                <p>GO terms of the set of differentially expressed genes (n = '.$gene_significant_count.', blue bars) 
-                is compared to terms of all micro array genes ('.$gene_count.', green bars). 
-                The y-axis displays the fraction relative to all GO Molecular Function terms. 
-                These terms do not show a significant enrichment (p>0.5).</p>
+                
                 <div class="GOtest_'.str_replace(".", "-",$Measurement_FK).'"> 
                     
                         <!--here comes the GO div-->
                 </div>
+                <p class="GOparagraph_'.str_replace(".", "-",$Measurement_FK).'" style="font-weight: bold" hidden> GO terms of the set of differentially expressed genes (n = not set yet, blue bars) 
+                        is compared to terms of all micro array genes ('.$gene_count.', green bars). 
+                        The y-axis displays the fraction relative to all GO Molecular Function terms. 
+                        These terms do not show a significant enrichment (p>0.5).
+                    </p>
 
               </div>';
-        
+        echo '<div id="shift_line"></div>';
+
         
         
         
@@ -451,7 +374,8 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 		echo '</ul>';
 		$file_counter++;
 		*/
-
+        echo '</div>';
+        echo '<div id="shift_line"></div>';
 	}	
 	echo '<hr></div>';
 /*$data_gene_to_keep=$measurementsCollection->aggregate(
@@ -682,7 +606,6 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
 
-
 function show_heatmap(element){
     clicked_id = element.getAttribute('data-id');
     var x_array = element.getAttribute('data-x');
@@ -857,7 +780,6 @@ function show_heatmap2(element,clicked_id){
 
 }
 
-
 function show_GO_enrichment(element,clicked_id){
     var x_array=element.attr('data-x');
     var series_array = element.attr('data-series');
@@ -911,9 +833,37 @@ function show_GO_enrichment(element,clicked_id){
 };
 
 
+function change_min_logFC(element){
+    clicked_id = element.getAttribute('data-id');
+    
+    new_min_logFC = element.options[element.selectedIndex].value;
 
+    //var element_to_modify = document.getElementById("GO_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-min", new_min_logFC);
+    //var element_to_modify = document.getElementById("heatmap_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-min", new_min_logFC);
+    
+    $(".heatmap_button_"+clicked_id).attr("data-min", new_min_logFC);
+    $(".GO_button_"+clicked_id).attr("data-min", new_min_logFC);
+    
+    
+}
 
+function change_max_logFC(element){
+    clicked_id = element.getAttribute('data-id');
+    new_max_logFC = element.options[element.selectedIndex].value;
+    //var element_to_modify = document.getElementById("heatmap_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-max", new_max_logFC);
+    $(".heatmap_button_"+clicked_id).attr('data-max', new_max_logFC);
+    $(".GO_button_"+clicked_id).attr('data-max', new_max_logFC);
 
+    
+    
+    
+    //var element_to_modify = document.getElementById("GO_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-max", new_max_logFC);
+
+}
 
 
 
@@ -921,11 +871,15 @@ function run_GO_enrichment_query(element){
     //alert(element.getAttribute('data-id')) ;
     //clicked_transcript_id = element.getAttribute('data-id');
     clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+  
     $.ajax({
 
         url : './GO_enrichment.php', // La ressource ciblée
         type : 'POST' ,// Le type de la requête HTTP.
-        data : 'search=' + clicked_id,
+        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
+        
         method: 'post',
         cache: false,
         async: true,
@@ -954,6 +908,7 @@ function run_GO_enrichment_query(element){
             //   alert("stop");
 			$(".GOloading_"+clicked_id).fadeOut("slow");
             $(".GOtest_"+clicked_id).show("slow");
+            $(".GOparagraph_"+clicked_id).show("slow");
 		}        
     });
 
@@ -965,11 +920,15 @@ function run_profiles_query(element){
     //alert(element.getAttribute('data-id')) ;
     //clicked_transcript_id = element.getAttribute('data-id');
     clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+    
     $.ajax({
 
         url : './load_profile.php', // La ressource ciblée
         type : 'POST' ,// Le type de la requête HTTP.
-        data : 'search=' + clicked_id,
+        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
+
         method: 'post',
         cache: false,
         async: true,
