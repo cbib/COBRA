@@ -205,7 +205,9 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         //error_log($y_categories);
         //error_log('<div class="GO_'.str_replace(".", "-",$xp).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">GO enrichment</div>'); 
 
-        echo '<div class="GO_'.str_replace(".", "-",$xp).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">GO enrichment</div>';
+        echo '<div class="GO_'.str_replace(".", "-",$xp).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">'
+           . 'GO enrichment'
+           . '</div>';
     }
 
 }

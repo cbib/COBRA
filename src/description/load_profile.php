@@ -18,8 +18,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         $y_categories=array();
         $maxlogFCthreshold=$_POST['max'];
         $minlogFCthreshold=$_POST['min'];
+        $total_genes=$measurementsCollection->find(array('xp'=>$clicked_id))->count();
         
-        error_log($minlogFCthreshold);
+        //error_log($minlogFCthreshold);
+        
         $data=$measurementsCollection->aggregate(
             array(
               array('$match' => array('xp'=>$clicked_id,'$or'=>array(array('logFC'=>array('$gt'=>(float)$maxlogFCthreshold)),array('logFC'=>array('$lt'=>(float)$minlogFCthreshold))))),  
@@ -98,7 +100,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         //error_log(str_replace(".", "-",$clicked_id));
         //$y_categories = htmlspecialchars( $y_categories, ENT_QUOTES );
 
-        echo '<div class="heatmap_'.str_replace(".", "-",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
+        echo '<div class="heatmap_'.str_replace(".", "-",$clicked_id).'" data-total="'.$total_genes.'" data-total-diff="'.$counter_gene.'" data-series="'.$y_categories.'" data-x="'.$x_categories.'">HEATMAP</div>';  
     }
         
     //error_log('<div id="heatmap_'.str_replace(".", "__",$clicked_id).'" data-series="'.$y_categories.'" data-x="'.$x_categories.'"> </div>');

@@ -694,6 +694,10 @@ function show_heatmap2(element,clicked_id){
     //var clicked_id = element.getAttribute('data-id');
     //var x_array = element.getAttribute('data-x');
     var x_array=element.attr('data-x');
+    var total_diff_gene=element.attr('data-total-diff');
+    var total_gene=element.attr('data-total');
+    
+    
     var series_array = element.attr('data-series');
     //var series_array = element.getAttribute('data-series');
     //var dpi=element.getAttribute('data-dpi');
@@ -705,9 +709,34 @@ function show_heatmap2(element,clicked_id){
         chart: {
             type: 'heatmap',
             marginTop: 40,
-            marginBottom: 80,
+            marginBottom: 130,
             zoomType: 'x',
-            plotBorderWidth: 1
+            plotBorderWidth: 1,
+            events: {
+                    load: function () {
+                        var label = this.renderer.label("GO terms of the set of differentially expressed genes (n= "+total_diff_gene+", blue bars) is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
+                        .css({
+                            width: '850px',
+                            color: '#222',
+                            fontSize: '16px'
+                        })
+                        .attr({
+                            'stroke': 'silver',
+                            'stroke-width': 2,
+                            'r': 5,
+                            'padding': 10
+                        })
+                        .add();
+                
+                        label.align(Highcharts.extend(label.getBBox(), {
+                            align: 'center',
+                            x: 0, // offset
+                            verticalAlign: 'bottom',
+                            y: 5 // offset
+                        }), null, 'spacingBox');
+                
+                    }
+                }
         },
 
 
@@ -732,8 +761,10 @@ function show_heatmap2(element,clicked_id){
         colorAxis: {
             stops: [
                 [0, '#3060cf'],
-                [0.3, '#fffbbc'],
-                [0.7, '#c4463a'],
+                [0.25, '#fffbbc'],
+                [0.5, '#fffbbc'],
+                [0.75, '#fffbbc'],
+                //[0.75, '#c4463a'],
                 [1, '#c4463a']
             ],
             min: -4,
@@ -796,8 +827,12 @@ function show_GO_enrichment(element,clicked_id){
 
     $('.GO_'+clicked_id).highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            //marginTop: 40,
+            //marginBottom: 130,
+            
         },
+        
         title: {
             text: 'Enrichment for GO main terms of genes differentially expressed (and blood stages).  '
         },
