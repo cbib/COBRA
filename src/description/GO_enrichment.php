@@ -73,7 +73,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         }
         $total_diff_exp_genes=count($deg);
         $total_genes=count($total_xp_genes);
-        //error_log('A total of '.$total_diff_exp_genes.' on '.$total_genes.' genes has been found with logFC higher than '.$maxlogFCthreshold.' and lower than '.$minlogFCthreshold.'</br>');
+        error_log('A total of '.$total_diff_exp_genes.' on '.$total_genes.' genes has been found with logFC higher than '.$maxlogFCthreshold.' and lower than '.$minlogFCthreshold.'</br>');
 
 
 
@@ -174,7 +174,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 //echo $key.' appears '.$value.' times </br>';
             }
         }
-        print_r("============================================</br>");
+        error_log("============================================\n");
 
 
         $x_categories=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');

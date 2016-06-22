@@ -555,111 +555,120 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
     
-    var species="<?php echo $species; ?>"; 
-    var genes="<?php echo $gene_id[0]; ?>"; 
-    var genes_alias="<?php echo $gene_alias[0]; ?>";
-    //var xp_name=echo $xp_name[0]; ?>;
-   
-    var global_score="<?php echo $score; ?>";
+var species="<?php echo $species; ?>"; 
+var genes="<?php echo $gene_id[0]; ?>"; 
+var genes_alias="<?php echo $gene_alias[0]; ?>";
+//var xp_name=echo $xp_name[0]; ?>;
 
+var global_score="<?php echo $score; ?>";
+
+
+var clicked_transcript_id="";
+
+
+function load_expression_profiles(element){
+    alert(element.getAttribute('data-test'));
     
-    var clicked_transcript_id="";
-    //pyramid container
-    $(function () {
+}  
 
-        $('#container_pyramid').highcharts({
-            chart: {
-                type: 'pyramid',
-                marginRight: 100
-            },
-            title: {
-                text: '',
-                x: -50
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b> ({point.y:,.0f})',
-                        color: 'black',
-                        softConnector: true
-                    }
+
+
+//pyramid container
+$(function () {
+
+    $('#container_pyramid').highcharts({
+        chart: {
+            type: 'pyramid',
+            marginRight: 100
+        },
+        title: {
+            text: '',
+            x: -50
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                    color: 'black',
+                    softConnector: true
                 }
-            },
-            legend: {
-                enabled: false
-            },
-            series: [{
-                name: 'Unique users',
-                data: [
-                    ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
-                    ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
-                    ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
-                    ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
-                    ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
-                ]
-            }]
-        });
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            name: 'Unique users',
+            data: [
+                ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
+                ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
+                ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
+                ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
+                ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
+            ]
+        }]
     });
-    //pie container
-    $(function () {
-        
-        $('#container_pie').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: ''
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
-                colorByPoint: true,
-                data: [{
-                    name: 'Expression Score',
-                    
-                    y: <?php echo(json_encode($percent_exp)); ?>
-                }, {
-                    name: 'Interaction Score',
-                    
-                    y: <?php echo(json_encode($percent_int)); ?>,
-                    
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Orthology Score',
-                    y: <?php echo(json_encode($percent_ort)); ?>
-                    
-                }, {
-                    name: 'QTL Score',
-                    y: <?php echo(json_encode($percent_QTL)); ?>
-                    
-                }, {
-                    name: 'Genetic Markers Score',
-                    y: <?php echo(json_encode($percent_SNP)); ?>
-            
-                }]
+});
+//pie container
+$(function () {
+
+    $('#container_pie').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
+            colorByPoint: true,
+            data: [{
+                name: 'Expression Score',
+
+                y: <?php echo(json_encode($percent_exp)); ?>
+            }, {
+                name: 'Interaction Score',
+
+                y: <?php echo(json_encode($percent_int)); ?>,
+
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Orthology Score',
+                y: <?php echo(json_encode($percent_ort)); ?>
+
+            }, {
+                name: 'QTL Score',
+                y: <?php echo(json_encode($percent_QTL)); ?>
+
+            }, {
+                name: 'Genetic Markers Score',
+                y: <?php echo(json_encode($percent_SNP)); ?>
 
             }]
-        });
+
+        }]
     });
-    //chart container
-    $(function () {
+});
+//chart container
+$(function () {
     $('#container_chart').highcharts({
         chart: {
             type: 'bar'
@@ -703,159 +712,73 @@ new_cobra_footer();
     });
 });
     
-    $(function () {
-        var id= $('#container_profile').attr('data-id');
-        var species=$('#container_profile').attr('data-species');
-        $('#container_profile').highcharts({
-            //alert ($(this).attr('data-alias'));
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: id + ' differential expression ('+species+')' 
-            },
+$(function () {
+    var id= $('#container_profile').attr('data-id');
+    var species=$('#container_profile').attr('data-species');
+    $('#container_profile').highcharts({
+        //alert ($(this).attr('data-alias'));
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: id + ' differential expression ('+species+')' 
+        },
 //            subtitle: {
 //                text: xp_name
 //            },
-            xAxis: {
-                
-                //categories: ['samples']
-                categories: <?php echo json_encode($expression_data_array[0]); ?>
-                
-                //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-                
-                //title: {text: 'Samples'}
-            },
-            yAxis: {
-                
-                title: {
-                    text: 'Log FC'
-                }
-            
-            },
+        xAxis: {
+
+            //categories: ['samples']
+            categories: <?php echo json_encode($expression_data_array[0]); ?>
+
+            //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+
+            //title: {text: 'Samples'}
+        },
+        yAxis: {
+
+            title: {
+                text: 'Log FC'
+            }
+
+        },
 //            yAxis: {
 //                //type: 'logarithmic'
 //                title: 'Log FC'
 //            },
-            
-            series: <?php echo json_encode($expression_data_array[1]); ?>,
-            tooltip: {
-                useHTML: true,
-                formatter: function(genes) {
-                //for series 
-                //+this.series.name+ xp name
-                    var s = '';
-                    
-                    var g=genes;
-                    //window.alert(genes);
-                    
-                    var x_name=this.point.xp_name;
-                    var clean_xp_name=x_name.replace(/\\s/g, " ");
-                    
-                    //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
-                    //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
-                    s += '<ul><li style="font-size:10px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li style="font-size:10px";>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li style="font-size:10px";>Variety : '+ this.point.variety +'</li><li style="font-size:10px";>infection agent : '+ this.point.infection_agent +'</li><li style="font-size:10px";>infection type 1 : '+ this.point.first_condition +'</li><li style="font-size:10px";>infection type 2 : '+ this.point.second_condition +'</li><li style="font-size:10px";>logFC : '+ this.point.logFC +'</li></br>'
-                         '</ul>';
-                   
-                    return s;
-                }
-            }
-            //if (typeof variable === 'undefined' || variable === null) {}
-              
- 
-              //series: serie
 
-        });
+        series: <?php echo json_encode($expression_data_array[1]); ?>,
+        tooltip: {
+            useHTML: true,
+            formatter: function(genes) {
+            //for series 
+            //+this.series.name+ xp name
+                var s = '';
+
+                var g=genes;
+                //window.alert(genes);
+
+                var x_name=this.point.xp_name;
+                var clean_xp_name=x_name.replace(/\\s/g, " ");
+
+                //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
+                //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
+                s += '<ul><li style="font-size:10px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li style="font-size:10px";>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li style="font-size:10px";>Variety : '+ this.point.variety +'</li><li style="font-size:10px";>infection agent : '+ this.point.infection_agent +'</li><li style="font-size:10px";>infection type 1 : '+ this.point.first_condition +'</li><li style="font-size:10px";>infection type 2 : '+ this.point.second_condition +'</li><li style="font-size:10px";>logFC : '+ this.point.logFC +'</li></br>'
+                     '</ul>';
+
+                return s;
+            }
+        }
+        //if (typeof variable === 'undefined' || variable === null) {}
+
+
+          //series: serie
+
     });
-    //example datatable
-	$(document).ready(function() {
-		$('#example').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    //table markers
-    $(document).ready(function() {
-		$('#table_markers').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    //table qtls
-    $(document).ready(function() {
-		$('#table_qtls').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    //table samples
-    $('#samplestable').dataTable( {
+});
+//example datatable
+$(document).ready(function() {
+    $('#example').dataTable( {
         "scrollX": true,
         "jQueryUI": true,
         "pagingType": "full_numbers",
@@ -881,6 +804,92 @@ new_cobra_footer();
                         "thousands": "."
             }
     });
+});
+//table markers
+$(document).ready(function() {
+    $('#table_markers').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table qtls
+$(document).ready(function() {
+    $('#table_qtls').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table samples
+$('#samplestable').dataTable( {
+    "scrollX": true,
+    "jQueryUI": true,
+    "pagingType": "full_numbers",
+    "oLanguage": { 
+        "sProcessing":   "Processing...",
+        "sLengthMenu":   "display _MENU_ items",
+        "sZeroRecords":  "No item found",
+        "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+        "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+        "sInfoFiltered": "(filtered from _MAX_ items in total)",
+        "sInfoPostFix":  "",
+        "sSearch":       "Search: ",
+        "sUrl":          "",
+        "oPaginate": {
+            "sFirst":    "First",
+            "sPrevious": "Previous",
+            "sNext":     "Next",
+            "sLast":     "Last"
+        }
+    },
+    "language": {
+                    "decimal": ",",
+                    "thousands": "."
+        }
+});
    
 
     
@@ -957,34 +966,38 @@ new_cobra_footer();
 //				});
 //        });
 //    }
-    
-    function myFunction(element){
-        //alert(element.getAttribute('data-id')) ;
-        clicked_transcript_id = element.getAttribute('data-id');
-        
-       
-        $.ajax({
-                    
-            url : './tools/blast/blast.php', // La ressource ciblée
-
-            type : 'POST' ,// Le type de la requête HTTP.
-
-            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-            data : 'search=' + clicked_transcript_id + '&species=' + species,
 
 
-            method: 'post',
-            cache: false,
-            async: true,
-            dataType: "html",
-            success: function (data) {
-                //alert(data);
-                var jqObj = jQuery(data);
-                var par=jqObj.find("#blast_results");
+ 
 
-                $(".content_test_"+clicked_transcript_id ).empty().append(par);
 
-                //works to load results in element
+function myFunction(element){
+    //alert(element.getAttribute('data-id')) ;
+    clicked_transcript_id = element.getAttribute('data-id');
+
+
+    $.ajax({
+
+        url : './tools/blast/blast.php', // La ressource ciblée
+
+        type : 'POST' ,// Le type de la requête HTTP.
+
+        //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+        data : 'search=' + clicked_transcript_id + '&species=' + species,
+
+
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            var par=jqObj.find("#blast_results");
+
+            $(".content_test_"+clicked_transcript_id ).empty().append(par);
+
+            //works to load results in element
 //                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
 //                            search : genes,
 //
@@ -994,12 +1007,12 @@ new_cobra_footer();
 
 
 
-            //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-            //$('.content_test').empty().html(data);
-            }
-        });
-        
-    }
+        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
+        //$('.content_test').empty().html(data);
+        }
+    });
+
+}
 //    $(document).ready(function(){
 //        //loader();
 //        $('#blast_button').click(function() {
@@ -1044,7 +1057,7 @@ new_cobra_footer();
 //				});
 //        });
 //    });
-    
+
 //    $(document).ready(function() {
 //        $('#trancript_sequence_fasta').on('click button', function(event) {
 //            var $target = $(event.target),
@@ -1055,15 +1068,15 @@ new_cobra_footer();
 //        });
 //    });
 
-    $(document).on({
-        ajaxStart: function() { 
-                    //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
-                    $(".content_test_"+clicked_transcript_id).hide();
-                    $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
-                    
-                    $(".loading_"+clicked_transcript_id).show();
-                    
-        },
+$(document).on({
+    ajaxStart: function() { 
+                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
+                $(".content_test_"+clicked_transcript_id).hide();
+                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
+
+                $(".loading_"+clicked_transcript_id).show();
+
+    },
 //        ajaxStop: function() {
 //                    setTimeout(function() { 
 //                    $(".loading").fadeOut("slow");
@@ -1071,428 +1084,214 @@ new_cobra_footer();
 //                    
 //                  }, 5000);                                        
 //        }, 
-        ajaxComplete: function() {
-                    
-                    $(".loading_"+clicked_transcript_id).fadeOut("slow");
-                    $(".content_test_"+clicked_transcript_id).show("slow");
-                                                         
-        }    
-    });
+    ajaxComplete: function() {
+
+                $(".loading_"+clicked_transcript_id).fadeOut("slow");
+                $(".content_test_"+clicked_transcript_id).show("slow");
+
+    }    
+});
 
 
 
 
-    $(document).ready(function() {
-		$('#pretty_table_pp_intact').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    $(document).ready(function() {
-		$('#pretty_table_pp_biogrid').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    $(document).ready(function() {
-		$('#pretty_table_pp_string').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    $(document).ready(function() {
-		$('#pretty_table_pv_litterature').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    $(document).ready(function() {
-		$('#pretty_table_pv_hpidb').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    
-    (document).ready(function() {
-		$('#orthologs_table').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    (document).ready(function() {
-		$('#table_variants').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    /**
- * Dark theme for Highcharts JS
- * @author Torstein Honsi
- */
-
-// Load the fonts
-Highcharts.createElement('link', {
-   href: '//fonts.googleapis.com/css?family=Unica+One',
-   rel: 'stylesheet',
-   type: 'text/css'
-}, null, document.getElementsByTagName('head')[0]);
-
-Highcharts.theme = {
-   colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
-   chart: {
-      backgroundColor: {
-         linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-         stops: [
-            [0, '#2a2a2b'],
-            [1, '#3e3e40']
-         ]
-      },
-      style: {
-         fontFamily: "'Unica One', sans-serif"
-      },
-      plotBorderColor: '#606063'
-   },
-   title: {
-      style: {
-         color: '#E0E0E3',
-         textTransform: 'uppercase',
-         fontSize: '20px'
-      }
-   },
-   subtitle: {
-      style: {
-         color: '#E0E0E3',
-         textTransform: 'uppercase'
-      }
-   },
-   xAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      },
-      lineColor: '#707073',
-      minorGridLineColor: '#505053',
-      tickColor: '#707073',
-      title: {
-         style: {
-            color: '#A0A0A3'
-
-         }
-      }
-   },
-   yAxis: {
-      gridLineColor: '#707073',
-      labels: {
-         style: {
-            color: '#E0E0E3'
-         }
-      },
-      lineColor: '#707073',
-      minorGridLineColor: '#505053',
-      tickColor: '#707073',
-      tickWidth: 1,
-      title: {
-         style: {
-            color: '#A0A0A3'
-         }
-      }
-   },
-   tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-         color: '#F0F0F0'
-      }
-   },
-   plotOptions: {
-      series: {
-         dataLabels: {
-            color: '#B0B0B3'
-         },
-         marker: {
-            lineColor: '#333'
-         }
-      },
-      boxplot: {
-         fillColor: '#505053'
-      },
-      candlestick: {
-         lineColor: 'white'
-      },
-      errorbar: {
-         color: 'white'
-      }
-   },
-   legend: {
-      itemStyle: {
-         color: '#E0E0E3'
-      },
-      itemHoverStyle: {
-         color: '#FFF'
-      },
-      itemHiddenStyle: {
-         color: '#606063'
-      }
-   },
-   credits: {
-      style: {
-         color: '#666'
-      }
-   },
-   labels: {
-      style: {
-         color: '#707073'
-      }
-   },
-
-   drilldown: {
-      activeAxisLabelStyle: {
-         color: '#F0F0F3'
-      },
-      activeDataLabelStyle: {
-         color: '#F0F0F3'
-      }
-   },
-
-   navigation: {
-      buttonOptions: {
-         symbolStroke: '#DDDDDD',
-         theme: {
-            fill: '#505053'
-         }
-      }
-   },
-
-   // scroll charts
-   rangeSelector: {
-      buttonTheme: {
-         fill: '#505053',
-         stroke: '#000000',
-         style: {
-            color: '#CCC'
-         },
-         states: {
-            hover: {
-               fill: '#707073',
-               stroke: '#000000',
-               style: {
-                  color: 'white'
-               }
-            },
-            select: {
-               fill: '#000003',
-               stroke: '#000000',
-               style: {
-                  color: 'white'
-               }
+$(document).ready(function() {
+    $('#pretty_table_pp_intact').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
             }
-         }
-      },
-      inputBoxBorderColor: '#505053',
-      inputStyle: {
-         backgroundColor: '#333',
-         color: 'silver'
-      },
-      labelStyle: {
-         color: 'silver'
-      }
-   },
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+$(document).ready(function() {
+    $('#pretty_table_pp_biogrid').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+$(document).ready(function() {
+    $('#pretty_table_pp_string').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+$(document).ready(function() {
+    $('#pretty_table_pv_litterature').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+$(document).ready(function() {
+    $('#pretty_table_pv_hpidb').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
 
-   navigator: {
-      handles: {
-         backgroundColor: '#666',
-         borderColor: '#AAA'
-      },
-      outlineColor: '#CCC',
-      maskFill: 'rgba(255,255,255,0.1)',
-      series: {
-         color: '#7798BF',
-         lineColor: '#A6C7ED'
-      },
-      xAxis: {
-         gridLineColor: '#505053'
-      }
-   },
-
-   scrollbar: {
-      barBackgroundColor: '#808083',
-      barBorderColor: '#808083',
-      buttonArrowColor: '#CCC',
-      buttonBackgroundColor: '#606063',
-      buttonBorderColor: '#606063',
-      rifleColor: '#FFF',
-      trackBackgroundColor: '#404043',
-      trackBorderColor: '#404043'
-   },
-
-   // special colors for some of the
-   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-   background2: '#505053',
-   dataLabelsColor: '#B0B0B3',
-   textColor: '#C0C0C0',
-   contrastTextColor: '#F0F0F3',
-   maskColor: 'rgba(255,255,255,0.3)'
-};
-
-// Apply the theme
-Highcharts.setOptions(Highcharts.theme);
-    
+$(document).ready(function() {
+    $('#orthologs_table').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+$(document).ready(function() {
+    $('#table_variants').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});    
 </script>
 
 

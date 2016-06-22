@@ -763,11 +763,11 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
     $global_array=array($categories,$series);
     echo'<div id="expression_profile_section">
                     <h3>Expression profile</h3>
-                    <div class="panel-group" id="accordion_documents_expression">
-                        <div class="panel panel-default">
+                    <div  class="panel-group" id="accordion_documents_expression">
+                        <div  class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                    <strong>  Expression data</strong>
+                                    <strong onclick="load_expression_profiles(this)"  data-test="hello ben" >  Expression data</strong>
                                 </a>				
                             </div>
                             <div class="panel-body panel-collapse collapse" id="expression-chart"  >
@@ -986,6 +986,7 @@ function load_and_display_score_pie(){
 
 function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score_exp='null',$score_int='null',$score_ort='null',$score_QTL='null',$score_SNP='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
    echo'<div id="section_description"><B>';
+        echo'</br>';
         if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';
                 for ($i = 0; $i < $score_exp; $i++) { 
                    echo '<i class="fa fa-star" id="score_exp"></i>';
