@@ -366,9 +366,12 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
         
         echo '</dl>';
-        echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
+        //echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
+        $maxlogFCthreshold=2;
+        $minlogFCthreshold=-2;
+        $gene_significant_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>$maxlogFCthreshold)),array('logFC'=>array('$lt'=>$minlogFCthreshold)))))->count();
 
-        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+        echo '<button onclick="run_profiles_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min="'.$minlogFCthreshold.'" data-max="'.$maxlogFCthreshold.'" id="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
         echo '<center>'
@@ -382,14 +385,18 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
               </div>';
         
-        echo '<button onclick="show_GO_enrichment(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"   id="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min="'.$minlogFCthreshold.'" data-max="'.$maxlogFCthreshold.'"  id="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>
               <div class="container animated fadeInDown">
+                <p>GO terms of the set of differentially expressed genes (n = '.$gene_significant_count.', blue bars) 
+                is compared to terms of all micro array genes ('.$gene_count.', green bars). 
+                The y-axis displays the fraction relative to all GO Molecular Function terms. 
+                These terms do not show a significant enrichment (p>0.5).</p>
                 <div class="GOtest_'.str_replace(".", "-",$Measurement_FK).'"> 
                     
-                        <!--here comes the heatmap div-->
+                        <!--here comes the GO div-->
                 </div>
 
               </div>';
@@ -851,41 +858,32 @@ function show_heatmap2(element,clicked_id){
 }
 
 
-function show_GO_enrichment(element){
-    clicked_id = element.getAttribute('data-id');
+function show_GO_enrichment(element,clicked_id){
+    var x_array=element.attr('data-x');
+    var series_array = element.attr('data-series');
+    
+  
+    //alert(datas);
     //var x_array = element.getAttribute('data-x');
     //var x_array=element.attr('data-x');
     //var series_array = element.attr('data-series');
     //var series_array = element.getAttribute('data-series');
     //var dpi=element.getAttribute('data-dpi');
-    //day = new Array(series_array);
+    //datas = new Array(series_array);
 
 
-    $('.GOtest_'+clicked_id).highcharts({
+    $('.GO_'+clicked_id).highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Monthly Average Rainfall'
+            text: 'Enrichment for GO main terms of genes differentially expressed (and blood stages).  '
         },
         subtitle: {
             text: 'Source: WorldClimate.com'
         },
         xAxis: {
-            categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            ],
+            categories:  JSON.parse(x_array),
             crosshair: true
         },
         yAxis: {
@@ -908,28 +906,58 @@ function show_GO_enrichment(element){
                 borderWidth: 0
             }
         },
-        series: [{
-            name: 'Tokyo',
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-        }, {
-            name: 'New York',
-            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-        }, {
-            name: 'London',
-            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-        }, {
-            name: 'Berlin',
-            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-        }]
+        series: JSON.parse(series_array)
     });
 };
 
 
 
+
+
+
+
+
+function run_GO_enrichment_query(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    $.ajax({
+
+        url : './GO_enrichment.php', // La ressource ciblée
+        type : 'POST' ,// Le type de la requête HTTP.
+        data : 'search=' + clicked_id,
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".GOtest_"+clicked_id).hide();
+                $('.GOloading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".GOloading_"+clicked_id).show();
+		},
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            //alert(clicked_id);
+            var par=jqObj.find(".GO_"+clicked_id);
+            //alert(par.attr('data-x'));
+            //alert(par.attr('data-series'));
+            
+            
+            $(".GOtest_"+clicked_id).empty().append(par);
+            //alert("div has been append");
+            show_GO_enrichment(par,clicked_id);
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".GOloading_"+clicked_id).fadeOut("slow");
+            $(".GOtest_"+clicked_id).show("slow");
+		}        
+    });
+
+}
 
 
 
@@ -946,6 +974,13 @@ function run_profiles_query(element){
         cache: false,
         async: true,
         dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".test_"+clicked_id).hide();
+                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".loading_"+clicked_id).show();
+			},
         success: function (data) {
             //alert(data);
             var jqObj = jQuery(data);
@@ -957,37 +992,19 @@ function run_profiles_query(element){
             $(".test_"+clicked_id).empty().append(par);
             //alert("div has been append");
             show_heatmap2(par,clicked_id);
-        }
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".loading_"+clicked_id).fadeOut("slow");
+            $(".test_"+clicked_id).show("slow");
+		}
     });
 
 }
 
 
 
-$(document).on({
-    ajaxStart: function() { 
-                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
-                $(".test_"+clicked_id).hide();
-                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
 
-                $(".loading_"+clicked_id).show();
-
-    },
-//        ajaxStop: function() {
-//                    setTimeout(function() { 
-//                    $(".loading").fadeOut("slow");
-//                    $(".content_test").show("slow");
-//                    
-//                  }, 5000);                                        
-//        }, 
-    ajaxComplete: function() {
-
-                $(".loading_"+clicked_id).fadeOut("slow");
-                $(".test_"+clicked_id).show("slow");
-                
-
-    }    
-});
 
 
 
