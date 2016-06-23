@@ -165,3 +165,5 @@ for a_sample in samples_with_results:
 if n_op>0:
 	res=measurements_to_insert.execute()
 	logger.info("Inserted %s documents",res)
+rem=measurements_col.remove({'$or':[{'gene':"NA"},{'gene':""}]})
+logger.info("Removed %s documents",rem)

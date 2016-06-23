@@ -48,16 +48,21 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	//echo $xpID;
 	
 	
-	$cursor = $samplesCollection->find(array('name'=>$xpName), array('species'=>1,'assay.type'=>1,'src_pub'=>1,'assay.design'=>1,'deposited.sample_description_url'=>1,'deposited.repository'=>1,'experimental_results'=>1,'_id'=>0));
+	$cursor = $samplesCollection->find(array('name'=>$xpName), array('comments'=>1,'species'=>1,'assay.type'=>1,'src_pub'=>1,'assay.design'=>1,'deposited.sample_description_url'=>1,'deposited.repository'=>1,'experimental_results'=>1,'_id'=>0));
 
 	foreach($cursor as $line) {
  		$species=$line['species'];
  		$source_pub=$line['src_pub'];
  		$assay_info=$line['assay'];
  		$deposit_info=$line['deposited'];
+        $comment=$line['comments'];
  		$experimental_results=$line['experimental_results'];
  		
  	}
+//    foreach ($comment as $value) {
+//        echo $value['content'];
+//    
+//    }
  	##http://www.ncbi.nlm.nih.gov/pubmed/19821986
     #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
  	##EXPERIMENT DETAILS
@@ -65,11 +70,13 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Experiment details </h1>';
 		echo '</div>';
-	
+	echo'<div id="xp-details">';
 	echo '<hr>';
 	echo '<dl class="dl-horizontal">
  	 	<dt>name</dt>
   		<dd>'.$xpName.'</dd>
+        <dt>Abstract</dt>
+  		<dd>'.$comment[0]['content'].'</dd>
   		<dt>species</dt>
   		<dd>'.$species.'</dd>
   		<dt>type of assay</dt>
@@ -85,6 +92,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   		
 	echo '</dl>';
 	echo'</div>';
+    echo'</div>';
  	
  	$cursor = $speciesCollection->findOne(array(
  														'$or'=>array(
@@ -100,8 +108,9 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Species details </h1>';
 		echo '</div>';
-
+    echo'<div id="species-details">';
  	echo '<hr>';
+    
  	echo '<dl class="dl-horizontal">';
 	foreach ($cursor as $key=>$value){
 		//echo $value.'</br>';
@@ -139,6 +148,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
   	}
 	echo'</dl>';
 	echo'</div>';
+    echo'</div>';
 	// "top_level":"Eukaryotes",
 // 		"kingdom":	"Plantae",
 // 		"unranked": ["Angiosperms","Monocots","Commelinids"],
@@ -151,25 +161,29 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  	##SPECIES DETAILS
  
 
-	
+	foreach($experimental_results as $details) {
+$file_counter++;
+}
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Dataset details </h1>';
 		echo '</div>';
- 
+    echo'<div id="dataset-details">';
  	echo '<dl class="dl-horizontal">
- 	<dt>design</dt>
-  		
  	 	<dt>number of samples files</dt>
+        
+        <dd>'.count($experimental_results).'</dd>
+        <dt>analysis type</dt>
   		<dd>'.$assay_info['type'].'</dd>
   		<dt>design</dt>
   		<dd>'.$assay_info['design'].'</dd>
-  		<dt>Dataset repository</dt>';
-  		echo '<dd><a href="'.$deposit_info['repository'].'">'.$deposit_info['repository'].'</a></dd>
+  		<dt>Dataset repository</dt>
+        <dd><a href="'.$deposit_info['repository'].'">'.$deposit_info['repository'].'</a></dd>
   		<dt>Sample description</dt>
   		<dd>'.$deposit_info['sample_description_url'].'</dd>
 	</dl>';
 	echo'</div>';
+    echo '</div>';
 	
 //	echo'<div class="container">';
 //	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
