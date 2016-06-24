@@ -66,7 +66,7 @@ for a_sample in samples_with_results:
 
                 
 
-		logger.info("conditions %s",infection_agent)
+                #logger.info("conditions %s",infection_agent)
 		# get mapping to apply 
 		parser_config=experimental_results.get('xls_parsing',{})
 		
@@ -76,7 +76,7 @@ for a_sample in samples_with_results:
 		#logger.info("species = %s",this_genome['full_name'])
 		id_col=parser_config['id_type']
 		this_mapping=get_mapping(id_col,this_genome['preferred_id'],this_genome['full_name'])
-		logger.info("mapping length %d",len(this_mapping))
+		#logger.info("mapping length %d",len(this_mapping))
 		
 		#if this_genome['full_name']=="Prunus domestica":	
 		#logger.info("10005 = %s",this_mapping.keys())
@@ -124,7 +124,7 @@ for a_sample in samples_with_results:
 					
 			
                                             
-                                        logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
+                                        #logger.info("Tgid = %s name %s logFC %s",tgt_id,name,measure.get("logFC",None))
 					
 					if measure.get("logFC",None)!=None and measure.get("logFC",None)!="NA":
                                             this_doc['logFC']=float(measure.get("logFC",None))

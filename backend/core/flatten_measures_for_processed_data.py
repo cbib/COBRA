@@ -68,14 +68,14 @@ for a_sample in samples_with_results:
 		id_col=parser_config['id_type']
 		
 		for measure in experimental_results['values']:
-                    logger.info("new measure %s",measure[id_col])
+                    #logger.info("new measure %s",measure[id_col])
 
                     
                     if experimental_results['type']=="contrast":
                         
 
                         if measure[id_col].find(",") != -1:
-                            print "found a comma, preparing to split"
+                            #print "found a comma, preparing to split"
                             split_list=measure[id_col].split(',')
                             for id in split_list:
                                 print id
@@ -117,6 +117,7 @@ for a_sample in samples_with_results:
                             this_doc['gene']=measure[id_col]
                             this_doc['name']=name
                             this_doc['type']="contrast"
+                            this_doc['assay_type']=assay['type']
                             this_doc['infection_agent']=infection_agent
                             this_doc['first_condition']=first_condition_type
                             this_doc['second_condition']=second_condition_type
@@ -160,3 +161,5 @@ for a_sample in samples_with_results:
 if n_op>0:
 	res=measurements_to_insert.execute()
 	logger.info("Inserted %s documents",res)
+rem=measurements_col.remove({'$or':[{'gene':"NA"},{'gene':""}]})
+logger.info("Removed %s documents",rem)

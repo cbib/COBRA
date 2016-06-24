@@ -31,6 +31,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	$samplesCollection = new MongoCollection($db, "samples");
 	$speciesCollection = new Mongocollection($db, "species");
 	$mappingsCollection = new Mongocollection($db, "mappings");
+    $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 	$measurementsCollection = new Mongocollection($db, "measurements");
 
 
@@ -46,6 +47,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	}
 	
 	//echo $xpID;
+
 	
 	
 	$cursor = $samplesCollection->find(array('name'=>$xpName), array('comments'=>1,'species'=>1,'assay.type'=>1,'src_pub'=>1,'assay.design'=>1,'deposited.sample_description_url'=>1,'deposited.repository'=>1,'experimental_results'=>1,'_id'=>0));
@@ -59,10 +61,9 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  		$experimental_results=$line['experimental_results'];
  		
  	}
-//    foreach ($comment as $value) {
-//        echo $value['content'];
-//    
-//    }
+//    $total_genes_for_given_species=$full_mappingsCollection->distinct("mapping_file.Gene ID",array('species'=>$species));
+//    echo count($total_genes_for_given_species);
+
  	##http://www.ncbi.nlm.nih.gov/pubmed/19821986
     #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
  	##EXPERIMENT DETAILS
@@ -161,9 +162,6 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  	##SPECIES DETAILS
  
 
-	foreach($experimental_results as $details) {
-$file_counter++;
-}
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Dataset details </h1>';
@@ -319,7 +317,7 @@ $file_counter++;
 
               </div>';
         echo '<div id="shift_line"></div>';
-        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5  class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>
@@ -807,7 +805,7 @@ function show_GO_enrichment(element,clicked_id){
         },
         
         title: {
-            text: 'Enrichment for GO main terms of genes differentially expressed (and blood stages).  '
+            text: 'Enrichment for GO main terms of genes differentially expressed.  '
         },
         subtitle: {
             text: 'Source: WorldClimate.com'
@@ -881,12 +879,14 @@ function run_GO_enrichment_query(element){
     clicked_id = element.getAttribute('data-id');
     logFCmin = element.getAttribute('data-min');
     logFCmax = element.getAttribute('data-max');
+    species = element.getAttribute('data-species');
+
   
     $.ajax({
 
         url : './GO_enrichment.php', // La ressource ciblée
         type : 'POST' ,// Le type de la requête HTTP.
-        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
+        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
         
         method: 'post',
         cache: false,

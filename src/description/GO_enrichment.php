@@ -9,6 +9,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
 if ((isset($_POST['search'])) && ($_POST['search']!='')){
     if  ((isset($_POST['min'])) && (isset($_POST['max']))){
+        $species=$_POST['species'];
 
         $xp=str_replace("-", ".",$_POST['search']);
         $maxlogFCthreshold=$_POST['max'];
@@ -41,7 +42,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         $total_xp_genes=array();
         //$total_genes=$measurementsCollection->find(array('xp'=>$xp))->count();
 
-
+        $total_genes_for_given_species=$full_mappingsCollection->distinct("mapping_file.Gene ID",array('species'=>$species));
+        error_log(count($total_genes_for_given_species));
+        error_log($xp);
+        $total_species_genes=count($total_genes_for_given_species);
 
 
 
@@ -60,17 +64,21 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
               array('$project' => array('gene'=>1,'logFC'=>1,'_id'=>0)),
             )
         );
-
+        //error_log(var_dump($data['result']));
         foreach ($data['result'] as $result) {
-            if (isset($result['gene'])&& $result['gene']!='' && $result['gene']!='-'){
+            if (isset($result['gene'])&& $result['gene']!="" && $result['gene']!="-"){
                 array_push($total_xp_genes, $result['gene']);
-                echo (float)$result['logFC'].'</br>';
+                //error_log($result['gene']);
+                //error_log($result['logFC']);
                 if (isset($result['logFC']) && ((float)$result['logFC'] > $maxlogFCthreshold || (float)$result['logFC']< $minlogFCthreshold)){            
 
                     array_push($deg, $result['gene']);
                 }
             }
         }
+        //error_log(json_encode($deg));
+        
+        
         $total_diff_exp_genes=count($deg);
         $total_genes=count($total_xp_genes);
         error_log('A total of '.$total_diff_exp_genes.' on '.$total_genes.' genes has been found with logFC higher than '.$maxlogFCthreshold.' and lower than '.$minlogFCthreshold.'</br>');
@@ -78,54 +86,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
 
-    /*####################### CODE TOCHECK   
-    //    $cursor_global=$full_mappingsCollection->aggregate(array(
-    //            array('$match' => array('type'=>'full_table')),  
-    //            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-    //            array('$unwind'=>'$mapping_file'),
-    //            array('$match' => array('mapping_file.Gene ID'=> array('$in' =>$total_xp_genes))),
-    //            array('$project' => array("mapping_file.Gene ontology ID"=>1,'mapping_file.Gene ID'=>1,'_id'=>0))
-    //        ));
-    //    $go_global_id_list=array();
-    //    if (count($cursor_global['result'])>0){
-    //        //$timestart=microtime(true);
-    //        foreach ($cursor_global['result'] as $result) {
-    //
-    //            if (isset($result['mapping_file']['Gene ontology ID']) && $result['mapping_file']['Gene ontology ID']!='' && $result['mapping_file']['Gene ontology ID']!='NA'){
-    //
-    //
-    //                $gene_id=$result['mapping_file']['Gene ID'];
-    //                $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
-    //                //echo $gene_id.'</br>';
-    //                foreach ($go_id_evidence as $duo) {
-    //                    $duo_id=explode("-", $duo); 
-    //
-    //                    //echo $duo_id[0].'</br>';
-    //                    if (array_key_exists($duo_id[0], $go_global_id_list) && $duo_id[0]!='NA') {
-    //                        //echo 'key already exists';
-    //                        $tmp=$go_global_id_list[$duo_id[0]];
-    //                        //echo $tmp;
-    //                        $go_global_id_list[$duo_id[0]] = $tmp+1;
-    //                        //echo $go_id_list[$duo_id[0]];
-    //                    }
-    //                    else{
-    //                        //echo 'new key';
-    //                        //array_push(go_id_list,$duo_id[0]=>0);
-    //                        $go_global_id_list[$duo_id[0]] = 0;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    foreach ($go_global_id_list as $key => $value) {
-    //        $percentage=($value/$total_genes)*100;
-    //        if ($percentage >= 5){
-    //            echo $percentage.'% of genes ('.$value.')shows GO term with id: '.$key.'</br>';
-    //            //echo $key.' appears '.$value.' times </br>';
-    //        }
-    //    }
-    //    print_r("============================================</br>");
-    //#################################################*/
+    
 
 
 
@@ -133,7 +94,11 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 array('$match' => array('type'=>'full_table')),  
                 array('$project' => array('mapping_file'=>1,'_id'=>0)),
                 array('$unwind'=>'$mapping_file'),
-                array('$match' => array('mapping_file.Gene ID'=> array('$in' =>$deg))),
+                array('$match' => array('$or'=> array(
+                    array('mapping_file.Gene ID'=> array('$in' =>$deg)),
+                    array('mapping_file.Gene ID 2'=> array('$in' =>$deg))
+                      ))),
+    
                 array('$project' => array("mapping_file.Gene ontology ID"=>1,'mapping_file.Gene ID'=>1,'_id'=>0))
             ));
         $go_id_list=array();
@@ -150,7 +115,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     foreach ($go_id_evidence as $duo) {
                         $duo_id=explode("-", $duo); 
 
-                        //echo $duo_id[0].'</br>';
+                        //error_log($duo_id[0].'</br>');
                         if (array_key_exists($duo_id[0], $go_id_list) && $duo_id[0]!='NA') {
                             //echo 'key already exists';
                             $tmp=$go_id_list[$duo_id[0]];
@@ -167,15 +132,100 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 }
             }
         }
+        
+        error_log("============================================\n");
         foreach ($go_id_list as $key => $value) {
-            $percentage=($value/$total_diff_exp_genes)*100;
-            if ($percentage >= 5){
-                echo $percentage.'% of genes ('.$value.')shows GO term with id: '.$key.'</br>';
-                //echo $key.' appears '.$value.' times </br>';
+            //error_log($key);
+            //$percentage=($value/$total_diff_exp_genes)*100;
+            //if ($percentage >= 3){
+            
+            $search="GO:0005515";
+            
+            
+            $cursor_GO=$full_mappingsCollection->aggregate(array(
+            array('$match' => array('type'=>'full_table','species'=>'Cucumis melo')),  
+            array('$project' => array('mapping_file'=>1,'_id'=>0)),
+            array('$unwind'=>'$mapping_file'),
+            array('$match' => array('$or'=> array(
+                array('mapping_file.Gene ontology ID'=>new MongoRegex("/$key/xi"))))),
+            array('$project' => array("mapping_file.Gene ID"=>1,'_id'=>0))
+            ));
+            
+            //echo 'GO:0005515 term ID was found in '.count($cursor_GO['result']);
+            if ($value> 10){
+                error_log($value.'/'.$total_diff_exp_genes.' genes shows GO term with id: '.$key.'</br>');
+                error_log(count($cursor_GO['result']).'/'.$total_species_genes.' genes shows GO term with id: '.$key.'</br>');
+                        //echo $key.' appears '.$value.' times </br>';
             }
-        }
+                //}
+            }
         error_log("============================================\n");
 
+        
+        
+        //GO:0005515
+        
+        
+        
+//        ####################### CODE TOCHECK   
+//        $cursor_global=$full_mappingsCollection->aggregate(array(
+//                array('$match' => array('type'=>'full_table')),  
+//                array('$project' => array('mapping_file'=>1,'_id'=>0)),
+//                array('$unwind'=>'$mapping_file'),
+//                array('$match' => array('$or'=> array(
+//                    array('mapping_file.Gene ID'=> array('$in' =>$total_xp_genes)),
+//                    array('mapping_file.Gene ID 2'=> array('$in' =>$total_xp_genes))
+//                      ))),                array('$project' => array("mapping_file.Gene ontology ID"=>1,'mapping_file.Gene ID'=>1,'_id'=>0))
+//            ));
+//        $go_global_id_list=array();
+//        if (count($cursor_global['result'])>0){
+//            //$timestart=microtime(true);
+//            foreach ($cursor_global['result'] as $result) {
+//    
+//                if (isset($result['mapping_file']['Gene ontology ID']) && $result['mapping_file']['Gene ontology ID']!='' && $result['mapping_file']['Gene ontology ID']!='NA'){
+//    
+//    
+//                    $gene_id=$result['mapping_file']['Gene ID'];
+//                    $go_id_evidence = explode("_", $result['mapping_file']['Gene ontology ID']);
+//                    //echo $gene_id.'</br>';
+//                    foreach ($go_id_evidence as $duo) {
+//                        $duo_id=explode("-", $duo); 
+//    
+//                        //echo $duo_id[0].'</br>';
+//                        if (array_key_exists($duo_id[0], $go_global_id_list) && $duo_id[0]!='NA') {
+//                            //echo 'key already exists';
+//                            $tmp=$go_global_id_list[$duo_id[0]];
+//                            //echo $tmp;
+//                            $go_global_id_list[$duo_id[0]] = $tmp+1;
+//                            //echo $go_id_list[$duo_id[0]];
+//                        }
+//                        else{
+//                            //echo 'new key';
+//                            //array_push(go_id_list,$duo_id[0]=>0);
+//                            $go_global_id_list[$duo_id[0]] = 0;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        foreach ($go_global_id_list as $key => $value) {
+//            $percentage=($value/$total_genes)*100;
+//            if ($percentage >= 3){
+//                error_log($percentage.'% of total genes ('.$value.')shows GO term with id: '.$key.'</br>');
+//                //echo $key.' appears '.$value.' times </br>';
+//            }
+//        }
+//        print_r("============================================</br>");
+    #################################################
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         $x_categories=array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
         $y_categories=array(

@@ -1031,8 +1031,7 @@ prunus_samples={
 	"species":"Prunus domestica", # any abbrev name, key or full name,P. domestica 
 	"strain":"JoJo",
 	"name":"Transcriptomics of infection of P. domestica Jojo by PPV",
-	"xp_page":{
-	"content":"""
+	"comments":[{"content":"""
 RNAseq from P.domestica cv Jojo infected and non-infected with PPV; 
 ====
 
@@ -1061,7 +1060,7 @@ doi:10.1371/journal.pone.0100477.s006
 [journal.pone.0100477.s007.xls](#journal.pone.0100477.s007.xls)
 List of genes from PRGdb matched by more than one ‘Jojo’ unigene. Reference numbers of the matched genes are shown in the NCBI Match column. The raw number of reads found on each sample is shown in columns Jojo-W1, Jojo-W2, Jojo-W+PPV and Jojo-M+PPV. Fold changes between infected and non-infected samples is given in column FC. Column labeled Description expands on the details of each gene.
 doi:10.1371/journal.pone.0100477.s007. Not included.
-	"""},
+	"""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":2,
@@ -1131,8 +1130,7 @@ barley_samples={
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"barley-BYDV virus RNAseq results",
-	"xp_page":{
-	"content":""""""},
+	"comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
@@ -1515,8 +1513,7 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd2",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
@@ -1546,8 +1543,7 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd3",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
@@ -1577,8 +1573,7 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd4",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
@@ -1608,14 +1603,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym7",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":5,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1640,15 +1634,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym16HB",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":6,
 		"id_type":"transcript_id" 
-
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1673,14 +1665,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym17",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":7,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1704,14 +1695,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym1",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":8,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id"  
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1735,14 +1725,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym18",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":9,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1766,14 +1755,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym8_rym9",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":10,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id"
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1798,14 +1786,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym13",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":11,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1830,14 +1817,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym3",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":12,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1862,14 +1848,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym14HB",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":13,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
@@ -1893,14 +1878,13 @@ barley_samples={
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym15",
 	"state":"processed",
-        "xp_page":{
-	"content":""""""},
+        "comments":[{"content":""""""}],
 	"assay":{"type":"RNA-Seq"},
 	"xls_parsing":{
 		"n_rows_to_skip":1,
 		"column_keys":['idx',"transcript_id","GO_BP_ID","GO_BP_TERM","GO_MF_ID","GO_MF_TERM","GO_CC_ID","GO_CC_TERM","Est","popseq_chr","popseq_cM","morex_contig_length","gene_start","gene_end","gene_id","confidence","annotation","inter_pro","blast2GO","ETC_1_normalized","ETC_2_normalized","ETC_3_normalized","Sync_1_normalized","Sync_2_normalized","Sync_3_normalized","ETC_1_raw","ETC_2_raw","ETC_3_raw","Sync_1_raw","Sync_2_raw","Sync_3_raw","baseMean","logFC","lfcSE","stat","pvalue","padj"],
 		"sheet_index":14,
-		"id_type":"transcript_id" #**TODO** check ID type for prunus 
+		"id_type":"transcript_id" 
 	},
 	"experimental_results":[{
 		"name":".xls",
