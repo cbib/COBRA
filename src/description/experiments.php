@@ -886,7 +886,7 @@ function run_GO_enrichment_query(element){
 
         url : './GO_enrichment.php', // La ressource ciblée
         type : 'POST' ,// Le type de la requête HTTP.
-        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
+        data : 'xp_id=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
         
         method: 'post',
         cache: false,

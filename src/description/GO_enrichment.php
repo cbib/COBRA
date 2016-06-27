@@ -6,17 +6,19 @@ require('../session/control-session.php');
 new_cobra_header("../..");
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments Details","section_experiments","../..");
 
-
-if ((isset($_POST['search'])) && ($_POST['search']!='')){
+unlink("/data/hypergeom_R_results/result.txt");
+if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
     if  ((isset($_POST['min'])) && (isset($_POST['max']))){
+        
         $species=$_POST['species'];
 
-        $xp=str_replace("-", ".",$_POST['search']);
+        $xp=str_replace("-", ".",$_POST['xp_id']);
         $maxlogFCthreshold=$_POST['max'];
         $minlogFCthreshold=$_POST['min'];
         $db=mongoConnector();
         $full_mappingsCollection = new Mongocollection($db, "full_mappings");
         $measurementsCollection = new Mongocollection($db, "measurements");
+        $GOCollection = new Mongocollection($db, "gene_ontology");
 
 
         $genes=array();
@@ -28,7 +30,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         //$data_xp=$measurementsCollection->find(array('xp'=>'56e595dae4fe0615a0086582.experimental_results.0'),array('xp'=>1));
 
         //$global_gene_count=$measurementsCollection->find(array('xp'=>array('$in'=>$data_xp)))->count();
-        $global_gene_count=$measurementsCollection->find(array('xp'=>$xp))->count();
+        //$global_gene_count=$measurementsCollection->find(array('xp'=>$xp))->count();
 
 
         //error_log('global gene number: '.$global_gene_count.'</br>');
@@ -43,8 +45,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         //$total_genes=$measurementsCollection->find(array('xp'=>$xp))->count();
 
         $total_genes_for_given_species=$full_mappingsCollection->distinct("mapping_file.Gene ID",array('species'=>$species));
-        error_log(count($total_genes_for_given_species));
-        error_log($xp);
+        //error_log(count($total_genes_for_given_species));
+        //error_log($xp);
         $total_species_genes=count($total_genes_for_given_species);
 
 
@@ -91,7 +93,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
 
         $cursor=$full_mappingsCollection->aggregate(array(
-                array('$match' => array('type'=>'full_table')),  
+                array('$match' => array('type'=>'full_table','species'=>$species)),  
                 array('$project' => array('mapping_file'=>1,'_id'=>0)),
                 array('$unwind'=>'$mapping_file'),
                 array('$match' => array('$or'=> array(
@@ -133,32 +135,59 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
             }
         }
         
-        error_log("============================================\n");
+        error_log("=================SEARCH IDENTIFIED GO TERMS IN ALL GENES===========================");
         foreach ($go_id_list as $key => $value) {
             //error_log($key);
             //$percentage=($value/$total_diff_exp_genes)*100;
             //if ($percentage >= 3){
             
-            $search="GO:0005515";
+            
             
             
             $cursor_GO=$full_mappingsCollection->aggregate(array(
-            array('$match' => array('type'=>'full_table','species'=>'Cucumis melo')),  
+            array('$match' => array('type'=>'full_table','species'=>$species)),  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
-            array('$match' => array('$or'=> array(
-                array('mapping_file.Gene ontology ID'=>new MongoRegex("/$key/xi"))))),
+            array('$match' => array('mapping_file.Gene ontology ID'=>new MongoRegex("/$key/xi"))),
             array('$project' => array("mapping_file.Gene ID"=>1,'_id'=>0))
             ));
-            
+            $global_value=count($cursor_GO['result']);
             //echo 'GO:0005515 term ID was found in '.count($cursor_GO['result']);
             if ($value> 10){
                 error_log($value.'/'.$total_diff_exp_genes.' genes shows GO term with id: '.$key.'</br>');
                 error_log(count($cursor_GO['result']).'/'.$total_species_genes.' genes shows GO term with id: '.$key.'</br>');
                         //echo $key.' appears '.$value.' times </br>';
             }
-                //}
+
+
+            //$GO_name=$GOCollection->find(array('GO_collections.id'=>$key),array('GO_collections.$'=>1,'_id'=>0));
+            $GO_cursor=$GOCollection->aggregate(array(
+            array('$project' => array('GO_collections'=>1,'_id'=>0)),
+            array('$unwind'=>'$GO_collections'),
+            array('$match' => array('GO_collections.id'=>$key)),
+            array('$project' => array('GO_collections.name'=>1,'_id'=>0))
+            ));
+            
+            
+            
+            foreach ($GO_cursor['result'] as $value_name) {
+               $GO_name=$value_name['GO_collections']['name'];    
             }
+            $GO_name=str_replace(" ", "_",$GO_name);
+                
+            
+            $result_file = "/data/hypergeom_R_results/result.txt";
+            
+            $rscript="/data/hypergeom_R_results/my_rscript.R";
+            $output = shell_exec("Rscript $rscript $value $global_value $total_species_genes $total_diff_exp_genes $key $GO_name>> $result_file");
+            //$output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
+
+
+                //}
+        }
+        $result_file_sorted = "/data/hypergeom_R_results/result_sorted.txt";
+        $output = shell_exec("sort $result_file > $result_file_sorted");
+
         error_log("============================================\n");
 
         

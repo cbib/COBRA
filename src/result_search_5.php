@@ -711,7 +711,7 @@ $(function () {
         }]
     });
 });
-    
+//expression profile container   
 $(function () {
     var id= $('#container_profile').attr('data-id');
     var species=$('#container_profile').attr('data-species');
@@ -891,87 +891,8 @@ $('#samplestable').dataTable( {
         }
 });
    
-
-    
-//	$(document).ready(function() {
-//        $("#blast_button").click(function(){
-//                $.ajax({
-//                    url : './tools/blast/blast.php', // La ressource ciblée
-//                    type : 'POST' ,// Le type de la requête HTTP.
-//                    data : 'search=' + genes + '&sequence=' + sequence,
-//                    dataType : 'html',
-//                    success:function(myoutput){                   
-//                        $(":hidden").val(myoutput.srno);
-//                        if(myoutput.flag=="1")
-//                        {                                       
-//                            window.location="chat.php";
-//                        }
-//                        else
-//                        {
-//                            $("#msg").html("Invalid Login");
-//                        }
-//                    }
-//                });
-//          });
-//    });
-        
-    //var button_clicked = document.getElementById("blast_button");
-//    var button_clicked=document.getElementById('blast_button').onclick();
-    
-    //alert(clicked_transcript_id);
-
-	
-    
-    //$(this).attr('trancript_sequence_fasta').children();
-//    function loader(){
-//        $('#blast_button').click(function() {
-//                //alert(clicked_transcript_id);
-//                //var seq= $(this).getAttribute("data-sequence");
-//                var target = $(this).attr('data-id');
-//                alert(target);
-//				$.ajax({
-//                    
-//					 url : './tools/blast/blast.php', // La ressource ciblée
-//
-//                    type : 'POST' ,// Le type de la requête HTTP.
-//
-//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
-//
-//                   
-//                    method: 'post',
-//					cache: false,
-//					async: true,
-//					dataType: "html",
-//					success: function (data) {
-//						//alert(data);
-//                        var jqObj = jQuery(data);
-//                        var par=jqObj.find("#blast_results");
-//                        
-//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
-//                        
-//                        //works to load results in element
-////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-////                            search : genes,
-////
-////                            sequence : sequence
-////                            
-////                        } );
-//                        
-//                        
-//                        
-//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-//						//$('.content_test').empty().html(data);
-//					}
-//				});
-//        });
-//    }
-
-
- 
-
-
-function myFunction(element){
+//AJAX function for Blast jobs 
+function runBlast(element){
     //alert(element.getAttribute('data-id')) ;
     clicked_transcript_id = element.getAttribute('data-id');
 
@@ -990,6 +911,16 @@ function myFunction(element){
         cache: false,
         async: true,
         dataType: "html",
+        
+        
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".content_test_"+clicked_transcript_id).hide();
+                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
+
+                $(".loading_"+clicked_transcript_id).show();
+			},
+        
         success: function (data) {
             //alert(data);
             var jqObj = jQuery(data);
@@ -1009,88 +940,40 @@ function myFunction(element){
 
         //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
         //$('.content_test').empty().html(data);
-        }
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".loading_"+clicked_transcript_id).fadeOut("slow");
+            $(".content_test_"+clicked_transcript_id).show("slow");
+		}
     });
 
 }
-//    $(document).ready(function(){
-//        //loader();
-//        $('#blast_button').click(function() {
-//                //alert(clicked_transcript_id);
-//                //var seq= $(this).getAttribute("data-sequence");
-//                var target = $(this).attr('data-id');
-//                //alert(target);
-//				$.ajax({
-//                    
-//					 url : './tools/blast/blast.php', // La ressource ciblée
+
+
+//$(document).on({
+//    ajaxStart: function() { 
+//                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
+//                $(".content_test_"+clicked_transcript_id).hide();
+//                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
 //
-//                    type : 'POST' ,// Le type de la requête HTTP.
+//                $(".loading_"+clicked_transcript_id).show();
 //
-//                    //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-//                    data : 'search=' + clicked_transcript_id + '&species=' + species,
+//    },
+////        ajaxStop: function() {
+////                    setTimeout(function() { 
+////                    $(".loading").fadeOut("slow");
+////                    $(".content_test").show("slow");
+////                    
+////                  }, 5000);                                        
+////        }, 
+//    ajaxComplete: function() {
 //
-//                   
-//                    method: 'post',
-//					cache: false,
-//					async: true,
-//					dataType: "html",
-//					success: function (data) {
-//						//alert(data);
-//                        var jqObj = jQuery(data);
-//                        var par=jqObj.find("#blast_results");
-//                        
-//                        $(".content_test_"+clicked_transcript_id ).empty().append(par);
-//                        
-//                        //works to load results in element
-////                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-////                            search : genes,
-////
-////                            sequence : sequence
-////                            
-////                        } );
-//                        
-//                        
-//                        
-//                        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-//						//$('.content_test').empty().html(data);
-//					}
-//				});
-//        });
-//    });
-
-//    $(document).ready(function() {
-//        $('#trancript_sequence_fasta').on('click button', function(event) {
-//            var $target = $(event.target),
-//                itemId = $target.data('id');
-//                alert(itemId);
+//                $(".loading_"+clicked_transcript_id).fadeOut("slow");
+//                $(".content_test_"+clicked_transcript_id).show("slow");
 //
-//            //do something with itemId
-//        });
-//    });
-
-$(document).on({
-    ajaxStart: function() { 
-                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
-                $(".content_test_"+clicked_transcript_id).hide();
-                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
-
-                $(".loading_"+clicked_transcript_id).show();
-
-    },
-//        ajaxStop: function() {
-//                    setTimeout(function() { 
-//                    $(".loading").fadeOut("slow");
-//                    $(".content_test").show("slow");
-//                    
-//                  }, 5000);                                        
-//        }, 
-    ajaxComplete: function() {
-
-                $(".loading_"+clicked_transcript_id).fadeOut("slow");
-                $(".content_test_"+clicked_transcript_id).show("slow");
-
-    }    
-});
+//    }    
+//});
 
 
 
