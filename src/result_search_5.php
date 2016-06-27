@@ -419,6 +419,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             // left side div
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
+                    $timestart= start_time_capture();
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     
                     //echo $score;
@@ -494,42 +495,18 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             
             
                     
-                    $timestart=microtime(true);
-                    echo'<div id="interaction_section">
-                        <h3>Interaction</h3>';
-                    load_and_display_interactions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
-                    echo'</div>';
-                    $timeend=microtime(true);
-                    $time=$timeend-$timestart;
-                    //Afficher le temps d'éxecution
-                    $page_load_time = number_format($time, 3);
-                    echo "Debut du script: ".date("H:i:s", $timestart);
-                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-                    echo "<br>Script for interactions executed in " . $page_load_time . " sec";
-                    
-                    //$timestart=microtime(true);
-                    
-                    //load_and_display_orthologs($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
 
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for orthologs executed in " . $page_load_time . " sec";
+                    //load_and_display_interactions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
                     
-                    //$timestart=microtime(true);
+            
                     
+                    load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcript_id,$species);
+                    
+                    
+                    load_and_display_orthologs_with_ajax($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
+                    stop_time_capture($timestart);
                     //load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis);
 
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for sequences executed in " . $page_load_time . " sec";
                     
             echo'</div>';
 
@@ -566,22 +543,233 @@ new_cobra_footer();
 
 <script type="text/javascript" class="init">
     
+    
+//Variables
 var species="<?php echo $species; ?>"; 
 var genes="<?php echo $gene_id[0]; ?>"; 
 var genes_alias="<?php echo $gene_alias[0]; ?>";
 //var xp_name=echo $xp_name[0]; ?>;
 var global_score="<?php echo $score; ?>";
 var clicked_transcript_id="";
+
+
 var profile_already_open="false";
 var genetic_marker_already_open="false";
 var genetic_qtl_already_open="false";
+var pv_already_open="false";
+var pp_already_open="false";
+var orthologs_already_open="false";
+
+
+
+//AJAX function for plant/plant interaction 
+function load_orthologs(element){
+    species=element.getAttribute('data-species');
+    plaza_id=element.getAttribute('data-id');
+    
+ 
+    
+    
+    if (orthologs_already_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
+
+            url : './functions/orthologs_main_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'plaza_id=' + plaza_id + '&species=' + species,
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".ortholog_area").hide();
+                    $('.ortloading_'+plaza_id).html("<img src='../images/ajax-loader.gif' />");
+
+                    $(".ortloading_"+plaza_id).show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find("#orthologs_table").length){
+                   par=jqObj.find("#orthologs_table"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".ortholog_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".ortloading_"+plaza_id).fadeOut("slow");
+                $(".ortholog_area").show("slow");
+            }
+
+
+
+        });
+        orthologs_already_open="true";
+        }
+}  
 
 
 
 
 
+//AJAX function for plant/virus interaction 
+function load_pv_interaction(element){
+    species=element.getAttribute('data-species');
+    gene_id=element.getAttribute('data-id');
+    gene_ids=element.getAttribute('data-gene');
+    transcript_ids=element.getAttribute('data-transcript');
+    protein_ids=element.getAttribute('data-protein');
+    mode=element.getAttribute('data-mode');
+    
+    if (pv_already_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
 
-//AJAX function for expression profiles 
+            url : './functions/interactions_main_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'gene_ids=' + gene_ids + '&transcript_ids=' + transcript_ids +'&protein_ids=' + protein_ids +'&species=' + species+'&mode=' + mode,
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".pv_interaction_area").hide();
+                    $('.PVloading_'+gene_id).html("<img src='../images/ajax-loader.gif' />");
+
+                    $(".PVloading_"+gene_id).show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find(".PV").length){
+                   
+                   par=jqObj.find(".PV"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".pv_interaction_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".PVloading_"+gene_id).fadeOut("slow");
+                $(".pv_interaction_area").show("slow");
+            }
+
+
+
+        });
+        pv_already_open="true";
+        }
+}  
+
+
+//AJAX function for plant/plant interaction 
+function load_pp_interaction(element){
+    species=element.getAttribute('data-species');
+    gene_id=element.getAttribute('data-id');
+    
+    gene_ids=element.getAttribute('data-gene');
+    transcript_ids=element.getAttribute('data-transcript');
+    protein_ids=element.getAttribute('data-protein');
+
+    mode=element.getAttribute('data-mode');
+    
+    
+    if (pp_already_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
+
+            url : './functions/interactions_main_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'gene_ids=' + gene_ids + '&transcript_ids=' + transcript_ids +'&protein_ids=' + protein_ids +'&species=' + species+'&mode=' + mode,
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".pp_interaction_area").hide();
+                    $('.PPloading_'+gene_id).html("<img src='../images/ajax-loader.gif' />");
+
+                    $(".PPloading_"+gene_id).show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find(".PP").length){
+                   par=jqObj.find(".PP"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".pp_interaction_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".PPloading_"+gene_id).fadeOut("slow");
+                $(".pp_interaction_area").show("slow");
+            }
+
+
+
+        });
+        pp_already_open="true";
+        }
+}  
+
+
+//AJAX function for genetic markers 
 function load_genetic_markers(element){
     species=element.getAttribute('data-species');
     gene_id=element.getAttribute('data-id');
@@ -651,7 +839,7 @@ function load_genetic_markers(element){
         }
 }  
 
-
+//AJAX function for QTLs 
 function load_QTLs(element){
     species=element.getAttribute('data-species');
     gene_id=element.getAttribute('data-id');
@@ -722,13 +910,6 @@ function load_QTLs(element){
         }
 }  
 
-
-
-
-
-
-
-
 //expression profile container  
 function show_profiles(element){
 
@@ -796,8 +977,7 @@ function show_profiles(element){
 
                 //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
                 //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
-                s += '<ul><li style="font-size:10px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li style="font-size:10px";>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li style="font-size:10px";>Variety : '+ this.point.variety +'</li><li style="font-size:10px";>infection agent : '+ this.point.infection_agent +'</li><li style="font-size:10px";>infection type 1 : '+ this.point.first_condition +'</li><li style="font-size:10px";>infection type 2 : '+ this.point.second_condition +'</li><li style="font-size:10px";>logFC : '+ this.point.logFC +'</li></br>'
-                     '</ul>';
+                s += '<ul><li style="font-size:10px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li style="font-size:10px";>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li style="font-size:10px";>Variety : '+ this.point.variety +'</li><li style="font-size:10px";>infection agent : '+ this.point.infection_agent +'</li><li style="font-size:10px";>infection type 1 : '+ this.point.first_condition +'</li><li style="font-size:10px";>infection type 2 : '+ this.point.second_condition +'</li><li style="font-size:10px";>logFC : '+ this.point.logFC +'</li></br></ul>';
 
                 return s;
             }

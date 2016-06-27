@@ -45,49 +45,48 @@ echo '<br/>';
 echo '<div id="data_description">';
 
 
-$experiment_cursor=find_all_xp_name($samplesCollection);
+//$experiment_cursor=find_all_xp_name($samplesCollection);
 
-$experiment_cursor2=get_xp_name_by_species($samplesCollection);
-
-$experiment_cursor3=find_xp_name_group_by_species($samplesCollection);
-
-
+//$experiment_cursor2=get_xp_name_by_species($samplesCollection);
+$ts=start_time_capture();
+$experiment_cursor=find_xp_name_group_by_species($samplesCollection);
 
 echo'<div class="panel-group" id="accordion_documents">
-                <div class="panel panel-default">
-                    <div class="panel-heading">  
-                            <a class="accordion-toggle collapsed" href="#Experiments_lists" data-parent="#accordion_documents" data-toggle="collapse">
-                                Experiments
-                            </a>				
-                    </div>
-                    <div class="panel-body panel-collapse collapse" id="Experiments_lists">
-                        
-                            
-                           ';
-                            foreach ($experiment_cursor3['result'] as $value) {
-                                foreach ($value['_id'] as $species) {
-                                    $experiment_table_string="";
-                                    $experiment_table_string.='<ul>';
-                                    foreach ($value['xps'] as $xpName) {
+        <div class="panel panel-default">
+            <div class="panel-heading">  
+                    <a class="accordion-toggle collapsed" href="#Experiments_lists" data-parent="#accordion_documents" data-toggle="collapse">
+                        Experiments
+                    </a>				
+            </div>
+            <div class="panel-body panel-collapse collapse" id="Experiments_lists">
 
-                                        #echo $xpName;
-                                        $experiment_table_string.='<li value='.$xpName['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName['name']).'>'.$xpName['name'].'</a> ('.$xpName['type'].')</li>';
 
-                                    }
-                                    $experiment_table_string.='</ul>';
-                                    add_accordion_panel($experiment_table_string, $species.' Experiments',str_replace(' ','_',$species));
-                                    echo'<br/>';
+                   ';
+                    foreach ($experiment_cursor['result'] as $value) {
+                        foreach ($value['_id'] as $species) {
+                            $experiment_table_string="";
+                            $experiment_table_string.='<ul>';
+                            foreach ($value['xps'] as $xpName) {
 
-                                }
+                                #echo $xpName;
+                                $experiment_table_string.='<li value='.$xpName['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName['name']).'>'.$xpName['name'].'</a> ('.$xpName['type'].')</li>';
+
                             }
-                            echo'
-                        
-                    </div>
-                    
-                </div>
-            </div>    
-     <br/>';
-     echo '<br/>';
+                            $experiment_table_string.='</ul>';
+                            add_accordion_panel($experiment_table_string, $species.' Experiments',str_replace(' ','_',$species));
+                            echo'<br/>';
+
+                        }
+                    }
+                    echo'
+
+            </div>
+
+        </div>
+    </div>    
+<br/>
+<br/>';
+stop_time_capture($ts);
 
 
 
@@ -97,8 +96,7 @@ echo'<div class="panel-group" id="accordion_documents">
 
 
 
-
-//foreach ($experiment_cursor2['result'] as $doc){
+/*//foreach ($experiment_cursor2['result'] as $doc){
 //    #print $doc['specie'];
 //        foreach ($doc['_id'] as $specie){
 //            #print $specie;
@@ -110,7 +108,7 @@ echo'<div class="panel-group" id="accordion_documents">
 //}
 
 
-$experiment_table_string="";
+//$experiment_table_string="";
 
 ###DISPLAY EXPERIMENT LIST
 
@@ -128,7 +126,7 @@ $experiment_table_string="";
 //$experiment_table_string.='</ul>';
 //add_accordion_panel($experiment_table_string, "Experiments","Experiments_lists");
 //
-//echo'<br/>';
+//echo'<br/>';*/
 
 /*##MAPPING LIST
 
@@ -142,6 +140,7 @@ $table_string.='<h2> Mapping lists</h2> <div class="container"><ul>';
  //makeDatatableFromFind($cursor);
 $table_string.='</div>';
 */
+$tsm=start_time_capture();
 $mapping_table_string="";
 ###MAPPING REQUEST
 
@@ -185,6 +184,12 @@ $mapping_table_string.='</tbody></table>';
 
 add_accordion_panel($mapping_table_string, "Mappings", "mapping_table");
 echo'<br/>';
+
+stop_time_capture($tsm);
+
+
+
+
 
 $species_table_string="";
 
@@ -318,6 +323,20 @@ $virus_table_string.='</tr>';
 $virus_table_string.='</tbody></table>';
 add_accordion_panel($virus_table_string, "Viruses", "virus_table");
 echo'<br/>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $best_scored_genes=find_top_ranking_S_genes($full_mappingsCollection);
 //$best_scored_genes->sort(array('_id.score'=>1));
