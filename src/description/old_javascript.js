@@ -633,10 +633,99 @@ function show_heatmap(element){
 //    });
    
    
+//$(document).on({
+//    ajaxStart: function() { 
+//                //$(".content_test_"+clicked_transcript_id).fadeOut("slow");
+//                $(".content_test_"+clicked_transcript_id).hide();
+//                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
+//
+//                $(".loading_"+clicked_transcript_id).show();
+//
+//    },
+////        ajaxStop: function() {
+////                    setTimeout(function() { 
+////                    $(".loading").fadeOut("slow");
+////                    $(".content_test").show("slow");
+////                    
+////                  }, 5000);                                        
+////        }, 
+//    ajaxComplete: function() {
+//
+//                $(".loading_"+clicked_transcript_id).fadeOut("slow");
+//                $(".content_test_"+clicked_transcript_id).show("slow");
+//
+//    }    
+//});
    
    
-   
-   
+ function show_profiles(element){
+
+    var id= element.attr('data-id');
+    var species=element.attr('data-species');
+    var categories=element.attr('data-categories');
+    var series=element.attr('data-series');
+    series_array = new Array(series);
+    $('#container_profile').highcharts({
+        //alert ($(this).attr('data-alias'));
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: id + ' differential expression ('+species+')' 
+        },
+//            subtitle: {
+//                text: xp_name
+//            },
+        xAxis: {
+
+            categories: JSON.parse(categories),
+            //categories: <?php echo json_encode($expression_data_array[0]); ?>
+
+            //categories: ['Apples', 'Oranges', 'Oranges', 'Oranges', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+
+            //title: {text: 'Samples'}
+        },
+        yAxis: {
+
+            title: {
+                text: 'Log FC'
+            }
+
+        },
+//            yAxis: {
+//                //type: 'logarithmic'
+//                title: 'Log FC'
+//            },
+        series: JSON.parse(series_array),
+        //series: <?php echo json_encode($expression_data_array[1]); ?>,
+        tooltip: {
+            useHTML: true,
+            formatter: function(genes) {
+            //for series 
+            //+this.series.name+ xp name
+                var s = '';
+
+                var g=genes;
+                //window.alert(genes);
+
+                var x_name=this.point.xp_name;
+                var clean_xp_name=x_name.replace(/\\s/g, " ");
+
+                //echo './description/experiments.php?xp='.str_replace(' ','\s',$xp_name[0]);
+                //http://127.0.0.1/src/description/experiments.php?xp=Transcriptionnal\sresponse\sto\spotyviruses\sinfection\sin\sArabidopsis\sPart\s3
+                s += '<ul><li style="font-size:10px";><a target="_blank" href="./description/experiments.php?xp='+ x_name +'">'+clean_xp_name+'</a></li><li style="font-size:10px";>'+'profile on Day '+ this.point.dpi +' post inoculation</li><li style="font-size:10px";>Variety : '+ this.point.variety +'</li><li style="font-size:10px";>infection agent : '+ this.point.infection_agent +'</li><li style="font-size:10px";>infection type 1 : '+ this.point.first_condition +'</li><li style="font-size:10px";>infection type 2 : '+ this.point.second_condition +'</li><li style="font-size:10px";>logFC : '+ this.point.logFC +'</li></br>'
+                     '</ul>';
+
+                return s;
+            }
+        }
+        //if (typeof variable === 'undefined' || variable === null) {}
+
+
+          //series: serie
+
+    });
+};  
 
 //            dataLabels: {
 //                //enabled: true,

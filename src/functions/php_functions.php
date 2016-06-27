@@ -687,6 +687,39 @@ function display_expression_profile_old(MongoCollection $measurementsCollection,
       . '</div>'; 
 }
 
+function load_and_display_expression_profile_with_ajax(array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias,$species='null'){
+//    $gene_id_json = htmlspecialchars( json_encode($gene_id), ENT_QUOTES );
+//    $transcript_id_json = htmlspecialchars( json_encode($transcript_id), ENT_QUOTES );
+//    $protein_id_json = htmlspecialchars( json_encode($protein_id), ENT_QUOTES );
+//    $gene_id_bis_json = htmlspecialchars( json_encode($gene_id_bis), ENT_QUOTES );
+//    $gene_alias_json = htmlspecialchars( json_encode($gene_alias), ENT_QUOTES );
+    //echo $gene_id_json;
+    echo'<div id="expression_profile_section">
+    <h3>Expression profile</h3>
+    <div  class="panel-group" id="accordion_documents_expression">
+        <div  class="panel panel-default">
+            <div class="panel-heading" onclick="load_expression_profiles(this)"  data-id="'.$gene_id[0].'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'" data-transcript="'.htmlspecialchars( json_encode($transcript_id), ENT_QUOTES ).'" data-protein="'.htmlspecialchars( json_encode($protein_id), ENT_QUOTES ).'" data-genebis="'.htmlspecialchars( json_encode($gene_id_bis), ENT_QUOTES ).'" data-species="'.$species.'" data-alias="'.htmlspecialchars( json_encode($gene_alias), ENT_QUOTES ).'">
+                <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
+                    <strong>  
+                        Expression data
+                    </strong>
+                </a>				
+            </div>
+            <center>
+                <div class="loading_'.$gene_id[0].'" style="display: none"></div>
+            </center>
+            <div class="panel-body panel-collapse collapse" id="expression-chart">
+                <div class="profile"> 
+
+                    <!--here comes the GO div-->
+                </div>
+            </div>
+        </div>
+    </div>'; 
+    echo'<div id="shift_line"></div>'                
+    . '</div>';
+}
+
 function load_and_display_expression_profile(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias){
     $series=array();
     $categories=array();
@@ -767,7 +800,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
                         <div  class="panel panel-default">
                             <div class="panel-heading">
                                 <a class="accordion-toggle collapsed" href="#expression-chart" data-parent="#accordion_documents_expression" data-toggle="collapse">
-                                    <strong onclick="load_expression_profiles(this)"  data-test="hello ben" >  Expression data</strong>
+                                    <strong onclick="load_expression_profiles(this)"  data-id="'.$gene_id[0].'" >  Expression data</strong>
                                 </a>				
                             </div>
                             <div class="panel-body panel-collapse collapse" id="expression-chart"  >
@@ -1143,6 +1176,61 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
 }
 
 
+function load_and_display_variations_result_with_ajax(array $gene_id,$species='null',$gene_start=0,$gene_end=0,$scaffold=0){
+    
+    echo'<div id="variation_section">
+                <h3>Variation and polymorphism</h3>';
+
+                    echo '<div id="shift_line"></div>
+                    
+
+                    <div class="panel-group" id="accordion_documents_mark_'.$gene_id[0].'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" onclick="load_genetic_markers(this)" data-mode="GM" data-end="'.$gene_end.'" data-scaffold="'.$scaffold.'" data-species="'.$species.'" data-start="'.$gene_start.'" data-id="'.$gene_id[0].'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'">
+
+                                    <a class="accordion-toggle collapsed" href="#mark-table_'.$gene_id[0].'" data-parent="#accordion_documents_mark_'.$gene_id[0].'" data-toggle="collapse">
+                                            <strong>Genetic markers</strong>
+                                    </a>				
+
+                            </div>
+                            <center>
+                                <div class="GMloading_'.$gene_id[0].'" style="display: none"></div>
+                            </center>
+                            <div class="panel-body panel-collapse collapse" id="mark-table_'.$gene_id[0].'">
+                                <div class="genetic_markers"> 
+
+                                <!--here comes the Genetic marker table div-->
+                                </div>';
+                       echo'</div>
+
+                        </div>
+                    </div>
+                    <div id="shift_line"></div>';
+                            
+              echo' <div class="panel-group" id="accordion_documents_qtl_'.$gene_id[0].'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" onclick="load_QTLs(this)"  data-mode="QTL" data-id="'.$gene_id[0].'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'">
+
+                                    <a class="accordion-toggle collapsed" href="#qtl-table_'.$gene_id[0].'" data-parent="#accordion_documents_qtl_'.$gene_id[0].'" data-toggle="collapse">
+                                            <strong>QTLs</strong>
+                                    </a>				
+
+                            </div>
+                            <center>
+                                <div class="QTLloading_'.$gene_id[0].'" style="display: none"></div>
+                            </center>
+                            <div class="panel-body panel-collapse collapse" id="qtl-table_'.$gene_id[0].'">
+                                <div class="qtls"> 
+
+                                <!--here comes the QTL table div-->
+                                </div>';
+                       echo'</div>
+
+                        </div>
+                    </div>
+                    <div id="shift_line"></div>
+    </div>';
+}
 
 
 function load_and_display_variations_result(MongoCollection $genetic_markers_collection,MongoCollection $qtl_collection,MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null',$gene_start=0,$gene_end=0,$scaffold=0){
@@ -1430,6 +1518,10 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                         </div>
                     </div>
                     <div id="shift_line"></div>
+                    
+
+
+
                     <div class="panel-group" id="accordion_documents_qtl_'.$gene_id[0].'">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -1443,138 +1535,117 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                                 if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0 ){
 
                                             
-                                                if ($species === "Cucumis melo"){
-                                                    echo'<table class="table" id="table_qtls">  
-                                                    <thead>
-                                                    <tr>';
-                                                    //echo "<th>gene ID</th>";
-                                                        echo "<th>QTL ID</th>";
-                                                        echo "<th>Map ID</th>";
-                                                        echo "<th>Start</th>";
-                                                        echo "<th>End</th>";
-                                                        echo "<th>Marker 1</th>"; 
-                                                        echo "<th>Marker 2</th>";
-                                                        echo'
-                                                    </tr>
-                                                    </thead>
-
-                                                    <tbody>';
-                                                    $marker_list=array();
-                                                        foreach ($genetic_markers_result['result'] as $value) {
-                                                                foreach($value as $data){
-
-                                                                        $marker_id=$data['Marker ID']; 
-                                                                        if (!in_array($marker_id, $marker_list)){
-                                                                            $genetic_qtls_result=$qtl_collection->aggregate(array(  
-                                                                                array('$project' => array('mapping_file'=>1,'_id'=>0)),
-                                                                                array('$unwind'=>'$mapping_file'),
-                                                                                array('$match' => array('$or'=> array(
-                                                                                                                //array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
-                                                                                                                array('mapping_file.Marker ID'=>$marker_id),
-                                                                                                                //array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
-                                                                                                                array('mapping_file.Marker ID 2'=>$marker_id)
-                                                                                                                )
-                                                                                                        )
-                                                                                     ),
-                                                                                array('$project'=>  array('mapping_file.QTL ID'=> 1, 'mapping_file.Map ID'=>1,'mapping_file.Marker ID'=>1,'mapping_file.Marker ID 2'=>1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'_id'=> 0))
-
-                                                                            ));
-                                                                            foreach ($genetic_qtls_result['result'] as $value_qtl) {
-                                                                                foreach($value_qtl as $data_qtl){
-                                                                                    echo "<tr>";
-                                                                                    //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                                                                    echo '<td>'.$data['QTL ID'].'</td>';
-                                                                                    //echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
-                                                                                    echo '<td>'.$data_qtl['Map ID'].'</td>';
-                                                                                    echo '<td>'.$data_qtl['Start'].'</td>';
-                                                                                    echo '<td>'.$data_qtl['End'].'</td>';
-                                                                                    echo '<td>'.$data_qtl['Marker ID'].'</td>';
-                                                                                    echo '<td>'.$data_qtl['Marker ID 2'].'</td>';
-                                                                                    //echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$href_marker.'/'.$marker_id.'">'.$marker_id.'</a></td>';
-
-
-                                                                                    echo "</tr>";
-                                                                                }
-                                                                            }
-                                                                            array_push($marker_list, $marker_id);
-                                                                        }
-
-
-                                                                }   
-
-                                                        }
-                                                        echo'</tbody>
-
-                                                            </table>';
-                                                }
-                                                else{
-                                                    echo'<table class="table" id="table_qtls">  
+                                    if ($species === "Cucumis melo"){
+                                        echo'<table class="table" id="table_qtls">  
                                                 <thead>
                                                 <tr>';
-                                                //echo "<th>gene ID</th>";
-                                                    echo "<th>QTL ID</th>";
-                                                    echo "<th>Trait Name</th>";
-                                                    echo "<th>Trait Alias</th>";
-                                                    echo "<th>Study</th>";
-                                                    echo "<th>Species</th>"; 
-                                                    echo "<th>Marker</th>";
-                                                    echo'
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>';
-                                                $marker_list=array();
-                                                    foreach ($genetic_markers_result['result'] as $value) {
-                                                            foreach($value as $data){
-
-                                                                
-                                                                    
-                                                                    $href_marker=$data['HREF_markers'];
-                                                                    $marker_id=$data['Marker ID'];
-
-                                                                    if (!in_array($marker_id, $marker_list)){
-                                                                        $genetic_qtls_result=$qtl_collection->aggregate(array(  
-                                                                            array('$project' => array('mapping_file'=>1,'_id'=>0)),
-                                                                            array('$unwind'=>'$mapping_file'),
-                                                                            array('$match' => array('$or'=> array(
-                                                                                                            //array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
-                                                                                                            array('mapping_file.Colocalizing marker'=>$marker_id),
-                                                                                                            //array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
-                                                                                                            array('mapping_file.Marker ID'=>$marker_id)
-                                                                                                            )
-                                                                                                    )
-                                                                                 ),
-                                                                            array('$project'=>  array('mapping_file.QTL ID'=> 1,'mapping_file.Trait Name'=> 1,'mapping_file.Species'=> 1,'mapping_file.HREF_QTL'=> 1, 'mapping_file.Trait Alias'=> 1,'mapping_file.Study'=>1,'_id'=> 0))
-
-                                                                        ));
-                                                                        foreach ($genetic_qtls_result['result'] as $value_qtl) {
-                                                                            foreach($value_qtl as $data_qtl){
-                                                                                echo "<tr>";
-                                                                                //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
-                                                                                //echo '<td>'.$data['Gene ID'].'</td>';
-                                                                                echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
-                                                                                echo '<td>'.$data_qtl['Trait Name'].'</td>';
-                                                                                echo '<td>'.$data_qtl['Trait Alias'].'</td>';
-                                                                                echo '<td>'.$data_qtl['Study'].'</td>';
-                                                                                echo '<td>'.$data_qtl['Species'].'</td>';
-                                                                                echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$href_marker.'/'.$marker_id.'">'.$marker_id.'</a></td>';
+                                        //echo "<th>gene ID</th>";
+                                        echo "<th>QTL ID</th>";
+                                        echo "<th>Map ID</th>";
+                                        echo "<th>Start</th>";
+                                        echo "<th>End</th>";
+                                        echo "<th>Marker 1</th>"; 
+                                        echo "<th>Marker 2</th>";
+                                        echo'   </tr></thead><tbody>';
+                                        $marker_list=array();
+                                        foreach ($genetic_markers_result['result'] as $value) {
+                                            foreach($value as $data){
+                                                $marker_id=$data['Marker ID']; 
+                                                if (!in_array($marker_id, $marker_list)){
+                                                    $genetic_qtls_result=$qtl_collection->aggregate(array(  
+                                                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                                                        array('$unwind'=>'$mapping_file'),
+                                                        array('$match' => array('$or'=> array(
+                                                                    //array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
+                                                                    array('mapping_file.Marker ID'=>$marker_id),
+                                                                    //array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
+                                                                    array('mapping_file.Marker ID 2'=>$marker_id)
+                                                                )
+                                                            )
+                                                        ),
+                                                        array('$project'=>  array('mapping_file.QTL ID'=> 1, 'mapping_file.Map ID'=>1,'mapping_file.Marker ID'=>1,'mapping_file.Marker ID 2'=>1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'_id'=> 0))
+                                                    ));
+                                                    foreach ($genetic_qtls_result['result'] as $value_qtl) {
+                                                        foreach($value_qtl as $data_qtl){
+                                                            echo "<tr>";
+                                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                            echo '<td>'.$data['QTL ID'].'</td>';
+                                                            //echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
+                                                            echo '<td>'.$data_qtl['Map ID'].'</td>';
+                                                            echo '<td>'.$data_qtl['Start'].'</td>';
+                                                            echo '<td>'.$data_qtl['End'].'</td>';
+                                                            echo '<td>'.$data_qtl['Marker ID'].'</td>';
+                                                            echo '<td>'.$data_qtl['Marker ID 2'].'</td>';
+                                                            //echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$href_marker.'/'.$marker_id.'">'.$marker_id.'</a></td>';
 
 
-                                                                                echo "</tr>";
-                                                                            }
-                                                                        }
-                                                                        array_push($marker_list, $marker_id);
-                                                                    }
-                                                                
-                                                            }   
-
+                                                            echo "</tr>";
+                                                        }
                                                     }
-                                                    echo'</tbody>
-
-                                                        </table>';
+                                                    array_push($marker_list, $marker_id);
                                                 }
-                                                
-                                        
+                                            }   
+                                        }
+                                        echo'</tbody></table>';
+                                    }
+                                    else{
+                                        echo'<table class="table" id="table_qtls"><thead><tr>';
+                                        //echo "<th>gene ID</th>";
+                                        echo "<th>QTL ID</th>";
+                                        echo "<th>Trait Name</th>";
+                                        echo "<th>Trait Alias</th>";
+                                        echo "<th>Study</th>";
+                                        echo "<th>Species</th>"; 
+                                        echo "<th>Marker</th>";
+                                        echo'</tr></thead><tbody>';
+                                        $marker_list=array();
+                                        foreach ($genetic_markers_result['result'] as $value) {
+                                            foreach($value as $data){
+
+
+
+                                                $href_marker=$data['HREF_markers'];
+                                                $marker_id=$data['Marker ID'];
+
+                                                if (!in_array($marker_id, $marker_list)){
+                                                    $genetic_qtls_result=$qtl_collection->aggregate(array(  
+                                                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                                                        array('$unwind'=>'$mapping_file'),
+                                                        array('$match' => array('$or'=> array(
+                                                                                        //array('mapping_file.Colocalizing marker'=>new MongoRegex("/^$marker_id/xi")),
+                                                                                        array('mapping_file.Colocalizing marker'=>$marker_id),
+                                                                                        //array('mapping_file.Marker ID'=>new MongoRegex("/^$marker_id/xi"))
+                                                                                        array('mapping_file.Marker ID'=>$marker_id)
+                                                                                        )
+                                                                                )
+                                                             ),
+                                                        array('$project'=>  array('mapping_file.QTL ID'=> 1,'mapping_file.Trait Name'=> 1,'mapping_file.Species'=> 1,'mapping_file.HREF_QTL'=> 1, 'mapping_file.Trait Alias'=> 1,'mapping_file.Study'=>1,'_id'=> 0))
+
+                                                    ));
+                                                    foreach ($genetic_qtls_result['result'] as $value_qtl) {
+                                                        foreach($value_qtl as $data_qtl){
+                                                            echo "<tr>";
+                                                            //echo '<td><a class="nowrap" target = "_blank" href="https://services.cbib.u-bordeaux2.fr/cobra/src/result_search_5.php?organism='.$species.'&search='.$value['Gene ID'].'">'.$value['Gene ID'].'</a></td>';
+                                                            //echo '<td>'.$data['Gene ID'].'</td>';
+                                                            echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$data_qtl['HREF_QTL'].'/'.$data_qtl['QTL ID'].'">'.$data_qtl['QTL ID'].'</a></td>';
+                                                            echo '<td>'.$data_qtl['Trait Name'].'</td>';
+                                                            echo '<td>'.$data_qtl['Trait Alias'].'</td>';
+                                                            echo '<td>'.$data_qtl['Study'].'</td>';
+                                                            echo '<td>'.$data_qtl['Species'].'</td>';
+                                                            echo '<td><a target = "_blank" href="http://www.rosaceae.org/node/'.$href_marker.'/'.$marker_id.'">'.$marker_id.'</a></td>';
+
+
+                                                            echo "</tr>";
+                                                        }
+                                                    }
+                                                    array_push($marker_list, $marker_id);
+                                                }
+
+                                            }   
+
+                                        }
+                                        echo'</tbody></table>';
+                                    }                                                       
                                 }
                                 else{
                                     echo '<p> No results found</p>';
@@ -2227,52 +2298,52 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
                             
                         echo'</div>';
 
-                    echo'
-                    </div></div></div>';
+               echo'</div>'
+             . '</div>'
+         . '</div>';
+               
     }
     $result2=get_litterature_plant_virus_interactor($gene_id,$interactionsCollection,$species); 
     $hits_number_litterature= count($result2['result']);
     if ($hits_number_litterature>0){
-        echo'
-                <div class="panel-group" id="accordion_documents_litterature">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+echo   '<div class="panel-group" id="accordion_documents_litterature">
+            <div class="panel panel-default">
+                <div class="panel-heading">
 
-                            <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents_litterature" data-toggle="collapse">
-                                <strong> Plant Virus Interaction (litterature)</strong> ('.$hits_number_litterature.')
-                            </a>				
+                    <a class="accordion-toggle collapsed" href="#litterature" data-parent="#accordion_documents_litterature" data-toggle="collapse">
+                        <strong> Plant Virus Interaction (litterature)</strong> ('.$hits_number_litterature.')
+                    </a>				
 
-                        </div>
-                        <div class="panel-body panel-collapse collapse" id="litterature">';
+                </div>
+                <div class="panel-body panel-collapse collapse" id="litterature">';
 
-                            echo'
-                            <div class="pv_interaction">';
+                    echo'
+                    <div class="pv_interaction">';
 
-                                $headers=array('Virus_symbol','Method','Reference','Virus','Host');
-                                $values=array();
-                                foreach ($result2['result'] as $value) {
-                                    foreach ($value as $data) {
-                                        
-                                        
-                                       
-                                       
-                                       array_push($values, $data['Virus_symbol']); 
-                                       array_push($values, $data['method']);
-                                       array_push($values, $data['Reference']);
-                                       array_push($values, $data['virus']);
-                                       array_push($values, $data['species']);
+                        $headers=array('Virus_symbol','Method','Reference','Virus','Host');
+                        $values=array();
+                        foreach ($result2['result'] as $value) {
+                            foreach ($value as $data) {
 
 
-                                    }
 
-                                }
-                                pretty_table($headers, $values, "pv_litterature");
-                            echo'</div>';
 
-                        echo'
-                        </div>
-                    </div>
-                </div>';
+                               array_push($values, $data['Virus_symbol']); 
+                               array_push($values, $data['method']);
+                               array_push($values, $data['Reference']);
+                               array_push($values, $data['virus']);
+                               array_push($values, $data['species']);
+
+
+                            }
+
+                        }
+                        pretty_table($headers, $values, "pv_litterature");
+               echo'</div>';
+
+           echo'</div>
+            </div>
+        </div>';
     
     }
     
