@@ -220,7 +220,40 @@ require '../session/control-session.php';
     //            </div>
     //        </div>
     //    </div>      
-    display_statistics();
+    //display_statistics();
+    
+     echo'<div id="stats_section">
+                <h3>STATISTICS</h3>
+                    <div class="panel-group" id="accordion_documents">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" onclick="load_statistics(this)" >
+
+                                    <a class="accordion-toggle collapsed" href="#stat-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                            <strong>Some statistics</strong>
+                                    </a>				
+
+                            </div>
+                            <center>
+                                <div class="statloading" style="display: none"></div>
+                            </center>
+                            <div class="panel-body panel-collapse collapse" id="stat-table">';
+
+        
+        
+        
+        
+                                        echo'<div class="stat_area"> 
+
+                                            <!--here comes the statistics  accordion div-->
+                                        </div>';
+                        echo'
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="shift_line"></div>
+                </div>
+        ';
         
     
     echo'<br/>';
@@ -316,15 +349,74 @@ require '../session/control-session.php';
 #$cursor = $speciesCollection->find(array(),array('_id'=>1,'full_name'=>1));
 #<div class="container">
 #	<div class="col-xs-6">*/
-
-
-
 ?>
-<?php
+<script type="text/javascript" class="init">
+    
+    
+//Variables
+var stats_already_open="false";
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+function load_statistics(){
+
+    
+ 
+    
+    
+    if (stats_already_open==="true"){
+       //alert("already open");
+       //open="false";
+    }
+    else{
+        $.ajax({
+
+            url : '../functions/statistics_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'plaza_id=blabla', 
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".stat_area").hide();
+                    $('.statloading').html("<img src='../../images/ajax-loader.gif' />");
+
+                    $(".statloading").show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find(".stats-panel").length){
+                   par=jqObj.find(".stats-panel"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".stat_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".statloading").fadeOut("slow");
+                $(".stat_area").show("slow");
+            }
+
+
+
+        });
+        stats_already_open="true";
+    }
+}  
+</script>

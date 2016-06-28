@@ -67,7 +67,7 @@ echo'<div id="expression_profile">
 
                 }
 
-                echo'<div id="shift_line"></div>'
+                echo'<div class="shift_line"></div>'
                 . '</div></body>
                 </html>';
 

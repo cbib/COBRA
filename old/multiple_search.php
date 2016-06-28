@@ -38,7 +38,7 @@ $listID = str_replace('\r\n','<br>',$listID);
 //echo $listID;
 $id_details= explode("\r\n", $listID);
 make_species_list(find_species_list($speciesCollection),"..");
-echo '<div id="shift_line"></div>';
+echo '<div class="shift_line"></div>';
 for ($c=0;$c<count($id_details);$c++){
     
     
@@ -213,7 +213,7 @@ echo   '<div id="summary">';
                     }
                     $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
                     array_push($series, $sample);
-                    echo'<div id="shift_line"></div>'                
+                    echo'<div class="shift_line"></div>'                
               . '</div>';  
                 //end div expression profile
                 

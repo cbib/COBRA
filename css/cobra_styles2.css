@@ -77,7 +77,7 @@ table.dataTable tbody tr:hover {
      float: left;
      border: 1px solid #DDD; 
 }
-#shift_line{
+.shift_line{
     display: block;
     clear: both;
     //height: 20px;

@@ -38,7 +38,7 @@ $listID = str_replace('\r\n','<br>',$listID);
 //echo $listID;
 $id_details= explode("\r\n", $listID);
 make_species_list(find_species_list($speciesCollection),"..");
-echo '<div id="shift_line"></div>';
+echo '<div class="shift_line"></div>';
 for ($c=0;$c<count($id_details);$c++){
 //	$textID=$listID
 //?speciesID=&q=SGN-U603893
@@ -930,7 +930,7 @@ for ($c=0;$c<count($id_details);$c++){
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                    <div class="shift_line"></div>
                 </div>
                 <!-- END SECTION ORTHOLOG-->';
                       //$protein="Q39255";   

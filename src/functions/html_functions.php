@@ -303,7 +303,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                	</section>
 
                 <!-- Main content -->
-                <div id="shift_line"></div>
+                <div class="shift_line"></div>
                 <section class="container" id="'.$section_id.'">';
     }
     else{
@@ -341,7 +341,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
             </section>
 
             <!-- Main content -->
-            <div id="shift_line"></div>
+            <div class="shift_line"></div>
             <section class="container" id="'.$section_id.'">';
     }
                   //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');

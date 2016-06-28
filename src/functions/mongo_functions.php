@@ -103,7 +103,7 @@ function make_orthologs_page($gene_list_attributes,$species='null'){
                                 </div>
                             </div>';    
                         
-                        echo '<div id="shift_line"></div>';
+                        echo '<div class="shift_line"></div>';
 
                     }
                     

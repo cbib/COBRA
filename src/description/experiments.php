@@ -235,7 +235,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 		$material=$details['material'];
         
         echo'<div id="sample-details">';
-        echo '<div id="shift_line"></div>';
+        echo '<div class="shift_line"></div>';
 		
         echo '<dl class="dl-horizontal">
                 <dt>type of contrast</dt>
@@ -316,7 +316,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                 </div>
 
               </div>';
-        echo '<div id="shift_line"></div>';
+        echo '<div class="shift_line"></div>';
         echo '<button onclick="run_GO_enrichment_query(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
@@ -334,7 +334,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                     </p>
 
               </div>';
-        echo '<div id="shift_line"></div>';
+        echo '<div class="shift_line"></div>';
 
         
         
@@ -387,7 +387,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 		$file_counter++;
 		*/
         echo '</div>';
-        echo '<div id="shift_line"></div>';
+        echo '<div class="shift_line"></div>';
 	}	
 	echo '<hr></div>';
 /*$data_gene_to_keep=$measurementsCollection->aggregate(

@@ -208,7 +208,7 @@ foreach ($data as $species){
                                     </div>
                                 </div>';    
 
-                            echo '<div id="shift_line"></div>';
+                            echo '<div class="shift_line"></div>';
 
                         }
 
@@ -298,7 +298,7 @@ foreach ($data as $species){
 
                                 </div>
                             </div>    
-                     <div id="shift_line"></div>';
+                     <div class="shift_line"></div>';
 
                     }
                     else{

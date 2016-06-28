@@ -449,6 +449,89 @@ function display_sample_table($cursor,$samplesCollection){
     }
     echo'</tbody></table>'; 
 }
+
+
+
+function display_statistics_with_ajax(){
+    $db=mongoConnector();
+    $speciesCollection = new Mongocollection($db, "species");
+    $sampleCollection = new Mongocollection($db, "samples");
+    $virusCollection = new Mongocollection($db, "viruses");
+    $measurementsCollection = new Mongocollection($db, "measurements");
+    //$publicationsCollection = new Mongocollection($db, "publications");
+    $pp_interactionsCollection = new Mongocollection($db, "pp_interactions");
+    $pv_interactionsCollection = new Mongocollection($db, "pv_interactions");
+     
+ 
+    $stat_string="";
+    $today = date("F j, Y, g:i a");
+    //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
+
+    $stat_string.='<div class="stats-panel"><h4>Last update : '.$today.'</h4>
+                <h4>Samples : '.$sampleCollection->count().'</h4>
+                <h4>Normalized measures : '.$measurementsCollection->count().'</h4>';
+
+                $pv_fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                $cursor_pvi=$pv_interactionsCollection->aggregate($pv_fields);
+                //var_dump($cursor_ppi);
+                $total_pvi=0;
+                foreach ($cursor_pvi['result'] as $value) {
+                    foreach ($value['mapping_file'] as $mapping_file) {
+                        $total_pvi++;
+                    }
+
+                }
+                $stat_string.= '<h4>Plant-Virus [HPIDB + Literature] interactions: '.$total_pvi.'</h4>';
+
+                $pp_biogrid_fields=array(array('$match' => array('origin'=>'BIOGRID')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                $cursor_ppi_biogrid=$pp_interactionsCollection->aggregate($pp_biogrid_fields);
+                $total_ppi_biogrid=0;
+                foreach ($cursor_ppi_biogrid['result'] as $value) {
+                    foreach ($value['mapping_file'] as $mapping_file) {
+                        $total_ppi_biogrid++;
+                    }
+
+                }
+
+                $stat_string.= '<h4>Biogrid Plant-Plant interactions: '.$total_ppi_biogrid.'</h4>';
+                $pp_intact_fields=array(array('$match' => array('origin'=>'INTACT')),array('$project' => array('mapping_file'=>1,'_id'=>0)));
+                $cursor_ppi_intact=$pp_interactionsCollection->aggregate($pp_intact_fields);
+                $total_ppi_intact=0;
+                foreach ($cursor_ppi_intact['result'] as $value) {
+                    foreach ($value['mapping_file'] as $mapping_file) {
+                        $total_ppi_intact++;
+                    }
+
+                }
+
+                $stat_string.= '<h4>Intact Plant-Plant interactions: '.$total_ppi_intact.'</h4>';
+                $stat_string.= '<h4>String Plant-Plant interactions: 25382632</h4>';
+
+                $stat_string.= '<h4>Species : '.$speciesCollection->count().'</h4>';
+
+                $cursor_species=$speciesCollection->aggregate(array(
+                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                ));
+                $stat_string.='<h4>Species per top_level</h4>';
+                foreach ($cursor_species['result'] as $doc){
+                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                }
+                $stat_string.= '<h4>Viruses : '.$virusCollection->count().'</h4>';
+                $cursor_virus=$virusCollection->aggregate(array(
+                array('$group'=>array('_id'=>'$classification.top_level','count'=>array('$sum'=>1)))
+                ));
+                $stat_string.='<h4> Pathogens per top_level</h4>';
+                foreach ($cursor_virus['result'] as $doc){
+                        $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
+                }
+                $stat_string.='</div>';     
+                echo $stat_string;
+ 
+}
+
+
+
+
 function display_statistics(){
     $db=mongoConnector();
     $speciesCollection = new Mongocollection($db, "species");
@@ -458,7 +541,7 @@ function display_statistics(){
     //$publicationsCollection = new Mongocollection($db, "publications");
     $pp_interactionsCollection = new Mongocollection($db, "pp_interactions");
     $pv_interactionsCollection = new Mongocollection($db, "pv_interactions");
-    
+     
     echo'<div class="container">';
         $stat_string="";
         $today = date("F j, Y, g:i a");
@@ -683,7 +766,7 @@ function display_expression_profile_old(MongoCollection $measurementsCollection,
             }
             $sample=array('name'=>$xp_name[0],'data'=>$logfc_array);
             array_push($series, $sample);
-            echo'<div id="shift_line"></div>'                
+            echo'<div class="shift_line"></div>'                
       . '</div>'; 
 }
 
@@ -716,7 +799,7 @@ function load_and_display_expression_profile_with_ajax(array $gene_id,array $tra
             </div>
         </div>
     </div>'; 
-    echo'<div id="shift_line"></div>'                
+    echo'<div class="shift_line"></div>'                
     . '</div>';
 }
 
@@ -808,7 +891,7 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
                             </div>
                         </div>
                     </div>'; 
-               echo'<div id="shift_line"></div>'                
+               echo'<div class="shift_line"></div>'                
               . '</div>'; 
     //var_dump($global_array);
     return $global_array;
@@ -979,7 +1062,7 @@ function load_and_display_expression_profile_bis(MongoCollection $measurementsCo
                             </div>
                         </div>
                     </div>'; 
-               echo'<div id="shift_line"></div>'                
+               echo'<div class="shift_line"></div>'                
               . '</div>'; 
     var_dump($global_array);
     return $global_array;
@@ -1181,7 +1264,7 @@ function load_and_display_variations_result_with_ajax(array $gene_id,$species='n
     echo'<div id="variation_section">
                 <h3>Variation and polymorphism</h3>';
 
-                    echo '<div id="shift_line"></div>
+                    echo '<div class="shift_line"></div>
                     
 
                     <div class="panel-group" id="accordion_documents_mark_'.$gene_id[0].'">
@@ -1205,7 +1288,7 @@ function load_and_display_variations_result_with_ajax(array $gene_id,$species='n
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>';
+                    <div class="shift_line"></div>';
                             
               echo' <div class="panel-group" id="accordion_documents_qtl_'.$gene_id[0].'">
                         <div class="panel panel-default">
@@ -1228,7 +1311,7 @@ function load_and_display_variations_result_with_ajax(array $gene_id,$species='n
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                    <div class="shift_line"></div>
     </div>';
 }
 
@@ -1401,7 +1484,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
                     </div>
                      * 
                      */
-                    echo '<div id="shift_line"></div>
+                    echo '<div class="shift_line"></div>
                     
 
                     <div class="panel-group" id="accordion_documents_mark_'.$gene_id[0].'">
@@ -1517,7 +1600,7 @@ function load_and_display_variations_result(MongoCollection $genetic_markers_col
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                    <div class="shift_line"></div>
                     
 
 
@@ -1842,7 +1925,7 @@ function load_and_display_gene_ontology_terms(MongoCollection $go_collection, ar
             </div>';                               
             echo'
         </div>
-        <div id="shift_line"></div>
+        <div class="shift_line"></div>
     </div>';
 }
 function load_and_display_external_references( array $proteins_id,$search='null',$species='null'){
@@ -3013,7 +3096,7 @@ function load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcrip
     echo'<div id="interaction_section">
                 <h3>Interaction</h3>';
 
-                    echo '<div id="shift_line"></div>
+                    echo '<div class="shift_line"></div>
                     
 
                     <div class="panel-group" id="accordion_documents_pv_'.$gene_id[0].'">
@@ -3037,7 +3120,7 @@ function load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcrip
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>';
+                    <div class="shift_line"></div>';
                             
               echo' <div class="panel-group" id="accordion_documents_pp_'.$gene_id[0].'">
                         <div class="panel panel-default">
@@ -3060,7 +3143,7 @@ function load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcrip
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                    <div class="shift_line"></div>
     </div>';
     
     
@@ -3620,7 +3703,7 @@ function load_and_display_orthologs_with_ajax($full_mappingsCollection,$ortholog
 
                         </div>
                     </div>
-                    <div id="shift_line"></div>
+                    <div class="shift_line"></div>
                 </div>
         ';
     }
