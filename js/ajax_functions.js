@@ -12,7 +12,6 @@ var pv_already_open="false";
 var pp_already_open="false";
 var orthologs_already_open="false";
 
-
 //AJAX function for plant/plant interaction 
 function load_orthologs(element){
     species=element.getAttribute('data-species');
@@ -77,7 +76,6 @@ function load_orthologs(element){
         orthologs_already_open="true";
         }
 }  
-
 //AJAX function for plant/virus interaction 
 function load_pv_interaction(element){
     species=element.getAttribute('data-species');
@@ -144,7 +142,6 @@ function load_pv_interaction(element){
         pv_already_open="true";
         }
 }  
-
 //AJAX function for plant/plant interaction 
 function load_pp_interaction(element){
     species=element.getAttribute('data-species');
@@ -213,7 +210,6 @@ function load_pp_interaction(element){
         pp_already_open="true";
         }
 }  
-
 //AJAX function for genetic markers 
 function load_genetic_markers(element){
     species=element.getAttribute('data-species');
@@ -283,7 +279,6 @@ function load_genetic_markers(element){
         genetic_marker_already_open="true";
         }
 }  
-
 //AJAX function for QTLs 
 function load_QTLs(element){
     species=element.getAttribute('data-species');
@@ -354,7 +349,6 @@ function load_QTLs(element){
         genetic_qtl_already_open="true";
         }
 }  
-
 //expression profile container  
 function show_profiles(element){
 
@@ -506,22 +500,17 @@ function load_expression_profiles(element){
         profile_already_open="true";
         }
 }  
-
-
 //AJAX function for Blast jobs 
 function runBlast(element){
-    //alert(element.getAttribute('data-id')) ;
+
     clicked_transcript_id = element.getAttribute('data-id');
     species = element.getAttribute('data-species');
 
 
     $.ajax({
 
-        url : './tools/blast/blast.php', // La ressource ciblée
-
-        type : 'POST' ,// Le type de la requête HTTP.
-
-        //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+        url : './tools/blast/blast.php',
+        type : 'POST' ,
         data : 'search=' + clicked_transcript_id + '&species=' + species,
 
 
@@ -532,38 +521,24 @@ function runBlast(element){
         
         
         beforeSend: function() { 
-           	    //  alert("start");
-				$(".content_test_"+clicked_transcript_id).hide();
-                $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
-
-                $(".loading_"+clicked_transcript_id).show();
-			},
+            
+            $(".content_test_"+clicked_transcript_id).hide();
+            $('.loading_'+clicked_transcript_id).html("<img src='../images/ajax-loader.gif' />");
+            $(".loading_"+clicked_transcript_id).show();
+	},
         
         success: function (data) {
-            //alert(data);
+
             var jqObj = jQuery(data);
             var par=jqObj.find("#blast_results");
-
             $(".content_test_"+clicked_transcript_id ).empty().append(par);
 
-            //works to load results in element
-//                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-//                            search : genes,
-//
-//                            sequence : sequence
-//                            
-//                        } );
-
-
-
-        //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-        //$('.content_test').empty().html(data);
         },
         complete:function(){  
-            //   alert("stop");
-			$(".loading_"+clicked_transcript_id).fadeOut("slow");
+
+            $(".loading_"+clicked_transcript_id).fadeOut("slow");
             $(".content_test_"+clicked_transcript_id).show("slow");
-		}
+	}
     });
 
 }
