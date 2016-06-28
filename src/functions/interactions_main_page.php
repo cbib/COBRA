@@ -23,7 +23,10 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
     if ($mode==='PV'){
         error_log("PV mode");
         echo '<div class=PV>';
-        load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
+        $pv_found=load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
+        if (!$pv_found){
+           echo  '<div class=no_results> No results found</div>';
+        }
         echo '</div>';
 
     }

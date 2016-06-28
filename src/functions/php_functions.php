@@ -2601,8 +2601,9 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
     $result=get_hpidb_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
     
     $hits_number_hpidb= count($result['result']);
-    
+    $result_found=False;
     if ($hits_number_hpidb>0){
+        $result_found=True;
         echo'
             <div class="panel-group" id="accordion_documents_hpidb">
                 <div class="panel panel-default">
@@ -2710,6 +2711,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
     $result2=get_litterature_plant_virus_interactor($gene_id,$interactionsCollection,$species); 
     $hits_number_litterature= count($result2['result']);
     if ($hits_number_litterature>0){
+        $result_found=True;
     echo'<div class="panel-group" id="accordion_documents_litterature">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -2750,6 +2752,7 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
         </div>';
     
     }
+    return $result_found;
     
     
 }
