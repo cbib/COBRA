@@ -503,9 +503,9 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcript_id,$species);
                     
                     
-                    load_and_display_orthologs_with_ajax($full_mappingsCollection,$orthologsCollection,$species,$plaza_id);
+                    load_and_display_orthologs_with_ajax($species,$plaza_id);
                     
-                    load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis,$species);
+                    load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$species);
                     stop_time_capture($timestart);
                     
             echo'</div>';

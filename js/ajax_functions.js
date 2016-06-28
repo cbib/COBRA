@@ -11,31 +11,35 @@ var genetic_qtl_already_open="false";
 var pv_already_open="false";
 var pp_already_open="false";
 var orthologs_already_open="false";
+var transcripts_already_open="false";
+var unspliced_already_open="false";
 
 
 
 
 //AJAX function for plant/plant interaction 
-function load_sequences(element){
+function load_unspliced(element){
     species=element.getAttribute('data-species');
-    plaza_id=element.getAttribute('data-id');
+    gene_ids=element.getAttribute('data-gene');
+    genebis_ids=element.getAttribute('data-genebis');
+    //gene_id=element.getAttribute('data-id');
    
  
     
     
-    if (orthologs_already_open==="true"){
+    if (unspliced_already_open==="true"){
        //alert("already open");
        //open="false";
    }
     else{
         $.ajax({
 
-            url : './functions/orthologs_main_page.php', // La ressource ciblée
+            url : './functions/sequences_page.php', // La ressource ciblée
 
             type : 'POST' ,// Le type de la requête HTTP.
 
             //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-            data : 'plaza_id=' + plaza_id + '&species=' + species,
+            data : 'gene_ids=' + gene_ids + '&gene_ids_bis=' + genebis_ids +'&species=' + species+ '&mode=transcript',
 
 
             method: 'post',
@@ -44,10 +48,10 @@ function load_sequences(element){
             dataType: "html",
             beforeSend: function() { 
                     //  alert("start");
-                    $(".ortholog_area").hide();
-                    $('.ortloading_'+plaza_id).html("<img src='../images/ajax-loader.gif' />");
+                    $(".unspliced_area").hide();
+                    $('.unsplicedloading').html("<img src='../images/ajax-loader.gif' />");
 
-                    $(".ortloading_"+plaza_id).show();
+                    $(".unsplicedloading").show();
                 },
 
             success: function (data) {
@@ -56,29 +60,98 @@ function load_sequences(element){
 
                 var par;
 
-                if(jqObj.find("#orthologs_table").length){
-                   par=jqObj.find("#orthologs_table"); 
+                if(jqObj.find(".un_results").length){
+                   par=jqObj.find(".un_results"); 
                 }
                 else{
                    par=jqObj.find(".no_results");
                    
                 }
                 
-                $(".ortholog_area").empty().append(par);
+                $(".unspliced_area").empty().append(par);
 
             },
             complete:function(){  
                 //   alert("stop");
-                $(".ortloading_"+plaza_id).fadeOut("slow");
-                $(".ortholog_area").show("slow");
+                $(".unsplicedloading").fadeOut("slow");
+                $(".unspliced_area").show("slow");
             }
 
 
 
         });
-        orthologs_already_open="true";
+        unspliced_already_open="true";
         }
 }  
+
+//AJAX function for plant/plant interaction 
+function load_transcripts(element){
+    species=element.getAttribute('data-species');
+    gene_ids=element.getAttribute('data-gene');
+    genebis_ids=element.getAttribute('data-genebis');
+    //gene_id=element.getAttribute('data-id');
+   
+ 
+    
+    
+    if (transcripts_already_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
+
+            url : './functions/sequences_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'gene_ids=' + gene_ids + '&gene_ids_bis=' + genebis_ids +'&species=' + species+ '&mode=transcript',
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".transcript_area").hide();
+                    $('.transcriptloading').html("<img src='../images/ajax-loader.gif' />");
+
+                    $(".transcriptloading").show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find(".tr_results").length){
+                   par=jqObj.find(".tr_results"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".transcript_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".transcriptloading").fadeOut("slow");
+                $(".transcript_area").show("slow");
+            }
+
+
+
+        });
+        transcripts_already_open="true";
+        }
+}
+
+
 //AJAX function for plant/plant interaction 
 function load_orthologs(element){
     species=element.getAttribute('data-species');
