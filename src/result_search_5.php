@@ -562,9 +562,10 @@ function showScore(element){
     
     exp=element.getAttribute('data-exp');
     int=element.getAttribute('data-int');
-    ort=element.getAttribute('data-ort');
+    //ort=element.getAttribute('data-ort');
     QTL=element.getAttribute('data-QTL');
     SNP=element.getAttribute('data-SNP');
+    ort=$('#container_pie').attr('data-ort')
     alert(ort);
     $('#container_pie').highcharts({
         chart: {
