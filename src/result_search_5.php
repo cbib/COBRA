@@ -556,46 +556,15 @@ new_cobra_footer();
 
 //highcharts container
 
-//pyramid container
-$(function () {
 
-    $('#container_pyramid').highcharts({
-        chart: {
-            type: 'pyramid',
-            marginRight: 100
-        },
-        title: {
-            text: '',
-            x: -50
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b> ({point.y:,.0f})',
-                    color: 'black',
-                    softConnector: true
-                }
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        series: [{
-            name: 'Unique users',
-            data: [
-                ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
-                ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
-                ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
-                ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
-                ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
-            ]
-        }]
-    });
-});
 //pie container
-$(function () {
+function showScore(element){
 
+    exp=element.getAttribute('data-id');
+    int=element.getAttribute('data-id');
+    ort=element.getAttribute('data-id');
+    QTL=element.getAttribute('data-id');
+    SNP=element.getAttribute('data-id');
     $('#container_pie').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -620,36 +589,36 @@ $(function () {
             }
         },
         series: [{
-            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
+            name: 'Scores',
             colorByPoint: true,
             data: [{
                 name: 'Expression Score',
 
-                y: <?php echo(json_encode($percent_exp)); ?>
+                y: exp
             }, {
                 name: 'Interaction Score',
 
-                y: <?php echo(json_encode($percent_int)); ?>,
+                y: int,
 
                 sliced: true,
                 selected: true
             }, {
                 name: 'Orthology Score',
-                y: <?php echo(json_encode($percent_ort)); ?>
+                y: ort
 
             }, {
                 name: 'QTL Score',
-                y: <?php echo(json_encode($percent_QTL)); ?>
+                y: QTL
 
             }, {
                 name: 'Genetic Markers Score',
-                y: <?php echo(json_encode($percent_SNP)); ?>
+                y: SNP
 
             }]
 
         }]
     });
-});
+};
 //chart container
 $(function () {
     $('#container_chart').highcharts({
