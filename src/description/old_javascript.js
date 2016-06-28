@@ -725,12 +725,155 @@ function show_heatmap(element){
           //series: serie
 
     });
-};  
+ };
+    //highcharts container
+
+//pyramid container
+//$(function () {
+//
+//    $('#container_pyramid').highcharts({
+//        chart: {
+//            type: 'pyramid',
+//            marginRight: 100
+//        },
+//        title: {
+//            text: '',
+//            x: -50
+//        },
+//        plotOptions: {
+//            series: {
+//                dataLabels: {
+//                    enabled: true,
+//                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+//                    color: 'black',
+//                    softConnector: true
+//                }
+//            }
+//        },
+//        legend: {
+//            enabled: false
+//        },
+//        series: [{
+//            name: 'Unique users',
+//            data: [
+//                ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
+//                ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
+//                ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
+//                ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
+//                ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
+//            ]
+//        }]
+//    });
+//});
+  
 
 //            dataLabels: {
 //                //enabled: true,
 //                color: '#000000'
 //            }
+
+//pie container
+
+//$(function () {
+//
+//    $('#container_pie').highcharts({
+//        chart: {
+//            plotBackgroundColor: null,
+//            plotBorderWidth: null,
+//            plotShadow: false,
+//            type: 'pie'
+//        },
+//        title: {
+//            text: ''
+//        },
+//        tooltip: {
+//            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+//        },
+//        plotOptions: {
+//            pie: {
+//                allowPointSelect: true,
+//                cursor: 'pointer',
+//                dataLabels: {
+//                    enabled: false
+//                },
+//                showInLegend: true
+//            }
+//        },
+//        series: [{
+//            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
+//            colorByPoint: true,
+//            data: [{
+//                name: 'Expression Score',
+//
+//                y: <?php echo(json_encode($percent_exp)); ?>
+//            }, {
+//                name: 'Interaction Score',
+//
+//                y: <?php echo(json_encode($percent_int)); ?>,
+//
+//                sliced: true,
+//                selected: true
+//            }, {
+//                name: 'Orthology Score',
+//                y: <?php echo(json_encode($percent_ort)); ?>
+//
+//            }, {
+//                name: 'QTL Score',
+//                y: <?php echo(json_encode($percent_QTL)); ?>
+//
+//            }, {
+//                name: 'Genetic Markers Score',
+//                y: <?php echo(json_encode($percent_SNP)); ?>
+//
+//            }]
+//
+//        }]
+//    });
+//});
+//chart container
+//$(function () {
+//    $('#container_chart').highcharts({
+//        chart: {
+//            type: 'bar'
+//        },
+//        title: {
+//            text: 'Stacked bar chart'
+//        },
+//        xAxis: {
+//            categories: ['Global Score']
+//        },
+//        yAxis: {
+//            min: 0,
+//            title: {
+//                text: 'Total Score'
+//            }
+//        },
+//        legend: {
+//            reversed: true
+//        },
+//        plotOptions: {
+//            series: {
+//                stacking: 'normal'
+//            }
+//        },
+//        series: [{
+//            name: 'Transcriptomics',
+//            data: [<?php echo(json_encode($score_exp)); ?>]
+//        }, {
+//            name: 'Interactomics',
+//            data: [<?php echo(json_encode($score_int)); ?>]
+//        },{
+//            name: 'orthology',
+//            data: [<?php echo(json_encode($score_ort)); ?>]
+//        },{
+//            name: 'genetics',
+//            data: [<?php echo(json_encode($score_QTL)); ?>]
+//        }, {
+//            name: 'Polymorphism',
+//            data: [<?php echo(json_encode($score_SNP)); ?>]
+//        }]
+//    });
+//});
 
 
 

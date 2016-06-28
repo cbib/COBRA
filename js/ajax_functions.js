@@ -15,8 +15,6 @@ var transcripts_already_open="false";
 var unspliced_already_open="false";
 
 
-
-
 //AJAX function for plant/plant interaction 
 function load_unspliced(element){
     species=element.getAttribute('data-species');
@@ -83,7 +81,6 @@ function load_unspliced(element){
         unspliced_already_open="true";
         }
 }  
-
 //AJAX function for plant/plant interaction 
 function load_transcripts(element){
     species=element.getAttribute('data-species');
@@ -150,8 +147,6 @@ function load_transcripts(element){
         transcripts_already_open="true";
         }
 }
-
-
 //AJAX function for plant/plant interaction 
 function load_orthologs(element){
     species=element.getAttribute('data-species');
@@ -683,47 +678,9 @@ function runBlast(element){
 
 }
 
-//highcharts container
 
-//pyramid container
-//$(function () {
 //
-//    $('#container_pyramid').highcharts({
-//        chart: {
-//            type: 'pyramid',
-//            marginRight: 100
-//        },
-//        title: {
-//            text: '',
-//            x: -50
-//        },
-//        plotOptions: {
-//            series: {
-//                dataLabels: {
-//                    enabled: true,
-//                    format: '<b>{point.name}</b> ({point.y:,.0f})',
-//                    color: 'black',
-//                    softConnector: true
-//                }
-//            }
-//        },
-//        legend: {
-//            enabled: false
-//        },
-//        series: [{
-//            name: 'Unique users',
-//            data: [
-//                ['Expression Score', <?php echo(json_encode($score_exp)); ?>],
-//                ['Interaction Score', <?php echo(json_encode($score_int)); ?>],
-//                ['Orthology Score', <?php echo(json_encode($score_ort)); ?>],
-//                ['QTL Score', <?php echo(json_encode($score_QTL)); ?>],
-//                ['SNP Score', <?php echo(json_encode($score_SNP)); ?>]
-//            ]
-//        }]
-//    });
-//});
-
-//pie container
+//Highchart pie container
 $(function () {
 
     exp=$('#container_pie').attr('data-exp');
@@ -786,112 +743,7 @@ $(function () {
         }]
     });
 });
-//pie container
 
-//$(function () {
-//
-//    $('#container_pie').highcharts({
-//        chart: {
-//            plotBackgroundColor: null,
-//            plotBorderWidth: null,
-//            plotShadow: false,
-//            type: 'pie'
-//        },
-//        title: {
-//            text: ''
-//        },
-//        tooltip: {
-//            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-//        },
-//        plotOptions: {
-//            pie: {
-//                allowPointSelect: true,
-//                cursor: 'pointer',
-//                dataLabels: {
-//                    enabled: false
-//                },
-//                showInLegend: true
-//            }
-//        },
-//        series: [{
-//            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
-//            colorByPoint: true,
-//            data: [{
-//                name: 'Expression Score',
-//
-//                y: <?php echo(json_encode($percent_exp)); ?>
-//            }, {
-//                name: 'Interaction Score',
-//
-//                y: <?php echo(json_encode($percent_int)); ?>,
-//
-//                sliced: true,
-//                selected: true
-//            }, {
-//                name: 'Orthology Score',
-//                y: <?php echo(json_encode($percent_ort)); ?>
-//
-//            }, {
-//                name: 'QTL Score',
-//                y: <?php echo(json_encode($percent_QTL)); ?>
-//
-//            }, {
-//                name: 'Genetic Markers Score',
-//                y: <?php echo(json_encode($percent_SNP)); ?>
-//
-//            }]
-//
-//        }]
-//    });
-//});
-//chart container
-//$(function () {
-//    $('#container_chart').highcharts({
-//        chart: {
-//            type: 'bar'
-//        },
-//        title: {
-//            text: 'Stacked bar chart'
-//        },
-//        xAxis: {
-//            categories: ['Global Score']
-//        },
-//        yAxis: {
-//            min: 0,
-//            title: {
-//                text: 'Total Score'
-//            }
-//        },
-//        legend: {
-//            reversed: true
-//        },
-//        plotOptions: {
-//            series: {
-//                stacking: 'normal'
-//            }
-//        },
-//        series: [{
-//            name: 'Transcriptomics',
-//            data: [<?php echo(json_encode($score_exp)); ?>]
-//        }, {
-//            name: 'Interactomics',
-//            data: [<?php echo(json_encode($score_int)); ?>]
-//        },{
-//            name: 'orthology',
-//            data: [<?php echo(json_encode($score_ort)); ?>]
-//        },{
-//            name: 'genetics',
-//            data: [<?php echo(json_encode($score_QTL)); ?>]
-//        }, {
-//            name: 'Polymorphism',
-//            data: [<?php echo(json_encode($score_SNP)); ?>]
-//        }]
-//    });
-//});
-
-
-
-//Datatables
 
 //example datatable
 $(document).ready(function() {
@@ -1211,4 +1063,119 @@ $(document).ready(function() {
             }
     });
 });  
+//table mappings
+$(document).ready(function() {
+	$('#mappingtable').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+//table species
+$(document).ready(function() {
+	$('#speciestable').dataTable( {
+		"scrollX": false,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+    
+});
+//table virus
+$(document).ready(function() {
+	$('#virustable').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+//table multiple
+$(document).ready(function() {
+    $('#mapping').DataTable( {
+        responsive: true,
+        
+		
+        
+    } );
+    $('#species').DataTable( {
+        responsive: true,
+        
+		
+        
+    } );
+    $('#virus').DataTable( {
+        responsive: true,
+        
+		
+        
+    } );
+    $('#S-genes').DataTable( {
+        responsive: true,
+        
+		
+        
+    } );
 
+} );

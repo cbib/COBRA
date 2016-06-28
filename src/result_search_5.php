@@ -3,7 +3,6 @@
 include './functions/html_functions.php';
 include './functions/php_functions.php';
 include './functions/mongo_functions.php';
-//include '../wiki/vendor/autoload.php';
 require('./session/control-session.php');
 
 
@@ -12,13 +11,13 @@ require('./session/control-session.php');
 new_cobra_header("..");
 
 new_cobra_body($_SESSION['login'],"Result Summary","section_result_summary","..");
-//$global_timestart=microtime(true);
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
 $historyCollection = new Mongocollection($db, "history");
 date_default_timezone_set('Europe/Paris');
-//echo 'directory: '.PATH;
 make_species_list(find_species_list($speciesCollection),"..");
+
+
 if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='NA') && (isset($_GET['search']) && $_GET['search']!='' && $_GET['search']!='NA')){
 
     array_push($_SESSION['historic'],$_GET['search']);
@@ -52,26 +51,10 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
     $variation_collection = new Mongocollection($db, "variations");
     $genetic_markers_collection=new Mongocollection($db, "genetic_markers");
     $qtl_collection=new Mongocollection($db, "qtls");
-    ///////////////////////////////////
-    //CREATE ALL ARRAYS and VARIABLES//
-    ///////////////////////////////////
-    $go_grid_plaza_id_list=array();
-    $go_grid_id_list=array();
-    $gene_alias=array();
-    $gene_id=array();
-    $gene_id_bis=array();
-    $transcript_id=array();
-    $gene_symbol=array();
-    $descriptions=array();
-    $uniprot_id=array();
-    $protein_id=array();
-    $plaza_ids=array();
-    $est_id=array();
-    $go_list=array();
-    $percent_array=array();
-    $score=0.0;
+
+    
  
-    /////////////////////////////////////////////
+/*    /////////////////////////////////////////////
     //SEARCH THE CUMULATED SCORE FOR A GIVEN ID//
     /////////////////////////////////////////////
     //$timestart1=microtime(true);
@@ -112,41 +95,24 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 //                      "score" =>$score,
 //                      "date" => $today
 //    );
-//    $historyCollection->insert($document);
+//    $historyCollection->insert($document);*/
     
-    
-    
-    
-    
-    
-    
-    
-//    $timeend1=microtime(true);
-//    $time1=$timeend1-$timestart1;
-//    //Afficher le temps d'éxecution
-//    $page_load_time1 = number_format($time1, 3);
-//    echo "Debut du script: ".date("H:i:s", $timestart1);
-//    echo "<br>Fin du script: ".date("H:i:s", $timeend1);
-//    echo "<br>Script for search score executed in " . $page_load_time1 . " sec";
 
     ///////////////////////////////////////////////////////
     //SEARCH ENTRY IN FULL TABLE MAPPING WITH SAME ID//
     ///////////////////////////////////////////////////////  
-    //$timestart2=microtime(true);
     $cursor=$full_mappingsCollection->aggregate(array(
         array('$match' => array('type'=>'full_table','species'=>$species)),  
         array('$project' => array('mapping_file'=>1,'_id'=>0)),
         array('$unwind'=>'$mapping_file'),
         array('$match' => array('$or'=> array(
-//            array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),
-//            array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
-
-
-//            array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),
-//            array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),
+            /*array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),
             //array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),
             //array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),
-            //array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),
+            //array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),*/
             array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),
             array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),
@@ -154,21 +120,35 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi"))))),
         array('$project' => array("mapping_file"=>1,'_id'=>0))
     ));
+    
+    
+    ///////////////////////////////////
+    //CREATE ALL ARRAYS and VARIABLES//
+    ///////////////////////////////////
+    
+    $go_grid_plaza_id_list=array();
+    $go_grid_id_list=array();
+    $gene_alias=array();
+    $gene_id=array();
+    $gene_id_bis=array();
+    $transcript_id=array();
+    $gene_symbol=array();
+    $descriptions=array();
+    $uniprot_id=array();
+    $protein_id=array();
+    $plaza_ids=array();
+    $est_id=array();
+    $go_list=array();
+    $percent_array=array();
+    $score=0.0;
 
-//    $timeend2=microtime(true);
-//    $time2=$timeend2-$timestart2;
-//    //Afficher le temps d'éxecution
-//    $page_load_time2 = number_format($time2, 3);
-//    echo "Debut du script: ".date("H:i:s", $timestart2);
-//    echo "<br>Fin du script: ".date("H:i:s", $timeend2);
-//    echo "<br>Script for global search executed in " . $page_load_time2 . " sec";
 
     //////////////////////////////////////////
     //PARSE RESULT AND FILL DEDICATED ARRAYS//
     //////////////////////////////////////////   
     
     if (count($cursor['result'])>0){
-        //$timestart=microtime(true);
+
         foreach ($cursor['result'] as $result) {
             //
             //echo $result['mapping_file']['Gene ID'];
@@ -382,35 +362,8 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
         }
         
         
-        
-/* 
-            if (isset($result['mapping_file']['Score'])){
-                echo $result['mapping_file']['Score'];
-                $score+=(int)$result['mapping_file']['Score'];
-                echo $score;
-            }
-          if (in_array($result['mapping_file']['Transcript ID'],$transcript_id)==FALSE){
-
-               array_push($transcript_id,$result['mapping_file']['Transcript ID']);
-           }
-           
-           for ($i = 0; $i < count($gene_symbol); $i++) {
-                   if (strstr($gene_symbol,",")){
-                       $pos=$i;
-                       $tmp_array=explode(",", $gene_symbol);
-                      $gene_symbol[$i]=$tmp_array[0];
-                      array_splice($gene_symbol, $i, 1);
-                   }
-               }
             
-*/        
-//        $timeend=microtime(true);
-//        $time=$timeend-$timestart;
-//        //Afficher le temps d'éxecution
-//        $page_load_time = number_format($time, 3);
-//        echo "Debut du script: ".date("H:i:s", $timestart);
-//        echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//        echo "<br>Script for parsing and filling arrays executed in " . $page_load_time . " sec";
+
          //////////////////////////////////////////
         //DISPLAY RESULT HTML//
         //////////////////////////////////////////  
@@ -418,93 +371,23 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 
             // left side div
             echo'<div id="protein-details">';               
-                    //$timestart=microtime(true);
+
                     //$timestart= start_time_capture();
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
-                    
-                    //echo $score;
-                    //load_and_display_score_pie();
-                    //echo '<div id="container_pie" style="min-width: 310px; height: 400px; max-width: 100%; margin: 0 auto"></div>';
-                    //echo '<div id="container_pie" data-exp="'.$percent_exp.'" data-int="'.$percent_int.'" data-ort="'.$percent_ort.'" data-QTL="'.$percent_QTL.'" data-SNP="'.$percent_SNP.'" style="min-width: 310px; height: 400px;"></div>';
-
-//Afficher le temps d'éxecution
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for details executed in " . $page_load_time . " sec";
-
                     load_and_display_expression_profile_with_ajax($gene_id,$transcript_id,$protein_id,$gene_id_bis,$gene_alias,$species);
-
-                    //$timestart=microtime(true);
-                   
-                    load_and_display_gene_ontology_terms($GOCollection,$go_id_list);
-                    
-                    //Afficher le temps d'éxecution
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for GO executed in " . $page_load_time . " sec";
-//                    
-//                    $timestart=microtime(true);
-                    
-                    
-                    load_and_display_variations_result_with_ajax($gene_id,$species,$gene_start,$gene_end,$chromosome);
-
-                    
-                    //load_and_display_variations_result($genetic_markers_collection,$qtl_collection,$full_mappingsCollection,$variation_collection,$gene_id,$species,$gene_start,$gene_end,$chromosome);
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //Afficher le temps d'éxecution
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for variant executed in " . $page_load_time . " sec";
-                    
-                    //$timestart=microtime(true);
-                    
+                    load_and_display_gene_ontology_terms($GOCollection,$go_id_list);                  
+                    load_and_display_variations_result_with_ajax($gene_id,$species,$gene_start,$gene_end,$chromosome);                    
+                    //load_and_display_variations_result($genetic_markers_collection,$qtl_collection,$full_mappingsCollection,$variation_collection,$gene_id,$species,$gene_start,$gene_end,$chromosome);                    
                     load_and_display_external_references($uniprot_id,$search,$species);
                     
-                    //Afficher le temps d'éxecution
-//                    $timeend=microtime(true);
-//                    $time=$timeend-$timestart;
-//                    //Afficher le temps d'éxecution
-//                    $page_load_time = number_format($time, 3);
-//                    echo "Debut du script: ".date("H:i:s", $timestart);
-//                    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-//                    echo "<br>Script for ext ref executed in " . $page_load_time . " sec";
             echo'</div>';
 
             //right side div    
             echo'<div id="stat-details">';
-                    
-                   
-            
-            
-                    
 
                     //load_and_display_interactions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species);
-                    
-            
-                    
-                    load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcript_id,$species);
-                    
-                    
-                    load_and_display_orthologs_with_ajax($species,$plaza_id);
-                    
+                    load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcript_id,$species);                                        
+                    load_and_display_orthologs_with_ajax($species,$plaza_id);                    
                     load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$species);
                     //stop_time_capture($timestart);
                     
@@ -512,13 +395,6 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
 
         echo'</div>';
                 
-//    $global_timeend=microtime(true);
-//    $global_time=$global_timeend-$global_timestart;
-//    //Afficher le temps d'éxecution
-//    $global_page_load_time = number_format($global_time, 3);
-//    echo "Debut du script: ".date("H:i:s", $global_timestart);
-//    echo "<br>Fin du script: ".date("H:i:s", $global_timeend);
-//    echo "<br>Script for global page display executed in " . $global_page_load_time . " sec"; 
     }
     else{
         echo'<div id="summary">
