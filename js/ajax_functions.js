@@ -512,7 +512,7 @@ function load_expression_profiles(element){
 function runBlast(element){
     //alert(element.getAttribute('data-id')) ;
     clicked_transcript_id = element.getAttribute('data-id');
-    speciess = element.getAttribute('data-species');
+    species = element.getAttribute('data-species');
 
 
     $.ajax({
