@@ -10,7 +10,7 @@ new_cobra_body(is_logged($_SESSION['login']),"Tools","section_sequence","../..")
 
 
 if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mode'])){  
-    error_log($_POST['mode']);
+    
     $db=mongoConnector();  
     $gene_id=json_decode($_POST['gene_ids']);
     $gene_id_bis=json_decode($_POST['gene_ids_bis']);
@@ -20,7 +20,7 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
     $transcript_id=count_transcript_for_gene($sequencesCollection,$gene_id,$gene_id_bis);
     
     if ($mode==="transcript"){
-        error_log(count($transcript_id));
+    
         for ($i=0;$i<count($transcript_id);$i++){
             $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>$transcript_id[$i]),array('mapping_file.$'=>1));
             foreach ($sequence_metadata as $data) {
@@ -68,6 +68,7 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
         }
     }
     else{
+        error_log($_POST['mode']);
         $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
             foreach ($sequence_metadata as $data) {
                 foreach ($data as $key=>$value) {
