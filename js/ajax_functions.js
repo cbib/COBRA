@@ -722,6 +722,70 @@ function runBlast(element){
 //        }]
 //    });
 //});
+
+//pie container
+$(function () {
+
+    exp=$('#container_pie').attr('data-exp');
+    int=$('#container_pie').attr('data-int');
+    ort=$('#container_pie').attr('data-ort');
+    QTL=$('#container_pie').attr('data-QTL');
+    SNP=$('#container_pie').attr('data-SNP');
+    
+    $('#container_pie').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Scores',
+            colorByPoint: true,
+            data: [{
+                name: 'Expression Score',
+
+                y: JSON.parse(exp)
+            }, {
+                name: 'Interaction Score',
+
+                y: JSON.parse(int),
+
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Orthology Score',
+                y: JSON.parse(ort)
+
+            }, {
+                name: 'QTL Score',
+                y: JSON.parse(QTL)
+
+            }, {
+                name: 'Genetic Markers Score',
+                y: JSON.parse(SNP)
+
+            }]
+
+        }]
+    });
+});
 //pie container
 
 //$(function () {

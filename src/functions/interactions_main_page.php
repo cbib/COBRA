@@ -34,7 +34,10 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
         error_log("PP mode");
         $transcript_id=json_decode($_POST['transcript_ids']);
         echo '<div class=PP>';
-        load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
+        $pp_found=load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
+        if (!$pp_found){
+           echo  '<div class=no_results> No results found</div>';
+        }
         echo '</div>';
     }
 }

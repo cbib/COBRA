@@ -1959,8 +1959,9 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
     
     $interaction_array=get_intact_plant_plant_interactor($proteins_id,$interactionsCollection,$species);
     $hits_number_intact= count($interaction_array['result']);
-
+    $result_found=False;
     if ($hits_number_intact>0){
+        $result_found=True;
         echo'
             <div class="panel-group" id="accordion_documents_intact">
                 <div class="panel panel-default">
@@ -2115,6 +2116,7 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
     $biogrid_headers=array('Gene Id','Official symbol','Aliases','Experimental SYSTEM','Author','Pubmed','Organism');
     $biogrid_values=array();
     if ($hits_number_biogrid>0){
+        $result_found=True;
         echo'
                 <div class="panel-group" id="accordion_documents_biogrid">
                     <div class="panel panel-default">
@@ -2234,6 +2236,7 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
     $hits_number_string= count($string_values)/3;
     
     if ($hits_number_string>0){
+        $result_found=True;
         echo'
                 <div class="panel-group" id="accordion_documents_string">
                     <div class="panel panel-default">
@@ -2260,6 +2263,7 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
                         </div></div></div>';
     
     }
+    return $result_found;
     
     
     
