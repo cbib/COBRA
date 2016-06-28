@@ -1122,7 +1122,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                 
                 
                 
-                echo $score_ort;
+
                 echo '<!-- Button trigger modal -->
                         <button type="button" onclick="showScore(this)" data-exp="'.$score_exp.'" data-int="'.$score_int.'" data-ort="'.$score_ort.'" data-QTL="'.$score_QTL.'" data-SNP="'.$score_SNP.'" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
                           View score details

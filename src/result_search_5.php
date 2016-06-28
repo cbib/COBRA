@@ -560,11 +560,11 @@ new_cobra_footer();
 //pie container
 function showScore(element){
     
-    exp=element.getAttribute('data-id');
-    int=element.getAttribute('data-id');
-    ort=element.getAttribute('data-id');
-    QTL=element.getAttribute('data-id');
-    SNP=element.getAttribute('data-id');
+    exp=element.getAttribute('data-exp');
+    int=element.getAttribute('data-int');
+    ort=element.getAttribute('data-ort');
+    QTL=element.getAttribute('data-QTL');
+    SNP=element.getAttribute('data-SNP');
     alert(ort);
     $('#container_pie').highcharts({
         chart: {
