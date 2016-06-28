@@ -559,12 +559,13 @@ new_cobra_footer();
 
 //pie container
 function showScore(element){
-
+    
     exp=element.getAttribute('data-id');
     int=element.getAttribute('data-id');
     ort=element.getAttribute('data-id');
     QTL=element.getAttribute('data-id');
     SNP=element.getAttribute('data-id');
+    alert(exp);
     $('#container_pie').highcharts({
         chart: {
             plotBackgroundColor: null,

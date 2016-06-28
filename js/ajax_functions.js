@@ -723,107 +723,107 @@ function runBlast(element){
 //    });
 //});
 //pie container
-function showScore(element){
-$(function () {
 
-    $('#container_pie').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-        },
-        series: [{
-            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
-            colorByPoint: true,
-            data: [{
-                name: 'Expression Score',
-
-                y: <?php echo(json_encode($percent_exp)); ?>
-            }, {
-                name: 'Interaction Score',
-
-                y: <?php echo(json_encode($percent_int)); ?>,
-
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Orthology Score',
-                y: <?php echo(json_encode($percent_ort)); ?>
-
-            }, {
-                name: 'QTL Score',
-                y: <?php echo(json_encode($percent_QTL)); ?>
-
-            }, {
-                name: 'Genetic Markers Score',
-                y: <?php echo(json_encode($percent_SNP)); ?>
-
-            }]
-
-        }]
-    });
-});
+//$(function () {
+//
+//    $('#container_pie').highcharts({
+//        chart: {
+//            plotBackgroundColor: null,
+//            plotBorderWidth: null,
+//            plotShadow: false,
+//            type: 'pie'
+//        },
+//        title: {
+//            text: ''
+//        },
+//        tooltip: {
+//            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+//        },
+//        plotOptions: {
+//            pie: {
+//                allowPointSelect: true,
+//                cursor: 'pointer',
+//                dataLabels: {
+//                    enabled: false
+//                },
+//                showInLegend: true
+//            }
+//        },
+//        series: [{
+//            name: 'Score: '+<?php echo(json_encode(max($percent_array))); ?>,
+//            colorByPoint: true,
+//            data: [{
+//                name: 'Expression Score',
+//
+//                y: <?php echo(json_encode($percent_exp)); ?>
+//            }, {
+//                name: 'Interaction Score',
+//
+//                y: <?php echo(json_encode($percent_int)); ?>,
+//
+//                sliced: true,
+//                selected: true
+//            }, {
+//                name: 'Orthology Score',
+//                y: <?php echo(json_encode($percent_ort)); ?>
+//
+//            }, {
+//                name: 'QTL Score',
+//                y: <?php echo(json_encode($percent_QTL)); ?>
+//
+//            }, {
+//                name: 'Genetic Markers Score',
+//                y: <?php echo(json_encode($percent_SNP)); ?>
+//
+//            }]
+//
+//        }]
+//    });
+//});
 //chart container
-$(function () {
-    $('#container_chart').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Stacked bar chart'
-        },
-        xAxis: {
-            categories: ['Global Score']
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total Score'
-            }
-        },
-        legend: {
-            reversed: true
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-            }
-        },
-        series: [{
-            name: 'Transcriptomics',
-            data: [<?php echo(json_encode($score_exp)); ?>]
-        }, {
-            name: 'Interactomics',
-            data: [<?php echo(json_encode($score_int)); ?>]
-        },{
-            name: 'orthology',
-            data: [<?php echo(json_encode($score_ort)); ?>]
-        },{
-            name: 'genetics',
-            data: [<?php echo(json_encode($score_QTL)); ?>]
-        }, {
-            name: 'Polymorphism',
-            data: [<?php echo(json_encode($score_SNP)); ?>]
-        }]
-    });
-});
+//$(function () {
+//    $('#container_chart').highcharts({
+//        chart: {
+//            type: 'bar'
+//        },
+//        title: {
+//            text: 'Stacked bar chart'
+//        },
+//        xAxis: {
+//            categories: ['Global Score']
+//        },
+//        yAxis: {
+//            min: 0,
+//            title: {
+//                text: 'Total Score'
+//            }
+//        },
+//        legend: {
+//            reversed: true
+//        },
+//        plotOptions: {
+//            series: {
+//                stacking: 'normal'
+//            }
+//        },
+//        series: [{
+//            name: 'Transcriptomics',
+//            data: [<?php echo(json_encode($score_exp)); ?>]
+//        }, {
+//            name: 'Interactomics',
+//            data: [<?php echo(json_encode($score_int)); ?>]
+//        },{
+//            name: 'orthology',
+//            data: [<?php echo(json_encode($score_ort)); ?>]
+//        },{
+//            name: 'genetics',
+//            data: [<?php echo(json_encode($score_QTL)); ?>]
+//        }, {
+//            name: 'Polymorphism',
+//            data: [<?php echo(json_encode($score_SNP)); ?>]
+//        }]
+//    });
+//});
 
 
 
