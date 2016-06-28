@@ -565,7 +565,7 @@ function showScore(element){
     ort=element.getAttribute('data-id');
     QTL=element.getAttribute('data-id');
     SNP=element.getAttribute('data-id');
-    alert(exp);
+    alert(ort);
     $('#container_pie').highcharts({
         chart: {
             plotBackgroundColor: null,
