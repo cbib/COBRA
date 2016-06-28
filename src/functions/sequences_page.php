@@ -68,7 +68,7 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
         }
     }
     else{
-        error_log($_POST['mode']);
+        //error_log($_POST['mode']);
         $sequence_metadata=$sequencesCollection->find(array('tgt'=>'Gene_Sequence','mapping_file.Gene ID'=>$gene_id[0]),array('mapping_file.$'=>1));
             foreach ($sequence_metadata as $data) {
                 foreach ($data as $key=>$value) {
