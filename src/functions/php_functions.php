@@ -2921,7 +2921,7 @@ function load_and_display_pvinteractions_with_ajax(array $gene_id, array $protei
     
     
 }
-function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis){
+function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_bis,$species='null'){
     echo'<div id="sequences_section">
                     <h3>Sequences</h3>';
                     //$timestart=microtime(true); 
@@ -2978,7 +2978,7 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
                                                     
                                                     
                                                     
-                                                    echo  '<button onclick="runBlast(this)" data-id="'.str_replace(".", "__", $values['Transcript ID']).'"  data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                                                    echo  '<button onclick="runBlast(this)" data-species="'.$species.'" data-id="'.str_replace(".", "__", $values['Transcript ID']).'"  data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
                                                     echo '</br>';
                                                     echo '  <center>
                                                                 <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
@@ -4668,34 +4668,3 @@ function makeDatatableFromFind($cursor) {
 
 
 ?>
-<!--<script type="text/javascript">
-$(document).ready(function() {
-		$('#pretty_table').dataTable( {
-			"scrollX": true,
-			"jQueryUI": true,
-			"pagingType": "full_numbers",
-			"oLanguage": { 
-				"sProcessing":   "Processing...",
-				"sLengthMenu":   "display _MENU_ items",
-				"sZeroRecords":  "No item found",
-				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-				"sInfoFiltered": "(filtered from _MAX_ items in total)",
-				"sInfoPostFix":  "",
-				"sSearch":       "Search: ",
-				"sUrl":          "",
-				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
-				}
-			},
-			"language": {
-							"decimal": ",",
-							"thousands": "."
-				}
-		});
-	});
-    
-</script>-->

@@ -46,6 +46,10 @@ echo'
 <!--Datatable-->
 <script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
+<!--Ajax functions-->
+<script type="text/javascript" src="'.$path.'/js/ajax_functions.js"></script>
+
+
 <!--Require-->
 <script type="text/javascript" src="'.$path.'/js/require.js"></script>
 
@@ -364,6 +368,7 @@ echo'
                     </section>
                         
                         <section class="col-md-12" id="footer">
+                            <h1>  </h1>
                              <p class="text-muted" style="text-align: left">
                                 <br/>
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
@@ -471,15 +476,3 @@ echo'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-?>

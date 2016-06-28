@@ -100,3 +100,34 @@
         //
         ////echo' <dd><button onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</dd>';
         //<dd><a href="heat_'.str_replace(".", "_",$Measurement_FK).'" onclick="myFunction(this)" data-id="heat_'.str_replace(".", "_",$Measurement_FK).'" data-xcategories="'.$new_x_categories.'" data-title="hello world">Hello world</a></dd>';
+//<script type="text/javascript">
+//$(document).ready(function() {
+//		$('#pretty_table').dataTable( {
+//			"scrollX": true,
+//			"jQueryUI": true,
+//			"pagingType": "full_numbers",
+//			"oLanguage": { 
+//				"sProcessing":   "Processing...",
+//				"sLengthMenu":   "display _MENU_ items",
+//				"sZeroRecords":  "No item found",
+//				"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+//				"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+//				"sInfoFiltered": "(filtered from _MAX_ items in total)",
+//				"sInfoPostFix":  "",
+//				"sSearch":       "Search: ",
+//				"sUrl":          "",
+//				"oPaginate": {
+//					"sFirst":    "First",
+//					"sPrevious": "Previous",
+//					"sNext":     "Next",
+//					"sLast":     "Last"
+//				}
+//			},
+//			"language": {
+//							"decimal": ",",
+//							"thousands": "."
+//				}
+//		});
+//	});
+//    
+//</script>
