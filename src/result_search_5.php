@@ -558,14 +558,18 @@ new_cobra_footer();
 
 
 //pie container
-function showScore(element){
+$(function () {
     
-    exp=element.getAttribute('data-exp');
-    int=element.getAttribute('data-int');
+    //exp=element.getAttribute('data-exp');
+    //int=element.getAttribute('data-int');
     //ort=element.getAttribute('data-ort');
-    QTL=element.getAttribute('data-QTL');
-    SNP=element.getAttribute('data-SNP');
-    ort=$('#container_pie').attr('data-ort')
+    //QTL=element.getAttribute('data-QTL');
+    //SNP=element.getAttribute('data-SNP');
+    exp=$('#container_pie').attr('data-exp');
+    int=$('#container_pie').attr('data-int');
+    ort=$('#container_pie').attr('data-ort');
+    QTL=$('#container_pie').attr('data-QTL');
+    SNP=$('#container_pie').attr('data-SNP');
     alert(ort);
     $('#container_pie').highcharts({
         chart: {
@@ -620,7 +624,7 @@ function showScore(element){
 
         }]
     });
-};
+});
 //chart container
 $(function () {
     $('#container_chart').highcharts({
