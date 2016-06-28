@@ -39,7 +39,7 @@ function load_unspliced(element){
             type : 'POST' ,// Le type de la requête HTTP.
 
             //data : 'search=' + genes + '&sequence=' + clicked_sequence,
-            data : 'gene_ids=' + gene_ids + '&gene_ids_bis=' + genebis_ids +'&species=' + species+ '&mode=transcript',
+            data : 'gene_ids=' + gene_ids + '&gene_ids_bis=' + genebis_ids +'&species=' + species+ '&mode=unspliced',
 
 
             method: 'post',
