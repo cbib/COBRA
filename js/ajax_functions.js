@@ -12,6 +12,73 @@ var pv_already_open="false";
 var pp_already_open="false";
 var orthologs_already_open="false";
 
+
+
+
+//AJAX function for plant/plant interaction 
+function load_sequences(element){
+    species=element.getAttribute('data-species');
+    plaza_id=element.getAttribute('data-id');
+   
+ 
+    
+    
+    if (orthologs_already_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
+
+            url : './functions/orthologs_main_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            data : 'plaza_id=' + plaza_id + '&species=' + species,
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".ortholog_area").hide();
+                    $('.ortloading_'+plaza_id).html("<img src='../images/ajax-loader.gif' />");
+
+                    $(".ortloading_"+plaza_id).show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find("#orthologs_table").length){
+                   par=jqObj.find("#orthologs_table"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".ortholog_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".ortloading_"+plaza_id).fadeOut("slow");
+                $(".ortholog_area").show("slow");
+            }
+
+
+
+        });
+        orthologs_already_open="true";
+        }
+}  
 //AJAX function for plant/plant interaction 
 function load_orthologs(element){
     species=element.getAttribute('data-species');
