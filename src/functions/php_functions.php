@@ -1124,7 +1124,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                 
 
                 echo '<!-- Button trigger modal -->
-                        <button type="button" data-exp="'.$score_exp.'" data-int="'.$score_int.'" data-ort="'.$score_ort.'" data-QTL="'.$score_QTL.'" data-SNP="'.$score_SNP.'" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
                           View score details
                         </button>
 
@@ -1137,7 +1137,7 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                                 <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
                               </div>
                               <div class="modal-body">
-                                <div id="container_pie" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>   
+                                <div id="container_pie"  data-exp="'.$score_exp.'" data-int="'.$score_int.'" data-ort="'.$score_ort.'" data-QTL="'.$score_QTL.'" data-SNP="'.$score_SNP.'" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>   
                               </div>
                               <div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel">Score details</h4>
