@@ -419,7 +419,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             // left side div
             echo'<div id="protein-details">';               
                     //$timestart=microtime(true);
-                    $timestart= start_time_capture();
+                    //$timestart= start_time_capture();
                     load_and_display_proteins_details($gene_id,$gene_id_bis,$gene_symbol,$gene_alias,$descriptions,$uniprot_id,$species,$score_exp,$score_int,$score_ort,$score_QTL,$score_SNP,$score,$gene_start,$gene_end,$chromosome);
                     
                     //echo $score;
@@ -506,7 +506,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                     load_and_display_orthologs_with_ajax($species,$plaza_id);
                     
                     load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$species);
-                    stop_time_capture($timestart);
+                    //stop_time_capture($timestart);
                     
             echo'</div>';
 

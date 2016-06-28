@@ -3095,7 +3095,7 @@ function load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$specie
 
               echo '<div class="panel-group" id="accordion_documents_gene_sequence">
                         <div class="panel panel-default">
-                            <div class="panel-heading" onclick="load_unspliced(this)" data-species="'.$species.'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'"  data-genebis="'.htmlspecialchars( json_encode($gene_id_bis), ENT_QUOTES ).'" data-mode="transcript">
+                            <div class="panel-heading" onclick="load_unspliced(this)" data-species="'.$species.'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'"  data-genebis="'.htmlspecialchars( json_encode($gene_id_bis), ENT_QUOTES ).'" data-mode="unspliced">
                                 
                                     <a class="accordion-toggle collapsed" href="#gene_sequence_fasta" data-parent="#accordion_documents_gene_sequence" data-toggle="collapse">
                                         <strong>Unspliced Genes </strong>

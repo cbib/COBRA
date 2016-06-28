@@ -76,7 +76,7 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
 
                             //echo '<TEXTAREA name="nom" rows=9 cols=60>'.$values['Sequence'].'</TEXTAREA></br>'; 
                             //echo '<pre style="margin-right: 2%; margin-left: 2%;width=100%; text-align: left">'.'>'.$values['Gene ID'].'</br>'.$values['Gene Sequence'].'</pre></br>';
-                            echo '<div class="un_results" ><pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
+                            echo '<div class="un_results"><pre style="margin-right: 1%; margin-left: 1%; width=100%; text-align: left">';
                             echo '>'.$values['Gene ID'].'</br>';
                             for ($j=1;$j<=strlen($values['Gene Sequence']);$j++){
                                 if (($j%60===0) && ($j!==1)){
