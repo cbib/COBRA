@@ -79,7 +79,30 @@ include($path."/src/functions/piwik.php");
 
 echo '</head>';
 }
+function add_ajax_accordion_panel($function='null',$accordion_id='null', $body_panel_id='null',$loading_id='null',$area_id='null'){
+    echo '<div class="panel-group" id="accordion_documents_'.$accordion_id.'">
+            <div class="panel panel-default">
+                <div class="panel-heading" onclick="'.$function.'">
 
+                        <a class="accordion-toggle collapsed" href="#'.$body_panel_id.'" data-parent="#accordion_documents_'.$accordion_id.'" data-toggle="collapse">
+                                <strong>Top Ranking susceptibility genes using COBRA scoring function</strong>
+                        </a>				
+
+                </div>
+                <center>
+                    <div class="'.$loading_id.'" style="display: none"></div>
+                </center>
+                <div class="panel-body panel-collapse collapse" id="'.$body_panel_id.'">
+                    <div class="'.$area_id.'"> 
+
+                    <!--here comes the table div-->
+                    </div>';
+           echo'</div>
+
+            </div>
+        </div>
+    <div class="shift_line"></div>';
+}
 function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'){
     
     

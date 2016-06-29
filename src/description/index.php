@@ -48,7 +48,7 @@ echo '<div id="data_description">';
 //$experiment_cursor=find_all_xp_name($samplesCollection);
 
 //$experiment_cursor2=get_xp_name_by_species($samplesCollection);
-$ts=start_time_capture();
+
 $experiment_cursor=find_xp_name_group_by_species($samplesCollection);
 
 echo'<div class="panel-group" id="accordion_documents">
@@ -86,7 +86,7 @@ echo'<div class="panel-group" id="accordion_documents">
     </div>    
 <br/>
 <br/>';
-stop_time_capture($ts);
+
 
 
 
@@ -140,7 +140,7 @@ $table_string.='<h2> Mapping lists</h2> <div class="container"><ul>';
  //makeDatatableFromFind($cursor);
 $table_string.='</div>';
 */
-$tsm=start_time_capture();
+
 $mapping_table_string="";
 ###MAPPING REQUEST
 
@@ -185,11 +185,11 @@ $mapping_table_string.='</tbody></table>';
 add_accordion_panel($mapping_table_string, "Mappings", "mapping_table");
 echo'<br/>';
 
-stop_time_capture($tsm);
 
 
 
-$tsm=start_time_capture();
+
+
 
 $species_table_string="";
 
@@ -254,7 +254,7 @@ $species_table_string.='</tr>';
 $species_table_string.='</tbody></table>';
 add_accordion_panel($species_table_string, "Species", "Species_table");
 echo'<br/>';
-stop_time_capture($tsm);
+
 
 
 ###VIRUSES TABLE
@@ -321,45 +321,36 @@ echo'<br/>';
 
 
 
+add_ajax_accordion_panel("load_top_scored_genes()","Top-Ranking-Sgenes", "table_Top-Ranking-Sgenes","TopScoredloading","top_score_area");
 
 
-
-
-
-
-
-
-
-$tsm=start_time_capture();
-
-
-echo '<div class="panel-group" id="accordion_documents_Top-Ranking-Sgenes">
-            <div class="panel panel-default">
-                <div class="panel-heading" onclick="load_top_scored_genes()">
-
-                        <a class="accordion-toggle collapsed" href="#table_Top-Ranking-Sgenes" data-parent="#accordion_documents_Top-Ranking-Sgenes" data-toggle="collapse">
-                                <strong>Top Ranking susceptibility genes using COBRA scoring function</strong>
-                        </a>				
-
-                </div>
-                <center>
-                    <div class="TopScoredloading" style="display: none"></div>
-                </center>
-                <div class="panel-body panel-collapse collapse" id="table_Top-Ranking-Sgenes">
-                    <div class="top_score_area"> 
-
-                    <!--here comes the top scored genes table div-->
-                    </div>';
-           echo'</div>
-
-            </div>
-        </div>
-    <div class="shift_line"></div>';
+//echo '<div class="panel-group" id="accordion_documents_Top-Ranking-Sgenes">
+//            <div class="panel panel-default">
+//                <div class="panel-heading" onclick="load_top_scored_genes()">
+//
+//                        <a class="accordion-toggle collapsed" href="#table_Top-Ranking-Sgenes" data-parent="#accordion_documents_Top-Ranking-Sgenes" data-toggle="collapse">
+//                                <strong>Top Ranking susceptibility genes using COBRA scoring function</strong>
+//                        </a>				
+//
+//                </div>
+//                <center>
+//                    <div class="TopScoredloading" style="display: none"></div>
+//                </center>
+//                <div class="panel-body panel-collapse collapse" id="table_Top-Ranking-Sgenes">
+//                    <div class="top_score_area"> 
+//
+//                    <!--here comes the top scored genes table div-->
+//                    </div>';
+//           echo'</div>
+//
+//            </div>
+//        </div>
+//    <div class="shift_line"></div>';
 
 //add_accordion_panel($CG_form_string, "Top Ranking susceptibility genes using COBRA scoring function","Top-Ranking-Sgenes"); 
 
 echo'<br/>';
-stop_time_capture($tsm);
+
 
 echo'</div>';
 
