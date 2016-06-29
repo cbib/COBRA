@@ -633,12 +633,33 @@ function show_heatmap2(element,clicked_id,min, max){
     //alert(clicked_id);
     $('.heatmap_'+clicked_id).highcharts({
         
-
+//        exporting: {
+//            buttons: {
+//                customButton: {
+//                    text: 'Custom Button',
+//                    align: 'right',
+//
+//                    onclick: function () {
+//                        alert('You pressed the button!');
+//                    }
+//                },
+//               anotherButton: {
+//                    text: 'Another Button',
+//                    text: 'Custom Button',
+//                    align: 'right',
+//
+//                    onclick: function () {
+//                        alert('You pressed another button!');
+//                    }
+//                }
+//            }
+//        },
         chart: {
             type: 'heatmap',
             marginTop: 40,
             marginBottom: 130,
-            zoomType: 'x',
+            
+            
             plotBorderWidth: 1,
             events: {
                     load: function () {
@@ -663,8 +684,18 @@ function show_heatmap2(element,clicked_id,min, max){
                             y: 5 // offset
                         }), null, 'spacingBox');
                 
-                    }
-                }
+                    },
+//                    selection: function(event) {
+//                        if (event.xAxis) {
+//                            //event.point.series.xAxis.categories[event.point.x]
+//                            alert('min: '+ event.xAxis[0].min +', max: '+ event.xAxis[0].max);
+//                            //alert('min: '+ event.point.series.xAxis.categories[event.point.x] +', max: '+ event.xAxis[0].max);
+//                        } else {
+//                            $alert('Selection reset');
+//                        }
+//                    }
+                },
+                zoomType: 'x'
         },
 
 
@@ -709,6 +740,16 @@ function show_heatmap2(element,clicked_id,min, max){
                         window.open("../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x]);
 
                     }
+                    
+                    
+                },
+                allowPointSelect: true,
+                point: {
+                    events: {
+                        select: function () {
+                            console.log(this.category + ': ' + this.y + ' was last selected');
+                        }
+                    }
                 }
             }
         },
@@ -736,6 +777,26 @@ function show_heatmap2(element,clicked_id,min, max){
         }]
 
     });
+//    $('#add').click(function() {
+//        var chart = $('.heatmap_'+clicked_id).highcharts();
+//        normalState = new Object();
+//        normalState.stroke_width = null;
+//        normalState.stroke = null;
+//        normalState.fill = null;
+//        normalState.padding = null;
+//        normalState.r = null;
+//
+//        hoverState = new Object();
+//        hoverState = normalState;
+//        hoverState.fill = 'red';
+//        
+//        pressedState = new Object();
+//        pressedState = normalState;
+//        
+//        var custombutton = chart.renderer.button('button', 74, 10, function(){
+//            alert('New Button Pressed');
+//        },null,hoverState,pressedState).add();
+//    });
 
 }
 function run_profiles_query(element){

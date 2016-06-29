@@ -13,7 +13,72 @@ var pp_already_open="false";
 var orthologs_already_open="false";
 var transcripts_already_open="false";
 var unspliced_already_open="false";
+var top_scored_gene_open="false";
 
+
+//AJAX function for plant/plant interaction 
+function load_top_scored_genes(){
+
+   
+ 
+    
+    
+    if (top_scored_gene_open==="true"){
+       //alert("already open");
+       //open="false";
+   }
+    else{
+        $.ajax({
+
+            url : '../functions/top_scored_genes_page.php', // La ressource ciblée
+
+            type : 'POST' ,// Le type de la requête HTTP.
+
+            //data : 'search=' + genes + '&sequence=' + clicked_sequence,
+            //data : 'test=' + gene_ids + '&gene_ids_bis=' + genebis_ids +'&species=' + species+ '&mode=unspliced',
+
+
+            method: 'post',
+            cache: false,
+            async: true,
+            dataType: "html",
+            beforeSend: function() { 
+                    //  alert("start");
+                    $(".top_score_area").hide();
+                    $('.TopScoredloading').html("<img src='../../images/ajax-loader.gif' />");
+
+                    $(".TopScoredloading").show();
+                },
+
+            success: function (data) {
+
+                var jqObj = jQuery(data);
+
+                var par;
+
+                if(jqObj.find(".top_scored").length){
+                   par=jqObj.find(".top_scored"); 
+                }
+                else{
+                   par=jqObj.find(".no_results");
+                   
+                }
+                
+                $(".top_score_area").empty().append(par);
+
+            },
+            complete:function(){  
+                //   alert("stop");
+                $(".TopScoredloading").fadeOut("slow");
+                $(".top_score_area").show("slow");
+            }
+
+
+
+        });
+        top_scored_gene_open="true";
+        }
+}  
 
 //AJAX function for plant/plant interaction 
 function load_unspliced(element){
@@ -81,6 +146,7 @@ function load_unspliced(element){
         unspliced_already_open="true";
         }
 }  
+
 //AJAX function for plant/plant interaction 
 function load_transcripts(element){
     species=element.getAttribute('data-species');
@@ -697,7 +763,7 @@ $(function () {
             type: 'pie'
         },
         title: {
-            text: ''
+            text: 'Title'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -859,7 +925,6 @@ $('#samplestable').dataTable( {
                     "thousands": "."
         }
 }); 
-
 //table pp interactions
 $(document).ready(function() {
     $('#pretty_table_pp_intact').dataTable( {
@@ -1064,34 +1129,34 @@ $(document).ready(function() {
     });
 });  
 //table mappings
-$(document).ready(function() {
-	$('#mappingtable').dataTable( {
-		"scrollX": true,
-		"jQueryUI": true,
-		"pagingType": "full_numbers",
-		"oLanguage": { 
-			"sProcessing":   "Processing...",
-			"sLengthMenu":   "display _MENU_ items",
-			"sZeroRecords":  "No item found",
-			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-			"sInfoFiltered": "(filtered from _MAX_ items in total)",
-			"sInfoPostFix":  "",
-			"sSearch":       "Search: ",
-			"sUrl":          "",
-			"oPaginate": {
-				"sFirst":    "First",
-				"sPrevious": "Previous",
-				"sNext":     "Next",
-				"sLast":     "Last"
-			}
-		},
-		"language": {
-            		"decimal": ",",
-            		"thousands": "."
-        	}
-	});
-});
+//$(document).ready(function() {
+//	$('#mapping').dataTable( {
+//		"scrollX": true,
+//		"jQueryUI": true,
+//		"pagingType": "full_numbers",
+//		"oLanguage": { 
+//			"sProcessing":   "Processing...",
+//			"sLengthMenu":   "display _MENU_ items",
+//			"sZeroRecords":  "No item found",
+//			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+//			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+//			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+//			"sInfoPostFix":  "",
+//			"sSearch":       "Search: ",
+//			"sUrl":          "",
+//			"oPaginate": {
+//				"sFirst":    "First",
+//				"sPrevious": "Previous",
+//				"sNext":     "Next",
+//				"sLast":     "Last"
+//			}
+//		},
+//		"language": {
+//            		"decimal": ",",
+//            		"thousands": "."
+//        	}
+//	});
+//});
 //table species
 $(document).ready(function() {
 	$('#speciestable').dataTable( {
@@ -1119,12 +1184,11 @@ $(document).ready(function() {
             		"decimal": ",",
             		"thousands": "."
         	}
-	});
-    
+	});    
 });
 //table virus
 $(document).ready(function() {
-	$('#virustable').dataTable( {
+	$('#virus').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
@@ -1151,31 +1215,35 @@ $(document).ready(function() {
         	}
 	});
 });
-//table multiple
-$(document).ready(function() {
-    $('#mapping').DataTable( {
-        responsive: true,
-        
-		
-        
-    } );
-    $('#species').DataTable( {
-        responsive: true,
-        
-		
-        
-    } );
-    $('#virus').DataTable( {
-        responsive: true,
-        
-		
-        
-    } );
-    $('#S-genes').DataTable( {
-        responsive: true,
-        
-		
-        
-    } );
 
-} );
+
+
+
+//table multiple
+//$(document).ready(function() {
+//    $('#mapping').DataTable( {
+//        responsive: true,
+//        
+//		
+//        
+//    } );
+//    $('#species').DataTable( {
+//        responsive: true,
+//        
+//		
+//        
+//    } );
+//    $('#virus').DataTable( {
+//        responsive: true,
+//        
+//		
+//        
+//    } );
+//    $('#S-genes').DataTable( {
+//        responsive: true,
+//        
+//		
+//        
+//    } );
+//
+//} );

@@ -69,7 +69,7 @@ echo'<div class="panel-group" id="accordion_documents">
                             foreach ($value['xps'] as $xpName) {
 
                                 #echo $xpName;
-                                $experiment_table_string.='<li value='.$xpName['name'].'><a href=experiments.php?xp='.str_replace(' ','\s',$xpName['name']).'>'.$xpName['name'].'</a> ('.$xpName['type'].')</li>';
+                                $experiment_table_string.='<li value="'.$xpName['name'].'"><a href="experiments.php?xp='.str_replace(' ','\s',$xpName['name']).'">'.$xpName['name'].'</a> ('.$xpName['type'].')</li>';
 
                             }
                             $experiment_table_string.='</ul>';
@@ -149,7 +149,7 @@ $mapping_cursor=find_all_mappings($mappingsCollection);
 
 ###MAPPING TABLE
 
-$mapping_table_string.='<table id="mapping" class="table table-hover">';
+$mapping_table_string.='<table id="mapping" class="table table-hover dataTable no-footer">';
 //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
 $mapping_table_string.='<thead><tr>';
 	
@@ -189,7 +189,7 @@ stop_time_capture($tsm);
 
 
 
-
+$tsm=start_time_capture();
 
 $species_table_string="";
 
@@ -254,20 +254,15 @@ $species_table_string.='</tr>';
 $species_table_string.='</tbody></table>';
 add_accordion_panel($species_table_string, "Species", "Species_table");
 echo'<br/>';
-
-$virus_table_string="";
-
-###VIRUSES REQUEST
-
-$virus_cursor=find_all_viruses($virusesCollection);
-
+stop_time_capture($tsm);
 
 
 ###VIRUSES TABLE
 
+$virus_table_string="";
 
-
-$virus_table_string.='<table id="virus" class="table table-hover">';
+$virus_cursor=find_all_viruses($virusesCollection);
+$virus_table_string.='<table id="virus" class="table table-hover dataTable no-footer">';
 
 //$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
 $virus_table_string.='<thead><tr>';
@@ -335,60 +330,36 @@ echo'<br/>';
 
 
 
+$tsm=start_time_capture();
 
 
+echo '<div class="panel-group" id="accordion_documents_Top-Ranking-Sgenes">
+            <div class="panel panel-default">
+                <div class="panel-heading" onclick="load_top_scored_genes()">
 
-$best_scored_genes=find_top_ranking_S_genes($full_mappingsCollection);
-//$best_scored_genes->sort(array('_id.score'=>1));
+                        <a class="accordion-toggle collapsed" href="#table_Top-Ranking-Sgenes" data-parent="#accordion_documents_Top-Ranking-Sgenes" data-toggle="collapse">
+                                <strong>Top Ranking susceptibility genes using COBRA scoring function</strong>
+                        </a>				
 
+                </div>
+                <center>
+                    <div class="TopScoredloading" style="display: none"></div>
+                </center>
+                <div class="panel-body panel-collapse collapse" id="table_Top-Ranking-Sgenes">
+                    <div class="top_score_area"> 
 
+                    <!--here comes the top scored genes table div-->
+                    </div>';
+           echo'</div>
 
-$CG_form_string="";
-$CG_form_string.='<table id="S-genes" class="table table-hover">';
+            </div>
+        </div>
+    <div class="shift_line"></div>';
 
-//$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
-$CG_form_string.='<thead><tr>';
-	
-	//recupere le titre
-	$CG_form_string.='<th>Gene</th>';
-	$CG_form_string.='<th>species</th>';
-	$CG_form_string.='<th>Score</th>';
-	
-	//$table_string.='<th>tgt</th>';
-	//$table_string.='<th>tgt_version</th>';
-	//$table_string.='<th>species</th>';
-
-	
-	//fin du header de la table
-$CG_form_string.='</tr></thead>';
-//Debut du corps de la table
-$CG_form_string.='<tbody>';
-
-foreach ($best_scored_genes['result'] as $value) {
-    //var_dump($value['_id']['score']);
-    //echo $value['_id']['score'].'<br/>';
-    
-        $score=$value['_id']['score'];
-        if ( $score > 10){
-            foreach ($value['genes'] as $gene) {
-                $CG_form_string.='<tr>';
-                //$CG_form_string.='<td>'.$gene['gene_id'].'</td>';
-                $CG_form_string.='<td><a class="nowrap" target = "_blank" href="../../src/result_search_5.php?organism='.$gene['species'].'&search='.$gene['gene_id'].'">'.$gene['gene_id'].'</a></td>';
-
-                $CG_form_string.='<td>'.$gene['species'].'</td>';
-                $CG_form_string.='<td>'.$score.'</td>';
-                $CG_form_string.='</tr>';
-                //echo $gene;
-            }
-        }
-}
-$CG_form_string.='</tbody></table>';
-
-
-add_accordion_panel($CG_form_string, "Top Ranking susceptibility genes using COBRA scoring function","Top-Ranking-Sgenes"); 
+//add_accordion_panel($CG_form_string, "Top Ranking susceptibility genes using COBRA scoring function","Top-Ranking-Sgenes"); 
 
 echo'<br/>';
-
+stop_time_capture($tsm);
 
 echo'</div>';
 
@@ -402,4 +373,14 @@ echo'</div>';
 
 new_cobra_footer();
 
+?>
+
+<script>
+    $(document).ready(function() {
+    $('#mapping').DataTable( {
+        responsive: true
+    });
+});
+
+</script>
 
