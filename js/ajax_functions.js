@@ -1,10 +1,5 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
+//Global variable
 var profile_already_open="false";
 var genetic_marker_already_open="false";
 var genetic_qtl_already_open="false";
@@ -15,7 +10,379 @@ var transcripts_already_open="false";
 var unspliced_already_open="false";
 var top_scored_gene_open="false";
 
+//show heatmap for expression profile
+function show_heatmap(element,clicked_id,min, max){
+    //var clicked_id = element.getAttribute('data-id');
+    //var x_array = element.getAttribute('data-x');
+    var x_array=element.attr('data-x');
+    var total_diff_gene=element.attr('data-total-diff');
+    var total_gene=element.attr('data-total');
+    
+    
+    var series_array = element.attr('data-series');
+    //var series_array = element.getAttribute('data-series');
+    dpi=element.attr('data-dpi');
+    day = new Array(series_array);
+    //alert(clicked_id);
+    $('.heatmap_'+clicked_id).highcharts({
+        
+//        exporting: {
+//            buttons: {
+//                customButton: {
+//                    text: 'Custom Button',
+//                    align: 'right',
+//
+//                    onclick: function () {
+//                        alert('You pressed the button!');
+//                    }
+//                },
+//               anotherButton: {
+//                    text: 'Another Button',
+//                    text: 'Custom Button',
+//                    align: 'right',
+//
+//                    onclick: function () {
+//                        alert('You pressed another button!');
+//                    }
+//                }
+//            }
+//        },
+        chart: {
+            type: 'heatmap',
+            marginTop: 40,
+            marginBottom: 130,
+            
+            
+            plotBorderWidth: 1,
+            events: {
+                    load: function () {
+                        var label = this.renderer.label("GO terms of the set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+", blue bars) is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
+                        .css({
+                            width: '850px',
+                            color: '#222',
+                            fontSize: '16px'
+                        })
+                        .attr({
+                            'stroke': 'silver',
+                            'stroke-width': 2,
+                            'r': 5,
+                            'padding': 10
+                        })
+                        .add();
+                
+                        label.align(Highcharts.extend(label.getBBox(), {
+                            align: 'center',
+                            x: 0, // offset
+                            verticalAlign: 'bottom',
+                            y: 5 // offset
+                        }), null, 'spacingBox');
+                
+                    }
+//                    selection: function(event) {
+//                        if (event.xAxis) {
+//                            //event.point.series.xAxis.categories[event.point.x]
+//                            //alert(this.series.categories);
+//                            console.log(event.xAxis[0].series);
+//                            //alert('min: '+ event.xAxis +', max: '+ event.xAxis[0].max);
+//                            //alert('min: '+ event.point.series.xAxis.categories[event.point.x] +', max: '+ event.xAxis[0].max);
+//                        } else {
+//                            $alert('Selection reset');
+//                        }
+//                    }
+                },
+                zoomType: 'x'
+        },
 
+
+        title: {
+            text: 'Differentially expressed genes'
+        },
+
+        xAxis: {
+            categories: JSON.parse(x_array),
+            labels: {
+                enabled: false
+            }
+
+        },
+        
+
+        yAxis: {
+            categories: [dpi+' dpi'],
+            title: null
+        },
+
+        colorAxis: {
+            stops: [
+                [0, '#3060cf'],
+                [0.35, '#A9E2F3'],
+                [0.5, '#fffbbc'],
+                [0.65, '#FE9A2E'],
+                //[0.75, '#c4463a'],
+                [1, '#c4463a']
+            ],
+            min: -4,
+            max:4,
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+        plotOptions: {
+            series: {
+
+                events: {
+                    click: function (event) {
+                        //alert(event.point.series.xAxis.categories[event.point.x] );
+                        //window.location.href = "../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x];
+                        window.open("../Multi-results.php?organism=All+species&search=" +event.point.series.xAxis.categories[event.point.x]);
+
+                   }
+//                   ,                    ,
+//                    select: function () {
+//                            console.log(this.category + ': ' + this.y + ' was last selected');
+//                    }
+                    
+                    
+                    
+                }
+//                ,
+//                allowPointSelect: true,
+//                point: {
+//                    events: {
+//                        select: function () {
+//                            console.log(this.category + ': ' + this.y + ' was last selected');
+//                        }
+//                    }
+//                }
+            }
+        },
+        legend: {
+            align: 'right',
+            layout: 'vertical',
+            margin: 0,
+            verticalAlign: 'top',
+            y: 25,
+            symbolHeight: 280
+        },
+
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.xAxis.categories[this.point.x] + '</b><br>Log fold change: <b>' +
+                    this.point.value + '</b><br>Day post inoculation: <b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+            }
+        },
+
+        series: [{
+            name: 'Differentially expressed genes (logFC > 2 or logFC < -2)',
+            borderWidth: 1,
+            data: JSON.parse(day)
+            
+        }]
+
+    });
+//    $('#add').click(function() {
+//        var chart = $('.heatmap_'+clicked_id).highcharts();
+//        normalState = new Object();
+//        normalState.stroke_width = null;
+//        normalState.stroke = null;
+//        normalState.fill = null;
+//        normalState.padding = null;
+//        normalState.r = null;
+//
+//        hoverState = new Object();
+//        hoverState = normalState;
+//        hoverState.fill = 'red';
+//        
+//        pressedState = new Object();
+//        pressedState = normalState;
+//        
+//        var custombutton = chart.renderer.button('button', 74, 10, function(){
+//            alert('New Button Pressed');
+//        },null,hoverState,pressedState).add();
+//    });
+
+}
+//AJAX function for GO enrichment 
+function load_heatmap(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+    
+    $.ajax({
+
+        url : './load_profile.php', // La ressource ciblée
+        type : 'POST' ,// Le type de la requête HTTP.
+        data : 'search=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax,
+
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".test_"+clicked_id).hide();
+                $('.loading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".loading_"+clicked_id).show();
+			},
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            //alert(clicked_id);
+            var par=jqObj.find(".heatmap_"+clicked_id);
+            //alert(par)
+            
+            
+            $(".test_"+clicked_id).empty().append(par);
+            //alert("div has been append");
+            show_heatmap(par,clicked_id,logFCmin,logFCmax);
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".loading_"+clicked_id).fadeOut("slow");
+            $(".test_"+clicked_id).show("slow");
+		}
+    });
+
+}
+//set value for min logFC
+function change_min_logFC(element){
+    clicked_id = element.getAttribute('data-id');
+    
+    new_min_logFC = element.options[element.selectedIndex].value;
+
+    //var element_to_modify = document.getElementById("GO_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-min", new_min_logFC);
+    //var element_to_modify = document.getElementById("heatmap_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-min", new_min_logFC);
+    
+    $(".heatmap_button_"+clicked_id).attr("data-min", new_min_logFC);
+    $(".GO_button_"+clicked_id).attr("data-min", new_min_logFC);
+    
+    
+}
+//set value for max logFC
+function change_max_logFC(element){
+    clicked_id = element.getAttribute('data-id');
+    new_max_logFC = element.options[element.selectedIndex].value;
+    //var element_to_modify = document.getElementById("heatmap_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-max", new_max_logFC);
+    $(".heatmap_button_"+clicked_id).attr('data-max', new_max_logFC);
+    $(".GO_button_"+clicked_id).attr('data-max', new_max_logFC);
+
+    
+    
+    
+    //var element_to_modify = document.getElementById("GO_button_"+clicked_id); 
+    //element_to_modify.setAttribute("data-max", new_max_logFC);
+
+}
+//show highcharts for GO enrichment
+function show_GO_enrichment(element,clicked_id){
+    var x_array=element.attr('data-x');
+    var series_array = element.attr('data-series');
+    
+  
+    //alert(datas);
+    //var x_array = element.getAttribute('data-x');
+    //var x_array=element.attr('data-x');
+    //var series_array = element.attr('data-series');
+    //var series_array = element.getAttribute('data-series');
+    //var dpi=element.getAttribute('data-dpi');
+    //datas = new Array(series_array);
+
+
+    $('.GO_'+clicked_id).highcharts({
+        chart: {
+            type: 'column',
+            //marginTop: 40,
+            //marginBottom: 130,
+            
+        },
+        
+        title: {
+            text: 'Enrichment for GO main terms of genes differentially expressed.  '
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories:  JSON.parse(x_array),
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: JSON.parse(series_array)
+    });
+};
+//AJAX function for GO enrichment 
+function load_GO_enrichment(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+    species = element.getAttribute('data-species');
+
+  
+    $.ajax({
+
+        url : './GO_enrichment.php', // La ressource ciblée
+        type : 'POST' ,// Le type de la requête HTTP.
+        data : 'xp_id=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
+        
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".GOtest_"+clicked_id).hide();
+                $('.GOloading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".GOloading_"+clicked_id).show();
+		},
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            //alert(clicked_id);
+            var par=jqObj.find(".GO_"+clicked_id);
+            //alert(par.attr('data-x'));
+            //alert(par.attr('data-series'));
+            
+            
+            $(".GOtest_"+clicked_id).empty().append(par);
+            //alert("div has been append");
+            show_GO_enrichment(par,clicked_id);
+        },
+        complete:function(){  
+            //   alert("stop");
+			$(".GOloading_"+clicked_id).fadeOut("slow");
+            $(".GOtest_"+clicked_id).show("slow");
+            $(".GOparagraph_"+clicked_id).show("slow");
+		}        
+    });
+
+}
 //AJAX function for top scored genes 
 function load_top_scored_genes(){
 
@@ -56,8 +423,8 @@ function load_top_scored_genes(){
 
                 var par;
 
-                if(jqObj.find(".top_scored").length){
-                   par=jqObj.find(".top_scored"); 
+                if(jqObj.find("#S-genes").length){
+                   par=jqObj.find("#S-genes"); 
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -65,7 +432,7 @@ function load_top_scored_genes(){
                 }
                 
                 $(".top_score_area").empty().append(par);
-                load_datatable();
+                load_top_scored_datatable();
 
             },
             complete:function(){  
@@ -262,6 +629,7 @@ function load_orthologs(element){
                 }
                 
                 $(".ortholog_area").empty().append(par);
+                load_orthologs_table(par);
 
             },
             complete:function(){  
@@ -644,7 +1012,7 @@ function load_expression_profiles(element){
     if (profile_already_open==="true"){
        //alert("already open");
        //open="false";
-   }
+    }
     else{
         $.ajax({
 
@@ -666,7 +1034,7 @@ function load_expression_profiles(element){
                     $('.loading_'+gene_id).html("<img src='../images/ajax-loader.gif' />");
 
                     $(".loading_"+gene_id).show();
-                },
+            },
 
             success: function (data) {
                 //alert(data);
@@ -675,18 +1043,7 @@ function load_expression_profiles(element){
 
                 $(".profile").empty().append(par);
                 show_profiles(par);
-                //works to load results in element
-    //                        $( ".content_test" ).load( "tools/blast/blast.php #paragraph",{
-    //                            search : genes,
-    //
-    //                            sequence : sequence
-    //                            
-    //                        } );
-
-
-
-            //$( ".loading" ).load( "tools/blast/blast.php #paragraph" );
-            //$('.content_test').empty().html(data);
+  
             },
             complete:function(){  
                 //   alert("stop");
@@ -697,9 +1054,9 @@ function load_expression_profiles(element){
 
 
         });
-        profile_already_open="true";
-        }
-}  
+    profile_already_open="true";
+    }
+}; 
 //AJAX function for Blast jobs 
 function runBlast(element){
 
@@ -1098,8 +1455,9 @@ $(document).ready(function() {
     });
 });
 //table orthologs
-$(document).ready(function() {
-    $('#orthologs_table').dataTable( {
+function load_orthologs_table(element){
+    //$('#orthologs_table').dataTable( {
+    element.dataTable( {
         "scrollX": true,
         "jQueryUI": true,
         "pagingType": "full_numbers",
@@ -1125,7 +1483,7 @@ $(document).ready(function() {
                         "thousands": "."
             }
     });
-});
+};
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1242,7 +1600,7 @@ $(document).ready(function() {
         	}
 	});
 });
-function load_datatable() {
+function load_top_scored_datatable() {
 	$('#S-genes').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
@@ -1269,7 +1627,7 @@ function load_datatable() {
             		"thousands": "."
         	}
 	});
-}
+};
 
 
 
