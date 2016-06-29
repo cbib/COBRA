@@ -742,8 +742,6 @@ function runBlast(element){
 
 }
 
-
-//
 //Highchart pie container
 $(function () {
 
@@ -839,8 +837,6 @@ $(function () {
         }]
     });
 });
-
-
 //example datatable
 $(document).ready(function() {
     $('#example').dataTable( {
@@ -1189,7 +1185,7 @@ $(document).ready(function() {
 //});
 //table species
 $(document).ready(function() {
-	$('#speciestable').dataTable( {
+	$('#species').dataTable( {
 		"scrollX": false,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",

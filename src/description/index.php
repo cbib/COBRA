@@ -202,7 +202,7 @@ $species_cursor=find_all_species($speciesCollection);
 
 
 
-$species_table_string.='<table id="species" class="table table-hover">';
+$species_table_string.='<table id="species" class="table table-hover dataTable no-footer">';
 $species_table_string.='<thead><tr>';
 	
 	//recupere le titre
