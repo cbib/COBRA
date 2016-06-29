@@ -16,7 +16,7 @@ var unspliced_already_open="false";
 var top_scored_gene_open="false";
 
 
-//AJAX function for plant/plant interaction 
+//AJAX function for top scored genes 
 function load_top_scored_genes(){
 
    
@@ -79,7 +79,6 @@ function load_top_scored_genes(){
         top_scored_gene_open="true";
         }
 }  
-
 //AJAX function for plant/plant interaction 
 function load_unspliced(element){
     species=element.getAttribute('data-species');
@@ -146,7 +145,6 @@ function load_unspliced(element){
         unspliced_already_open="true";
         }
 }  
-
 //AJAX function for plant/plant interaction 
 function load_transcripts(element){
     species=element.getAttribute('data-species');
@@ -749,11 +747,43 @@ function runBlast(element){
 //Highchart pie container
 $(function () {
 
-    exp=$('#container_pie').attr('data-exp');
-    int=$('#container_pie').attr('data-int');
-    ort=$('#container_pie').attr('data-ort');
-    QTL=$('#container_pie').attr('data-QTL');
-    SNP=$('#container_pie').attr('data-SNP');
+//    exp=$('#container_pie').attr('data-exp');
+//    int=$('#container_pie').attr('data-int');
+//    ort=$('#container_pie').attr('data-ort');
+//    QTL=$('#container_pie').attr('data-QTL');
+//    SNP=$('#container_pie').attr('data-SNP');
+
+    
+    try {
+        exp_json=JSON.parse($('#container_pie').attr('data-exp'));                   
+    } 
+    catch (e) {
+        exp_json=0;
+    }
+    try {
+        int_json=JSON.parse($('#container_pie').attr('data-int'));                   
+    } 
+    catch (e) {
+        int_json=0;
+    }
+    try {
+        ort_json=JSON.parse($('#container_pie').attr('data-ort'));                   
+    } 
+    catch (e) {
+        ort_json=0;
+    }
+    try {
+        QTL_json=JSON.parse($('#container_pie').attr('data-QTL'));                   
+    } 
+    catch (e) {
+        QTL_json=0;
+    }
+    try {
+        SNP_json=JSON.parse($('#container_pie').attr('data-SNP'));                   
+    } 
+    catch (e) {
+        SNP_json=0;
+    }
     
     $('#container_pie').highcharts({
         chart: {
@@ -784,25 +814,25 @@ $(function () {
             data: [{
                 name: 'Expression Score',
 
-                y: JSON.parse(exp)
+                y: exp_json
             }, {
                 name: 'Interaction Score',
 
-                y: JSON.parse(int),
+                y: int_json,
 
                 sliced: true,
                 selected: true
             }, {
                 name: 'Orthology Score',
-                y: JSON.parse(ort)
+                y: ort_json
 
             }, {
                 name: 'QTL Score',
-                y: JSON.parse(QTL)
+                y: QTL_json
 
             }, {
                 name: 'Genetic Markers Score',
-                y: JSON.parse(SNP)
+                y: SNP_json
 
             }]
 
