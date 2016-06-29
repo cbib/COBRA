@@ -17,7 +17,7 @@ $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 $best_scored_genes=find_top_ranking_S_genes($full_mappingsCollection);
 
 $CG_form_string="";
-$CG_form_string.='<div class="top_scored"><table id="S-genes" class="table table-hover">';
+$CG_form_string.='<div class="top_scored"><table id="S-genes" class="table table-hover dataTable no-footer">';
 
 //$table_string.='<table id="virus" class="table table-bordered" cellspacing="0" width="100%">';
 $CG_form_string.='<thead><tr>';
