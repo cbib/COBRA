@@ -383,6 +383,35 @@ function load_GO_enrichment(element){
     });
 
 }
+//display top scored table 
+function load_top_scored_datatable(element) {
+	element.dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+};
 //AJAX function for top scored genes 
 function load_top_scored_genes(){
 
@@ -1099,35 +1128,6 @@ function runBlast(element){
     });
 
 }
-//display top scored table 
-function load_top_scored_datatable(element) {
-	element.dataTable( {
-		"scrollX": true,
-		"jQueryUI": true,
-		"pagingType": "full_numbers",
-		"oLanguage": { 
-			"sProcessing":   "Processing...",
-			"sLengthMenu":   "display _MENU_ items",
-			"sZeroRecords":  "No item found",
-			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-			"sInfoFiltered": "(filtered from _MAX_ items in total)",
-			"sInfoPostFix":  "",
-			"sSearch":       "Search: ",
-			"sUrl":          "",
-			"oPaginate": {
-				"sFirst":    "First",
-				"sPrevious": "Previous",
-				"sNext":     "Next",
-				"sLast":     "Last"
-			}
-		},
-		"language": {
-            		"decimal": ",",
-            		"thousands": "."
-        	}
-	});
-};
 //display table orthologs
 function load_orthologs_table(element){
     //$('#orthologs_table').dataTable( {
@@ -1158,7 +1158,6 @@ function load_orthologs_table(element){
             }
     });
 };
-
 //Highchart pie container
 $(function () {
 
