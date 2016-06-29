@@ -432,7 +432,7 @@ function load_top_scored_genes(){
                 }
                 
                 $(".top_score_area").empty().append(par);
-                load_top_scored_datatable();
+                load_top_scored_datatable(par);
 
             },
             complete:function(){  
@@ -1099,6 +1099,65 @@ function runBlast(element){
     });
 
 }
+//display top scored table 
+function load_top_scored_datatable(element) {
+	element.dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+};
+//display table orthologs
+function load_orthologs_table(element){
+    //$('#orthologs_table').dataTable( {
+    element.dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+};
 
 //Highchart pie container
 $(function () {
@@ -1283,32 +1342,34 @@ $(document).ready(function() {
     });
 });
 //table samples
-$('#samplestable').dataTable( {
-    "scrollX": true,
-    "jQueryUI": true,
-    "pagingType": "full_numbers",
-    "oLanguage": { 
-        "sProcessing":   "Processing...",
-        "sLengthMenu":   "display _MENU_ items",
-        "sZeroRecords":  "No item found",
-        "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-        "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-        "sInfoFiltered": "(filtered from _MAX_ items in total)",
-        "sInfoPostFix":  "",
-        "sSearch":       "Search: ",
-        "sUrl":          "",
-        "oPaginate": {
-            "sFirst":    "First",
-            "sPrevious": "Previous",
-            "sNext":     "Next",
-            "sLast":     "Last"
-        }
-    },
-    "language": {
-                    "decimal": ",",
-                    "thousands": "."
-        }
-}); 
+$(document).ready(function(){
+    $('#samplestable').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    }); 
+});
 //table pp interactions
 $(document).ready(function() {
     $('#pretty_table_pp_intact').dataTable( {
@@ -1454,36 +1515,6 @@ $(document).ready(function() {
             }
     });
 });
-//table orthologs
-function load_orthologs_table(element){
-    //$('#orthologs_table').dataTable( {
-    element.dataTable( {
-        "scrollX": true,
-        "jQueryUI": true,
-        "pagingType": "full_numbers",
-        "oLanguage": { 
-            "sProcessing":   "Processing...",
-            "sLengthMenu":   "display _MENU_ items",
-            "sZeroRecords":  "No item found",
-            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-            "sInfoFiltered": "(filtered from _MAX_ items in total)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Search: ",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "First",
-                "sPrevious": "Previous",
-                "sNext":     "Next",
-                "sLast":     "Last"
-            }
-        },
-        "language": {
-                        "decimal": ",",
-                        "thousands": "."
-            }
-    });
-};
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1513,35 +1544,35 @@ $(document).ready(function() {
             }
     });
 });  
-//table mappings
-//$(document).ready(function() {
-//	$('#mapping').dataTable( {
-//		"scrollX": true,
-//		"jQueryUI": true,
-//		"pagingType": "full_numbers",
-//		"oLanguage": { 
-//			"sProcessing":   "Processing...",
-//			"sLengthMenu":   "display _MENU_ items",
-//			"sZeroRecords":  "No item found",
-//			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-//			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-//			"sInfoFiltered": "(filtered from _MAX_ items in total)",
-//			"sInfoPostFix":  "",
-//			"sSearch":       "Search: ",
-//			"sUrl":          "",
-//			"oPaginate": {
-//				"sFirst":    "First",
-//				"sPrevious": "Previous",
-//				"sNext":     "Next",
-//				"sLast":     "Last"
-//			}
-//		},
-//		"language": {
-//            		"decimal": ",",
-//            		"thousands": "."
-//        	}
-//	});
-//});
+//old table mappings
+$(document).ready(function() {
+	$('#mappingSSS').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
 //table species
 $(document).ready(function() {
 	$('#species').dataTable( {
@@ -1600,34 +1631,7 @@ $(document).ready(function() {
         	}
 	});
 });
-function load_top_scored_datatable() {
-	$('#S-genes').dataTable( {
-		"scrollX": true,
-		"jQueryUI": true,
-		"pagingType": "full_numbers",
-		"oLanguage": { 
-			"sProcessing":   "Processing...",
-			"sLengthMenu":   "display _MENU_ items",
-			"sZeroRecords":  "No item found",
-			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-			"sInfoFiltered": "(filtered from _MAX_ items in total)",
-			"sInfoPostFix":  "",
-			"sSearch":       "Search: ",
-			"sUrl":          "",
-			"oPaginate": {
-				"sFirst":    "First",
-				"sPrevious": "Previous",
-				"sNext":     "Next",
-				"sLast":     "Last"
-			}
-		},
-		"language": {
-            		"decimal": ",",
-            		"thousands": "."
-        	}
-	});
-};
+
 
 
 
