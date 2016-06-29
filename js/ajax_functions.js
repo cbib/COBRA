@@ -65,6 +65,7 @@ function load_top_scored_genes(){
                 }
                 
                 $(".top_score_area").empty().append(par);
+                load_datatable();
 
             },
             complete:function(){  
@@ -1241,7 +1242,7 @@ $(document).ready(function() {
         	}
 	});
 });
-$(document).ready(function() {
+function load_datatable() {
 	$('#S-genes').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
@@ -1268,7 +1269,7 @@ $(document).ready(function() {
             		"thousands": "."
         	}
 	});
-});
+}
 
 
 
