@@ -27,7 +27,7 @@ __date__ = "$Jun 25, 2016 2:18:36 PM$"
 
 
 
-
+#logger.info(str(sys.argv))
 
 
 # Script supposed to be run in the background to populate the DB with available datasets 
@@ -40,7 +40,7 @@ logger.info("Performing GO enrichment for all samples")
 #1.group measurement dataset by xp and project gene ID 
 
 xps=db.measurements.distinct('xp')
-os.remove('/data/hypergeom_R_results/result.txt')
+#os.remove('/data/hypergeom_R_results/result.txt')
 for xp in xps:
     
     array_to_process=db.measurements.aggregate([

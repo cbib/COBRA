@@ -31,35 +31,44 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
                      );
         $GO_enrichCollection->insert($document);
         
-        echo'<table class="table dataTable no-footer" id="testTable"> 
-             <thead>
-             <tr>';
-             echo "<th>Date</th>";
-             echo "<th>User</th>";
-             echo "<th>min logFC</th>";
-             echo "<th>max logFC</th>";
-             echo "<th>xp</th>";
-             echo "<th>State</th>";
-        echo'</tr>
-             </thead>
-             <tbody>';
-       echo "<tr>"
-        . "<td>".$today."</td>"
-        . "<td>".$maxlogFCthreshold."</td>"
-        . "<td>".$minlogFCthreshold."</td>"
-        . "<td>".$_SESSION['firstname']."</td>"
-        . "<td>".$xp."</td>"
-        . "<td>Running</td>";
-       
-       echo "<tr>";
-       echo'</tbody>
+        echo '<div class="alert alert-info" id="testTable">
 
-       </table>';
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Info!</strong> Your job has been submitted..Check GO_enrichment table in <a href="../users/user.php?firstname='.$_SESSION['lastname'].'&lastname='.$_SESSION['firstname'].'"> user page</a>
+              </div>';
+        
+        
+//        echo'<table class="table dataTable no-footer" id="testTable"> 
+//             <thead>
+//             <tr>';
+//             echo "<th>Date</th>";
+//             echo "<th>User</th>";
+//             echo "<th>min logFC</th>";
+//             echo "<th>max logFC</th>";
+//             echo "<th>xp</th>";
+//             echo "<th>State</th>";
+//        echo'</tr>
+//             </thead>
+//             <tbody>';
+//       echo "<tr>"
+//        . "<td>".$today."</td>"
+//        . "<td>".$maxlogFCthreshold."</td>"
+//        . "<td>".$minlogFCthreshold."</td>"
+//        . "<td>".$_SESSION['firstname']."</td>"
+//        . "<td>".$xp."</td>"
+//        . "<td>Running</td>";
+//       
+//       echo "<tr>";
+//       echo'</tbody>
+//
+//       </table>';
        //$result_file = "/data/hypergeom_R_results/result.txt";
        //$pythonscript="../../backend/core/process_GO_enrichment.py";
-       $pythonscript2="../../backend/core/test_background_routine.py";
+       //$pythonscript2="../../backend/core/test_background_routine.py";
        //shell_exec("python $pythonscript2 &");
-       system("python ../../backend/core/process_GO_enrichment.py  > /dev/null 2>&1 &");
+       //$test="python ../../backend/core/process_GO_enrichment.py > /dev/null 2>&1 &";
+       //system($test);
+       system("python ../../backend/core/process_GO_enrichment.py > /dev/null 2>&1 &");
  
        
     }

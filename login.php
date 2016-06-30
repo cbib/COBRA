@@ -150,7 +150,7 @@ else{
                             );
                             $historyCollection->insert($document);
 							// Maintenant que tout est enregistré dans la session, on redirige vers la page Home
-							echo '<p>You ara correectly identified, <a href="./index.php">cliquez ici</a></p>'."\n";
+							echo '<p>You are correctly identified, <a href="./index.php">cliquez ici</a></p>'."\n";
 							
 							//header('Location: index.php'); 
 							header('Location: ./index.php'); 
