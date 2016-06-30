@@ -3907,7 +3907,7 @@ function display_multi_results_table(array $cursor_array){
         //Debut du corps de la table
         $table_string.='<tbody>';
         
-        echo count($cursor_array);
+        //echo count($cursor_array);
         foreach ($cursor_array as $cursor) {
             $score=0.0;
             $counter=0;

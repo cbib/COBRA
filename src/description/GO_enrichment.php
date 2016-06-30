@@ -19,8 +19,37 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         $full_mappingsCollection = new Mongocollection($db, "full_mappings");
         $measurementsCollection = new Mongocollection($db, "measurements");
         $GOCollection = new Mongocollection($db, "gene_ontology");
+        $GO_enrichCollection = new Mongocollection($db, "go_enrichements");
 
+        
+        $today = date("F j, Y, g:i a");
+        $document = array("job_owner_firstname" => $_SESSION['lastname'],
+                      "job_owner_lastname" => $_SESSION['firstname'],
+                      "date" => $today,
+                      "xp_id"=> $xp,
+                      "job_data" => "null"
+                     );
+        $GO_enrichCollection->insert($document);
+        
+        echo'<table class="table dataTable no-footer" id="testTable"> 
+             <thead>
+             <tr>';
+             echo "<th>Date</th>";
+             echo "<th>User</th>";
+             echo "<th>xp</th>";
+        echo'</tr>
+             </thead>
+             <tbody>';
+       echo "<tr>"
+        . "<td>".$today."</td>"
+        . "<td>".$_SESSION['firstname']."</td>"
+        . "<td>".$xp."</td>";
+       echo "<tr>";
+       echo'</tbody>
 
+       </table>';
+
+                    
         $genes=array();
         
 
@@ -39,7 +68,7 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         //get total number of gene for this assay
         //echo $xp;
 
-
+        
         $deg=array();
         $total_xp_genes=array();
         //$total_genes=$measurementsCollection->find(array('xp'=>$xp))->count();

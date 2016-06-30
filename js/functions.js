@@ -334,6 +334,63 @@ function show_GO_enrichment(element,clicked_id){
         series: JSON.parse(series_array)
     });
 };
+
+function load_GO_enrichment_new(element){
+    //alert(element.getAttribute('data-id')) ;
+    //clicked_transcript_id = element.getAttribute('data-id');
+    clicked_id = element.getAttribute('data-id');
+    logFCmin = element.getAttribute('data-min');
+    logFCmax = element.getAttribute('data-max');
+    species = element.getAttribute('data-species');
+
+  
+    $.ajax({
+
+        url : './GO_enrichment_new.php', // La ressource ciblée
+        type : 'POST' ,// Le type de la requête HTTP.
+        data : 'xp_id=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
+        
+        method: 'post',
+        cache: false,
+        async: true,
+        dataType: "html",
+        beforeSend: function() { 
+           	    //  alert("start");
+				$(".GOtest_"+clicked_id).hide();
+                $('.GOloading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+
+                $(".GOloading_"+clicked_id).show();
+		},
+        success: function (data) {
+            //alert(data);
+            var jqObj = jQuery(data);
+            //alert(clicked_id);
+            //var par=jqObj.find(".GO_"+clicked_id);
+            var par=jqObj.find("#testTable");
+            //
+            //
+//alert(par.attr('data-x'));
+            //alert(par.attr('data-series'));
+            
+            
+            $(".GOtest_"+clicked_id).empty().append(par);
+            //alert("div has been append");
+            //show_GO_enrichment(par,clicked_id);
+        },
+        complete:function(){  
+            //   alert("stop");
+            $(".GOloading_"+clicked_id).fadeOut("slow");
+            $(".GOtest_"+clicked_id).show("slow");
+            $(".GOparagraph_"+clicked_id).show("slow");
+        }        
+    });
+
+}
+
+
+
+
+
 //AJAX function for GO enrichment 
 function load_GO_enrichment(element){
     //alert(element.getAttribute('data-id')) ;
@@ -365,8 +422,11 @@ function load_GO_enrichment(element){
             //alert(data);
             var jqObj = jQuery(data);
             //alert(clicked_id);
+            //var par=jqObj.find(".GO_"+clicked_id);
             var par=jqObj.find(".GO_"+clicked_id);
-            //alert(par.attr('data-x'));
+            //
+            //
+//alert(par.attr('data-x'));
             //alert(par.attr('data-series'));
             
             

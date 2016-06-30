@@ -46,8 +46,8 @@ echo'
 <!--Datatable-->
 <script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
 
-<!--Ajax functions-->
-<script type="text/javascript" src="'.$path.'/js/ajax_functions.js"></script>
+<!--Cobra specific javascript functions-->
+<script type="text/javascript" src="'.$path.'/js/functions.js"></script>
 
 
 <!--Require-->
@@ -112,7 +112,7 @@ function add_accordion_panel($table_string,$panel_title='null',$unique_id='null'
                 <div class="panel panel-default">
                     <div class="panel-heading">  
                             <a class="accordion-toggle collapsed" href="#'.$unique_id.'" data-parent="#accordion_documents'.$unique_id.'" data-toggle="collapse">
-                                '.$panel_title.'
+                                <strong>'.$panel_title.'</strong>
                             </a>				
                     </div>
                     <div class="panel-body panel-collapse collapse" id="'.$unique_id.'">
@@ -220,7 +220,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
         <!-- header logo: style can be found in header.less -->
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
-        	<aside class="left-side sidebar-offcanvas">     
+        	<aside id="menu" class="left-side sidebar-offcanvas">     
             <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                 <!-- Sidebar user panel -->';
@@ -234,7 +234,7 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                       </a>
 
                      <!-- sidebar menu: : style can be found in sidebar.less -->
-                     <ul class="sidebar-menu">
+                     <ul class="sidebar-menu"  >
                          <li';if($uri == "/" || $uri == "/index.php"){ echo ' class="active"'; } echo '>
                              <a href="'.$path.'/">
                                 <i class="fa fa-home"></i> 
@@ -291,17 +291,25 @@ function new_cobra_body($IsLogged='null', $type='null',$section_id='null',$path=
                                  <i class="glyphicon glyphicon-user"></i> <span>User</span>
                              </a>
                          </li>
-                         <li >
+                         <!--<li >
                              <a href="'.$path.'/src/tools/">
                                  <i class="fa fa-cogs"></i> <span>Tools</span>
                              </a>
-                         </li>
+                         </li>-->
                          <li >
                              <a href="'.$path.'/src/docs/">
                                 <i class="fa fa-upload"></i> <span>Uploads</span>
                              </a>
                          </li>
-                     </ul>
+                         ';
+                         if ($_SESSION['firstname']==="Dartigues"){
+                           echo'<li >
+                             <a href="'.$path.'/src/todo/">
+                                <i class="fa fa-upload"></i> <span>TODO list</span>
+                             </a>
+                               </li>';
+                         }
+              echo' </ul>
                 </section>
             <!-- /.sidebar -->
             </aside>

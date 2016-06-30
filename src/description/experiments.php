@@ -317,7 +317,12 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 
               </div>';
         echo '<div class="shift_line"></div>';
-        echo '<button onclick="load_GO_enrichment(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        
+        
+        
+        
+// PARTIE NON OPERATIONNELLE
+        echo '<button onclick="load_GO_enrichment_new(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>
@@ -327,7 +332,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                     
                         <!--here comes the GO div-->
                 </div>
-                <button id="button">Get selected points</button>
+                
                 <p class="GOparagraph_'.str_replace(".", "-",$Measurement_FK).'" style="font-weight: bold" hidden> GO terms of the set of differentially expressed genes (n = not set yet, blue bars) 
                         is compared to terms of all micro array genes ('.$gene_count.', green bars). 
                         The y-axis displays the fraction relative to all GO Molecular Function terms. 

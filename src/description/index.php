@@ -55,7 +55,7 @@ echo'<div class="panel-group" id="accordion_documents">
         <div class="panel panel-default">
             <div class="panel-heading">  
                     <a class="accordion-toggle collapsed" href="#Experiments_lists" data-parent="#accordion_documents" data-toggle="collapse">
-                        Experiments
+                        <strong>Experiments</strong>
                     </a>				
             </div>
             <div class="panel-body panel-collapse collapse" id="Experiments_lists">

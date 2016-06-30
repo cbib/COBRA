@@ -115,7 +115,8 @@ table.dataTable tbody tr:hover {
     width: 25%;
 }
 .left-side {
-    min-height: 100%
+    min-height: 100%;
+    position: fixed;
 }
 .right {
     float: right;
