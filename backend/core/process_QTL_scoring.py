@@ -94,7 +94,7 @@ for species in species_to_process:
                             for s in gene_to_process:
                                 for l in s.keys():
                                     q=s.get('mapping_file',"NA")
-                                    #print q['Gene ID']
+                                    logger.info(q['Gene ID'])
                                     if q['Gene ID'] not in gene_list:
                                         gene_list.append(q['Gene ID'])
                    
