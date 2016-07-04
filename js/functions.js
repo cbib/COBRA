@@ -1177,7 +1177,6 @@ function runBlast(element){
     });
 
 }
-
 //Highchart pie container
 $(function () {
 
@@ -1273,7 +1272,6 @@ $(function () {
         }]
     });
 });
-
 //table samples
 $(document).ready(function(){
     $('#samplestable').dataTable( {
@@ -1303,8 +1301,7 @@ $(document).ready(function(){
             }
     }); 
 });
-
-//table pv Literature
+//Datatable 
 function load_table(element) {
     element.dataTable( {
     //$('#pretty_table_pv_litterature').dataTable( {
@@ -1334,6 +1331,9 @@ function load_table(element) {
             }
     });
 };
+
+
+
 
 //table variants
 $(document).ready(function() {
@@ -1452,34 +1452,3 @@ $(document).ready(function() {
 	});
 });
 
-
-
-
-//table multiple
-//$(document).ready(function() {
-//    $('#mapping').DataTable( {
-//        responsive: true,
-//        
-//		
-//        
-//    } );
-//    $('#species').DataTable( {
-//        responsive: true,
-//        
-//		
-//        
-//    } );
-//    $('#virus').DataTable( {
-//        responsive: true,
-//        
-//		
-//        
-//    } );
-//    $('#S-genes').DataTable( {
-//        responsive: true,
-//        
-//		
-//        
-//    } );
-//
-//} );
