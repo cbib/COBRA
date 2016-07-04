@@ -24,10 +24,54 @@
     $jobsCollection = new Mongocollection($db, "jobs");
     $speciesCollection = new Mongocollection($db, "species");
     $historyCollection = new Mongocollection($db, "history");
+    $GO_enrichedCollection = new Mongocollection($db, "go_enrichments");
 
 	$user=$usersCollection->find(array("firstname"=>$firstname,"lastname"=>$lastname),array());
     make_species_list(find_species_list($speciesCollection),"../..");
  	make_user_preferences($user,$usersCollection);
+    
+    //une table avec tous les GO enrichments
+    
+    $GO=$GO_enrichedCollection->find(array("job_owner_firstname"=>$lastname,"job_owner_lastname"=>$firstname),array());
+    $GOtable_string='';
+    echo '<div id="GOEnrichedJobsTable"><h3> GO enriched Jobs</h3>';
+    $GOtable_string.='<table id="go_jobs" class="table table-hover">';
+    //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+    $GOtable_string.='<thead><tr>';
+
+        //recupere le titre
+        //$table_string.='<th>type</th>';
+        $GOtable_string.='<th>Xp id</th>';
+        $GOtable_string.='<th>Date</th>';
+        $GOtable_string.='<th>Min</th>';
+        $GOtable_string.='<th>Max</th>';
+        $GOtable_string.='<th>Results</th>';
+
+
+
+        //fin du header de la table
+    $GOtable_string.='</tr></thead>';
+
+    //Debut du corps de la table
+    $GOtable_string.='<tbody>';
+    foreach ($GO as $line) {
+        $GOtable_string.='<tr>';
+            //$table_string.='<td>'.$line['type'].'</td>';
+        
+            $GOtable_string.='<td>'.$line['xp_id'].'</td>';
+            $GOtable_string.='<td>'.$line['date'].'</td>';
+            $GOtable_string.='<td>'.$line['min'].'</td>';
+            $GOtable_string.='<td>'.$line['max'].'</td>';
+            $GOtable_string.='<td><a href="../description/GO_enrichment_result.php?id='.$line['_id'].'">View results</td>';
+
+        $GOtable_string.='</tr>';
+
+    }
+    $GOtable_string.='</tbody></table>';
+    $GOtable_string.='</div>';
+
+    echo $GOtable_string;
+    
     
     //une table avec tous les jobs blast.
     

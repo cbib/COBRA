@@ -74,9 +74,7 @@ require '../../session/control-session.php';
     
     new_cobra_footer();
  	
- 
- 
- ?>
+
 
     
 

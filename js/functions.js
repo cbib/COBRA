@@ -381,7 +381,7 @@ function load_GO_enrichment_new(element){
             //   alert("stop");
             $(".GOloading_"+clicked_id).fadeOut("slow");
             $(".GOtest_"+clicked_id).show("slow");
-            $(".GOparagraph_"+clicked_id).show("slow");
+            //$(".GOparagraph_"+clicked_id).show("slow");
         }        
     });
 

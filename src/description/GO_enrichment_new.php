@@ -70,11 +70,12 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
        //system($test);
        
         $xp_formatted=str_replace(".", "__",$xp);
-        $cmd='python ../../backend/core/process_GO_enrichment.py '.$xp_formatted.' '.$newDocID;
+        $cmd='python ../../backend/core/process_GO_enrichment.py '.$xp_formatted.' '.$newDocID.' '.$minlogFCthreshold.' '.$maxlogFCthreshold;
         exec($cmd. " > /dev/null &");/// > dev/null 2>&1 &"
 
        //system("python ../../backend/core/process_GO_enrichment.py ".$xp_formatted." > dev/null 2>&1 &");/// > dev/null 2>&1 &"
        error_log("script launched");
+       
        
     }
         
