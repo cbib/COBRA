@@ -19,18 +19,18 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         $full_mappingsCollection = new Mongocollection($db, "full_mappings");
         $measurementsCollection = new Mongocollection($db, "measurements");
         $GOCollection = new Mongocollection($db, "gene_ontology");
-        $GO_enrichCollection = new Mongocollection($db, "go_enrichements");
+        $GO_enrichCollection = new Mongocollection($db, "go_enrichments");
 
         
         $today = date("F j, Y, g:i a");
         $document = array("job_owner_firstname" => $_SESSION['lastname'],
                       "job_owner_lastname" => $_SESSION['firstname'],
                       "date" => $today,
-                      "xp_id"=> $xp,
-                      "job_data" => "null"
+                      "xp_id"=> $xp
                      );
         $GO_enrichCollection->insert($document);
-        
+        $newDocID = $document['_id'];
+        echo $newDocID;
         echo '<div class="alert alert-info" id="testTable">
 
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -70,8 +70,8 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
        //system($test);
        
         $xp_formatted=str_replace(".", "__",$xp);
-        $cmd='python ../../backend/core/process_GO_enrichment.py '.$xp_formatted;
-        exec($cmd);/// > dev/null 2>&1 &"
+        $cmd='python ../../backend/core/process_GO_enrichment.py '.$xp_formatted.' '.$newDocID;
+        exec($cmd. " > /dev/null &");/// > dev/null 2>&1 &"
 
        //system("python ../../backend/core/process_GO_enrichment.py ".$xp_formatted." > dev/null 2>&1 &");/// > dev/null 2>&1 &"
        error_log("script launched");

@@ -31,6 +31,7 @@ logger.info("entering python script")
 for arg in sys.argv:
     logger.info(arg)
 xp=sys.argv[1]
+doc_id=sys.argv[2]
 xp=xp.replace("__", ".")
 # Script supposed to be run in the background to populate the DB with available datasets 
 if "log" not in globals():
@@ -42,7 +43,7 @@ logger.info("Performing GO enrichment for all samples")
 #1.group measurement dataset by xp and project gene ID 
 
 #xps=db.measurements.distinct('xp')
-#os.remove('/data/hypergeom_R_results/result.txt')
+os.remove('/data/hypergeom_R_results/result.txt')
 #for xp in xps:
 
 
@@ -71,14 +72,14 @@ for array in array_to_process:
 
         gene=data['gene']
         logFC=data['logFC']
-        if logFC > 2 or logFC < -2:
+        if logFC > 5.5 or logFC < -5.5:
             genelist.append(gene)
 
     #get size of differentially expressed genes list 
     total_de_genes=len(genelist)
-    logger.info(total_de_genes)
+    
 
-
+    logger.info(len(genelist))
 
     #get unique GO terms associated with these terms.
     go_to_process=db.full_mappings.aggregate([
@@ -112,7 +113,8 @@ for array in array_to_process:
 
 
 
-    #search for each unique GO term which genes has this GO ID 
+    #search for each unique GO term which genes has this GO ID
+    logger.info(len(go_id_list.items()))
     for key, value in go_id_list.items():
 
 #                print key
@@ -135,11 +137,11 @@ for array in array_to_process:
             #print total_gene['mapping_file']['Gene ID']
             totalgenelist.append(total_gene['mapping_file']['Gene ID'])
         total_gene_size= len(totalgenelist)
-        logger.info(value+'/'+total_de_genes+' genes shows GO term with id: '+key+'</br>')
-        
-        if value> 10:
-            logger.info(value+'/'+total_de_genes+' genes shows GO term with id: '+key+'</br>')
-            logger.info(total_gene_size+'/'+total_genes_for_species+' genes shows GO term with id: '+key+'</br>')
+        #logger.info(value+'/'+total_de_genes+' genes shows GO term with id: '+key+'</br>')
+        #logger.info(total_gene_size+'/'+total_genes_for_species+' genes shows GO term with id: '+key+'</br>')        
+#        if value> 10:
+#            logger.info(value+'/'+total_de_genes+' genes shows GO term with id: '+key+'</br>')
+#            logger.info(total_gene_size+'/'+total_genes_for_species+' genes shows GO term with id: '+key+'</br>')
 
 
         total_go_to_process=db.gene_ontology.aggregate([
@@ -190,13 +192,17 @@ for array in array_to_process:
 
        #os.system("/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R "+str(value)+" "+str(total_gene_size)+" "+str(len(total_genes_for_species))+" "+str(total_de_genes)+" "+key+" "+GO_name+" >> /data/hypergeom_R_results/result.txt &")
 
-
+       
         with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
             subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name], stdout=fileobj, stderr=subprocess.PIPE)
 
+    logger.info(doc_id)
+    #retrive all results form result.txt
+    #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
+    sheet_values=parse_GO_enriched_tsv_table('/data/hypergeom_R_results/result.txt',['idx','P value','GO ID','GO NAME'],0)
 
-
-
+    # create the table created in GO_enrichement.php with result 
+    db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"mapping_file":sheet_values}})
 
 
 

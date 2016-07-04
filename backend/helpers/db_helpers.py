@@ -63,6 +63,28 @@ def processGOTerm(goTerm):
             ret[key] = value[0]
     return ret
 
+
+
+
+def parse_result_file(filename):
+    """
+    Parses a Gene Ontology dump in OBO v1.2 format.
+    Yields each 
+    Keyword arguments:
+        filename: The filename to read
+    """
+    with open(filename, "r") as infile:
+        currentGOTerm = None
+        for line in infile:
+            line = line.strip()
+            if not line: continue #Skip empty
+            print line
+        
+
+
+
+
+
 def parseGOOBO(filename):
     """
     Parses a Gene Ontology dump in OBO v1.2 format.
@@ -169,6 +191,44 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 	
 	#logger.info("rows:%s",row)
 	
+
+
+
+
+def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
+	rows_to_data=[]
+	with open(src_file, 'rb') as f:
+		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+		cpt=0
+		try:
+			#logger.info("number of rows:%s",len(list(csvreader)))
+			for row in csvreader:
+				cpt+=1
+				values=[]
+				#logger.info("rows:%s and len %d",row,len(row))
+				values.append(cpt);
+				
+
+				for col in range(len(row)):
+					#logger.info("rows:%s ",row[col])
+					values.append(row[col])
+						
+				if len(column_keys)!=len(values):
+					logger.info("columns keys length:%d",len(column_keys))
+					logger.info("value length :%d",len(values))
+					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
+				this_dict=dict(zip(column_keys,values))
+                                
+				if id_col: #enforce id col type
+					if isinstance(this_dict[id_col],Number):
+						this_dict[id_col]=str(int(this_dict[id_col]))
+				rows_to_data.append(this_dict)
+		
+		except csv.Error as e:
+			sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
+	return rows_to_data	
+
 
 
 def parse_full_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):

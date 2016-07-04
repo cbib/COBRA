@@ -18,6 +18,7 @@ pp_interactions_col=db.pp_interactions
 viruses_col=db.viruses
 orthologs_col=db.orthologs
 gene_ontology_col=db.gene_ontology
+go_enrichments_col=db.go_enrichments
 users_col=db.users
 sequences_col=db.sequences
 variations_col=db.variations
