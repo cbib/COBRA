@@ -439,7 +439,35 @@ function load_GO_enrichment(element){
     });
 
 }
-
+//display top scored table 
+function load_top_scored_datatable(element) {
+	element.dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+};
 //AJAX function for top scored genes 
 function load_top_scored_genes(){
 
@@ -481,18 +509,15 @@ function load_top_scored_genes(){
                 var par;
 
                 if(jqObj.find("#S-genes").length){
-                   par=jqObj.find("#S-genes");
-                   $(".top_score_area").empty().append(par);
-                   load_table(par);
+                   par=jqObj.find("#S-genes"); 
                 }
                 else{
                    par=jqObj.find(".no_results");
-                   $(".top_score_area").empty().append(par);
-                
                    
                 }
                 
-                
+                $(".top_score_area").empty().append(par);
+                load_top_scored_datatable(par);
 
             },
             complete:function(){  
@@ -682,16 +707,14 @@ function load_orthologs(element){
 
                 if(jqObj.find("#orthologs_table").length){
                    par=jqObj.find("#orthologs_table"); 
-                   $(".ortholog_area").empty().append(par);
-                   load_table(par);
                 }
                 else{
                    par=jqObj.find(".no_results");
-                   $(".ortholog_area").empty().append(par);
                    
                 }
                 
-                
+                $(".ortholog_area").empty().append(par);
+                load_orthologs_table(par);
 
             },
             complete:function(){  
@@ -754,7 +777,7 @@ function load_pv_interaction(element){
                    $(".pv_interaction_area").empty().append(par);
                    table=$(".pv_interaction").find("table");
                    
-                   load_table(table);
+                   load_pv_table(table);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -826,7 +849,7 @@ function load_pp_interaction(element){
                    par=jqObj.find(".PP"); 
                    $(".pp_interaction_area").empty().append(par);
                    table=$(".pp_interaction").find("table");
-                   load_table(table);
+                   load_pp_table(table);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -834,7 +857,7 @@ function load_pp_interaction(element){
                    
                 }
                 
-                
+                $(".pp_interaction_area").empty().append(par);
 
             },
             complete:function(){  
@@ -897,17 +920,13 @@ function load_genetic_markers(element){
 
                 if(jqObj.find("#table_markers").length){
                    par=jqObj.find("#table_markers"); 
-                   $(".genetic_markers").empty().append(par);
-                   load_table(par);
                 }
                 else{
                    par=jqObj.find(".no_results");
-                   $(".genetic_markers").empty().append(par);
-                
                    
                 }
                 
-                
+                $(".genetic_markers").empty().append(par);
 
             },
             complete:function(){  
@@ -970,17 +989,14 @@ function load_QTLs(element){
 
                 if(jqObj.find("#table_qtls").length){
                    par=jqObj.find("#table_qtls"); 
-                   $(".qtls").empty().append(par);
-                   load_table(par);
                 }
                 else{
                    
                    par=jqObj.find(".no_results");
-                   $(".qtls").empty().append(par);
                    
                 }
                 
-                
+                $(".qtls").empty().append(par);
 
             },
             complete:function(){  
@@ -1177,7 +1193,36 @@ function runBlast(element){
     });
 
 }
-
+//display table orthologs
+function load_orthologs_table(element){
+    //$('#orthologs_table').dataTable( {
+    element.dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+};
 //Highchart pie container
 $(function () {
 
@@ -1273,7 +1318,93 @@ $(function () {
         }]
     });
 });
-
+//example datatable
+$(document).ready(function() {
+    $('#example').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table markers
+$(document).ready(function() {
+    $('#table_markers').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table qtls
+$(document).ready(function() {
+    $('#table_qtls').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
 //table samples
 $(document).ready(function(){
     $('#samplestable').dataTable( {
@@ -1303,9 +1434,96 @@ $(document).ready(function(){
             }
     }); 
 });
+//table pp interactions
+$(document).ready(function() {
+    $('#pretty_table_pp_intact').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table pp biogrid
+$(document).ready(function() {
+    $('#pretty_table_pp_biogrid').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
+//table pp string
+$(document).ready(function() {
+    $('#pretty_table_pp_string').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+});
 
-//table pv Literature
-function load_table(element) {
+
+function load_pv_table(element) {
     element.dataTable( {
     //$('#pretty_table_pv_litterature').dataTable( {
         "scrollX": true,
@@ -1334,7 +1552,66 @@ function load_table(element) {
             }
     });
 };
-
+//table pv Literature
+function load_pp_table(element) {
+    element.dataTable( {
+    //$('#pretty_table_pv_litterature').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+};
+//table pv hpidb
+function load_pv_hpidb_table(element){
+    element.dataTable( {
+    //$('#pretty_table_pv_hpidb').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+};
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1483,3 +1760,5 @@ $(document).ready(function() {
 //    } );
 //
 //} );
+
+
