@@ -25,6 +25,8 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         $today = date("F j, Y, g:i a");
         $document = array("job_owner_firstname" => $_SESSION['lastname'],
                       "job_owner_lastname" => $_SESSION['firstname'],
+                      "min" => $minlogFCthreshold,
+                      "max" => $maxlogFCthreshold,
                       "date" => $today,
                       "xp_id"=> $xp
                      );

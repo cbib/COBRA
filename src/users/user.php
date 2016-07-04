@@ -62,7 +62,7 @@
             $GOtable_string.='<td>'.$line['date'].'</td>';
             $GOtable_string.='<td>'.$line['min'].'</td>';
             $GOtable_string.='<td>'.$line['max'].'</td>';
-            $GOtable_string.='<td><a href="../description/GO_enrichment_result.php?id='.$line['_id'].'">View results</td>';
+            $GOtable_string.='<td><a href="../description/GO_enrichment_results.php?id='.$line['_id'].'">View results</td>';
 
         $GOtable_string.='</tr>';
 
