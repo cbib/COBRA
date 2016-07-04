@@ -387,10 +387,6 @@ function load_GO_enrichment_new(element){
 
 }
 
-
-
-
-
 //AJAX function for GO enrichment 
 function load_GO_enrichment(element){
     //alert(element.getAttribute('data-id')) ;
