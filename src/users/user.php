@@ -34,7 +34,8 @@
     
     $GO=$GO_enrichedCollection->find(array("job_owner_firstname"=>$lastname,"job_owner_lastname"=>$firstname),array());
     $GOtable_string='';
-    echo '<div id="GOEnrichedJobsTable"><h3> GO enriched Jobs</h3>';
+    echo '<div id="GOEnrichedJobsTable">'
+    . ' <h3> GO enriched Jobs</h3>';
     $GOtable_string.='<table id="go_jobs" class="table table-hover">';
     //$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
     $GOtable_string.='<thead><tr>';

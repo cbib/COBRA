@@ -30,7 +30,9 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
                       "date" => $today,
                       "xp_id"=> $xp
                      );
+        $document['_id'] = new MongoId();
         $GO_enrichCollection->insert($document);
+        
         $newDocID = $document['_id'];
         echo $newDocID;
         echo '<div class="alert alert-info" id="testTable">

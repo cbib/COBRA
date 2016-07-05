@@ -117,6 +117,7 @@ for array in array_to_process:
 
     #search for each unique GO term which genes has this GO ID
     logger.info(len(go_id_list.items()))
+    result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
     for key, value in go_id_list.items():
         if (key!="NA"):
 #                print key
@@ -194,7 +195,7 @@ for array in array_to_process:
 
            #os.system("/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R "+str(value)+" "+str(total_gene_size)+" "+str(len(total_genes_for_species))+" "+str(total_de_genes)+" "+key+" "+GO_name+" >> /data/hypergeom_R_results/result.txt &")
 
-            result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
+            
             with open(result_file,'a') as fileobj:
 
             #with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
