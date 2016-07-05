@@ -194,8 +194,10 @@ for array in array_to_process:
 
            #os.system("/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R "+str(value)+" "+str(total_gene_size)+" "+str(len(total_genes_for_species))+" "+str(total_de_genes)+" "+key+" "+GO_name+" >> /data/hypergeom_R_results/result.txt &")
 
+            result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
+            with open(result_file,'a') as fileobj:
 
-            with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
+            #with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
                 subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name], stdout=fileobj, stderr=subprocess.PIPE)
 
     logger.info(doc_id)
@@ -205,7 +207,8 @@ for array in array_to_process:
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
-    os.remove('/data/hypergeom_R_results/result.txt')
+    #os.remove('/data/hypergeom_R_results/result.txt')
+    os.remove(result_file)
 
 
             #process.wait()
