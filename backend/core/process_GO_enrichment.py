@@ -203,7 +203,7 @@ for array in array_to_process:
     logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    sheet_values=parse_GO_enriched_tsv_table('/data/hypergeom_R_results/result.txt',['idx','P value','GO ID','GO NAME'],0)
+    sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME'],0)
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
