@@ -46,6 +46,7 @@
         $GOtable_string.='<th>Min</th>';
         $GOtable_string.='<th>Max</th>';
         $GOtable_string.='<th>Results</th>';
+        $GOtable_string.='<th>State</th>';
 
 
 
@@ -55,6 +56,7 @@
     //Debut du corps de la table
     $GOtable_string.='<tbody>';
     foreach ($GO as $line) {
+        
         $GOtable_string.='<tr>';
             //$table_string.='<td>'.$line['type'].'</td>';
         
@@ -63,6 +65,12 @@
             $GOtable_string.='<td>'.$line['min'].'</td>';
             $GOtable_string.='<td>'.$line['max'].'</td>';
             $GOtable_string.='<td><a href="../description/GO_enrichment_results.php?id='.$line['_id'].'">View results</td>';
+            if(isset($line['result_file'])){
+                $GOtable_string.='<td style="background:#01DF74;">Finished</td>';
+            }
+            else{
+                $GOtable_string.='<td style="background:#FA8258;">Running</td>';
+            }
 
         $GOtable_string.='</tr>';
 

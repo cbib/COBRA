@@ -74,7 +74,7 @@ for array in array_to_process:
 
         gene=data['gene']
         logFC=data['logFC']
-        if logFC > int(max) or logFC < int(min):
+        if logFC > float(max) or logFC < float(min):
             genelist.append(gene)
 
     #get size of differentially expressed genes list 
