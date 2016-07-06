@@ -26,10 +26,9 @@ __date__ = "$Jun 25, 2016 2:18:36 PM$"
 
 
 
-logger.info("entering python script")
 #logger.info(sys.argv[1])
-for arg in sys.argv:
-    logger.info(arg)
+#for arg in sys.argv:
+#    logger.info(arg)
 xp=sys.argv[1]
 doc_id=sys.argv[2]
 min=sys.argv[3]
@@ -38,8 +37,8 @@ xp=xp.replace("__", ".")
 # Script supposed to be run in the background to populate the DB with available datasets 
 if "log" not in globals():
     logger = Logger.init_logger('FLATTEN_%s'%(cfg.language_code), load_config())
-logger.info("Running %s",sys.argv[0])
-logger.info("Performing GO enrichment for all samples")
+#logger.info("Running %s",sys.argv[0])
+#logger.info("Performing GO enrichment for all samples")
 
 
 #1.group measurement dataset by xp and project gene ID 
@@ -49,7 +48,7 @@ logger.info("Performing GO enrichment for all samples")
 #for xp in xps:
 
 
-logger.info(xp)
+#logger.info(xp)
 array_to_process=db.measurements.aggregate([
     {'$match': {"xp" : xp}},
     {'$group' : {'_id' : '$species', 'xp_data':{'$addToSet':{'gene':"$gene","logFC":"$logFC"}}}}
@@ -64,7 +63,7 @@ for array in array_to_process:
     species=array['_id']
     total_genes_for_species=db.full_mappings.distinct("mapping_file.Gene ID",{'species':species});
 
-    logger.info(species)
+#    logger.info(species)
     data_array=array['xp_data']
     #print "xp id: "+xp_id
     genelist=[]
@@ -81,7 +80,7 @@ for array in array_to_process:
     total_de_genes=len(genelist)
     
 
-    logger.info(len(genelist))
+#    logger.info(len(genelist))
 
     #get unique GO terms associated with these terms.
     go_to_process=db.full_mappings.aggregate([
@@ -116,7 +115,7 @@ for array in array_to_process:
 
 
     #search for each unique GO term which genes has this GO ID
-    logger.info(len(go_id_list.items()))
+#    logger.info(len(go_id_list.items()))
     result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
     for key, value in go_id_list.items():
         if (key!="NA"):
@@ -191,7 +190,7 @@ for array in array_to_process:
 
             #output = subprocess.Popen(['/usr/bin/Rscript',"/data/hypergeom_R_results/my_rscript.R","12","344","3456","4444","GO2","testname"],shell=True)
             #cmd = "/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R  %s %s" % (argument1 argument2)
-            logger.info(key)
+#            logger.info(key)
 
            #os.system("/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R "+str(value)+" "+str(total_gene_size)+" "+str(len(total_genes_for_species))+" "+str(total_de_genes)+" "+key+" "+GO_name+" >> /data/hypergeom_R_results/result.txt &")
 
@@ -201,7 +200,7 @@ for array in array_to_process:
             #with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
                 subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name], stdout=fileobj, stderr=subprocess.PIPE)
 
-    logger.info(doc_id)
+    #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
     sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME'],0)
