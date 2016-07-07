@@ -15,6 +15,8 @@ import sys
 from numbers import Number
 import pymongo 
 import logging 
+import os
+import subprocess
 import hashlib
 import collections
 from math import log
@@ -197,11 +199,37 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 
 def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 	rows_to_data=[]
-	with open(src_file, 'rb') as f:
-		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+        PValues=[]
+        
+        with open(src_file, 'rb') as f:
+                csvreader2 = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+
 		cpt=0
 		try:
 			#logger.info("number of rows:%s",len(list(csvreader)))
+                    for row2 in csvreader2:
+                        PValues.append(row2[0])
+                            
+                    logger.info(PValues) 
+                    output=subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        
+                    final = output.stdout.read()
+                    #for line in final:
+                    logger.info(final)
+                except csv.Error as e:
+                    sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+	#logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
+	
+        adjusted=final.split(" ")
+        
+	with open(src_file, 'rb') as f:
+		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+
+		cpt=0
+		try:
+			#logger.info("number of rows:%s",len(list(csvreader)))
+                        
+                            
 			for row in csvreader:
 				cpt+=1
 				values=[]
@@ -212,7 +240,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
 				for col in range(len(row)):
 					#logger.info("rows:%s ",row[col])
 					values.append(row[col])
-						
+				values.append(adjusted[cpt-1])		
 				if len(column_keys)!=len(values):
 					logger.info("columns keys length:%d",len(column_keys))
 					logger.info("value length :%d",len(values))

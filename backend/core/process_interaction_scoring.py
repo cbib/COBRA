@@ -30,6 +30,7 @@ logger.info("Running %s",sys.argv[0])
 species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 for species in species_to_process:
+    
     logger.info('parse'+species['full_name']+'annotation data');
     logger.info("parse literature interaction data")
     results=list(pv_interactions_col.find({'mapping_file.species':species['full_name']},{"mapping_file.Gene ID":1,"_id":0} ))

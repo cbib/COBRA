@@ -56,7 +56,9 @@ function show_heatmap(element,clicked_id,min, max){
             plotBorderWidth: 1,
             events: {
                     load: function () {
-                        var label = this.renderer.label("GO terms of the set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+", blue bars) is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
+                        //var label = this.renderer.label("set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
+
+                        var label = this.renderer.label("set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+")")
                         .css({
                             width: '850px',
                             color: '#222',
@@ -1331,10 +1333,6 @@ function load_table(element) {
             }
     });
 };
-
-
-
-
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1451,9 +1449,9 @@ $(document).ready(function() {
         	}
 	});
 });
-//GO_enriched_Table
+//GO_enriched_Table MF
 $(document).ready(function() {
-	$('#GO_enriched_Table').dataTable( {
+	$('#GO_enriched_TableMF').dataTable( {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
@@ -1480,6 +1478,68 @@ $(document).ready(function() {
         	}
 	});
 });
+//GO_enriched_Table CC
+$(document).ready(function() {
+	$('#GO_enriched_TableCC').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+//GO_enriched_Table BP
+$(document).ready(function() {
+	$('#GO_enriched_TableBP').dataTable( {
+		"scrollX": true,
+		"jQueryUI": true,
+		"pagingType": "full_numbers",
+		"oLanguage": { 
+			"sProcessing":   "Processing...",
+			"sLengthMenu":   "display _MENU_ items",
+			"sZeroRecords":  "No item found",
+			"sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+			"sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+			"sInfoFiltered": "(filtered from _MAX_ items in total)",
+			"sInfoPostFix":  "",
+			"sSearch":       "Search: ",
+			"sUrl":          "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		},
+		"language": {
+            		"decimal": ",",
+            		"thousands": "."
+        	}
+	});
+});
+
+
+
+
 //GO enrichment result table
 $(document).ready(function() {
 	$('#go_jobs').dataTable( {

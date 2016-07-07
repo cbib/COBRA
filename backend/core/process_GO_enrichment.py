@@ -61,6 +61,7 @@ for array in array_to_process:
 
     xp_id=xp 
     species=array['_id']
+    
     total_genes_for_species=db.full_mappings.distinct("mapping_file.Gene ID",{'species':species});
 
 #    logger.info(species)
@@ -151,11 +152,12 @@ for array in array_to_process:
                 {'$project': {"GO_collections" : 1,'_id':0}},
                 {'$unwind': "$GO_collections"},
                 {'$match': {'GO_collections.id':key }},
-                {'$project': {"GO_collections.name" : 1,'_id':0}}
+                {'$project': {"GO_collections.name" : 1,"GO_collections.namespace":1,'_id':0}}
             ]);
             GO_name=""
             for total_go in  total_go_to_process:
                 GO_name=total_go['GO_collections']['name']
+                GO_namespace=total_go['GO_collections']['namespace']
             GO_name.replace(" |(|)", "_")
 
 
@@ -190,7 +192,7 @@ for array in array_to_process:
 
             #output = subprocess.Popen(['/usr/bin/Rscript',"/data/hypergeom_R_results/my_rscript.R","12","344","3456","4444","GO2","testname"],shell=True)
             #cmd = "/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R  %s %s" % (argument1 argument2)
-#            logger.info(key)
+            logger.info(key)
 
            #os.system("/usr/bin/Rscript /data/hypergeom_R_results/my_rscript.R "+str(value)+" "+str(total_gene_size)+" "+str(len(total_genes_for_species))+" "+str(total_de_genes)+" "+key+" "+GO_name+" >> /data/hypergeom_R_results/result.txt &")
 
@@ -198,12 +200,13 @@ for array in array_to_process:
             with open(result_file,'a') as fileobj:
 
             #with open('/data/hypergeom_R_results/result.txt','a') as fileobj:
-                subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name], stdout=fileobj, stderr=subprocess.PIPE)
+                subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
 
     #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME'],0)
+    
+    sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
