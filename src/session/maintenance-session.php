@@ -16,12 +16,12 @@ if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && 
    
     $file = 'maintenance.php';
     if ($host==="127.0.0.1"){
-        //error_log("into control session and in directory ". $host ."/".$extra);
+        error_log("into control session and in directory ". $host ."/".$extra);
         header("Location: http://$host/$file"); 
     }
     else{
          $dir="cobra";
-        //error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
+        error_log("into control session and in directory ". $host ."/".$uri."/".$extra);
         header("Location: http://$host/$dir/$file"); 
     }
 }

@@ -16,7 +16,7 @@ require('./src/session/control-session.php');
 date_default_timezone_set('Europe/Paris');
 
 
-$_SESSION['maintenance'] = "yes"; 
+$_SESSION['maintenance'] = "no"; 
 require('./src/session/maintenance-session.php');
 
 
