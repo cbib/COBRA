@@ -38,7 +38,7 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         echo '<div class="alert alert-info" id="testTable">
 
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Info!</strong> Your job has been submitted..Check GO_enrichment table in <a href="../users/user.php?firstname='.$_SESSION['lastname'].'&lastname='.$_SESSION['firstname'].'"> user page</a>
+                <strong>Info!</strong> Your job has been submitted..Check GO_enrichment table in <a href="../users/user.php?firstname='.$_SESSION['firstname'].'&lastname='.$_SESSION['lastname'].'"> user page</a>
               </div>';
         
         
