@@ -19,9 +19,9 @@ if "log" not in globals():
 # clear db 
 
 sequences_col.drop()
-for grid_out in fs.find({}, timeout=False):
+#for grid_out in fs.find({}, timeout=False):
 	
-	fs.delete(grid_out._id)
+#	fs.delete(grid_out._id)
 
 ##Sequences Arabidopsis thaliana
 
