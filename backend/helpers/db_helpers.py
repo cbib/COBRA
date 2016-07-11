@@ -198,7 +198,7 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 
 
 def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
-	print "entering parse GO enrichment"
+	print ('entering parse GO enrichment')
         sys.stdout.flush()
         rows_to_data=[]
         PValues=[]
