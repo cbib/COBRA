@@ -210,12 +210,12 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
                     for row2 in csvreader2:
                         PValues.append(row2[0])
                             
-                    logger.info(PValues) 
+                    #logger.info(PValues) 
                     output=subprocess.Popen(["/usr/bin/Rscript","/data/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         
                     final = output.stdout.read()
                     #for line in final:
-                    logger.info(final)
+                    #logger.info(final)
                 except csv.Error as e:
                     sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
 	#logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
