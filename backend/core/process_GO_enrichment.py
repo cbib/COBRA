@@ -214,7 +214,7 @@ for array in array_to_process:
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
     os.remove('/data/hypergeom_R_results/result_578368760c083dc7618b456b.txt')
     os.remove('/data/hypergeom_R_results/result_578369100c083d44068b456e.txt')
-    #os.remove(result_file)
+    os.remove(result_file)
 
     
 
