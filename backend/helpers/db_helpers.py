@@ -198,8 +198,8 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 
 
 def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
-	print ('entering parse GO enrichment')
-        sys.stdout.flush()
+	#print ('entering parse GO enrichment')
+        #sys.stdout.flush()
         rows_to_data=[]
         PValues=[]
         
@@ -220,7 +220,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
                     logger.info(final)
                 except csv.Error as e:
                     sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
-	#logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
+	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
 	
         adjusted=final.split(" ")
         
