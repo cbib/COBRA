@@ -212,7 +212,7 @@ for array in array_to_process:
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
     #os.remove('/data/hypergeom_R_results/result.txt')
-    os.remove(result_file)
+    #os.remove(result_file)
 
 
             #process.wait()
