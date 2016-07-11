@@ -198,69 +198,71 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 
 
 def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
-	#print ('entering parse GO enrichment')
-        #sys.stdout.flush()
-        rows_to_data=[]
-        PValues=[]
-        
-        with open(src_file, 'rb') as f:
-                csvreader2 = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+    #print ('entering parse GO enrichment')
+    #sys.stdout.flush()
+    rows_to_data=[]
+    PValues=[]
 
-		cpt=0
-		try:
-			#logger.info("number of rows:%s",len(list(csvreader)))
-                    for row2 in csvreader2:
-                        logger.info(row2[0])
-                        PValues.append(row2[0])
-                            
-                    logger.info(PValues) 
-                    output=subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                        
-                    final = output.stdout.read()
-                    #for line in final:
-                    logger.info(final)
-                except csv.Error as e:
-                    sys.exit('file %s, line %d: %s' % (src_file, csvreader2.line_num, e))
-	logger.info("Successfully parsed %d rows of %d values",len(PValues),len(column_keys))
-	
-        adjusted=final.split(" ")
-        
-	with open(src_file, 'rb') as f:
-		csvreader = reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+    with open(src_file, 'rb') as file:
+        csvreader2 = csv.reader(file, delimiter='\t', quoting=csv.QUOTE_NONE)
 
-		cpt=0
-		try:
-			#logger.info("number of rows:%s",len(list(csvreader)))
-                        
-                            
-			for row in csvreader:
-				cpt+=1
-				values=[]
-				#logger.info("rows:%s and len %d",row,len(row))
-				values.append(cpt);
-				
+        cpt2=0
+        try:
+                #logger.info("number of rows:%s",len(list(csvreader)))
+            for row2 in csvreader2:
+                cpt2+=1
+                logger.info(row2[0])
+                PValues.append(row2[0])
 
-				for col in range(len(row)):
-					#logger.info("rows:%s ",row[col])
-					values.append(row[col])
-                                logger.info("cpt:%d ",cpt)
-				values.append(adjusted[cpt-1])
-                                
-				if len(column_keys)!=len(values):
-					logger.info("columns keys length:%d",len(column_keys))
-					logger.info("value length :%d",len(values))
-					logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
-				this_dict=dict(zip(column_keys,values))
-                                
-				if id_col: #enforce id col type
-					if isinstance(this_dict[id_col],Number):
-						this_dict[id_col]=str(int(this_dict[id_col]))
-				rows_to_data.append(this_dict)
-		
-		except csv.Error as e:
-			sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
-	logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
-	return rows_to_data	
+            logger.info(PValues) 
+            output=subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            final = output.stdout.read()
+            #for line in final:
+            logger.info(final)
+        except csv.Error as e2:
+            sys.exit('file %s, line %d: %s' % (src_file, csvreader2.line_num, e2))
+    logger.info("Successfully parsed %d rows of %d values",len(PValues),len(column_keys))
+    logger.info(cpt2)
+    adjusted=final.split(" ")
+
+    with open(src_file, 'rb') as f:
+        csvreader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
+
+        cpt=0
+        try:
+            #logger.info("number of rows:%s",len(list(csvreader)))
+
+
+            for row in csvreader:
+                cpt+=1
+                values=[]
+                #logger.info("rows:%s and len %d",row,len(row))
+                values.append(cpt);
+
+
+                for col in range(len(row)):
+                    #logger.info("rows:%s ",row[col])
+                    values.append(row[col])
+                logger.info("cpt:%d ",cpt)
+                values.append(adjusted[cpt-1])
+
+                if len(column_keys)!=len(values):
+                        logger.info("columns keys length:%d",len(column_keys))
+                        logger.info("value length :%d",len(values))
+                        logger.critical("Mismatching number of columns and number of keys at location\n%s/nrow:%s"%(src_file,csvreader.line_num))
+                this_dict=dict(zip(column_keys,values))
+
+                if id_col: #enforce id col type
+                        if isinstance(this_dict[id_col],Number):
+                                this_dict[id_col]=str(int(this_dict[id_col]))
+                rows_to_data.append(this_dict)
+
+        except csv.Error as e:
+            sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+    logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
+    logger.info(cpt)
+    return rows_to_data	
 
 
 
