@@ -211,7 +211,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
                         PValues.append(row2[0])
                             
                     logger.info(PValues) 
-                    output=subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    output=subprocess.Popen(["/usr/bin/Rscript","/data/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         
                     final = output.stdout.read()
                     #for line in final:

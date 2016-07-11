@@ -25,7 +25,7 @@ __date__ = "$Jun 25, 2016 2:18:36 PM$"
 
 
 
-chmod("/data/hypergeom_R_results", octdec(0777))
+#chmod("/data/hypergeom_R_results", octdec(0777))
 #logger.info(sys.argv[1])
 #for arg in sys.argv:
 #    logger.info(arg)
