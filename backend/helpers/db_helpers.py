@@ -210,6 +210,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
 		try:
 			#logger.info("number of rows:%s",len(list(csvreader)))
                     for row2 in csvreader2:
+                        logger.info(row2[0])
                         PValues.append(row2[0])
                             
                     logger.info(PValues) 
@@ -219,7 +220,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
                     #for line in final:
                     logger.info(final)
                 except csv.Error as e:
-                    sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
+                    sys.exit('file %s, line %d: %s' % (src_file, csvreader2.line_num, e))
 	logger.info("Successfully parsed %d rows of %d values",len(PValues),len(column_keys))
 	
         adjusted=final.split(" ")
@@ -242,7 +243,9 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
 				for col in range(len(row)):
 					#logger.info("rows:%s ",row[col])
 					values.append(row[col])
-				values.append(adjusted[cpt-1])		
+                                logger.info("cpt:%d ",cpt)
+				values.append(adjusted[cpt-1])
+                                
 				if len(column_keys)!=len(values):
 					logger.info("columns keys length:%d",len(column_keys))
 					logger.info("value length :%d",len(values))

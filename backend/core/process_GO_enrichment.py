@@ -116,7 +116,7 @@ for array in array_to_process:
 
 
     #search for each unique GO term which genes has this GO ID
-#    logger.info(len(go_id_list.items()))
+    logger.info(len(go_id_list.items()))
     
     result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
     for key, value in go_id_list.items():
@@ -214,11 +214,8 @@ for array in array_to_process:
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
-    os.remove("/data/hypergeom_R_results/result_57836a4a0c083d3f068b456d.txt")
-    os.remove("/data/hypergeom_R_results/result_57836aa90c083d43068b456f.txt")
-    os.remove("/data/hypergeom_R_results/result_57836b710c083d44068b456f.txt")
-    os.remove("/data/hypergeom_R_results/log.txt")
-    os.remove(result_file)
+    
+    #os.remove(result_file)
 
     
 
