@@ -25,7 +25,7 @@ __date__ = "$Jun 25, 2016 2:18:36 PM$"
 
 
 
-
+chmod("/data/hypergeom_R_results", octdec(0777))
 #logger.info(sys.argv[1])
 #for arg in sys.argv:
 #    logger.info(arg)
@@ -117,7 +117,7 @@ for array in array_to_process:
 
     #search for each unique GO term which genes has this GO ID
 #    logger.info(len(go_id_list.items()))
-    chmod("/data/hypergeom_R_results", 0777);
+    
     result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
     for key, value in go_id_list.items():
         if (key!="NA"):
