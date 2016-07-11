@@ -39,7 +39,7 @@ if "log" not in globals():
     logger = Logger.init_logger('FLATTEN_%s'%(cfg.language_code), load_config())
 #logger.info("Running %s",sys.argv[0])
 logger.info("Performing GO enrichment for all samples")
-
+os.chmod("/data/hypergeom_R_results", 0755)
 
 #1.group measurement dataset by xp and project gene ID 
 
@@ -206,7 +206,7 @@ for array in array_to_process:
     #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    os.chmod("/data/hypergeom_R_results", 0755)
+    
     os.chmod(result_file, 0777)
     
     sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
