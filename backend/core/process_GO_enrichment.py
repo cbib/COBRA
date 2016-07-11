@@ -206,13 +206,20 @@ for array in array_to_process:
     #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    
+    chmod(result_file, octdec(0777))
     sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
-    #os.remove('/data/hypergeom_R_results/result.txt')
-    os.remove(result_file)
+    os.remove('/data/hypergeom_R_results/result_57835f9e0c083d4d0c8b456c.txt')
+    os.remove('/data/hypergeom_R_results/result_578365000c083d3e068b4570.txt')
+    os.remove('/data/hypergeom_R_results/result_sorted.txt')
+    os.remove('/data/hypergeom_R_results/result_57835f3c0c083d45068b456f.txt')
+    os.remove('/data/hypergeom_R_results/result_578364be0c083d44068b456d.txt')
+    os.remove('/data/hypergeom_R_results/result_578365b40c083d45068b4570.txt')
+    #os.remove(result_file)
+
+    
 
 
             #process.wait()
@@ -291,16 +298,4 @@ for array in array_to_process:
 #                    ]);
 
 
-
-
-
-
-#2.get list of genes with logFC higher than x and lower than y
-#3.get list of unique GO id related to previous gene list.
-#4.find all genes in this species associated with this list of GO terms
-#5.get GO term definition
-#6.perform hypergeom test and produce a file with this format:
-#7.Pvalue\tGO id\tGO name
-#8.sort the file
-#9.select the n top over represented GO ID
 
