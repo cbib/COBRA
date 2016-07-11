@@ -206,14 +206,14 @@ for array in array_to_process:
     #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    os.chmod(result_file, 0664)
+    os.chmod(result_file, 0755)
     
     sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
     # create the table created in GO_enrichement.php with result 
     db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
-    os.remove('/data/hypergeom_R_results/result_578367790c083d3f068b456c.txt')
-    os.remove('/data/hypergeom_R_results/result_578367bc0c083d43068b456e.txt')
+    os.remove('/data/hypergeom_R_results/result_578368760c083dc7618b456b.txt')
+    os.remove('/data/hypergeom_R_results/result_578369100c083d44068b456e.txt')
     #os.remove(result_file)
 
     
