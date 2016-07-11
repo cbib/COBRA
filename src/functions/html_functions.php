@@ -61,7 +61,7 @@ echo'
 <script src="'.$path.'/css/Highcharts-4.2.5/js/modules/heatmap.js"></script>
 <script src="'.$path.'/css/Highcharts-4.2.5/js/modules/data.js"></script>
 <!--<script src="'.$path.'/css/Highcharts-4.2.5/js/modules/exporting.js"></script>-->
-<!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
+<script src="http://code.highcharts.com/highcharts.js"></script>
 
 
 
