@@ -54,7 +54,7 @@ echo'
 <script type="text/javascript" src="'.$path.'/js/require.js"></script>
 
 <!--highcharts-->
-<script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
+<script src="'.$path.'/css/Highcharts-4.2.5/js/highcharts.js"></script>
 <script src="'.$path.'/css/Highcharts-4.2.5/js/highcharts-more.js"></script>
 <script src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js"></script>
 <script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
