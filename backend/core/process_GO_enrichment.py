@@ -38,7 +38,7 @@ xp=xp.replace("__", ".")
 if "log" not in globals():
     logger = Logger.init_logger('FLATTEN_%s'%(cfg.language_code), load_config())
 #logger.info("Running %s",sys.argv[0])
-#logger.info("Performing GO enrichment for all samples")
+logger.info("Performing GO enrichment for all samples")
 
 
 #1.group measurement dataset by xp and project gene ID 
