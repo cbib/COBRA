@@ -206,8 +206,8 @@ for array in array_to_process:
     #logger.info(doc_id)
     #retrive all results form result.txt
     #sheet_values=parse_result_file('/data/hypergeom_R_results/result.txt')
-    os.chmod("/data/hypergeom_R_results", 0777)
-    os.chmod(result_file, 0755)
+    os.chmod("/data/hypergeom_R_results", 0644)
+    os.chmod(result_file, 0777)
     
     sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
