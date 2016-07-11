@@ -198,7 +198,8 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 
 
 def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
-	rows_to_data=[]
+	logger.info("entering parse GO enrichment") 
+        rows_to_data=[]
         PValues=[]
         
         with open(src_file, 'rb') as f:
@@ -210,7 +211,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
                     for row2 in csvreader2:
                         PValues.append(row2[0])
                             
-                    #logger.info(PValues) 
+                    logger.info(PValues) 
                     output=subprocess.Popen(["/usr/bin/Rscript","/data/benjamini-hochberg.R"] + list(PValues), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                         
                     final = output.stdout.read()
