@@ -242,9 +242,9 @@ function load_heatmap(element){
         },
         complete:function(){  
             //   alert("stop");
-			$(".loading_"+clicked_id).fadeOut("slow");
+            $(".loading_"+clicked_id).fadeOut("slow");
             $(".test_"+clicked_id).show("slow");
-		}
+	}
     });
 
 }

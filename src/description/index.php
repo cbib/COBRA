@@ -73,7 +73,7 @@ echo'<div class="panel-group" id="accordion_documents">
 
                             }
                             $experiment_table_string.='</ul>';
-                            add_accordion_panel($experiment_table_string, $species.' Experiments',str_replace(' ','_',$species));
+                            add_accordion_panel($experiment_table_string, $species,str_replace(' ','_',$species));
                             echo'<br/>';
 
                         }
