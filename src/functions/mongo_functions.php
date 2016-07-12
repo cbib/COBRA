@@ -3471,6 +3471,14 @@ function find_xp_name_group_by_species(Mongocollection $sa){
     );
     return $cursor;
 }
+
+function find_xp_name_with_xp_id(Mongocollection $sa,$xp_id='null'){
+    $cursor=$sa->find(array("_id"=>new MongoId($xp_id)),array("name"=>1));
+    
+	return $cursor;
+}
+
+
 function find_all_xp_name(Mongocollection $sa){
 	$cursor=$sa->find(array(),array('name'=>1,'species'=>1));
     

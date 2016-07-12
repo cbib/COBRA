@@ -20,15 +20,33 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         $measurementsCollection = new Mongocollection($db, "measurements");
         $GOCollection = new Mongocollection($db, "gene_ontology");
         $GO_enrichCollection = new Mongocollection($db, "go_enrichments");
+        $samplesCollection = new MongoCollection($db, "samples");
+
 
         
         $today = date("F j, Y, g:i a");
+        
+        error_log($xp);
+        list($xp_id, $tmp, $xp_array) = explode('.', $xp);
+        error_log($tmp);
+        error_log($xp_array);
+        error_log($xp_id);
+
+        $names= find_xp_name_with_xp_id($samplesCollection, $xp_id);
+        foreach ($names as $name) {
+            $xp_name=$name['name'];
+            error_log($xp_name);
+            
+        }
+        
         $document = array("job_owner_firstname" => $_SESSION['lastname'],
                       "job_owner_lastname" => $_SESSION['firstname'],
                       "min" => $minlogFCthreshold,
                       "max" => $maxlogFCthreshold,
                       "date" => $today,
-                      "xp_id"=> $xp
+                      "xp_id"=> $xp_id,
+                      "xp_array"=> $xp_array,
+                      "xp_name"=>$xp_name
                      );
         $document['_id'] = new MongoId();
         $GO_enrichCollection->insert($document);

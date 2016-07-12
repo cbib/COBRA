@@ -42,7 +42,8 @@
 
         //recupere le titre
         //$table_string.='<th>type</th>';
-        $GOtable_string.='<th>Xp id</th>';
+        $GOtable_string.='<th>Experiment name</th>';
+        $GOtable_string.='<th>array number</th>';
         $GOtable_string.='<th>Date</th>';
         $GOtable_string.='<th>Min</th>';
         $GOtable_string.='<th>Max</th>';
@@ -61,7 +62,8 @@
         $GOtable_string.='<tr>';
             //$table_string.='<td>'.$line['type'].'</td>';
         
-            $GOtable_string.='<td>'.$line['xp_id'].'</td>';
+            $GOtable_string.='<td>'.$line['xp_name'].'</td>';
+            $GOtable_string.='<td>'.$line['xp_array'].'</td>';
             $GOtable_string.='<td>'.$line['date'].'</td>';
             $GOtable_string.='<td>'.$line['min'].'</td>';
             $GOtable_string.='<td>'.$line['max'].'</td>';
