@@ -616,14 +616,11 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
    
     	
 	//makeDatatable($cursor);
-
-	*/
-echo '<div id="container" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>';
+*/
+	
+ 
 new_cobra_footer();
 ?>
-
-
-
 <script>
 
 $(function () {
