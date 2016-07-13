@@ -13,12 +13,12 @@ import csv
 from csv import reader
 import sys
 from numbers import Number
-import pymongo 
-import logging 
-import os
+
 import subprocess
 import hashlib
 import collections
+import logging 
+import os
 from math import log
 import pymongo
 from pymongo import MongoClient
@@ -225,7 +225,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
     logger.info("Successfully parsed %d rows of %d values",len(PValues),len(column_keys))
     logger.info(cpt2)
     adjusted=final.split(" ")
-
+    file.close()
     with open(src_file, 'rb') as f:
         csvreader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
 

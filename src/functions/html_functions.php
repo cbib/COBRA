@@ -58,7 +58,7 @@ echo'
 <script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts-more.js" type="text/javascript"></script>
 <script src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js" type="text/javascript"></script>
 <script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/heatmap.src.js" type="text/javascript"></script>
+<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/heatmap.js" type="text/javascript"></script>
 <script src="'.$path.'/css/Highcharts-4.1.8/js/modules/data.js" type="text/javascript"></script>
 
 
