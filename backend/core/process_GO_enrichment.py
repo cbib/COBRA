@@ -61,6 +61,8 @@ for array in array_to_process:
 
     xp_id=xp 
     species=array['_id']
+    if species=="Prunus armeniaca" or species=="Prunus domestica":
+        species="Prunus persica"
     
     total_genes_for_species=db.full_mappings.distinct("mapping_file.Gene ID",{'species':species});
 
@@ -122,7 +124,7 @@ for array in array_to_process:
 
         result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
         for key, value in go_id_list.items():
-            if (key!="NA"):
+            if ((key!="NA") and (key!="")):
 
                 totalgenelist=[]
                 #retrieve all gene ID associated with this GO ID
@@ -145,23 +147,26 @@ for array in array_to_process:
 
                     {'$project': {"GO_collections" : 1,'_id':0}},
                     {'$unwind': "$GO_collections"},
-                    {'$match': {'GO_collections.id':key }},
+                    {'$match': {'$and':[ {'GO_collections.id':key },{'GO_collections.name': {'$ne':""}}]}},
                     {'$project': {"GO_collections.name" : 1,"GO_collections.namespace":1,'_id':0}}
                 ]);
                 GO_name=""
                 for total_go in  total_go_to_process:
                     GO_name=total_go['GO_collections']['name']
                     GO_namespace=total_go['GO_collections']['namespace']
+                    logger.info(GO_name)
+                    logger.info(GO_namespace)
+                    
                 GO_name.replace(" |(|)", "_")
 
 
                 logger.info(key)
 
 
+                if GO_name!="":
+                    with open(result_file,'a') as fileobj:
 
-                with open(result_file,'a') as fileobj:
-
-                    subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
+                        subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
 
 
 

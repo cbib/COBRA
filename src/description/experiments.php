@@ -57,7 +57,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  		$source_pub=$line['src_pub'];
  		$assay_info=$line['assay'];
  		$deposit_info=$line['deposited'];
-        $comment=$line['comments'];
+                $comment=$line['comments'];
  		$experimental_results=$line['experimental_results'];
  		
  	}
@@ -67,6 +67,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
  	##http://www.ncbi.nlm.nih.gov/pubmed/19821986
     #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
  	##EXPERIMENT DETAILS
+        
  	echo'<div class="container" background-color="blue">';
  	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
 		echo'<h1 style="text-align:center"> Experiment details </h1>';
@@ -96,13 +97,13 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
     echo'</div>';
  	
  	$cursor = $speciesCollection->findOne(array(
- 														'$or'=>array(
- 																array('full_name'=>$species),
- 																array('aliases'=>$species),
- 																array('abbrev_name'=>$species)
- 														)
- 													)
- 												);
+                        '$or'=>array(
+                                        array('full_name'=>$species),
+                                        array('aliases'=>$species),
+                                        array('abbrev_name'=>$species)
+                        )
+                )
+        );
 
 	//var_dump($cursor);
 	echo'<div class="container">';
@@ -302,8 +303,10 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         //$maxlogFCthreshold=1.5;
         //$minlogFCthreshold=-1.5;
         //$gene_significant_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'$or'=>array(array('logFC'=>array('$gt'=>$maxlogFCthreshold)),array('logFC'=>array('$lt'=>$minlogFCthreshold)))))->count();
-
-        echo '<button onclick="load_heatmap(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
+        if($species=="Prunus armeniaca" || $species=="Prunus domestica"){
+            $species="Prunus persica";
+        }
+        echo '<button onclick="load_heatmap(this)" data-species="'.$species.'" data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
         echo '<center>'

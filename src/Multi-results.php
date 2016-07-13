@@ -111,15 +111,14 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //    echo "<br>Script for search score executed in " . $page_load_time1 . " sec";
     
     
-    
-    try
-	{
+    $ts=start_time_capture();
+    try{
         $cursor_array=array();
         if($organism=="All species"){
             //$timestart1=microtime(true);
             foreach ($list_search as $search) {
                 $cursor=$full_mappingsCollection->aggregate(array(
-                array('$match' => array('type'=>'full_table')),  
+ 
                 array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
                 array('$unwind'=>'$mapping_file'),
                 array('$match' => array('$or'=> array(array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
@@ -140,7 +139,7 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
             foreach ($list_search as $search) {
                 //$timestart1=microtime(true);
                 $cursor=$full_mappingsCollection->aggregate(array(
-                array('$match' => array('type'=>'full_table','species'=>$organism)),  
+                array('$match' => array('species'=>$organism)),  
                 array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
                 array('$unwind'=>'$mapping_file'),
                 array('$match' => array('$or'=> array(array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Plaza ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/^$search/xi")),array('mapping_file.Description'=>new MongoRegex("/$search/xi")),array('mapping_file.Uniprot ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Protein ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Alias'=>new MongoRegex("/^$search/xi")),array('mapping_file.Probe ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID'=>new MongoRegex("/$search$/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/^$search/xi")),array('mapping_file.Gene ID 2'=>new MongoRegex("/$search$/xi")),array('mapping_file.Symbol'=>new MongoRegex("/^$search/xi"))))),
@@ -156,13 +155,13 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 //            echo "<br>Fin du script: ".date("H:i:s", $timeend1);
             //echo "<br>Script for given species executed in " . $page_load_time1 . " sec";
         }
-	}
-	catch ( MongoResultException $e )
-	{
-    		echo '<p>aggregation result exceeds maximum document size (16MB), you need to be more precise in your query</p>';
-    		exit();
-	}
-     
+    }
+    catch ( MongoResultException $e )
+    {
+    	echo '<p>aggregation result exceeds maximum document size (16MB), you need to be more precise in your query</p>';
+    	exit();
+    }
+    stop_time_capture($ts);
     display_multi_results_table($cursor_array);
     
     

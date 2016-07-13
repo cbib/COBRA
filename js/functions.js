@@ -10,8 +10,12 @@ var transcripts_already_open="false";
 var unspliced_already_open="false";
 var top_scored_gene_open="false";
 
+var detailData=[];
+var chaine="";
+
+
 //show heatmap for expression profile
-function show_heatmap(element,clicked_id,min, max){
+function show_heatmap(element,clicked_id,FCmin, FCmax,species){
     //var clicked_id = element.getAttribute('data-id');
     //var x_array = element.getAttribute('data-x');
     var x_array=element.attr('data-x');
@@ -58,7 +62,7 @@ function show_heatmap(element,clicked_id,min, max){
                     load: function () {
                         //var label = this.renderer.label("set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
 
-                        var label = this.renderer.label("set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+")")
+                        var label = this.renderer.label("set of differentially expressed genes (logFC \> "+FCmax+" and \&lt; "+FCmin+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+")")
                         .css({
                             width: '850px',
                             color: '#222',
@@ -79,20 +83,42 @@ function show_heatmap(element,clicked_id,min, max){
                             y: 5 // offset
                         }), null, 'spacingBox');
                 
-                    }
+                    }//,
 //                    selection: function(event) {
-//                        if (event.xAxis) {
-//                            //event.point.series.xAxis.categories[event.point.x]
-//                            //alert(this.series.categories);
-//                            console.log(event.xAxis[0].series);
-//                            //alert('min: '+ event.xAxis +', max: '+ event.xAxis[0].max);
-//                            //alert('min: '+ event.point.series.xAxis.categories[event.point.x] +', max: '+ event.xAxis[0].max);
-//                        } else {
-//                            $alert('Selection reset');
-//                        }
+////                        if (event.xAxis) {
+////                            //event.point.series.xAxis.categories[event.point.x]
+////                            //alert(this.series.categories);
+//                                //console.log(event.xAxis[0]);
+//                                var extremesObject = event.xAxis[0];
+//                                min = extremesObject.min;
+//                                max = extremesObject.max;
+//                                chaine="";
+//                                
+//                                xAxis = this.xAxis[0];
+//                                //console.log(xAxis.categories);
+//                                // reverse engineer the last part of the data
+//                                
+//                                //this.series.xAxis.categories[this.point.x]
+//                                $.each(this.series[0].data, function () {
+//                                    if (this.x > min && this.x < max) {
+//                                        
+//                                        
+//                                        detailData.push([this.x, this.y,xAxis.categories[parseInt(this.x)]]);
+//                                        chaine = chaine+xAxis.categories[parseInt(this.x)]+"+";
+//                                    }
+//                                });
+//                                //console.log(detailData);
+//                                test=chaine.slice(0, chaine.length-1);
+//                                console.log(test);
+//                                
+////                            //alert('min: '+ event.xAxis +', max: '+ event.xAxis[0].max);
+////                            //alert('min: '+ event.point.series.xAxis.categories[event.point.x] +', max: '+ event.xAxis[0].max);
+////                        } else {
+////                            $alert('Selection reset');
+////                        }
 //                    }
-                },
-                zoomType: 'x'
+            },
+            zoomType: 'x'
         },
 
 
@@ -178,8 +204,64 @@ function show_heatmap(element,clicked_id,min, max){
             borderWidth: 1,
             data: JSON.parse(day)
             
-        }]
+        }], 
+        exporting: {
+            buttons: {
+                customButton: {
+                    text: 'Search on selected genes',
+                    onclick: function () {
+                        //xAxis = this.xAxis[0];
+                        //alert(xAxis.categories) 
+                        //var test=xAxis.categories
+                        //res = test.replace(",", "+"); 
+                        
+                        //alert(res)
+                        var extremesObject = this.xAxis[0];
+                        min = extremesObject.min;
+                        max = extremesObject.max;
 
+                        xAxis = this.xAxis[0];
+                        //console.log(xAxis.categories);
+                        // reverse engineer the last part of the data
+
+                        //this.series.xAxis.categories[this.point.x]
+                        $.each(this.series[0].data, function () {
+                            if (this.x > min && this.x < max) {
+                                
+                                chaine = chaine+xAxis.categories[parseInt(this.x)]+"+";
+                                
+
+
+                                detailData.push([this.x, this.y,xAxis.categories[parseInt(this.x)]]);
+                            }
+                        });
+                        
+                        //console.log(detailData);
+                        test=chaine.slice(0, chaine.length-1);
+                        //console.log(test);
+                        console.log("../Multi-results.php?organism=All+species&search="+test);
+                        //window.open("../Multi-results.php?organism=All+species&search="+test);
+                        window.open("../Multi-results.php?organism="+species+"&search="+test);
+                      
+                        
+                        
+                        
+                        
+                        
+                        //document.location.href="../Multi-results.php?organism=All+species&search=AT1G75950+ATCG01100
+                        
+                        
+                        //alert('You pressed the button!');
+                    }
+                },
+               anotherButton: {
+                    text: 'Another Button',
+                    onclick: function () {
+                        alert('You pressed another button!');
+                    }
+                }
+            }
+        }
     });
 //    $('#add').click(function() {
 //        var chart = $('.heatmap_'+clicked_id).highcharts();
@@ -210,6 +292,7 @@ function load_heatmap(element){
     clicked_id = element.getAttribute('data-id');
     logFCmin = element.getAttribute('data-min');
     logFCmax = element.getAttribute('data-max');
+    species=element.getAttribute('data-species');
     
     $.ajax({
 
@@ -238,7 +321,7 @@ function load_heatmap(element){
             
             $(".test_"+clicked_id).empty().append(par);
             //alert("div has been append");
-            show_heatmap(par,clicked_id,logFCmin,logFCmax);
+            show_heatmap(par,clicked_id,logFCmin,logFCmax,species);
         },
         complete:function(){  
             //   alert("stop");
@@ -297,7 +380,7 @@ function show_GO_enrichment(element,clicked_id){
 
     $('.GO_'+clicked_id).highcharts({
         chart: {
-            type: 'column',
+            type: 'column'
             //marginTop: 40,
             //marginBottom: 130,
             
@@ -1071,6 +1154,8 @@ function show_profiles(element){
         }
         //if (typeof variable === 'undefined' || variable === null) {}
 
+        
+        //if (typeof va
 
           //series: serie
 

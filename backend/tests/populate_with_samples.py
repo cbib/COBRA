@@ -201,7 +201,7 @@ rice_samples={
 samples_col.insert(rice_samples)
 
 rice_samples={
-    "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"26442000", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-84 part",
     "comments":[
@@ -296,7 +296,7 @@ samples_col.insert(rice_samples)
 
 
 rice_samples={
-    "src_pub":"PMC4563162,26442000", # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"26442000", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"NAC transcription factor family genes are differentially expressed in rice during infections with Rice dwarf virus, Rice black-streaked dwarf virus, Rice grassy stunt virus, Rice ragged stunt virus, and Rice transitory yellowing virus RDV-S Part",
     "comments":[
@@ -411,7 +411,7 @@ samples_col.insert(rice_samples)
 
 
 melo_samples={
-    "src_pub":23134692, # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"23134692", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Cucumis melo", # any abbrev name, key or full name, 
     "name":"Root transcriptional responses of two melon genotypes with contrasting resistance to Monosporascus cannonballus (Pollack et Uecker) infection",
     "comments":[
@@ -511,7 +511,7 @@ samples_col.insert(melo_samples)
 
 
 melo_samples={
-    "src_pub":21970693, # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"21970693", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Cucumis melo", # any abbrev name, key or full name, 
     "name":"Recessive resistance to Watermelon mosaic virus in melon is associated with a defense response as revealed by microarray analysis",
     "comments":[
@@ -683,7 +683,7 @@ melo_samples={
 samples_col.insert(melo_samples)
 
 melo_samples={
-	"src_pub":19821986, # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"19821986", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Cucumis melo", # any abbrev name, key or full name, 
 	"name":"Transcriptomics of infection of C. melo",
 	"comments":[
@@ -1027,7 +1027,7 @@ samples_col.insert(AT_samples)
 
 
 prunus_samples={
-	"src_pub":24959894, # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"24959894", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus domestica", # any abbrev name, key or full name,P. domestica 
 	"strain":"JoJo",
 	"name":"Transcriptomics of infection of P. domestica Jojo by PPV",
@@ -1187,7 +1187,7 @@ samples_col.insert(barley_samples)
 ############################################ ORIZA Sativa Japonica #################################################
 ###################################################################################################################
 rice_japonica_samples={
-    "src_pub":"PMC3798811", # Any field from the pub, doi, pmid, first author etc. 
+    "src_pub":"24151491", # Any field from the pub, doi, pmid, first author etc. 
     "species":"Oriza sativa ssp japonica", # any abbrev name, key or full name, 
     "name":"Relationship between gene responses and symptoms induced by Rice grassy stunt virus",
     "state":"processed",
@@ -1251,7 +1251,7 @@ samples_col.insert(rice_japonica_samples)
 
 
 tomato_samples={
-	"src_pub":"PMC3832472", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"26658051", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Solanum lycopersicum", # any abbrev name, key or full name, 
 	"name":"Comparative Transcriptome Profiling of a Resistant vs. Susceptible Tomato (Solanum lycopersicum) Cultivar in Response to Infection by Tomato Yellow Leaf Curl Virus",
 	"state":"processed",
@@ -1318,7 +1318,7 @@ samples_col.insert(tomato_samples)
 ###################################################################################################################
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"26658051", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
 	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
 	"state":"processed",
@@ -1364,7 +1364,7 @@ Prunus_samples={
 samples_col.insert(Prunus_samples)
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"26658051", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
 	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
 	"state":"processed",
@@ -1410,7 +1410,7 @@ Prunus_samples={
 samples_col.insert(Prunus_samples)
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"26658051", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
 	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
 	"state":"processed",
@@ -1450,7 +1450,7 @@ Prunus_samples={
 samples_col.insert(Prunus_samples)
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"26658051", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus armeniaca", # any abbrev name, key or full name, 
 	"name":"Gene Expression Analysis of Plum pox virus (Sharka) Susceptibility/Resistance in Apricot (Prunus armeniaca L.)",
 	"state":"processed",
@@ -1508,7 +1508,7 @@ samples_col.insert(Prunus_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd2",
@@ -1538,7 +1538,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd3",
@@ -1568,7 +1568,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow dwarf virus Part Ryd4",
@@ -1598,7 +1598,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym7",
@@ -1629,7 +1629,7 @@ samples_col.insert(barley_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym16HB",
@@ -1660,7 +1660,7 @@ samples_col.insert(barley_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym17",
@@ -1690,7 +1690,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym1",
@@ -1720,7 +1720,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym18",
@@ -1750,7 +1750,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym8_rym9",
@@ -1781,7 +1781,7 @@ samples_col.insert(barley_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym13",
@@ -1812,7 +1812,7 @@ samples_col.insert(barley_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym3",
@@ -1843,7 +1843,7 @@ samples_col.insert(barley_samples)
 
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym14HB",
@@ -1873,7 +1873,7 @@ barley_samples={
 samples_col.insert(barley_samples)
 
 barley_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"not published yet", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Hordeum vulgare", # any abbrev name, key or full name, 
 	"strain":"",
 	"name":"Transcriptional analysis of Hordeum vulgare infected by Barley yellow/mild mosaic virus part rym15",
@@ -1909,7 +1909,7 @@ samples_col.insert(barley_samples)
 ###################################################################################################################
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"24989162", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus persica", # any abbrev name, key or full name, 
 	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
 	"state":"processed",
@@ -1964,7 +1964,7 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 samples_col.insert(Prunus_samples)
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"24989162", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus persica", # any abbrev name, key or full name, 
 	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
 	"state":"processed",
@@ -2014,7 +2014,7 @@ changes in plant gene expression.""","author":"Manuel Rubio","date":datetime.dat
 samples_col.insert(Prunus_samples)
 
 Prunus_samples={
-	"src_pub":"", # Any field from the pub, doi, pmid, first author etc. 
+	"src_pub":"24989162", # Any field from the pub, doi, pmid, first author etc. 
 	"species":"Prunus persica", # any abbrev name, key or full name, 
 	"name":"Analysis of gene expression changes in peach leaves in response to Plum pox virus infection using RNA-Seq",
 	"state":"processed",

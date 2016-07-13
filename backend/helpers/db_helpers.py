@@ -262,6 +262,8 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
             sys.exit('file %s, line %d: %s' % (src_file, csvreader.line_num, e))
     logger.info("Successfully parsed %d rows of %d values",len(rows_to_data),len(column_keys))
     logger.info(cpt)
+    f.close()
+    
     return rows_to_data	
 
 
