@@ -325,7 +325,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         
 // PARTIE NON OPERATIONNELLE
-        echo '<button onclick="load_GO_enrichment_new(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
+        echo '<button onclick="load_GO_enrichment(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
               </center>

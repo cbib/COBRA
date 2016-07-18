@@ -420,7 +420,7 @@ function show_GO_enrichment(element,clicked_id){
     });
 };
 
-function load_GO_enrichment_new(element){
+function load_GO_enrichment(element){
     //alert(element.getAttribute('data-id')) ;
     //clicked_transcript_id = element.getAttribute('data-id');
     clicked_id = element.getAttribute('data-id');
@@ -431,7 +431,7 @@ function load_GO_enrichment_new(element){
   
     $.ajax({
 
-        url : './GO_enrichment_new.php', // La ressource ciblée
+        url : './GO_enrichment_search.php', // La ressource ciblée
         type : 'POST' ,// Le type de la requête HTTP.
         data : 'xp_id=' + clicked_id + '&min=' + logFCmin + '&max=' + logFCmax + '&species=' + species,
         
@@ -473,7 +473,7 @@ function load_GO_enrichment_new(element){
 }
 
 //AJAX function for GO enrichment 
-function load_GO_enrichment(element){
+function load_GO_enrichment_old(element){
     //alert(element.getAttribute('data-id')) ;
     //clicked_transcript_id = element.getAttribute('data-id');
     clicked_id = element.getAttribute('data-id');

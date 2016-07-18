@@ -28,7 +28,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
 
     if ($species==="Prunus persica"){
 
-
+        error_log("species prunus persica ".$species);
         $scaffold='scaffold_'.$scaffold;
         $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
@@ -48,11 +48,13 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
             array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.HREF_species'=> 1,'mapping_file.Species'=>1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
 
         ));
+        
+        foreach ($genetic_markers_result['result'] as $value) {
+            error_log($value['mapping_file']);
+        }
 
-
-
-        //echo 'start: '.$gene_start.'- end: '.$gene_end.' chrom: '.$scaffold;
-
+        error_log('start: '.$gene_start.' end: '.$gene_end.' chrom: '.$scaffold);
+        
         $var_results=$variation_collection->aggregate(array(
                     array('$match' => array('species'=> $species)),  
                     array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -67,9 +69,9 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
                     array('$project'=>  array('mapping_file.Variant ID'=> 1, 'mapping_file.Position'=>1,'mapping_file.Alleles'=>1))
 
                 ));
-        //foreach ($var_results as $value) {
-        //     echo $value['mapping_file'];       
-        //}
+//        foreach ($var_results as $value) {
+//             echo $value['mapping_file'];       
+//        }
 
     }
     else if ($species==="Cucumis melo"){
@@ -104,7 +106,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
     }
     
     if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0){
-        //echo count ($genetic_markers_result['result']);
+        error_log("----------------------------------".count($genetic_markers_result['result']));
         if ($mode==="GM"){
             echo'<table class="table" id="table_markers">  
                 <thead>
@@ -145,9 +147,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
                         }
 
 
-                    echo'</tbody>
-
-            </table>';
+                    echo'</tbody></table>';
                 }
                 else{
 
@@ -192,9 +192,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
                         }
 
 
-                    echo'</tbody>
-
-            </table>';
+                    echo'</tbody></table>';
 
 
             }
