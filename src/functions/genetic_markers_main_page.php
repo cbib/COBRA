@@ -25,7 +25,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
     $mode=$_POST['mode'];
 
     $genetic_markers_result=array();
-
+    error_log($species);
     if ($species==="Prunus persica"){
 
         error_log("species prunus persica ".$species);
@@ -33,24 +33,23 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
         $genetic_markers_result=$genetic_markers_collection->aggregate(array(  
             array('$project' => array('mapping_file'=>1,'_id'=>0)),
             array('$unwind'=>'$mapping_file'),
-            array('$match' => array('$or'=>array(array('$and'=> array(
-                                            array('mapping_file.Start'=>array('$gt'=> $gene_start )),
-                                            array('mapping_file.Start'=>array('$lt'=> $gene_end )),
-                                            array('mapping_file.Chromosome'=> $scaffold )))
-                                            ,
-                                            array('$and'=> array(
-                                            array('mapping_file.End'=>array('$gt'=> $gene_start )),
-                                            array('mapping_file.End'=>array('$lt'=> $gene_end )),
-                                            array('mapping_file.Chromosome'=> $scaffold )))
-                                            )
-                                        )
-                                    ),
+            array('$match' => array('$and'=> array(
+                                            array('mapping_file.Start'=>array('$gt'=> (int)$gene_start )),
+                                            array('mapping_file.Start'=>array('$lt'=> (int)$gene_end )),
+                                            array('mapping_file.End'=>array('$gt'=> (int)$gene_start )),
+                                            array('mapping_file.End'=>array('$lt'=> (int)$gene_end )),
+                                            array('mapping_file.Chromosome'=> $scaffold )
+                                               )
+                                            )),
             array('$project'=>  array('mapping_file.Marker ID'=> 1, 'mapping_file.HREF_markers'=> 1,'mapping_file.HREF_species'=> 1,'mapping_file.Species'=>1,'mapping_file.Start'=>1,'mapping_file.End'=>1,'mapping_file.Map ID'=>1,'mapping_file.Chromosome'=>1,'mapping_file.Type'=>1,'mapping_file.Linkage Group'=>1,'mapping_file.StartcM'=>1,'_id'=> 0))
 
         ));
         
         foreach ($genetic_markers_result['result'] as $value) {
-            error_log($value['mapping_file']);
+            foreach ($value['mapping_file'] as $value_tocheck) {
+                error_log($value_tocheck); 
+            }
+
         }
 
         error_log('start: '.$gene_start.' end: '.$gene_end.' chrom: '.$scaffold);
@@ -198,6 +197,8 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
             }
         }
         else{
+            error_log("----------------------------------".count($genetic_markers_result['result']));
+            
             if ($species === "Cucumis melo"){
                 echo'<table class="table" id="table_qtls">  
                         <thead>
@@ -252,6 +253,8 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
                 echo'</tbody></table>';
             }
             else{
+                
+
                 echo'<table class="table" id="table_qtls"><thead><tr>';
                 //echo "<th>gene ID</th>";
                 echo "<th>QTL ID</th>";
@@ -268,6 +271,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
 
 
                         $href_marker=$data['HREF_markers'];
+                        error_log($data['HREF_markers']);
                         $marker_id=$data['Marker ID'];
 
                         if (!in_array($marker_id, $marker_list)){

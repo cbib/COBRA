@@ -1283,7 +1283,7 @@ function load_and_display_variations_result_with_ajax(array $gene_id,$species='n
                             
               echo' <div class="panel-group" id="accordion_documents_qtl_'.$gene_id[0].'">
                         <div class="panel panel-default">
-                            <div class="panel-heading" onclick="load_QTLs(this)"  data-mode="QTL" data-id="'.$gene_id[0].'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'">
+                            <div class="panel-heading" onclick="load_QTLs(this)"  data-mode="QTL" data-id="'.$gene_id[0].'" data-end="'.$gene_end.'" data-scaffold="'.$scaffold.'" data-species="'.$species.'" data-start="'.$gene_start.'" data-gene="'.htmlspecialchars( json_encode($gene_id), ENT_QUOTES ).'">
 
                                     <a class="accordion-toggle collapsed" href="#qtl-table_'.$gene_id[0].'" data-parent="#accordion_documents_qtl_'.$gene_id[0].'" data-toggle="collapse">
                                             <strong>QTLs</strong>
