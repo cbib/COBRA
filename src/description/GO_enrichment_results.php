@@ -20,7 +20,8 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
 //                      "xp_id"=> $xp
 //                     );
     
-
+    echo '<div class="GO_result"><h1>'.$_GET['name'].'</h1>';
+    echo '<hr>';
     echo '<div class="sectionBP"><h2> Biological process</h2>'; 
     echo'   <table class="table dataTable no-footer" id="GO_enriched_TableBP"> 
                 <thead>
@@ -117,6 +118,7 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
     }
     echo'</tbody></table>';
     echo '<div class="shift_line"></div>';      
+    echo '</div>';
     echo '</div>';
     
     

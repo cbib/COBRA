@@ -67,7 +67,7 @@
             $GOtable_string.='<td>'.$line['date'].'</td>';
             $GOtable_string.='<td>'.$line['min'].'</td>';
             $GOtable_string.='<td>'.$line['max'].'</td>';
-            $GOtable_string.='<td><a href="../description/GO_enrichment_results.php?id='.$line['_id'].'">View results</td>';
+            $GOtable_string.='<td><a target="_blank" href="../description/GO_enrichment_results.php?id='.$line['_id'].'&name='.$line['xp_name'].'">View results</td>';
             if(isset($line['result_file'])){
                 $GOtable_string.='<td style="background:#01DF74;">Finished</td>';
             }
