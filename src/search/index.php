@@ -108,8 +108,40 @@ require '../session/control-session.php';
                                 approaches.</p>-->
                         </div>
 
-                </div>
-        </div>
+                </div>';
+                echo'<div id="stats_section">
+                <h3>STATISTICS</h3>
+                    <div class="panel-group" id="accordion_documents">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" onclick="load_statistics(this)" >
+
+                                    <a class="accordion-toggle collapsed" href="#stat-table" data-parent="#accordion_documents" data-toggle="collapse">
+                                            <strong>Some statistics</strong>
+                                    </a>				
+
+                            </div>
+                            <center>
+                                <div class="statloading" style="display: none"></div>
+                            </center>
+                            <div class="panel-body panel-collapse collapse" id="stat-table">';
+
+        
+        
+        
+        
+                                        echo'<div class="stat_area"> 
+
+                                            <!--here comes the statistics  accordion div-->
+                                        </div>';
+                        echo'
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="shift_line"></div>
+          </div>
+        ';
+        echo '</div>
         <!---#COBRA Funding And Partners-->
 
 
@@ -121,25 +153,25 @@ require '../session/control-session.php';
                     <hr  size=0.5>
                     <a href="http://www.inra.fr/"><img class="displayed" id="partner_logo" src="../../images/logo-inra_w186.jpg"/></a>
                 </div>
-                </br>
+                
                 </br>
                 <div id="image_container">
                     <hr  size=0.5>                           
                     <a href="http://www.nordsaat.de/"><img class="displayed" id="partner_logo" src="../../images/noordsat_w186.jpg" /></a>
                 </div>
-                </br>
+                
                 </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.jki.bund.de/en/startseite/home.html"><img class="displayed" id="partner_logo" src="../../images/jki_w186.gif"  /></a>
                 </div>
-                </br>
+                
                 </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.ipk-gatersleben.de/"><img class="displayed" id="partner_logo" src="../../images/ipk.png"  /></a>
                 </div>
-                </br>
+                
                 </br>
             </div>
             <div class="col-md-6" >
@@ -147,25 +179,25 @@ require '../session/control-session.php';
                     <hr  size=1>
                     <a href="http://www.cgfb.u-bordeaux2.fr/"><img class="displayed" id="partner_logo" src="../../images/cgfb_w186.jpg" height="85"/></a>
                 </div>
-                </br>
+                
                 </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.abiopep.com/en"><img class="displayed" id="partner_logo" src="../../images/abiopep3_w186.jpg" height="85" /></a>
                 </div>
-                </br>
+                
                 </br>
                 <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.cebas.csic.es/"><img class="displayed" id="partner_logo" src="../../images/logo_csic_w186.jpg" height="85" width="165"/></a>
                 </div>
-                </br>
+                
                 </br>
                  <div id="image_container">
                     <hr  size=1>
                     <a href="http://www.cnb.csic.es/index.php/en/"><img class="displayed" id="partner_logo" src="../../images/cnb.jpg" height="85"/></a>
                 </div>
-                </br>
+                
                 </br>
 
             </div>
@@ -222,38 +254,7 @@ require '../session/control-session.php';
     //    </div>      
     //display_statistics();
     
-     echo'<div id="stats_section">
-                <h3>STATISTICS</h3>
-                    <div class="panel-group" id="accordion_documents">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" onclick="load_statistics(this)" >
-
-                                    <a class="accordion-toggle collapsed" href="#stat-table" data-parent="#accordion_documents" data-toggle="collapse">
-                                            <strong>Some statistics</strong>
-                                    </a>				
-
-                            </div>
-                            <center>
-                                <div class="statloading" style="display: none"></div>
-                            </center>
-                            <div class="panel-body panel-collapse collapse" id="stat-table">';
-
-        
-        
-        
-        
-                                        echo'<div class="stat_area"> 
-
-                                            <!--here comes the statistics  accordion div-->
-                                        </div>';
-                        echo'
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="shift_line"></div>
-                </div>
-        ';
+     
         
     
     echo'<br/>';
