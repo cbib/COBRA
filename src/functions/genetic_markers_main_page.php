@@ -105,7 +105,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
     }
     
     if (isset($genetic_markers_result['result']) && count ($genetic_markers_result['result'])>0){
-        error_log("----------------------------------".count($genetic_markers_result['result']));
+        //error_log("----------------------------------".count($genetic_markers_result['result']));
         if ($mode==="GM"){
             echo'<table class="table" id="table_markers">  
                 <thead>
@@ -197,7 +197,7 @@ if (isset($_POST['gene_ids'],$_POST['species'],$_POST['start'],$_POST['end'],$_P
             }
         }
         else{
-            error_log("----------------------------------".count($genetic_markers_result['result']));
+            //error_log("----------------------------------".count($genetic_markers_result['result']));
             
             if ($species === "Cucumis melo"){
                 echo'<table class="table" id="table_qtls">  

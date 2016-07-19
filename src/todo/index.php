@@ -15,5 +15,4 @@ echo '<ul><li style="background: #FA8258;"> Scoring functions test2.py to modify
 echo '<ul><li style="background: #01DF74;"> Finishing table for GO enrichments results</li></ul>';
 echo '<ul><li style="background: #FA8258;"> Add GO pathway enrichements using KEGG pathway and melodie method</li></ul>';
 echo '<ul><li style="background: #FA8258;"> problem with COBRA depot</li></ul>';
-
 new_cobra_footer();
