@@ -62,7 +62,7 @@ function show_heatmap(element,clicked_id,FCmin, FCmax,species){
                     load: function () {
                         //var label = this.renderer.label("set of differentially expressed genes (logFC \> "+max+" and \&lt; "+min+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+", green bars). The y-axis displays the fraction relative to all GO Molecular Function terms. These terms do not show a significant enrichment (p>0.5).")
 
-                        var label = this.renderer.label("set of differentially expressed genes (logFC \> "+FCmax+" and \&lt; "+FCmin+" n= "+total_diff_gene+") is compared to terms of all micro array genes(n= "+total_gene+")")
+                        var label = this.renderer.label("set of differentially expressed genes (n= "+total_diff_gene+") with logFC \> "+FCmax+" and \&lt; "+FCmin)
                         .css({
                             width: '850px',
                             color: '#222',
@@ -252,12 +252,6 @@ function show_heatmap(element,clicked_id,FCmin, FCmax,species){
                         
                         
                         //alert('You pressed the button!');
-                    }
-                },
-               anotherButton: {
-                    text: 'Another Button',
-                    onclick: function () {
-                        alert('You pressed another button!');
                     }
                 }
             }
