@@ -36,9 +36,26 @@ pp = pprint.PrettyPrinter(indent=4)
 client = MongoClient()
 db = client.cobra_db
 
-
 species_col = db.species
 mappings_col = db.mappings
+full_mappings_col=db.full_mappings
+#publications_col= db.publications
+#samples_col=db.samples
+#measurements_col=db.measurements
+#pv_interactions_col=db.pv_interactions
+#pp_interactions_col=db.pp_interactions
+#viruses_col=db.viruses
+orthologs_col=db.orthologs
+#gene_ontology_col=db.gene_ontology
+#go_enrichments_col=db.go_enrichments
+#users_col=db.users
+#sequences_col=db.sequences
+#variations_col=db.variations
+#genetic_maps_col=db.genetic_maps
+#genetic_markers_col=db.genetic_markers
+#qtls_col=db.qtls
+#kegg_pathway_col=db.kegg_pathways
+
 
 
 
@@ -193,6 +210,29 @@ def parse_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
 	
 	#logger.info("rows:%s",row)
 	
+def process_orthologs(plaza_results,species):
+    for p in plaza_results:
+        for values in p['mapping_file']:
+
+            plaza_id=values['Plaza ID']
+
+            #orthologs_list_identifier
+            ortholog_result=orthologs_col.find({'species':species,'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+            for ortholog in ortholog_result:
+
+                #logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+                ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+                if ortholog_list.find(",") != -1:
+                    ortholog_split_list=ortholog_list.split(',')
+                    for ortholog_id in ortholog_split_list:
+                        if ortholog_id!=plaza_id:
+                            full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
+                else:
+                    if ortholog_list!=plaza_id:
+                        full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
+
+
+
 
 
 
