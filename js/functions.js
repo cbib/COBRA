@@ -423,6 +423,7 @@ function show_GO_enrichment(element,clicked_id){
 function load_GO_enrichment(element){
     //alert(element.getAttribute('data-id')) ;
     //clicked_transcript_id = element.getAttribute('data-id');
+    alert(element.getAttribute('data-id')) ;
     clicked_id = element.getAttribute('data-id');
     logFCmin = element.getAttribute('data-min');
     logFCmax = element.getAttribute('data-max');
@@ -474,7 +475,8 @@ function load_GO_enrichment(element){
 
 //AJAX function for GO enrichment 
 function load_GO_enrichment_old(element){
-    //alert(element.getAttribute('data-id')) ;
+    //
+    
     //clicked_transcript_id = element.getAttribute('data-id');
     clicked_id = element.getAttribute('data-id');
     logFCmin = element.getAttribute('data-min');
