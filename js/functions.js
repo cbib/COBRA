@@ -1202,12 +1202,23 @@ function load_expression_profiles(element){
             },
 
             success: function (data) {
-                //alert(data);
+                
                 var jqObj = jQuery(data);
-                var par=jqObj.find("#container_profile");
 
-                $(".profile").empty().append(par);
-                show_profiles(par);
+                var par;
+
+                if(jqObj.find("#container_profile").length){
+                   par=jqObj.find("#container_profile"); 
+                   $(".profile").empty().append(par);
+                   show_profiles(par);
+                }
+                else{
+                   
+                   par=jqObj.find(".no_results");
+                   $(".profile").empty().append(par);
+                   
+                }
+
   
             },
             complete:function(){  
