@@ -78,14 +78,14 @@ for species in species_to_process:
                 plaza_results=full_mappings_col.find({'species':"Hordeum vulgare",'mapping_file.Transcript ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus domestica":
-                full_mappings_col.update({'species':"Prunus domestica","mapping_file.Protein ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1,"mapping_file.$.Global_Score": 1 } })
+                full_mappings_col.update({'species':"Prunus persica","mapping_file.Protein ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1,"mapping_file.$.Global_Score": 1 } })
                 
-                plaza_results=full_mappings_col.find({'species':"Prunus domestica",'mapping_file.Protein ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
+                plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Protein ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus armeniaca":
-                full_mappings_col.update({'species':"Prunus armeniaca","mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1,"mapping_file.$.Global_Score": 1 } })
+                full_mappings_col.update({'species':"Prunus persica","mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1,"mapping_file.$.Global_Score": 1 } })
                 
-                plaza_results=full_mappings_col.find({'species':"Prunus armeniaca",'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
+                plaza_results=full_mappings_col.find({'species':"Prunus persica",'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
 
             elif species['full_name']== "Prunus persica":
                 full_mappings_col.update({'species':"Prunus persica","mapping_file.Gene ID":r['gene']},{'$inc': {"mapping_file.$.Score_exp": 1,"mapping_file.$.Global_Score": 1 } })
@@ -130,26 +130,28 @@ for species in species_to_process:
 
                     full_mappings_col.update({'species':species["full_name"],"mapping_file.Gene ID":r['gene']},{'$inc': {'mapping_file.$.Score_exp': 1,'mapping_file.$.Global_Score': 1 } })
                     plaza_results=full_mappings_col.find({'species':species["full_name"],'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
-        
-            for p in plaza_results:
-                for values in p['mapping_file']:
-
-                    plaza_id=values['Plaza ID']
-
-                    #orthologs_list_identifier
-                    ortholog_result=orthologs_col.find({'species':species["full_name"],'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
-                    for ortholog in ortholog_result:
-
-                        #logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
-                        ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
-                        if ortholog_list.find(",") != -1:
-                            ortholog_split_list=ortholog_list.split(',')
-                            for ortholog_id in ortholog_split_list:
-                                if ortholog_id!=plaza_id:
-                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
-                        else:
-                            if ortholog_list!=plaza_id:
-                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
-        
             
+            process_orthologs(plaza_results,species['full_name'])
+
+#            for p in plaza_results:
+#                for values in p['mapping_file']:
+#
+#                    plaza_id=values['Plaza ID']
+#
+#                    #orthologs_list_identifier
+#                    ortholog_result=orthologs_col.find({'species':species["full_name"],'mapping_file.Plaza gene id':plaza_id},{'mapping_file.$':1,'_id':0});
+#                    for ortholog in ortholog_result:
+#
+#                        #logger.info("ortholog list %s ",ortholog['mapping_file'][0]['orthologs_list_identifier'])
+#                        ortholog_list=ortholog['mapping_file'][0]['orthologs_list_identifier']
+#                        if ortholog_list.find(",") != -1:
+#                            ortholog_split_list=ortholog_list.split(',')
+#                            for ortholog_id in ortholog_split_list:
+#                                if ortholog_id!=plaza_id:
+#                                    full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
+#                        else:
+#                            if ortholog_list!=plaza_id:
+#                                full_mappings_col.update({"mapping_file.Plaza ID":ortholog_list},{"$inc": {'mapping_file.$.Score_orthologs': 0.5 , 'mapping_file.$.Global_Score': 0.5 } })
+#        
+#            
             
