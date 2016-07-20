@@ -196,7 +196,7 @@ for array in array_to_process:
 
         os.remove(result_file)
         os.remove(r_script)
-        os.remove("/data/hypergeom_R_results/result.txt")
+
         
     else:
         logger.info("these genes have no GO associated")
