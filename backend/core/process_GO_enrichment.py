@@ -127,7 +127,7 @@ for array in array_to_process:
         # here we need to create R script on flight 
         r_script= "/data/hypergeom_R_results/script_"+str(doc_id)+".R" 
         f = open(r_script, 'w')
-        text_script='args <- commandArgs(TRUE)\nx <- as.numeric(args[1])\nm <- as.numeric(args[2])\nn <- as.numeric(args[3])\nk <- as.numeric(args[4])\nGO <- args[5]\nname <- args[6]\nnamespace <- args[7]\nout <- phyper(x-1,m,n-m,k,lower.tail=FALSE)\nif (GO!=\"NA\" & GO!=\"\"){\n\tif(format(out,digits=12,format=\"g\")<1){\n\t\tcat(format(out,digits=12,format=\"g\"))\n\t\tcat(\"\\t\")\n\t\tcat(GO)\n\t\tcat(\"\\t\")\n\t\tcat(name)\n\t\tcat(\"\\t\")\n\t\tcat(namespace)\n\t\tcat(\"\\n\")\n\t}}'
+        text_script='args <- commandArgs(TRUE)\nx <- as.numeric(args[1])\nm <- as.numeric(args[2])\nn <- as.numeric(args[3])\nk <- as.numeric(args[4])\nGO <- args[5]\nname <- args[6]\nnamespace <- args[7]\nout <- phyper(x-1,m,n-m,k,lower.tail=FALSE)\nif (GO!=\"NA\" & GO!=\"\"){\n\tif(format(out,digits=12,format=\"g\")<1){\n\t\tcat(format(out,digits=12,format=\"g\"))\n\t\tcat(\"\\t\")\n\t\tcat(GO)\n\t\tcat(\"\\t\")\n\t\tcat(name)\n\t\tcat(\"\\t\")\n\t\tcat(namespace)\n\t\tcat(\"\\n\")\n\t}\n}'
         f.write(text_script)
         
         os.chmod(r_script, 0755)
