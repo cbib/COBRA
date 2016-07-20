@@ -242,16 +242,19 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
     #sys.stdout.flush()
     rows_to_data=[]
     PValues=[]
-
+    p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
+    (output, err) = p.communicate()
+    logger.info(output)
     with open(src_file, 'rb') as file:
         csvreader2 = csv.reader(file, delimiter='\t', quoting=csv.QUOTE_NONE)
 
-        cpt2=0
+        cpt=0
         try:
                 #logger.info("number of rows:%s",len(list(csvreader)))
             for row2 in csvreader2:
-                cpt2+=1
-                logger.info(row2[0])
+                cpt+=1
+                #logger.info(row2[0])
+                logger.info("rows:%s and len %d",row2,len(row2))
                 PValues.append(row2[0])
 
             logger.info(PValues) 
@@ -263,9 +266,12 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
         except csv.Error as e2:
             sys.exit('file %s, line %d: %s' % (src_file, csvreader2.line_num, e2))
     logger.info("Successfully parsed %d rows of %d values",len(PValues),len(column_keys))
-    logger.info(cpt2)
+    logger.info(cpt)
     adjusted=final.split(" ")
     file.close()
+    p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
+    (output, err) = p.communicate()
+    logger.info(output)
     with open(src_file, 'rb') as f:
         csvreader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
 
@@ -277,7 +283,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
             for row in csvreader:
                 cpt+=1
                 values=[]
-                #logger.info("rows:%s and len %d",row,len(row))
+                logger.info("rows:%s and len %d",row,len(row))
                 values.append(cpt);
 
 

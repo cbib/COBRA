@@ -3,6 +3,7 @@
 
 import sys
 import os
+import stat
 import subprocess
 
 sys.path.append("../../backend")
@@ -121,8 +122,18 @@ for array in array_to_process:
         
         #search for each unique GO term which genes has this GO ID
         logger.info(len(go_id_list.items()))
+        
+        
+        # here we need to create R script on flight 
+        r_script= "/data/hypergeom_R_results/script_"+str(doc_id)+".R" 
+        f = open(r_script, 'w')
+        text_script='args <- commandArgs(TRUE)\nx <- as.numeric(args[1])\nm <- as.numeric(args[2])\nn <- as.numeric(args[3])\nk <- as.numeric(args[4])\nGO <- args[5]\nname <- args[6]\nnamespace <- args[7]\nout <- phyper(x-1,m,n-m,k,lower.tail=FALSE)\nif (GO!=\"NA\" & GO!=\"\"){\n\tif(format(out,digits=12,format=\"g\")<1){\n\t\tcat(format(out,digits=12,format=\"g\"))\ncat(\"\\t\")\ncat(GO)\ncat(\"\\t\")\ncat(name)\ncat(\"\\t\")\ncat(namespace)\ncat(\"\\n\")\n}}'
+        f.write(text_script)
+        
+        os.chmod(r_script, 0755)
 
         result_file = "/data/hypergeom_R_results/result_"+str(doc_id)+".txt"
+
         for key, value in go_id_list.items():
             if ((key!="NA") and (key!="")):
 
@@ -166,10 +177,16 @@ for array in array_to_process:
                 if GO_name!="":
                     with open(result_file,'a') as fileobj:
 
-                        subprocess.Popen(["/usr/bin/Rscript","/data/hypergeom_R_results/my_rscript.R",str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
+                        subprocess.Popen(["/usr/bin/Rscript",r_script,str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
+                        
 
-
-
+        p = subprocess.Popen("ps aux | grep data/hypergeom_R_results/my_rscript.R", stdout=subprocess.PIPE, shell=True)
+        (output, err) = p.communicate()
+        logger.info(output)
+#        while output != '':
+#            p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
+#            (output, err) = p.communicate()
+#            logger.info(output)
         sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
         # create the table created in GO_enrichement.php with result 
