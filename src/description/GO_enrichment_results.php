@@ -22,6 +22,7 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
     
     echo '<div class="GO_result"><h1>'.$_GET['name'].'</h1>';
     echo '<hr>';
+    echo $_GET['id'];
     echo '<div class="sectionBP"><h2> Biological process</h2>'; 
     echo'   <table class="table dataTable no-footer" id="GO_enriched_TableBP"> 
                 <thead>
@@ -39,7 +40,7 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
         
         foreach ($result['result_file'] as $row){
             
-            if ($row["GO NAMESPACE"]==="biological_process "){ 
+            if ($row["GO NAMESPACE"]==="biological_process"){ 
                 echo "<tr>"
                 ."<td>".$row["GO ID"]."</td>"
                 . "<td>".$row["GO NAME"]."</td>"
@@ -73,7 +74,7 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
     foreach ($GO_result2 as $result) {
         
         foreach ($result['result_file'] as $row){
-            if ($row["GO NAMESPACE"]=="molecular_function "){ 
+            if ($row["GO NAMESPACE"]=="molecular_function"){ 
                 echo "<tr>"
              . "<td>".$row["GO ID"]."</td>"
              . "<td>".$row["GO NAME"]."</td>"
@@ -104,7 +105,7 @@ if ((isset($_GET['id'])) && ((isset($_GET['id'])))){
     foreach ($GO_result3 as $result) {
         
         foreach ($result['result_file'] as $row){
-            if ($row["GO NAMESPACE"]=="cellular_component "){ 
+            if ($row["GO NAMESPACE"]=="cellular_component"){ 
                     echo "<tr>"
                  . "<td>".$row["GO ID"]."</td>"
                  . "<td>".$row["GO NAME"]."</td>"
