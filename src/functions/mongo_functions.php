@@ -3353,7 +3353,7 @@ function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
           '$group'=>
             array(
               '_id'=> array( 'score'=> '$mapping_file.Global_Score' ),
-              'genes'=> array( '$addToSet'=> array('gene_id'=>'$mapping_file.Gene ID','species'=>'$species' ))
+              'genes'=> array( '$addToSet'=> array('gene_id'=>'$mapping_file.Gene ID','species'=>'$species','gene_desc'=>'$mapping_file.Description', 'gene_alias'=>'$mapping_file.Alias'))
                 
               
             )

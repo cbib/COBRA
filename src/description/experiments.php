@@ -236,6 +236,8 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 		$material=$details['material'];
         
         echo'<div id="sample-details">';
+        echo '<div class="col-md-12">';
+        echo '<div class="col-md-6">';
         echo '<div class="shift_line"></div>';
 		
         echo '<dl class="dl-horizontal">
@@ -297,8 +299,19 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
                
         
         echo '</dl>';
+        echo '</div>';
+        echo '<div class="col-md-6">';
+        //here add ggplot for logFC repartition.
+        $logFC_list=$measurementsCollection->find(array('xp'=>$Measurement_FK),array("logFC"=>1));
         
+        echo $logFC_list->count();
+        //get all logFc values
         
+        //$cmd='Rscript /data/hypergeom_R_results/ggplot.R '.$xp_formatted.' '.$newDocID.' '.$minlogFCthreshold.' '.$maxlogFCthreshold;
+        //exec($cmd. " > /data/hypergeom_R_results/log.txt 2>&1 &");
+        
+        echo '</div>';
+        echo '</div>';
         //echo '<div id="test_'.str_replace(".", "_",$Measurement_FK).'"> </div>';
         //$maxlogFCthreshold=1.5;
         //$minlogFCthreshold=-1.5;
@@ -306,6 +319,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         if($species=="Prunus armeniaca" || $species=="Prunus domestica"){
             $species="Prunus persica";
         }
+        
         echo '<button onclick="load_heatmap(this)" data-species="'.$species.'" data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 class="heatmap_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show heatmap</button>';
 
         
