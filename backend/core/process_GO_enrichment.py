@@ -196,7 +196,18 @@ for array in array_to_process:
 
         os.remove(result_file)
         os.remove(r_script)
-
+        os.remove("/data/hypergeom_R_results/result_57838c930c083d3f068b456e.txt")
+        os.remove("/data/hypergeom_R_results/result_57839d520c083d44068b4573.txt")
+        os.remove("/data/hypergeom_R_results/result_5783ae410c083d43068b4571.txt")
+        os.remove("/data/hypergeom_R_results/result_5784eaa90c083d3f068b4570.txt")
+        os.remove("/data/hypergeom_R_results/result_5784f1220c083d4d0c8b4570.txt")
+        os.remove("/data/hypergeom_R_results/result_578f6f380c083dc3258b4572.txt")
+        os.remove("/data/hypergeom_R_results/result_578f6fe50c083d9c318b4573.txt")
+        os.remove("/data/hypergeom_R_results/result_578f72480c083d4d0c8b4572.txt")
+        os.remove("/data/hypergeom_R_results/result_sorted.txt")
+        os.remove("/data/hypergeom_R_results/script_578f6f380c083dc3258b4572.R")
+        os.remove("/data/hypergeom_R_results/script_578f6fe50c083d9c318b4573.R")
+        os.remove("/data/hypergeom_R_results/script_578f72480c083d4d0c8b4572.R")
     else:
         logger.info("these genes have no GO associated")
         db.go_enrichments.remove({"_id":ObjectId(doc_id)})
