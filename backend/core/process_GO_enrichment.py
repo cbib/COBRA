@@ -188,7 +188,7 @@ for array in array_to_process:
         while output.count('www-data')>2  :
             p = subprocess.Popen("ps aux | grep "+r_script, stdout=subprocess.PIPE, shell=True)
             (output, err) = p.communicate()
-            logger.info(output.count('www-data'))
+            logger.info(output.count('www'))
         sheet_values=parse_GO_enriched_tsv_table(result_file,r_script,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
         # create the table created in GO_enrichement.php with result 
