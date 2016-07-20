@@ -237,14 +237,15 @@ def process_orthologs(plaza_results,species):
 
 
 
-def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None):
+def parse_GO_enriched_tsv_table(src_file,script,column_keys,n_rows_to_skip,id_col=None):
     #print ('entering parse GO enrichment')
     #sys.stdout.flush()
     rows_to_data=[]
     PValues=[]
-    p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
-    (output, err) = p.communicate()
-    logger.info(output)
+#    p = subprocess.Popen("ps aux | grep "+script, stdout=subprocess.PIPE, shell=True)
+#    (output, err) = p.communicate()
+#    logger.info(output.count('www-data'))
+#    logger.info(output)
     with open(src_file, 'rb') as file:
         csvreader2 = csv.reader(file, delimiter='\t', quoting=csv.QUOTE_NONE)
 
@@ -269,9 +270,7 @@ def parse_GO_enriched_tsv_table(src_file,column_keys,n_rows_to_skip,id_col=None)
     logger.info(cpt)
     adjusted=final.split(" ")
     file.close()
-    p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
-    (output, err) = p.communicate()
-    logger.info(output)
+
     with open(src_file, 'rb') as f:
         csvreader = csv.reader(f, delimiter='\t', quoting=csv.QUOTE_NONE)
 
