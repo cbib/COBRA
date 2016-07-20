@@ -183,7 +183,7 @@ for array in array_to_process:
 
         p = subprocess.Popen("ps aux | grep "+r_script, stdout=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
-        logger.info(output.count('www'))
+        logger.info(output)
         
         while output.count('www')>2  :
             p = subprocess.Popen("ps aux | grep "+r_script, stdout=subprocess.PIPE, shell=True)
