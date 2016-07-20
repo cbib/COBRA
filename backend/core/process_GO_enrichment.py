@@ -129,6 +129,7 @@ for array in array_to_process:
         f = open(r_script, 'w')
         text_script='args <- commandArgs(TRUE)\nx <- as.numeric(args[1])\nm <- as.numeric(args[2])\nn <- as.numeric(args[3])\nk <- as.numeric(args[4])\nGO <- args[5]\nname <- args[6]\nnamespace <- args[7]\nout <- phyper(x-1,m,n-m,k,lower.tail=FALSE)\nif (GO!=\"NA\" & GO!=\"\"){\n\tif(format(out,digits=12,format=\"g\")<1){\n\t\tcat(format(out,digits=12,format=\"g\"))\n\t\tcat(\"\\t\")\n\t\tcat(GO)\n\t\tcat(\"\\t\")\n\t\tcat(name)\n\t\tcat(\"\\t\")\n\t\tcat(namespace)\n\t\tcat(\"\\n\")\n\t}\n}'
         f.write(text_script)
+        f.close()
         
         os.chmod(r_script, 0755)
 
@@ -180,19 +181,21 @@ for array in array_to_process:
                         subprocess.Popen(["/usr/bin/Rscript",r_script,str(value), str(total_gene_size), str(len(total_genes_for_species)), str(total_de_genes),key,GO_name,GO_namespace], stdout=fileobj, stderr=subprocess.PIPE)
                         
 
-        p = subprocess.Popen("ps aux | grep data/hypergeom_R_results/my_rscript.R", stdout=subprocess.PIPE, shell=True)
+        p = subprocess.Popen("ps aux | grep "+r_script, stdout=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
-        logger.info(output)
-#        while output != '':
-#            p = subprocess.Popen("ps aux | grep my_rscript.R", stdout=subprocess.PIPE, shell=True)
-#            (output, err) = p.communicate()
-#            logger.info(output)
-        sheet_values=parse_GO_enriched_tsv_table(result_file,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
+        logger.info(output.count('www-data'))
+        
+        while output.count('www-data')>2  :
+            p = subprocess.Popen("ps aux | grep "+r_script, stdout=subprocess.PIPE, shell=True)
+            (output, err) = p.communicate()
+            logger.info(output.count('www-data'))
+        sheet_values=parse_GO_enriched_tsv_table(result_file,r_script,['idx','P value','GO ID','GO NAME','GO NAMESPACE','adjusted_pvalue'],0)
 
         # create the table created in GO_enrichement.php with result 
         db.go_enrichments.update({"_id":ObjectId(doc_id)},{"$set":{"result_file":sheet_values}})
 
         os.remove(result_file)
+        os.remove(r_script)
 
     else:
         logger.info("these genes have no GO associated")
