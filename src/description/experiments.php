@@ -304,7 +304,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         //here add ggplot for logFC repartition.
         $logFC_list=$measurementsCollection->find(array('xp'=>$Measurement_FK),array("logFC"=>1));
         
-        echo $logFC_list->count();
+        //echo $logFC_list->count();
         //get all logFc values
         
         //$cmd='Rscript /data/hypergeom_R_results/ggplot.R '.$xp_formatted.' '.$newDocID.' '.$minlogFCthreshold.' '.$maxlogFCthreshold;
