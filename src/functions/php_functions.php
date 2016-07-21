@@ -1110,21 +1110,21 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
    echo'<div id="section_description"><B>';
         echo'</br>';
         if (isset($gene_id[0])){echo $gene_id[0];}else{echo $gene_id_bis[0];} echo '</B> ';
-                for ($i = 0; $i < $score_exp; $i++) { 
-                   echo '<i class="fa fa-star" id="score_exp"></i>';
-                }
-                for ($i = 0; $i < $score_int; $i++) { 
-                   echo '<i class="fa fa-star" id="score_int"></i>';
-                }
-                for ($i = 0; $i < $score_ort; $i++) { 
-                   echo '<i class="fa fa-star" id="score_ort"></i>';
-                }
-                for ($i = 0; $i < $score_QTL; $i++) { 
-                   echo '<i class="fa fa-star" id="score_QTL"></i>';
-                }
-                for ($i = 0; $i < $score_SNP; $i++) { 
-                   echo '<i class="fa fa-star" id="score_SNP"></i>';
-                }
+//                for ($i = 0; $i < $score_exp; $i++) { 
+//                   echo '<i class="fa fa-star" id="score_exp"></i>';
+//                }
+//                for ($i = 0; $i < $score_int; $i++) { 
+//                   echo '<i class="fa fa-star" id="score_int"></i>';
+//                }
+//                for ($i = 0; $i < $score_ort; $i++) { 
+//                   echo '<i class="fa fa-star" id="score_ort"></i>';
+//                }
+//                for ($i = 0; $i < $score_QTL; $i++) { 
+//                   echo '<i class="fa fa-star" id="score_QTL"></i>';
+//                }
+//                for ($i = 0; $i < $score_SNP; $i++) { 
+//                   echo '<i class="fa fa-star" id="score_SNP"></i>';
+//                }
                 
                 
                 

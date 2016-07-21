@@ -37,7 +37,7 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
     array('_id'=>0)
     );
     $counter=1;
-    if ($cursor==0){
+    if (count($cursor)==0){
         foreach ($cursor as $result) {
             $logfc_array=array();
             $xp_full_name=explode(".", $result['xp']);
