@@ -30,9 +30,9 @@ img.displayed {
 #bar_blank, #hidden_iframe {
   display: none;
 }
-//.fa-star{
+/*.fa-star{
 //  color: green;
-//}
+}*/
 #score_exp {
   color: green;
 }
@@ -49,7 +49,7 @@ img.displayed {
   color: darkorchid;
 }
 
-//datatable selection
+/*datatable selection*/
 
 /*table.dataTable tbody tr.odd.selected{
     background-color: #04B4AE;
@@ -59,16 +59,16 @@ img.displayed {
 }*/
 table.dataTable tbody tr:hover {
   background-color: #ffa;
-  //width:100%;
+  /*width:100%;*/
 }
 /*table.dataTable tbody tr.even.selected {
     background-color: #04B4AE;
 }*/
 
-
-//Users preference
+/*
+//Users preference*/
 #user_pref, #change_password{
-     //width:970px;
+/*     //width:970px;*/
      width:100%;
      background-color: #FFF;
      margin-left: 0px;
@@ -80,7 +80,7 @@ table.dataTable tbody tr:hover {
 .shift_line{
     display: block;
     clear: both;
-    //height: 20px;
+/*    //height: 20px;*/
     margin: 25px 0 25px;
     padding: 0;
     border: 0;
@@ -156,7 +156,7 @@ table.dataTable tbody tr:hover {
         vertical-align:middle;
         display:inline-block;
         width:100%;
-        //float: left;
+
         
         
         
@@ -183,6 +183,7 @@ table.dataTable tbody tr:hover {
   
   #SpeciesSearch,
   #BlastJobsTable,
+  #stats_section,
   #GOEnrichedJobsTable,
   #log_history,
   #search_history,
@@ -225,7 +226,7 @@ table.dataTable tbody tr:hover {
      padding-right: 0px;
      padding-left: 0px;
      border: 1px solid #DDD;
-     //padding: 10px 10px 0px;
+/*     //padding: 10px 10px 0px;*/
      float: left;
      border: 1px solid #DDD; 
      border-radius: 10px;
@@ -236,132 +237,113 @@ table.dataTable tbody tr:hover {
      background-color: #FFF;
      padding-right: 0px;
      padding-left: 0px;
-     //height: 100%;
+/*     //height: 100%;
     
-     //padding: 10px 10px 0px;
+     //padding: 10px 10px 0px;*/
      float: right;
      border: 1px solid #DDD; 
      border-radius: 10px;
-     //height: 167px;
+/*     //height: 167px;*/
      
   }
   #summary{
      height: 100%; 
   }
   #summary > #protein-details{
-	//width: 480px;
+/*	//width: 480px;*/
         width: 50%;
-        //height: 50%;
+/*        //height: 50%;
         //background-color: #FFF;
         //margin-left: 0px;
         //border-radius: 10px;
         //padding: 10px 10px 0px;
-        //display: inline-block;
+        //display: inline-block;*/
         display: table-cell;
         float: left;
-        //height: 100%;
-        //border: 1px solid #DDD;
+/*        //height: 100%;
+        //border: 1px solid #DDD;*/
   }
   .modal-dialog{
       width: 1000px;
   }
   #summary > #protein-details > #section_description{
-	//width: 480px;
+/*	//width: 480px;*/
         width: 100%;
-        //height: 50%;
-        background-color: #FFF;//#9bcd9b;
+/*        //height: 50%;*/
+        background-color: #FFF;
+/*        //#9bcd9b;*/
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
+/*        //float: left;*/
         border: 1px solid #DDD;
   }
   #summary > #protein-details > #section_score{
-	//width: 480px;
+/*	//width: 480px;*/
         width: 100%;
-        //height: 50%;
+/*        //height: 50%;*/
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
+/*        //float: left;*/
         border: 1px solid #DDD;
   }
   .sectionMF,.sectionBP,.sectionCC{
       width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
   #sample-details,#dataset-details,#xp-details,#species-details{
-      //width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
   #summary > #protein-details > #goTerms{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
   #summary > #protein-details > #details{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
    #summary > #protein-details > #linkouts{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
   #summary > #protein-details > #variation_section{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
         margin-left: 0px;
         border-radius: 10px;
         padding: 0px 10px 0px;
-        //float: left;
         border: 1px solid #DDD;
   }
   
   
  #summary > #stat-details{
-	//width: 480px;
         width: 50%;
         float: right;
-        //height: 100%;
-        //display: inline-block;
+
         display: table-cell;
-        //height: 50%;
 /*        background-color: #FFF;
 	border-radius: 10px;
 	padding: 10px 10px 0px;
@@ -369,45 +351,33 @@ table.dataTable tbody tr:hover {
 	border: 1px solid #DDD;*/
   }
   #summary > #stat-details > #interaction_section{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 0px 10px 0px;
-	//float: right;
 	border: 1px solid #DDD;
   }
   #summary > #stat-details > #ortholog_section,#sequences_section {
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 0px 10px 0px;
-	//float: right;
 	border: 1px solid #DDD;
   }
   
   #summary > #protein-details > #expression_profile_section{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 0px 10px 0px;
-	//float: right;
 	border: 1px solid #DDD;
   }
   
   #doc_pages > #section_upload,#section_documents{
-	//width: 480px;
         width: 100%;
-        //height: 50%;
         background-color: #FFF;
 	border-radius: 10px;
 	padding: 0px 10px 0px;
-	//float: right;
 	border: 1px solid #DDD;
   }
   #image_container{ 
@@ -434,7 +404,7 @@ table.dataTable tbody tr:hover {
  }
 
  #section_quick_search,
- //#goTerms,
+/* //#goTerms,*/
  #section_login,
  #section_diff_exp_genes,
  #section_disconnect,
@@ -451,14 +421,10 @@ table.dataTable tbody tr:hover {
  #section_upload_file,
  #section_wiki,
  #section_tools{
-     //width:970px;
      width:100%;
-     //background-color: #FFF;
      margin-left: 0px;
-     //border-radius: 10px;
      padding: 0px 10px 0px;
      float: left;
-     //border: 1px solid #DDD; 
   }
   
   #section_description > .container{
@@ -467,9 +433,7 @@ table.dataTable tbody tr:hover {
   #section_tools >  .container{
     float: left;
     padding: 10px 10px 0px;
-     //width:970px;
-     //width:88%;
-     //border: 1px solid #DDD;
+
     
   }
   

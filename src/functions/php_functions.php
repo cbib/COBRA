@@ -469,7 +469,7 @@ function display_statistics_with_ajax(){
 
     $stat_string.='<div class="stats-panel"><h4>Last update : '.$today.'</h4>
                 <h4>Samples : '.$sampleCollection->count().'</h4>';
-                $stat_string.='<h4>Normalized measures : '.$measurementsCollection->count().'</h4>';
+                $stat_string.='<h4>Expression measures per species:</h4>';
                 $specieslist=$speciesCollection->find(array(),array('full_name'=>1));
                 foreach ($specieslist as $species) {
                    $stat_string.='<li style="margin-left:30px;">'.$species['full_name'].': '.$measurementsCollection->count(array('species'=>$species['full_name'])).'</li>';
