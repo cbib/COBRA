@@ -4067,9 +4067,10 @@ function make_species_list($cursor,$path='null'){
     echo '
     
     <div id="SpeciesSearch">
-    	<input type="hidden" class="panel_type" value="SearchBox" />
+    	
     	<form action="'.$path.'/src/Multi-results.php" target="_blank" method="get" class="clear search-form homepage-search-form">
             <fieldset>
+            <wbr/>
                 <div class="form-field ff-multi">
                     <div align="left" class="ff-inline ff-right" >
                         <label for="species" class="ff-label">Search:</label>

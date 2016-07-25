@@ -235,6 +235,6 @@ echo'</hr>';
 
 
 
-new_cobra_footer();
+new_cobra_footer(true);
 
 ?>

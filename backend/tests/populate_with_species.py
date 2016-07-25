@@ -30,7 +30,7 @@ species_col.remove()
 melon={
 	"full_name":"Cucumis melo",
 	"abbrev_name":"C. melo",
-	"aliases":["cucumis_melo","melon"],
+	"aliases":["melon"],
 	"taxid":3656, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Muskmelon",
 	"preferred_id":"Gene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
@@ -55,7 +55,7 @@ species_col.insert(melon)
 rice={
 	"full_name":"Oriza sativa ssp japonica",
 	"abbrev_name":"O. sativa",
-	"aliases":["oriza_sativa","rice","Japanese rice"],
+	"aliases":["rice","Japanese rice"],
 	"taxid":39947, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=39947
 	"wikipedia":"https://en.wikipedia.org/wiki/Oryza_sativa",
 	"preferred_id":"Gene", #http://www.icugi.org/cgi-bin/ICuGI/EST/search.cgi?unigene=MU60682&searchtype=unigene&organism=melon
@@ -79,7 +79,7 @@ species_col.insert(rice)
 prunus={
 	"full_name":"Prunus domestica",
 	"abbrev_name":"P. domestica",
-	"aliases":["prunus_domestica","prunus"],
+	"aliases":["prunus"],
 	"taxid":3758, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3656
 	"wikipedia":"http://en.wikipedia.org/wiki/Prunus_domestica",
 	"preferred_id":"Protein",
@@ -103,7 +103,7 @@ species_col.insert(prunus)
 peach={
 	"full_name":"Prunus persica",
 	"abbrev_name":"P. persica",
-	"aliases":["prunus_persica","peach"],
+	"aliases":["peach"],
 	"taxid":3760, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=3760
 	"wikipedia":"https://en.wikipedia.org/wiki/Peach",
 	"preferred_id":"Protein",
@@ -129,7 +129,7 @@ species_col.insert(peach)
 apricot={
 	"full_name":"Prunus armeniaca",
 	"abbrev_name":"P. armeniaca",
-	"aliases":["prunus_armeniaca","apricot"],
+	"aliases":["apricot"],
 	"taxid":36596, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=36596
 	"wikipedia":"https://en.wikipedia.org/wiki/Apricot",
 	"preferred_id":"Gene",
@@ -199,7 +199,7 @@ species_col.insert(tomato)
 barley={
 	"full_name":"Hordeum vulgare",
 	"abbrev_name":"H. vulgare",
-	"aliases":["hordeum_vulgare","barley"],
+	"aliases":["barley"],
 	"taxid":4513, # taxURL: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4513
 	"wikipedia":"http://en.wikipedia.org/wiki/Barley",
 	"preferred_id":"Transcript",

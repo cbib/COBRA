@@ -215,7 +215,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	
 	echo'<div class="container">';
 	echo '<div class="tinted-box no-top-margin bg-gray" style="border:2px solid grey text-align: center">';
-		echo'<h1 style="text-align:center"> Sample files details </h1>';
+		echo'<h1 style="text-align:center"> Sample details </h1>';
 	echo '</div>';
     
 	$conditions=array();

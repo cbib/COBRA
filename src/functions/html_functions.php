@@ -421,7 +421,7 @@ function new_content_header(){
 function new_href($link='null'){
 	echo '<a href=\"'.$link.'\">'.$link.'</a>';
 }
-function new_cobra_footer(){
+function new_cobra_footer($val=false){
 echo'
 
                     </section>
@@ -432,11 +432,15 @@ echo'
                                 <br/>
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
                             </p>
-                            <p class="text-muted" style="text-align: right">
-                                Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
-                            </p>
+                            ';
+                            if ($val){
+                                echo'
+                                <p class="text-muted" style="text-align: right">
+                                    Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
+                                </p>';
+                            }
                             
-                        </section>
+                       echo ' </section>
 
                 
 
