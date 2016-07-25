@@ -564,7 +564,7 @@ function load_top_scored_genes(){
                 if(jqObj.find("#S-genes").length){
                    par=jqObj.find("#S-genes");
                    $(".top_score_area").empty().append(par);
-                   load_table(par);
+                   load_table2(par);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -764,7 +764,7 @@ function load_orthologs(element){
                 if(jqObj.find("#orthologs_table").length){
                    par=jqObj.find("#orthologs_table"); 
                    $(".ortholog_area").empty().append(par);
-                   load_table(par);
+                   load_table2(par);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -835,7 +835,7 @@ function load_pv_interaction(element){
                    $(".pv_interaction_area").empty().append(par);
                    table=$(".pv_interaction").find("table");
                    
-                   load_table(table);
+                   load_table2(table);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -907,7 +907,7 @@ function load_pp_interaction(element){
                    par=jqObj.find(".PP"); 
                    $(".pp_interaction_area").empty().append(par);
                    table=$(".pp_interaction").find("table");
-                   load_table(table);
+                   load_table2(table);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -979,7 +979,7 @@ function load_genetic_markers(element){
                 if(jqObj.find("#table_markers").length){
                    par=jqObj.find("#table_markers"); 
                    $(".genetic_markers").empty().append(par);
-                   load_table(par);
+                   load_table2(par);
                 }
                 else{
                    par=jqObj.find(".no_results");
@@ -1052,7 +1052,7 @@ function load_QTLs(element){
                 if(jqObj.find("#table_qtls").length){
                    par=jqObj.find("#table_qtls"); 
                    $(".qtls").empty().append(par);
-                   load_table(par);
+                   load_table2(par);
                 }
                 else{
                    
@@ -1366,6 +1366,73 @@ $(function () {
         }]
     });
 });
+
+function load_table2(element) {
+element.DataTable({
+    "scrollX": true,
+    
+    dom: 'Bfrtip',
+    buttons: [
+        'csv', 'excel', 'pdf'
+    ],
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+});
+};
+//Datatable 
+function load_table(element) {
+    element.DataTable( {
+    //$('#pretty_table_pv_litterature').dataTable( {
+        "scrollX": true,
+        "jQueryUI": true,
+        "pagingType": "full_numbers",
+
+        "oLanguage": { 
+            "sProcessing":   "Processing...",
+            "sLengthMenu":   "display _MENU_ items",
+            "sZeroRecords":  "No item found",
+            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
+            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
+            "sInfoFiltered": "(filtered from _MAX_ items in total)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Search: ",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sPrevious": "Previous",
+                "sNext":     "Next",
+                "sLast":     "Last"
+            }
+        },
+        "language": {
+                        "decimal": ",",
+                        "thousands": "."
+            }
+    });
+
+    
+};
+
+
 //table samples
 $(document).ready(function(){
     $('#samplestable').dataTable( {
@@ -1420,38 +1487,7 @@ $(document).ready(function() {
 //    //table.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
 //} );
 
-//Datatable 
-function load_table(element) {
-    element.dataTable( {
-    //$('#pretty_table_pv_litterature').dataTable( {
-        "scrollX": true,
-        "jQueryUI": true,
-        "pagingType": "full_numbers",
-        "dom":'<"clearfix"frtip>',
-        "buttons": [ 'print'],
-        "oLanguage": { 
-            "sProcessing":   "Processing...",
-            "sLengthMenu":   "display _MENU_ items",
-            "sZeroRecords":  "No item found",
-            "sInfo": "Showing item _START_ to _END_ on  _TOTAL_ items",
-            "sInfoEmpty": "Displaying item 0 to 0 on 0 items",
-            "sInfoFiltered": "(filtered from _MAX_ items in total)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Search: ",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "First",
-                "sPrevious": "Previous",
-                "sNext":     "Next",
-                "sLast":     "Last"
-            }
-        },
-        "language": {
-                        "decimal": ",",
-                        "thousands": "."
-            }
-    });
-};
+
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1655,10 +1691,6 @@ $(document).ready(function() {
         	}
 	});
 });
-
-
-
-
 //GO enrichment result table
 $(document).ready(function() {
 	$('#go_jobs').dataTable( {

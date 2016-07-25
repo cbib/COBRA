@@ -876,8 +876,7 @@ $(document).ready(function() {
         buttons: [ 'excel', 'pdf','csv']
     } );
  
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-xs-6:eq(0)' );
+    table.buttons().container().appendTo( '#example_wrapper .col-xs-6:eq(0)' );
 } );
 //$(document).ready(function() {
 //    var table=$('#example').DataTable( {
