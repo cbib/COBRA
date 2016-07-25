@@ -32,6 +32,7 @@ echo'
 <link rel="stylesheet" href="'.$path.'/css/iCheck/all.css" />
 
 <!-- jQuery 2.0.2 -->
+
 <script src="'.$path.'/js/jquery.min.js"></script>
 <script src="'.$path.'/js/jquery.js"></script>
 
@@ -40,21 +41,28 @@ echo'
 <!-- Datatable style -->
 <link rel="stylesheet" type="text/css" href="'.$path.'/css/dataTables.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.0.3/css/buttons.dataTables.css">
+
 <!--Datatable javascript-->
+
 <script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/dataTables.buttons.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/buttons.html5.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/buttons.print.js"></script>   
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/buttons.print.js"></script> 
+
+
+<!--<script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/buttons.html5.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Stuk-jszip-3a4a815/dist/jszip.js"></script>
 <script type="text/javascript" src="'.$path.'/js/Buttons-1.0.3/js/buttons.flash.js"></script>
 <script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/pdfmake.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Stuk-jszip-3a4a815/dist/jszip.js"></script>
+<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/pdfmake.js"></script>-->
+
 
 
 
 <!-- Bootstrap -->
-<script src="'.$path.'/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="'.$path.'/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="'.$path.'/js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="'.$path.'/js/jquery.dataTables.js"></script>
+
+<script src="'.$path.'/js/bootstrap.min.js" type="text/javascript"></script>
+
     
 
 <!--Cobra specific javascript functions-->

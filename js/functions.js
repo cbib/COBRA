@@ -1402,7 +1402,8 @@ function load_table(element) {
         "scrollX": true,
         "jQueryUI": true,
         "pagingType": "full_numbers",
-         buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print'],
+        "dom":'<"clearfix"frtip>',
+        "buttons": [ 'print'],
         "oLanguage": { 
             "sProcessing":   "Processing...",
             "sLengthMenu":   "display _MENU_ items",
