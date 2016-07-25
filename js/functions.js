@@ -1395,6 +1395,26 @@ $(document).ready(function(){
             }
     }); 
 });
+
+
+
+$(document).ready(function() {
+    $('#mapping').DataTable( {
+        responsive: true
+    });
+});
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom:'<"clearfix"frtip>',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+
 //Datatable 
 function load_table(element) {
     element.dataTable( {

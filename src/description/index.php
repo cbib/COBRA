@@ -19,6 +19,9 @@ new_cobra_header("../..");
 
 new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Datasets and statistics","section_description","../..");
 
+
+
+
 $db=mongoConnector();
 $speciesCollection = new Mongocollection($db, "species");
 $samplesCollection = new Mongocollection($db, "samples");
@@ -843,25 +846,7 @@ echo'</div>';
 
 new_cobra_footer();
 
-?>
 
-<script>
-$(document).ready(function() {
-    $('#mapping').DataTable( {
-        responsive: true
-    });
-});
-$(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-    } );
-} );
 
-</script>
+
 
