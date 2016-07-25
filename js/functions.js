@@ -524,10 +524,6 @@ function load_GO_enrichment_old(element){
 //AJAX function for top scored genes 
 function load_top_scored_genes(){
 
-   
- 
-    
-    
     if (top_scored_gene_open==="true"){
        //alert("already open");
        //open="false";
@@ -1370,7 +1366,7 @@ $(function () {
 function load_table2(element) {
 element.DataTable({
     "scrollX": true,
-    
+    "jQueryUI": true,
     dom: 'Bfrtip',
     buttons: [
         'csv', 'excel', 'pdf'
@@ -1463,31 +1459,6 @@ $(document).ready(function(){
     }); 
 });
 
-
-
-$(document).ready(function() {
-    $('#mapping').DataTable( {
-        responsive: true
-    });
-});
-//$(document).ready(function() {
-//    $('#example').DataTable( {
-//        //dom:'<"clearfix"frtip>',
-//        dom: 'Bfrtip',
-//        buttons: [
-//            'copyHtml5',
-//            'excelHtml5',
-//            'csvHtml5',
-//            'pdfHtml5'
-//        ]
-//        
-//        
-//    } );
-//    
-//    //table.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
-//} );
-
-
 //table variants
 $(document).ready(function() {
     $('#table_variants').dataTable( {
@@ -1552,6 +1523,10 @@ $(document).ready(function() {
 		"scrollX": false,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",
@@ -1581,6 +1556,11 @@ $(document).ready(function() {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                "pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",
@@ -1610,6 +1590,11 @@ $(document).ready(function() {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                "pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",
@@ -1639,6 +1624,11 @@ $(document).ready(function() {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                "pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",
@@ -1668,6 +1658,11 @@ $(document).ready(function() {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                "pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",
@@ -1697,6 +1692,11 @@ $(document).ready(function() {
 		"scrollX": true,
 		"jQueryUI": true,
 		"pagingType": "full_numbers",
+                "pagingType": "full_numbers",
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf'
+                ],
 		"oLanguage": { 
 			"sProcessing":   "Processing...",
 			"sLengthMenu":   "display _MENU_ items",

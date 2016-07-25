@@ -144,49 +144,49 @@ $table_string.='<h2> Mapping lists</h2> <div class="container"><ul>';
 $table_string.='</div>';
 */
 
-$mapping_table_string="";
-###MAPPING REQUEST
-
-$mapping_cursor=find_all_mappings($mappingsCollection);
-
-
-###MAPPING TABLE
-
-$mapping_table_string.='<table id="mapping" class="table table-hover dataTable no-footer">';
-//$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
-$mapping_table_string.='<thead><tr>';
-	
-	//recupere le titre
-	//$table_string.='<th>type</th>';
-	$mapping_table_string.='<th>Source type</th>';
-	$mapping_table_string.='<th>Version</th>';
-	$mapping_table_string.='<th>Target Type</th>';
-	$mapping_table_string.='<th>Version</th>';
-	$mapping_table_string.='<th>Organism</th>';
-
-	
-	//fin du header de la table
-$mapping_table_string.='</tr></thead>';
-	
-//Debut du corps de la table
-$mapping_table_string.='<tbody>';
-
-foreach($mapping_cursor as $line) {
-$mapping_table_string.='<tr>';
-	//$table_string.='<td>'.$line['type'].'</td>';
-	$mapping_table_string.='<td>'.$line['src'].'</td>';
-	$mapping_table_string.='<td>'.$line['src_version'].'</td>';
-	$mapping_table_string.='<td>'.$line['tgt'].'</td>';
-	$mapping_table_string.='<td>'.$line['tgt_version'].'</td>';
-	$mapping_table_string.='<td>'.$line['species'].'</td>';
-$mapping_table_string.='</tr>';
-
-}
-$mapping_table_string.='</tbody></table>';
-
-
-add_accordion_panel($mapping_table_string, "Mappings", "mapping_table");
-echo'<br/>';
+//$mapping_table_string="";
+//###MAPPING REQUEST
+//
+//$mapping_cursor=find_all_mappings($mappingsCollection);
+//
+//
+//###MAPPING TABLE
+//
+//$mapping_table_string.='<table id="mapping" class="table table-hover dataTable no-footer">';
+////$table_string.='<table id="mappingtable" class="table table-bordered table-hover" cellspacing="0" width="100%">';
+//$mapping_table_string.='<thead><tr>';
+//	
+//	//recupere le titre
+//	//$table_string.='<th>type</th>';
+//	$mapping_table_string.='<th>Source type</th>';
+//	$mapping_table_string.='<th>Version</th>';
+//	$mapping_table_string.='<th>Target Type</th>';
+//	$mapping_table_string.='<th>Version</th>';
+//	$mapping_table_string.='<th>Organism</th>';
+//
+//	
+//	//fin du header de la table
+//$mapping_table_string.='</tr></thead>';
+//	
+////Debut du corps de la table
+//$mapping_table_string.='<tbody>';
+//
+//foreach($mapping_cursor as $line) {
+//$mapping_table_string.='<tr>';
+//	//$table_string.='<td>'.$line['type'].'</td>';
+//	$mapping_table_string.='<td>'.$line['src'].'</td>';
+//	$mapping_table_string.='<td>'.$line['src_version'].'</td>';
+//	$mapping_table_string.='<td>'.$line['tgt'].'</td>';
+//	$mapping_table_string.='<td>'.$line['tgt_version'].'</td>';
+//	$mapping_table_string.='<td>'.$line['species'].'</td>';
+//$mapping_table_string.='</tr>';
+//
+//}
+//$mapping_table_string.='</tbody></table>';
+//
+//
+//add_accordion_panel($mapping_table_string, "Mappings", "mapping_table");
+//echo'<br/>';
 
 
 
