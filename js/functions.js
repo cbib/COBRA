@@ -1403,17 +1403,22 @@ $(document).ready(function() {
         responsive: true
     });
 });
-$(document).ready(function() {
-    $('#example').DataTable( {
-        dom:'<"clearfix"frtip>',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-    } );
-} );
+//$(document).ready(function() {
+//    $('#example').DataTable( {
+//        //dom:'<"clearfix"frtip>',
+//        dom: 'Bfrtip',
+//        buttons: [
+//            'copyHtml5',
+//            'excelHtml5',
+//            'csvHtml5',
+//            'pdfHtml5'
+//        ]
+//        
+//        
+//    } );
+//    
+//    //table.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+//} );
 
 //Datatable 
 function load_table(element) {
