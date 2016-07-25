@@ -8,8 +8,8 @@ echo'
 <meta charset="UTF-8">
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<!-- bootstrap 3.0.2 -->
-<link href="'.$path.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- bootstrap 3.0.2 
+<link href="'.$path.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
 
 <!-- font Awesome -->
 <link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -20,8 +20,7 @@ echo'
 <!-- Theme style -->
 <link href="'.$path.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-<!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css">	
+
 
 <!-- tab icon style -->
 <!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
@@ -29,36 +28,48 @@ echo'
 <!-- Include iCheck skin -->
 <link rel="stylesheet" href="'.$path.'/css/iCheck/all.css" />
 
-<!-- Datatable style -->
-<link rel="stylesheet" type="text/css" href="'.$path.'/css/jquery.dataTables.css">
-<!--<link rel="stylesheet" type="text/css" href="'.$path.'/css/dataTables.bootstrap.css">-->
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.dataTables.css">
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Bootstrap-3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/DataTables-1.10.12/css/dataTables.bootstrap.min.css"/>
 
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/AutoFill-2.1.2/css/autoFill.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/ColReorder-1.3.2/css/colReorder.bootstrap.min.css"/>
 
-<!-- jQuery 2.0.2 -->
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/KeyTable-2.1.2/css/keyTable.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Responsive-2.1.0/css/responsive.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/RowReorder-1.1.2/css/rowReorder.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Scroller-1.4.2/css/scroller.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="'.$path.'/js/Select-1.2.0/css/select.bootstrap.min.css"/>
+ 
 
-<!-- <script type="text/javascript" src="'.$path.'/js/jquery.min.js"></script>-->
-<script type="text/javascript" src="'.$path.'/js/jquery-3.1.0.js"></script>
-<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+    <!-- Cobra style -->
+<link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css">	
 
+<script type="text/javascript" src="'.$path.'/js/jQuery-2.2.3/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/AutoFill-2.1.2/js/dataTables.autoFill.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/AutoFill-2.1.2/js/autoFill.bootstrap.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.bootstrap.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/ColReorder-1.3.2/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/KeyTable-2.1.2/js/dataTables.keyTable.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/responsive.bootstrap.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/RowReorder-1.1.2/js/dataTables.rowReorder.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Scroller-1.4.2/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" src="'.$path.'/js/Select-1.2.0/js/dataTables.select.min.js"></script>
 
-	
-
-
-<!-- Bootstrap -->
-<script src="'.$path.'/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="'.$path.'/js/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.bootstrap.js"></script>
-<!--Datatable javascript-->
-
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/dataTables.buttons.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Stuk-jszip-3a4a815/dist/jszip.js"></script>
-<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/pdfmake.js"></script>
-<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.js"></script> 
-    
 
 
 

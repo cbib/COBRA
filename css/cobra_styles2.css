@@ -7,7 +7,9 @@ and open the template in the editor.
     Created on : Aug 26, 2015, 4:36:23 PM
     Author     : benjamindartigues
 */
-
+a{
+    color:#3d7130;
+}
 
 img.displayed {
     display: block;

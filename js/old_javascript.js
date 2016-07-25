@@ -4,6 +4,39 @@
  * and open the template in the editor.
  */
 
+
+//<!-- Datatable style -->
+//<link rel="stylesheet" type="text/css" href="'.$path.'/css/jquery.dataTables.css">
+//<!--<link rel="stylesheet" type="text/css" href="'.$path.'/css/dataTables.bootstrap.css">-->
+//<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.dataTables.css">
+//
+//
+//<!-- jQuery 2.0.2 -->
+//
+//<!-- <script type="text/javascript" src="'.$path.'/js/jquery.min.js"></script>-->
+//<script type="text/javascript" src="'.$path.'/js/jquery-3.1.0.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+//
+//<!-- Bootstrap -->
+//<script src="'.$path.'/js/bootstrap.min.js" type="text/javascript"></script>
+//<script type="text/javascript" src="'.$path.'/js/dataTables.bootstrap.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.bootstrap.js"></script>
+//<!--Datatable javascript-->
+//
+//<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/dataTables.buttons.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/Stuk-jszip-3a4a815/dist/jszip.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/pdfmake.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/pdfmake-master/build/vfs_fonts.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.js"></script>
+//<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.js"></script> 
+//    
+
+
+
+
+
+
 //<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
 //	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 //	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
