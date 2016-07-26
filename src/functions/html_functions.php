@@ -1,111 +1,62 @@
 <?php
 define('PATH', $_SERVER['DOCUMENT_ROOT']);
+
+
+
+
 function new_cobra_header($path='null'){
-echo'
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<!-- bootstrap 3.0.2 
-<link href="'.$path.'/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+    <!-- font Awesome -->
+    <link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="'.$path.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="'.$path.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-<!-- font Awesome -->
-<link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Include iCheck skin -->
+    <link rel="stylesheet" href="'.$path.'/css/iCheck/all.css" />
+        
 
-<!-- Ionicons -->
-<link href="'.$path.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="'.$path.'/js/Bootstrap-3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="'.$path.'/js/DataTables-1.10.12/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="'.$path.'/js/Responsive-2.1.0/css/responsive.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css"/>	
+        
+    <script type="text/javascript" src="'.$path.'/js/jQuery-2.2.3/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/JSZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/dataTables.buttons.min.js"></script>    
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/responsive.bootstrap.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/functions.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/require.js"></script>
+        
 
-<!-- Theme style -->
-<link href="'.$path.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
-
-
-<!-- tab icon style -->
-<!-- <link rel="shortcut icon" href="http://www.votresite.com/favicon.ico"> -->
-
-<!-- Include iCheck skin -->
-<link rel="stylesheet" href="'.$path.'/css/iCheck/all.css" />
-
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Bootstrap-3.3.6/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/DataTables-1.10.12/css/dataTables.bootstrap.min.css"/>
-
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/AutoFill-2.1.2/css/autoFill.bootstrap.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/ColReorder-1.3.2/css/colReorder.bootstrap.min.css"/>
-
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/KeyTable-2.1.2/css/keyTable.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Responsive-2.1.0/css/responsive.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/RowReorder-1.1.2/css/rowReorder.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Scroller-1.4.2/css/scroller.bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="'.$path.'/js/Select-1.2.0/css/select.bootstrap.min.css"/>
- 
-
-    <!-- Cobra style -->
-<link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css">	
-
-<script type="text/javascript" src="'.$path.'/js/jQuery-2.2.3/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/JSZip-2.5.0/jszip.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/pdfmake.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/pdfmake-0.1.18/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/DataTables-1.10.12/js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/AutoFill-2.1.2/js/dataTables.autoFill.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/AutoFill-2.1.2/js/autoFill.bootstrap.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.bootstrap.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.colVis.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/ColReorder-1.3.2/js/dataTables.colReorder.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/KeyTable-2.1.2/js/dataTables.keyTable.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/responsive.bootstrap.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/RowReorder-1.1.2/js/dataTables.rowReorder.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Scroller-1.4.2/js/dataTables.scroller.min.js"></script>
-<script type="text/javascript" src="'.$path.'/js/Select-1.2.0/js/dataTables.select.min.js"></script>
-
-
-
-
-
-
-<!--Cobra specific javascript functions-->
-<script type="text/javascript" src="'.$path.'/js/functions.js"></script>
-
-<!--Require-->
-<script type="text/javascript" src="'.$path.'/js/require.js"></script>
-
-<!--highcharts-->
-<script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/highcharts-more.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/heatmap.js" type="text/javascript"></script>
-<script src="'.$path.'/css/Highcharts-4.1.8/js/modules/data.js" type="text/javascript"></script>
-
-
-
-
-<!-- AdminLTE App -->
-<script src="'.$path.'/js/app.js" type="text/javascript"></script>
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
-<!--[if lt IE 9]>-->
-<!--  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> -->
-<!--  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script> -->
-<!--[endif]-->
-<title>COBRA</title>
-
-';
-include($path."/src/functions/piwik.php");
-
-echo '</head>';
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/highcharts-more.js" ></script>
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js"></script>
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/heatmap.js"></script>
+    <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/data.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/app.js"></script> 
+    <title>COBRA</title>';
+    include($path."/src/functions/piwik.php");
+    echo '</head>';
 }
 function add_ajax_accordion_panel($function='null',$accordion_id='null', $body_panel_id='null',$loading_id='null',$area_id='null'){
     echo '<div class="panel-group" id="accordion_documents_'.$accordion_id.'">
@@ -423,27 +374,19 @@ function new_href($link='null'){
 }
 function new_cobra_footer($val=false){
 echo'
-
                     </section>
-                        
                         <section class="col-md-12" id="footer">
                             <h1>  </h1>
                              <p class="text-muted" style="text-align: left">
                                 <br/>
                                 Database and website created by the <a href="http://www.cbib.u-bordeaux2.fr/">CBiB</a>
-                            </p>
-                            ';
+                            </p>';
                             if ($val){
                                 echo'
-                                <p class="text-muted" style="text-align: right">
-                                    Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a>
-                                </p>';
+                                <p class="text-muted" style="text-align: right">Original template <a href="http://almsaeedstudio.com/AdminLTE/">AdminLTE Dashboard and Control Panel Template</a> by <a href="http://almsaeedstudio.com">Almaseed Studio</a></p>';
                             }
                             
                        echo ' </section>
-
-                
-
             </aside>
 
         </div>

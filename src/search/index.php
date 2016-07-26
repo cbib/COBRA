@@ -1,29 +1,10 @@
 <?php
-//session_start();
-// on teste si le visiteur a soumis le formulaire de connexion
-//if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
-//	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
 require '../session/maintenance-session.php';
 require '../functions/html_functions.php';
 require '../functions/php_functions.php';
 require '../functions/mongo_functions.php';
 require '../session/control-session.php';
 
-
-/*debut du cache*/
-
-
-
-//$expire = time() - 84400 ; // valable une minute
-
-//$timestart=microtime(true);             
-
-
-//if(file_exists($cache) && filemtime($cache) > $expire)
-
-
-
-    
 
     new_cobra_header("../..");
     new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Quick search","section_quick_search","../..");
@@ -104,7 +85,7 @@ require '../session/control-session.php';
 
 
 ?>
-<script type="text/javascript" class="init">
+<script type="text/javascript">
     
     
 //Variables
@@ -112,10 +93,6 @@ var stats_already_open="false";
 
 
 function load_statistics(){
-
-    
- 
-    
     
     if (stats_already_open==="true"){
        //alert("already open");

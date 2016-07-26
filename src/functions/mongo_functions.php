@@ -1,5 +1,4 @@
 <?php
-
 include 'simple_html_dom.php';
 ### Connexion
 function mongoConnector() {
@@ -16,7 +15,6 @@ function mongoConnector() {
 	}
 	return $db;	
 }
-
 function mongoPersistantConnector() {
 
 	try
@@ -547,7 +545,6 @@ function get_global_score($full_mappingsCollection,$search='null',$species='null
     return $score;
     
 }
-
 ##Get all interactions from hpidb : 
 function get_hpidb_plant_virus_interactor(array $protein_id, MongoCollection $pvinteractionsCollection,$species='null'){
 
@@ -602,7 +599,6 @@ function get_biogrid_plant_plant_interactor(array $gene_id, MongoCollection $ppi
     return $cursor;    
  
 }
-
 function get_string_plant_plant_interactor(array $transcript_id, MongoCollection $ppinteractionsCollection,$species='null'){
 
     $cursor=$ppinteractionsCollection->aggregate(array(
@@ -636,14 +632,12 @@ function get_best_Scored_genes_for_all_species(MongoCollection $full_mappingsCol
    
        
 }
-
 function get_plant_plant_interactor(array $gene_id,array $gene_alias,array $descriptions,array $gene_symbol, array $protein_id,$species, MongoCollection $ppinteractionsCollection){
     
     
     
     
 }
-
 function get_interactor(array $gene_id,array $gene_alias,array $descriptions,array $gene_symbol, array $protein_id,$species, MongoCollection $interactionsCollection){
 
     //need to have a list of symbol and a list of uniprot id to search in interactions table
@@ -3258,8 +3252,6 @@ function get_all_pathogens_infecting_angiosperm(Mongocollection $sp,Mongocollect
     return $cursor;
 
 }
-
-
 ### mapping table Request
 function find_all_mappings_by_species(MongoCollection $ma,$species='null'){
 	try
@@ -3313,8 +3305,6 @@ function find_all_mappings(MongoCollection $ma){
     }
     return $cursor;
 }
-
-
 function find_all_species(MongoCollection $sp){
 	try
    {	
@@ -3339,8 +3329,6 @@ function find_all_species(MongoCollection $sp){
     }
     return $cursor;
 }
-
-
 function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
    try
    {
@@ -3396,7 +3384,6 @@ function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
  
 }
 ###viruses table request
-
 function find_all_viruses(MongoCollection $vi){
 	try
    {	
@@ -3422,7 +3409,6 @@ function find_all_viruses(MongoCollection $vi){
     }
     return $cursor;
 }
-
 function get_xp_name_by_species(Mongocollection $sa){
 ### sample table requests
 $cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$species' ),'names'=> array( '$addToSet'=> '$name' )))));
@@ -3442,17 +3428,6 @@ $cursor=$sa->aggregate(array(array('$group'=> array('_id'=> array( 'specie'=> '$
 return $cursor;
 
 }
-
-
-//           '$group'=>
-//             array(
-//               '_id'=> array( 'gene'=> '$mapping_file.Gene ID' ),
-//               //'scores'=> array('$addToSet'=> '$mapping_file.Score_exp')
-//
-//               'scores'=> array('$addToSet'=> array('exp'=>'$mapping_file.Score_exp','int'=>'$mapping_file.Score_int','ort'=>'$mapping_file.Score_orthologs','qtl'=>'$mapping_file.Score_QTL','snp'=>'$mapping_file.Score_SNP') )
-//             )
-//         )
-
 function find_xp_name_group_by_species(Mongocollection $sa){
     
     //array('name'=>'$name','int'=>'$assay.type')
@@ -3473,14 +3448,11 @@ function find_xp_name_group_by_species(Mongocollection $sa){
     );
     return $cursor;
 }
-
 function find_xp_name_with_xp_id(Mongocollection $sa,$xp_id='null'){
     $cursor=$sa->find(array("_id"=>new MongoId($xp_id)),array("name"=>1));
     
 	return $cursor;
 }
-
-
 function find_all_xp_name(Mongocollection $sa){
 	$cursor=$sa->find(array(),array('name'=>1,'species'=>1));
     
@@ -3533,10 +3505,7 @@ function find_experiment_type_list(Mongocollection $sa){
 
 
 }
-
-
 ### species table requests
-
 function find_species_doc(Mongocollection $sp,$txt='null'){
     $cursor=array();
     try
@@ -3614,7 +3583,6 @@ function find_species_list(Mongocollection $sp){
 
 
 }
-
 ### measurements table requests
 function get_tgt_id_from_src_id(Mongocollection $me,$src_id='null'){
 

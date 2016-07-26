@@ -25,5 +25,4 @@ if ((isset($_SESSION['maintenance'])) && ($_SESSION['maintenance'] == 'yes') && 
         header("Location: http://$host/$dir/$file"); 
     }
 }
- 
-?>
+

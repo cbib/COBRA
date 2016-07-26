@@ -1,4 +1,4 @@
-<!-- Piwik -->
+
 <script type="text/javascript">
   var _paq = _paq || [];
   _paq.push(['trackPageView']);
@@ -11,6 +11,5 @@
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<!--<noscript><p><img src="//10.71.1.65:3333/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>-->
-<!-- End Piwik Code -->
+
 

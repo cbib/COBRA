@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require 'src/functions/html_functions.php';
 require 'src/functions/php_functions.php';
 require 'src/functions/mongo_functions.php';
@@ -73,7 +72,7 @@ else{
             
             echo'<form id="login_form" class="form-horizontal" method="post" action="login.php">
                 <fieldset>
-		<legend>
+                <legend>
                     Authentication required
                 </legend>
                 <!--<p>A username and password are being requested by https://cobra. The site says: "Secure Site"</p>-->
@@ -153,8 +152,10 @@ else{
 							//echo '<p>You are correctly identified, <a href="./index.php">cliquez ici</a></p>'."\n";
 							
 							//header('Location: index.php'); 
-							//header('Location: ./index.php'); 
-                            window.location.replace('./index.php');
+							header('Location: ./index.php');
+                            exit();
+                            
+                            //window.location.replace('index.php');
 
 						} 
 						else{
@@ -178,7 +179,7 @@ else{
 				// il n'y a personne qui répond à ces 2 identifiants
                 new_cobra_body(False,"Empty login form","section_empty_login",".");
 				echo '<p>Sorry, you have submitted empty identifiers </p>'."\n";
-			};
+			}
 		} // end of (isset($_POST['submit']))
 	}
 	else{
@@ -187,6 +188,7 @@ else{
 		//header('Location: ./src/search/index.php');  
 		//header('Location: index.php'); 
         header('Location: ./index.php');
+        exit();
 
 	}
 }
@@ -195,5 +197,3 @@ else{
 
 new_cobra_footer();
 
-
-?>

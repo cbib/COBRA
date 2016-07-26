@@ -1,5 +1,4 @@
 <?php 
-
 class ftp{
     public $conn;
 
@@ -17,8 +16,6 @@ class ftp{
         }
     }
 }
-
-// Example
 function is_logged($login){
 if ((!isset($login)) || ($login == ''))
  {
@@ -45,7 +42,6 @@ function control_post ($value) {
 	}
 	return $return;
 }
-
 function show_array($array){
 	echo"<pre>";
 		print_r($array);
@@ -449,9 +445,6 @@ function display_sample_table($cursor,$samplesCollection){
     }
     echo'</tbody></table>'; 
 }
-
-
-
 function display_statistics_with_ajax(){
     $db=mongoConnector();
     $speciesCollection = new Mongocollection($db, "species");
@@ -534,10 +527,6 @@ function display_statistics_with_ajax(){
                 echo $stat_string;
  
 }
-
-
-
-
 function display_statistics(){
     $db=mongoConnector();
     $speciesCollection = new Mongocollection($db, "species");
@@ -775,7 +764,6 @@ function display_expression_profile_old(MongoCollection $measurementsCollection,
             echo'<div class="shift_line"></div>'                
       . '</div>'; 
 }
-
 function load_and_display_expression_profile_with_ajax(array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias,$species='null'){
 //    $gene_id_json = htmlspecialchars( json_encode($gene_id), ENT_QUOTES );
 //    $transcript_id_json = htmlspecialchars( json_encode($transcript_id), ENT_QUOTES );
@@ -808,7 +796,6 @@ function load_and_display_expression_profile_with_ajax(array $gene_id,array $tra
     echo'<div class="shift_line"></div>'                
     . '</div>';
 }
-
 function load_and_display_expression_profile(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias){
     $series=array();
     $categories=array();
@@ -904,7 +891,6 @@ function load_and_display_expression_profile(MongoCollection $measurementsCollec
 
     //$global_array=array($categories,$series);
 }
-
 function load_and_display_expression_profile_bis(MongoCollection $measurementsCollection,MongoCollection $samplesCollection,array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias){
     $series=array();
     $categories=array();
@@ -1075,7 +1061,6 @@ function load_and_display_expression_profile_bis(MongoCollection $measurementsCo
 
     //$global_array=array($categories,$series);
 }
-
 function load_and_display_score_pie(){
     echo'<div id="section_score">';
     echo '<!-- Button trigger modal -->
@@ -1105,7 +1090,6 @@ function load_and_display_score_pie(){
     echo '</div>';
     
 }
-
 function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,array $gene_symbol, array $gene_alias, array $descriptions, array $proteins_id,$species='null',$score_exp='null',$score_int='null',$score_ort='null',$score_QTL='null',$score_SNP='null',$score='null',$gene_start='null',$gene_end='null',$chromosome='null'){
    echo'<div id="section_description"><B>';
         echo'</br>';
@@ -1254,8 +1238,6 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                 
                 echo '</div>';//gene details end region 
 }
-
-
 function load_and_display_variations_result_with_ajax(array $gene_id,$species='null',$gene_start=0,$gene_end=0,$scaffold=0){
     
     echo'<div id="variation_section">
@@ -1311,8 +1293,6 @@ function load_and_display_variations_result_with_ajax(array $gene_id,$species='n
                     <div class="shift_line"></div>
     </div>';
 }
-
-
 function load_and_display_variations_result(MongoCollection $genetic_markers_collection,MongoCollection $qtl_collection,MongoCollection $full_mappings_collection,MongoCollection $variation_collection,array $gene_id,$species='null',$gene_start=0,$gene_end=0,$scaffold=0){
     
     
@@ -2275,9 +2255,6 @@ function load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$prot
     
     
 }
-
-
-
 function load_and_display_ppinteractions_with_ajax($full_mappingsCollection,$gene_id,$proteins_id,$transcript_id,$interactionsCollection,$species){
     
 
@@ -2605,7 +2582,6 @@ function stop_time_capture($timestart='null'){
     echo "<br>Fin du script: ".date("H:i:s", $timeend);
     echo "<br>Script for interactions executed in " . $page_load_time . " sec";
 }
-
 function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
     
     $result=get_hpidb_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
@@ -2766,8 +2742,6 @@ function load_and_display_pvinteractions(array $gene_id, array $proteins_id, Mon
     
     
 }
-
-
 function load_and_display_pvinteractions_with_ajax(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
     
     $result=get_hpidb_plant_virus_interactor($proteins_id,$interactionsCollection,$species); 
@@ -3062,10 +3036,6 @@ function load_and_display_sequences_data($sequencesCollection,$gene_id,$gene_id_
 //                    echo "<br>Script for sequences 3 executed in " . $page_load_time . " sec"; 
           echo '</div>';
 }
-
-
-
-
 function load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$species='null'){
     echo'<div id="sequences_section">
                     <h3>Sequences</h3>';
@@ -3129,12 +3099,6 @@ function load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$specie
 //                    echo "<br>Script for sequences 3 executed in " . $page_load_time . " sec"; 
           echo '</div>';
 }
-
-
-
-
-
-
 function load_and_display_interactions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pv_interactionsCollection,$pp_interactionsCollection,$species){
     
   
@@ -3149,7 +3113,6 @@ function load_and_display_interactions($full_mappingsCollection,$gene_id,$unipro
     load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);
     echo'</div>';
 }
-
 function load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcript_id,$species){
     
   
@@ -3231,8 +3194,6 @@ function load_and_display_interactions_with_ajax($gene_id,$uniprot_id,$transcrip
     
     
 }
-
-
 function load_and_display_interactions_old($gene_id,$gene_alias,$descriptions, $gene_symbol,$proteins_id,$species,$interactionsCollection){
     //get all interactor for each dataset (biogrid, intact, hipdb, etc..)
             
@@ -3778,7 +3739,6 @@ function load_and_display_orthologs_with_ajax($organism,$plaza_id){
                 </div>
         ';
     }
-//}
 function generateRandomString($length = 15) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -4364,9 +4324,6 @@ function makeDatatableFromAggregate($cursor){
 		echo'</tbody></table>'; 
 	}
 }
-//function getURLParameter(url, name) {
-//    return (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1];
-//}
 function get_protein_info($url){
 	echo 'entering get_protein_info<br>';
 	
@@ -4737,6 +4694,3 @@ function makeDatatableFromFind($cursor) {
 	echo'</tbody></table>';
 }
 
-
-
-?>

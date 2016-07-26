@@ -1,13 +1,5 @@
 <?php
-//session_start();
-// on teste si le visiteur a soumis le formulaire de connexion
-//if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
-//	if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
-
-#set_include_path('/var/www/html/COBRA/');
-
-//define('MAINDIR',dirname(__FILE__) . '/');
-//error_log('main dir' . MAINDIR);
+error_log("entering index.php ");
 require('./src/functions/html_functions.php');
 require('./src/functions/php_functions.php');
 require('./src/functions/mongo_functions.php');
@@ -39,19 +31,6 @@ $sequencesCollection = new Mongocollection($db, "sequences");
 $orthologsCollection = new Mongocollection($db, "orthologs");
 $GOCollection = new Mongocollection($db, "gene_ontology");
 
-//echo '
-//<main id="content" class="homepage">
-//    <br>
-//	<div id="mission-objectives"><p>COBRA database provides knowledges on the viral factor(s) that determine(s) the breaking of the resistance 
-//			provided by candidate genes identified in the above WPs and to evaluate the durability of the resistance conferred 
-//			by the new candidate genes prior to transfer to crop species</p>
-//	</div> 
-//	';
-//
-//echo '</main>';
-
-//echo phpinfo();
-echo'</hr>';
     echo '<div class="col-md-12" >		
         <div class="col-md-6" >
                 <div class="column-padding no-right-margin">
@@ -146,8 +125,7 @@ echo'</hr>';
             </div>
         </div>
     </div>';
-    echo'
-        <div class="col-md-6" id="left_col">';
+
 
         
 
@@ -237,4 +215,4 @@ echo'</hr>';
 
 new_cobra_footer(true);
 
-?>
+

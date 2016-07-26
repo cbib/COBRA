@@ -6,7 +6,7 @@ session_start(); // ici on continue la session
  
 if ((!isset($_SESSION['login'])) || ($_SESSION['login'] === ''))
 {
-    
+    error_log("problem");
     //header('Location: /var/www/html/COBRA/login.php'); 
     
     $host  = $_SERVER['HTTP_HOST'];
