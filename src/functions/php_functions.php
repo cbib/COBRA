@@ -460,16 +460,35 @@ function display_statistics_with_ajax(){
     $today = date("F j, Y, g:i a");
     //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
 
-    $stat_string.='<div class="stats-panel"><h4>Last update : '.$today.'</h4>
-                <h4>Samples : '.$sampleCollection->count().'</h4>';
-                $stat_string.='<h4>Expression measures per species:</h4>';
+    $stat_string.='<div class="stats-panel">'
+            .'<div class="col-md-12" >'
+            . '<div class="col-md-5" >
+                <h2> Transcriptomics </h2>
+                <h4>Experiments : '.$sampleCollection->count().'</h4>';
+                $stat_string.='<h4>Expression measures per species (micro-array and RNA-seq):</h4>';
                 $specieslist=$speciesCollection->find(array(),array('full_name'=>1));
                 foreach ($specieslist as $species) {
-                   $stat_string.='<li style="margin-left:30px;">'.$species['full_name'].': '.$measurementsCollection->count(array('species'=>$species['full_name'])).'</li>';
+                    $total=$sampleCollection->count(array('species'=>$species['full_name']));
+                    $total_samples=0;
+                    $total2=$sampleCollection->find(array('species'=>$species['full_name']),array('experimental_results'=>1));
+                    foreach ($total2 as $value) {
+                        //error_log($species['full_name']);
+                        //error_log(count($value['experimental_results'])); 
+                        $total_samples+=count($value['experimental_results']);
+                    }
+                   
+                   
+                   
+                   $text=' experiments';
+                   if ($total===1){
+                       $text=' experiment';
+                   }
+                   
+                   $stat_string.='<li style="margin-left:30px;">'.$species['full_name'].' ('.$total.$text.'-'.$total_samples.' samples): '.$measurementsCollection->count(array('species'=>$species['full_name'])).'</li>';
                 }
-    
-                
-
+                $stat_string.='</div>';
+                $stat_string.='<div class="col-md-5" >';
+                $stat_string.='<h2> Interactomics </h2>';
                 $pv_fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
                 $cursor_pvi=$pv_interactionsCollection->aggregate($pv_fields);
                 //var_dump($cursor_ppi);
@@ -505,7 +524,8 @@ function display_statistics_with_ajax(){
 
                 $stat_string.= '<h4>Intact Plant-Plant interactions: '.$total_ppi_intact.'</h4>';
                 $stat_string.= '<h4>String Plant-Plant interactions: 25382632</h4>';
-
+                $stat_string.='</div>';
+                $stat_string.='<div class="col-md-2" >';
                 $stat_string.= '<h4>Species : '.$speciesCollection->count().'</h4>';
 
                 $cursor_species=$speciesCollection->aggregate(array(
@@ -523,6 +543,8 @@ function display_statistics_with_ajax(){
                 foreach ($cursor_virus['result'] as $doc){
                         $stat_string.='<p>a/ '.$doc['_id'].' count: '.$doc['count'].'</p>';
                 }
+                $stat_string.='</div>';
+                $stat_string.='</div>';
                 $stat_string.='</div>';     
                 echo $stat_string;
  
@@ -1124,15 +1146,14 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Score repartition</h4>
+                                <h4 class="modal-title" id="myModalLabel">Contribution to the score</h4>
                               </div>
                               <div class="modal-body">
                                 <div id="container_pie"  data-exp="'.$score_exp.'" data-int="'.$score_int.'" data-ort="'.$score_ort.'" data-QTL="'.$score_QTL.'" data-SNP="'.$score_SNP.'" style=" height: 300px; max-width: 100%; margin: 0 auto"></div>   
                               </div>
                               <div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel">Score details</h4>
-                                    <p> The score is computed using every resources of COBRA database following this scheme</p> 
-                                    <!--<img src="../images/COBRA_18032016.jpg" width="100%"></img>-->
+                                    <p> this pie chart shows contribution of each omics field into the score computation</p> 
                                 </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -47,6 +47,7 @@ function new_cobra_header($path='null'){
     <script type="text/javascript" src="'.$path.'/js/require.js"></script>
         
 
+
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/highcharts.js"></script>
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/highcharts-more.js" ></script>
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/funnel.js"></script>

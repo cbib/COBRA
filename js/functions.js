@@ -1269,14 +1269,6 @@ function runBlast(element){
 }
 //Highchart pie container
 $(function () {
-
-//    exp=$('#container_pie').attr('data-exp');
-//    int=$('#container_pie').attr('data-int');
-//    ort=$('#container_pie').attr('data-ort');
-//    QTL=$('#container_pie').attr('data-QTL');
-//    SNP=$('#container_pie').attr('data-SNP');
-
-    
     try {
         exp_json=JSON.parse($('#container_pie').attr('data-exp'));                   
     } 
@@ -1316,7 +1308,7 @@ $(function () {
             type: 'pie'
         },
         title: {
-            text: 'Title'
+            text: 'Distribution of score between different omics data'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
