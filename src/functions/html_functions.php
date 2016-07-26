@@ -25,9 +25,15 @@ function new_cobra_header($path='null'){
     <link rel="stylesheet" type="text/css" href="'.$path.'/js/Bootstrap-3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="'.$path.'/js/DataTables-1.10.12/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="'.$path.'/js/Buttons-1.2.1/css/buttons.bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="'.$path.'/js/Responsive-2.1.0/css/responsive.bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="'.$path.'/css/cobra_styles2.css"/>	
         
+   <!-- <link rel="stylesheet" type="text/css" href="'.$path.'/js/Responsive-2.1.0/css/responsive.bootstrap.min.css"/>
+    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/responsive.bootstrap.min.js"></script>-->
+
+
+
+
     <script type="text/javascript" src="'.$path.'/js/jQuery-2.2.3/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/JSZip-2.5.0/jszip.min.js"></script>
@@ -41,8 +47,7 @@ function new_cobra_header($path='null'){
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="'.$path.'/js/Responsive-2.1.0/js/responsive.bootstrap.min.js"></script>
+
     <script type="text/javascript" src="'.$path.'/js/functions.js"></script>
     <script type="text/javascript" src="'.$path.'/js/require.js"></script>
         
