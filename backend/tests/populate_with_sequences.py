@@ -1884,7 +1884,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -1904,7 +1904,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -1925,7 +1925,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -1946,7 +1946,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -1968,7 +1968,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -1990,7 +1990,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -2012,7 +2012,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -2033,7 +2033,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
@@ -2053,7 +2053,7 @@ sequence_table={
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
 	"xls_parsing":{
 		"n_rows_to_skip":0,
-		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"column_keys":['idx','Gene ID','Transcript ID','Transcript Sequence'],
 		"sheet_index":0,
 	}
 }
