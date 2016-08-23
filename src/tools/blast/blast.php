@@ -103,7 +103,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                         foreach ($species_id as $value) {
                            
                            $species=$value['species']; 
-                           //error_log($species.' for transcript id: '.$transcript);
+                           error_log($species.' for transcript id: '.$transcript);
                         }
                     }
                     else{
