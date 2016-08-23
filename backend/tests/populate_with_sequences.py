@@ -1871,12 +1871,447 @@ sequence_table={
 }
 sequences_col.insert(sequence_table)
 
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_1.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_2.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_3.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_4.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
 
 
 
 
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_5.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
 
 
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_6.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_7.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_8.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/CDNA/cdna_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_9.tsv",
+	"species":"Oriza sativa ssp japonica",
+	"src":"Gene ID",
+	"src_version":"Oriza",
+	"tgt":"CDNA_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/TRANSCRIPTID/PLAZAID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Transcript ID','Plaza ID','Transcript Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_1.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_2.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_3.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_4.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_5.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_6.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_7.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_8.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_9.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_10.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_11.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_12.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
+
+
+sequence_table={
+	"data_file":"Oriza/sequences/GENE/gene_sequence_oriza_sativa_japonica_ensembl_IRGSP-1.0_13.tsv",
+	"species":"Cucumis melo",
+	"src":"Gene ID",
+	"src_version":"unigen v4 icugi",
+        "tgt":"Gene_Sequence",
+	"url":"",
+	"doi":"none",
+	"key":"GENEID/SEQUENCE",
+	# parser config 
+		# xls parser configuration, are propagated to all entries in  "experimental_results",
+	"xls_parsing":{
+		"n_rows_to_skip":0,
+		"column_keys":['idx','Gene ID','Gene Sequence'],
+		"sheet_index":0,
+	}
+}
+sequences_col.insert(sequence_table)
 
 
 

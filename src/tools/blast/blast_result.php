@@ -26,7 +26,7 @@ require '../../session/control-session.php';
                         echo '"program" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
                         echo '"version": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
                         echo '"reference": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
-                        echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus and Melon Proteome”</br>';
+                        echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus,Rice and Melon Proteome”</br>';
                         echo '</pre>';
                         echo '<h3> program settings</h3>';
                         echo '<pre>';
