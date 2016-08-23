@@ -1,5 +1,5 @@
 <?php
-error_log("entering index.php ");
+//error_log("entering index.php ");
 require('./src/functions/html_functions.php');
 require('./src/functions/php_functions.php');
 require('./src/functions/mongo_functions.php');
