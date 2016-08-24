@@ -103,10 +103,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     //error_log('Search for transcript id: '.$transcript);
                     
                     $cursor=$full_mappingsCollection->aggregate(array( 
-                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                        array('$project' => array('mapping_file'=>1,"species"=>1,'_id'=>0)),
                         array('$unwind'=>'$mapping_file'),
                         array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
-                        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
+                        array('$project' => array("mapping_file"=>1,"species"=>1,'_id'=>0))
                     ));
                     echo '<td>'.$transcript.'</td>';
                     foreach ($cursor['result'] as $result) {
