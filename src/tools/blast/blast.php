@@ -14,7 +14,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 //if (((isset($_POST['search'])) && ($_POST['search']!='')) && ((isset($_POST['sequence'])) && ($_POST['sequence']!=''))){
 
 
-	$search_id=control_post(htmlspecialchars($_POST['search']));
+    $search_id=control_post(htmlspecialchars($_POST['search']));
     $species=control_post(htmlspecialchars($_POST['species']));
     //error_log('Here is the search id: '.$search_id);
 
@@ -57,18 +57,21 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
     
     //error_log($tmp) ;
-    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
-    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+    
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_blast_results.txt -outfmt 13');
-    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file -outfmt 13");
-     //sprintf('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query %s -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out %s -outfmt 13',$query_file,$result_file);
-    //$output = shell_exec(sprintf('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query %s -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out %s -outfmt 13',$query_file,$result_file));
-
+    
+    //BLAST REQUEST WITH JSON OUTPUT
+    $mode="json";
+    $json=run_blast($tmp,$mode);
+    
+//    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
+//    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+//    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
+//    date_default_timezone_set("Europe/Paris");
+//    $json = json_decode(file_get_contents($result_file.'_1.json'), true);
     
     
-    //ini_get('date.timezone');
-    date_default_timezone_set("Europe/Paris");
-    $json = json_decode(file_get_contents($result_file.'_1.json'), true);
+    
     
     //Here add code to populate jobs Mongo collection,
     $today = date("F j, Y, g:i a");
@@ -79,11 +82,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                       "job_data" => $json
                      );
     $jobsCollection->insert($document);
-    
-    
-    
     $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
-    
     $max_hits=0;
     if (count($hits)>0){
         echo '<div id="blast_results">results: </br><ul>';
@@ -122,6 +121,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         echo '<p id="paragraph"> Results: No hits found </br></p>';  
     }
     unlink($query_file);
+    
     //unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp/'.$tmp.'_'.$search_id.'.fasta');
 
     

@@ -57,6 +57,16 @@ function go($stanza,$go_term_id){
     $go_id=$go_id_list[$i];
     return (isset($stanza['id']) && $stanza['id'] == $go_id_list[$i]);
 }
+
+function run_blast($tmp="null",$mode="null"){
+    
+    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
+    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
+    date_default_timezone_set("Europe/Paris");
+    $json = json_decode(file_get_contents($result_file.'_1.json'), true);
+    return $json;
+}
 function make_experiment_type_list($cursor){
 
 
