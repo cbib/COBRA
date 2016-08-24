@@ -101,6 +101,15 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 if ($max_hits<10){
                     echo '<tr>';
                     //error_log('Search for transcript id: '.$transcript);
+                    
+                    $cursor=$full_mappingsCollection->aggregate(array( 
+                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
+                        array('$unwind'=>'$mapping_file'),
+                        array('$match' => array('mapping_file.Transcript ID'=>new MongoRegex("/^$search/xi"))),
+                        array('$project' => array("mapping_file"=>1,'_id'=>0))
+                    ));
+                    
+                    
                     $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
                     
                     
