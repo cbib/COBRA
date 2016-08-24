@@ -88,7 +88,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         
         
         
-        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th><th>Species</th></tr></thead><tbody>';
+        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th></tr></thead><tbody>';
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
@@ -103,17 +103,22 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     //error_log('Search for transcript id: '.$transcript);
                     
                     $cursor=$full_mappingsCollection->aggregate(array( 
-                        array('$project' => array('mapping_file'=>1,"species"=>1,'_id'=>0)),
+                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
                         array('$unwind'=>'$mapping_file'),
                         array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
-                        array('$project' => array("mapping_file"=>1,"species"=>1,'_id'=>0))
+                        array('$project' => array("mapping_file"=>1,'_id'=>0))
                     ));
-                    echo '<td>'.$transcript.'</td>';
-                    foreach ($cursor['result'] as $result) {
-                        //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
-                        echo '<td>'.$result['mapping_file']['Description'].'</td>';
-                        echo '<td>'.$cursor['species'].'</td>';
-                        
+                    //echo '<td>'.$transcript.'</td>';
+                    echo '<td> <a href="./Multi-results.php?organism=All+species&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+                    if (count($cursor['result'])>=1){
+                        foreach ($cursor['result'] as $result) {
+                            //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
+                            echo '<td>'.$result['mapping_file']['Description'].'</td>';
+
+                        }
+                    }
+                    else{
+                        echo '<td>NA</td>';
                     }
                     
                     
@@ -176,7 +181,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     else{
         echo '<p id="paragraph"> Results: No hits found </br></p>';  
     }
-    unlink($query_file);
+    
     
     //unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp/'.$uid.'_'.$search_id.'.fasta');
 

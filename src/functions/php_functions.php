@@ -65,6 +65,7 @@ function run_blast($tmp="null",$mode="null"){
     $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
     date_default_timezone_set("Europe/Paris");
     $json = json_decode(file_get_contents($result_file.'_1.json'), true);
+    unlink($query_file);
     return $json;
 }
 function make_experiment_type_list($cursor){
@@ -2609,9 +2610,10 @@ function stop_time_capture($timestart='null'){
     $time=$timeend-$timestart;
     //Afficher le temps d'éxecution
     $page_load_time = number_format($time, 3);
-    echo "Debut du script: ".date("H:i:s", $timestart);
-    echo "<br>Fin du script: ".date("H:i:s", $timeend);
-    echo "<br>Script for interactions executed in " . $page_load_time . " sec";
+    //echo "Debut du script: ".date("H:i:s", $timestart);
+    //echo "<br>Fin du script: ".date("H:i:s", $timeend);
+    echo "<br> Results generated in " . $page_load_time . " sec";
+    echo ""
 }
 function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
     
