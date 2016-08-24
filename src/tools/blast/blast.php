@@ -110,29 +110,25 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     ));
                     
                     foreach ($cursor['result'] as $result) {
-                        
-                        echo '<td>'.$result['mapping_file']['Gene ontology ID'].'</td>';
+                        echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
+                        echo '<td>'.$result['mapping_file']['Description'].'</td>';
+                        echo '<td>'.$result['species'].'</td>';
                     }
                     
                     
-                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
-                    
-                    
-                    
-                    if (count($species_id)!==0){
-                        foreach ($species_id as $value) {
-                           
-                           $species=$value['species']; 
-                           error_log($species.' for transcript id: '.$transcript);
-                        }
-                    }
-                    else{
-                        $species="All+species";
-                    }
-                    //$id=$jobsCollection->find(array("query_id"=> str_replace("__", ".",$search_id),"date" => $today),array("_id"=>1));
-                    //var_dump($id);
-                    echo '<td> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
-                
+//                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
+//                    if (count($species_id)!==0){
+//                        foreach ($species_id as $value) {
+//                           
+//                           $species=$value['species']; 
+//                           error_log($species.' for transcript id: '.$transcript);
+//                        }
+//                    }
+//                    else{
+//                        $species="All+species";
+//                    }
+//                    echo '<td> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+//                    
                     echo '</tr>';
                 }
                 $max_hits++;
