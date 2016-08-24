@@ -112,9 +112,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     foreach ($cursor['result'] as $result) {
                         //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
                         echo '<td>'.$result['mapping_file']['Description'].'</td>';
+                        echo '<td>'.$cursor['species'].'</td>';
                         
                     }
-                    echo '<td>'.$cursor['result']['species'].'</td>';
+                    
                     
                     
 //                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
