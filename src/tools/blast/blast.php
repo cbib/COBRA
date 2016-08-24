@@ -108,12 +108,13 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                         array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
                         array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
                     ));
-                    
+                    echo '<td>'.$transcript.'</td>';
                     foreach ($cursor['result'] as $result) {
-                        echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
+                        //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
                         echo '<td>'.$result['mapping_file']['Description'].'</td>';
-                        echo '<td>'.$result['species'].'</td>';
+                        
                     }
+                    echo '<td>'.$cursor['result']['species'].'</td>';
                     
                     
 //                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
