@@ -88,7 +88,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
         
         
         
-        echo '<table id="blast_results class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th><th>Species</th></tr></thead><tbody>';
+        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th><th>Species</th></tr></thead><tbody>';
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
