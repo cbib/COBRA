@@ -31,7 +31,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
     
     $sequence_metadata=$sequencesCollection->find(array('mapping_file.Transcript ID'=>str_replace("__", ".",$search_id)),array('mapping_file.$'=>1));
-    $tmp=substr(str_shuffle(MD5(microtime())), 0, 20);
+    $uid=substr(str_shuffle(MD5(microtime())), 0, 20);
     foreach ($sequence_metadata as $data) {
         foreach ($data as $key=>$value) {
             
@@ -46,7 +46,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 
                     // on ouvre le fichier en écriture avec l'option a
                     // il place aussi le pointeur en fin de fichier (il tentera de créer aussi le fichier si non existant)
-                    $h = fopen('/data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'.fasta', "a");
+                    $h = fopen('/data/applications/ncbi-blast-2.2.31+/tmp/'.$uid.'.fasta', "a");
                     fwrite($h, $contenu);
                     fclose($h);
                 }
@@ -56,16 +56,16 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     //it works below
     //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/test.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/blast_results4.txt -outfmt 13');
     
-    //error_log($tmp) ;
+    //error_log($uid) ;
     
-    //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/'.$tmp.'_blast_results.txt -outfmt 13');
+    //$output = shell_exec('/data/applications/ncbi-blast-2.2.31+/bin/blastx -query /data/applications/ncbi-blast-2.2.31+/tmp/'.$uid.'_'.$search_id.'.fasta -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out /data/applications/ncbi-blast-2.2.31+/tmp/'.$uid.'_blast_results.txt -outfmt 13');
     
     //BLAST REQUEST WITH JSON OUTPUT
     $mode="json";
-    $json=run_blast($tmp,$mode);
+    $json=run_blast($uid,$mode);
     
-//    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
-//    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+//    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$uid.fasta";
+//    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$uid.txt";
 //    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
 //    date_default_timezone_set("Europe/Paris");
 //    $json = json_decode(file_get_contents($result_file.'_1.json'), true);
@@ -85,7 +85,10 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $hits=$json['BlastOutput2']['report']['results']['search']['hits'];
     $max_hits=0;
     if (count($hits)>0){
-        echo '<div id="blast_results">results: </br><ul>';
+        
+        
+        
+        echo '<table id="blast_results class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th><th>Species</th></tr></thead><tbody>';
         foreach ($hits as $result) {
             foreach ($result['description'] as $value) {
 
@@ -96,8 +99,12 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 
                     
                 if ($max_hits<10){
+                    echo '<tr>';
                     //error_log('Search for transcript id: '.$transcript);
                     $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
+                    
+                    
+                    
                     if (count($species_id)!==0){
                         foreach ($species_id as $value) {
                            
@@ -110,19 +117,56 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     }
                     //$id=$jobsCollection->find(array("query_id"=> str_replace("__", ".",$search_id),"date" => $today),array("_id"=>1));
                     //var_dump($id);
-                    echo '<li> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+                    echo '<td> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+                
+                    echo '</tr>';
                 }
                 $max_hits++;
             }
         }
-        echo '</ul></div>';
+        echo '</tbody></table>';
+        
+/*        echo '<div id="blast_results">results: </br><ul>';
+//        foreach ($hits as $result) {
+//            foreach ($result['description'] as $value) {
+//
+//                //error_log('Here is the transcript id: '.$value['title']);
+//                $id_list= explode("|", $value['title']);
+//                $gene=$id_list[0];
+//                $transcript=$id_list[1];
+//                
+//                    
+//                if ($max_hits<10){
+//                    //error_log('Search for transcript id: '.$transcript);
+//                    $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
+//                    
+//                    
+//                    
+//                    if (count($species_id)!==0){
+//                        foreach ($species_id as $value) {
+//                           
+//                           $species=$value['species']; 
+//                           error_log($species.' for transcript id: '.$transcript);
+//                        }
+//                    }
+//                    else{
+//                        $species="All+species";
+//                    }
+//                    //$id=$jobsCollection->find(array("query_id"=> str_replace("__", ".",$search_id),"date" => $today),array("_id"=>1));
+//                    //var_dump($id);
+//                    echo '<li> <a href="./result_search_5.php?organism='.str_replace(" ", "+", $species).'&search='.$gene.'">'.$transcript.'</a>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+//                }
+//                $max_hits++;
+//            }
+//        }
+        echo '</ul></div>';*/
     }
     else{
         echo '<p id="paragraph"> Results: No hits found </br></p>';  
     }
     unlink($query_file);
     
-    //unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp/'.$tmp.'_'.$search_id.'.fasta');
+    //unlink('/data/applications/ncbi-blast-2.2.31+/tmp/tmp/'.$uid.'_'.$search_id.'.fasta');
 
     
 }
