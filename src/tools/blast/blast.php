@@ -105,7 +105,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                     $cursor=$full_mappingsCollection->aggregate(array( 
                         array('$project' => array('mapping_file'=>1,'_id'=>0)),
                         array('$unwind'=>'$mapping_file'),
-                        array('$match' => array('mapping_file.Transcript ID'=>new MongoRegex("/^$transcript/xi"))),
+                        array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
                         array('$project' => array("mapping_file"=>1,'_id'=>0))
                     ));
                     
