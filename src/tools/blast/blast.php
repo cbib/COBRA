@@ -106,9 +106,9 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                         array('$project' => array('mapping_file'=>1,'_id'=>0)),
                         array('$unwind'=>'$mapping_file'),
                         array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
-                        array('$project' => array("mapping_file"=>1,'_id'=>0))
+                        array('$project' => array("mapping_file"=>1,'species'=>1,'_id'=>0))
                     ));
-                    
+                    var_dump($cursor);
                     
                     $species_id=$full_mappingsCollection->find(array('mapping_file.Transcript ID'=>$transcript, 'type'=>'full_table'),array('species'=>1));
                     
