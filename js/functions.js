@@ -435,12 +435,11 @@ function load_GO_enrichment(element){
         async: true,
         dataType: "html",
         beforeSend: function() { 
-           	    //  alert("start");
-				$(".GOtest_"+clicked_id).hide();
-                $('.GOloading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
-
-                $(".GOloading_"+clicked_id).show();
-		},
+           //  alert("start");
+            $(".GOtest_"+clicked_id).hide();
+            $('.GOloading_'+clicked_id).html("<img src='../../images/ajax-loader.gif' />");
+            $(".GOloading_"+clicked_id).show();
+	},
         success: function (data) {
             //alert(data);
             var jqObj = jQuery(data);
@@ -1253,10 +1252,29 @@ function runBlast(element){
 	},
         
         success: function (data) {
-
+            
             var jqObj = jQuery(data);
-            var par=jqObj.find("#blast_results");
-            $(".content_test_"+clicked_transcript_id ).empty().append(par);
+
+            var par;
+
+            if(jqObj.find("#blast_results").length){
+               par=jqObj.find("#blast_results");
+               $(".content_test_"+clicked_transcript_id ).empty().append(par);
+               load_table2(par);
+            }
+            else{
+               par=jqObj.find(".no_results");
+               $(".content_test_"+clicked_transcript_id ).empty().append(par);
+
+
+            }
+//            
+//            
+//            
+//
+//            var jqObj = jQuery(data);
+//            var par=jqObj.find("#blast_results");
+//            $(".content_test_"+clicked_transcript_id ).empty().append(par);
 
         },
         complete:function(){  

@@ -30,23 +30,23 @@ require '../../session/control-session.php';
                     echo $value;
 //                    echo $dom->getElementsByTagName('PRE')->plaintext;;
                     
-                    foreach ($value as $blast_results) {
-                        echo '<h3> program details</h3>';
-                        echo '<pre>';
-                        echo '"program" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
-                        echo '"version": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
-                        echo '"reference": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
-                        echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus,Rice and Melon Proteome”</br>';
-                        echo '</pre>';
-                        echo '<h3> program settings</h3>';
-                        echo '<pre>';
-                        echo json_encode($blast_results['report']['params'], JSON_PRETTY_PRINT).'</br>';
-                        echo '</pre>';
-                        echo '<h3> Results</h3>';
-                        echo '<pre>';                
-                        echo json_encode($blast_results['report']['results']['search'], JSON_PRETTY_PRINT).'</br>';
-                        echo '</pre>';
-                    }
+//                    foreach ($value as $blast_results) {
+//                        echo '<h3> program details</h3>';
+//                        echo '<pre>';
+//                        echo '"program" :'.json_encode($blast_results['report']['program'], JSON_PRETTY_PRINT).'</br>';
+//                        echo '"version": '.json_encode($blast_results['report']['version'], JSON_PRETTY_PRINT).'</br>';
+//                        echo '"reference": '.json_encode($blast_results['report']['reference'], JSON_PRETTY_PRINT).'</br>';
+//                        echo '"blast db": "Arabidopsis, Barley, Tomato, Prunus,Rice and Melon Proteome”</br>';
+//                        echo '</pre>';
+//                        echo '<h3> program settings</h3>';
+//                        echo '<pre>';
+//                        echo json_encode($blast_results['report']['params'], JSON_PRETTY_PRINT).'</br>';
+//                        echo '</pre>';
+//                        echo '<h3> Results</h3>';
+//                        echo '<pre>';                
+//                        echo json_encode($blast_results['report']['results']['search'], JSON_PRETTY_PRINT).'</br>';
+//                        echo '</pre>';
+//                    }
                     
                 }
                 elseif($key==='date'){

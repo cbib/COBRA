@@ -64,7 +64,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     //$mode="json";
     $mode="html";
     $data=run_blast($uid,$mode);
-    error_log($data);
+    //error_log($data);
     
 //    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$uid.fasta";
 //    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$uid.txt";
@@ -87,64 +87,83 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     $jobsCollection->insert($document);
     
     $dom = new DOMDocument;
-    $dom->loadHTML($data);
-    //$targets = $dom->getElementsByTagName('a');
+    //$dom->loadHTML($data);
+    
+    
+    //$targets = $doc = new DOMDocument();
+    //libxml_use_internal_errors(true);
+    $dom->loadHTML($data); // loads your HTML
+    $xpath = new DOMXPath($dom);
+    // returns a list of all links with rel=nofollow
+    //$nlist = $xpath->query("//a[@rel='name']");
+    $nlist = $xpath->query("//a[@name]");
+
+    //error_log($nlist->plaintext);
+    
+    
+     
+    //$dom->getElementsByTagName('a');
     # Iterate over all the <a> tags
-    foreach($dom->getElementsByTagName('a') as $link) {
+    foreach($nlist as $i =>$link) {
         # Show the <a href>
-        error_log($link->getAttribute('name'));
+        error_log("Link($i): ".$link->getAttribute('name')."\n");
     }
     
     
     
-    $hits=$data['BlastOutput2']['report']['results']['search']['hits'];
+    //$hits=$data['BlastOutput2']['report']['results']['search']['hits'];
     $max_hits=0;
-    if (count($hits)>0){
-        
-        
-        
-        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th></tr></thead><tbody>';
-        foreach ($hits as $result) {
-            foreach ($result['description'] as $value) {
 
-                //error_log('Here is the transcript id: '.$value['title']);
-                $id_list= explode("|", $value['title']);
-                $gene=$id_list[0];
-                $transcript=$id_list[1];
-                
-                    
-                if ($max_hits<10){
-                    echo '<tr>';
-                    //error_log('Search for transcript id: '.$transcript);
-                    
-                    $cursor=$full_mappingsCollection->aggregate(array( 
-                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
-                        array('$unwind'=>'$mapping_file'),
-                        array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
-                        array('$project' => array("mapping_file"=>1,'_id'=>0))
-                    ));
-                    //echo '<td>'.$transcript.'</td>';
-                    echo '<td> <a href="./Multi-results.php?organism=All+species&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
-                    if (count($cursor['result'])>=1){
-                        foreach ($cursor['result'] as $result) {
-                            //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
-                            echo '<td>'.$result['mapping_file']['Description'].'</td>';
-
-                        }
-                    }
-                    else{
-                        echo '<td>NA</td>';
-                    }
-                   
-                    echo '</tr>';
-                }
-                $max_hits++;
-            }
-        }
-        echo '</tbody></table>';
+//    if (count($hits)>0){
+//        
+//        
+//        
+//        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th></tr></thead><tbody>';
+//        foreach ($hits as $result) {
+//            foreach ($result['description'] as $value) {
+//
+//                //error_log('Here is the transcript id: '.$value['title']);
+//                $id_list= explode("|", $value['title']);
+//                $gene=$id_list[0];
+//                $transcript=$id_list[1];
+//                
+//                    
+//                if ($max_hits<10){
+//                    echo '<tr>';
+//                    //error_log('Search for transcript id: '.$transcript);
+//                    
+//                    $cursor=$full_mappingsCollection->aggregate(array( 
+//                        array('$project' => array('mapping_file'=>1,'_id'=>0)),
+//                        array('$unwind'=>'$mapping_file'),
+//                        array('$match' => array('mapping_file.Transcript ID'=>$transcript)),
+//                        array('$project' => array("mapping_file"=>1,'_id'=>0))
+//                    ));
+//                    //echo '<td>'.$transcript.'</td>';
+//                    echo '<td> <a href="./Multi-results.php?organism=All+species&search='.$gene.'">'.$transcript.'</a></td>';// </li><a href="./tools/blast/blast_result.php?id='.$transcript.'"> [View results]</a>';
+//                    if (count($cursor['result'])>=1){
+//                        foreach ($cursor['result'] as $result) {
+//                            //echo '<td>'.$result['mapping_file']['Gene ID'].'</td>';
+//                            echo '<td>'.$result['mapping_file']['Description'].'</td>';
+//
+//                        }
+//                    }
+//                    else{
+//                        echo '<td>NA</td>';
+//                    }
+//                   
+//                    echo '</tr>';
+//                }
+//                $max_hits++;
+//            }
+//        }
+//        echo '</tbody></table>';
+//    }
+    if (count($max_hits)===0){
+        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th></tr></thead><tbody></tbody></table>';
+ 
     }
     else{
-        echo '<p id="paragraph"> Results: No hits found </br></p>';  
+        echo '<p class="no_results"> Results: No hits found </br></p>';  
     }
 }
 new_cobra_footer();	
