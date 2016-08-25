@@ -10,7 +10,7 @@ function new_cobra_header($path='null'){
     <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    <meta name="description" content="Cobra Database">
     <!-- font Awesome -->
     <link href="'.$path.'/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
