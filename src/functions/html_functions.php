@@ -44,7 +44,7 @@ function new_cobra_header($path='null'){
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/functions.min.js"></script>
-    <script type="text/javascript" src="'.$path.'/js/require.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/require.min.js"></script>
         
 
 
@@ -54,7 +54,7 @@ function new_cobra_header($path='null'){
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/exporting.js"></script>
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/heatmap.js"></script>
     <script type="text/javascript" src="'.$path.'/css/Highcharts-4.1.8/js/modules/data.js"></script>
-    <script type="text/javascript" src="'.$path.'/js/app.js"></script> 
+    <script type="text/javascript" src="'.$path.'/js/app.min.js"></script> 
     <title>COBRA</title>';
     include($path."/src/functions/piwik.php");
     echo '</head>';
