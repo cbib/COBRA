@@ -47,7 +47,7 @@ function new_cobra_header($path='null'){
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.flash.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="'.$path.'/js/Buttons-1.2.1/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="'.$path.'/js/functions.min.js"></script>
+    <script type="text/javascript" src="'.$path.'/js/functions.js"></script>
     <script type="text/javascript" src="'.$path.'/js/require.min.js"></script>
         
 
