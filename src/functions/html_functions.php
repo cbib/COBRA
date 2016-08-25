@@ -16,6 +16,10 @@ function new_cobra_header($path='null'){
     <!-- Ionicons -->
     <link href="'.$path.'/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
+    
+    
+    <link rel="stylesheet" type="text/css" href="'.$path.'/js/pointer_events_polyfill.js"></script>
+
     <link href="'.$path.'/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
     <!-- Include iCheck skin -->
