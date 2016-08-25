@@ -24,7 +24,11 @@ require '../../session/control-session.php';
                     
                     
                     
-                    
+                   
+//                    $dom = new DOMDocument;
+//                    $dom->loadHTML($value);
+                    echo $value;
+//                    echo $dom->getElementsByTagName('PRE')->plaintext;;
                     
                     foreach ($value as $blast_results) {
                         echo '<h3> program details</h3>';
