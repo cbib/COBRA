@@ -59,14 +59,24 @@ function go($stanza,$go_term_id){
 }
 
 function run_blast($tmp="null",$mode="null"){
-    
     $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
-    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
-    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
-    date_default_timezone_set("Europe/Paris");
-    $json = json_decode(file_get_contents($result_file.'_1.json'), true);
+    $res="";
+    if ($mode === "json"){
+        
+        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
+        $res = json_decode(file_get_contents($result_file.'_1.json'), true);
+        
+    }
+    else{
+        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
+        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file");
+        $res = file_get_contents($result_file);
+
+        
+    }
     unlink($query_file);
-    return $json;
+    return $res;
 }
 function make_experiment_type_list($cursor){
 
@@ -2613,7 +2623,7 @@ function stop_time_capture($timestart='null'){
     //echo "Debut du script: ".date("H:i:s", $timestart);
     //echo "<br>Fin du script: ".date("H:i:s", $timeend);
     echo "<br> Results generated in " . $page_load_time . " sec";
-    echo ""
+
 }
 function load_and_display_pvinteractions(array $gene_id, array $proteins_id, MongoCollection $interactionsCollection,$species='null'){
     

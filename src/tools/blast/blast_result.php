@@ -20,6 +20,12 @@ require '../../session/control-session.php';
                 
                 
                 if ($key==='job_data'){
+                    
+                    
+                    
+                    
+                    
+                    
                     foreach ($value as $blast_results) {
                         echo '<h3> program details</h3>';
                         echo '<pre>';
