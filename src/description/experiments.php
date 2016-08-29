@@ -138,15 +138,27 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 			
 			//}
 		}
-        else if ($key==='wikipedia'){
-            echo '<dt>Wikipedia</dt>';
-            $values=split('/', $value);
-					echo '<dd><a href='.$value.'>'.$values[count($values)-1].'</a></dd>';
-        }
-		else{
-			echo '<dt>'.$key.'</dt>
-					<dd>'.$value.'</dd>';
-		}
+                else if ($key==='wikipedia'){
+                    echo '<dt>Wikipedia</dt>';
+                    $values=split('/', $value);
+                        echo '<dd><a href='.$value.'>'.$values[count($values)-1].'</a></dd>';
+                }
+                else{
+                    echo '<dt>'.$key.'</dt>';
+                    if (is_array($value)){
+                        $string="";
+                        foreach ($value as $text) {
+                            $string.=$text." ";
+                        }
+                        echo '<dd>'.$string.'</dd>';
+                    }
+                        
+                    
+                    else{
+                        echo '<dd>'.$value.'</dd>';
+                    }
+                          
+                }
   	}
 	echo'</dl>';
 	echo'</div>';
@@ -300,15 +312,20 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         
         echo '</dl>';
         echo '</div>';
-        echo '<div class="col-md-6">';
+        $logFC_list=$measurementsCollection->find(array('xp'=>$Measurement_FK),array("logFC"=>1,'_id'=>0));
+        //var_dump($logFC_list);
+        $log_array=array();
+        
+        foreach ($logFC_list as $value) {
+            //echo $value['logFC'];
+            array_push($log_array, $value['logFC']);
+        }
+        echo '<div id="box_plot" class="col-md-6">';
         //here add ggplot for logFC repartition.
-        $logFC_list=$measurementsCollection->find(array('xp'=>$Measurement_FK),array("logFC"=>1));
         
-        //echo $logFC_list->count();
-        //get all logFc values
         
-        //$cmd='Rscript /data/hypergeom_R_results/ggplot.R '.$xp_formatted.' '.$newDocID.' '.$minlogFCthreshold.' '.$maxlogFCthreshold;
-        //exec($cmd. " > /data/hypergeom_R_results/log.txt 2>&1 &");
+        
+        
         
         echo '</div>';
         echo '</div>';
@@ -336,9 +353,6 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         echo '<div class="shift_line"></div>';
         
         
-        
-        
-// PARTIE NON OPERATIONNELLE
         echo '<button onclick="load_GO_enrichment(this)"  data-id="'.str_replace(".", "-",$Measurement_FK).'"  data-min=-0.5 data-max=0.5 data-species="'.$species.'" class="GO_button_'.str_replace(".", "-",$Measurement_FK).'" type="button">Show Enriched GO Terms</button>';
         echo '<center>'
             . '<div class="GOloading_'.str_replace(".", "-", $Measurement_FK).'" style="display: none"></div>
@@ -640,6 +654,9 @@ new_cobra_footer();
 ?>
 <script>
 
+var jArray=<?php echo json_encode($log_array);?>;
+
+
 $(function () {
 
     $('#container').highcharts({
@@ -699,6 +716,8 @@ $(function () {
 
     });
 });
+
+show_box_plot(jArray);
 
 </script>
 

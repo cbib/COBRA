@@ -24,7 +24,7 @@ $speciesCollection = new Mongocollection($db, "species");
 
 #$dir = '../../../../../../../data/COBRA_depot/';
 
-$dir = '../../../../../../../data/COBRA_depot/';
+$dir = '../../../../../../../data/COBRA_new_depot/';
 //$dir = '/data/COBRA_depot/';
 
  // create new directory with 744 permissions if it does not exist yet
