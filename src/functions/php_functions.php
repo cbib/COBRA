@@ -59,8 +59,12 @@ function go($stanza,$go_term_id){
 }
 
 function run_blast($tmp="null"){
-    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
-    $res="";
+    
+    foreach (glob("/data/applications/ncbi-blast-2.*+") as $value) {
+        $blast_dir=$value;
+        //error_log($blast_dir);
+    }
+    $query_file="$blast_dir/tmp/$tmp.fasta";
     
     
     
@@ -75,12 +79,14 @@ function run_blast($tmp="null"){
 //        
 //    }
 //    else if($mode === "asn"){
-    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
-    $html_result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
-    $tab_result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.tsv";
-    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -outfmt 11 -out $result_file");
-    $output_html_reformat = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blast_formatter -out $html_result_file -archive $result_file -html");
-    $output_tab_reformat = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blast_formatter -out $tab_result_file -archive $result_file -outfmt \"6 qseqid sseqid pident evalue \"");
+    
+    
+    $result_file = "$blast_dir/tmp/$tmp.txt";
+    $html_result_file = "$blast_dir/tmp/$tmp.html";
+    $tab_result_file = "$blast_dir/tmp/$tmp.tsv";
+    $output = shell_exec("$blast_dir/bin/blastx -query $query_file -db $blast_dir/db/cobra_blast_proteome_db -outfmt 11 -out $result_file");
+    $output_html_reformat = shell_exec("$blast_dir/bin/blast_formatter -out $html_result_file -archive $result_file -html");
+    $output_tab_reformat = shell_exec("$blast_dir/bin/blast_formatter -out $tab_result_file -archive $result_file -outfmt \"6 qseqid sseqid pident evalue \"");
 
 
     $html = file_get_contents($html_result_file);
@@ -95,7 +101,7 @@ function run_blast($tmp="null"){
 //        
 //    }
     unlink($query_file);
-    error_log($tab_format);
+    //error_log($tab_format);
     return array($html,$tab_format);
 }
 function make_experiment_type_list($cursor){
