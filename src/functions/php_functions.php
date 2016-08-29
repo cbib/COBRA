@@ -61,12 +61,23 @@ function go($stanza,$go_term_id){
 function run_blast($tmp="null",$mode="null"){
     $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
     $res="";
+    
+    
+    
+    
+    
+    
     if ($mode === "json"){
         
         $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
         $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
         $res = json_decode(file_get_contents($result_file.'_1.json'), true);
         
+    }
+    else if($mode === "asn"){
+        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
+        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file");
+        $res = file_get_contents($result_file);
     }
     else{
         $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";

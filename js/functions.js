@@ -29,11 +29,11 @@ function show_box_plot(id,min,max,q1,q3,median){
         },
 
         title: {
-            text: 'LogFC Box Plot'
+            text: 'Boxplot log fold-change distribution'
         },
 
         legend: {
-            enabled: true
+            enabled: false
         },
 
         xAxis: {
@@ -90,7 +90,7 @@ function show_box_plot(id,min,max,q1,q3,median){
             }
         },
         series: [{
-                    name: 'Sample log fold-change distribution',
+                    name: 'Data',
                     //turboThreshold:0,
                     //data: [series_array],
                     data: [{
