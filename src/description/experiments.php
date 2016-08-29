@@ -320,9 +320,11 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
             //echo $value['logFC'];
             array_push($log_array, $value['logFC']);
         }
-        echo '<div id="box_plot" class="col-md-6">';
+        $new_Meas_FK=str_replace(".", "-",$Measurement_FK);
+        echo $new_Meas_FK;
+        echo '<div id="box_plot_'.$new_Meas_FK.'" onload="show_box_plot(this)" data-id="'.$new_Meas_FK.'" data-logs="'.htmlspecialchars( json_encode($log_array), ENT_QUOTES ).'" dataclass="col-md-6">';
         //here add ggplot for logFC repartition.
-        
+       
         
         
         
@@ -651,10 +653,12 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	
  
 new_cobra_footer();
+
+//var jArray=<?php echo json_encode($log_array);
 ?>
 <script>
 
-var jArray=<?php echo json_encode($log_array);?>;
+
 
 
 $(function () {
@@ -717,7 +721,6 @@ $(function () {
     });
 });
 
-show_box_plot(jArray);
 
 </script>
 

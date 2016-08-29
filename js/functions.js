@@ -13,9 +13,15 @@ var top_scored_gene_open="false";
 var detailData=[];
 var chaine="";
 
-function show_box_plot(value){
-   /// alert(value);
-    $('#box_plot').highcharts({
+function show_box_plot(element){
+   
+   alert(element.getAttribute('data-id'));
+   
+   var series= element.getAttribute('data-logs');
+   var id= element.getAttribute('data-id');
+   alert(series);
+   
+    $("#box_plot_"+id).highcharts({
 
         chart: {
             type: 'boxplot'
@@ -41,11 +47,11 @@ function show_box_plot(value){
                 text: 'Observations'
             },
             plotLines: [{
-                value: +2,
+                value: 2,
                 color: 'red',
                 width: 1,
                 label: {
-                    text: 'Theoretical mean: 2',
+                    text: 'Theoretical max threshold: 2',
                     align: 'center',
                     style: {
                         color: 'gray'
@@ -69,7 +75,8 @@ function show_box_plot(value){
 
         series: [{
                     name: 'Observations',
-                    data: [[value]],
+                    //data: [series],
+                    data: JSON.parse(series),
                     tooltip: {
                         headerFormat: '<em>Experiment No {point.key}</em><br/>'
                     }
