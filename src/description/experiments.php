@@ -20,7 +20,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	//$logFCInput=control_post(htmlspecialchars($_POST['logFCInput']));
 
 
-	
+        //echo $xpName;
 
 	
 	//Instanciation de la connexion
@@ -31,7 +31,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	$samplesCollection = new MongoCollection($db, "samples");
 	$speciesCollection = new Mongocollection($db, "species");
 	$mappingsCollection = new Mongocollection($db, "mappings");
-    $full_mappingsCollection = new Mongocollection($db, "full_mappings");
+        $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 	$measurementsCollection = new Mongocollection($db, "measurements");
 
 
@@ -65,7 +65,7 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 //    echo count($total_genes_for_given_species);
 
  	##http://www.ncbi.nlm.nih.gov/pubmed/19821986
-    #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
+        #http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3832472/
  	##EXPERIMENT DETAILS
         
  	echo'<div class="container" background-color="blue">';
@@ -182,14 +182,15 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
     echo'<div id="dataset-details">';
  	echo '<dl class="dl-horizontal">
  	 	<dt>number of samples files</dt>
-        
-        <dd>'.count($experimental_results).'</dd>
-        <dt>analysis type</dt>
-  		<dd>'.$assay_info['type'].'</dd>
-  		<dt>design</dt>
-  		<dd>'.$assay_info['design'].'</dd>
-  		<dt>Dataset repository</dt>
-        <dd><a href="'.$deposit_info['repository'].'">'.$deposit_info['repository'].'</a></dd>
+                <dd>'.count($experimental_results).'</dd>
+                <dt>analysis type</dt>
+                <dd>'.$assay_info['type'].'</dd>';
+                if ($assay_info['type']==="micro-array"){
+                    echo '<dt>design</dt>
+                    <dd>'.$assay_info['design'].'</dd>';
+                }
+  		echo '<dt>Dataset repository</dt>
+                <dd><a href="'.$deposit_info['repository'].'">'.$deposit_info['repository'].'</a></dd>
   		<dt>Sample description</dt>
   		<dd>'.$deposit_info['sample_description_url'].'</dd>
 	</dl>';
@@ -236,7 +237,6 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
 	foreach($experimental_results as $details) {
 		//$data_file=$details['data_file'];
 		$Measurement_FK=$xpID.'.experimental_results.'.$file_counter;
-		//echo $Measurement_FK;
 		$gene_count=$measurementsCollection->find(array('xp'=>$Measurement_FK))->count();
 		$gene_up_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'direction'=>"up"))->count();
 		$gene_down_count=$measurementsCollection->find(array('xp'=>$Measurement_FK,'direction'=>"down"))->count();
@@ -317,14 +317,28 @@ new_cobra_body(isset($_SESSION['login'])? $_SESSION['login']:False,"Experiments 
         $log_array=array();
         
         foreach ($logFC_list as $value) {
-            //echo $value['logFC'];
-            array_push($log_array, $value['logFC']);
+            //echo $value['logFC'].',';
+            
+            if (is_numeric($value['logFC'])){
+            //if ($value['logFC']!==" Inf " && $value['logFC']!==" -Inf "){
+                array_push($log_array, $value['logFC']);   
+            }
+            
         }
+        sort($log_array);
+        $min_value=$log_array[0];
+        $max_value=$log_array[count($log_array)-1];
+        $q1=  $log_array[get_quartile_1($log_array)];
+        $q3=  $log_array[get_quartile_3($log_array)];
+        $median=  calculate_median($log_array);
+        //echo "min: ".$min_value." max: ".$max_value." Q1:".$log_array[$q1]." Q3: ".$log_array[$q3]." median: ".$median; 
+        
         $new_Meas_FK=str_replace(".", "-",$Measurement_FK);
-        echo $new_Meas_FK;
-        echo '<div id="box_plot_'.$new_Meas_FK.'" onload="show_box_plot(this)" data-id="'.$new_Meas_FK.'" data-logs="'.htmlspecialchars( json_encode($log_array), ENT_QUOTES ).'" dataclass="col-md-6">';
+        //echo $new_Meas_FK;
+        echo '<div id="box_plot_'.$new_Meas_FK.'" class="col-md-6">';
         //here add ggplot for logFC repartition.
-       
+        echo '<script type="text/javascript" > show_box_plot("'.$new_Meas_FK.'", '.$min_value.','.$max_value.','.$q1.','.$q3.','.$median.'); </script>';
+        
         
         
         

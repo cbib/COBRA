@@ -13,14 +13,15 @@ var top_scored_gene_open="false";
 var detailData=[];
 var chaine="";
 
-function show_box_plot(element){
+
+
+function show_box_plot(id,min,max,q1,q3,median){
    
-   alert(element.getAttribute('data-id'));
-   
-   var series= element.getAttribute('data-logs');
-   var id= element.getAttribute('data-id');
-   alert(series);
-   
+//alert(element);
+   //alert(id);
+   //series_array = new Array(series);
+   //alert(series_array);
+   //alert(series);
     $("#box_plot_"+id).highcharts({
 
         chart: {
@@ -28,55 +29,78 @@ function show_box_plot(element){
         },
 
         title: {
-            text: 'Highcharts Box Plot Example'
+            text: 'LogFC Box Plot'
         },
 
         legend: {
-            enabled: false
+            enabled: true
         },
 
         xAxis: {
-            categories: ['1'],
-            title: {
-                text: 'Experiment No.'
-            }
+            categories: ['1']
+            //,
+            //title: {
+            //    text: 'Experiment No.'
+            //}
         },
 
         yAxis: {
             title: {
                 text: 'Observations'
-            },
-            plotLines: [{
-                value: 2,
-                color: 'red',
-                width: 1,
-                label: {
-                    text: 'Theoretical max threshold: 2',
-                    align: 'center',
-                    style: {
-                        color: 'gray'
-                    }
-                }
-            },
-        {
-                value: -2,
-                color: 'green',
-                width: 1,
-                label: {
-                    text: 'Theoretical min threshold: -2',
-                    align: 'center',
-                    style: {
-                        color: 'gray'
-                    }
-                }
-            }]
+            }
+//            plotLines: [
+//                {
+//                value: 2,
+//                color: 'red',
+//                width: 1,
+//                label: {
+//                    text: 'Theoretical max threshold: 2',
+//                    align: 'center',
+//                    style: {
+//                        color: 'gray'
+//                    }
+//                }
+//            },
+//            {
+//                value: -2,
+//                color: 'green',
+//                width: 1,
+//                label: {
+//                    text: 'Theoretical min threshold: -2',
+//                    align: 'center',
+//                    style: {
+//                        color: 'gray'
+//                    }
+//                }
+//            }]
             
         },
-
+        plotOptions: {
+            boxplot: {
+                fillColor: '#F0F0E0',
+                lineWidth: 2,
+                medianColor: '#0C5DA5',
+                medianWidth: 3,
+                stemColor: '#A63400',
+                stemDashStyle: 'dot',
+                stemWidth: 1,
+                whiskerColor: '#3D9200',
+                whiskerLength: '20%',
+                whiskerWidth: 3
+            }
+        },
         series: [{
-                    name: 'Observations',
-                    //data: [series],
-                    data: JSON.parse(series),
+                    name: 'Sample log fold-change distribution',
+                    //turboThreshold:0,
+                    //data: [series_array],
+                    data: [{
+                            x:1,
+                            low:min,
+                            q1:q1,
+                            median:median,
+                            q3:q3,
+                            high:max
+                    }],
                     tooltip: {
                         headerFormat: '<em>Experiment No {point.key}</em><br/>'
                     }

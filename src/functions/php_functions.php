@@ -807,6 +807,36 @@ function display_expression_profile_old(MongoCollection $measurementsCollection,
             echo'<div class="shift_line"></div>'                
       . '</div>'; 
 }
+
+function get_quartile_1($arr){
+  
+    $count = count($arr);
+    $first = round( .25 * ( $count + 1 ) ) - 1;
+    return $first;
+}
+
+function get_quartile_3($arr){
+  
+    $count = count($arr);
+    $third = round( .75 * ( $count + 1 ) ) - 1;
+    return $third;
+
+}
+function calculate_median($arr) {
+    sort($arr);
+    $count = count($arr); //total numbers in array
+    $middleval = floor(($count-1)/2); // find the middle value, or the lowest middle value
+    if($count % 2) { // odd number, middle is the median
+        $median = $arr[$middleval];
+    } else { // even number, calculate avg of 2 medians
+        $low = $arr[$middleval];
+        $high = $arr[$middleval+1];
+        $median = (($low+$high)/2);
+    }
+    return $median;
+}
+
+
 function load_and_display_expression_profile_with_ajax(array $gene_id,array $transcript_id, array $protein_id,array $gene_id_bis,array $gene_alias,$species='null'){
 //    $gene_id_json = htmlspecialchars( json_encode($gene_id), ENT_QUOTES );
 //    $transcript_id_json = htmlspecialchars( json_encode($transcript_id), ENT_QUOTES );
