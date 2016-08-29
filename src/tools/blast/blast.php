@@ -62,8 +62,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
     
     //BLAST REQUEST WITH JSON OUTPUT
     //$mode="json";
-    $mode="html";
-    $data=run_blast($uid,$mode);
+    list($html,$tab)=run_blast($uid);
     //error_log($data);
     
 //    $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$uid.fasta";
@@ -82,32 +81,13 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                       "job_owner_lastname" => $_SESSION['firstname'],
                       "date" => $today,
                       "query_id"=> str_replace("__", ".",$search_id),
-                      "job_data" => $data
+                      "job_data" => $html
                      );
     $jobsCollection->insert($document);
     
-    $dom = new DOMDocument;
-    //$dom->loadHTML($data);
-    
-    
-    //$targets = $doc = new DOMDocument();
-    //libxml_use_internal_errors(true);
-    $dom->loadHTML($data); // loads your HTML
-    $xpath = new DOMXPath($dom);
-    // returns a list of all links with rel=nofollow
-    //$nlist = $xpath->query("//a[@rel='name']");
-    $nlist = $xpath->query("//a[@name]");
+  
 
-    //error_log($nlist->plaintext);
     
-    
-     
-    //$dom->getElementsByTagName('a');
-    # Iterate over all the <a> tags
-    foreach($nlist as $i =>$link) {
-        # Show the <a href>
-        error_log("Link($i): ".$link->getAttribute('name')."\n");
-    }
     
     
     
@@ -158,8 +138,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 //        }
 //        echo '</tbody></table>';
 //    }
-    if (count($max_hits)===0){
-        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Gene ID</th><th>Name</th></tr></thead><tbody></tbody></table>';
+    if (count($max_hits)!==0){
+        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Query seq id</th><th>Subject seq id</th></tr></thead><tbody></tbody></table>';
  
     }
     else{

@@ -58,7 +58,7 @@ function go($stanza,$go_term_id){
     return (isset($stanza['id']) && $stanza['id'] == $go_id_list[$i]);
 }
 
-function run_blast($tmp="null",$mode="null"){
+function run_blast($tmp="null"){
     $query_file="/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.fasta";
     $res="";
     
@@ -67,27 +67,36 @@ function run_blast($tmp="null",$mode="null"){
     
     
     
-    if ($mode === "json"){
-        
-        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
-        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
-        $res = json_decode(file_get_contents($result_file.'_1.json'), true);
-        
-    }
-    else if($mode === "asn"){
-        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
-        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file");
-        $res = file_get_contents($result_file);
-    }
-    else{
-        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
-        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file");
-        $res = file_get_contents($result_file);
+//    if ($mode === "json"){
+//        
+//        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+//        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -out $result_file -outfmt 13");
+//        $res = json_decode(file_get_contents($result_file.'_1.json'), true);
+//        
+//    }
+//    else if($mode === "asn"){
+    $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.txt";
+    $html_result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
+    $tab_result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.tsv";
+    $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -outfmt 11 -out $result_file");
+    $output_html_reformat = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blast_formatter -out $html_result_file -archive $result_file -html");
+    $output_tab_reformat = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blast_formatter -out $tab_result_file -archive $result_file -outfmt \"6 qseqid sseqid pident evalue \"");
 
+
+    $html = file_get_contents($html_result_file);
+    $tab_format=file_get_contents($tab_result_file);
         
-    }
+//    }
+//    else{
+//        $result_file = "/data/applications/ncbi-blast-2.2.31+/tmp/$tmp.html";
+//        $output = shell_exec("/data/applications/ncbi-blast-2.2.31+/bin/blastx -query $query_file -db /data/applications/ncbi-blast-2.2.31+/db/cobra_blast_proteome_db -html -out $result_file");
+//        $res = file_get_contents($result_file);
+//
+//        
+//    }
     unlink($query_file);
-    return $res;
+    error_log($tab_format);
+    return array($html,$tab_format);
 }
 function make_experiment_type_list($cursor){
 
