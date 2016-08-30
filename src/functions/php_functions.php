@@ -1231,7 +1231,19 @@ function load_and_display_proteins_details(array $gene_id, array $gene_id_bis,ar
                               <div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel">Score details</h4>
                                     <p> this pie chart shows contribution of each omics field into the score computation</p> 
+                                    
                                 </div>
+                              <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Score values</h4>
+                                    <p> <ul>
+                                        <li> Score for over/under expression in infected condition: '.$score_exp.'  </li>
+                                        <li> Score for interactions with viral proteins : '.$score_int.'   </li>
+                                        <li> Score for orthology with a candidate genes : '.$score_ort.'   </li>
+                                        <li> Score for beeing located into resistance QTL : '.$score_QTL.'   </li>
+                                        <li> Score for significant genotype marker (SNP) : '.$score_SNP.'   </li>                                       
+                                    </ul></p> 
+                                    
+                                </div>  
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <!--<button type="button" class="btn btn-primary">Save changes</button>-->
