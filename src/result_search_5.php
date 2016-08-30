@@ -219,7 +219,8 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             }
             if (isset($result['mapping_file']['Global_Score'])&& $result['mapping_file']['Global_Score']!='' && $result['mapping_file']['Global_Score']!='NA'){
                 $score=(int)$result['mapping_file']['Global_Score'];
-                
+                echo 'score: '.$result['mapping_file']['Global_Score'];
+
                 $today = date("F j, Y, g:i a");
                 $document = array("firstname" => $_SESSION['firstname'],
                       "lastname" => $_SESSION['lastname'],
@@ -232,7 +233,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             }
             if (isset($result['mapping_file']['Score_exp'])&& $result['mapping_file']['Score_exp']!='' && $result['mapping_file']['Score_exp']!='NA'){
                 $score_exp=(int)$result['mapping_file']['Score_exp'];
-                //echo 'score_exp: '.$result['mapping_file']['Score_exp'];
+                echo 'score_exp: '.$result['mapping_file']['Score_exp'];
                 //echo 'global score: '.$score.'<br/>';
                 $percent_exp=(float)(($score_exp/$score)* 100.0);
                 //echo 'percentage: '.$percent_exp.' %<br/>';
@@ -244,7 +245,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             array_push($percent_array, $percent_exp);
             if (isset($result['mapping_file']['Score_int'])&& $result['mapping_file']['Score_int']!='' && $result['mapping_file']['Score_int']!='NA'){
                 $score_int=(int)$result['mapping_file']['Score_int'];
-                //echo 'score_int: '.$result['mapping_file']['Score_int'];
+                echo 'score_int: '.$result['mapping_file']['Score_int'];
                 //echo $score.'<br/>';
                 $percent_int=(float)(($score_int/$score)* 100.0);
                 //echo $percent.'<br/>';
@@ -256,7 +257,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             array_push($percent_array, $percent_int);
             if (isset($result['mapping_file']['Score_orthologs'])&& $result['mapping_file']['Score_orthologs']!='' && $result['mapping_file']['Score_orthologs']!='NA'){
                 $score_ort=(int)$result['mapping_file']['Score_orthologs'];
-                //echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
+                echo 'score_ort: '.$result['mapping_file']['Score_orthologs'];
                 //echo $score.'<br/>';
                 $percent_ort=(float)(($score_ort/$score)* 100.0);
                 //echo $percent.'<br/>';
@@ -268,7 +269,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             array_push($percent_array, $percent_ort);
             if (isset($result['mapping_file']['Score_QTL'])&& $result['mapping_file']['Score_QTL']!='' && $result['mapping_file']['Score_QTL']!='NA'){
                 $score_QTL=(int)$result['mapping_file']['Score_QTL'];
-                //echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
+                echo 'score_QTL: '.$result['mapping_file']['Score_QTL'];
                 //echo $score.'<br/>';
                 $percent_QTL=(float)(($score_QTL/$score)* 100.0);
                 //echo $percent.'<br/>';
@@ -280,7 +281,7 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
             array_push($percent_array, $percent_QTL);
             if (isset($result['mapping_file']['Score_SNP'])&& $result['mapping_file']['Score_SNP']!='' && $result['mapping_file']['Score_SNP']!='NA'){
                 $score_SNP=(int)$result['mapping_file']['Score_SNP'];
-                //echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
+                echo 'score_snp: '.$result['mapping_file']['Score_SNP'];
                 //echo $score.'<br/>';
                 $percent_SNP=(float)(($score_SNP/$score)* 100.0);
                 //echo $percent.'<br/>';

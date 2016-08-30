@@ -67,7 +67,7 @@ for species in species_to_process:
         logger.info("preparing new scoring step for species %s",species["full_name"])
         counter=0
 	for r in results:
-                
+            logger.info("scoring step for gene number: %d",counter)    
             if species['full_name']== "Hordeum vulgare":
                 if 'gene_original_id' in r:
                     full_mappings_col.update({'species':"Hordeum vulgare",'mapping_file.Transcript ID':r['gene'],"mapping_file.Probe ID":r['gene_original_id']},{"$inc": {'mapping_file.$.Score_exp': 1,'mapping_file.$.Global_Score': 1 } })
@@ -132,7 +132,7 @@ for species in species_to_process:
                     plaza_results=full_mappings_col.find({'species':species["full_name"],'mapping_file.Gene ID':r['gene']},{'mapping_file.$.Plaza ID': 1 } )
             
             process_orthologs(plaza_results,species['full_name'])
-
+            counter+=1;
 #            for p in plaza_results:
 #                for values in p['mapping_file']:
 #
