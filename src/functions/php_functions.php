@@ -4171,7 +4171,10 @@ function make_species_list($cursor,$path='null'){
     						<a class="nowrap" target="_blank" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=AT1G75950">AT1G75950</a> 
     						or 
     						<a class="nowrap" target="_blank" href="'.$path.'/src/result_search_5.php?organism=Arabidopsis+thaliana&search=ATCG01100">ATCG01100</a>
-    						
+    						or
+                                                <a class="nowrap" target="_blank" href="'.$path.'/src/result_search_5.php?organism=Prunus+persica&search=PRUPE_ppa009370mg">PRUPE_ppa009370mg</a>
+
+                                                
     					</p>
     				</div>
     			</div>

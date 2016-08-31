@@ -23,6 +23,7 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
     $categories=array();
     $xp_name=array();
 
+
     $cursor=$measurementsCollection->find(array(
     '$and'=>array(
         array('$or'=> array(
@@ -36,16 +37,32 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
     )),
     array('_id'=>0)
     );
+
+    $cursor2=$measurementsCollection->aggregate(array(
+        array('$match' => array('$and'=>array(
+        array('$or'=> array(
+            array('gene'=>array('$in'=>$gene_id)),
+            array('gene'=>array('$in'=>$transcript_id)),
+            array('gene'=>array('$in'=>$protein_id)),
+            array('gene'=>array('$in'=>$gene_id_bis)),
+            array('gene'=>array('$in'=>$gene_alias))
+        )),
+        array('gene'=> array('$ne'=>""))))),
+        array('$project' => array("gene"=>1,'xp'=>1,'species'=>1,'day_after_inoculation'=>1,'species'=>1,'variety'=>1,'logFC'=>1,'dpi'=>1,'infection_agent'=>1,'first_condition'=>1,'second_condition'=>1,'_id'=>0))
+    ));
+
     $counter=1;
 
-    if (count($cursor)!=0){
-        foreach ($cursor as $result) {
+    if (count($cursor2['result'])!==0){
+        
+        foreach ($cursor2['result'] as $result) {
+            
             $logfc_array=array();
             $xp_full_name=explode(".", $result['xp']);
             $experiment_id=$xp_full_name[0];
             $xp_name=get_experiment_name_with_id($samplesCollection,$experiment_id);
             $species=$result['species'];
-
+            //error_log('blabla'.$result['xp']);
             if (isset($result['day_after_inoculation'])){
                 if (isset($result['variety'])){
                    $sample=array('infection_agent'=>$result['infection_agent'],'first_condition'=>$result['first_condition'],'second_condition'=>$result['second_condition'],'y'=>$result['logFC'],'dpi'=>$result['day_after_inoculation'],'variety'=>$result['variety'],'logFC'=>$result['logFC'],'xp_name'=>str_replace(' ','\s',$xp_name));
@@ -73,8 +90,8 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
             $sample=array('name'=>$xp_name,'data'=>$logfc_array);
             array_push($series, $sample);
         }
-
-        echo '<div id="container_profile" data-id="'.$gene_id[0].'" data-alias="'.$gene_alias[0].'" data-species="'.$species.'" data-series="'.htmlspecialchars( json_encode($series), ENT_QUOTES ).'" data-categories="'.htmlspecialchars( json_encode($categories), ENT_QUOTES ).'" style="min-width: 310px; height: 400px;"></div>';
+        
+        echo '<div id="container_profile" data-id="'.$gene_id[0].'" data-species="'.$species.'" data-series="'.htmlspecialchars( json_encode($series), ENT_QUOTES ).'" data-categories="'.htmlspecialchars( json_encode($categories), ENT_QUOTES ).'" style="min-width: 310px; height: 400px;"></div>';
 
     }
     else{

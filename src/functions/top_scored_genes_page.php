@@ -10,7 +10,6 @@ new_cobra_body(is_logged($_SESSION['login']),"Tools","section_int","../..");
 
 
 $db=mongoConnector();       
-
 $full_mappingsCollection = new Mongocollection($db, "full_mappings");
 
 
@@ -40,7 +39,7 @@ $CG_form_string.='<tbody>';
 
 foreach ($best_scored_genes['result'] as $value) {
     //var_dump($value['_id']['score']);
-    //echo $value['_id']['score'].'<br/>';
+
 
         $score=$value['_id']['score'];
         if ( $score > 10){

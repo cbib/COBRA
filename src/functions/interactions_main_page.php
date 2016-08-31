@@ -8,7 +8,7 @@ require '../session/control-session.php';
 new_cobra_header("../..");
 new_cobra_body(is_logged($_SESSION['login']),"Tools","section_int","../..");
 
-error_log("test---------------------------------");
+//error_log("test---------------------------------");
 
 if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_POST['species'],$_POST['mode'])){ 
     $db=mongoConnector();       
@@ -19,9 +19,9 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
     $uniprot_id=json_decode($_POST['protein_ids']);
     $species=$_POST['species'];
     $mode=$_POST['mode'];
-    error_log("test---------------------------------");
+    //error_log("test---------------------------------");
     if ($mode==='PV'){
-        error_log("PV mode");
+        //error_log("PV mode");
         echo '<div class=PV>';
         $pv_found=load_and_display_pvinteractions($gene_id,$uniprot_id,$pv_interactionsCollection,$species);
         if (!$pv_found){
@@ -31,7 +31,7 @@ if (isset($_POST['gene_ids'],$_POST['transcript_ids'],$_POST['protein_ids'],$_PO
 
     }
     else{
-        error_log("PP mode");
+        //error_log("PP mode");
         $transcript_id=json_decode($_POST['transcript_ids']);
         echo '<div class=PP>';
         $pp_found=load_and_display_ppinteractions($full_mappingsCollection,$gene_id,$uniprot_id,$transcript_id,$pp_interactionsCollection,$species);

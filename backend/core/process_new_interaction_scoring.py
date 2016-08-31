@@ -31,7 +31,7 @@ species_to_process=species_col.find({},{"full_name":1})
 new_results=[]
 for species in species_to_process:
     
-    logger.info('parse'+species['full_name']+'annotation data');
+    logger.info('parse '+species['full_name']+' interaction data');
     logger.info("parse literature interaction data")
     results=list(pv_interactions_col.find({'mapping_file.species':species['full_name']},{"mapping_file.Gene ID":1,"_id":0} ))
     for u in results:
@@ -58,6 +58,6 @@ for species in species_to_process:
             if 'Uniprot ID' in r:
                 if r['Uniprot ID']!="":
                     logger.info("uniprot id %s ",r['Uniprot ID'])
-                    full_mappings_col.update({'mapping_file.Uniprot ID':r['Uniprot ID'],'mapping_file.species':species['full_name']},{'$inc': {'mapping_file.$.Score_int': 1,'mapping_file.$.Global_Score': 1  } })
+                    full_mappings_col.update({'species':species['full_name'],'mapping_file.Uniprot ID':r['Uniprot ID']},{'$inc': {'mapping_file.$.Score_int': 1,'mapping_file.$.Global_Score': 1  } })
 
                     

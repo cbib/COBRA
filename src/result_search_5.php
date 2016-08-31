@@ -337,11 +337,15 @@ if ((isset($_GET['organism'])  && $_GET['organism']!='' && $_GET['organism']!='N
                 }
             }
             if (isset($result['mapping_file']['Plaza ID'])&& $result['mapping_file']['Plaza ID']!='' && $result['mapping_file']['Plaza ID']!='NA'){
-                if (in_array($result['mapping_file']['Plaza ID'],$plaza_ids)==FALSE){
-                    array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
-                }
+//                if (in_array($result['mapping_file']['Plaza ID'],$plaza_ids)==FALSE){
+//                    array_push($plaza_ids,$result['mapping_file']['Plaza ID']);
+//                }
                 $plaza_id=$result['mapping_file']['Plaza ID'];
-            } 
+                //echo $plaza_id;
+            }
+            else{
+                $plaza_id='NA';
+            }
             if (isset($result['mapping_file']['Transcript ID'])&& $result['mapping_file']['Transcript ID']!='' && $result['mapping_file']['Transcript ID']!='NA'){
                 
                 $transcript_ids = preg_split("/[\s,]+/",$result['mapping_file']['Transcript ID']);
