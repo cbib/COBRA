@@ -147,7 +147,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 . '<th>Query seq id</th>'
                 . '<th>Subject gene id</th>'
                 . '<th>Subject transcript id</th>'
-                . '<th>ident (%)</th>'
+                . '<th>Ident (%)</th>'
                 . '<th>E value</th>'
          . '</tr>'
         . '</thead>'
