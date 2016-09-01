@@ -141,6 +141,7 @@ qtl_table={
         "tgt":"Marker ID",
 	"url":"",
 	"doi":"none",
+        "species":"Cucumis melo",
 	"key":"",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
@@ -164,6 +165,7 @@ qtl_table={
         "tgt":"Marker ID",
 	"url":"",
 	"doi":"none",
+        "species":"Cucumis melo",
 	"key":"",
 	# parser config 
 		# xls parser configuration, are propagated to all entries in  "experimental_results",
