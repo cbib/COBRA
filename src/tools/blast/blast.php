@@ -85,7 +85,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                      );
     $jobsCollection->insert($document);
     
-  
+    
+   
 
     
     
@@ -138,9 +139,43 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
 //        }
 //        echo '</tbody></table>';
 //    }
+    $lines=  explode("\n",$tab);
     if (count($max_hits)!==0){
-        echo '<table id="blast_results" class="table table-hover dataTable no-footer"><thead><tr><th>Query seq id</th><th>Subject seq id</th></tr></thead><tbody></tbody></table>';
- 
+        echo '<table id="blast_results" class="table table-hover dataTable no-footer">'
+        . '<thead>'
+         . '<tr>'
+                . '<th>Query seq id</th>'
+                . '<th>Subject gene id</th>'
+                . '<th>Subject transcript id</th>'
+                . '<th>ident (%)</th>'
+                . '<th>E value</th>'
+         . '</tr>'
+        . '</thead>'
+        . '<tbody>';
+            
+            foreach ($lines as $line) {
+                echo '<tr>';
+                $rows=  explode("\t",$line);
+                error_log($rows[0]."--------------------------------");
+                echo '<td>'.$rows[0].'</td>';
+                $gene=explode("|", $rows[1]);
+                //echo '<td>'.$gene[0].'</td>';
+                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.$gene[0].'">'.$gene[0].'</a></td>';
+                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.$gene[1].'">'.$gene[1].'</a></td>';
+                echo '<td>'.$rows[2].'</td>';
+                echo '<td>'.$rows[3].'</td>';
+                
+//                foreach ($rows as $row) {
+//                    //echo '<td>'.$value.'</td>';
+//                    error_log($row);
+//                }
+                
+                echo '</tr>';
+            }
+           
+     echo '</tbody>'
+          . '</table>';
+        
     }
     else{
         echo '<p class="no_results"> Results: No hits found </br></p>';  

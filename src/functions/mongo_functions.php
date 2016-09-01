@@ -3348,12 +3348,12 @@ function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
         ),
         
         array('$sort'=>array('_id.score'=>-1)),
-        array('$limit' => 10)
+        array('$limit' => 15)
        
    )
    );
     
-//    $best_scored_genes=$full_mappings_collection->aggregate(
+/*    $best_scored_genes=$full_mappings_collection->aggregate(
 //    array(
 //        array('$match' => array('type'=>'full_table')),  
 //        array('$project' => array('mapping_file'=>1,'species'=>1,'_id'=>0)),
@@ -3370,13 +3370,21 @@ function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
 //        array('$sort'=>array('_id.score'=>-1))
 //       
 //   )
-//   );
+//   );*/
    
    }
     catch ( MongoConnectionException $e )
     {
             echo '<p>Couldn\'t get any scoring values, Do you have data processed?</p>';
             echo $e->getMessage();
+        exit();
+    }
+    catch ( MongoResultException $e )
+    
+    {
+            $message=$e->getMessage();
+            //echo '<p>Couldn\'t get any scoring values, Do you have data processed?</p>';
+            echo "<script type='text/javascript'> alert('$message');</script>";
         exit();
     }
     return $best_scored_genes;
