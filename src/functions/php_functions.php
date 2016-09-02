@@ -3168,7 +3168,7 @@ function load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$specie
 
                                 echo'<div class="transcript_area"> 
 
-                                            <!--here comes the pv interaction accordion div-->
+                                            <!--here comes the transcript sequence accordion div-->
                                         </div>';
                                 
                                 
@@ -3193,7 +3193,7 @@ function load_and_display_sequences_data_with_ajax($gene_id,$gene_id_bis,$specie
                             <div class="panel-body panel-collapse collapse" id="gene_sequence_fasta">';
                                     echo'<div class="unspliced_area"> 
 
-                                            <!--here comes the pv interaction accordion div-->
+                                            <!--here comes the unspiced gene sequences accordion div-->
                                         </div>';
                                 
                                 

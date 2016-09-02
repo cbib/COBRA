@@ -47,7 +47,7 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
 
 
 
-                            echo  '<button onclick="runBlast(this)" data-species="'.$species.'" data-id="'.str_replace(".", "__", $values['Transcript ID']).'"  data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast sequence</button>';
+                            echo  '<button onclick="runBlast(this)" data-species="'.$species.'" data-id="'.str_replace(".", "__", $values['Transcript ID']).'"  data-sequence="'.$values['Transcript Sequence'].'" id="blast_button" type="button">Blast this sequence</button>';
                             echo '</br>';
                             echo '  <center>
                                         <div class="loading_'.str_replace(".", "__", $values['Transcript ID']).'" style="display: none">
@@ -60,7 +60,9 @@ if (isset($_POST['gene_ids'],$_POST['gene_ids_bis'],$_POST['species'],$_POST['mo
 
                                     </div>
                                 </div>
+                                <div class="shift_line"></div>
                             </div>';
+                            echo '<div class="shift_line"></div>';
                         }
                     }
                 }
