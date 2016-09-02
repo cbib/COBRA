@@ -1300,7 +1300,7 @@ function get_ortholog_table(MongoCollection $full_mappingsCollection, Mongocolle
                         //$table_string.='<td>'.$line['mapping_file']['Uniprot ID'].'</td>';
 
                         $table_string.='<td>'.$data['species'].'</td>';
-                        $score=(float)$value['Score_exp']+(float)$value['Score_int']+(float)$value['Score_orthologs']+(float)$value['Score_QTL']+(float)$value['Score_SNP'];
+                        $score=(float)$value['Global_Score'];
                         $table_string.='<td>'.$score.'</td>';
                         //$table_string.='<td>'.$score.'</td>';
 

@@ -34,7 +34,7 @@ $GOCollection = new Mongocollection($db, "gene_ontology");
     echo '<div class="col-md-12" >		
         <div class="col-md-6" >
                 <div class="column-padding no-right-margin">
-                        <div class="plain-box"><h2 id="features">A COmbination of systems Biology and experimental high-throughput approaches to engIneer durable Resistance against plAnt viruses in crops</h2>
+                        <div class="plain-box"><h2 id="features">A <b><font color="green">CO</font></b>mbination of systems <b><font color="green">B</font></b>iology and experimental high-throughput approaches to engineer durable <b><font color="green">R</font></b>esistance against pl<b><font color="green">A</font></b>nt viruses in crops</h2>
                         </div>
                                 <p>(PLANT-KBBE) 2013 Projet COBRA</p>
                                 <p>COBRA plant virus interaction database is developed in coordination with other plant genomics and bioinformatics groups via the  consortium. The Plant KBBE project is funded by the European Commission within its 7th Framework Programme, under the thematic area.</p>
