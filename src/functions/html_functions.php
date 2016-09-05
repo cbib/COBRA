@@ -69,9 +69,17 @@ function add_ajax_accordion_panel($function='null',$accordion_id='null', $body_p
                 <div class="panel-heading" onclick="'.$function.'">
 
                         <a class="accordion-toggle collapsed" href="#'.$body_panel_id.'" data-parent="#accordion_documents_'.$accordion_id.'" data-toggle="collapse">
-                                <strong>Top Ranking susceptibility genes using COBRA scoring function</strong>
+                                <strong>Top ranking susceptibility genes using COBRA scoring function</strong>
+                                
                         </a>				
-
+                        <!--<select data-id="'.$area_id.'" onchange="change_species(this)">
+                            <option value="Arabidopsis thaliana">Arabidopsis thaliana</option>
+                            <option value="Prunus persica">Prunus persica</option>
+                            <option value="Solanum lycopersicum">Solanum lycopersicum</option>
+                            <option value="Cucumis melo">Cucumis melo</option>
+                            <option value="Oriza sativa ssp japonica">Oriza sativa ssp japonica</option>
+                            <option value="Hordeum vulgare">Hordeum vulgare</option>
+                        </select>-->
                 </div>
                 <center>
                     <div class="'.$loading_id.'" style="display: none"></div>

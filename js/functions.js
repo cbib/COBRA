@@ -454,6 +454,8 @@ function change_min_logFC(element){
     
     
 }
+
+
 //set value for max logFC
 function change_max_logFC(element){
     clicked_id = element.getAttribute('data-id');
@@ -470,6 +472,13 @@ function change_max_logFC(element){
     //element_to_modify.setAttribute("data-max", new_max_logFC);
 
 }
+
+function change_species(element){
+    //alert(clicked_id = element.getAttribute('data-id'));
+    alert(element.options[element.selectedIndex].value);
+}
+
+
 //show highcharts for GO enrichment
 function show_GO_enrichment(element,clicked_id){
     var x_array=element.attr('data-x');
