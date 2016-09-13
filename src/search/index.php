@@ -53,7 +53,7 @@ require '../session/control-session.php';
                             <center>
                                 <div class="statloading" style="display: none"></div>
                             </center>
-                            <div class="panel-body panel-collapse collapse" id="stat-table">';
+                            <div style="color:white;" class="panel-body panel-collapse collapse" id="stat-table">';
 
         
         
