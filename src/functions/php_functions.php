@@ -507,9 +507,9 @@ function display_statistics_with_ajax(){
     $today = date("F j, Y, g:i a");
     //$stat_string.='<h4>Last update : '.getlastmod().'</h4>
 
-    $stat_string.='<div class="stats-panel">'
-            .'<div class="col-md-12" >'
-            . '<div class="col-md-5" >
+    $stat_string.='<div  class="stats-panel">'
+          .'<div class="col-md-12" >'
+             . '<div id="transtat" class="col-md-5" >
                 <h2> Transcriptomics </h2>
                 <h4>Experiments : '.$sampleCollection->count().'</h4>';
                 $stat_string.='<h4>Expression measures per species (micro-array and RNA-seq):</h4>';
@@ -532,9 +532,11 @@ function display_statistics_with_ajax(){
                    }
                    
                    $stat_string.='<li style="margin-left:30px;">'.$species['full_name'].' ('.$total.$text.'-'.$total_samples.' samples): '.$measurementsCollection->count(array('species'=>$species['full_name'])).'</li>';
+                
                 }
-                $stat_string.='</div>';
-                $stat_string.='<div class="col-md-5" >';
+                $stat_string.='<div class="shift_line"/>';
+ $stat_string.='</div>';
+                $stat_string.='<div id="transtat" class="col-md-5" >';
                 $stat_string.='<h2> Interactomics </h2>';
                 $pv_fields=array(array('$project' => array('mapping_file'=>1,'_id'=>0)));
                 $cursor_pvi=$pv_interactionsCollection->aggregate($pv_fields);
@@ -572,7 +574,7 @@ function display_statistics_with_ajax(){
                 $stat_string.= '<h4>Intact Plant-Plant interactions: '.$total_ppi_intact.'</h4>';
                 $stat_string.= '<h4>String Plant-Plant interactions: 25382632</h4>';
                 $stat_string.='</div>';
-                $stat_string.='<div class="col-md-2" >';
+                $stat_string.='<div id="transtat" class="col-md-2" >';
                 $stat_string.= '<h4>Species : '.$speciesCollection->count().'</h4>';
 
                 $cursor_species=$speciesCollection->aggregate(array(

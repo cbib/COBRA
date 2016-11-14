@@ -67,8 +67,24 @@ table.dataTable tbody tr:hover {
     background-color: #04B4AE;
 }*/
 
-/*
-//Users preference*/
+
+
+/*statistics panel style*/
+#transtat{
+    height:100%;
+    background-color: #FFF;
+    margin-left: 0px;
+    border-radius: 20px;
+    padding: 10px 10px 0px;
+    float: left;
+    border: 1px solid #DDD;
+    //background:green;
+    background: linear-gradient(lightgreen, green); 
+}
+
+
+
+/*Users preference*/
 #user_pref, #change_password{
 /*     //width:970px;*/
      width:100%;
