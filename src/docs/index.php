@@ -30,7 +30,7 @@ $dir = '../../../../../../../data/COBRA_depot/';
  // create new directory with 744 permissions if it does not exist yet
  // owner will be the user/group the PHP script is run under
  if ( !file_exists($dir) ) {
-     error_log("dir created");
+     //error_log("dir created");
      $oldmask = umask(0);  // helpful when used in linux server  
      mkdir ($dir, 0744);
  }
@@ -42,12 +42,12 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
     $fichier = basename($_FILES['fileToUpload']['name']);
     $max_size = 100000000;
     $size = filesize($_FILES['fileToUpload']['tmp_name']);
-    error_log($size);
+    //error_log($size);
     $extensions = array('.doc','.docx','.txt','.png', '.gif', '.jpg', '.jpeg','.pdf','.xls','.xlsx','.ppt','.pptx');
     $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
     //Début des vérifications de sécurité...
-    error_log($extension);
-    error_log($fichier);
+    //error_log($extension);
+    //error_log($fichier);
     if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
     {
          $erreur = 'Upload valid only for type png, gif, jpg, jpeg, txt or doc...';
@@ -64,7 +64,7 @@ if ((isset($_FILES['fileToUpload'])) && ($_FILES['fileToUpload']!='')){
           'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
         //testing if file has been moved
-        error_log($fichier);
+        //error_log($fichier);
 
         if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dir . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
         {
@@ -204,7 +204,7 @@ echo '<div id="doc_pages">';
             //echo '<li><a href="./mondossier/' . $fichier . '">' . $fichier . '</a></li>';
 
         }
-        error_log($dir.$fichier);
+        //error_log($dir.$fichier);
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 

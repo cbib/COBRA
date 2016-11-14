@@ -112,7 +112,7 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         
         $total_diff_exp_genes=count($deg);
         $total_genes=count($total_xp_genes);
-        error_log('A total of '.$total_diff_exp_genes.' on '.$total_genes.' genes has been found with logFC higher than '.$maxlogFCthreshold.' and lower than '.$minlogFCthreshold.'</br>');
+        //error_log('A total of '.$total_diff_exp_genes.' on '.$total_genes.' genes has been found with logFC higher than '.$maxlogFCthreshold.' and lower than '.$minlogFCthreshold.'</br>');
 
 
 
@@ -164,7 +164,7 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
             }
         }
         
-        error_log("=================SEARCH IDENTIFIED GO TERMS IN ALL GENES===========================");
+        //error_log("=================SEARCH IDENTIFIED GO TERMS IN ALL GENES===========================");
         foreach ($go_id_list as $key => $value) {
             //error_log($key);
             //$percentage=($value/$total_diff_exp_genes)*100;
@@ -182,11 +182,11 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
             ));
             $global_value=count($cursor_GO['result']);
             //echo 'GO:0005515 term ID was found in '.count($cursor_GO['result']);
-            if ($value> 10){
-                error_log($value.'/'.$total_diff_exp_genes.' genes shows GO term with id: '.$key.'</br>');
-                error_log(count($cursor_GO['result']).'/'.$total_species_genes.' genes shows GO term with id: '.$key.'</br>');
+            //if ($value> 10){
+                //error_log($value.'/'.$total_diff_exp_genes.' genes shows GO term with id: '.$key.'</br>');
+               // error_log(count($cursor_GO['result']).'/'.$total_species_genes.' genes shows GO term with id: '.$key.'</br>');
                         //echo $key.' appears '.$value.' times </br>';
-            }
+            //}
 
 
             //$GO_name=$GOCollection->find(array('GO_collections.id'=>$key),array('GO_collections.$'=>1,'_id'=>0));
@@ -217,7 +217,7 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         $result_file_sorted = "/data/hypergeom_R_results/result_sorted.txt";
         $output = shell_exec("sort $result_file > $result_file_sorted");
 
-        error_log("============================================\n");
+        //error_log("============================================\n");
 
         
         

@@ -156,7 +156,7 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
             foreach ($lines as $line) {
                 echo '<tr>';
                 $rows=  explode("\t",$line);
-                error_log($rows[0]."--------------------------------");
+                //error_log($rows[0]."--------------------------------");
                 echo '<td>'.$rows[0].'</td>';
                 $gene=explode("|", $rows[1]);
                 //echo '<td>'.$gene[0].'</td>';

@@ -26,16 +26,16 @@ if ((isset($_POST['xp_id'])) && ($_POST['xp_id']!='')){
         
         $today = date("F j, Y, g:i a");
         
-        error_log($xp);
+        //error_log($xp);
         list($xp_id, $tmp, $xp_array) = explode('.', $xp);
-        error_log($tmp);
-        error_log($xp_array);
-        error_log($xp_id);
+        //error_log($tmp);
+        //error_log($xp_array);
+        //error_log($xp_id);
 
         $names= find_xp_name_with_xp_id($samplesCollection, $xp_id);
         foreach ($names as $name) {
             $xp_name=$name['name'];
-            error_log($xp_name);
+            //error_log($xp_name);
             
         }
         
