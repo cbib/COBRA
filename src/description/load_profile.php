@@ -46,7 +46,12 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
          //    var_dump($result);echo '</br>';
              //error_log($result['gene'].'</br>');//echo '</br>';
              if ($result['gene'] != "" && $result['gene'] != "NA"){
-                $dpi=$result['day_after_inoculation'];
+                if (isset($result['day_after_inoculation'])){
+                    $dpi=$result['day_after_inoculation'];
+                }
+                else{
+                    $dpi="not defined";
+                }
                 array_push($x_categories, $result['gene']);
                 $y_sub_categories=array();
 

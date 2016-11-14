@@ -20,7 +20,7 @@ require '../session/control-session.php';
 
 
 
-
+    ini_set('memory_limit', '512M');    
     $db=mongoConnector();
     $grid = $db->getGridFS();
     $speciesCollection = new Mongocollection($db, "species");
