@@ -22,15 +22,15 @@ parser = HTMLParser()
 characters = string.ascii_letters  + string.digits
 characters = parser.unescape(characters)
 password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
-print "sgermanretana password :" + password_gen
+print "username :sdecroocq password :" + password_gen
 password=hashlib.md5(password_gen).hexdigest()
 
 users_table={
-	'login':'sgermanretana',
+	'login':'sdecroocq',
 	'pwd': password,
-	'firstname':'German-Retana',
-	'lastname' : 'Sylvie',
-	'email_adress':'sylvie.german@bordeaux.inra.fr',
+	'firstname':'Stephane',
+	'lastname' : 'Decroocq',
+	'email_adress':'stephane.decroocq@inra.fr',
 	'institution':'INRA',
 	'grade':'administrator'
 	
