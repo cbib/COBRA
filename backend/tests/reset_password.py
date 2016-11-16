@@ -15,7 +15,7 @@ import datetime
 if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 #characters = string.ascii_letters + string.punctuation  + string.digits
-userlist=['Gallois','Aranda','Roch','Stein','Garcia','Decroocq','German-Retana','Walter','Schurdi-Levraud']
+userlist=['Garcia']
 
 
 for name in userlist:
