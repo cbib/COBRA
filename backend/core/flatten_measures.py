@@ -15,9 +15,6 @@ from helpers.db_helpers import *
 # Script supposed to be run in the background to populate the DB with available datasets 
 if "log" not in globals():
   logger = Logger.init_logger('FLATTEN_%s'%(cfg.language_code), load_config())
-
-
-
 logger.info("Running %s",sys.argv[0])
 
 

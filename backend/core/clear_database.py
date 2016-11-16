@@ -12,9 +12,8 @@ from config import *
 
 
 ## Setup
-import logging 
-
-from math import log
+#import logging 
+#from math import log
 
 species_col.remove()
 publications_col.remove()

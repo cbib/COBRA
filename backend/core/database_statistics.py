@@ -12,8 +12,8 @@ from helpers.db_helpers import *
 
 ## Script specific 
 import sys
-import logging 
-import collections
+#import logging 
+#import collections
 import datetime
 
 if "log" not in globals():
