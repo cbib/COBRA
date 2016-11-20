@@ -53,7 +53,7 @@ for species in species_to_process:
 
     #results=list(measurements_col.find({"xp":{"$in":tgt_path},"logFC":{"$gt":2}},{"_id":0}))
     results=list(measurements_col.find({ "xp":{"$in":tgt_path},"$or": [ { "logFC": { "$gt": 2 } }, { "logFC": { "$lt": -2 } } ] },{"_id":0} ))
-    logger.info("preparing new scoring step for species %s",species["full_name"])
+    logger.info("preparing new scoring step (%d genes) for species %s",len(results),species["full_name"])
     counter=0
     for r in results:
         logger.info("scoring step for gene number: %d",counter)
