@@ -61,20 +61,21 @@ for gene in genes_to_process:
             
             for ortholog_id in ortholog_list.split(','):
                 logger.info(" Ortholog ID: %s",ortholog_id)
-                for id in genes_to_process:
-                    if id['mapping_file']['Plaza ID']==ortholog_id:
-                        print id['mapping_file']['Global_Score']
-                        ortholog_global_scores=ortholog_global_scores+float(id['mapping_file']['Global_Score'])
-                        total_ortholog=total_ortholog+1
-                
                 if ortholog_id!=plaza_id:
-                    #logger.info(" Ortholog ID: %s -- Plaza ID: %s",ortholog_id,plaza_id)
-                    scores_to_process=full_mappings_col.find({"mapping_file.Plaza ID":ortholog_id},{'mapping_file.$.Global_Score': 1  })
-                    for score in scores_to_process:
-                        logger.info("Score: %.4f",score['mapping_file'][0]['Global_Score'])
-                        ortholog_global_scores=ortholog_global_scores+float(score['mapping_file'][0]['Global_Score'])
-                    #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Global_Score': 0.5 } })
-                        total_ortholog=total_ortholog+1
+                    for id in genes_to_process:
+                        if id['mapping_file']['Plaza ID']==ortholog_id:
+                            print id['mapping_file']['Global_Score']
+                            ortholog_global_scores=ortholog_global_scores+float(id['mapping_file']['Global_Score'])
+                            total_ortholog=total_ortholog+1
+                
+#                if ortholog_id!=plaza_id:
+#                    #logger.info(" Ortholog ID: %s -- Plaza ID: %s",ortholog_id,plaza_id)
+#                    scores_to_process=full_mappings_col.find({"mapping_file.Plaza ID":ortholog_id},{'mapping_file.$.Global_Score': 1  })
+#                    for score in scores_to_process:
+#                        logger.info("Score: %.4f",score['mapping_file'][0]['Global_Score'])
+#                        ortholog_global_scores=ortholog_global_scores+float(score['mapping_file'][0]['Global_Score'])
+#                    #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Global_Score': 0.5 } })
+#                        total_ortholog=total_ortholog+1
 #            else:
 #                if ortholog_list!=plaza_id:
 #                    #logger.info("Plaza ID: %s",ortholog_id)
