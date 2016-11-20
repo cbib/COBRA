@@ -32,12 +32,17 @@ genes_to_process=full_mappings_col.aggregate([
                                  {
                                    'mapping_file.Gene ID':1,
                                    'mapping_file.Plaza ID':1,
+                                   'mapping_file.Global_Score':1,
                                    '_id': 0
                                  }
                             }
                         ]
                         , useCursor=False)
 
+
+for id in genes_to_process['mapping_file']['Plaza ID']:
+    if id=="AT5G20630":
+        print genes_to_process['mapping_file']['Global_Score']
 
 for gene in genes_to_process:
     logger.info("Gene ID: %s",gene['mapping_file']['Gene ID'])
