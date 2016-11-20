@@ -8,7 +8,7 @@ require('./src/session/control-session.php');
 date_default_timezone_set('Europe/Paris');
 
 
-$_SESSION['maintenance'] = "no"; 
+$_SESSION['maintenance'] = "yes"; 
 require('src/session/maintenance-session.php');
 
 
