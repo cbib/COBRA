@@ -60,19 +60,16 @@ for gene in genes_to_process:
             
             
             for ortholog_id in ortholog_list.split(','):
-                
+                logger.info(" Ortholog ID: %s",ortholog_id)
                 for id in genes_to_process:
                     if id['mapping_file']['Plaza ID']==ortholog_id:
-                        print gene['mapping_file']['Global_Score']
+                        print id['mapping_file']['Global_Score']
                 
                 if ortholog_id!=plaza_id:
                     #logger.info(" Ortholog ID: %s -- Plaza ID: %s",ortholog_id,plaza_id)
-                    
-                    
-                    
                     scores_to_process=full_mappings_col.find({"mapping_file.Plaza ID":ortholog_id},{'mapping_file.$.Global_Score': 1  })
                     for score in scores_to_process:
-                        #logger.info("Score: %.4f",score['mapping_file'][0]['Global_Score'])
+                        logger.info("Score: %.4f",score['mapping_file'][0]['Global_Score'])
                         ortholog_global_scores=ortholog_global_scores+float(score['mapping_file'][0]['Global_Score'])
                     #full_mappings_col.update({"mapping_file.Plaza ID":ortholog_id},{"$inc": {'mapping_file.$.Global_Score': 0.5 } })
                     total_ortholog=total_ortholog+1
