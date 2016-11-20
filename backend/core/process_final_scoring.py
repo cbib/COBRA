@@ -77,7 +77,7 @@ for gene in genes_to_process:
 #        if ortholog_global_scores > 0:
 #            score_plus=(ortholog_global_scores*coefficient)/total_ortholog
 #            logger.info("score to add: %s",score_plus)
-#            full_mappings_col.update({"mapping_file.Plaza ID":plaza_id},{"$inc": {'mapping_file.$.Score_ort': float(score_plus)} })
+#            full_mappings_col.update({"mapping_file.Plaza ID":plaza_id},{"$inc": {'mapping_file.$.Score_orthologs': float(score_plus)} })
 #            full_mappings_col.update({"mapping_file.Plaza ID":plaza_id},{"$inc": {'mapping_file.$.Global_Score': float(score_plus)} })
 
     
