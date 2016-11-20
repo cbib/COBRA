@@ -30,7 +30,6 @@ genes_to_process=full_mappings_col.aggregate([
                             {
                               '$project':
                                  {
-                                   'mapping_file.Gene ID':1,
                                    'mapping_file.Plaza ID':1,
                                    'mapping_file.Global_Score':1,
                                    '_id': 0
@@ -45,7 +44,7 @@ for id in genes_to_process['mapping_file']['Plaza ID']:
         print genes_to_process['mapping_file']['Global_Score']
 
 for gene in genes_to_process:
-    logger.info("Gene ID: %s",gene['mapping_file']['Gene ID'])
+    #logger.info("Gene ID: %s",gene['mapping_file']['Gene ID'])
     #logger.info("Plaza ID: %s",gene['mapping_file']['Plaza ID'])
     plaza_id=gene['mapping_file']['Plaza ID']
     ortholog_global_scores=0.0
