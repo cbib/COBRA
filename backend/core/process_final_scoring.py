@@ -25,7 +25,7 @@ logger.info("Running %s",sys.argv[0])
 
 
 coefficient=0.5
-genes_to_process=full_mappings_col.aggregate([
+genes_to_process=list(full_mappings_col.aggregate([
                             {'$unwind':'$mapping_file'},
                             {
                               '$project':
@@ -36,7 +36,7 @@ genes_to_process=full_mappings_col.aggregate([
                                  }
                             }
                         ]
-                        , useCursor=False).toArray()
+                        , useCursor=False))
 
 
 for gene in genes_to_process:
