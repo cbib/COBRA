@@ -39,13 +39,11 @@ genes_to_process=list(full_mappings_col.aggregate([
                         , useCursor=False))
 
 
-for gene in genes_to_process:
-    if gene['mapping_file']['Plaza ID']=="AT5G20630":
-        print gene['mapping_file']['Global_Score']
+
 
 for gene in genes_to_process:
     #logger.info("Gene ID: %s",gene['mapping_file']['Gene ID'])
-    #logger.info("Plaza ID: %s",gene['mapping_file']['Plaza ID'])
+    logger.info("Plaza ID: %s",gene['mapping_file']['Plaza ID'])
     plaza_id=gene['mapping_file']['Plaza ID']
     ortholog_global_scores=0.0
     total_ortholog=0
@@ -56,8 +54,17 @@ for gene in genes_to_process:
             ###Here we got a list of orthologs
             ortholog_global_scores=0.0 
             #ortholog_split_list=ortholog_list.split(',')
-            for ortholog_id in ortholog_list.split(','):
             
+            
+            
+            
+            
+            for ortholog_id in ortholog_list.split(','):
+                
+                for id in genes_to_process:
+                    if ['mapping_file']['Plaza ID']==ortholog_id:
+                        print gene['mapping_file']['Global_Score']
+                
                 if ortholog_id!=plaza_id:
                     #logger.info(" Ortholog ID: %s -- Plaza ID: %s",ortholog_id,plaza_id)
                     
