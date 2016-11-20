@@ -60,11 +60,11 @@ for gene in genes_to_process:
             
             
             for ortholog_id in ortholog_list.split(','):
-                logger.info(" Ortholog ID: %s",ortholog_id)
+                #logger.info(" Ortholog ID: %s",ortholog_id)
                 if ortholog_id!=plaza_id:
                     for id in genes_to_process:
                         if id['mapping_file']['Plaza ID']==ortholog_id:
-                            print id['mapping_file']['Global_Score']
+                            #print id['mapping_file']['Global_Score']
                             ortholog_global_scores=ortholog_global_scores+float(id['mapping_file']['Global_Score'])
                             total_ortholog=total_ortholog+1
                 
