@@ -36,7 +36,7 @@ genes_to_process=full_mappings_col.aggregate([
                                  }
                             }
                         ]
-                        , useCursor=False)
+                        , useCursor=False).toArray()
 
 
 for gene in genes_to_process:
