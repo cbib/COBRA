@@ -62,7 +62,7 @@ for gene in genes_to_process:
             for ortholog_id in ortholog_list.split(','):
                 
                 for id in genes_to_process:
-                    if ['mapping_file']['Plaza ID']==ortholog_id:
+                    if id['mapping_file']['Plaza ID']==ortholog_id:
                         print gene['mapping_file']['Global_Score']
                 
                 if ortholog_id!=plaza_id:
