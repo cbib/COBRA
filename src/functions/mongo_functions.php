@@ -3348,7 +3348,7 @@ function find_top_ranking_S_genes(MongoCollection $full_mappings_collection){
         ),
         
         array('$sort'=>array('_id.score'=>-1)),
-        array('$limit' => 25)
+        array('$limit' => 50)
        
    )
    );
