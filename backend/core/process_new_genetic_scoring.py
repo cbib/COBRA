@@ -132,7 +132,7 @@ for species in species_to_process:
                         {'$match' : {'type':'full_table', 'species': species['full_name']}},  
                         {'$project' : {'mapping_file':1,'_id':0}},
                         {'$unwind':'$mapping_file'},
-                        {'$match' :  {'mapping_file.Chromosome': chrom,"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['End'] } } ]}}, 
+                        {'$match' :  {'mapping_file.Chromosome': chrom,"$and": [ { "mapping_file.End": { "$gt": m['Start'] } }, { "mapping_file.Start": { "$lt": m['Start'] } } ]}}, 
                         {
                           '$project':
                             {

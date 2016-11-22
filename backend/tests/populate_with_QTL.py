@@ -159,7 +159,7 @@ qtls_col.insert(qtl_table)
 ############################################ Hordeum Vulgare #########################################################
 ###################################################################################################################
 qtl_table={
-	"data_file":"Cucumis/QTL/QTL_physical_positions.tsv",
+	"data_file":"Hordeum/QTL/QTL_physical_positions.tsv",
 	"src":"QTL ID",
 	"src_version":"Melonomics",
         "tgt":"Marker ID",
