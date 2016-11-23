@@ -207,6 +207,7 @@ echo '<div id="doc_pages">';
 
         }
         error_log($dir.$fichier);
+        error_log(scandir($dir.$fichier));
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 
