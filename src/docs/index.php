@@ -207,12 +207,12 @@ echo '<div id="doc_pages">';
 
         }
         error_log($dir.$fichier);
-        foreach (scandir($dir) as $value) {
-            error_log($value);
-        }
-        chmod($dir, 0777); 
+        //foreach (scandir($dir) as $value) {
+        //    error_log($value);
+        //}
+        chmod($dir, 0755); 
 
-        chmod($dir.$fichier, 0777); 
+        chmod($dir.$fichier, 0755); 
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 
