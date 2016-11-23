@@ -345,10 +345,10 @@ $(document).ready(function() {
  
     $('#button').click( function () {
         //table.$('tr.selected').remove().draw( false );
-        
         //table.row('.selected').
         var full_path=table.$('tr.selected').find('td').eq(0);
-        
+        alert(full_path.html().trim())
+
         table.row('.selected').remove().draw( false );
         
         window.location.replace("index.php?action=Remove&full_path=".concat(full_path.html().trim()));
