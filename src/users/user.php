@@ -26,7 +26,7 @@
     $historyCollection = new Mongocollection($db, "history");
     $GO_enrichedCollection = new Mongocollection($db, "go_enrichments");
 
-    $user=$usersCollection->find(array("firstname"=>str($firstname),"lastname"=>str($lastname)),array());
+    $user=$usersCollection->find(array("firstname"=>(string)$firstname,"lastname"=>(string)$lastname),array());
     make_species_list(find_species_list($speciesCollection),"../..");
     make_user_preferences($user,$usersCollection);
     
