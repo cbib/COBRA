@@ -217,7 +217,7 @@ echo '<div id="doc_pages">';
                     </button>
                     <ul class="dropdown-menu">
 
-                      <li><a href="./'.$dir.$fichier.'">Download file</a></li>
+                      <li><a href="'.$dir.$fichier.'">Download file</a></li>
                       <li><a href="../../../../../../../data/COBRA_depot/'.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
                       <!--<li><a href="#">Remove</a></li>-->
