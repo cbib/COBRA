@@ -107,7 +107,7 @@ $GOCollection = new Mongocollection($db, "gene_ontology");
             <div class="col-md-6" >
                 <div id="image_container">
                     <hr  size=1>
-                    <a href="http://www.cbib.u-bordeaux2.fr/en"><img class="displayed" id="partner_logo" src="./images/cgfb_w186.jpg" height="85"/></a>
+                    <a href="http://www.cbib.u-bordeaux.fr/en"><img class="displayed" id="partner_logo" src="./images/cgfb_w186.jpg" height="85"/></a>
                 </div>
                 <div id="image_container">
                     <hr  size=1>

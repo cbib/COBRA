@@ -480,7 +480,7 @@ function display_sample_table($cursor,$samplesCollection){
                     $xp_id = new MongoId($xp_String_id);
                     $xp_name=$samplesCollection->findOne(array('_id'=>$xp_id),array('name'=>1,'_id'=>0));
 
-                    echo "<td><a href=https://services.cbib.u-bordeaux2.fr/cobra/description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
+                    echo "<td><a href=https://services.cbib.u-bordeaux.fr/cobra/description/experiments.php?xp=".str_replace(' ','\s',$xp_name['name']).">".$xp_name['name']."(Sample file ".$file_number.")</a></td>";
                     //echo"<td>".$line[$value]."</td>";
 
                 }
