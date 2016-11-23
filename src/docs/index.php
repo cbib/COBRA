@@ -207,7 +207,11 @@ echo '<div id="doc_pages">';
 
         }
         error_log($dir.$fichier);
-        error_log(scandir($dir));
+        foreach (scandir($dir) as $value) {
+            error_log($value);
+        }
+
+        
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 
