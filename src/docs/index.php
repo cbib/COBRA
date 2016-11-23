@@ -227,7 +227,7 @@ echo '<div id="doc_pages">';
                   </div></td>';
 
         $table_string.='</tr>';
-P
+
     }
     $table_string.='</tbody></table>';
 
