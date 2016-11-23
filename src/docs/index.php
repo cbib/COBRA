@@ -219,8 +219,6 @@ echo '<div id="doc_pages">';
                       <li><a href="'.$dir.$fichier.'" download>Download file</a></li>
                       <li><a href="'.$dir.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
-
-
                       <!--<li><a href="#">Remove</a></li>-->
                       <!--<li role="separator" class="divider"></li>
                       <li><a href="#">Separated link</a></li>-->
@@ -349,7 +347,7 @@ $(document).ready(function() {
         //table.row('.selected').
         var full_path=table.$('tr.selected').find('td').eq(0);
         
-        //alert(full_path);
+        alert(full_path);
         table.row('.selected').remove().draw( false );
         
         window.location.replace("index.php?action=Remove&full_path=".concat(full_path.html().trim()));
