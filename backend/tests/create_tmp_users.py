@@ -19,7 +19,7 @@ import datetime
 if "log" not in globals():
   log = Logger.init_logger('SAMPLE_DATA_%s'%(cfg.language_code), load_config())
 #characters = string.ascii_letters + string.punctuation  + string.digits
-userlist=[1,2,3,4,5,6,7,8,9,10]
+userlist=['1','2','3','4','5','6','7','8','9','10']
 
 
 for name in userlist:
@@ -27,15 +27,15 @@ for name in userlist:
 	parser = HTMLParser()
 	characters = parser.unescape(characters)
 	password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
-	print 'user'+str(name) + "password :" + password_gen
+	print 'user'+name + "password :" + password_gen
 	password=hashlib.md5(password_gen).hexdigest()
 	#users_col.update({'firstname':name},{"$set":{'pwd':password}})
-        login="user"+str(name)
+        login="user"+name
         users_table={
             'login':login,
             'pwd': password,
-            'firstname':name,
-            'lastname' : 'User',
+            'firstname':'User',
+            'lastname' : name,
             'email_adress':'cobra@bordeaux.fr',
             'institution':'Cobra',
             'grade':'tmp_user'
