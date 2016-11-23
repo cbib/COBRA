@@ -24,7 +24,7 @@ $speciesCollection = new Mongocollection($db, "species");
 
 //unlink('../../../../../../../data/COBRA_depot/Minutes-of-the-COBRA-2nd-Meeting.docx');
 //unlink('../../../../../../../data/COBRA_new_depot/Plant-NB-LRR-signaling-upstreams-and-downstreams.pdf');
-//rmdir('../../../../../../../data/COBRA_new_depot/');
+rmdir('../../../../../../../data/COBRA_depot/');
 
 $dir = '../../../../../../../data/COBRA_depot/';
 //$dir = '/data/COBRA_depot/';
@@ -34,7 +34,7 @@ $dir = '../../../../../../../data/COBRA_depot/';
  if ( !file_exists($dir) ) {
      //error_log("dir created");
      $oldmask = umask(0);  // helpful when used in linux server  
-     mkdir ($dir, 0744);
+     mkdir ($dir, 0755);
  }
 
 
