@@ -27,10 +27,10 @@ for name in userlist:
 	parser = HTMLParser()
 	characters = parser.unescape(characters)
 	password_gen =  "".join(choice(characters) for x in range(randint(8, 16)))
-	print 'user'+name + "password :" + password_gen
+	print 'user'+str(name) + "password :" + password_gen
 	password=hashlib.md5(password_gen).hexdigest()
 	#users_col.update({'firstname':name},{"$set":{'pwd':password}})
-        login="user"+name
+        login="user"+str(name)
         users_table={
             'login':login,
             'pwd': password,
