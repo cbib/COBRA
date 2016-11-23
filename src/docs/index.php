@@ -218,8 +218,8 @@ echo '<div id="doc_pages">';
                     </button>
                     <ul class="dropdown-menu">
 
-                      <li><a href="'.$dir.$fichier.'">Download file</a></li>
-                      <li><a href="'.$dir.$fichier.'">Show file</a></li>
+                      <li><a href="./'.$dir.$fichier.'">Download file</a></li>
+                      <li><a href="./'.$dir.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
                       <!--<li><a href="#">Remove</a></li>-->
                       <!--<li role="separator" class="divider"></li>
