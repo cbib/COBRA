@@ -210,6 +210,7 @@ echo '<div id="doc_pages">';
         foreach (scandir($dir) as $value) {
             error_log($value);
         }
+        chmod($dir, 0777); 
 
         chmod($dir.$fichier, 0777); 
         $table_string.='<td><div class="btn-group">
