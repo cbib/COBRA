@@ -215,15 +215,17 @@
     //Debut du corps de la table
     $table_string.='<tbody>';
     foreach ($searches as $line) {
-        if ($line['type']!="search"){
-            $table_string.='<tr>';
-            //$table_string.='<td>'.$line['type'].'</td>';
+        if (isset($line['type'])){
+            if ($line['type']!="search"){
+                $table_string.='<tr>';
+                //$table_string.='<td>'.$line['type'].'</td>';
 
-            $table_string.='<td>'.$line['date'].'</td>';
+                $table_string.='<td>'.$line['date'].'</td>';
 
-            $table_string.='<td>'.$line['firstname'].'</td>';
+                $table_string.='<td>'.$line['firstname'].'</td>';
 
-            $table_string.='</tr>';
+                $table_string.='</tr>';
+            }
         }
 
     }
