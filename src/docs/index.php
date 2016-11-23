@@ -25,7 +25,7 @@ $speciesCollection = new Mongocollection($db, "species");
 //unlink('../../../../../../../data/COBRA_depot/Minutes-of-the-COBRA-2nd-Meeting.docx');
 //unlink('../../../../../../../data/COBRA_new_depot/Plant-NB-LRR-signaling-upstreams-and-downstreams.pdf');
 
-$dir = '../../../../../../../data/COBRA_depot/';
+$dir = '../../../../../../data/COBRA_depot/';
 //$dir = '/data/COBRA_depot/';
 
  // create new directory with 744 permissions if it does not exist yet
@@ -224,7 +224,7 @@ echo '<div id="doc_pages">';
                     <ul class="dropdown-menu">
 
                       <li><a href="'.$dir.$fichier.'">Download file</a></li>
-                      <li><a href="../../../../../../../../data/COBRA_depot/'.$fichier.'">Show file</a></li>
+                      <li><a href="../../../../../../data/COBRA_depot/'.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
                       <!--<li><a href="#">Remove</a></li>-->
                       <!--<li role="separator" class="divider"></li>
