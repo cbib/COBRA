@@ -22,7 +22,7 @@ $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $speciesCollection = new Mongocollection($db, "species");
 
-#$dir = '../../../../../../../data/COBRA_depot/';
+rmdir('../../../../../../../data/COBRA_new_depot/');
 
 $dir = '../../../../../../../data/COBRA_depot/';
 //$dir = '/data/COBRA_depot/';
@@ -347,7 +347,6 @@ $(document).ready(function() {
         //table.row('.selected').
         var full_path=table.$('tr.selected').find('td').eq(0);
         
-        alert(full_path);
         table.row('.selected').remove().draw( false );
         
         window.location.replace("index.php?action=Remove&full_path=".concat(full_path.html().trim()));
