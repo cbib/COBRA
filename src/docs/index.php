@@ -22,7 +22,7 @@ $db=mongoConnector();
 $docsCollection = new Mongocollection($db, "docs");
 $speciesCollection = new Mongocollection($db, "species");
 
-#unlink('../../../../../../../data/COBRA_new_depot/mpmi-23-5-0539.pdf');
+unlink('../../../../../../../data/COBRA_depot/Minutes-of-the-COBRA-2nd-Meeting.docx');
 #unlink('../../../../../../../data/COBRA_new_depot/Plant-NB-LRR-signaling-upstreams-and-downstreams.pdf');
 #rmdir('../../../../../../../data/COBRA_new_depot/');
 
