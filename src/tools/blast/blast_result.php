@@ -27,7 +27,10 @@ require '../../session/control-session.php';
                    
 //                    $dom = new DOMDocument;
 //                    $dom->loadHTML($value);
-                    var_dump($value);
+                      echo $value;
+                      for $v in $value:
+                          PRINT $V
+                      endfor;
 //                    echo $dom->getElementsByTagName('PRE')->plaintext;;
                     
 //                    foreach ($value as $blast_results) {
