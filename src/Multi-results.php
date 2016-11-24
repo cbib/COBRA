@@ -25,6 +25,8 @@ if (((isset($_GET['organism'])) && ($_GET['organism']!='')) && ((isset($_GET['se
 
 	$organism=control_post(htmlspecialchars($_GET['organism']));
 	$search=control_post(htmlspecialchars($_GET['search']));
+        $search=str_replace("__", ".",$search);
+        
 	//$search=strtoupper($search);
 
     $list_search=array();

@@ -160,8 +160,8 @@ if ((isset($_POST['search'])) && ($_POST['search']!='')){
                 echo '<td>'.$rows[0].'</td>';
                 $gene=explode("|", $rows[1]);
                 //echo '<td>'.$gene[0].'</td>';
-                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.$gene[0].'">'.$gene[0].'</a></td>';
-                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.$gene[1].'">'.$gene[1].'</a></td>';
+                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.str_replace(".", "__",$gene[0]).'">'.$gene[0].'</a></td>';
+                echo '<td><a class="nowrap" target = "_blank" href="../../../src/Multi-results.php?organism=All+species&search='.str_replace(".", "__",$gene[1]).'">'.$gene[1].'</a></td>';
                 echo '<td>'.$rows[2].'</td>';
                 echo '<td>'.$rows[3].'</td>';
                 
