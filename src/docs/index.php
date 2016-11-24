@@ -25,7 +25,7 @@ $speciesCollection = new Mongocollection($db, "species");
 //unlink('../../../../../../../data/COBRA_depot/Minutes-of-the-COBRA-2nd-Meeting.docx');
 //unlink('../../../../../../../data/COBRA_new_depot/Plant-NB-LRR-signaling-upstreams-and-downstreams.pdf');
 
-$dir = '../../../../../../../data/COBRA_depot/';
+$dir = '../../../../../../data/COBRA_depot/';
 //$dir = '/data/COBRA_depot/';
 
  // create new directory with 744 permissions if it does not exist yet
@@ -207,6 +207,12 @@ echo '<div id="doc_pages">';
 
         }
         error_log($dir.$fichier);
+        //foreach (scandir($dir) as $value) {
+        //    error_log($value);
+        //}
+        chmod($dir, 0755); 
+
+        chmod($dir.$fichier, 0755); 
         $table_string.='<td><div class="btn-group">
                     <!--<button type="button" class="btn btn-info"><i class="fa fa-pencil"></i></button>-->
 
@@ -217,8 +223,8 @@ echo '<div id="doc_pages">';
                     </button>
                     <ul class="dropdown-menu">
 
-                      <li><a href="./'.$dir.$fichier.'">Download file</a></li>
-                      <li><a href="./'.$dir.$fichier.'">Show file</a></li>
+                      <li><a href="'.$dir.$fichier.'">Download file</a></li>
+                      <li><a href="../../../../../../data/COBRA_depot/'.$fichier.'">Show file</a></li>
                       <!--<li><a href="#" id="myHrefbuttonremove">Remove file</a></li>-->
                       <!--<li><a href="#">Remove</a></li>-->
                       <!--<li role="separator" class="divider"></li>
